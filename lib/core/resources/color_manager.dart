@@ -1,6 +1,51 @@
 import 'package:flutter/material.dart';
 
 class ColorManager {
+  /// I will need [context] when make dark mode
+  BuildContext context;
+  ColorManager(this.context);
+
+  Color transparent = const Color.fromRGBO(0, 0, 0, 0);
+
+  Color white = const Color.fromRGBO(255, 255, 255, 1);
+
+  Color grey1 = const Color.fromRGBO(238, 238, 238, 1);
+  Color grey2 = const Color.fromRGBO(218, 218, 218, 1);
+  Color grey3 = const Color.fromRGBO(198, 198, 198, 1);
+  Color grey4 = const Color.fromRGBO(178, 178, 178, 1);
+  Color grey = const Color.fromRGBO(158, 158, 158, 1);
+  Color grey6 = const Color.fromRGBO(138, 138, 138, 1);
+  Color grey7 = const Color.fromRGBO(118, 118, 118, 1);
+  Color grey8 = const Color.fromRGBO(98, 98, 98, 1);
+  Color grey9 = const Color.fromRGBO(78, 78, 78, 1);
+  Color grey10 = const Color.fromRGBO(58, 58, 58, 1);
+  Color grey11 = const Color.fromRGBO(38, 38, 38, 1);
+  Color grey12 = const Color.fromRGBO(18, 18, 18, 1);
+
+  Color lightBlack = const Color.fromRGBO(36, 36, 36, 0.098);
+  Color black12 = const Color.fromRGBO(0, 0, 31, 0);
+  Color black26 = const Color.fromRGBO(0, 0, 0, 0.259);
+  Color black38 = const Color.fromRGBO(0, 0, 0, 0.38);
+  Color black45 = const Color.fromRGBO(0, 0, 0, 0.451);
+  Color black54 = const Color.fromRGBO(0, 0, 0, 0.533);
+  Color black87 = const Color.fromRGBO(0, 0, 0, 0.867);
+  Color black = const Color.fromARGB(255, 0, 0, 0);
+
+  static const Color teal =  Color.fromRGBO(0, 150, 136, 1);
+  static const Color blue = Color.fromRGBO(33, 150, 243, 1);
+  static const Color green = Color.fromRGBO(76, 175, 80, 1);
+  static const Color purple = Color.fromRGBO(160, 4, 238, 1);
+  static const Color lightPurple = Color.fromRGBO(137, 147, 255, 0.369);
+  static const Color lightBlue = Color.fromRGBO(147, 198, 248, 1);
+  static const Color redAccent = Color.fromRGBO(255, 82, 82, 1);
+  static const Color red = Color.fromRGBO(230, 31, 52, 1);
+  static const Color blackRed = Color.fromRGBO(182, 14, 14, 1);
+  static const Color yellow = Color.fromRGBO(252, 219, 3, 1);
+  static const Color lightYellow = Color.fromRGBO(255, 240, 27, 0.859);
+  static const Color orange = Color.fromRGBO(170, 115, 33, 1);
+}
+
+class BaseColorManager {
   static const Color white = Color(0xffFFFFFF);
   static const Color lightDarkGray = Color(0xff696969);
   static const Color grey = Color(0xff9E9E9E);
