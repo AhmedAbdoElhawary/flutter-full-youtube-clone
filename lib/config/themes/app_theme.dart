@@ -8,31 +8,30 @@ class AppTheme {
   static ThemeData get light {
     return ThemeData(
       useMaterial3: true,
-
-      primaryColor: ColorManager.white,
-      primaryColorLight: ColorManager.veryLightGrey,
-      hintColor: ColorManager.lowOpacityGrey,
-      shadowColor: ColorManager.veryLowOpacityGrey,
-      focusColor: ColorManager.black,
-      disabledColor: ColorManager.black54,
-      dialogBackgroundColor: ColorManager.black87,
-      hoverColor: ColorManager.black45,
-      indicatorColor: ColorManager.black38,
-      dividerColor: ColorManager.black12,
-      scaffoldBackgroundColor: ColorManager.white,
-      iconTheme: const IconThemeData(color: ColorManager.black),
+      primaryColor: BaseColorManager.white,
+      primaryColorLight: BaseColorManager.veryLightGrey,
+      hintColor: BaseColorManager.lowOpacityGrey,
+      shadowColor: BaseColorManager.veryLowOpacityGrey,
+      focusColor: BaseColorManager.black,
+      disabledColor: BaseColorManager.black54,
+      dialogBackgroundColor: BaseColorManager.black87,
+      hoverColor: BaseColorManager.black45,
+      indicatorColor: BaseColorManager.black38,
+      dividerColor: BaseColorManager.black12,
+      scaffoldBackgroundColor: BaseColorManager.white,
+      iconTheme: const IconThemeData(color: BaseColorManager.black),
       elevatedButtonTheme: elevatedButtonThemeData(),
       chipTheme:
-          const ChipThemeData(backgroundColor: ColorManager.veryLowOpacityGrey),
-      canvasColor: ColorManager.transparent,
-      splashColor: ColorManager.white,
+          const ChipThemeData(backgroundColor: BaseColorManager.veryLowOpacityGrey),
+      canvasColor: BaseColorManager.transparent,
+      splashColor: BaseColorManager.white,
       appBarTheme: appBarTheme(),
       tabBarTheme: tabBarTheme(),
       textTheme: textTheme(),
-      bottomAppBarTheme: const BottomAppBarTheme(color: ColorManager.black26),
+      bottomAppBarTheme: const BottomAppBarTheme(color: BaseColorManager.black26),
       colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.grey)
-          .copyWith(background: ColorManager.lightBlack)
-          .copyWith(error: ColorManager.black),
+          .copyWith(background: BaseColorManager.lightBlack)
+          .copyWith(error: BaseColorManager.black),
     );
   }
 
@@ -40,7 +39,7 @@ class AppTheme {
     return ElevatedButtonThemeData(
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-          (_) => ColorManager.black,
+          (_) => BaseColorManager.black,
         ),
         minimumSize:
             MaterialStateProperty.all<Size>(const Size(double.infinity, 0)),
@@ -57,24 +56,25 @@ class AppTheme {
       labelPadding: REdgeInsets.all(0),
       indicator: const BoxDecoration(
         border: Border(
-          bottom: BorderSide(color: ColorManager.black54, width: 1.5),
+          bottom: BorderSide(color: BaseColorManager.black54, width: 1.5),
         ),
       ),
-      labelColor: ColorManager.black,
-      unselectedLabelColor: ColorManager.grey,
+      labelColor: BaseColorManager.black,
+      unselectedLabelColor: BaseColorManager.grey,
     );
   }
 
   static TextTheme textTheme() {
     return TextTheme(
-      bodyLarge: getNormalStyle(color: ColorManager.black, fontSize: 25),
-      bodyMedium: getNormalStyle(color: ColorManager.black, fontSize: 20),
-      bodySmall: getMediumStyle(color: ColorManager.black, fontSize: 15),
-      titleSmall: getNormalStyle(color: ColorManager.black, fontSize: 13),
-      labelSmall: getMediumStyle(color: ColorManager.grey, fontSize: 13),
-      displayLarge: getMediumStyle(color: ColorManager.grey, fontSize: 12),
-      displayMedium: getMediumStyle(color: ColorManager.grey, fontSize: 11),
-      displaySmall: getMediumStyle(color: ColorManager.grey, fontSize: 10),
+
+      bodyLarge: getNormalStyle(color: BaseColorManager.black, fontSize: 25),
+      bodyMedium: getNormalStyle(color: BaseColorManager.black, fontSize: 20),
+      bodySmall: getMediumStyle(color: BaseColorManager.black, fontSize: 15),
+      titleSmall: getNormalStyle(color: BaseColorManager.black, fontSize: 13),
+      labelSmall: getMediumStyle(color: BaseColorManager.grey, fontSize: 13),
+      displayLarge: getMediumStyle(color: BaseColorManager.grey, fontSize: 12),
+      displayMedium: getMediumStyle(color: BaseColorManager.grey, fontSize: 11),
+      displaySmall: getMediumStyle(color: BaseColorManager.grey, fontSize: 10),
     );
   }
 
@@ -82,21 +82,20 @@ class AppTheme {
     return AppBarTheme(
       elevation: 0,
       toolbarHeight: 50,
-      color: ColorManager.white,
-      shadowColor: ColorManager.lowOpacityGrey,
-      iconTheme: const IconThemeData(color: ColorManager.black),
+      color: BaseColorManager.white,
+      iconTheme: const IconThemeData(color: BaseColorManager.black),
       titleTextStyle:
-          getNormalStyle(fontSize: FontSize.s16, color: ColorManager.black),
+          getNormalStyle(fontSize: FontSize.s16, color: BaseColorManager.black),
     );
   }
 
   static OutlinedButtonThemeData outlinedButtonTheme() {
     return OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
-        textStyle: getMediumStyle(fontSize: 17),
+        textStyle: getMediumStyle(fontSize: 17,color: BaseColorManager.black),
         padding: REdgeInsets.symmetric(horizontal: 20),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2.0)),
-        side: const BorderSide(width: 1, color: ColorManager.black45),
+        side: const BorderSide(width: 1, color: BaseColorManager.black45),
       ),
     );
   }
@@ -105,46 +104,46 @@ class AppTheme {
     return ThemeData(
       useMaterial3: true,
 
-      primaryColor: ColorManager.black,
-      primaryColorLight: ColorManager.black54,
-      hintColor: ColorManager.darkGray,
-      shadowColor: ColorManager.darkGray,
-      focusColor: ColorManager.white,
-      dialogBackgroundColor: ColorManager.white,
-      hoverColor: ColorManager.grey,
-      indicatorColor: ColorManager.grey,
-      dividerColor: ColorManager.grey,
-      iconTheme: const IconThemeData(color: ColorManager.white),
+      primaryColor: BaseColorManager.black,
+      primaryColorLight: BaseColorManager.black54,
+      hintColor: BaseColorManager.darkGray,
+      shadowColor: BaseColorManager.darkGray,
+      focusColor: BaseColorManager.white,
+      dialogBackgroundColor: BaseColorManager.white,
+      hoverColor: BaseColorManager.grey,
+      indicatorColor: BaseColorManager.grey,
+      dividerColor: BaseColorManager.grey,
+      iconTheme: const IconThemeData(color: BaseColorManager.white),
       chipTheme:
-          const ChipThemeData(backgroundColor: ColorManager.lightDarkGray),
-      disabledColor: ColorManager.white,
-      scaffoldBackgroundColor: ColorManager.black,
-      canvasColor: ColorManager.transparent,
-      splashColor: ColorManager.darkGray,
+          const ChipThemeData(backgroundColor: BaseColorManager.lightDarkGray),
+      disabledColor: BaseColorManager.white,
+      scaffoldBackgroundColor: BaseColorManager.black,
+      canvasColor: BaseColorManager.transparent,
+      splashColor: BaseColorManager.darkGray,
       appBarTheme: AppBarTheme(
         elevation: 0,
-        iconTheme: const IconThemeData(color: ColorManager.white),
-        color: ColorManager.black,
-        shadowColor: ColorManager.lowOpacityGrey,
+        iconTheme: const IconThemeData(color: BaseColorManager.white),
+        color: BaseColorManager.black,
+        shadowColor: BaseColorManager.lowOpacityGrey,
         titleTextStyle:
-            getNormalStyle(fontSize: FontSize.s16, color: ColorManager.white),
+            getNormalStyle(fontSize: FontSize.s16, color: BaseColorManager.white),
       ),
       textTheme: TextTheme(
-        bodyLarge: getNormalStyle(color: ColorManager.white),
-        bodyMedium: getNormalStyle(color: ColorManager.darkGray),
-        bodySmall: getNormalStyle(color: ColorManager.veryLightGrey),
-        displayLarge: getNormalStyle(color: ColorManager.grey, fontSize: 15),
-        displayMedium: getBoldStyle(color: ColorManager.white, fontSize: 15),
-        displaySmall: getMediumStyle(color: ColorManager.white, fontSize: 15),
+        bodyLarge: getNormalStyle(color: BaseColorManager.white),
+        bodyMedium: getNormalStyle(color: BaseColorManager.darkGray),
+        bodySmall: getNormalStyle(color: BaseColorManager.veryLightGrey),
+        displayLarge: getNormalStyle(color: BaseColorManager.grey, fontSize: 15),
+        displayMedium: getBoldStyle(color: BaseColorManager.white, fontSize: 15),
+        displaySmall: getMediumStyle(color: BaseColorManager.white, fontSize: 15),
         headlineSmall: getNormalStyle(color: Colors.grey[500]!),
-        titleLarge: getNormalStyle(color: ColorManager.shimmerDarkGrey),
-        titleSmall: getNormalStyle(color: ColorManager.darkGray),
-        titleMedium: getNormalStyle(color: ColorManager.darkGray),
+        titleLarge: getNormalStyle(color: BaseColorManager.shimmerDarkGrey),
+        titleSmall: getNormalStyle(color: BaseColorManager.darkGray),
+        titleMedium: getNormalStyle(color: BaseColorManager.darkGray),
       ),
-      bottomAppBarTheme: const BottomAppBarTheme(color: ColorManager.grey),
+      bottomAppBarTheme: const BottomAppBarTheme(color: BaseColorManager.grey),
       colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.grey)
-          .copyWith(background: ColorManager.darkGray)
-          .copyWith(error: ColorManager.grey),
+          .copyWith(background: BaseColorManager.darkGray)
+          .copyWith(error: BaseColorManager.grey),
     );
   }
 }
