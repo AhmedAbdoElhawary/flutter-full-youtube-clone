@@ -12,11 +12,12 @@ class ToastShow {
 
     return fToast.showToast(
       child: Container(
-          color: ColorManager.black,
+          color: ColorManager(context).black,
           padding: REdgeInsets.all(8),
           child: Text(
             toast,
-            style: getMediumStyle(fontSize: 17, color: ColorManager.white),
+            style: getMediumStyle(
+                fontSize: 17, color: ColorManager(context).white),
           )),
       gravity: ToastGravity.BOTTOM,
       toastDuration: const Duration(seconds: 2),
