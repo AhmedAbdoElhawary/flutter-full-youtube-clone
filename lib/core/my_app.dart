@@ -7,7 +7,7 @@ import 'package:youtube/config/themes/theme_service.dart';
 import 'package:youtube/core/translations/app_lang.dart';
 import 'package:youtube/core/translations/translations.dart';
 import 'package:youtube/core/widgets/multi_bloc_provider.dart';
-import 'package:youtube/views/home_page.dart';
+import 'package:youtube/presentation/layouts/base_layout.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -44,7 +44,7 @@ class _MyAppState extends State<MyApp> {
                   darkTheme: AppTheme.dark,
                   themeMode: ThemeOfApp().theme,
                   debugShowCheckedModeBanner: false,
-                  home: const HomePage()),
+                  home: const BaseLayout()),
             );
           },
         );
