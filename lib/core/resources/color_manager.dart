@@ -10,6 +10,8 @@ class ColorManager {
   Color white = const Color.fromRGBO(255, 255, 255, 1);
 
   Color grey1 = const Color.fromRGBO(238, 238, 238, 1);
+  Color grey1Point5 = const Color.fromRGBO(228, 228, 228, 1);
+
   Color grey2 = const Color.fromRGBO(218, 218, 218, 1);
   Color grey3 = const Color.fromRGBO(198, 198, 198, 1);
   Color grey4 = const Color.fromRGBO(178, 178, 178, 1);
@@ -38,8 +40,8 @@ class ColorManager {
   static const Color lightPurple = Color.fromRGBO(137, 147, 255, 0.369);
   static const Color lightBlue = Color.fromRGBO(147, 198, 248, 1);
   static const Color redAccent = Color.fromRGBO(255, 82, 82, 1);
-  static const Color red = Color.fromRGBO(230, 31, 52, 1);
-  static const Color blackRed = Color.fromRGBO(182, 14, 14, 1);
+  static const Color red = Color.fromRGBO(253, 0, 24, 1.0);
+  static const Color blackRed = Color.fromRGBO(211, 11, 11, 1.0);
   static const Color yellow = Color.fromRGBO(252, 219, 3, 1);
   static const Color lightYellow = Color.fromRGBO(255, 240, 27, 0.859);
   static const Color orange = Color.fromRGBO(170, 115, 33, 1);
