@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:youtube/core/resources/color_manager.dart';
 import 'font_manager.dart';
 
 TextStyle _getTextStyle(
@@ -10,6 +9,7 @@ TextStyle _getTextStyle(
       fontFamily: FontConstants.fontFamily,
       color: color,
       fontWeight: fontWeight,
+      height: 1.1,
       fontStyle: fontStyle);
 }
 
@@ -31,28 +31,28 @@ TextStyle _whichTextStyle(
 
 TextStyle getLightStyle(
     {double fontSize = FontSize.s0,
-    Color color = ColorManager.black,
+    required Color color,
     FontStyle fontStyle = FontStyle.normal}) {
   return _whichTextStyle(fontSize, FontWeightManager.light, color, fontStyle);
 }
 
 TextStyle getNormalStyle(
     {double fontSize = FontSize.s0,
-    Color color = ColorManager.black,
+    required Color color,
     FontStyle fontStyle = FontStyle.normal}) {
   return _whichTextStyle(fontSize, FontWeightManager.regular, color, fontStyle);
 }
 
 TextStyle getMediumStyle(
     {double fontSize = FontSize.s0,
-    Color color = ColorManager.black,
+    required Color color,
     FontStyle fontStyle = FontStyle.normal}) {
   return _whichTextStyle(fontSize, FontWeightManager.medium, color, fontStyle);
 }
 
 TextStyle getBoldStyle(
     {double fontSize = FontSize.s0,
-    Color color = ColorManager.black,
+    required Color color,
     FontStyle fontStyle = FontStyle.normal}) {
   return _whichTextStyle(fontSize, FontWeightManager.bold, color, fontStyle);
 }
