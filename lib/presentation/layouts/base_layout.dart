@@ -1,18 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:youtube/core/resources/color_manager.dart';
-import 'package:youtube/presentation/views/home_page.dart';
+import 'package:youtube/presentation/pages/home/logic/home_page_logic.dart';
+import 'package:youtube/presentation/pages/home/views/home_page.dart';
 
-class BaseLayout extends StatefulWidget {
-  const BaseLayout({ Key? key}) : super(key: key);
+import '../widgets/mini_player_video.dart';
 
-  @override
-  State<BaseLayout> createState() => _BaseLayoutState();
-}
-
-class _BaseLayoutState extends State<BaseLayout> {
-  CupertinoTabController controller = CupertinoTabController();
+class BaseLayout extends StatelessWidget {
+  const BaseLayout({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,31 +18,54 @@ class _BaseLayoutState extends State<BaseLayout> {
         backgroundColor: Theme.of(context).primaryColor,
         height: 44.h,
         border: Border(
-            top: BorderSide(color: ColorManager(context).grey1, width: 1.5.w)),
+            top: BorderSide(color: ColorManager(context).grey1, width: 1.w)),
         inactiveColor: ColorManager(context).black,
         activeColor: ColorManager(context).black,
         items: [
-          navigationBarItem(Icons.home_outlined, "Home"),
-          navigationBarItem(Icons.home_outlined, "Shorts"),
-          navigationBarItem(Icons.person, "Account"),
-
-          navigationBarItem(Icons.video_library_outlined, "Subscriptions"),
-          navigationBarItem(Icons.video_library_outlined, "Library"),
-
+          navigationBarItem(Icons.home_outlined, Icons.home, "Home"),
+          navigationBarItem(Icons.home_outlined, Icons.home, "Shorts"),
+          navigationBarItem(Icons.add_circle_outline_outlined,
+              Icons.add_circle_outlined, "Account"),
+          navigationBarItem(Icons.subscriptions_outlined, Icons.subscriptions,
+              "Subscriptions"),
+          navigationBarItem(
+              Icons.video_library_outlined, Icons.video_library, "Library"),
         ],
       ),
-      controller: controller,
       tabBuilder: (context, index) {
-            return homePage();
-
+        MiniVideoViewLogic miniVideoLogic =
+            Get.put(MiniVideoViewLogic(), tag: "1");
+        return Stack(
+          children: [
+            const _HomePage(),
+            Obx(() {
+              return miniVideoLogic.videoIndex.value != null
+                  ? const MiniPlayerVideo()
+                  : const SizedBox();
+            }),
+          ],
+        );
       },
     );
   }
 
-  Widget homePage() => CupertinoTabView(
-        builder: (context) => const CupertinoPageScaffold(child: HomePage()),
-      );
-  BottomNavigationBarItem navigationBarItem(IconData icon, String label) {
-    return BottomNavigationBarItem(icon: Icon(icon, size: 25.r), label: label);
+  BottomNavigationBarItem navigationBarItem(
+      IconData icon, IconData activeIcon, String label) {
+    bool isThatAdd = label == "Account";
+    return BottomNavigationBarItem(
+        icon: Icon(icon, size: isThatAdd ? 40.r : 25.r),
+        activeIcon: Icon(activeIcon, size: isThatAdd ? 40.r : 25.r),
+        label: isThatAdd ? null : label);
+  }
+}
+
+class _HomePage extends StatelessWidget {
+  const _HomePage();
+
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoTabView(
+      builder: (context) => const CupertinoPageScaffold(child: HomePage()),
+    );
   }
 }
