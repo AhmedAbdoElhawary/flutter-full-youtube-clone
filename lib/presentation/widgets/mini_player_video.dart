@@ -5,6 +5,7 @@ import 'package:miniplayer/miniplayer.dart';
 import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/core/resources/styles_manager.dart';
 import 'package:youtube/presentation/pages/home/logic/home_page_logic.dart';
+import 'package:youtube/presentation/widgets/thumbnail_video.dart';
 
 class MiniPlayerVideo extends StatefulWidget {
   const MiniPlayerVideo({super.key});
@@ -99,12 +100,7 @@ class NextVideosSuggestions extends StatelessWidget {
               ),
             );
           }
-          return Container(
-            width: double.infinity,
-            height: 185.h,
-            color: ColorManager.teal,
-            child: Text("$index"),
-          );
+          return ThumbnailVideoItem(index);
         },
         separatorBuilder: (context, index) => const RSizedBox(height: 20),
         itemCount: 30);
@@ -337,12 +333,12 @@ class _VideoOfMiniDisplayState extends State<_VideoOfMiniDisplay> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-
-    return Container(
+    return Obx(() => Container(
       height: controller.videoOfMiniDisplayHeight(),
       width: controller.videoOfMiniDisplayWidth(screenWidth),
       color: ColorManager.blue,
-    );
+      child: Center(child: Text("${controller.videoIndex.value}")),
+    )) ;
   }
 }
 
