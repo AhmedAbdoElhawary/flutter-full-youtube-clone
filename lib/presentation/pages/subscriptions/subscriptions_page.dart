@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:youtube/core/resources/color_manager.dart';
-import 'package:youtube/presentation/widgets/thumbnail_video.dart';
+import 'package:youtube/presentation/widgets/moved_thumbnail_video.dart';
 
 import '../../../core/resources/styles_manager.dart';
+import '../../../core/widgets/sliver_app_bar.dart';
+import 'logic/subscriptions_page_logic.dart';
 
 class SubscriptionsPage extends StatelessWidget {
   const SubscriptionsPage({Key? key}) : super(key: key);
@@ -13,13 +16,16 @@ class SubscriptionsPage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: CustomScrollView(slivers: [
-          const _CustomSliverAppBar(),
+          MainSliverAppBar(
+              preferredSizeWidget: PreferredSize(
+                  preferredSize: Size.fromHeight(130.h),
+                  child: const SubscriptionsBottomAppBarWidget())),
           SliverList(
               delegate: SliverChildBuilderDelegate(
             childCount: 30,
             (context, index) => Padding(
               padding: REdgeInsets.only(bottom: 15),
-              child: ThumbnailVideoItem(index),
+              child: MovedThumbnailVideo(index),
             ),
           )),
         ]),
@@ -28,56 +34,65 @@ class SubscriptionsPage extends StatelessWidget {
   }
 }
 
-class _CustomSliverAppBar extends StatelessWidget {
-  const _CustomSliverAppBar({Key? key}) : super(key: key);
+class SubscriptionsBottomAppBarWidget extends StatelessWidget {
+  const SubscriptionsBottomAppBarWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SliverAppBar(
-      floating: true,
-      leading: const Icon(Icons.yard_outlined, size: 40),
-      actionsIconTheme: const IconThemeData(size: 20),
-      actions: const [
-        Icon(Icons.search_rounded, size: 25),
-        RSizedBox(width: 20),
-        Icon(Icons.search_rounded, size: 25),
-        RSizedBox(width: 20),
-        Icon(Icons.search_rounded, size: 25),
-        RSizedBox(width: 20),
-        CircleAvatar(backgroundColor: ColorManager.teal, radius: 13),
-        RSizedBox(width: 20),
-      ],
-      bottom: PreferredSize(
-          preferredSize: Size.fromHeight(130.h),
-          child: const _AppBarBottomWidget()),
-    );
-  }
-}
-
-class _AppBarBottomWidget extends StatelessWidget {
-  const _AppBarBottomWidget();
-
-  @override
-  Widget build(BuildContext context) {
+    Get.put(SubscriptionsPageLogic(), tag: "1");
     return Container(
       width: MediaQuery.of(context).size.width,
       color: ColorManager(context).white,
       height: 130.h,
       child: Column(
         children: [
-          const RSizedBox(height: 5),
           Stack(
             alignment: AlignmentDirectional.centerEnd,
-            children: const [
-              Flexible(child: _ChannelsCircularImage()),
-              _AllChannelsTextButton(),
+            children: [
+              Row(
+                children: [
+                  const Flexible(child: _ChannelsCircularImage()),
+                  RSizedBox(width: 55.w),
+                ],
+              ),
+              const _AllChannelsTextButton(),
             ],
           ),
-          const RSizedBox(height: 15),
-          const Flexible(child: _FilteredOptions()),
+          const RSizedBox(height: 10),
+          const _BottomChannelsWidget(),
         ],
       ),
     );
+  }
+}
+
+class _BottomChannelsWidget extends StatelessWidget {
+  const _BottomChannelsWidget();
+
+  @override
+  Widget build(BuildContext context) {
+    final logic = Get.find<SubscriptionsPageLogic>(tag: "1");
+    return Obx(() {
+      switch (logic.selectedChannelIndex.value) {
+        case null:
+          return const Flexible(child: _FilteredOptions());
+        default:
+          return Align(
+            alignment: AlignmentDirectional.centerEnd,
+            child: Padding(
+              padding: REdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
+              child: InkWell(
+                onTap: () {},
+                child: Text(
+                  "VIEW CHANNELS",
+                  style: getMediumStyle(
+                      color: ColorManager.darkBlue, fontSize: 13),
+                ),
+              ),
+            ),
+          );
+      }
+    });
   }
 }
 
@@ -88,7 +103,7 @@ class _AllChannelsTextButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 55.w,
-      height: 75.h,
+      height: 85.h,
       color: ColorManager(context).white,
       child: Center(
         child: Text(
@@ -100,43 +115,72 @@ class _AllChannelsTextButton extends StatelessWidget {
   }
 }
 
-class _ChannelsCircularImage extends StatefulWidget {
+class _ChannelsCircularImage extends StatelessWidget {
   const _ChannelsCircularImage();
 
   @override
-  State<_ChannelsCircularImage> createState() => __ChannelsCircularImageState();
-}
-
-class __ChannelsCircularImageState extends State<_ChannelsCircularImage> {
-  int selectedIndex = 0;
-  @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 75.h,
+      height: 85.h,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         physics: const BouncingScrollPhysics(),
-        itemBuilder: (context, index) => Padding(
-          padding: REdgeInsetsDirectional.only(
-              start: index == 0 ? 10 : 0, end: index == 19 ? 10 : 0),
-          child: GestureDetector(
-            onTap: () => setState(() => selectedIndex = index),
-            child: SizedBox(
-              width: 65.w,
-              child: Column(
-                children: [
-                  CircleAvatar(
-                      radius: 30, backgroundColor: ColorManager(context).grey2),
-                  const RSizedBox(height: 5),
-                  const _ChannelName()
-                ],
-              ),
-            ),
-          ),
-        ),
-        separatorBuilder: (context, index) => const RSizedBox(width: 10),
-        itemCount: 20,
+        itemBuilder: (context, index) => _ChannelItem(index),
+        separatorBuilder: (context, index) => const RSizedBox(width: 5),
+        itemCount: 50,
       ),
+    );
+  }
+}
+
+class _ChannelItem extends StatelessWidget {
+  const _ChannelItem(this.index);
+  final int index;
+  @override
+  Widget build(BuildContext context) {
+    final logic = Get.find<SubscriptionsPageLogic>(tag: "1");
+    return Padding(
+      padding: REdgeInsetsDirectional.only(
+          start: index == 0 ? 10 : 0, end: index == 49 ? 10 : 0),
+      child: InkWell(
+        onTap: () => logic.selectedChannelIndex.value = index,
+        child: Obx(
+          () {
+            int? selectedIndex = logic.selectedChannelIndex.value;
+            return Container(
+              padding: REdgeInsetsDirectional.only(start: 5, end: 5),
+              color: selectedIndex != null && selectedIndex == index
+                  ? ColorManager.lightBlue
+                  : null,
+              width: 65.w,
+              child: selectedIndex == index || selectedIndex == null
+                  ? const _ChannelImageName()
+                  : const ColorFiltered(
+                      colorFilter: ColorFilter.mode(
+                          Color.fromARGB(48, 180, 180, 180),
+                          BlendMode.modulate),
+                      child: _ChannelImageName()),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class _ChannelImageName extends StatelessWidget {
+  const _ChannelImageName();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        CircleAvatar(radius: 30, backgroundColor: ColorManager(context).grey2),
+        const RSizedBox(height: 5),
+        const _ChannelName()
+      ],
     );
   }
 }
@@ -148,7 +192,7 @@ class _ChannelName extends StatelessWidget {
   Widget build(BuildContext context) {
     return Flexible(
       child: Text(
-        "Ahmed Ab " * 2,
+        "Ahmed Abdo" * 2,
         style: getNormalStyle(color: ColorManager(context).grey7, fontSize: 12),
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
