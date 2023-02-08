@@ -81,7 +81,7 @@ class AppTheme {
   static AppBarTheme appBarTheme() {
     return AppBarTheme(
       elevation: 0,
-      toolbarHeight: 50,
+      toolbarHeight: 45.h,
       color: BaseColorManager.white,
       iconTheme: const IconThemeData(color: BaseColorManager.black),
       titleTextStyle:
