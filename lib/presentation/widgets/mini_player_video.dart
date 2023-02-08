@@ -6,7 +6,7 @@ import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/core/resources/styles_manager.dart';
 import 'package:youtube/presentation/pages/home/logic/home_page_logic.dart';
 import 'package:youtube/presentation/widgets/subscribe_button.dart';
-import 'package:youtube/presentation/widgets/thumbnail_video.dart';
+import 'package:youtube/presentation/widgets/moved_thumbnail_video.dart';
 
 class MiniPlayerVideo extends StatefulWidget {
   const MiniPlayerVideo({super.key});
@@ -101,7 +101,7 @@ class NextVideosSuggestions extends StatelessWidget {
               ),
             );
           }
-          return ThumbnailVideoItem(index);
+          return MovedThumbnailVideo(index);
         },
         separatorBuilder: (context, index) => const RSizedBox(height: 20),
         itemCount: 30);
