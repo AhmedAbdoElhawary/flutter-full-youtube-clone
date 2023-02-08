@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:youtube/core/resources/styles_manager.dart';
-import 'package:youtube/presentation/pages/profile_page/profile_page.dart';
 import 'package:youtube/presentation/widgets/circular_profile_image.dart';
 
 import '../../../core/resources/assets_manager.dart';
 import '../../../core/resources/color_manager.dart';
 import '../../widgets/subscribe_button.dart';
+import 'profile_page.dart';
 
 class UserProfilePage extends StatelessWidget {
   const UserProfilePage({Key? key}) : super(key: key);
