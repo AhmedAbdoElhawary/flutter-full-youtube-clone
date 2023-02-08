@@ -35,6 +35,7 @@ class ColorManager {
 
   static const Color teal =  Color.fromRGBO(0, 150, 136, 1);
   static const Color blue = Color.fromRGBO(33, 150, 243, 1);
+  static const Color darkBlue = Color.fromRGBO(0, 113, 203, 1.0);
   static const Color green = Color.fromRGBO(76, 175, 80, 1);
   static const Color purple = Color.fromRGBO(160, 4, 238, 1);
   static const Color lightPurple = Color.fromRGBO(137, 147, 255, 0.369);

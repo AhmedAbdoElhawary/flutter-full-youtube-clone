@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:youtube/config/routes/route_app.dart';
-import 'package:youtube/presentation/pages/profile_page/user_profile_page.dart';
 
 import '../../core/resources/color_manager.dart';
+import '../pages/channel_profile/user_profile_page.dart';
 
 class CircularProfileImage extends StatelessWidget {
   final bool enableTapping;

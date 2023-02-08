@@ -6,6 +6,7 @@ import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/presentation/pages/home/logic/home_page_logic.dart';
 import 'package:youtube/presentation/pages/home/views/home_page.dart';
 
+import '../pages/subscriptions/subscriptions_page.dart';
 import '../widgets/mini_player_video.dart';
 
 class BaseLayout extends StatelessWidget {
@@ -35,9 +36,10 @@ class BaseLayout extends StatelessWidget {
       tabBuilder: (context, index) {
         MiniVideoViewLogic miniVideoLogic =
             Get.put(MiniVideoViewLogic(), tag: "1");
+
         return Stack(
           children: [
-            const _HomePage(),
+            WhichPage(index),
             Obx(() {
               return miniVideoLogic.videoIndex.value != null
                   ? const MiniPlayerVideo()
@@ -59,6 +61,20 @@ class BaseLayout extends StatelessWidget {
   }
 }
 
+class WhichPage extends StatelessWidget {
+  const WhichPage(this.index, {Key? key}) : super(key: key);
+  final int index;
+  @override
+  Widget build(BuildContext context) {
+    switch (index) {
+      case 0:
+        return const _HomePage();
+      default:
+        return const _SubscriptionsPage();
+    }
+  }
+}
+
 class _HomePage extends StatelessWidget {
   const _HomePage();
 
@@ -66,6 +82,18 @@ class _HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoTabView(
       builder: (context) => const CupertinoPageScaffold(child: HomePage()),
+    );
+  }
+}
+
+class _SubscriptionsPage extends StatelessWidget {
+  const _SubscriptionsPage();
+
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoTabView(
+      builder: (context) =>
+          const CupertinoPageScaffold(child: SubscriptionsPage()),
     );
   }
 }
