@@ -5,6 +5,7 @@ import 'package:miniplayer/miniplayer.dart';
 import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/core/resources/styles_manager.dart';
 import 'package:youtube/presentation/pages/home/logic/home_page_logic.dart';
+import 'package:youtube/presentation/widgets/subscribe_button.dart';
 import 'package:youtube/presentation/widgets/thumbnail_video.dart';
 
 class MiniPlayerVideo extends StatefulWidget {
@@ -185,10 +186,7 @@ class _CircleNameSubscribersWidget extends StatelessWidget {
               ],
             ),
           ),
-          Text(
-            "SUBSCRIBE",
-            style: getMediumStyle(color: ColorManager.blackRed, fontSize: 17),
-          )
+          const SubscribeButton(),
         ],
       ),
     );

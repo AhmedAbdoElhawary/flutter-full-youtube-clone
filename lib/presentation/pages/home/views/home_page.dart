@@ -15,7 +15,10 @@ class HomePage extends StatelessWidget {
           SliverList(
               delegate: SliverChildBuilderDelegate(
             childCount: 30,
-            (context, index) =>  ThumbnailVideoItem(index),
+            (context, index) =>  Padding(
+              padding:  REdgeInsets.only(bottom: 15),
+              child: ThumbnailVideoItem(index),
+            ),
           )),
         ]),
       ),
