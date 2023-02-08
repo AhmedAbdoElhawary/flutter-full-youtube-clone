@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:youtube/presentation/widgets/circular_profile_image.dart';
 
 import '../../core/resources/color_manager.dart';
 import '../../core/resources/styles_manager.dart';
@@ -41,10 +42,7 @@ class _VideoSubTitles extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CircleAvatar(
-            radius: 18.r,
-            backgroundColor: ColorManager(context).grey,
-          ),
+          const CircularProfileImage(),
           const RSizedBox(width: 10),
           Flexible(
             child: Column(
