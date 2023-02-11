@@ -21,7 +21,7 @@ class MovedThumbnailVideo extends StatelessWidget {
     final miniVideoViewLogic = Get.find<MiniVideoViewLogic>(tag: "1");
     return InkWell(
       onTap: () {
-        miniVideoViewLogic.videoDetailsItem.value = videoDetailsItem;
+        miniVideoViewLogic.selectedVideoDetails = videoDetailsItem;
       },
       child: Column(
         children: [
