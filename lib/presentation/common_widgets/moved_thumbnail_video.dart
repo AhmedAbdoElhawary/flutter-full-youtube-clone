@@ -3,29 +3,33 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:youtube/core/resources/assets_manager.dart';
-import 'package:youtube/presentation/widgets/circular_profile_image.dart';
-import 'package:youtube/presentation/widgets/small_thumbnail_video.dart';
+import 'package:youtube/data/models/video_details/video_details.dart';
+import 'package:youtube/presentation/common_widgets/circular_profile_image.dart';
+import 'package:youtube/presentation/common_widgets/small_thumbnail_video.dart';
 
 import '../../core/resources/color_manager.dart';
 import '../../core/resources/styles_manager.dart';
 import '../pages/home/logic/home_page_logic.dart';
 
 class MovedThumbnailVideo extends StatelessWidget {
-  const MovedThumbnailVideo(this.index, {super.key});
-  final int index;
+  const MovedThumbnailVideo(this.videoDetailsItem, {super.key});
+  final VideoDetailsItem? videoDetailsItem;
   @override
   Widget build(BuildContext context) {
     final miniVideoViewLogic = Get.find<MiniVideoViewLogic>(tag: "1");
-
     return InkWell(
       onTap: () {
-        miniVideoViewLogic.videoIndex.value = index;
+        miniVideoViewLogic.videoDetailsItem.value = videoDetailsItem;
       },
       child: Column(
         children: [
           Stack(
             alignment: AlignmentDirectional.bottomEnd,
-            children: [ThumbnailVideo(index), const _VideoTime()],
+            children: [
+              if (videoDetailsItem?.snippet?.thumbnails != null)
+                ThumbnailVideo(videoDetailsItem?.snippet?.thumbnails),
+              const _VideoTime()
+            ],
           ),
           const RSizedBox(height: 10),
           const _VideoSubTitles(),
