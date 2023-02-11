@@ -28,11 +28,11 @@ class _MiniPlayerVideoState extends State<MiniPlayerVideo> {
         minHeight: minHeight,
         maxHeight: height,
         onDismissed: () {
-          _miniVideoViewLogic.videoDetailsItem.value = null;
+          _miniVideoViewLogic.selectedVideoDetails = null;
         },
         builder: (height, percentage) {
-          _miniVideoViewLogic.percentageOFMiniPage.value = percentage;
-          _miniVideoViewLogic.heightOFMiniPage.value = height;
+          _miniVideoViewLogic.percentageOFMiniPage = percentage;
+          _miniVideoViewLogic.heightOFMiniPage = height;
 
           return _MiniVideoDisplay(height, percentage);
         },
@@ -227,6 +227,8 @@ class _VideoTitleSubNumbersTexts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<MiniVideoViewLogic>(tag: "1");
+
     return Padding(
       padding: REdgeInsets.symmetric(horizontal: 10),
       child: Row(
@@ -237,7 +239,7 @@ class _VideoTitleSubNumbersTexts extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "هل الايفون اصبح جهاز سئ",
+                controller.videoTitle,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 3,
                 style: getNormalStyle(
@@ -245,7 +247,7 @@ class _VideoTitleSubNumbersTexts extends StatelessWidget {
               ),
               const RSizedBox(height: 8),
               Text(
-                "141k view . 12d ago",
+                "${controller.viewCount} . ${controller.dateOfVideo}",
                 overflow: TextOverflow.ellipsis,
                 style: getNormalStyle(
                     color: ColorManager(context).grey7, fontSize: 13),
@@ -291,7 +293,7 @@ class _MiniVideoView extends StatelessWidget {
                   onTap: () {
                     final miniVideoViewLogic =
                         Get.find<MiniVideoViewLogic>(tag: "1");
-                    miniVideoViewLogic.videoDetailsItem.value = null;
+                    miniVideoViewLogic.selectedVideoDetails = null;
                     // context
                     //     .read(selectedVideoProvider)
                     //     .state = null;
@@ -331,7 +333,7 @@ class _VideoOfMiniDisplayState extends State<_VideoOfMiniDisplay> {
           height: controller.videoOfMiniDisplayHeight(),
           width: controller.videoOfMiniDisplayWidth(screenWidth),
           color: ColorManager.blue,
-          child: Center(child: Text("${controller.videoDetailsItem.value}")),
+          child: Center(child: Text("${controller.selectedVideoDetails}")),
         ));
   }
 }
@@ -343,6 +345,8 @@ class VideoTitleSubTitleTexts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<MiniVideoViewLogic>(tag: "1");
+
     return Expanded(
       flex: 3,
       child: Padding(
@@ -353,7 +357,7 @@ class VideoTitleSubTitleTexts extends StatelessWidget {
           children: [
             Flexible(
               child: Text(
-                "هل الايفون اصبح جهاز سئ",
+                controller.videoTitle,
                 overflow: TextOverflow.ellipsis,
                 style: getNormalStyle(
                     color: ColorManager(context).black, fontSize: 12),
@@ -361,7 +365,7 @@ class VideoTitleSubTitleTexts extends StatelessWidget {
             ),
             Flexible(
               child: Text(
-                "selected Video title",
+                controller.channelTitle,
                 overflow: TextOverflow.ellipsis,
                 style: getNormalStyle(
                     color: ColorManager(context).grey7, fontSize: 12),
