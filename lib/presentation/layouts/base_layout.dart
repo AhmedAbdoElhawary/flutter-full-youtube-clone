@@ -8,7 +8,7 @@ import 'package:youtube/presentation/pages/home/views/home_page.dart';
 import 'package:youtube/presentation/pages/library/library_page.dart';
 
 import '../pages/subscriptions/subscriptions_page.dart';
-import '../widgets/mini_player_video.dart';
+import '../common_widgets/mini_player_video.dart';
 
 class BaseLayout extends StatelessWidget {
   const BaseLayout({Key? key}) : super(key: key);
@@ -38,12 +38,12 @@ class BaseLayout extends StatelessWidget {
         MiniVideoViewLogic miniVideoLogic =
             Get.put(MiniVideoViewLogic(), tag: "1");
 
-        return  Stack(
+        return Stack(
           children: [
             WhichPage(index),
             Obx(
-                  () {
-                return miniVideoLogic.videoIndex.value != null
+              () {
+                return miniVideoLogic.videoDetailsItem.value != null
                     ? const MiniPlayerVideo()
                     : const SizedBox();
               },
