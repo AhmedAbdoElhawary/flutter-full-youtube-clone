@@ -6,6 +6,7 @@ import 'package:youtube/config/themes/app_theme.dart';
 import 'package:youtube/config/themes/theme_service.dart';
 import 'package:youtube/core/translations/app_lang.dart';
 import 'package:youtube/core/translations/translations.dart';
+import 'package:youtube/core/utility/constants.dart';
 import 'package:youtube/core/widgets/multi_bloc_provider.dart';
 import 'package:youtube/presentation/layouts/base_layout.dart';
 
@@ -19,10 +20,16 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MultiBlocs(materialApp());
+    return const MultiBlocs(_GetBuilder());
   }
+}
 
-  ScreenUtilInit materialApp() {
+class _GetBuilder extends StatelessWidget {
+  const _GetBuilder();
+
+  @override
+  Widget build(BuildContext context) {
+    _defineThePlatform(context);
     return ScreenUtilInit(
       designSize: const Size(360, 690),
       minTextAdapt: true,
@@ -51,4 +58,11 @@ class _MyAppState extends State<MyApp> {
       },
     );
   }
+}
+
+_defineThePlatform(BuildContext context) {
+  TargetPlatform platform = Theme.of(context).platform;
+  isThatMobile =
+      platform == TargetPlatform.iOS || platform == TargetPlatform.android;
+  isThatAndroid = platform == TargetPlatform.android;
 }
