@@ -22,7 +22,7 @@ migrate_working_dir/
 #.vscode/
 
 # Flutter/Dart/Pub related
-lib/core/utility/private_keys.dart
+lib/core/utility/private_key.dart
 
 **/doc/api/
 **/ios/Flutter/.last_build_id
