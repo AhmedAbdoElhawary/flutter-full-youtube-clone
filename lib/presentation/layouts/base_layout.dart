@@ -43,7 +43,7 @@ class BaseLayout extends StatelessWidget {
             WhichPage(index),
             Obx(
               () {
-                return miniVideoLogic.videoDetailsItem.value != null
+                return miniVideoLogic.selectedVideoDetails != null
                     ? const MiniPlayerVideo()
                     : const SizedBox();
               },
