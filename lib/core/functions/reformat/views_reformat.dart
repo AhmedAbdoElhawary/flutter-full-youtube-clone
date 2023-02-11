@@ -1,6 +1,7 @@
 class CountsReformat {
   static String basicViewsFormat(String views) {
     int length = views.length;
+    if (length == 0) return "";
     String viewsNewFormat = length > 3
         ? length > 4
             ? length > 5
@@ -32,31 +33,11 @@ class CountsReformat {
   }
 
   static String videoDurationFormat(String duration) {
-    int unUsefulLastCharIndex = duration.indexOf("T");
-    int hourCharIndex = duration.indexOf("H");
-    int minuteCharIndex = duration.indexOf("M");
-    int secondLatterIndex = duration.indexOf("S");
+    duration = duration.replaceRange(0, 2, "");
+    duration = duration.replaceAll("S", "");
+    duration = duration.replaceAll("M", ":");
+    duration = duration.replaceAll("H", ":");
 
-    String durationReformat = "";
-    if (hourCharIndex != -1) {
-      durationReformat =
-          _timeDuration(duration, unUsefulLastCharIndex, hourCharIndex);
-    }
-    if (minuteCharIndex != -1) {
-      durationReformat +=
-          _timeDuration(duration, hourCharIndex, minuteCharIndex);
-    }
-
-    String secondFormat =
-        _timeDuration(duration, minuteCharIndex, secondLatterIndex);
-    durationReformat += secondFormat.replaceAll(":", "");
-
-    return durationReformat;
-  }
-
-  static String _timeDuration(String duration, int start, int end) {
-    String count = duration.substring(start, end);
-    count = count.length == 1 ? "0$count" : count;
-    return "$count:";
+    return duration;
   }
 }
