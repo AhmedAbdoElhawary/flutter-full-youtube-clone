@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:youtube/presentation/pages/search/widgets/searched_text_field.dart';
-import 'package:youtube/presentation/widgets/moved_thumbnail_video.dart';
 
 import '../../../core/resources/assets_manager.dart';
 import '../../../core/resources/color_manager.dart';
@@ -19,7 +18,7 @@ class SearchedResultsPage extends StatelessWidget {
       appBar: AppBar(
         titleSpacing: 5.w,
         surfaceTintColor: ColorManager(context).white,
-        title: SearchTextField(controller: controller,enableOnTap: true),
+        title: SearchTextField(controller: controller, enableOnTap: true),
         actions: [
           const RSizedBox(width: 15),
           const MicIconButton(),
@@ -31,7 +30,7 @@ class SearchedResultsPage extends StatelessWidget {
       body: ListView.builder(
           itemBuilder: (context, index) => Padding(
                 padding: REdgeInsets.only(bottom: 15),
-                child: MovedThumbnailVideo(index),
+                child: const RSizedBox(),
               ),
           itemCount: 50),
     );

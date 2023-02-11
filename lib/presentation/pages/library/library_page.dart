@@ -3,9 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/core/resources/styles_manager.dart';
-import '../../../../core/widgets/sliver_app_bar.dart';
+import 'package:youtube/core/widgets/sliver_app_bar.dart';
 import '../../../core/resources/assets_manager.dart';
-import '../../widgets/small_thumbnail_video.dart';
+import '../../common_widgets/small_thumbnail_video.dart';
 
 class LibraryPage extends StatelessWidget {
   const LibraryPage({Key? key}) : super(key: key);
@@ -165,16 +165,12 @@ class _ItemBuilderWidget extends StatelessWidget {
           padding: REdgeInsetsDirectional.only(bottom: 15, start: 5, end: 5),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ThumbnailVideo(
-                index,
-                height: 70,
-                width: 140,
-              ),
-              const RSizedBox(height: 8),
-              const _VideoNameWithIconOptions(),
-              const RSizedBox(height: 5),
-              const _ChannelName(),
+            children: const [
+              ThumbnailVideo(null, height: 70, width: 140),
+              RSizedBox(height: 8),
+              _VideoNameWithIconOptions(),
+              RSizedBox(height: 5),
+              _ChannelName(),
             ],
           ),
         ),

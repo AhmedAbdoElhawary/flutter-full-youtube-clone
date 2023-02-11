@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:youtube/core/resources/color_manager.dart';
-import 'package:youtube/presentation/widgets/moved_thumbnail_video.dart';
-
-import '../../../../core/widgets/sliver_app_bar.dart';
+import 'package:youtube/core/widgets/sliver_app_bar.dart';
+import 'package:youtube/presentation/common_widgets/custom_circle_progress.dart';
+import 'package:youtube/presentation/common_widgets/moved_thumbnail_video.dart';
+import 'package:youtube/presentation/cubit/videos_details/videos_details_cubit.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -24,14 +26,30 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-                childCount: 30,
-                (context, index) => Padding(
-                  padding: REdgeInsets.only(bottom: 15),
-                  child: MovedThumbnailVideo(index),
-                ),
-              ),
+            BlocBuilder<VideosDetailsCubit, VideosDetailsState>(
+              bloc: VideosDetailsCubit.get(context)..getMostPopularVideos(),
+              builder: (context, state) {
+                return state.maybeWhen(
+                  mostPopularVideosLoaded: (mostPopularVideos) {
+                    return SliverList(
+                      delegate: SliverChildBuilderDelegate(
+                        childCount: mostPopularVideos.videoDetailsItem?.length,
+                        (context, index) => Padding(
+                          padding: REdgeInsets.only(bottom: 15),
+                          child: MovedThumbnailVideo(mostPopularVideos.videoDetailsItem?[index]),
+                        ),
+                      ),
+                    );
+                  },
+                  loading: () {
+                    return const SliverFillRemaining(
+                        child: ThineCircularProgress());
+                  },
+                  orElse: () {
+                    return const SliverFillRemaining(child: SizedBox());
+                  },
+                );
+              },
             ),
           ],
         ),
