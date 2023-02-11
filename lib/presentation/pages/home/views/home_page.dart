@@ -36,7 +36,8 @@ class HomePage extends StatelessWidget {
                         childCount: mostPopularVideos.videoDetailsItem?.length,
                         (context, index) => Padding(
                           padding: REdgeInsets.only(bottom: 15),
-                          child: MovedThumbnailVideo(mostPopularVideos.videoDetailsItem?[index]),
+                          child: MovedThumbnailVideo(
+                              mostPopularVideos.videoDetailsItem?[index]),
                         ),
                       ),
                     );

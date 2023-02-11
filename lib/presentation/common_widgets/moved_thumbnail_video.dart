@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:youtube/core/functions/reformat/date_reformat.dart';
+import 'package:youtube/core/functions/reformat/views_reformat.dart';
 import 'package:youtube/core/resources/assets_manager.dart';
 import 'package:youtube/data/models/video_details/video_details.dart';
 import 'package:youtube/presentation/common_widgets/circular_profile_image.dart';
@@ -28,11 +30,11 @@ class MovedThumbnailVideo extends StatelessWidget {
             children: [
               if (videoDetailsItem?.snippet?.thumbnails != null)
                 ThumbnailVideo(videoDetailsItem?.snippet?.thumbnails),
-              const _VideoTime()
+              _VideoTime(videoDetailsItem)
             ],
           ),
           const RSizedBox(height: 10),
-          const _VideoSubTitles(),
+          _VideoSubTitles(videoDetailsItem),
         ],
       ),
     );
@@ -40,10 +42,17 @@ class MovedThumbnailVideo extends StatelessWidget {
 }
 
 class _VideoSubTitles extends StatelessWidget {
-  const _VideoSubTitles();
+  const _VideoSubTitles(this.videoDetailsItem);
+  final VideoDetailsItem? videoDetailsItem;
 
   @override
   Widget build(BuildContext context) {
+    String channelTitle = videoDetailsItem?.snippet?.channelTitle ?? "";
+    String viewCount = videoDetailsItem?.statistics.viewCount ?? "";
+    DateTime? dateInUtc = videoDetailsItem?.snippet?.publishedAt;
+    String date = DateReformat.oneDigitFormat(dateInUtc);
+    String viewsReformat = CountsReformat.basicViewsFormat(viewCount);
+
     return Padding(
       padding: REdgeInsets.symmetric(horizontal: 13),
       child: Row(
@@ -55,13 +64,13 @@ class _VideoSubTitles extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Flutter youtube fully clone With firebase " * 2,
+                Text(videoDetailsItem?.snippet?.title ?? "",
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: getMediumStyle(
                         fontSize: 14, color: ColorManager(context).black)),
                 const RSizedBox(height: 5),
-                Text("Flutter channel . 3.4k views . 9 months ago",
+                Text("$channelTitle . $viewsReformat . $date",
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: getNormalStyle(
@@ -78,10 +87,13 @@ class _VideoSubTitles extends StatelessWidget {
 }
 
 class _VideoTime extends StatelessWidget {
-  const _VideoTime();
+  const _VideoTime(this.videoDetailsItem);
+  final VideoDetailsItem? videoDetailsItem;
 
   @override
   Widget build(BuildContext context) {
+    String duration = videoDetailsItem?.contentDetails.duration ?? "";
+    String durationReformat = CountsReformat.videoDurationFormat(duration);
     return Padding(
       padding: REdgeInsets.all(8.0),
       child: Container(
@@ -90,7 +102,7 @@ class _VideoTime extends StatelessWidget {
             color: ColorManager(context).black87,
             borderRadius: BorderRadius.circular(2)),
         child: Text(
-          "18:14",
+          durationReformat,
           style:
               getMediumStyle(color: ColorManager(context).white, fontSize: 12),
         ),
