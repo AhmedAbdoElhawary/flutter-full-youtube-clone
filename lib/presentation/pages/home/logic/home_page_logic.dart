@@ -2,9 +2,11 @@ import 'dart:math';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:youtube/data/models/video_details/video_details.dart';
 
 class MiniVideoViewLogic extends GetxController {
-  final Rx<int?> videoIndex = Rxn<int?>();
+  final Rx<VideoDetailsItem?> videoDetailsItem = Rxn<VideoDetailsItem?>();
+
   final RxDouble percentageOFMiniPage = 0.0.obs;
   final RxDouble heightOFMiniPage = 50.0.obs;
 
