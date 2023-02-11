@@ -5,8 +5,7 @@ import 'package:miniplayer/miniplayer.dart';
 import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/core/resources/styles_manager.dart';
 import 'package:youtube/presentation/pages/home/logic/home_page_logic.dart';
-import 'package:youtube/presentation/widgets/subscribe_button.dart';
-import 'package:youtube/presentation/widgets/moved_thumbnail_video.dart';
+import 'package:youtube/presentation/common_widgets/subscribe_button.dart';
 
 class MiniPlayerVideo extends StatefulWidget {
   const MiniPlayerVideo({super.key});
@@ -29,7 +28,7 @@ class _MiniPlayerVideoState extends State<MiniPlayerVideo> {
         minHeight: minHeight,
         maxHeight: height,
         onDismissed: () {
-          _miniVideoViewLogic.videoIndex.value = null;
+          _miniVideoViewLogic.videoDetailsItem.value = null;
         },
         builder: (height, percentage) {
           _miniVideoViewLogic.percentageOFMiniPage.value = percentage;
@@ -84,7 +83,7 @@ class NextVideosSuggestions extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.separated(
         itemBuilder: (context, index) {
-          if (index == 0) {
+          // if (index == 0) {
             return Padding(
               padding: REdgeInsets.only(top: 20),
               child: Column(
@@ -100,11 +99,11 @@ class NextVideosSuggestions extends StatelessWidget {
                 ],
               ),
             );
-          }
-          return MovedThumbnailVideo(index);
+          // }
+          // return MovedThumbnailVideo(index);
         },
         separatorBuilder: (context, index) => const RSizedBox(height: 20),
-        itemCount: 30);
+        itemCount: 1);
   }
 }
 
@@ -123,8 +122,7 @@ class _FirstCommentPreviewButton extends StatelessWidget {
               Text(
                 "Comments 801",
                 style: getNormalStyle(
-                    color: ColorManager(context).black,
-                    fontSize: 13),
+                    color: ColorManager(context).black, fontSize: 13),
               ),
               const Icon(Icons.keyboard_arrow_down_outlined),
             ],
@@ -134,15 +132,13 @@ class _FirstCommentPreviewButton extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const CircleAvatar(
-                  radius: 13,
-                  backgroundColor: ColorManager.green),
+                  radius: 13, backgroundColor: ColorManager.green),
               const RSizedBox(width: 10),
               Flexible(
                 child: Text(
                   "This is the comment" * 20,
                   style: getNormalStyle(
-                      color: ColorManager(context).black,
-                      fontSize: 13),
+                      color: ColorManager(context).black, fontSize: 13),
                   maxLines: 4,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -295,7 +291,7 @@ class _MiniVideoView extends StatelessWidget {
                   onTap: () {
                     final miniVideoViewLogic =
                         Get.find<MiniVideoViewLogic>(tag: "1");
-                    miniVideoViewLogic.videoIndex.value = null;
+                    miniVideoViewLogic.videoDetailsItem.value = null;
                     // context
                     //     .read(selectedVideoProvider)
                     //     .state = null;
@@ -332,11 +328,11 @@ class _VideoOfMiniDisplayState extends State<_VideoOfMiniDisplay> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     return Obx(() => Container(
-      height: controller.videoOfMiniDisplayHeight(),
-      width: controller.videoOfMiniDisplayWidth(screenWidth),
-      color: ColorManager.blue,
-      child: Center(child: Text("${controller.videoIndex.value}")),
-    )) ;
+          height: controller.videoOfMiniDisplayHeight(),
+          width: controller.videoOfMiniDisplayWidth(screenWidth),
+          color: ColorManager.blue,
+          child: Center(child: Text("${controller.videoDetailsItem.value}")),
+        ));
   }
 }
 
