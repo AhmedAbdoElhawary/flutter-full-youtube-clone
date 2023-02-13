@@ -7,7 +7,7 @@ import 'package:youtube/data/repositories_impl/videos_details_repo_impl.dart';
 import 'package:youtube/domain/repositories/channel_details_repository.dart';
 import 'package:youtube/domain/repositories/videos_details_repository.dart';
 import 'package:youtube/domain/use_cases/channel_details/channel_sub_details_use_case.dart';
-import 'package:youtube/domain/use_cases/videos_details/get_video_details_usecase.dart';
+import 'package:youtube/domain/use_cases/single_video/get_video_details_use_case.dart';
 import 'package:youtube/domain/use_cases/videos_details/most_popular_videos_use_case.dart';
 import 'package:youtube/presentation/cubit/videos_details/videos_details_cubit.dart';
 
@@ -26,8 +26,8 @@ Future<void> initializeDependencies() async {
 
   // videos details Repository
 
-  injector.registerLazySingleton<VideoDetailsRepository>(
-    () => VideoDetailsRepoImpl(injector()),
+  injector.registerLazySingleton<VideosDetailsRepository>(
+    () => VideosDetailsRepoImpl(injector()),
   );
   injector.registerLazySingleton<ChannelDetailsRepository>(
     () => ChannelDetailsRepoImpl(injector()),
@@ -53,7 +53,7 @@ Future<void> initializeDependencies() async {
 
   // auth cubit
   injector.registerFactory<VideosDetailsCubit>(
-    () => VideosDetailsCubit(injector(), injector(), injector()),
+    () => VideosDetailsCubit(injector(), injector()),
   );
 
   // *
