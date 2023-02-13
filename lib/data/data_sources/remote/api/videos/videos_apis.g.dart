@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'youtube_apis.dart';
+part of 'videos_apis.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,8 +8,8 @@ part of 'youtube_apis.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
-class _YoutubeAPIs implements YoutubeAPIs {
-  _YoutubeAPIs(
+class _VideosAPIs implements VideosAPIs {
+  _VideosAPIs(
     this._dio, {
     this.baseUrl,
   }) {
@@ -21,13 +21,13 @@ class _YoutubeAPIs implements YoutubeAPIs {
   String? baseUrl;
 
   @override
-  Future<VideoDetails> getMostPopularVideos({apiKey = apiKey}) async {
+  Future<VideosDetails> getMostPopularVideos({apiKey = apiKey}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'key': apiKey};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<VideoDetails>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<VideosDetails>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -39,12 +39,12 @@ class _YoutubeAPIs implements YoutubeAPIs {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = VideoDetails.fromJson(_result.data!);
+    final value = VideosDetails.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<VideoDetails> getVideoDetails({
+  Future<VideosDetails> getVideoDetails({
     apiKey = apiKey,
     required videoId,
   }) async {
@@ -56,7 +56,7 @@ class _YoutubeAPIs implements YoutubeAPIs {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<VideoDetails>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<VideosDetails>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -68,7 +68,7 @@ class _YoutubeAPIs implements YoutubeAPIs {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = VideoDetails.fromJson(_result.data!);
+    final value = VideosDetails.fromJson(_result.data!);
     return value;
   }
 
