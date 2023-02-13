@@ -60,14 +60,18 @@ class MiniVideoViewLogic extends GetxController {
   set channelSubDetails(ChannelSubDetails? value) =>
       _channelSubDetails.value = value;
 
-  VideoDetailsItem? get selectedVideoDetails => _selectedVideoDetails.value;
+
+
+
   double get percentageOFMiniPage => _percentageOFMiniPage.value;
   double get heightOFMiniPage => _heightOFMiniPage.value;
+  ChannelSubDetails? get channelSubDetails => _channelSubDetails.value;
+
+  VideoDetailsItem? get selectedVideoDetails => _selectedVideoDetails.value;
   String get channelTitle => _channelTitle.value;
   String get viewCount => _viewCount.value;
   String get dateOfVideo => _dateOfVideo.value;
   String get videoTitle => _videoTitle.value;
   String get videoDuration => _videoDuration.value;
   String get channelSubscribeCount => _channelSubscribeCount.value;
-  ChannelSubDetails? get channelSubDetails => _channelSubDetails.value;
 }
