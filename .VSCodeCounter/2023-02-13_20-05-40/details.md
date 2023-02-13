@@ -137,7 +137,7 @@ Total : 199 files,  10910 codes, 956 comments, 1438 blanks, all 13304 lines
 | [lib/data/models/comment_details/comment_details.g.dart](/lib/data/models/comment_details/comment_details.g.dart) | Dart | 53 | 4 | 7 | 64 |
 | [lib/data/models/common/base_comment_snippet/author_channel_id.dart](/lib/data/models/common/base_comment_snippet/author_channel_id.dart) | Dart | 9 | 0 | 5 | 14 |
 | [lib/data/models/common/base_comment_snippet/author_channel_id.g.dart](/lib/data/models/common/base_comment_snippet/author_channel_id.g.dart) | Dart | 5 | 4 | 4 | 13 |
-| [lib/data/models/common/base_comment_snippet/base_comment_snippet.dart](/lib/data/models/common/base_comment_snippet/base_comment_snippet.dart) | Dart | 28 | 0 | 5 | 33 |
+| [lib/data/models/common/base_comment_snippet/base_comment_snippet.dart](/lib/data/models/common/base_comment_snippet/sub_comment_snippet.dart) | Dart | 28 | 0 | 5 | 33 |
 | [lib/data/models/common/page_info/page_info.dart](/lib/data/models/common/page_info/page_info.dart) | Dart | 10 | 0 | 5 | 15 |
 | [lib/data/models/common/page_info/page_info.g.dart](/lib/data/models/common/page_info/page_info.g.dart) | Dart | 5 | 4 | 4 | 13 |
 | [lib/data/models/common/thumbnail_details/thumbnail_details.dart](/lib/data/models/common/thumbnail_details/thumbnail_details.dart) | Dart | 11 | 0 | 6 | 17 |
