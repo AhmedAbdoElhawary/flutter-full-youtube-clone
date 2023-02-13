@@ -55,12 +55,13 @@ class _VideoSubTitles extends StatelessWidget {
     String date = DateReformat.oneDigitFormat(dateInUtc);
     String viewsReformat = CountsReformat.basicCountFormat(viewCount);
     ChannelSubDetails? channelDetails = snippet?.channelSubDetails;
+    String channelImage=channelDetails?.items?[0]?.snippet?.thumbnails?.high?.url ?? "";
     return Padding(
       padding: REdgeInsets.symmetric(horizontal: 13),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CircularProfileImage(channelSubDetails: channelDetails),
+          CircularProfileImage(imageUrl: channelImage),
           const RSizedBox(width: 10),
           Flexible(
             child: Column(
