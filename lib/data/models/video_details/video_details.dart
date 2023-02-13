@@ -6,12 +6,9 @@ part 'video_details.g.dart';
 
 @JsonSerializable(includeIfNull: true, createToJson: false)
 class VideosDetails {
-  String? kind;
-  @JsonKey(name: "etag")
-  String? tag;
   @JsonKey(name: "items")
   List<VideoDetailsItem>? videoDetailsItem;
-  VideosDetails(this.kind, this.tag, this.videoDetailsItem);
+  VideosDetails(this.videoDetailsItem);
 
   factory VideosDetails.fromJson(Map<String, dynamic> json) =>
       _$VideosDetailsFromJson(json);
@@ -20,17 +17,12 @@ class VideosDetails {
 @JsonSerializable(includeIfNull: true, createToJson: false,)
 class VideoDetailsItem {
   VideoDetailsItem(
-    this.kind,
-    this.tag,
     this.id,
     this.snippet,
     this.contentDetails,
     this.statistics,
   );
 
-  String? kind;
-  @JsonKey(name: "etag")
-  String? tag;
   String? id;
   VideoSnippet? snippet;
   ContentDetails contentDetails;
@@ -104,17 +96,6 @@ class MaxThumbnails {
 
   factory MaxThumbnails.fromJson(Map<String, dynamic> json) =>
       _$MaxThumbnailsFromJson(json);
-}
-
-@JsonSerializable(includeIfNull: true, createToJson: false)
-class PageInfo {
-  PageInfo(this.totalResults, this.resultsPerPage);
-
-  int? totalResults;
-  int? resultsPerPage;
-
-  factory PageInfo.fromJson(Map<String, dynamic> json) =>
-      _$PageInfoFromJson(json);
 }
 
 @JsonSerializable(includeIfNull: true, createToJson: false)
