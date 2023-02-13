@@ -15,6 +15,7 @@ class MiniVideoViewLogic extends GetxController {
   final RxDouble _heightOFMiniPage = 50.0.obs;
   final RxString _channelTitle = "".obs;
   final RxString _viewCount = "".obs;
+  final RxString _commentCount = "".obs;
   final RxString _dateOfVideo = "".obs;
   final RxString _videoTitle = "".obs;
   final RxString _videoDuration = "".obs;
@@ -51,6 +52,11 @@ class MiniVideoViewLogic extends GetxController {
     String reformatViewsCount = CountsReformat.basicCountFormat(views);
     _viewCount.value = "$reformatViewsCount views";
 
+    String commentsCount = selectedVideoDetails?.statistics.commentCount ?? "";
+    String reformatCommentsCount =
+        CountsReformat.basicCountFormat(commentsCount);
+    _commentCount.value = "Comments $reformatCommentsCount";
+
     String duration = selectedVideoDetails?.contentDetails.duration ?? "";
     _videoDuration.value = CountsReformat.videoDurationFormat(duration);
   }
@@ -61,7 +67,7 @@ class MiniVideoViewLogic extends GetxController {
       _channelSubDetails.value = value;
 
 
-
+  String get commentCount => _commentCount.value;
 
   double get percentageOFMiniPage => _percentageOFMiniPage.value;
   double get heightOFMiniPage => _heightOFMiniPage.value;

@@ -3,6 +3,7 @@ import 'package:retrofit/retrofit.dart';
 import 'package:youtube/core/utility/constants.dart';
 import 'package:youtube/core/utility/private_key.dart';
 import 'package:youtube/data/models/comment_details/comment_details.dart';
+import 'package:youtube/data/models/reply_details/reply_details.dart';
 import 'package:youtube/data/models/video_details/video_details.dart';
 part 'single_video_apis.g.dart';
 
@@ -29,7 +30,7 @@ abstract class SingleVideosAPIs {
   });
 
   @GET("commentThreads?part=replies&maxResults=100")
-  Future<CommentDetails> getRepliesForThisComment({
+  Future<ReplyDetails> getRepliesForThisComment({
     @Query("key") final String apiKey = apiKey,
     @Query("id") required String commentId,
   });

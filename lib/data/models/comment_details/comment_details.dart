@@ -1,6 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:youtube/data/models/common/base_comment_snippet/author_channel_id.dart';
-import 'package:youtube/data/models/common/base_comment_snippet/base_comment_snippet.dart';
+import 'package:youtube/data/models/common/base_comment_snippet/sub_comment_snippet.dart';
 import 'package:youtube/data/models/common/page_info/page_info.dart';
 part 'comment_details.g.dart';
 
@@ -19,7 +18,7 @@ class CommentDetails {
 @JsonSerializable(includeIfNull: true, createToJson: false)
 class CommentDetailsItem {
   String? id;
-  CommentSnippet? snippet;
+  MainCommentSnippet? snippet;
 
   CommentDetailsItem({this.id, this.snippet});
 
@@ -28,53 +27,31 @@ class CommentDetailsItem {
 }
 
 @JsonSerializable(includeIfNull: true, createToJson: false)
-class CommentSnippet extends BaseCommentSnippet {
-  TopLevelComment? topLevelComment;
-  bool? canReply;
-  int? totalReplyCount;
-  bool? isPublic;
-  CommentSnippet(
-      {this.topLevelComment,
-      this.canReply,
-      this.totalReplyCount,
-      this.isPublic,
-      String? videoId,
-      String? textDisplay,
-      String? textOriginal,
-      String? authorDisplayName,
-      String? authorProfileImageUrl,
-      String? authorChannelUrl,
-      AuthorChannelId? authorChannelId,
-      bool? canRate,
-      String? viewerRating,
-      int? likeCount,
-      DateTime? publishedAt,
-      DateTime? updatedAt})
-      : super(
-            videoId,
-            textDisplay,
-            textOriginal,
-            authorDisplayName,
-            authorProfileImageUrl,
-            authorChannelUrl,
-            authorChannelId,
-            canRate,
-            viewerRating,
-            likeCount,
-            publishedAt,
-            updatedAt);
-
-  factory CommentSnippet.fromJson(Map<String, dynamic> json) =>
-      _$CommentSnippetFromJson(json);
-}
-
-@JsonSerializable(includeIfNull: true, createToJson: false)
 class TopLevelComment {
   String? id;
-  CommentSnippet? snippet;
+  SubCommentSnippet? snippet;
 
   TopLevelComment({this.id, this.snippet});
 
   factory TopLevelComment.fromJson(Map<String, dynamic> json) =>
       _$TopLevelCommentFromJson(json);
+}
+
+@JsonSerializable(includeIfNull: true, createToJson: false)
+class MainCommentSnippet {
+  String? videoId;
+  TopLevelComment? topLevelComment;
+  bool? canReply;
+  int? totalReplyCount;
+  bool? isPublic;
+
+  MainCommentSnippet(
+      {this.videoId,
+      this.topLevelComment,
+      this.canReply,
+      this.totalReplyCount,
+      this.isPublic});
+
+  factory MainCommentSnippet.fromJson(Map<String, dynamic> json) =>
+      _$MainCommentSnippetFromJson(json);
 }

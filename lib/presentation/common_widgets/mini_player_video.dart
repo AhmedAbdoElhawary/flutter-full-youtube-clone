@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:miniplayer/miniplayer.dart';
 import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/core/resources/styles_manager.dart';
+import 'package:youtube/data/models/common/base_comment_snippet/sub_comment_snippet.dart';
+import 'package:youtube/presentation/common_widgets/circular_profile_image.dart';
 import 'package:youtube/presentation/pages/home/logic/home_page_logic.dart';
 import 'package:youtube/presentation/common_widgets/subscribe_button.dart';
+
+import '../cubit/single_video_details/single_video_cubit.dart';
 
 class MiniPlayerVideo extends StatefulWidget {
   const MiniPlayerVideo({super.key});
@@ -112,6 +117,7 @@ class _FirstCommentPreviewButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final miniVideoViewLogic = Get.find<MiniVideoViewLogic>(tag: "1");
     return Padding(
       padding: REdgeInsets.symmetric(horizontal: 10),
       child: Column(
@@ -120,7 +126,7 @@ class _FirstCommentPreviewButton extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Comments 801",
+                miniVideoViewLogic.commentCount,
                 style: getNormalStyle(
                     color: ColorManager(context).black, fontSize: 13),
               ),
@@ -128,25 +134,63 @@ class _FirstCommentPreviewButton extends StatelessWidget {
             ],
           ),
           const RSizedBox(height: 10),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const CircleAvatar(
-                  radius: 13, backgroundColor: ColorManager.green),
-              const RSizedBox(width: 10),
-              Flexible(
-                child: Text(
-                  "This is the comment" * 20,
-                  style: getNormalStyle(
-                      color: ColorManager(context).black, fontSize: 13),
-                  maxLines: 4,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              )
-            ],
-          ),
+          const _FirstComment()
         ],
       ),
+    );
+  }
+}
+
+class _FirstComment extends StatelessWidget {
+  const _FirstComment();
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(() {
+      final miniVideoViewLogic = Get.find<MiniVideoViewLogic>(tag: "1");
+      final String videoId = miniVideoViewLogic.selectedVideoDetails?.id ?? "";
+      return BlocBuilder<SingleVideoCubit, SingleVideoState>(
+        bloc: BlocProvider.of<SingleVideoCubit>(context)
+          ..getFirstComment(videoId),
+        buildWhen: (previous, current) => current.maybeWhen(orElse: () => true),
+        builder: (context, state) {
+          return state.maybeWhen(
+              firstCommentLoaded: (firstCommentDetails) {
+                SubCommentSnippet? snippet = firstCommentDetails
+                    .items?[0]?.snippet?.topLevelComment?.snippet;
+
+                return _FirstCommentBody(snippet: snippet);
+              },
+              loading: () => const SizedBox(),
+              orElse: () => const SizedBox());
+        },
+      );
+    });
+  }
+}
+
+class _FirstCommentBody extends StatelessWidget {
+  const _FirstCommentBody({required this.snippet});
+
+  final SubCommentSnippet? snippet;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        CircularProfileImage(imageUrl: snippet?.authorProfileImageUrl ?? ""),
+        const RSizedBox(width: 10),
+        Flexible(
+          child: Text(
+            snippet?.textOriginal ?? "",
+            style: getNormalStyle(
+                color: ColorManager(context).black, fontSize: 13),
+            maxLines: 4,
+            overflow: TextOverflow.ellipsis,
+          ),
+        )
+      ],
     );
   }
 }

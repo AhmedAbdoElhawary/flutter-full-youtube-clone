@@ -108,7 +108,7 @@ class _SingleVideosAPIs implements SingleVideosAPIs {
   }
 
   @override
-  Future<CommentDetails> getRepliesForThisComment({
+  Future<ReplyDetails> getRepliesForThisComment({
     apiKey = apiKey,
     required commentId,
   }) async {
@@ -120,7 +120,7 @@ class _SingleVideosAPIs implements SingleVideosAPIs {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<CommentDetails>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<ReplyDetails>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -132,7 +132,7 @@ class _SingleVideosAPIs implements SingleVideosAPIs {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = CommentDetails.fromJson(_result.data!);
+    final value = ReplyDetails.fromJson(_result.data!);
     return value;
   }
 
