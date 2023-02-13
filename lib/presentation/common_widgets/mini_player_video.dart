@@ -176,7 +176,7 @@ class _CircleNameSubscribersWidget extends StatelessWidget {
                 ),
                 const RSizedBox(height: 5),
                 Text(
-                  "1.88M subscribers",
+                  controller.channelSubscribeCount,
                   overflow: TextOverflow.ellipsis,
                   style: getNormalStyle(
                       color: ColorManager(context).grey, fontSize: 13),
