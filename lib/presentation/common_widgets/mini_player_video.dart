@@ -84,21 +84,21 @@ class NextVideosSuggestions extends StatelessWidget {
     return ListView.separated(
         itemBuilder: (context, index) {
           // if (index == 0) {
-            return Padding(
-              padding: REdgeInsets.only(top: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const _VideoTitleSubNumbersTexts(),
-                  const _InteractButtons(),
-                  Divider(color: ColorManager(context).grey1Point5),
-                  const _CircleNameSubscribersWidget(),
-                  Divider(color: ColorManager(context).grey1Point5),
-                  const _FirstCommentPreviewButton(),
-                ],
-              ),
-            );
+          return Padding(
+            padding: REdgeInsets.only(top: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const _VideoTitleSubNumbersTexts(),
+                const _InteractButtons(),
+                Divider(color: ColorManager(context).grey1Point5),
+                const _CircleNameSubscribersWidget(),
+                Divider(color: ColorManager(context).grey1Point5),
+                const _FirstCommentPreviewButton(),
+              ],
+            ),
+          );
           // }
           // return MovedThumbnailVideo(index);
         },
@@ -164,24 +164,26 @@ class _CircleNameSubscribersWidget extends StatelessWidget {
         children: [
           CircleAvatar(radius: 17.r, backgroundColor: ColorManager.teal),
           const RSizedBox(width: 10),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  controller.channelTitle,
-                  overflow: TextOverflow.ellipsis,
-                  style: getMediumStyle(
-                      color: ColorManager(context).black, fontSize: 15),
-                ),
-                const RSizedBox(height: 5),
-                Text(
-                  controller.channelSubscribeCount,
-                  overflow: TextOverflow.ellipsis,
-                  style: getNormalStyle(
-                      color: ColorManager(context).grey, fontSize: 13),
-                ),
-              ],
+          Obx(
+            () => Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    controller.channelTitle,
+                    overflow: TextOverflow.ellipsis,
+                    style: getMediumStyle(
+                        color: ColorManager(context).black, fontSize: 15),
+                  ),
+                  const RSizedBox(height: 5),
+                  Text(
+                    controller.channelSubscribeCount,
+                    overflow: TextOverflow.ellipsis,
+                    style: getNormalStyle(
+                        color: ColorManager(context).grey, fontSize: 13),
+                  ),
+                ],
+              ),
             ),
           ),
           const SubscribeButton(),
@@ -237,25 +239,27 @@ class _VideoTitleSubNumbersTexts extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Flexible(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  controller.videoTitle,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 3,
-                  style: getNormalStyle(
-                      color: ColorManager(context).black, fontSize: 15),
-                ),
-                const RSizedBox(height: 8),
-                Text(
-                  "${controller.viewCount} . ${controller.dateOfVideo}",
-                  overflow: TextOverflow.ellipsis,
-                  style: getNormalStyle(
-                      color: ColorManager(context).grey7, fontSize: 13),
-                ),
-              ],
+          Obx(
+            () => Flexible(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    controller.videoTitle,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 3,
+                    style: getNormalStyle(
+                        color: ColorManager(context).black, fontSize: 15),
+                  ),
+                  const RSizedBox(height: 8),
+                  Text(
+                    "${controller.viewCount} . ${controller.dateOfVideo}",
+                    overflow: TextOverflow.ellipsis,
+                    style: getNormalStyle(
+                        color: ColorManager(context).grey7, fontSize: 13),
+                  ),
+                ],
+              ),
             ),
           ),
           const Icon(Icons.keyboard_arrow_down_outlined),
@@ -355,27 +359,29 @@ class VideoTitleSubTitleTexts extends StatelessWidget {
       flex: 3,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Flexible(
-              child: Text(
-                controller.videoTitle,
-                overflow: TextOverflow.ellipsis,
-                style: getNormalStyle(
-                    color: ColorManager(context).black, fontSize: 12),
+        child: Obx(
+          () => Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Flexible(
+                child: Text(
+                  controller.videoTitle,
+                  overflow: TextOverflow.ellipsis,
+                  style: getNormalStyle(
+                      color: ColorManager(context).black, fontSize: 12),
+                ),
               ),
-            ),
-            Flexible(
-              child: Text(
-                controller.channelTitle,
-                overflow: TextOverflow.ellipsis,
-                style: getNormalStyle(
-                    color: ColorManager(context).grey7, fontSize: 12),
+              Flexible(
+                child: Text(
+                  controller.channelTitle,
+                  overflow: TextOverflow.ellipsis,
+                  style: getNormalStyle(
+                      color: ColorManager(context).grey7, fontSize: 12),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
