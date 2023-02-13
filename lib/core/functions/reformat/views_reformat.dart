@@ -33,6 +33,7 @@ class CountsReformat {
   }
 
   static String videoDurationFormat(String duration) {
+    if (duration.isEmpty) return "";
     duration = duration.replaceRange(0, 2, "");
     duration = duration.replaceAll("S", "");
     duration = duration.replaceAll("M", ":");
