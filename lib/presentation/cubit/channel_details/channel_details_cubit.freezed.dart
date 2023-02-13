@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'videos_details_cubit.dart';
+part of 'channel_details_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,13 +15,13 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$VideosDetailsState {
+mixin _$ChannelDetailsState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(VideosDetails mostPopularVideos)
-        mostPopularVideosLoaded,
+    required TResult Function(ChannelSubDetails channelSubDetails)
+        channelSubDetailsLoaded,
     required TResult Function(NetworkExceptions networkExceptions) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -29,7 +29,8 @@ mixin _$VideosDetailsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(VideosDetails mostPopularVideos)? mostPopularVideosLoaded,
+    TResult? Function(ChannelSubDetails channelSubDetails)?
+        channelSubDetailsLoaded,
     TResult? Function(NetworkExceptions networkExceptions)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -37,7 +38,8 @@ mixin _$VideosDetailsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(VideosDetails mostPopularVideos)? mostPopularVideosLoaded,
+    TResult Function(ChannelSubDetails channelSubDetails)?
+        channelSubDetailsLoaded,
     TResult Function(NetworkExceptions networkExceptions)? error,
     required TResult orElse(),
   }) =>
@@ -46,8 +48,8 @@ mixin _$VideosDetailsState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(Loading value) loading,
-    required TResult Function(MostPopularVideosLoaded value)
-        mostPopularVideosLoaded,
+    required TResult Function(ChannelSubDetailsLoaded value)
+        channelSubDetailsLoaded,
     required TResult Function(Error value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -55,7 +57,7 @@ mixin _$VideosDetailsState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(Loading value)? loading,
-    TResult? Function(MostPopularVideosLoaded value)? mostPopularVideosLoaded,
+    TResult? Function(ChannelSubDetailsLoaded value)? channelSubDetailsLoaded,
     TResult? Function(Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -63,7 +65,7 @@ mixin _$VideosDetailsState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(Loading value)? loading,
-    TResult Function(MostPopularVideosLoaded value)? mostPopularVideosLoaded,
+    TResult Function(ChannelSubDetailsLoaded value)? channelSubDetailsLoaded,
     TResult Function(Error value)? error,
     required TResult orElse(),
   }) =>
@@ -71,16 +73,16 @@ mixin _$VideosDetailsState {
 }
 
 /// @nodoc
-abstract class $VideosDetailsStateCopyWith<$Res> {
-  factory $VideosDetailsStateCopyWith(
-          VideosDetailsState value, $Res Function(VideosDetailsState) then) =
-      _$VideosDetailsStateCopyWithImpl<$Res, VideosDetailsState>;
+abstract class $ChannelDetailsStateCopyWith<$Res> {
+  factory $ChannelDetailsStateCopyWith(
+          ChannelDetailsState value, $Res Function(ChannelDetailsState) then) =
+      _$ChannelDetailsStateCopyWithImpl<$Res, ChannelDetailsState>;
 }
 
 /// @nodoc
-class _$VideosDetailsStateCopyWithImpl<$Res, $Val extends VideosDetailsState>
-    implements $VideosDetailsStateCopyWith<$Res> {
-  _$VideosDetailsStateCopyWithImpl(this._value, this._then);
+class _$ChannelDetailsStateCopyWithImpl<$Res, $Val extends ChannelDetailsState>
+    implements $ChannelDetailsStateCopyWith<$Res> {
+  _$ChannelDetailsStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -97,7 +99,7 @@ abstract class _$$_InitialCopyWith<$Res> {
 
 /// @nodoc
 class __$$_InitialCopyWithImpl<$Res>
-    extends _$VideosDetailsStateCopyWithImpl<$Res, _$_Initial>
+    extends _$ChannelDetailsStateCopyWithImpl<$Res, _$_Initial>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, _then);
@@ -110,7 +112,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'VideosDetailsState.initial()';
+    return 'ChannelDetailsState.initial()';
   }
 
   @override
@@ -127,8 +129,8 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(VideosDetails mostPopularVideos)
-        mostPopularVideosLoaded,
+    required TResult Function(ChannelSubDetails channelSubDetails)
+        channelSubDetailsLoaded,
     required TResult Function(NetworkExceptions networkExceptions) error,
   }) {
     return initial();
@@ -139,7 +141,8 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(VideosDetails mostPopularVideos)? mostPopularVideosLoaded,
+    TResult? Function(ChannelSubDetails channelSubDetails)?
+        channelSubDetailsLoaded,
     TResult? Function(NetworkExceptions networkExceptions)? error,
   }) {
     return initial?.call();
@@ -150,7 +153,8 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(VideosDetails mostPopularVideos)? mostPopularVideosLoaded,
+    TResult Function(ChannelSubDetails channelSubDetails)?
+        channelSubDetailsLoaded,
     TResult Function(NetworkExceptions networkExceptions)? error,
     required TResult orElse(),
   }) {
@@ -165,8 +169,8 @@ class _$_Initial implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(Loading value) loading,
-    required TResult Function(MostPopularVideosLoaded value)
-        mostPopularVideosLoaded,
+    required TResult Function(ChannelSubDetailsLoaded value)
+        channelSubDetailsLoaded,
     required TResult Function(Error value) error,
   }) {
     return initial(this);
@@ -177,7 +181,7 @@ class _$_Initial implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(Loading value)? loading,
-    TResult? Function(MostPopularVideosLoaded value)? mostPopularVideosLoaded,
+    TResult? Function(ChannelSubDetailsLoaded value)? channelSubDetailsLoaded,
     TResult? Function(Error value)? error,
   }) {
     return initial?.call(this);
@@ -188,7 +192,7 @@ class _$_Initial implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(Loading value)? loading,
-    TResult Function(MostPopularVideosLoaded value)? mostPopularVideosLoaded,
+    TResult Function(ChannelSubDetailsLoaded value)? channelSubDetailsLoaded,
     TResult Function(Error value)? error,
     required TResult orElse(),
   }) {
@@ -199,7 +203,7 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements VideosDetailsState {
+abstract class _Initial implements ChannelDetailsState {
   const factory _Initial() = _$_Initial;
 }
 
@@ -211,7 +215,7 @@ abstract class _$$LoadingCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingCopyWithImpl<$Res>
-    extends _$VideosDetailsStateCopyWithImpl<$Res, _$Loading>
+    extends _$ChannelDetailsStateCopyWithImpl<$Res, _$Loading>
     implements _$$LoadingCopyWith<$Res> {
   __$$LoadingCopyWithImpl(_$Loading _value, $Res Function(_$Loading) _then)
       : super(_value, _then);
@@ -224,7 +228,7 @@ class _$Loading implements Loading {
 
   @override
   String toString() {
-    return 'VideosDetailsState.loading()';
+    return 'ChannelDetailsState.loading()';
   }
 
   @override
@@ -241,8 +245,8 @@ class _$Loading implements Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(VideosDetails mostPopularVideos)
-        mostPopularVideosLoaded,
+    required TResult Function(ChannelSubDetails channelSubDetails)
+        channelSubDetailsLoaded,
     required TResult Function(NetworkExceptions networkExceptions) error,
   }) {
     return loading();
@@ -253,7 +257,8 @@ class _$Loading implements Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(VideosDetails mostPopularVideos)? mostPopularVideosLoaded,
+    TResult? Function(ChannelSubDetails channelSubDetails)?
+        channelSubDetailsLoaded,
     TResult? Function(NetworkExceptions networkExceptions)? error,
   }) {
     return loading?.call();
@@ -264,7 +269,8 @@ class _$Loading implements Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(VideosDetails mostPopularVideos)? mostPopularVideosLoaded,
+    TResult Function(ChannelSubDetails channelSubDetails)?
+        channelSubDetailsLoaded,
     TResult Function(NetworkExceptions networkExceptions)? error,
     required TResult orElse(),
   }) {
@@ -279,8 +285,8 @@ class _$Loading implements Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(Loading value) loading,
-    required TResult Function(MostPopularVideosLoaded value)
-        mostPopularVideosLoaded,
+    required TResult Function(ChannelSubDetailsLoaded value)
+        channelSubDetailsLoaded,
     required TResult Function(Error value) error,
   }) {
     return loading(this);
@@ -291,7 +297,7 @@ class _$Loading implements Loading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(Loading value)? loading,
-    TResult? Function(MostPopularVideosLoaded value)? mostPopularVideosLoaded,
+    TResult? Function(ChannelSubDetailsLoaded value)? channelSubDetailsLoaded,
     TResult? Function(Error value)? error,
   }) {
     return loading?.call(this);
@@ -302,7 +308,7 @@ class _$Loading implements Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(Loading value)? loading,
-    TResult Function(MostPopularVideosLoaded value)? mostPopularVideosLoaded,
+    TResult Function(ChannelSubDetailsLoaded value)? channelSubDetailsLoaded,
     TResult Function(Error value)? error,
     required TResult orElse(),
   }) {
@@ -313,71 +319,71 @@ class _$Loading implements Loading {
   }
 }
 
-abstract class Loading implements VideosDetailsState {
+abstract class Loading implements ChannelDetailsState {
   const factory Loading() = _$Loading;
 }
 
 /// @nodoc
-abstract class _$$MostPopularVideosLoadedCopyWith<$Res> {
-  factory _$$MostPopularVideosLoadedCopyWith(_$MostPopularVideosLoaded value,
-          $Res Function(_$MostPopularVideosLoaded) then) =
-      __$$MostPopularVideosLoadedCopyWithImpl<$Res>;
+abstract class _$$ChannelSubDetailsLoadedCopyWith<$Res> {
+  factory _$$ChannelSubDetailsLoadedCopyWith(_$ChannelSubDetailsLoaded value,
+          $Res Function(_$ChannelSubDetailsLoaded) then) =
+      __$$ChannelSubDetailsLoadedCopyWithImpl<$Res>;
   @useResult
-  $Res call({VideosDetails mostPopularVideos});
+  $Res call({ChannelSubDetails channelSubDetails});
 }
 
 /// @nodoc
-class __$$MostPopularVideosLoadedCopyWithImpl<$Res>
-    extends _$VideosDetailsStateCopyWithImpl<$Res, _$MostPopularVideosLoaded>
-    implements _$$MostPopularVideosLoadedCopyWith<$Res> {
-  __$$MostPopularVideosLoadedCopyWithImpl(_$MostPopularVideosLoaded _value,
-      $Res Function(_$MostPopularVideosLoaded) _then)
+class __$$ChannelSubDetailsLoadedCopyWithImpl<$Res>
+    extends _$ChannelDetailsStateCopyWithImpl<$Res, _$ChannelSubDetailsLoaded>
+    implements _$$ChannelSubDetailsLoadedCopyWith<$Res> {
+  __$$ChannelSubDetailsLoadedCopyWithImpl(_$ChannelSubDetailsLoaded _value,
+      $Res Function(_$ChannelSubDetailsLoaded) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? mostPopularVideos = null,
+    Object? channelSubDetails = null,
   }) {
-    return _then(_$MostPopularVideosLoaded(
-      null == mostPopularVideos
-          ? _value.mostPopularVideos
-          : mostPopularVideos // ignore: cast_nullable_to_non_nullable
-              as VideosDetails,
+    return _then(_$ChannelSubDetailsLoaded(
+      null == channelSubDetails
+          ? _value.channelSubDetails
+          : channelSubDetails // ignore: cast_nullable_to_non_nullable
+              as ChannelSubDetails,
     ));
   }
 }
 
 /// @nodoc
 
-class _$MostPopularVideosLoaded implements MostPopularVideosLoaded {
-  const _$MostPopularVideosLoaded(this.mostPopularVideos);
+class _$ChannelSubDetailsLoaded implements ChannelSubDetailsLoaded {
+  const _$ChannelSubDetailsLoaded(this.channelSubDetails);
 
   @override
-  final VideosDetails mostPopularVideos;
+  final ChannelSubDetails channelSubDetails;
 
   @override
   String toString() {
-    return 'VideosDetailsState.mostPopularVideosLoaded(mostPopularVideos: $mostPopularVideos)';
+    return 'ChannelDetailsState.channelSubDetailsLoaded(channelSubDetails: $channelSubDetails)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MostPopularVideosLoaded &&
-            (identical(other.mostPopularVideos, mostPopularVideos) ||
-                other.mostPopularVideos == mostPopularVideos));
+            other is _$ChannelSubDetailsLoaded &&
+            (identical(other.channelSubDetails, channelSubDetails) ||
+                other.channelSubDetails == channelSubDetails));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, mostPopularVideos);
+  int get hashCode => Object.hash(runtimeType, channelSubDetails);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$MostPopularVideosLoadedCopyWith<_$MostPopularVideosLoaded> get copyWith =>
-      __$$MostPopularVideosLoadedCopyWithImpl<_$MostPopularVideosLoaded>(
+  _$$ChannelSubDetailsLoadedCopyWith<_$ChannelSubDetailsLoaded> get copyWith =>
+      __$$ChannelSubDetailsLoadedCopyWithImpl<_$ChannelSubDetailsLoaded>(
           this, _$identity);
 
   @override
@@ -385,11 +391,11 @@ class _$MostPopularVideosLoaded implements MostPopularVideosLoaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(VideosDetails mostPopularVideos)
-        mostPopularVideosLoaded,
+    required TResult Function(ChannelSubDetails channelSubDetails)
+        channelSubDetailsLoaded,
     required TResult Function(NetworkExceptions networkExceptions) error,
   }) {
-    return mostPopularVideosLoaded(mostPopularVideos);
+    return channelSubDetailsLoaded(channelSubDetails);
   }
 
   @override
@@ -397,10 +403,11 @@ class _$MostPopularVideosLoaded implements MostPopularVideosLoaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(VideosDetails mostPopularVideos)? mostPopularVideosLoaded,
+    TResult? Function(ChannelSubDetails channelSubDetails)?
+        channelSubDetailsLoaded,
     TResult? Function(NetworkExceptions networkExceptions)? error,
   }) {
-    return mostPopularVideosLoaded?.call(mostPopularVideos);
+    return channelSubDetailsLoaded?.call(channelSubDetails);
   }
 
   @override
@@ -408,12 +415,13 @@ class _$MostPopularVideosLoaded implements MostPopularVideosLoaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(VideosDetails mostPopularVideos)? mostPopularVideosLoaded,
+    TResult Function(ChannelSubDetails channelSubDetails)?
+        channelSubDetailsLoaded,
     TResult Function(NetworkExceptions networkExceptions)? error,
     required TResult orElse(),
   }) {
-    if (mostPopularVideosLoaded != null) {
-      return mostPopularVideosLoaded(mostPopularVideos);
+    if (channelSubDetailsLoaded != null) {
+      return channelSubDetailsLoaded(channelSubDetails);
     }
     return orElse();
   }
@@ -423,11 +431,11 @@ class _$MostPopularVideosLoaded implements MostPopularVideosLoaded {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(Loading value) loading,
-    required TResult Function(MostPopularVideosLoaded value)
-        mostPopularVideosLoaded,
+    required TResult Function(ChannelSubDetailsLoaded value)
+        channelSubDetailsLoaded,
     required TResult Function(Error value) error,
   }) {
-    return mostPopularVideosLoaded(this);
+    return channelSubDetailsLoaded(this);
   }
 
   @override
@@ -435,10 +443,10 @@ class _$MostPopularVideosLoaded implements MostPopularVideosLoaded {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(Loading value)? loading,
-    TResult? Function(MostPopularVideosLoaded value)? mostPopularVideosLoaded,
+    TResult? Function(ChannelSubDetailsLoaded value)? channelSubDetailsLoaded,
     TResult? Function(Error value)? error,
   }) {
-    return mostPopularVideosLoaded?.call(this);
+    return channelSubDetailsLoaded?.call(this);
   }
 
   @override
@@ -446,24 +454,24 @@ class _$MostPopularVideosLoaded implements MostPopularVideosLoaded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(Loading value)? loading,
-    TResult Function(MostPopularVideosLoaded value)? mostPopularVideosLoaded,
+    TResult Function(ChannelSubDetailsLoaded value)? channelSubDetailsLoaded,
     TResult Function(Error value)? error,
     required TResult orElse(),
   }) {
-    if (mostPopularVideosLoaded != null) {
-      return mostPopularVideosLoaded(this);
+    if (channelSubDetailsLoaded != null) {
+      return channelSubDetailsLoaded(this);
     }
     return orElse();
   }
 }
 
-abstract class MostPopularVideosLoaded implements VideosDetailsState {
-  const factory MostPopularVideosLoaded(final VideosDetails mostPopularVideos) =
-      _$MostPopularVideosLoaded;
+abstract class ChannelSubDetailsLoaded implements ChannelDetailsState {
+  const factory ChannelSubDetailsLoaded(
+      final ChannelSubDetails channelSubDetails) = _$ChannelSubDetailsLoaded;
 
-  VideosDetails get mostPopularVideos;
+  ChannelSubDetails get channelSubDetails;
   @JsonKey(ignore: true)
-  _$$MostPopularVideosLoadedCopyWith<_$MostPopularVideosLoaded> get copyWith =>
+  _$$ChannelSubDetailsLoadedCopyWith<_$ChannelSubDetailsLoaded> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -479,7 +487,7 @@ abstract class _$$ErrorCopyWith<$Res> {
 
 /// @nodoc
 class __$$ErrorCopyWithImpl<$Res>
-    extends _$VideosDetailsStateCopyWithImpl<$Res, _$Error>
+    extends _$ChannelDetailsStateCopyWithImpl<$Res, _$Error>
     implements _$$ErrorCopyWith<$Res> {
   __$$ErrorCopyWithImpl(_$Error _value, $Res Function(_$Error) _then)
       : super(_value, _then);
@@ -516,7 +524,7 @@ class _$Error implements Error {
 
   @override
   String toString() {
-    return 'VideosDetailsState.error(networkExceptions: $networkExceptions)';
+    return 'ChannelDetailsState.error(networkExceptions: $networkExceptions)';
   }
 
   @override
@@ -542,8 +550,8 @@ class _$Error implements Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(VideosDetails mostPopularVideos)
-        mostPopularVideosLoaded,
+    required TResult Function(ChannelSubDetails channelSubDetails)
+        channelSubDetailsLoaded,
     required TResult Function(NetworkExceptions networkExceptions) error,
   }) {
     return error(networkExceptions);
@@ -554,7 +562,8 @@ class _$Error implements Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(VideosDetails mostPopularVideos)? mostPopularVideosLoaded,
+    TResult? Function(ChannelSubDetails channelSubDetails)?
+        channelSubDetailsLoaded,
     TResult? Function(NetworkExceptions networkExceptions)? error,
   }) {
     return error?.call(networkExceptions);
@@ -565,7 +574,8 @@ class _$Error implements Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(VideosDetails mostPopularVideos)? mostPopularVideosLoaded,
+    TResult Function(ChannelSubDetails channelSubDetails)?
+        channelSubDetailsLoaded,
     TResult Function(NetworkExceptions networkExceptions)? error,
     required TResult orElse(),
   }) {
@@ -580,8 +590,8 @@ class _$Error implements Error {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(Loading value) loading,
-    required TResult Function(MostPopularVideosLoaded value)
-        mostPopularVideosLoaded,
+    required TResult Function(ChannelSubDetailsLoaded value)
+        channelSubDetailsLoaded,
     required TResult Function(Error value) error,
   }) {
     return error(this);
@@ -592,7 +602,7 @@ class _$Error implements Error {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(Loading value)? loading,
-    TResult? Function(MostPopularVideosLoaded value)? mostPopularVideosLoaded,
+    TResult? Function(ChannelSubDetailsLoaded value)? channelSubDetailsLoaded,
     TResult? Function(Error value)? error,
   }) {
     return error?.call(this);
@@ -603,7 +613,7 @@ class _$Error implements Error {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(Loading value)? loading,
-    TResult Function(MostPopularVideosLoaded value)? mostPopularVideosLoaded,
+    TResult Function(ChannelSubDetailsLoaded value)? channelSubDetailsLoaded,
     TResult Function(Error value)? error,
     required TResult orElse(),
   }) {
@@ -614,7 +624,7 @@ class _$Error implements Error {
   }
 }
 
-abstract class Error implements VideosDetailsState {
+abstract class Error implements ChannelDetailsState {
   const factory Error(final NetworkExceptions networkExceptions) = _$Error;
 
   NetworkExceptions get networkExceptions;

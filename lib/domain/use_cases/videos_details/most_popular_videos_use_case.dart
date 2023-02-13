@@ -5,7 +5,7 @@ import 'package:youtube/domain/repositories/videos_details_repository.dart';
 
 class MostPopularVideosUseCase
     implements UseCase<ApiResult<VideosDetails>, void> {
-  final VideoDetailsRepository _detailsRepository;
+  final VideosDetailsRepository _detailsRepository;
 
   MostPopularVideosUseCase(this._detailsRepository);
 

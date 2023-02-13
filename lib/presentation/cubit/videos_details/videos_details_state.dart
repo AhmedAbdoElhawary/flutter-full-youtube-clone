@@ -9,9 +9,6 @@ class VideosDetailsState with _$VideosDetailsState {
   const factory VideosDetailsState.mostPopularVideosLoaded(
       VideosDetails mostPopularVideos) = MostPopularVideosLoaded;
 
-  const factory VideosDetailsState.videoDetailsLoaded(
-      VideosDetails videoDetails) = VideoDetailsLoaded;
-
   const factory VideosDetailsState.error(NetworkExceptions networkExceptions) =
       Error;
 }

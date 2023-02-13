@@ -8,8 +8,6 @@ part of 'video_details.dart';
 
 VideosDetails _$VideosDetailsFromJson(Map<String, dynamic> json) =>
     VideosDetails(
-      json['kind'] as String?,
-      json['etag'] as String?,
       (json['items'] as List<dynamic>?)
           ?.map((e) => VideoDetailsItem.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -17,8 +15,6 @@ VideosDetails _$VideosDetailsFromJson(Map<String, dynamic> json) =>
 
 VideoDetailsItem _$VideoDetailsItemFromJson(Map<String, dynamic> json) =>
     VideoDetailsItem(
-      json['kind'] as String?,
-      json['etag'] as String?,
       json['id'] as String?,
       json['snippet'] == null
           ? null
@@ -71,11 +67,6 @@ MaxThumbnails _$MaxThumbnailsFromJson(Map<String, dynamic> json) =>
       json['maxres'] == null
           ? null
           : ThumbnailDetails.fromJson(json['maxres'] as Map<String, dynamic>),
-    );
-
-PageInfo _$PageInfoFromJson(Map<String, dynamic> json) => PageInfo(
-      json['totalResults'] as int?,
-      json['resultsPerPage'] as int?,
     );
 
 ContentDetails _$ContentDetailsFromJson(Map<String, dynamic> json) =>
