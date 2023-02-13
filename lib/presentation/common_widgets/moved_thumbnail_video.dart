@@ -53,7 +53,7 @@ class _VideoSubTitles extends StatelessWidget {
     String viewCount = videoDetailsItem?.statistics.viewCount ?? "";
     DateTime? dateInUtc = snippet?.publishedAt;
     String date = DateReformat.oneDigitFormat(dateInUtc);
-    String viewsReformat = CountsReformat.basicViewsFormat(viewCount);
+    String viewsReformat = CountsReformat.basicCountFormat(viewCount);
     ChannelSubDetails? channelDetails = snippet?.channelSubDetails;
     return Padding(
       padding: REdgeInsets.symmetric(horizontal: 13),
