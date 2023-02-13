@@ -14,7 +14,7 @@ class ChannelSubDetailsUseCase
   @override
   Future<ApiResult<ChannelSubDetails>> call(
       {required ChannelSubDetailsUseCaseParameters params}) {
-    return _channelDetailsRepository.getSubChannelDetails(
+    return _channelDetailsRepository.getSubSingleChannelDetails(
         channelId: params.channelId);
   }
 }
