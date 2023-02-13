@@ -1,23 +1,23 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:youtube/data/models/channel_details/channel_details.dart';
+import 'package:youtube/data/models/common/thumbnail_details/thumbnail_details.dart';
 
 part 'video_details.g.dart';
 
-@JsonSerializable(includeIfNull: true)
-class VideoDetails {
-  VideoDetails(this.kind, this.tag, this.videoDetailsItem);
-
+@JsonSerializable(includeIfNull: true, createToJson: false)
+class VideosDetails {
   String? kind;
   @JsonKey(name: "etag")
   String? tag;
   @JsonKey(name: "items")
   List<VideoDetailsItem>? videoDetailsItem;
-  factory VideoDetails.fromJson(Map<String, dynamic> json) =>
-      _$VideoDetailsFromJson(json);
+  VideosDetails(this.kind, this.tag, this.videoDetailsItem);
 
-  Map<String, dynamic> toJson() => _$VideoDetailsToJson(this);
+  factory VideosDetails.fromJson(Map<String, dynamic> json) =>
+      _$VideosDetailsFromJson(json);
 }
 
-@JsonSerializable(includeIfNull: true)
+@JsonSerializable(includeIfNull: true, createToJson: false,)
 class VideoDetailsItem {
   VideoDetailsItem(
     this.kind,
@@ -32,18 +32,18 @@ class VideoDetailsItem {
   @JsonKey(name: "etag")
   String? tag;
   String? id;
-  Snippet? snippet;
+  VideoSnippet? snippet;
   ContentDetails contentDetails;
-  Statistics statistics;
+  VideoStatistics statistics;
 
-  factory VideoDetailsItem.fromJson(Map<String, dynamic> json) => _$VideoDetailsItemFromJson(json);
+  factory VideoDetailsItem.fromJson(Map<String, dynamic> json) =>
+      _$VideoDetailsItemFromJson(json);
 
-  Map<String, dynamic> toJson() => _$VideoDetailsItemToJson(this);
 }
 
-@JsonSerializable(includeIfNull: true)
-class Snippet {
-  Snippet(
+@JsonSerializable(includeIfNull: true, createToJson: false)
+class VideoSnippet {
+  VideoSnippet(
     this.publishedAt,
     this.channelId,
     this.title,
@@ -62,7 +62,7 @@ class Snippet {
   String? channelId;
   String? title;
   String? description;
-  Thumbnails? thumbnails;
+  MaxThumbnails? thumbnails;
   String? channelTitle;
   List<String>? tags;
   String? categoryId;
@@ -71,13 +71,14 @@ class Snippet {
   Localized? localized;
   String? defaultAudioLanguage;
 
-  factory Snippet.fromJson(Map<String, dynamic> json) =>
-      _$SnippetFromJson(json);
+  @JsonKey(includeToJson: false,includeFromJson: false)
+  ChannelSubDetails? channelSubDetails;
 
-  Map<String, dynamic> toJson() => _$SnippetToJson(this);
+  factory VideoSnippet.fromJson(Map<String, dynamic> json) =>
+      _$VideoSnippetFromJson(json);
 }
 
-@JsonSerializable(includeIfNull: true)
+@JsonSerializable(includeIfNull: true, createToJson: false)
 class Localized {
   Localized(this.title, this.description);
 
@@ -86,44 +87,26 @@ class Localized {
 
   factory Localized.fromJson(Map<String, dynamic> json) =>
       _$LocalizedFromJson(json);
-
-  Map<String, dynamic> toJson() => _$LocalizedToJson(this);
 }
 
-@JsonSerializable(includeIfNull: true)
-class Thumbnails {
-  Thumbnails(
+@JsonSerializable(includeIfNull: true, createToJson: false)
+class MaxThumbnails {
+  MaxThumbnails(
       this.thumbnailsDefault, this.medium, this.high, this.standard, this.max);
 
-  Default? thumbnailsDefault;
-  Default? medium;
-  Default? high;
-  Default? standard;
+  ThumbnailDetails? thumbnailsDefault;
+  ThumbnailDetails? medium;
+  ThumbnailDetails? high;
+  ThumbnailDetails? standard;
 
   @JsonKey(name: "maxres")
-  Default? max;
+  ThumbnailDetails? max;
 
-  factory Thumbnails.fromJson(Map<String, dynamic> json) =>
-      _$ThumbnailsFromJson(json);
-
-  Map<String, dynamic> toJson() => _$ThumbnailsToJson(this);
+  factory MaxThumbnails.fromJson(Map<String, dynamic> json) =>
+      _$MaxThumbnailsFromJson(json);
 }
 
-@JsonSerializable(includeIfNull: true)
-class Default {
-  Default(this.url, this.width, this.height);
-
-  String? url;
-  int? width;
-  int? height;
-
-  factory Default.fromJson(Map<String, dynamic> json) =>
-      _$DefaultFromJson(json);
-
-  Map<String, dynamic> toJson() => _$DefaultToJson(this);
-}
-
-@JsonSerializable(includeIfNull: true)
+@JsonSerializable(includeIfNull: true, createToJson: false)
 class PageInfo {
   PageInfo(this.totalResults, this.resultsPerPage);
 
@@ -132,11 +115,9 @@ class PageInfo {
 
   factory PageInfo.fromJson(Map<String, dynamic> json) =>
       _$PageInfoFromJson(json);
-
-  Map<String, dynamic> toJson() => _$PageInfoToJson(this);
 }
 
-@JsonSerializable(includeIfNull: true)
+@JsonSerializable(includeIfNull: true, createToJson: false)
 class ContentDetails {
   ContentDetails(
     this.duration,
@@ -156,13 +137,11 @@ class ContentDetails {
 
   factory ContentDetails.fromJson(Map<String, dynamic> json) =>
       _$ContentDetailsFromJson(json);
-
-  Map<String, dynamic> toJson() => _$ContentDetailsToJson(this);
 }
 
-@JsonSerializable(includeIfNull: true)
-class Statistics {
-  Statistics(
+@JsonSerializable(includeIfNull: true, createToJson: false)
+class VideoStatistics {
+  VideoStatistics(
     this.viewCount,
     this.favoriteCount,
     this.commentCount,
@@ -174,8 +153,6 @@ class Statistics {
   String? commentCount;
   String? likeCount;
 
-  factory Statistics.fromJson(Map<String, dynamic> json) =>
-      _$StatisticsFromJson(json);
-
-  Map<String, dynamic> toJson() => _$StatisticsToJson(this);
+  factory VideoStatistics.fromJson(Map<String, dynamic> json) =>
+      _$VideoStatisticsFromJson(json);
 }
