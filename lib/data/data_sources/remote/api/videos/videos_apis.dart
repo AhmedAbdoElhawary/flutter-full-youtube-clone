@@ -9,14 +9,9 @@ part 'videos_apis.g.dart';
 abstract class VideosAPIs {
   factory VideosAPIs(Dio dio, {String baseUrl}) = _VideosAPIs;
 
-  @GET("videos?part=contentDetails,statistics,snippet&chart=mostPopular&maxResults=50&regionCode=EG")
+  @GET(
+      "videos?part=contentDetails,statistics,snippet&chart=mostPopular&maxResults=50&regionCode=EG")
   Future<VideosDetails> getMostPopularVideos({
     @Query("key") final String apiKey = apiKey,
-  });
-
-  @GET("videos?part=contentDetails,statistics,snippet")
-  Future<VideosDetails> getVideoDetails({
-    @Query("key") final String apiKey = apiKey,
-    @Query("id") required String videoId,
   });
 }
