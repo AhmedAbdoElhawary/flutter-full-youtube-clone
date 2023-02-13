@@ -4,10 +4,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:youtube/core/functions/reformat/date_reformat.dart';
 import 'package:youtube/core/functions/reformat/views_reformat.dart';
+import 'package:youtube/data/models/channel_details/channel_details.dart';
 import 'package:youtube/data/models/video_details/video_details.dart';
 
 class MiniVideoViewLogic extends GetxController {
   final Rx<VideoDetailsItem?> _selectedVideoDetails = Rxn<VideoDetailsItem?>();
+  final Rx<ChannelSubDetails?> _channelSubDetails = Rxn<ChannelSubDetails?>();
+
   final RxDouble _percentageOFMiniPage = 0.0.obs;
   final RxDouble _heightOFMiniPage = 50.0.obs;
   final RxString _channelTitle = "".obs;
@@ -15,6 +18,7 @@ class MiniVideoViewLogic extends GetxController {
   final RxString _dateOfVideo = "".obs;
   final RxString _videoTitle = "".obs;
   final RxString _videoDuration = "".obs;
+  final RxString _channelSubscribeCount = "".obs;
 
   double videoOfMiniDisplayWidth(double screenWidth) {
     double basicWidth = (screenWidth * percentageOFMiniPage * 12) + 130.w;
@@ -32,19 +36,29 @@ class MiniVideoViewLogic extends GetxController {
     _selectedVideoDetails.value = value;
     _channelTitle.value = selectedVideoDetails?.snippet?.channelTitle ?? "";
     _videoTitle.value = selectedVideoDetails?.snippet?.title ?? "";
+    _channelSubDetails.value = selectedVideoDetails?.snippet?.channelSubDetails;
+    String rawSubscribeCount =
+        channelSubDetails?.items?[0]?.statistics?.subscriberCount ?? "";
+
+    String reformatSubscribesCount =
+        CountsReformat.basicCountFormat(rawSubscribeCount);
+    _channelSubscribeCount.value = "$reformatSubscribesCount Subscribers";
 
     DateTime? dateInUtc = selectedVideoDetails?.snippet?.publishedAt;
     _dateOfVideo.value = DateReformat.oneDigitFormat(dateInUtc);
 
     String views = selectedVideoDetails?.statistics.viewCount ?? "";
-    _viewCount.value = CountsReformat.basicViewsFormat(views);
+    String reformatViewsCount = CountsReformat.basicCountFormat(views);
+    _viewCount.value = "$reformatViewsCount views";
 
     String duration = selectedVideoDetails?.contentDetails.duration ?? "";
-    _videoDuration.value= CountsReformat.videoDurationFormat(duration);
+    _videoDuration.value = CountsReformat.videoDurationFormat(duration);
   }
 
   set percentageOFMiniPage(double value) => _percentageOFMiniPage.value = value;
   set heightOFMiniPage(double value) => _heightOFMiniPage.value = value;
+  set channelSubDetails(ChannelSubDetails? value) =>
+      _channelSubDetails.value = value;
 
   VideoDetailsItem? get selectedVideoDetails => _selectedVideoDetails.value;
   double get percentageOFMiniPage => _percentageOFMiniPage.value;
@@ -53,6 +67,7 @@ class MiniVideoViewLogic extends GetxController {
   String get viewCount => _viewCount.value;
   String get dateOfVideo => _dateOfVideo.value;
   String get videoTitle => _videoTitle.value;
-
   String get videoDuration => _videoDuration.value;
+  String get channelSubscribeCount => _channelSubscribeCount.value;
+  ChannelSubDetails? get channelSubDetails => _channelSubDetails.value;
 }

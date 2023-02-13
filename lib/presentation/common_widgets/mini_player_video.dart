@@ -156,6 +156,8 @@ class _CircleNameSubscribersWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<MiniVideoViewLogic>(tag: "1");
+
     return Padding(
       padding: REdgeInsets.symmetric(horizontal: 10, vertical: 2),
       child: Row(
@@ -167,14 +169,14 @@ class _CircleNameSubscribersWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Ahmed Abdo Elhawary",
+                  controller.channelTitle,
                   overflow: TextOverflow.ellipsis,
                   style: getMediumStyle(
                       color: ColorManager(context).black, fontSize: 15),
                 ),
                 const RSizedBox(height: 5),
                 Text(
-                  "1.88M subscribers",
+                  controller.channelSubscribeCount,
                   overflow: TextOverflow.ellipsis,
                   style: getNormalStyle(
                       color: ColorManager(context).grey, fontSize: 13),
@@ -235,24 +237,26 @@ class _VideoTitleSubNumbersTexts extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                controller.videoTitle,
-                overflow: TextOverflow.ellipsis,
-                maxLines: 3,
-                style: getNormalStyle(
-                    color: ColorManager(context).black, fontSize: 15),
-              ),
-              const RSizedBox(height: 8),
-              Text(
-                "${controller.viewCount} . ${controller.dateOfVideo}",
-                overflow: TextOverflow.ellipsis,
-                style: getNormalStyle(
-                    color: ColorManager(context).grey7, fontSize: 13),
-              ),
-            ],
+          Flexible(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  controller.videoTitle,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 3,
+                  style: getNormalStyle(
+                      color: ColorManager(context).black, fontSize: 15),
+                ),
+                const RSizedBox(height: 8),
+                Text(
+                  "${controller.viewCount} . ${controller.dateOfVideo}",
+                  overflow: TextOverflow.ellipsis,
+                  style: getNormalStyle(
+                      color: ColorManager(context).grey7, fontSize: 13),
+                ),
+              ],
+            ),
           ),
           const Icon(Icons.keyboard_arrow_down_outlined),
         ],

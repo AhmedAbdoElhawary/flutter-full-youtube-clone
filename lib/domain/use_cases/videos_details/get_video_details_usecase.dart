@@ -5,15 +5,15 @@ import 'package:youtube/domain/repositories/videos_details_repository.dart';
 
 class VideoDetailsUseCase
     implements
-        UseCase<ApiResult<VideoDetails>, VideoDetailsUseCaseParameters> {
-  final VideoDetailsRepository _videosUseCase;
+        UseCase<ApiResult<VideosDetails>, VideoDetailsUseCaseParameters> {
+  final VideoDetailsRepository _videoDetailsRepository;
 
-  VideoDetailsUseCase(this._videosUseCase);
+  VideoDetailsUseCase(this._videoDetailsRepository);
 
   @override
-  Future<ApiResult<VideoDetails>> call(
+  Future<ApiResult<VideosDetails>> call(
       {required VideoDetailsUseCaseParameters params}) {
-    return _videosUseCase.getVideoDetails(videoId: params.videoId);
+    return _videoDetailsRepository.getVideoDetails(videoId: params.videoId);
   }
 }
 

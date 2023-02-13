@@ -8,12 +8,12 @@ class ThumbnailVideo extends StatelessWidget {
   const ThumbnailVideo(this.thumbnailsVideo,
       {this.width = double.infinity, this.height = 185, Key? key})
       : super(key: key);
-  final Thumbnails? thumbnailsVideo;
+  final MaxThumbnails? thumbnailsVideo;
   final double height;
   final double width;
   @override
   Widget build(BuildContext context) {
-    String url = thumbnailsVideo!.max?.url ?? "";
+    String url = thumbnailsVideo?.max?.url ?? "";
     return Container(
       width: width.w,
       height: height.h,

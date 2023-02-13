@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:youtube/core/functions/reformat/date_reformat.dart';
 import 'package:youtube/core/functions/reformat/views_reformat.dart';
 import 'package:youtube/core/resources/assets_manager.dart';
+import 'package:youtube/data/models/channel_details/channel_details.dart';
 import 'package:youtube/data/models/video_details/video_details.dart';
 import 'package:youtube/presentation/common_widgets/circular_profile_image.dart';
 import 'package:youtube/presentation/common_widgets/small_thumbnail_video.dart';
@@ -47,18 +48,19 @@ class _VideoSubTitles extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String channelTitle = videoDetailsItem?.snippet?.channelTitle ?? "";
+    VideoSnippet? snippet = videoDetailsItem?.snippet;
+    String channelTitle = snippet?.channelTitle ?? "";
     String viewCount = videoDetailsItem?.statistics.viewCount ?? "";
-    DateTime? dateInUtc = videoDetailsItem?.snippet?.publishedAt;
+    DateTime? dateInUtc = snippet?.publishedAt;
     String date = DateReformat.oneDigitFormat(dateInUtc);
-    String viewsReformat = CountsReformat.basicViewsFormat(viewCount);
-
+    String viewsReformat = CountsReformat.basicCountFormat(viewCount);
+    ChannelSubDetails? channelDetails = snippet?.channelSubDetails;
     return Padding(
       padding: REdgeInsets.symmetric(horizontal: 13),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const CircularProfileImage(),
+          CircularProfileImage(channelSubDetails: channelDetails),
           const RSizedBox(width: 10),
           Flexible(
             child: Column(

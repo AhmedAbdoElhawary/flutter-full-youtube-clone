@@ -1,5 +1,5 @@
 class CountsReformat {
-  static String basicViewsFormat(String views) {
+  static String basicCountFormat(String views) {
     int length = views.length;
     if (length == 0) return "";
     String viewsNewFormat = length > 3
@@ -21,7 +21,7 @@ class CountsReformat {
                 : _reformat(views, 2, "K")
             : _reformat(views, 1, "K")
         : views;
-    return "$viewsNewFormat views";
+    return viewsNewFormat;
   }
 
   static String _reformat(String views, int count, String char) {
@@ -33,6 +33,7 @@ class CountsReformat {
   }
 
   static String videoDurationFormat(String duration) {
+    if (duration.isEmpty) return "";
     duration = duration.replaceRange(0, 2, "");
     duration = duration.replaceAll("S", "");
     duration = duration.replaceAll("M", ":");

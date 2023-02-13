@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'youtube_apis.dart';
+part of 'channel_apis.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,8 +8,8 @@ part of 'youtube_apis.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
-class _YoutubeAPIs implements YoutubeAPIs {
-  _YoutubeAPIs(
+class _ChannelAPIs implements ChannelAPIs {
+  _ChannelAPIs(
     this._dio, {
     this.baseUrl,
   }) {
@@ -21,54 +21,31 @@ class _YoutubeAPIs implements YoutubeAPIs {
   String? baseUrl;
 
   @override
-  Future<VideoDetails> getMostPopularVideos({apiKey = apiKey}) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'key': apiKey};
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<VideoDetails>(Options(
-      method: 'GET',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              'videos?part=contentDetails,statistics,snippet&chart=mostPopular&maxResults=50&regionCode=EG',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = VideoDetails.fromJson(_result.data!);
-    return value;
-  }
-
-  @override
-  Future<VideoDetails> getVideoDetails({
+  Future<ChannelSubDetails> getSubChannelInfo({
     apiKey = apiKey,
-    required videoId,
+    required channelId,
   }) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'key': apiKey,
-      r'id': videoId,
+      r'id': channelId,
     };
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<VideoDetails>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<ChannelSubDetails>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              'videos?part=contentDetails,statistics,snippet',
+              'channels?part=brandingSettings%2CcontentDetails%2Cstatistics%2Csnippet',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = VideoDetails.fromJson(_result.data!);
+    final value = ChannelSubDetails.fromJson(_result.data!);
     return value;
   }
 

@@ -4,13 +4,13 @@ import 'package:youtube/data/models/video_details/video_details.dart';
 import 'package:youtube/domain/repositories/videos_details_repository.dart';
 
 class MostPopularVideosUseCase
-    implements UseCase<ApiResult<VideoDetails>, void> {
-  final VideoDetailsRepository _videosUseCase;
+    implements UseCase<ApiResult<VideosDetails>, void> {
+  final VideoDetailsRepository _detailsRepository;
 
-  MostPopularVideosUseCase(this._videosUseCase);
+  MostPopularVideosUseCase(this._detailsRepository);
 
   @override
-  Future<ApiResult<VideoDetails>> call({required void params}) {
-    return _videosUseCase.getMostPopularVideos();
+  Future<ApiResult<VideosDetails>> call({required void params}) {
+    return _detailsRepository.getMostPopularVideos();
   }
 }
