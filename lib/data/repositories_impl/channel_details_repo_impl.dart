@@ -2,7 +2,7 @@ import 'package:youtube/core/functions/api_result.dart';
 import 'package:youtube/core/functions/network_exceptions.dart';
 import 'package:youtube/data/data_sources/remote/api/channel/channel_apis.dart';
 import 'package:youtube/data/models/channel_details/channel_details.dart';
-import 'package:youtube/data/models/video_details/video_details.dart';
+import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/domain/repositories/channel_details_repository.dart';
 
 class ChannelDetailsRepoImpl implements ChannelDetailsRepository {

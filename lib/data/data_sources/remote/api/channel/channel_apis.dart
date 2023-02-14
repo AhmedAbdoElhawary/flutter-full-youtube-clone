@@ -14,6 +14,5 @@ abstract class ChannelAPIs {
     @Query("key") final String apiKey = apiKey,
     @Query("id") required String channelId,
   });
-
-
 }
+
