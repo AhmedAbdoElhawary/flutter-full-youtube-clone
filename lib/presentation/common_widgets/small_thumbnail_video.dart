@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:youtube/data/models/video_details/video_details.dart';
+import 'package:youtube/data/models/common/thumbnail_details/max_thumbnail_details.dart';
 
 import '../../core/resources/color_manager.dart';
 
