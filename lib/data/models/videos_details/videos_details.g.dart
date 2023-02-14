@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'video_details.dart';
+part of 'videos_details.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
@@ -8,9 +8,14 @@ part of 'video_details.dart';
 
 VideosDetails _$VideosDetailsFromJson(Map<String, dynamic> json) =>
     VideosDetails(
+      json['pageInfo'] == null
+          ? null
+          : PageInfo.fromJson(json['pageInfo'] as Map<String, dynamic>),
       (json['items'] as List<dynamic>?)
           ?.map((e) => VideoDetailsItem.fromJson(e as Map<String, dynamic>))
           .toList(),
+      json['nextPageToken'] as String?,
+      json['prevPageToken'] as String?,
     );
 
 VideoDetailsItem _$VideoDetailsItemFromJson(Map<String, dynamic> json) =>
@@ -37,36 +42,12 @@ VideoSnippet _$VideoSnippetFromJson(Map<String, dynamic> json) => VideoSnippet(
       (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList(),
       json['categoryId'] as String?,
       json['liveBroadcastContent'] as String?,
-      json['defaultLanguage'] as String?,
-      json['localized'] == null
-          ? null
-          : Localized.fromJson(json['localized'] as Map<String, dynamic>),
       json['defaultAudioLanguage'] as String?,
     );
 
 Localized _$LocalizedFromJson(Map<String, dynamic> json) => Localized(
       json['title'] as String?,
       json['description'] as String?,
-    );
-
-MaxThumbnails _$MaxThumbnailsFromJson(Map<String, dynamic> json) =>
-    MaxThumbnails(
-      json['thumbnailsDefault'] == null
-          ? null
-          : ThumbnailDetails.fromJson(
-              json['thumbnailsDefault'] as Map<String, dynamic>),
-      json['medium'] == null
-          ? null
-          : ThumbnailDetails.fromJson(json['medium'] as Map<String, dynamic>),
-      json['high'] == null
-          ? null
-          : ThumbnailDetails.fromJson(json['high'] as Map<String, dynamic>),
-      json['standard'] == null
-          ? null
-          : ThumbnailDetails.fromJson(json['standard'] as Map<String, dynamic>),
-      json['maxres'] == null
-          ? null
-          : ThumbnailDetails.fromJson(json['maxres'] as Map<String, dynamic>),
     );
 
 ContentDetails _$ContentDetailsFromJson(Map<String, dynamic> json) =>
