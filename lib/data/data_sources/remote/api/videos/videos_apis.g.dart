@@ -21,7 +21,30 @@ class _VideosAPIs implements VideosAPIs {
   String? baseUrl;
 
   @override
-  Future<VideosDetails> getMostPopularVideos({apiKey = apiKey}) async {
+  Stream<VideosDetails> getAllVideos({apiKey = apiKey}) async* {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'key': apiKey};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<VideosDetails>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'search?part=snippet&location=30.044420,31.235712&locationRadius=1000km&type=video&maxResults=50',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = VideosDetails.fromJson(_result.data!);
+    yield value;
+  }
+
+  @override
+  Stream<VideosDetails> getMostPopularVideos({apiKey = apiKey}) async* {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'key': apiKey};
     final _headers = <String, dynamic>{};
@@ -40,7 +63,7 @@ class _VideosAPIs implements VideosAPIs {
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = VideosDetails.fromJson(_result.data!);
-    return value;
+    yield value;
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
