@@ -6,7 +6,7 @@ import 'package:youtube/core/functions/reformat/date_reformat.dart';
 import 'package:youtube/core/functions/reformat/views_reformat.dart';
 import 'package:youtube/core/resources/assets_manager.dart';
 import 'package:youtube/data/models/channel_details/channel_details.dart';
-import 'package:youtube/data/models/video_details/video_details.dart';
+import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/presentation/common_widgets/circular_profile_image.dart';
 import 'package:youtube/presentation/common_widgets/small_thumbnail_video.dart';
 
@@ -55,7 +55,8 @@ class _VideoSubTitles extends StatelessWidget {
     String date = DateReformat.oneDigitFormat(dateInUtc);
     String viewsReformat = CountsReformat.basicCountFormat(viewCount);
     ChannelSubDetails? channelDetails = snippet?.channelSubDetails;
-    String channelImage=channelDetails?.items?[0]?.snippet?.thumbnails?.high?.url ?? "";
+    String channelImage =
+        channelDetails?.items?[0]?.snippet?.thumbnails?.high?.url ?? "";
     return Padding(
       padding: REdgeInsets.symmetric(horizontal: 13),
       child: Row(

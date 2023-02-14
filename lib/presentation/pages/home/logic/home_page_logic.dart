@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:youtube/core/functions/reformat/date_reformat.dart';
 import 'package:youtube/core/functions/reformat/views_reformat.dart';
 import 'package:youtube/data/models/channel_details/channel_details.dart';
-import 'package:youtube/data/models/video_details/video_details.dart';
+import 'package:youtube/data/models/videos_details/videos_details.dart';
 
 class MiniVideoViewLogic extends GetxController {
   final Rx<VideoDetailsItem?> _selectedVideoDetails = Rxn<VideoDetailsItem?>();
@@ -65,7 +65,6 @@ class MiniVideoViewLogic extends GetxController {
   set heightOFMiniPage(double value) => _heightOFMiniPage.value = value;
   set channelSubDetails(ChannelSubDetails? value) =>
       _channelSubDetails.value = value;
-
 
   String get commentCount => _commentCount.value;
 

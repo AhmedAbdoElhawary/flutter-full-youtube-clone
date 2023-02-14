@@ -3,7 +3,7 @@ import 'package:youtube/core/functions/network_exceptions.dart';
 import 'package:youtube/data/data_sources/remote/api/single_video/single_video_apis.dart';
 import 'package:youtube/data/models/comment_details/comment_details.dart';
 import 'package:youtube/data/models/reply_details/reply_details.dart';
-import 'package:youtube/data/models/video_details/video_details.dart';
+import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/domain/repositories/channel_details_repository.dart';
 import 'package:youtube/domain/repositories/single_video_details_repository.dart';
 

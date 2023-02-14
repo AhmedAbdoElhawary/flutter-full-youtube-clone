@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'search_apis.dart';
+part of 'channel_playlist_apis.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,8 +8,8 @@ part of 'search_apis.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
-class _SearchAPIs implements SearchAPIs {
-  _SearchAPIs(
+class _ChannelPlayListAPIs implements ChannelPlayListAPIs {
+  _ChannelPlayListAPIs(
     this._dio, {
     this.baseUrl,
   }) {
@@ -21,61 +21,61 @@ class _SearchAPIs implements SearchAPIs {
   String? baseUrl;
 
   @override
-  Future<VideosDetails> searchForThisSentence({
+  Stream<PlayLists> getChannelPlayLists({
     apiKey = apiKey,
-    required sentence,
-  }) async {
+    required channelId,
+  }) async* {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'key': apiKey,
-      r'q': sentence,
+      r'channelId': channelId,
     };
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<VideosDetails>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<PlayLists>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              'search?part=snippet',
+              'playlists?part=snippet%2CcontentDetails&maxResults=50',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = VideosDetails.fromJson(_result.data!);
-    return value;
+    final value = PlayLists.fromJson(_result.data!);
+    yield value;
   }
 
   @override
-  Future<SuggestionVideosDetails> getRelatedVideosToThisVideo({
+  Stream<PlayListVideos> getChannelPlayListItem({
     apiKey = apiKey,
-    required relatedToVideoId,
-  }) async {
+    required playlistId,
+  }) async* {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'key': apiKey,
-      r'relatedToVideoId': relatedToVideoId,
+      r'playlistId': playlistId,
     };
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<SuggestionVideosDetails>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<PlayListVideos>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              'search?part=snippet&maxResults=100&type=video',
+              'playlistItems?part=snippet,contentDetails&maxResults=50',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = SuggestionVideosDetails.fromJson(_result.data!);
-    return value;
+    final value = PlayListVideos.fromJson(_result.data!);
+    yield value;
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {

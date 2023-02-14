@@ -1,20 +1,26 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:youtube/data/models/channel_details/channel_details.dart';
-import 'package:youtube/data/models/common/thumbnail_details/thumbnail_details.dart';
+import 'package:youtube/data/models/common/page_info/page_info.dart';
+import 'package:youtube/data/models/common/thumbnail_details/max_thumbnail_details.dart';
 
-part 'video_details.g.dart';
+part 'videos_details.g.dart';
 
 @JsonSerializable(includeIfNull: true, createToJson: false)
 class VideosDetails {
   @JsonKey(name: "items")
   List<VideoDetailsItem>? videoDetailsItem;
-  VideosDetails(this.videoDetailsItem);
+  String? nextPageToken;
+  String? prevPageToken;
+  PageInfo? pageInfo;
+
+  VideosDetails(this.pageInfo, this.videoDetailsItem, this.nextPageToken,
+      this.prevPageToken);
 
   factory VideosDetails.fromJson(Map<String, dynamic> json) =>
       _$VideosDetailsFromJson(json);
 }
 
-@JsonSerializable(includeIfNull: true, createToJson: false,)
+@JsonSerializable(includeIfNull: true, createToJson: false)
 class VideoDetailsItem {
   VideoDetailsItem(
     this.id,
@@ -30,7 +36,6 @@ class VideoDetailsItem {
 
   factory VideoDetailsItem.fromJson(Map<String, dynamic> json) =>
       _$VideoDetailsItemFromJson(json);
-
 }
 
 @JsonSerializable(includeIfNull: true, createToJson: false)
@@ -45,8 +50,6 @@ class VideoSnippet {
     this.tags,
     this.categoryId,
     this.liveBroadcastContent,
-    this.defaultLanguage,
-    this.localized,
     this.defaultAudioLanguage,
   );
 
@@ -59,11 +62,9 @@ class VideoSnippet {
   List<String>? tags;
   String? categoryId;
   String? liveBroadcastContent;
-  String? defaultLanguage;
-  Localized? localized;
   String? defaultAudioLanguage;
 
-  @JsonKey(includeToJson: false,includeFromJson: false)
+  @JsonKey(includeToJson: false, includeFromJson: false)
   ChannelSubDetails? channelSubDetails;
 
   factory VideoSnippet.fromJson(Map<String, dynamic> json) =>
@@ -79,23 +80,6 @@ class Localized {
 
   factory Localized.fromJson(Map<String, dynamic> json) =>
       _$LocalizedFromJson(json);
-}
-
-@JsonSerializable(includeIfNull: true, createToJson: false)
-class MaxThumbnails {
-  MaxThumbnails(
-      this.thumbnailsDefault, this.medium, this.high, this.standard, this.max);
-
-  ThumbnailDetails? thumbnailsDefault;
-  ThumbnailDetails? medium;
-  ThumbnailDetails? high;
-  ThumbnailDetails? standard;
-
-  @JsonKey(name: "maxres")
-  ThumbnailDetails? max;
-
-  factory MaxThumbnails.fromJson(Map<String, dynamic> json) =>
-      _$MaxThumbnailsFromJson(json);
 }
 
 @JsonSerializable(includeIfNull: true, createToJson: false)

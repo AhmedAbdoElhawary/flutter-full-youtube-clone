@@ -2,9 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:youtube/core/utility/constants.dart';
 import 'package:youtube/core/utility/private_key.dart';
+import 'package:youtube/data/models/comment_details/comment_body/comment_body.dart';
 import 'package:youtube/data/models/comment_details/comment_details.dart';
 import 'package:youtube/data/models/reply_details/reply_details.dart';
-import 'package:youtube/data/models/video_details/video_details.dart';
+import 'package:youtube/data/models/videos_details/videos_details.dart';
 part 'single_video_apis.g.dart';
 
 @RestApi(baseUrl: youtubeBaseUrl)
@@ -34,4 +35,11 @@ abstract class SingleVideosAPIs {
     @Query("key") final String apiKey = apiKey,
     @Query("id") required String commentId,
   });
+
+  /// [insertComment] for reply and comment: just set parentId if you want a reply
+  @POST("comments?part=snippet")
+  Future<void> insertComment(
+      {@Query("access_token") required String accessToken,
+      @Query("key") final String apiKey = apiKey,
+      @Body() required CommentBody commentBody});
 }

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'search_apis.dart';
+part of 'channel_videos_apis.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,8 +8,8 @@ part of 'search_apis.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
-class _SearchAPIs implements SearchAPIs {
-  _SearchAPIs(
+class _ChannelVideosAPIs implements ChannelVideosAPIs {
+  _ChannelVideosAPIs(
     this._dio, {
     this.baseUrl,
   }) {
@@ -21,14 +21,45 @@ class _SearchAPIs implements SearchAPIs {
   String? baseUrl;
 
   @override
-  Future<VideosDetails> searchForThisSentence({
+  Stream<ChannelVideosIds> getChannelVideosIds({
     apiKey = apiKey,
-    required sentence,
-  }) async {
+    required channelId,
+  }) async* {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'key': apiKey,
-      r'q': sentence,
+      r'channelId': channelId,
+    };
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ChannelVideosIds>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'search?&order=date&type=video&part=id&maxResults=50',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ChannelVideosIds.fromJson(_result.data!);
+    yield value;
+  }
+
+  @override
+  Stream<VideosDetails> getChannelVideos({
+    apiKey = apiKey,
+    required videosIds,
+    orderVideos = "date",
+  }) async* {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'key': apiKey,
+      r'id': videosIds,
+      r'order': orderVideos,
     };
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -40,42 +71,44 @@ class _SearchAPIs implements SearchAPIs {
     )
             .compose(
               _dio.options,
-              'search?part=snippet',
+              'videos?part=snippet%2CcontentDetails%2Cstatistics&maxResults=50',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = VideosDetails.fromJson(_result.data!);
-    return value;
+    yield value;
   }
 
   @override
-  Future<SuggestionVideosDetails> getRelatedVideosToThisVideo({
+  Stream<VideosDetails> getChannelShortVideos({
     apiKey = apiKey,
-    required relatedToVideoId,
-  }) async {
+    required videosIds,
+    orderVideos = "date",
+  }) async* {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'key': apiKey,
-      r'relatedToVideoId': relatedToVideoId,
+      r'id': videosIds,
+      r'order': orderVideos,
     };
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<SuggestionVideosDetails>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<VideosDetails>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              'search?part=snippet&maxResults=100&type=video',
+              'search?type=video&videoDuration=short&part=snippet&maxResults=50',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = SuggestionVideosDetails.fromJson(_result.data!);
-    return value;
+    final value = VideosDetails.fromJson(_result.data!);
+    yield value;
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
