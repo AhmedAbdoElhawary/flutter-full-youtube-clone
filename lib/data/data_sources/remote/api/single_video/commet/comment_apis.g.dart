@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'channel_apis.dart';
+part of 'comment_apis.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,8 +8,8 @@ part of 'channel_apis.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
-class _ChannelAPIs implements ChannelAPIs {
-  _ChannelAPIs(
+class _CommentAPIs implements CommentAPIs {
+  _CommentAPIs(
     this._dio, {
     this.baseUrl,
   }) {
@@ -21,46 +21,106 @@ class _ChannelAPIs implements ChannelAPIs {
   String? baseUrl;
 
   @override
-  Future<ChannelSubDetails> getSubChannelInfo({
+  Future<CommentDetails> getAllComments({
     apiKey = apiKey,
-    required channelId,
+    required videoId,
   }) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'key': apiKey,
-      r'id': channelId,
+      r'videoId': videoId,
     };
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<ChannelSubDetails>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<CommentDetails>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              'channels?part=brandingSettings%2CcontentDetails%2Cstatistics%2Csnippet',
+              'commentThreads?part=snippet&maxResults=100',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ChannelSubDetails.fromJson(_result.data!);
+    final value = CommentDetails.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<void> subscribeToChannel({
+  Future<CommentDetails> getFirstComment({
     apiKey = apiKey,
-    required body,
-    required accessToken,
+    required videoId,
   }) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'key': apiKey};
-    final _headers = <String, dynamic>{r'Authorization': accessToken};
-    _headers.removeWhere((k, v) => v == null);
+    final queryParameters = <String, dynamic>{
+      r'key': apiKey,
+      r'videoId': videoId,
+    };
+    final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body);
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<CommentDetails>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'commentThreads?part=snippet&maxResults=1',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = CommentDetails.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<ReplyDetails> getRepliesForThisComment({
+    apiKey = apiKey,
+    required commentId,
+  }) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'key': apiKey,
+      r'id': commentId,
+    };
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ReplyDetails>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'commentThreads?part=replies&maxResults=100',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ReplyDetails.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<void> insertComment({
+    required accessToken,
+    apiKey = apiKey,
+    required commentBody,
+  }) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'access_token': accessToken,
+      r'key': apiKey,
+    };
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(commentBody.toJson());
     await _dio.fetch<void>(_setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
@@ -68,34 +128,7 @@ class _ChannelAPIs implements ChannelAPIs {
     )
         .compose(
           _dio.options,
-          'subscriptions?part=snippet',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    return null;
-  }
-
-  @override
-  Future<void> deleteSubscription({
-    required id,
-    required accessToken,
-  }) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{
-      r'id': id,
-      r'access_token': accessToken,
-    };
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    await _dio.fetch<void>(_setStreamType<void>(Options(
-      method: 'DELETE',
-      headers: _headers,
-      extra: _extra,
-    )
-        .compose(
-          _dio.options,
-          'subscriptions',
+          'comments?part=snippet',
           queryParameters: queryParameters,
           data: _data,
         )

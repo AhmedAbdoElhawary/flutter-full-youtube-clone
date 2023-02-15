@@ -144,11 +144,11 @@ Total : 199 files,  10910 codes, 956 comments, 1438 blanks, all 13304 lines
 | [lib/data/models/common/thumbnail_details/thumbnail_details.g.dart](/lib/data/models/common/thumbnail_details/thumbnail_details.g.dart) | Dart | 7 | 4 | 4 | 15 |
 | [lib/data/models/reply_details/reply_details.dart](/lib/data/models/reply_details/reply_details.dart) | Dart | 71 | 0 | 17 | 88 |
 | [lib/data/models/reply_details/reply_details.g.dart](/lib/data/models/reply_details/reply_details.g.dart) | Dart | 50 | 4 | 8 | 62 |
-| [lib/data/models/video_details/video_details.dart](/lib/data/models/video_details/video_details.dart) | Dart | 115 | 0 | 25 | 140 |
-| [lib/data/models/video_details/video_details.g.dart](/lib/data/models/video_details/video_details.g.dart) | Dart | 75 | 4 | 10 | 89 |
-| [lib/data/repositories_impl/channel_details_repo_impl.dart](/lib/data/repositories_impl/channel_details_repo_impl.dart) | Dart | 20 | 0 | 3 | 23 |
+| [lib/data/models/video_details/video_details.dart](/lib/data/models/videos_details/videos_details.dart) | Dart | 115 | 0 | 25 | 140 |
+| [lib/data/models/video_details/video_details.g.dart](/lib/data/models/videos_details/video_details.g.dart) | Dart | 75 | 4 | 10 | 89 |
+| [lib/data/repositories_impl/channel_details_repo_impl.dart](/lib/data/repositories_impl/channel/channel_details_repo_impl.dart) | Dart | 20 | 0 | 3 | 23 |
 | [lib/data/repositories_impl/videos_details_repo_impl.dart](/lib/data/repositories_impl/videos_details_repo_impl.dart) | Dart | 29 | 0 | 4 | 33 |
-| [lib/domain/repositories/channel_details_repository.dart](/lib/domain/repositories/channel_details_repository.dart) | Dart | 6 | 0 | 2 | 8 |
+| [lib/domain/repositories/channel_details_repository.dart](/lib/domain/repositories/channel/channel_details_repository.dart) | Dart | 6 | 0 | 2 | 8 |
 | [lib/domain/repositories/videos_details_repository.dart](/lib/domain/repositories/videos_details_repository.dart) | Dart | 6 | 0 | 2 | 8 |
 | [lib/domain/use_cases/channel_details/channel_sub_details_use_case.dart](/lib/domain/use_cases/channel_details/channel_sub_details_use_case.dart) | Dart | 21 | 0 | 5 | 26 |
 | [lib/domain/use_cases/videos_details/get_video_details_usecase.dart](/lib/domain/use_cases/single_video/get_video_details_use_case.dart) | Dart | 19 | 0 | 5 | 24 |

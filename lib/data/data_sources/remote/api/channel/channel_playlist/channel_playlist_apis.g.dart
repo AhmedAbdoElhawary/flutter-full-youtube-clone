@@ -21,10 +21,10 @@ class _ChannelPlayListAPIs implements ChannelPlayListAPIs {
   String? baseUrl;
 
   @override
-  Stream<PlayLists> getChannelPlayLists({
+  Future<PlayLists> getChannelPlayLists({
     apiKey = apiKey,
     required channelId,
-  }) async* {
+  }) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'key': apiKey,
@@ -46,14 +46,14 @@ class _ChannelPlayListAPIs implements ChannelPlayListAPIs {
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = PlayLists.fromJson(_result.data!);
-    yield value;
+    return value;
   }
 
   @override
-  Stream<PlayListVideos> getChannelPlayListItem({
+  Future<PlayListVideos> getChannelPlayListItem({
     apiKey = apiKey,
     required playlistId,
-  }) async* {
+  }) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'key': apiKey,
@@ -75,7 +75,7 @@ class _ChannelPlayListAPIs implements ChannelPlayListAPIs {
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = PlayListVideos.fromJson(_result.data!);
-    yield value;
+    return value;
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {

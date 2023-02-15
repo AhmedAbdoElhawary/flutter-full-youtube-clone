@@ -2,18 +2,18 @@ import 'package:youtube/core/functions/api_result.dart';
 import 'package:youtube/core/use_case/use_case.dart';
 import 'package:youtube/data/models/comment_details/comment_details.dart';
 import 'package:youtube/domain/entities/video_details_use_case_parameter.dart';
-import 'package:youtube/domain/repositories/single_video_details_repository.dart';
+import 'package:youtube/domain/repositories/video_comment_details/video_comment_details_repositroy.dart';
 
-class GetAllCommentsUseCase
+class GetFirstCommentUseCase
     implements
         UseCase<ApiResult<CommentDetails>, VideoDetailsUseCaseParameters> {
-  final SingleVideoDetailsRepository _videoDetailsRepository;
+  final VideoCommentDetailsRepository _commentDetailsRepository;
 
-  GetAllCommentsUseCase(this._videoDetailsRepository);
+  GetFirstCommentUseCase(this._commentDetailsRepository);
 
   @override
   Future<ApiResult<CommentDetails>> call(
       {required VideoDetailsUseCaseParameters params}) {
-    return _videoDetailsRepository.getAllComments(videoId: params.videoId);
+    return _commentDetailsRepository.getFirstComment(videoId: params.videoId);
   }
 }
