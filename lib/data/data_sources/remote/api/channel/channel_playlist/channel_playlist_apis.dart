@@ -11,13 +11,13 @@ abstract class ChannelPlayListAPIs {
   factory ChannelPlayListAPIs(Dio dio, {String baseUrl}) = _ChannelPlayListAPIs;
 
   @GET("playlists?part=snippet%2CcontentDetails&maxResults=50")
-  Stream<PlayLists> getChannelPlayLists({
+  Future<PlayLists> getChannelPlayLists({
     @Query("key") final String apiKey = apiKey,
     @Query("channelId") required String channelId,
   });
 
   @GET("playlistItems?part=snippet,contentDetails&maxResults=50")
-  Stream<PlayListVideos> getChannelPlayListItem({
+  Future<PlayListVideos> getChannelPlayListItem({
     @Query("key") final String apiKey = apiKey,
     @Query("playlistId") required String playlistId,
   });
