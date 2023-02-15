@@ -21,94 +21,65 @@ class _ChannelVideosAPIs implements ChannelVideosAPIs {
   String? baseUrl;
 
   @override
-  Stream<ChannelVideosIds> getChannelVideosIds({
+  Future<VideosIdsDetails> getAllChannelVideosIds({
     apiKey = apiKey,
     required channelId,
-  }) async* {
+    orderVideos = "date",
+  }) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'key': apiKey,
       r'channelId': channelId,
-    };
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<ChannelVideosIds>(Options(
-      method: 'GET',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              'search?&order=date&type=video&part=id&maxResults=50',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ChannelVideosIds.fromJson(_result.data!);
-    yield value;
-  }
-
-  @override
-  Stream<VideosDetails> getChannelVideos({
-    apiKey = apiKey,
-    required videosIds,
-    orderVideos = "date",
-  }) async* {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{
-      r'key': apiKey,
-      r'id': videosIds,
       r'order': orderVideos,
     };
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<VideosDetails>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<VideosIdsDetails>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              'videos?part=snippet%2CcontentDetails%2Cstatistics&maxResults=50',
+              'search?type=video&part=id&maxResults=50',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = VideosDetails.fromJson(_result.data!);
-    yield value;
+    final value = VideosIdsDetails.fromJson(_result.data!);
+    return value;
   }
 
   @override
-  Stream<VideosDetails> getChannelShortVideos({
+  Future<VideosIdsDetails> getAllChannelShortVideosIds({
     apiKey = apiKey,
-    required videosIds,
+    required channelId,
     orderVideos = "date",
-  }) async* {
+  }) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'key': apiKey,
-      r'id': videosIds,
+      r'channelId': channelId,
       r'order': orderVideos,
     };
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<VideosDetails>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<VideosIdsDetails>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              'search?type=video&videoDuration=short&part=snippet&maxResults=50',
+              'search?type=video&part=id&maxResults=50&videoDuration=short',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = VideosDetails.fromJson(_result.data!);
-    yield value;
+    final value = VideosIdsDetails.fromJson(_result.data!);
+    return value;
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
