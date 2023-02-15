@@ -14,5 +14,23 @@ abstract class ChannelAPIs {
     @Query("key") final String apiKey = apiKey,
     @Query("id") required String channelId,
   });
-}
 
+  /// use in [body] this SubscriptionRequestBody.toJson(channelId)
+  /// Try those: The following list contains the [part] names that you can include in the parameter value:
+  /// -contentDetails
+  /// -id
+  /// -snippet
+  /// -subscriberSnippet
+  @POST("subscriptions?part=snippet")
+  Future<void> subscribeToChannel(
+      {@Query("key") final String apiKey = apiKey,
+      @Body() required Map<String, dynamic> body,
+      @Header("Authorization") required String accessToken});
+
+  /// [id] is idToken
+  @DELETE("subscriptions")
+  Future<void> deleteSubscription({
+    @Query("id")required String id,
+    @Query("access_token")required String accessToken,
+  });
+}
