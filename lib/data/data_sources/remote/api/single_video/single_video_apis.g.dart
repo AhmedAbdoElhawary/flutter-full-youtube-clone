@@ -50,106 +50,19 @@ class _SingleVideosAPIs implements SingleVideosAPIs {
   }
 
   @override
-  Future<CommentDetails> getAllComments({
-    apiKey = apiKey,
+  Future<void> rateVideo({
     required videoId,
-  }) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{
-      r'key': apiKey,
-      r'videoId': videoId,
-    };
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<CommentDetails>(Options(
-      method: 'GET',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              'commentThreads?part=snippet&maxResults=100',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = CommentDetails.fromJson(_result.data!);
-    return value;
-  }
-
-  @override
-  Future<CommentDetails> getFirstComment({
-    apiKey = apiKey,
-    required videoId,
-  }) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{
-      r'key': apiKey,
-      r'videoId': videoId,
-    };
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<CommentDetails>(Options(
-      method: 'GET',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              'commentThreads?part=snippet&maxResults=1',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = CommentDetails.fromJson(_result.data!);
-    return value;
-  }
-
-  @override
-  Future<ReplyDetails> getRepliesForThisComment({
-    apiKey = apiKey,
-    required commentId,
-  }) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{
-      r'key': apiKey,
-      r'id': commentId,
-    };
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<ReplyDetails>(Options(
-      method: 'GET',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              'commentThreads?part=replies&maxResults=100',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ReplyDetails.fromJson(_result.data!);
-    return value;
-  }
-
-  @override
-  Future<void> insertComment({
+    required rating,
     required accessToken,
-    apiKey = apiKey,
-    required commentBody,
   }) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
+      r'id': videoId,
+      r'rating': rating,
       r'access_token': accessToken,
-      r'key': apiKey,
     };
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(commentBody.toJson());
     await _dio.fetch<void>(_setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
@@ -157,7 +70,7 @@ class _SingleVideosAPIs implements SingleVideosAPIs {
     )
         .compose(
           _dio.options,
-          'comments?part=snippet',
+          'videos/rate',
           queryParameters: queryParameters,
           data: _data,
         )
