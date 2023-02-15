@@ -7,7 +7,7 @@ import 'package:youtube/data/models/comment_details/comment_details.dart';
 import 'package:youtube/data/models/reply_details/reply_details.dart';
 import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/domain/entities/video_details_use_case_parameter.dart';
-import 'package:youtube/domain/use_cases/single_video/get_all_comments_use_case.dart';
+import 'package:youtube/domain/use_cases/single_video/comment/get_all_comments_use_case.dart';
 import 'package:youtube/domain/use_cases/single_video/get_all_replies_use_case.dart';
 import 'package:youtube/domain/use_cases/single_video/get_first_comment_use_case.dart';
 import 'package:youtube/domain/use_cases/single_video/get_video_details_use_case.dart';
