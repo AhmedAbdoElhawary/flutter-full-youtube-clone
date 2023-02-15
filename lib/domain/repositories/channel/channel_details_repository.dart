@@ -7,4 +7,6 @@ abstract class ChannelDetailsRepository {
       {required String channelId});
   Future<VideosDetails> getSubChannelsDetails(
       {required VideosDetails videosDetails});
+  Future<ApiResult<void>> subscribeToChannel({required String channelId});
+  Future<ApiResult<void>> deleteSubscription();
 }
