@@ -28,7 +28,7 @@ class _ChannelAPIs implements ChannelAPIs {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'key': apiKey,
-      r'id': channelId,
+      r'channelId': channelId,
     };
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -40,12 +40,41 @@ class _ChannelAPIs implements ChannelAPIs {
     )
             .compose(
               _dio.options,
-              'channels?part=brandingSettings%2CcontentDetails%2Cstatistics%2Csnippet',
+              'channels?part=brandingSettings,CcontentDetails,statistics,snippet',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = ChannelSubDetails.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<MySubscriptionsDetails> getMySubscriptionsChannels({
+    apiKey = apiKey,
+    required accessToken,
+  }) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'key': apiKey,
+      r'access_token': accessToken,
+    };
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<MySubscriptionsDetails>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'subscriptions?part=snippet&mine=true&maxResults=100',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = MySubscriptionsDetails.fromJson(_result.data!);
     return value;
   }
 
