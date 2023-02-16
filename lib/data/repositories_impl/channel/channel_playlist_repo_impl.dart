@@ -1,5 +1,5 @@
 import 'package:youtube/core/functions/api_result.dart';
-import 'package:youtube/core/functions/network_exceptions.dart';
+
 import 'package:youtube/data/data_sources/remote/api/channel/channel_playlist/channel_playlist_apis.dart';
 import 'package:youtube/data/models/channel_details/playlists/playlist_videos.dart';
 import 'package:youtube/data/models/channel_details/playlists/playlists.dart';
@@ -20,7 +20,7 @@ class ChannelPlayListDetailsRepoImpl
 
       return ApiResult.success(channelPlayListItem);
     } catch (e) {
-      return ApiResult.failure(NetworkExceptions.getDioException(e));
+      return ApiResult.failure(e.toString());
     }
   }
 
@@ -33,7 +33,7 @@ class ChannelPlayListDetailsRepoImpl
 
       return ApiResult.success(playLists);
     } catch (e) {
-      return ApiResult.failure(NetworkExceptions.getDioException(e));
+      return ApiResult.failure(e.toString());
     }
   }
 }
