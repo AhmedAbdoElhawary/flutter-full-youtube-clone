@@ -1,5 +1,5 @@
 import 'package:youtube/core/functions/api_result.dart';
-import 'package:youtube/core/functions/network_exceptions.dart';
+
 import 'package:youtube/data/data_sources/remote/api/videos/videos_apis.dart';
 import 'package:youtube/data/models/common/videos_ids/videos_ids.dart';
 import 'package:youtube/data/models/videos_details/videos_details.dart';
@@ -21,7 +21,7 @@ class VideosDetailsRepoImpl implements VideosDetailsRepository {
 
       return ApiResult.success(videosWithSubChannelDetails);
     } catch (e) {
-      return ApiResult.failure(NetworkExceptions.getDioException(e));
+      return ApiResult.failure(e.toString());
     }
   }
 
@@ -35,14 +35,16 @@ class VideosDetailsRepoImpl implements VideosDetailsRepository {
 
       return ApiResult.success(videosWithSubChannelDetails);
     } catch (e) {
-      return ApiResult.failure(NetworkExceptions.getDioException(e));
+      return ApiResult.failure(e.toString());
     }
   }
 
   @override
-  Future<ApiResult<VideosDetails>> getMostPopularVideos() async {
+  Future<ApiResult<VideosDetails>> getMostPopularVideos(
+      String videoCategoryId) async {
     try {
-      VideosDetails videos = await _videosAPIs.getMostPopularVideos();
+      VideosDetails videos = await _videosAPIs.getMostPopularVideos(
+          videoCategoryId: videoCategoryId);
 
       VideosDetails videosWithSubChannelDetails =
           await _channelDetailsRepository.getSubChannelsDetails(
@@ -50,7 +52,7 @@ class VideosDetailsRepoImpl implements VideosDetailsRepository {
 
       return ApiResult.success(videosWithSubChannelDetails);
     } catch (e) {
-      return ApiResult.failure(NetworkExceptions.getDioException(e));
+      return ApiResult.failure(e.toString());
     }
   }
 
