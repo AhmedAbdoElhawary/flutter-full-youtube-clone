@@ -1,8 +1,9 @@
 import 'package:youtube/core/functions/api_result.dart';
-import 'package:youtube/core/functions/network_exceptions.dart';
+
 import 'package:youtube/core/utility/private_key.dart';
 import 'package:youtube/data/data_sources/remote/api/channel/channel_apis.dart';
 import 'package:youtube/data/models/channel_details/channel_details.dart';
+import 'package:youtube/data/models/channel_details/my_subscriptions_details.dart';
 import 'package:youtube/data/models/channel_details/subscribe_request_body.dart';
 import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/domain/repositories/channel/channel_details_repository.dart';
@@ -19,7 +20,7 @@ class ChannelDetailsRepoImpl implements ChannelDetailsRepository {
           await _channelAPIs.getSubChannelInfo(channelId: channelId);
       return ApiResult.success(channelSubDetails);
     } catch (e) {
-      return ApiResult.failure(NetworkExceptions.getDioException(e));
+      return ApiResult.failure(e.toString());
     }
   }
 
@@ -32,7 +33,7 @@ class ChannelDetailsRepoImpl implements ChannelDetailsRepository {
           body: SubscriptionRequestBody.toJson(channelId));
       return const ApiResult.success(null);
     } catch (e) {
-      return ApiResult.failure(NetworkExceptions.getDioException(e));
+      return ApiResult.failure(e.toString());
     }
   }
 
@@ -43,7 +44,7 @@ class ChannelDetailsRepoImpl implements ChannelDetailsRepository {
           accessToken: accessToken, id: idToken);
       return const ApiResult.success(null);
     } catch (e) {
-      return ApiResult.failure(NetworkExceptions.getDioException(e));
+      return ApiResult.failure(e.toString());
     }
   }
 
@@ -61,6 +62,17 @@ class ChannelDetailsRepoImpl implements ChannelDetailsRepository {
       return videosDetails;
     } catch (e) {
       return Future.error(e);
+    }
+  }
+
+  @override
+  Future<ApiResult<MySubscriptionsDetails>> getMySubscriptionsChannels() async {
+    try {
+      MySubscriptionsDetails mySubscriptions = await _channelAPIs
+          .getMySubscriptionsChannels(accessToken: accessToken);
+      return ApiResult.success(mySubscriptions);
+    } catch (e) {
+      return ApiResult.failure(e.toString());
     }
   }
 }

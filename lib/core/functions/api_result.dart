@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:youtube/core/functions/network_exceptions.dart';
 
 part 'api_result.freezed.dart';
 
@@ -7,6 +6,6 @@ part 'api_result.freezed.dart';
 class ApiResult<T> with _$ApiResult<T> {
   const factory ApiResult.success(T data) = Success<T>;
 
-  const factory ApiResult.failure(NetworkExceptions networkExceptions) =
+  const factory ApiResult.failure(String error) =
       Failure<T>;
 }

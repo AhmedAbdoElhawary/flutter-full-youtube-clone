@@ -26,7 +26,7 @@ mixin _$SingleVideoState {
     required TResult Function(CommentDetails allCommentDetails)
         allCommentLoaded,
     required TResult Function(ReplyDetails allRepliesDetails) allRepliesLoaded,
-    required TResult Function(NetworkExceptions networkExceptions) error,
+    required TResult Function(String error) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +37,7 @@ mixin _$SingleVideoState {
     TResult? Function(CommentDetails firstCommentDetails)? firstCommentLoaded,
     TResult? Function(CommentDetails allCommentDetails)? allCommentLoaded,
     TResult? Function(ReplyDetails allRepliesDetails)? allRepliesLoaded,
-    TResult? Function(NetworkExceptions networkExceptions)? error,
+    TResult? Function(String error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -48,7 +48,7 @@ mixin _$SingleVideoState {
     TResult Function(CommentDetails firstCommentDetails)? firstCommentLoaded,
     TResult Function(CommentDetails allCommentDetails)? allCommentLoaded,
     TResult Function(ReplyDetails allRepliesDetails)? allRepliesLoaded,
-    TResult Function(NetworkExceptions networkExceptions)? error,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -151,7 +151,7 @@ class _$_Initial implements _Initial {
     required TResult Function(CommentDetails allCommentDetails)
         allCommentLoaded,
     required TResult Function(ReplyDetails allRepliesDetails) allRepliesLoaded,
-    required TResult Function(NetworkExceptions networkExceptions) error,
+    required TResult Function(String error) error,
   }) {
     return initial();
   }
@@ -165,7 +165,7 @@ class _$_Initial implements _Initial {
     TResult? Function(CommentDetails firstCommentDetails)? firstCommentLoaded,
     TResult? Function(CommentDetails allCommentDetails)? allCommentLoaded,
     TResult? Function(ReplyDetails allRepliesDetails)? allRepliesLoaded,
-    TResult? Function(NetworkExceptions networkExceptions)? error,
+    TResult? Function(String error)? error,
   }) {
     return initial?.call();
   }
@@ -179,7 +179,7 @@ class _$_Initial implements _Initial {
     TResult Function(CommentDetails firstCommentDetails)? firstCommentLoaded,
     TResult Function(CommentDetails allCommentDetails)? allCommentLoaded,
     TResult Function(ReplyDetails allRepliesDetails)? allRepliesLoaded,
-    TResult Function(NetworkExceptions networkExceptions)? error,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -283,7 +283,7 @@ class _$Loading implements Loading {
     required TResult Function(CommentDetails allCommentDetails)
         allCommentLoaded,
     required TResult Function(ReplyDetails allRepliesDetails) allRepliesLoaded,
-    required TResult Function(NetworkExceptions networkExceptions) error,
+    required TResult Function(String error) error,
   }) {
     return loading();
   }
@@ -297,7 +297,7 @@ class _$Loading implements Loading {
     TResult? Function(CommentDetails firstCommentDetails)? firstCommentLoaded,
     TResult? Function(CommentDetails allCommentDetails)? allCommentLoaded,
     TResult? Function(ReplyDetails allRepliesDetails)? allRepliesLoaded,
-    TResult? Function(NetworkExceptions networkExceptions)? error,
+    TResult? Function(String error)? error,
   }) {
     return loading?.call();
   }
@@ -311,7 +311,7 @@ class _$Loading implements Loading {
     TResult Function(CommentDetails firstCommentDetails)? firstCommentLoaded,
     TResult Function(CommentDetails allCommentDetails)? allCommentLoaded,
     TResult Function(ReplyDetails allRepliesDetails)? allRepliesLoaded,
-    TResult Function(NetworkExceptions networkExceptions)? error,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -445,7 +445,7 @@ class _$VideoDetailsLoaded implements VideoDetailsLoaded {
     required TResult Function(CommentDetails allCommentDetails)
         allCommentLoaded,
     required TResult Function(ReplyDetails allRepliesDetails) allRepliesLoaded,
-    required TResult Function(NetworkExceptions networkExceptions) error,
+    required TResult Function(String error) error,
   }) {
     return videoDetailsLoaded(videoDetails);
   }
@@ -459,7 +459,7 @@ class _$VideoDetailsLoaded implements VideoDetailsLoaded {
     TResult? Function(CommentDetails firstCommentDetails)? firstCommentLoaded,
     TResult? Function(CommentDetails allCommentDetails)? allCommentLoaded,
     TResult? Function(ReplyDetails allRepliesDetails)? allRepliesLoaded,
-    TResult? Function(NetworkExceptions networkExceptions)? error,
+    TResult? Function(String error)? error,
   }) {
     return videoDetailsLoaded?.call(videoDetails);
   }
@@ -473,7 +473,7 @@ class _$VideoDetailsLoaded implements VideoDetailsLoaded {
     TResult Function(CommentDetails firstCommentDetails)? firstCommentLoaded,
     TResult Function(CommentDetails allCommentDetails)? allCommentLoaded,
     TResult Function(ReplyDetails allRepliesDetails)? allRepliesLoaded,
-    TResult Function(NetworkExceptions networkExceptions)? error,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (videoDetailsLoaded != null) {
@@ -613,7 +613,7 @@ class _$FirstCommentLoaded implements FirstCommentLoaded {
     required TResult Function(CommentDetails allCommentDetails)
         allCommentLoaded,
     required TResult Function(ReplyDetails allRepliesDetails) allRepliesLoaded,
-    required TResult Function(NetworkExceptions networkExceptions) error,
+    required TResult Function(String error) error,
   }) {
     return firstCommentLoaded(firstCommentDetails);
   }
@@ -627,7 +627,7 @@ class _$FirstCommentLoaded implements FirstCommentLoaded {
     TResult? Function(CommentDetails firstCommentDetails)? firstCommentLoaded,
     TResult? Function(CommentDetails allCommentDetails)? allCommentLoaded,
     TResult? Function(ReplyDetails allRepliesDetails)? allRepliesLoaded,
-    TResult? Function(NetworkExceptions networkExceptions)? error,
+    TResult? Function(String error)? error,
   }) {
     return firstCommentLoaded?.call(firstCommentDetails);
   }
@@ -641,7 +641,7 @@ class _$FirstCommentLoaded implements FirstCommentLoaded {
     TResult Function(CommentDetails firstCommentDetails)? firstCommentLoaded,
     TResult Function(CommentDetails allCommentDetails)? allCommentLoaded,
     TResult Function(ReplyDetails allRepliesDetails)? allRepliesLoaded,
-    TResult Function(NetworkExceptions networkExceptions)? error,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (firstCommentLoaded != null) {
@@ -780,7 +780,7 @@ class _$AllCommentLoaded implements AllCommentLoaded {
     required TResult Function(CommentDetails allCommentDetails)
         allCommentLoaded,
     required TResult Function(ReplyDetails allRepliesDetails) allRepliesLoaded,
-    required TResult Function(NetworkExceptions networkExceptions) error,
+    required TResult Function(String error) error,
   }) {
     return allCommentLoaded(allCommentDetails);
   }
@@ -794,7 +794,7 @@ class _$AllCommentLoaded implements AllCommentLoaded {
     TResult? Function(CommentDetails firstCommentDetails)? firstCommentLoaded,
     TResult? Function(CommentDetails allCommentDetails)? allCommentLoaded,
     TResult? Function(ReplyDetails allRepliesDetails)? allRepliesLoaded,
-    TResult? Function(NetworkExceptions networkExceptions)? error,
+    TResult? Function(String error)? error,
   }) {
     return allCommentLoaded?.call(allCommentDetails);
   }
@@ -808,7 +808,7 @@ class _$AllCommentLoaded implements AllCommentLoaded {
     TResult Function(CommentDetails firstCommentDetails)? firstCommentLoaded,
     TResult Function(CommentDetails allCommentDetails)? allCommentLoaded,
     TResult Function(ReplyDetails allRepliesDetails)? allRepliesLoaded,
-    TResult Function(NetworkExceptions networkExceptions)? error,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (allCommentLoaded != null) {
@@ -947,7 +947,7 @@ class _$AllRepliesLoaded implements AllRepliesLoaded {
     required TResult Function(CommentDetails allCommentDetails)
         allCommentLoaded,
     required TResult Function(ReplyDetails allRepliesDetails) allRepliesLoaded,
-    required TResult Function(NetworkExceptions networkExceptions) error,
+    required TResult Function(String error) error,
   }) {
     return allRepliesLoaded(allRepliesDetails);
   }
@@ -961,7 +961,7 @@ class _$AllRepliesLoaded implements AllRepliesLoaded {
     TResult? Function(CommentDetails firstCommentDetails)? firstCommentLoaded,
     TResult? Function(CommentDetails allCommentDetails)? allCommentLoaded,
     TResult? Function(ReplyDetails allRepliesDetails)? allRepliesLoaded,
-    TResult? Function(NetworkExceptions networkExceptions)? error,
+    TResult? Function(String error)? error,
   }) {
     return allRepliesLoaded?.call(allRepliesDetails);
   }
@@ -975,7 +975,7 @@ class _$AllRepliesLoaded implements AllRepliesLoaded {
     TResult Function(CommentDetails firstCommentDetails)? firstCommentLoaded,
     TResult Function(CommentDetails allCommentDetails)? allCommentLoaded,
     TResult Function(ReplyDetails allRepliesDetails)? allRepliesLoaded,
-    TResult Function(NetworkExceptions networkExceptions)? error,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (allRepliesLoaded != null) {
@@ -1046,9 +1046,7 @@ abstract class _$$ErrorCopyWith<$Res> {
   factory _$$ErrorCopyWith(_$Error value, $Res Function(_$Error) then) =
       __$$ErrorCopyWithImpl<$Res>;
   @useResult
-  $Res call({NetworkExceptions networkExceptions});
-
-  $NetworkExceptionsCopyWith<$Res> get networkExceptions;
+  $Res call({String error});
 }
 
 /// @nodoc
@@ -1061,36 +1059,28 @@ class __$$ErrorCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? networkExceptions = null,
+    Object? error = null,
   }) {
     return _then(_$Error(
-      null == networkExceptions
-          ? _value.networkExceptions
-          : networkExceptions // ignore: cast_nullable_to_non_nullable
-              as NetworkExceptions,
+      null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $NetworkExceptionsCopyWith<$Res> get networkExceptions {
-    return $NetworkExceptionsCopyWith<$Res>(_value.networkExceptions, (value) {
-      return _then(_value.copyWith(networkExceptions: value));
-    });
   }
 }
 
 /// @nodoc
 
 class _$Error implements Error {
-  const _$Error(this.networkExceptions);
+  const _$Error(this.error);
 
   @override
-  final NetworkExceptions networkExceptions;
+  final String error;
 
   @override
   String toString() {
-    return 'SingleVideoState.error(networkExceptions: $networkExceptions)';
+    return 'SingleVideoState.error(error: $error)';
   }
 
   @override
@@ -1098,12 +1088,11 @@ class _$Error implements Error {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$Error &&
-            (identical(other.networkExceptions, networkExceptions) ||
-                other.networkExceptions == networkExceptions));
+            (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, networkExceptions);
+  int get hashCode => Object.hash(runtimeType, error);
 
   @JsonKey(ignore: true)
   @override
@@ -1122,9 +1111,9 @@ class _$Error implements Error {
     required TResult Function(CommentDetails allCommentDetails)
         allCommentLoaded,
     required TResult Function(ReplyDetails allRepliesDetails) allRepliesLoaded,
-    required TResult Function(NetworkExceptions networkExceptions) error,
+    required TResult Function(String error) error,
   }) {
-    return error(networkExceptions);
+    return error(this.error);
   }
 
   @override
@@ -1136,9 +1125,9 @@ class _$Error implements Error {
     TResult? Function(CommentDetails firstCommentDetails)? firstCommentLoaded,
     TResult? Function(CommentDetails allCommentDetails)? allCommentLoaded,
     TResult? Function(ReplyDetails allRepliesDetails)? allRepliesLoaded,
-    TResult? Function(NetworkExceptions networkExceptions)? error,
+    TResult? Function(String error)? error,
   }) {
-    return error?.call(networkExceptions);
+    return error?.call(this.error);
   }
 
   @override
@@ -1150,11 +1139,11 @@ class _$Error implements Error {
     TResult Function(CommentDetails firstCommentDetails)? firstCommentLoaded,
     TResult Function(CommentDetails allCommentDetails)? allCommentLoaded,
     TResult Function(ReplyDetails allRepliesDetails)? allRepliesLoaded,
-    TResult Function(NetworkExceptions networkExceptions)? error,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error(networkExceptions);
+      return error(this.error);
     }
     return orElse();
   }
@@ -1207,9 +1196,9 @@ class _$Error implements Error {
 }
 
 abstract class Error implements SingleVideoState {
-  const factory Error(final NetworkExceptions networkExceptions) = _$Error;
+  const factory Error(final String error) = _$Error;
 
-  NetworkExceptions get networkExceptions;
+  String get error;
   @JsonKey(ignore: true)
   _$$ErrorCopyWith<_$Error> get copyWith => throw _privateConstructorUsedError;
 }

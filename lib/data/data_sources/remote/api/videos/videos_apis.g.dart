@@ -34,7 +34,7 @@ class _VideosAPIs implements VideosAPIs {
     )
             .compose(
               _dio.options,
-              'search?part=id&maxResults=50&regionCode=EG',
+              'search?part=snippet&maxResults=50&regionCode=EG',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -74,7 +74,7 @@ class _VideosAPIs implements VideosAPIs {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'key': apiKey,
-      r'key': videosIds,
+      r'id': videosIds,
     };
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -86,7 +86,7 @@ class _VideosAPIs implements VideosAPIs {
     )
             .compose(
               _dio.options,
-              'search?part=id&maxResults=50&regionCode=EG',
+              'search?part=snippet&maxResults=50&regionCode=EG',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -96,9 +96,15 @@ class _VideosAPIs implements VideosAPIs {
   }
 
   @override
-  Future<VideosDetails> getMostPopularVideos({apiKey = apiKey}) async {
+  Future<VideosDetails> getMostPopularVideos({
+    apiKey = apiKey,
+    required videoCategoryId,
+  }) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'key': apiKey};
+    final queryParameters = <String, dynamic>{
+      r'key': apiKey,
+      r'videoCategoryId': videoCategoryId,
+    };
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio

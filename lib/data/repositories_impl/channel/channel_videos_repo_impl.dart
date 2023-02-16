@@ -1,20 +1,20 @@
 import 'package:youtube/core/functions/api_result.dart';
-import 'package:youtube/core/functions/network_exceptions.dart';
+
 import 'package:youtube/data/data_sources/remote/api/channel/channel_videos/channel_videos_apis.dart';
 import 'package:youtube/data/models/common/videos_ids/videos_ids.dart';
 import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/domain/repositories/channel/channel_videos_repository.dart';
 import 'package:youtube/domain/repositories/videos_details_repository.dart';
 
-class ChannelDetailsRepoImpl implements ChannelVideosDetailsRepository {
+class ChannelVideosDetailsRepoImpl implements ChannelVideosDetailsRepository {
   final ChannelVideosAPIs _channelVideosAPIs;
   final VideosDetailsRepository _videosDetailsRepository;
 
-  ChannelDetailsRepoImpl(
+  ChannelVideosDetailsRepoImpl(
       this._channelVideosAPIs, this._videosDetailsRepository);
 
   @override
-  Future<ApiResult<VideosDetails>> getAllChannelShortVideosIds(
+  Future<ApiResult<VideosDetails>> getAllChannelShortVideos(
       {required String channelId}) async {
     try {
       VideosIdsDetails shortVideosIds = await _channelVideosAPIs
@@ -25,12 +25,12 @@ class ChannelDetailsRepoImpl implements ChannelVideosDetailsRepository {
 
       return ApiResult.success(videosWithSubChannelDetails);
     } catch (e) {
-      return ApiResult.failure(NetworkExceptions.getDioException(e));
+      return ApiResult.failure(e.toString());
     }
   }
 
   @override
-  Future<ApiResult<VideosDetails>> getAllChannelVideosIds(
+  Future<ApiResult<VideosDetails>> getAllChannelVideos(
       {required String channelId}) async {
     try {
       VideosIdsDetails videosIds =
@@ -41,12 +41,12 @@ class ChannelDetailsRepoImpl implements ChannelVideosDetailsRepository {
 
       return ApiResult.success(videosWithSubChannelDetails);
     } catch (e) {
-      return ApiResult.failure(NetworkExceptions.getDioException(e));
+      return ApiResult.failure(e.toString());
     }
   }
 
   @override
-  Future<ApiResult<VideosDetails>> getAllPopularChannelShortVideosIds(
+  Future<ApiResult<VideosDetails>> getAllPopularChannelShortVideos(
       {required String channelId}) async {
     try {
       VideosIdsDetails shortVideosIds =
@@ -58,12 +58,12 @@ class ChannelDetailsRepoImpl implements ChannelVideosDetailsRepository {
 
       return ApiResult.success(videosWithSubChannelDetails);
     } catch (e) {
-      return ApiResult.failure(NetworkExceptions.getDioException(e));
+      return ApiResult.failure(e.toString());
     }
   }
 
   @override
-  Future<ApiResult<VideosDetails>> getAllPopularChannelVideosIds(
+  Future<ApiResult<VideosDetails>> getAllPopularChannelVideos(
       {required String channelId}) async {
     try {
       VideosIdsDetails videosIds =
@@ -75,7 +75,7 @@ class ChannelDetailsRepoImpl implements ChannelVideosDetailsRepository {
 
       return ApiResult.success(videosWithSubChannelDetails);
     } catch (e) {
-      return ApiResult.failure(NetworkExceptions.getDioException(e));
+      return ApiResult.failure(e.toString());
     }
   }
 }

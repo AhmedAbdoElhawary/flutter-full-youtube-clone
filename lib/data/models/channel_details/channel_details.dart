@@ -5,13 +5,9 @@ part 'channel_details.g.dart';
 
 @JsonSerializable(includeIfNull: true, createToJson: false)
 class ChannelSubDetails {
-  String? kind;
-
-  @JsonKey(name: "etag")
-  String? tag;
   List<ChannelDetailsItem?>? items;
 
-  ChannelSubDetails({this.kind, this.tag, this.items});
+  ChannelSubDetails({this.items});
 
   factory ChannelSubDetails.fromJson(Map<String, dynamic> json) =>
       _$ChannelSubDetailsFromJson(json);
@@ -19,21 +15,13 @@ class ChannelSubDetails {
 
 @JsonSerializable(includeIfNull: true, createToJson: false)
 class ChannelDetailsItem {
-  String? kind;
-  @JsonKey(name: "etag")
-  String? tag;
   String? id;
   ChannelSnippet? snippet;
   ChannelContentDetails? contentDetails;
   ChannelStatistics? statistics;
 
   ChannelDetailsItem(
-      {this.kind,
-      this.tag,
-      this.id,
-      this.snippet,
-      this.contentDetails,
-      this.statistics});
+      {this.id, this.snippet, this.contentDetails, this.statistics});
   factory ChannelDetailsItem.fromJson(Map<String, dynamic> json) =>
       _$ChannelDetailsItemFromJson(json);
 }

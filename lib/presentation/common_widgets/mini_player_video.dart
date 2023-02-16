@@ -7,10 +7,10 @@ import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/core/resources/styles_manager.dart';
 import 'package:youtube/data/models/common/base_comment_snippet/sub_comment_snippet.dart';
 import 'package:youtube/presentation/common_widgets/circular_profile_image.dart';
+import 'package:youtube/presentation/cubit/single_video/single_video_cubit.dart';
 import 'package:youtube/presentation/pages/home/logic/home_page_logic.dart';
 import 'package:youtube/presentation/common_widgets/subscribe_button.dart';
 
-import '../cubit/single_video_details/single_video_cubit.dart';
 
 class MiniPlayerVideo extends StatefulWidget {
   const MiniPlayerVideo({super.key});
