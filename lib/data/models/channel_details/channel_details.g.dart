@@ -8,8 +8,6 @@ part of 'channel_details.dart';
 
 ChannelSubDetails _$ChannelSubDetailsFromJson(Map<String, dynamic> json) =>
     ChannelSubDetails(
-      kind: json['kind'] as String?,
-      tag: json['etag'] as String?,
       items: (json['items'] as List<dynamic>?)
           ?.map((e) => e == null
               ? null
@@ -19,8 +17,6 @@ ChannelSubDetails _$ChannelSubDetailsFromJson(Map<String, dynamic> json) =>
 
 ChannelDetailsItem _$ChannelDetailsItemFromJson(Map<String, dynamic> json) =>
     ChannelDetailsItem(
-      kind: json['kind'] as String?,
-      tag: json['etag'] as String?,
       id: json['id'] as String?,
       snippet: json['snippet'] == null
           ? null
