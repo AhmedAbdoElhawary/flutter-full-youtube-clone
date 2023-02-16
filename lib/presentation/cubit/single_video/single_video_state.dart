@@ -18,6 +18,5 @@ class SingleVideoState with _$SingleVideoState {
   const factory SingleVideoState.allRepliesLoaded(
       ReplyDetails allRepliesDetails) = AllRepliesLoaded;
 
-  const factory SingleVideoState.error(NetworkExceptions networkExceptions) =
-  Error;
+  const factory SingleVideoState.error(String error) = Error;
 }
