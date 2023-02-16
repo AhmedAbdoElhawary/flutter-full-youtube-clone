@@ -10,7 +10,7 @@ part 'videos_apis.g.dart';
 abstract class VideosAPIs {
   factory VideosAPIs(Dio dio, {String baseUrl}) = _VideosAPIs;
 
-  @GET("search?part=id&maxResults=50&regionCode=EG")
+  @GET("search?part=snippet&maxResults=50&regionCode=EG")
   Future<VideosIdsDetails> getAllVideosIds({
     @Query("key") final String apiKey = apiKey,
   });
@@ -21,15 +21,16 @@ abstract class VideosAPIs {
   });
 
   /// [videosIds] add ids like this: id1,id2,id3,id4
-  @GET("search?part=id&maxResults=50&regionCode=EG")
+  @GET("search?part=snippet&maxResults=50&regionCode=EG")
   Future<VideosDetails> getVideosOfThoseIds({
     @Query("key") final String apiKey = apiKey,
-    @Query("key") required String videosIds,
+    @Query("id") required String videosIds,
   });
 
   @GET(
       "videos?part=contentDetails,statistics,snippet&chart=mostPopular&maxResults=50&regionCode=EG")
   Future<VideosDetails> getMostPopularVideos({
     @Query("key") final String apiKey = apiKey,
+    @Query("videoCategoryId") required String videoCategoryId,
   });
 }
