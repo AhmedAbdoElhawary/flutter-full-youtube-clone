@@ -1,5 +1,5 @@
 import 'package:youtube/core/functions/api_result.dart';
-import 'package:youtube/core/functions/network_exceptions.dart';
+
 import 'package:youtube/data/data_sources/remote/api/search/search_apis.dart';
 import 'package:youtube/data/models/common/videos_ids/videos_ids.dart';
 import 'package:youtube/data/models/videos_details/videos_details.dart';
@@ -23,7 +23,7 @@ class SearchDetailsRepoImpl implements SearchDetailsRepository {
 
       return ApiResult.success(videosWithSubChannelDetails);
     } catch (e) {
-      return ApiResult.failure(NetworkExceptions.getDioException(e));
+      return ApiResult.failure(e.toString());
     }
   }
 
@@ -39,7 +39,7 @@ class SearchDetailsRepoImpl implements SearchDetailsRepository {
 
       return ApiResult.success(videosWithSubChannelDetails);
     } catch (e) {
-      return ApiResult.failure(NetworkExceptions.getDioException(e));
+      return ApiResult.failure(e.toString());
     }
   }
 }
