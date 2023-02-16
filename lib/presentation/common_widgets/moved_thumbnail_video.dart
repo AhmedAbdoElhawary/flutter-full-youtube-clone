@@ -36,6 +36,8 @@ class MovedThumbnailVideo extends StatelessWidget {
           ),
           const RSizedBox(height: 10),
           _VideoSubTitles(videoDetailsItem),
+          const RSizedBox(height: 15),
+
         ],
       ),
     );
