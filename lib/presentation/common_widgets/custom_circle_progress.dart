@@ -11,7 +11,7 @@ class ThineCircularProgress extends StatelessWidget {
 
   const ThineCircularProgress(
       {Key? key,
-        this.strokeWidth = 1.0,
+        this.strokeWidth = 3.0,
         this.backgroundColor,
         this.color,
         this.valueColor})

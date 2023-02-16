@@ -161,9 +161,9 @@ Total : 199 files,  10910 codes, 956 comments, 1438 blanks, all 13304 lines
 | [lib/presentation/common_widgets/read_more.dart](/lib/presentation/common_widgets/read_more.dart) | Dart | 0 | 23 | 1 | 24 |
 | [lib/presentation/common_widgets/small_thumbnail_video.dart](/lib/presentation/common_widgets/small_thumbnail_video.dart) | Dart | 22 | 0 | 3 | 25 |
 | [lib/presentation/common_widgets/subscribe_button.dart](/lib/presentation/common_widgets/subscribe_button.dart) | Dart | 18 | 0 | 5 | 23 |
-| [lib/presentation/cubit/videos_details/videos_details_cubit.dart](/lib/presentation/cubit/videos_details/videos_details_cubit.dart) | Dart | 63 | 0 | 14 | 77 |
-| [lib/presentation/cubit/videos_details/videos_details_cubit.freezed.dart](/lib/presentation/cubit/videos_details/videos_details_cubit.freezed.dart) | Dart | 690 | 27 | 93 | 810 |
-| [lib/presentation/cubit/videos_details/videos_details_state.dart](/lib/presentation/cubit/videos_details/videos_details_state.dart) | Dart | 12 | 0 | 6 | 18 |
+| [lib/presentation/cubit/videos_details/videos_details_cubit.dart](/lib/presentation/cubit/videos/videos_details_cubit.dart) | Dart | 63 | 0 | 14 | 77 |
+| [lib/presentation/cubit/videos_details/videos_details_cubit.freezed.dart](/lib/presentation/cubit/videos/videos_details_cubit.freezed.dart) | Dart | 690 | 27 | 93 | 810 |
+| [lib/presentation/cubit/videos_details/videos_details_state.dart](/lib/presentation/cubit/videos/videos_details_state.dart) | Dart | 12 | 0 | 6 | 18 |
 | [lib/presentation/layouts/base_layout.dart](/lib/presentation/layouts/base_layout.dart) | Dart | 103 | 0 | 13 | 116 |
 | [lib/presentation/pages/channel_profile/profile_page.dart](/lib/presentation/pages/channel_profile/profile_page.dart) | Dart | 85 | 0 | 9 | 94 |
 | [lib/presentation/pages/channel_profile/tab_bar_views/about_view.dart](/lib/presentation/pages/channel_profile/tab_bar_views/about_view.dart) | Dart | 0 | 0 | 1 | 1 |
