@@ -67,17 +67,13 @@ class _RoundedFilteredButton extends StatelessWidget {
               ? ColorManager(context).black
               : ColorManager(context).grey1,
           borderRadius: BorderRadius.circular(20.r)),
-      child: Row(
-        children: [
-          Text(
-            text,
-            style: getNormalStyle(
-                color: isSelected
-                    ? ColorManager(context).white
-                    : ColorManager(context).black,
-                fontSize: 13),
-          ),
-        ],
+      child: Text(
+        text,
+        style: getNormalStyle(
+            color: isSelected
+                ? ColorManager(context).white
+                : ColorManager(context).black,
+            fontSize: 13),
       ),
     );
   }

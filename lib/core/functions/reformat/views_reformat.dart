@@ -38,7 +38,6 @@ class CountsReformat {
     duration = duration.replaceAll("S", "");
     duration = duration.replaceAll("M", ":");
     duration = duration.replaceAll("H", ":");
-
     return duration;
   }
 }
