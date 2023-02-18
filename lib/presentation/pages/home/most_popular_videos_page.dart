@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:youtube/core/functions/network_exceptions.dart';
 
 import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/core/resources/styles_manager.dart';
@@ -65,6 +66,13 @@ class _NowPopularVideos extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<PopularVideosCubit, PopularVideosState>(
       bloc: PopularVideosCubit.get(context)..getMostPopularVideos(),
+      buildWhen: (previous, current) {
+        return current.maybeWhen(
+            mostPopularVideosLoaded: (_) => true,
+            loading: () => true,
+            error: (_) => true,
+            orElse: () => false);
+      },
       builder: (context, state) {
         return state.maybeWhen(
           mostPopularVideosLoaded: (mostPopularVideos) {
@@ -72,7 +80,7 @@ class _NowPopularVideos extends StatelessWidget {
           },
           error: (e) {
             return Center(
-              child: Text(e,
+              child: Text(NetworkExceptions.getErrorMessage(e.networkExceptions),
                   style: getNormalStyle(
                       color: ColorManager(context).black, fontSize: 15)),
             );
@@ -93,6 +101,13 @@ class _MusicPopularVideos extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<PopularVideosCubit, PopularVideosState>(
       bloc: PopularVideosCubit.get(context)..getMostPopularMusicVideos(),
+      buildWhen: (previous, current) {
+        return current.maybeWhen(
+            mostPopularMusicVideosLoaded: (mostPopularVideos) => true,
+            loading: () => true,
+            error: (error) => true,
+            orElse: () => false);
+      },
       builder: (context, state) {
         return state.maybeWhen(
           mostPopularMusicVideosLoaded: (mostPopularVideos) {
@@ -100,7 +115,7 @@ class _MusicPopularVideos extends StatelessWidget {
           },
           error: (e) {
             return Center(
-              child: Text(e,
+              child: Text(NetworkExceptions.getErrorMessage(e.networkExceptions),
                   style: getNormalStyle(
                       color: ColorManager(context).black, fontSize: 15)),
             );
@@ -121,6 +136,13 @@ class _GamingPopularVideos extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<PopularVideosCubit, PopularVideosState>(
       bloc: PopularVideosCubit.get(context)..getMostPopularGamingVideos(),
+      buildWhen: (previous, current) {
+        return current.maybeWhen(
+            mostPopularGamingVideosLoaded: (_) => true,
+            loading: () => true,
+            error: (_) => true,
+            orElse: () => false);
+      },
       builder: (context, state) {
         return state.maybeWhen(
           mostPopularGamingVideosLoaded: (mostPopularVideos) {
@@ -128,7 +150,7 @@ class _GamingPopularVideos extends StatelessWidget {
           },
           error: (e) {
             return Center(
-              child: Text(e,
+              child: Text(NetworkExceptions.getErrorMessage(e.networkExceptions),
                   style: getNormalStyle(
                       color: ColorManager(context).black, fontSize: 15)),
             );
@@ -149,6 +171,13 @@ class _MoviesPopularVideos extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<PopularVideosCubit, PopularVideosState>(
       bloc: PopularVideosCubit.get(context)..getMostPopularMoviesVideos(),
+      buildWhen: (previous, current) {
+        return current.maybeWhen(
+            mostPopularMoviesVideosLoaded: (_) => true,
+            loading: () => true,
+            error: (_) => true,
+            orElse: () => false);
+      },
       builder: (context, state) {
         return state.maybeWhen(
           mostPopularMoviesVideosLoaded: (mostPopularVideos) {
@@ -156,7 +185,7 @@ class _MoviesPopularVideos extends StatelessWidget {
           },
           error: (e) {
             return Center(
-              child: Text(e,
+              child: Text(NetworkExceptions.getErrorMessage(e.networkExceptions),
                   style: getNormalStyle(
                       color: ColorManager(context).black, fontSize: 15)),
             );
