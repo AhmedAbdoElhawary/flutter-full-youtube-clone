@@ -15,5 +15,6 @@ class VideosDetailsState with _$VideosDetailsState {
   const factory VideosDetailsState.mostPopularVideosLoaded(
       VideosDetails mostPopularVideos) = MostPopularVideosLoaded;
 
-  const factory VideosDetailsState.error(String error) = Error;
+  const factory VideosDetailsState.error(
+      NetworkExceptionModel networkExceptions) = Error;
 }
