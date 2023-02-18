@@ -108,7 +108,7 @@ class _CommentAPIs implements CommentAPIs {
   }
 
   @override
-  Future<void> insertComment({
+  Future<dynamic> insertComment({
     required accessToken,
     apiKey = apiKey,
     required commentBody,
@@ -121,7 +121,7 @@ class _CommentAPIs implements CommentAPIs {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(commentBody.toJson());
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -133,7 +133,8 @@ class _CommentAPIs implements CommentAPIs {
           data: _data,
         )
         .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    return null;
+    final value = _result.data;
+    return value;
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
