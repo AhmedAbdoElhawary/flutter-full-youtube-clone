@@ -1,4 +1,5 @@
 import 'package:youtube/core/functions/api_result.dart';
+import 'package:youtube/core/functions/network_exceptions.dart';
 
 import 'package:youtube/core/utility/private_key.dart';
 import 'package:youtube/data/data_sources/remote/api/channel/channel_apis.dart';
@@ -20,7 +21,7 @@ class ChannelDetailsRepoImpl implements ChannelDetailsRepository {
           await _channelAPIs.getSubChannelInfo(channelId: channelId);
       return ApiResult.success(channelSubDetails);
     } catch (e) {
-      return ApiResult.failure(e.toString());
+      return ApiResult.failure(NetworkExceptions.getDioException(e));
     }
   }
 
@@ -33,7 +34,7 @@ class ChannelDetailsRepoImpl implements ChannelDetailsRepository {
           body: SubscriptionRequestBody.toJson(channelId));
       return const ApiResult.success(null);
     } catch (e) {
-      return ApiResult.failure(e.toString());
+      return ApiResult.failure(NetworkExceptions.getDioException(e));
     }
   }
 
@@ -44,7 +45,7 @@ class ChannelDetailsRepoImpl implements ChannelDetailsRepository {
           accessToken: accessToken, id: idToken);
       return const ApiResult.success(null);
     } catch (e) {
-      return ApiResult.failure(e.toString());
+      return ApiResult.failure(NetworkExceptions.getDioException(e));
     }
   }
 
@@ -72,7 +73,7 @@ class ChannelDetailsRepoImpl implements ChannelDetailsRepository {
           .getMySubscriptionsChannels(accessToken: accessToken);
       return ApiResult.success(mySubscriptions);
     } catch (e) {
-      return ApiResult.failure(e.toString());
+      return ApiResult.failure(NetworkExceptions.getDioException(e));
     }
   }
 }
