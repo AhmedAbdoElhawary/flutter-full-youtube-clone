@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:youtube/data/data_sources/remote/api/channel/channel_apis.dart';
 import 'package:youtube/data/data_sources/remote/api/channel/channel_playlist/channel_playlist_apis.dart';
 import 'package:youtube/data/data_sources/remote/api/channel/channel_videos/channel_videos_apis.dart';
+import 'package:youtube/data/data_sources/remote/api/search/auto_complete_search/auto_complete_text_apis.dart';
 import 'package:youtube/data/data_sources/remote/api/search/search_apis.dart';
 import 'package:youtube/data/data_sources/remote/api/single_video/commet/comment_apis.dart';
 import 'package:youtube/data/data_sources/remote/api/single_video/single_video_apis.dart';
@@ -31,6 +32,7 @@ import 'package:youtube/domain/use_cases/channel_details/playlist/channel_playli
 import 'package:youtube/domain/use_cases/channel_details/subscribe_to_channel_use_case.dart';
 import 'package:youtube/domain/use_cases/search_details/related_videos_to_this_video_use_case.dart';
 import 'package:youtube/domain/use_cases/search_details/search_for_this_sentence_use_case.dart';
+import 'package:youtube/domain/use_cases/search_details/suggestion_search_texts_use_case.dart';
 import 'package:youtube/domain/use_cases/single_video/comment/get_all_comments_use_case.dart';
 import 'package:youtube/domain/use_cases/single_video/comment/get_all_replies_use_case.dart';
 import 'package:youtube/domain/use_cases/single_video/comment/get_first_comment_use_case.dart';
@@ -73,6 +75,9 @@ Future<void> initializeDependencies() async {
   injector.registerLazySingleton<ChannelVideosAPIs>(
       () => ChannelVideosAPIs(createAndSetupDio()));
 
+  injector.registerLazySingleton<SuggestionSearchTextAPIs>(
+      () => SuggestionSearchTextAPIs(createAndSetupDio()));
+
   /// =============================== Repository =========================================>
 
   // videos details Repository
@@ -94,7 +99,7 @@ Future<void> initializeDependencies() async {
     () => ChannelVideosDetailsRepoImpl(injector(), injector()),
   );
   injector.registerLazySingleton<SearchDetailsRepository>(
-    () => SearchDetailsRepoImpl(injector(), injector()),
+    () => SearchDetailsRepoImpl(injector(), injector(), injector()),
   );
 
   // *
@@ -154,6 +159,9 @@ Future<void> initializeDependencies() async {
   injector.registerLazySingleton<SearchForThisSentenceUseCase>(
     () => SearchForThisSentenceUseCase(injector()),
   );
+  injector.registerLazySingleton<SuggestionSearchTextsUseCase>(
+    () => SuggestionSearchTextsUseCase(injector()),
+  );
 
   injector.registerLazySingleton<RateVideoUseCase>(
     () => RateVideoUseCase(injector()),
@@ -189,7 +197,7 @@ Future<void> initializeDependencies() async {
     () => PlayListCubit(injector(), injector()),
   );
   injector.registerFactory<SearchCubit>(
-    () => SearchCubit(injector(), injector()),
+    () => SearchCubit(injector(), injector(), injector()),
   );
 
   injector.registerFactory<ChannelDetailsCubit>(
