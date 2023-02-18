@@ -1,15 +1,33 @@
 import 'package:youtube/core/functions/api_result.dart';
+import 'package:youtube/core/functions/network_exceptions.dart';
+import 'package:youtube/data/data_sources/remote/api/search/auto_complete_search/auto_complete_text_apis.dart';
 
 import 'package:youtube/data/data_sources/remote/api/search/search_apis.dart';
 import 'package:youtube/data/models/common/videos_ids/videos_ids.dart';
+import 'package:youtube/data/models/suggestion_texts/suggestion_texts.dart';
 import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/domain/repositories/search_details_repository.dart';
 import 'package:youtube/domain/repositories/videos_details_repository.dart';
 
 class SearchDetailsRepoImpl implements SearchDetailsRepository {
   final SearchAPIs _searchAPIs;
+  final SuggestionSearchTextAPIs _suggestionSearchTextAPIs;
   final VideosDetailsRepository _videosDetailsRepository;
-  SearchDetailsRepoImpl(this._searchAPIs, this._videosDetailsRepository);
+  SearchDetailsRepoImpl(this._searchAPIs, this._videosDetailsRepository,
+      this._suggestionSearchTextAPIs);
+
+  @override
+  Future<ApiResult<SuggestionTexts>> getSuggestionTexts(
+      {required String text}) async {
+    try {
+      SuggestionTexts suggestionTexts =
+          await _suggestionSearchTextAPIs.getSuggestionTexts(text);
+
+      return ApiResult.success(suggestionTexts);
+    } catch (e) {
+      return ApiResult.failure(NetworkExceptions.getDioException(e));
+    }
+  }
 
   @override
   Future<ApiResult<VideosDetails>> getRelatedVideosToThisVideo(
@@ -23,7 +41,7 @@ class SearchDetailsRepoImpl implements SearchDetailsRepository {
 
       return ApiResult.success(videosWithSubChannelDetails);
     } catch (e) {
-      return ApiResult.failure(e.toString());
+      return ApiResult.failure(NetworkExceptions.getDioException(e));
     }
   }
 
@@ -39,7 +57,7 @@ class SearchDetailsRepoImpl implements SearchDetailsRepository {
 
       return ApiResult.success(videosWithSubChannelDetails);
     } catch (e) {
-      return ApiResult.failure(e.toString());
+      return ApiResult.failure(NetworkExceptions.getDioException(e));
     }
   }
 }

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:youtube/core/functions/error_model.dart';
+import 'package:youtube/core/functions/network_exception_model.dart';
 
 part 'network_exceptions.freezed.dart';
 
@@ -80,7 +81,7 @@ class NetworkExceptions with _$NetworkExceptions {
     }
   }
 
-  static NetworkExceptions getDioException(error) {
+  static NetworkExceptionModel getDioException(error) {
     if (error is Exception) {
       try {
         NetworkExceptions networkExceptions;
@@ -112,60 +113,51 @@ class NetworkExceptions with _$NetworkExceptions {
         } else {
           networkExceptions = const NetworkExceptions.unexpectedError();
         }
-        return networkExceptions;
+        NetworkExceptionModel networkExceptionModel =
+            NetworkExceptionModel(error.toString(), networkExceptions);
+
+        return networkExceptionModel;
       } on FormatException {
-        return const NetworkExceptions.formatException();
+        return NetworkExceptionModel(
+            error.toString(), const NetworkExceptions.formatException());
       } catch (_) {
-        return const NetworkExceptions.unexpectedError();
+        return NetworkExceptionModel(
+            error.toString(), const NetworkExceptions.unexpectedError());
       }
     } else {
       if (error.toString().contains("is not a subtype of")) {
-        return const NetworkExceptions.unableToProcess();
+        return NetworkExceptionModel(
+            error.toString(), const NetworkExceptions.unableToProcess());
       } else {
-        return const NetworkExceptions.unexpectedError();
+        return NetworkExceptionModel(
+            error.toString(), const NetworkExceptions.unexpectedError());
       }
     }
   }
 
   static String getErrorMessage(NetworkExceptions networkExceptions) {
     var errorMessage = "";
-    networkExceptions.when(notImplemented: () {
-      errorMessage = "Not Implemented";
-    }, requestCancelled: () {
-      errorMessage = "Request Cancelled";
-    }, internalServerError: () {
-      errorMessage = "Internal Server Error";
-    }, notFound: (String reason) {
-      errorMessage = reason;
-    }, serviceUnavailable: () {
-      errorMessage = "Service unavailable";
-    }, methodNotAllowed: () {
-      errorMessage = "Method Allowed";
-    }, badRequest: () {
-      errorMessage = "Bad request";
-    }, unauthorizedRequest: (String error) {
-      errorMessage = error;
-    }, unProcessableEntity: (String error) {
-      errorMessage = error;
-    }, unexpectedError: () {
-      errorMessage = "Unexpected error occurred";
-    }, requestTimeout: () {
-      errorMessage = "Connection request timeout";
-    }, noInternetConnection: () {
-      errorMessage = "No internet connection";
-    }, conflict: () {
-      errorMessage = "Error due to a conflict";
-    }, sendTimeout: () {
-      errorMessage = "Send timeout in connection with API server";
-    }, unableToProcess: () {
-      errorMessage = "Unable to process the data";
-    }, defaultError: (String error) {
-      errorMessage = error;
-    }, formatException: () {
-      errorMessage = "Unexpected error occurred";
-    }, notAcceptable: () {
-      errorMessage = "Not acceptable";
-    });
+    networkExceptions.when(
+      notImplemented: () => errorMessage = "Not Implemented",
+      requestCancelled: () => errorMessage = "Request Cancelled",
+      internalServerError: () => errorMessage = "Internal Server Error",
+      notFound: (String reason) => errorMessage = reason,
+      serviceUnavailable: () => errorMessage = "Service unavailable",
+      methodNotAllowed: () => errorMessage = "Method Allowed",
+      badRequest: () => errorMessage = "Bad request",
+      unauthorizedRequest: (String error) => errorMessage = error,
+      unProcessableEntity: (String error) => errorMessage = error,
+      unexpectedError: () => errorMessage = "Unexpected error occurred",
+      requestTimeout: () => errorMessage = "Connection request timeout",
+      noInternetConnection: () => errorMessage = "No internet connection",
+      conflict: () => errorMessage = "Error due to a conflict",
+      sendTimeout: () =>
+          errorMessage = "Send timeout in connection with API server",
+      unableToProcess: () => errorMessage = "Unable to process the data",
+      defaultError: (String error) => errorMessage = error,
+      formatException: () => errorMessage = "Unexpected error occurred",
+      notAcceptable: () => errorMessage = "Not acceptable",
+    );
     return errorMessage;
   }
 }

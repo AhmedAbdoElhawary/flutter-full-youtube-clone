@@ -24,7 +24,7 @@ abstract class SingleVideosAPIs {
   /// none – Removes any rating that the authenticated user had previously set for the video.
 
   @POST('videos/rate')
-  Future<void> rateVideo({
+  Future<dynamic> rateVideo({
     @Query('id')required String videoId,
     @Query('rating')required String rating,
     @Query('access_token')required String accessToken,

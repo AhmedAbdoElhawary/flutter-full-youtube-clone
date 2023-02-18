@@ -1,4 +1,5 @@
 import 'package:youtube/core/functions/api_result.dart';
+import 'package:youtube/core/functions/network_exceptions.dart';
 
 import 'package:youtube/data/data_sources/remote/api/single_video/commet/comment_apis.dart';
 import 'package:youtube/data/models/comment_details/comment_details.dart';
@@ -18,7 +19,7 @@ class VideoCommentDetailsRepoImpl implements VideoCommentDetailsRepository {
           await _commentAPIs.getAllComments(videoId: videoId);
       return ApiResult.success(commentDetails);
     } catch (e) {
-      return ApiResult.failure(e.toString());
+      return ApiResult.failure(NetworkExceptions.getDioException(e));
     }
   }
 
@@ -30,7 +31,7 @@ class VideoCommentDetailsRepoImpl implements VideoCommentDetailsRepository {
           await _commentAPIs.getFirstComment(videoId: videoId);
       return ApiResult.success(firstComment);
     } catch (e) {
-      return ApiResult.failure(e.toString());
+      return ApiResult.failure(NetworkExceptions.getDioException(e));
     }
   }
 
@@ -42,7 +43,7 @@ class VideoCommentDetailsRepoImpl implements VideoCommentDetailsRepository {
           await _commentAPIs.getRepliesForThisComment(commentId: commentId);
       return ApiResult.success(replies);
     } catch (e) {
-      return ApiResult.failure(e.toString());
+      return ApiResult.failure(NetworkExceptions.getDioException(e));
     }
   }
 }

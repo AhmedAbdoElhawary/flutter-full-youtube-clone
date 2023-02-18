@@ -18,5 +18,6 @@ class ChannelDetailsState with _$ChannelDetailsState {
   const factory ChannelDetailsState.mySubscriptionsChannelsLoaded() =
       MySubscriptionsChannelsLoaded;
 
-  const factory ChannelDetailsState.error(String error) = Error;
+  const factory ChannelDetailsState.error(
+      NetworkExceptionModel networkExceptions) = Error;
 }

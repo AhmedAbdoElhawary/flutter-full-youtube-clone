@@ -18,6 +18,6 @@ class ChannelVideosState with _$ChannelVideosState {
   const factory ChannelVideosState.channelVideosLoaded(
       VideosDetails videoDetails) = ChannelVideosLoaded;
 
-  const factory ChannelVideosState.error(String error) =
-      Error;
+  const factory ChannelVideosState.error(
+      NetworkExceptionModel networkExceptions) = Error;
 }

@@ -45,11 +45,9 @@ class HomePage extends StatelessWidget {
                         child: ThineCircularProgress());
                   },
                   error: (e) {
-                    NetworkExceptions error =
-                        NetworkExceptions.getDioException(e);
                     return SliverFillRemaining(
                       child: Center(
-                        child: Text(NetworkExceptions.getErrorMessage(error),
+                        child: Text(NetworkExceptions.getErrorMessage(e.networkExceptions),
                             style: getNormalStyle(
                                 color: ColorManager(context).black,
                                 fontSize: 15)),

@@ -10,10 +10,10 @@ part 'channel_apis.g.dart';
 abstract class ChannelAPIs {
   factory ChannelAPIs(Dio dio, {String baseUrl}) = _ChannelAPIs;
 
-  @GET("channels?part=brandingSettings,CcontentDetails,statistics,snippet")
+  @GET("channels?part=brandingSettings,contentDetails,statistics,snippet")
   Future<ChannelSubDetails> getSubChannelInfo({
     @Query("key") final String apiKey = apiKey,
-    @Query("channelId") required String channelId,
+    @Query("id") required String channelId,
   });
 
   @GET("subscriptions?part=snippet&mine=true&maxResults=100")
@@ -29,14 +29,14 @@ abstract class ChannelAPIs {
   /// -snippet
   /// -subscriberSnippet
   @POST("subscriptions?part=snippet")
-  Future<void> subscribeToChannel(
+  Future<dynamic> subscribeToChannel(
       {@Query("key") final String apiKey = apiKey,
       @Body() required Map<String, dynamic> body,
       @Header("Authorization") required String accessToken});
 
   /// [id] is idToken
   @DELETE("subscriptions")
-  Future<void> deleteSubscription({
+  Future<dynamic> deleteSubscription({
     @Query("id") required String id,
     @Query("access_token") required String accessToken,
   });

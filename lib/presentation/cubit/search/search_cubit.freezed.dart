@@ -22,8 +22,10 @@ mixin _$SearchState {
     required TResult Function() loading,
     required TResult Function(VideosDetails videosDetails)
         searchForTheSentenceLoaded,
+    required TResult Function(SuggestionTexts suggestionTexts)
+        suggestionTextsLoaded,
     required TResult Function(VideosDetails videosDetails) relatedVideosLoaded,
-    required TResult Function(String error) error,
+    required TResult Function(NetworkExceptionModel networkExceptions) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -31,8 +33,9 @@ mixin _$SearchState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(VideosDetails videosDetails)? searchForTheSentenceLoaded,
+    TResult? Function(SuggestionTexts suggestionTexts)? suggestionTextsLoaded,
     TResult? Function(VideosDetails videosDetails)? relatedVideosLoaded,
-    TResult? Function(String error)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -40,8 +43,9 @@ mixin _$SearchState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(VideosDetails videosDetails)? searchForTheSentenceLoaded,
+    TResult Function(SuggestionTexts suggestionTexts)? suggestionTextsLoaded,
     TResult Function(VideosDetails videosDetails)? relatedVideosLoaded,
-    TResult Function(String error)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -51,6 +55,8 @@ mixin _$SearchState {
     required TResult Function(Loading value) loading,
     required TResult Function(SearchForTheSentenceLoaded value)
         searchForTheSentenceLoaded,
+    required TResult Function(SuggestionTextsLoaded value)
+        suggestionTextsLoaded,
     required TResult Function(RelatedVideosLoaded value) relatedVideosLoaded,
     required TResult Function(Error value) error,
   }) =>
@@ -61,6 +67,7 @@ mixin _$SearchState {
     TResult? Function(Loading value)? loading,
     TResult? Function(SearchForTheSentenceLoaded value)?
         searchForTheSentenceLoaded,
+    TResult? Function(SuggestionTextsLoaded value)? suggestionTextsLoaded,
     TResult? Function(RelatedVideosLoaded value)? relatedVideosLoaded,
     TResult? Function(Error value)? error,
   }) =>
@@ -71,6 +78,7 @@ mixin _$SearchState {
     TResult Function(Loading value)? loading,
     TResult Function(SearchForTheSentenceLoaded value)?
         searchForTheSentenceLoaded,
+    TResult Function(SuggestionTextsLoaded value)? suggestionTextsLoaded,
     TResult Function(RelatedVideosLoaded value)? relatedVideosLoaded,
     TResult Function(Error value)? error,
     required TResult orElse(),
@@ -137,8 +145,10 @@ class _$_Initial implements _Initial {
     required TResult Function() loading,
     required TResult Function(VideosDetails videosDetails)
         searchForTheSentenceLoaded,
+    required TResult Function(SuggestionTexts suggestionTexts)
+        suggestionTextsLoaded,
     required TResult Function(VideosDetails videosDetails) relatedVideosLoaded,
-    required TResult Function(String error) error,
+    required TResult Function(NetworkExceptionModel networkExceptions) error,
   }) {
     return initial();
   }
@@ -149,8 +159,9 @@ class _$_Initial implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(VideosDetails videosDetails)? searchForTheSentenceLoaded,
+    TResult? Function(SuggestionTexts suggestionTexts)? suggestionTextsLoaded,
     TResult? Function(VideosDetails videosDetails)? relatedVideosLoaded,
-    TResult? Function(String error)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? error,
   }) {
     return initial?.call();
   }
@@ -161,8 +172,9 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(VideosDetails videosDetails)? searchForTheSentenceLoaded,
+    TResult Function(SuggestionTexts suggestionTexts)? suggestionTextsLoaded,
     TResult Function(VideosDetails videosDetails)? relatedVideosLoaded,
-    TResult Function(String error)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -178,6 +190,8 @@ class _$_Initial implements _Initial {
     required TResult Function(Loading value) loading,
     required TResult Function(SearchForTheSentenceLoaded value)
         searchForTheSentenceLoaded,
+    required TResult Function(SuggestionTextsLoaded value)
+        suggestionTextsLoaded,
     required TResult Function(RelatedVideosLoaded value) relatedVideosLoaded,
     required TResult Function(Error value) error,
   }) {
@@ -191,6 +205,7 @@ class _$_Initial implements _Initial {
     TResult? Function(Loading value)? loading,
     TResult? Function(SearchForTheSentenceLoaded value)?
         searchForTheSentenceLoaded,
+    TResult? Function(SuggestionTextsLoaded value)? suggestionTextsLoaded,
     TResult? Function(RelatedVideosLoaded value)? relatedVideosLoaded,
     TResult? Function(Error value)? error,
   }) {
@@ -204,6 +219,7 @@ class _$_Initial implements _Initial {
     TResult Function(Loading value)? loading,
     TResult Function(SearchForTheSentenceLoaded value)?
         searchForTheSentenceLoaded,
+    TResult Function(SuggestionTextsLoaded value)? suggestionTextsLoaded,
     TResult Function(RelatedVideosLoaded value)? relatedVideosLoaded,
     TResult Function(Error value)? error,
     required TResult orElse(),
@@ -259,8 +275,10 @@ class _$Loading implements Loading {
     required TResult Function() loading,
     required TResult Function(VideosDetails videosDetails)
         searchForTheSentenceLoaded,
+    required TResult Function(SuggestionTexts suggestionTexts)
+        suggestionTextsLoaded,
     required TResult Function(VideosDetails videosDetails) relatedVideosLoaded,
-    required TResult Function(String error) error,
+    required TResult Function(NetworkExceptionModel networkExceptions) error,
   }) {
     return loading();
   }
@@ -271,8 +289,9 @@ class _$Loading implements Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(VideosDetails videosDetails)? searchForTheSentenceLoaded,
+    TResult? Function(SuggestionTexts suggestionTexts)? suggestionTextsLoaded,
     TResult? Function(VideosDetails videosDetails)? relatedVideosLoaded,
-    TResult? Function(String error)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? error,
   }) {
     return loading?.call();
   }
@@ -283,8 +302,9 @@ class _$Loading implements Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(VideosDetails videosDetails)? searchForTheSentenceLoaded,
+    TResult Function(SuggestionTexts suggestionTexts)? suggestionTextsLoaded,
     TResult Function(VideosDetails videosDetails)? relatedVideosLoaded,
-    TResult Function(String error)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -300,6 +320,8 @@ class _$Loading implements Loading {
     required TResult Function(Loading value) loading,
     required TResult Function(SearchForTheSentenceLoaded value)
         searchForTheSentenceLoaded,
+    required TResult Function(SuggestionTextsLoaded value)
+        suggestionTextsLoaded,
     required TResult Function(RelatedVideosLoaded value) relatedVideosLoaded,
     required TResult Function(Error value) error,
   }) {
@@ -313,6 +335,7 @@ class _$Loading implements Loading {
     TResult? Function(Loading value)? loading,
     TResult? Function(SearchForTheSentenceLoaded value)?
         searchForTheSentenceLoaded,
+    TResult? Function(SuggestionTextsLoaded value)? suggestionTextsLoaded,
     TResult? Function(RelatedVideosLoaded value)? relatedVideosLoaded,
     TResult? Function(Error value)? error,
   }) {
@@ -326,6 +349,7 @@ class _$Loading implements Loading {
     TResult Function(Loading value)? loading,
     TResult Function(SearchForTheSentenceLoaded value)?
         searchForTheSentenceLoaded,
+    TResult Function(SuggestionTextsLoaded value)? suggestionTextsLoaded,
     TResult Function(RelatedVideosLoaded value)? relatedVideosLoaded,
     TResult Function(Error value)? error,
     required TResult orElse(),
@@ -413,8 +437,10 @@ class _$SearchForTheSentenceLoaded implements SearchForTheSentenceLoaded {
     required TResult Function() loading,
     required TResult Function(VideosDetails videosDetails)
         searchForTheSentenceLoaded,
+    required TResult Function(SuggestionTexts suggestionTexts)
+        suggestionTextsLoaded,
     required TResult Function(VideosDetails videosDetails) relatedVideosLoaded,
-    required TResult Function(String error) error,
+    required TResult Function(NetworkExceptionModel networkExceptions) error,
   }) {
     return searchForTheSentenceLoaded(videosDetails);
   }
@@ -425,8 +451,9 @@ class _$SearchForTheSentenceLoaded implements SearchForTheSentenceLoaded {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(VideosDetails videosDetails)? searchForTheSentenceLoaded,
+    TResult? Function(SuggestionTexts suggestionTexts)? suggestionTextsLoaded,
     TResult? Function(VideosDetails videosDetails)? relatedVideosLoaded,
-    TResult? Function(String error)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? error,
   }) {
     return searchForTheSentenceLoaded?.call(videosDetails);
   }
@@ -437,8 +464,9 @@ class _$SearchForTheSentenceLoaded implements SearchForTheSentenceLoaded {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(VideosDetails videosDetails)? searchForTheSentenceLoaded,
+    TResult Function(SuggestionTexts suggestionTexts)? suggestionTextsLoaded,
     TResult Function(VideosDetails videosDetails)? relatedVideosLoaded,
-    TResult Function(String error)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? error,
     required TResult orElse(),
   }) {
     if (searchForTheSentenceLoaded != null) {
@@ -454,6 +482,8 @@ class _$SearchForTheSentenceLoaded implements SearchForTheSentenceLoaded {
     required TResult Function(Loading value) loading,
     required TResult Function(SearchForTheSentenceLoaded value)
         searchForTheSentenceLoaded,
+    required TResult Function(SuggestionTextsLoaded value)
+        suggestionTextsLoaded,
     required TResult Function(RelatedVideosLoaded value) relatedVideosLoaded,
     required TResult Function(Error value) error,
   }) {
@@ -467,6 +497,7 @@ class _$SearchForTheSentenceLoaded implements SearchForTheSentenceLoaded {
     TResult? Function(Loading value)? loading,
     TResult? Function(SearchForTheSentenceLoaded value)?
         searchForTheSentenceLoaded,
+    TResult? Function(SuggestionTextsLoaded value)? suggestionTextsLoaded,
     TResult? Function(RelatedVideosLoaded value)? relatedVideosLoaded,
     TResult? Function(Error value)? error,
   }) {
@@ -480,6 +511,7 @@ class _$SearchForTheSentenceLoaded implements SearchForTheSentenceLoaded {
     TResult Function(Loading value)? loading,
     TResult Function(SearchForTheSentenceLoaded value)?
         searchForTheSentenceLoaded,
+    TResult Function(SuggestionTextsLoaded value)? suggestionTextsLoaded,
     TResult Function(RelatedVideosLoaded value)? relatedVideosLoaded,
     TResult Function(Error value)? error,
     required TResult orElse(),
@@ -499,6 +531,172 @@ abstract class SearchForTheSentenceLoaded implements SearchState {
   @JsonKey(ignore: true)
   _$$SearchForTheSentenceLoadedCopyWith<_$SearchForTheSentenceLoaded>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SuggestionTextsLoadedCopyWith<$Res> {
+  factory _$$SuggestionTextsLoadedCopyWith(_$SuggestionTextsLoaded value,
+          $Res Function(_$SuggestionTextsLoaded) then) =
+      __$$SuggestionTextsLoadedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({SuggestionTexts suggestionTexts});
+}
+
+/// @nodoc
+class __$$SuggestionTextsLoadedCopyWithImpl<$Res>
+    extends _$SearchStateCopyWithImpl<$Res, _$SuggestionTextsLoaded>
+    implements _$$SuggestionTextsLoadedCopyWith<$Res> {
+  __$$SuggestionTextsLoadedCopyWithImpl(_$SuggestionTextsLoaded _value,
+      $Res Function(_$SuggestionTextsLoaded) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? suggestionTexts = null,
+  }) {
+    return _then(_$SuggestionTextsLoaded(
+      null == suggestionTexts
+          ? _value.suggestionTexts
+          : suggestionTexts // ignore: cast_nullable_to_non_nullable
+              as SuggestionTexts,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SuggestionTextsLoaded implements SuggestionTextsLoaded {
+  const _$SuggestionTextsLoaded(this.suggestionTexts);
+
+  @override
+  final SuggestionTexts suggestionTexts;
+
+  @override
+  String toString() {
+    return 'SearchState.suggestionTextsLoaded(suggestionTexts: $suggestionTexts)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SuggestionTextsLoaded &&
+            (identical(other.suggestionTexts, suggestionTexts) ||
+                other.suggestionTexts == suggestionTexts));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, suggestionTexts);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SuggestionTextsLoadedCopyWith<_$SuggestionTextsLoaded> get copyWith =>
+      __$$SuggestionTextsLoadedCopyWithImpl<_$SuggestionTextsLoaded>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(VideosDetails videosDetails)
+        searchForTheSentenceLoaded,
+    required TResult Function(SuggestionTexts suggestionTexts)
+        suggestionTextsLoaded,
+    required TResult Function(VideosDetails videosDetails) relatedVideosLoaded,
+    required TResult Function(NetworkExceptionModel networkExceptions) error,
+  }) {
+    return suggestionTextsLoaded(suggestionTexts);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(VideosDetails videosDetails)? searchForTheSentenceLoaded,
+    TResult? Function(SuggestionTexts suggestionTexts)? suggestionTextsLoaded,
+    TResult? Function(VideosDetails videosDetails)? relatedVideosLoaded,
+    TResult? Function(NetworkExceptionModel networkExceptions)? error,
+  }) {
+    return suggestionTextsLoaded?.call(suggestionTexts);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(VideosDetails videosDetails)? searchForTheSentenceLoaded,
+    TResult Function(SuggestionTexts suggestionTexts)? suggestionTextsLoaded,
+    TResult Function(VideosDetails videosDetails)? relatedVideosLoaded,
+    TResult Function(NetworkExceptionModel networkExceptions)? error,
+    required TResult orElse(),
+  }) {
+    if (suggestionTextsLoaded != null) {
+      return suggestionTextsLoaded(suggestionTexts);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(Loading value) loading,
+    required TResult Function(SearchForTheSentenceLoaded value)
+        searchForTheSentenceLoaded,
+    required TResult Function(SuggestionTextsLoaded value)
+        suggestionTextsLoaded,
+    required TResult Function(RelatedVideosLoaded value) relatedVideosLoaded,
+    required TResult Function(Error value) error,
+  }) {
+    return suggestionTextsLoaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(Loading value)? loading,
+    TResult? Function(SearchForTheSentenceLoaded value)?
+        searchForTheSentenceLoaded,
+    TResult? Function(SuggestionTextsLoaded value)? suggestionTextsLoaded,
+    TResult? Function(RelatedVideosLoaded value)? relatedVideosLoaded,
+    TResult? Function(Error value)? error,
+  }) {
+    return suggestionTextsLoaded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(Loading value)? loading,
+    TResult Function(SearchForTheSentenceLoaded value)?
+        searchForTheSentenceLoaded,
+    TResult Function(SuggestionTextsLoaded value)? suggestionTextsLoaded,
+    TResult Function(RelatedVideosLoaded value)? relatedVideosLoaded,
+    TResult Function(Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (suggestionTextsLoaded != null) {
+      return suggestionTextsLoaded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SuggestionTextsLoaded implements SearchState {
+  const factory SuggestionTextsLoaded(final SuggestionTexts suggestionTexts) =
+      _$SuggestionTextsLoaded;
+
+  SuggestionTexts get suggestionTexts;
+  @JsonKey(ignore: true)
+  _$$SuggestionTextsLoadedCopyWith<_$SuggestionTextsLoaded> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -571,8 +769,10 @@ class _$RelatedVideosLoaded implements RelatedVideosLoaded {
     required TResult Function() loading,
     required TResult Function(VideosDetails videosDetails)
         searchForTheSentenceLoaded,
+    required TResult Function(SuggestionTexts suggestionTexts)
+        suggestionTextsLoaded,
     required TResult Function(VideosDetails videosDetails) relatedVideosLoaded,
-    required TResult Function(String error) error,
+    required TResult Function(NetworkExceptionModel networkExceptions) error,
   }) {
     return relatedVideosLoaded(videosDetails);
   }
@@ -583,8 +783,9 @@ class _$RelatedVideosLoaded implements RelatedVideosLoaded {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(VideosDetails videosDetails)? searchForTheSentenceLoaded,
+    TResult? Function(SuggestionTexts suggestionTexts)? suggestionTextsLoaded,
     TResult? Function(VideosDetails videosDetails)? relatedVideosLoaded,
-    TResult? Function(String error)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? error,
   }) {
     return relatedVideosLoaded?.call(videosDetails);
   }
@@ -595,8 +796,9 @@ class _$RelatedVideosLoaded implements RelatedVideosLoaded {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(VideosDetails videosDetails)? searchForTheSentenceLoaded,
+    TResult Function(SuggestionTexts suggestionTexts)? suggestionTextsLoaded,
     TResult Function(VideosDetails videosDetails)? relatedVideosLoaded,
-    TResult Function(String error)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? error,
     required TResult orElse(),
   }) {
     if (relatedVideosLoaded != null) {
@@ -612,6 +814,8 @@ class _$RelatedVideosLoaded implements RelatedVideosLoaded {
     required TResult Function(Loading value) loading,
     required TResult Function(SearchForTheSentenceLoaded value)
         searchForTheSentenceLoaded,
+    required TResult Function(SuggestionTextsLoaded value)
+        suggestionTextsLoaded,
     required TResult Function(RelatedVideosLoaded value) relatedVideosLoaded,
     required TResult Function(Error value) error,
   }) {
@@ -625,6 +829,7 @@ class _$RelatedVideosLoaded implements RelatedVideosLoaded {
     TResult? Function(Loading value)? loading,
     TResult? Function(SearchForTheSentenceLoaded value)?
         searchForTheSentenceLoaded,
+    TResult? Function(SuggestionTextsLoaded value)? suggestionTextsLoaded,
     TResult? Function(RelatedVideosLoaded value)? relatedVideosLoaded,
     TResult? Function(Error value)? error,
   }) {
@@ -638,6 +843,7 @@ class _$RelatedVideosLoaded implements RelatedVideosLoaded {
     TResult Function(Loading value)? loading,
     TResult Function(SearchForTheSentenceLoaded value)?
         searchForTheSentenceLoaded,
+    TResult Function(SuggestionTextsLoaded value)? suggestionTextsLoaded,
     TResult Function(RelatedVideosLoaded value)? relatedVideosLoaded,
     TResult Function(Error value)? error,
     required TResult orElse(),
@@ -664,7 +870,7 @@ abstract class _$$ErrorCopyWith<$Res> {
   factory _$$ErrorCopyWith(_$Error value, $Res Function(_$Error) then) =
       __$$ErrorCopyWithImpl<$Res>;
   @useResult
-  $Res call({String error});
+  $Res call({NetworkExceptionModel networkExceptions});
 }
 
 /// @nodoc
@@ -677,13 +883,13 @@ class __$$ErrorCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? error = null,
+    Object? networkExceptions = null,
   }) {
     return _then(_$Error(
-      null == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as String,
+      null == networkExceptions
+          ? _value.networkExceptions
+          : networkExceptions // ignore: cast_nullable_to_non_nullable
+              as NetworkExceptionModel,
     ));
   }
 }
@@ -691,14 +897,14 @@ class __$$ErrorCopyWithImpl<$Res>
 /// @nodoc
 
 class _$Error implements Error {
-  const _$Error(this.error);
+  const _$Error(this.networkExceptions);
 
   @override
-  final String error;
+  final NetworkExceptionModel networkExceptions;
 
   @override
   String toString() {
-    return 'SearchState.error(error: $error)';
+    return 'SearchState.error(networkExceptions: $networkExceptions)';
   }
 
   @override
@@ -706,11 +912,12 @@ class _$Error implements Error {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$Error &&
-            (identical(other.error, error) || other.error == error));
+            (identical(other.networkExceptions, networkExceptions) ||
+                other.networkExceptions == networkExceptions));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, error);
+  int get hashCode => Object.hash(runtimeType, networkExceptions);
 
   @JsonKey(ignore: true)
   @override
@@ -725,10 +932,12 @@ class _$Error implements Error {
     required TResult Function() loading,
     required TResult Function(VideosDetails videosDetails)
         searchForTheSentenceLoaded,
+    required TResult Function(SuggestionTexts suggestionTexts)
+        suggestionTextsLoaded,
     required TResult Function(VideosDetails videosDetails) relatedVideosLoaded,
-    required TResult Function(String error) error,
+    required TResult Function(NetworkExceptionModel networkExceptions) error,
   }) {
-    return error(this.error);
+    return error(networkExceptions);
   }
 
   @override
@@ -737,10 +946,11 @@ class _$Error implements Error {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(VideosDetails videosDetails)? searchForTheSentenceLoaded,
+    TResult? Function(SuggestionTexts suggestionTexts)? suggestionTextsLoaded,
     TResult? Function(VideosDetails videosDetails)? relatedVideosLoaded,
-    TResult? Function(String error)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? error,
   }) {
-    return error?.call(this.error);
+    return error?.call(networkExceptions);
   }
 
   @override
@@ -749,12 +959,13 @@ class _$Error implements Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(VideosDetails videosDetails)? searchForTheSentenceLoaded,
+    TResult Function(SuggestionTexts suggestionTexts)? suggestionTextsLoaded,
     TResult Function(VideosDetails videosDetails)? relatedVideosLoaded,
-    TResult Function(String error)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error(this.error);
+      return error(networkExceptions);
     }
     return orElse();
   }
@@ -766,6 +977,8 @@ class _$Error implements Error {
     required TResult Function(Loading value) loading,
     required TResult Function(SearchForTheSentenceLoaded value)
         searchForTheSentenceLoaded,
+    required TResult Function(SuggestionTextsLoaded value)
+        suggestionTextsLoaded,
     required TResult Function(RelatedVideosLoaded value) relatedVideosLoaded,
     required TResult Function(Error value) error,
   }) {
@@ -779,6 +992,7 @@ class _$Error implements Error {
     TResult? Function(Loading value)? loading,
     TResult? Function(SearchForTheSentenceLoaded value)?
         searchForTheSentenceLoaded,
+    TResult? Function(SuggestionTextsLoaded value)? suggestionTextsLoaded,
     TResult? Function(RelatedVideosLoaded value)? relatedVideosLoaded,
     TResult? Function(Error value)? error,
   }) {
@@ -792,6 +1006,7 @@ class _$Error implements Error {
     TResult Function(Loading value)? loading,
     TResult Function(SearchForTheSentenceLoaded value)?
         searchForTheSentenceLoaded,
+    TResult Function(SuggestionTextsLoaded value)? suggestionTextsLoaded,
     TResult Function(RelatedVideosLoaded value)? relatedVideosLoaded,
     TResult Function(Error value)? error,
     required TResult orElse(),
@@ -804,9 +1019,9 @@ class _$Error implements Error {
 }
 
 abstract class Error implements SearchState {
-  const factory Error(final String error) = _$Error;
+  const factory Error(final NetworkExceptionModel networkExceptions) = _$Error;
 
-  String get error;
+  NetworkExceptionModel get networkExceptions;
   @JsonKey(ignore: true)
   _$$ErrorCopyWith<_$Error> get copyWith => throw _privateConstructorUsedError;
 }

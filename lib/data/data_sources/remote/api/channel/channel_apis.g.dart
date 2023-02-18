@@ -28,7 +28,7 @@ class _ChannelAPIs implements ChannelAPIs {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'key': apiKey,
-      r'channelId': channelId,
+      r'id': channelId,
     };
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -40,7 +40,7 @@ class _ChannelAPIs implements ChannelAPIs {
     )
             .compose(
               _dio.options,
-              'channels?part=brandingSettings,CcontentDetails,statistics,snippet',
+              'channels?part=brandingSettings,contentDetails,statistics,snippet',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -79,7 +79,7 @@ class _ChannelAPIs implements ChannelAPIs {
   }
 
   @override
-  Future<void> subscribeToChannel({
+  Future<dynamic> subscribeToChannel({
     apiKey = apiKey,
     required body,
     required accessToken,
@@ -90,7 +90,7 @@ class _ChannelAPIs implements ChannelAPIs {
     _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body);
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -102,11 +102,12 @@ class _ChannelAPIs implements ChannelAPIs {
           data: _data,
         )
         .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    return null;
+    final value = _result.data;
+    return value;
   }
 
   @override
-  Future<void> deleteSubscription({
+  Future<dynamic> deleteSubscription({
     required id,
     required accessToken,
   }) async {
@@ -117,7 +118,7 @@ class _ChannelAPIs implements ChannelAPIs {
     };
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
       method: 'DELETE',
       headers: _headers,
       extra: _extra,
@@ -129,7 +130,8 @@ class _ChannelAPIs implements ChannelAPIs {
           data: _data,
         )
         .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    return null;
+    final value = _result.data;
+    return value;
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {

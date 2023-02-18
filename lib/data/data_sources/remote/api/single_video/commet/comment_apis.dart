@@ -31,7 +31,7 @@ abstract class CommentAPIs {
 
   /// [insertComment] for reply and comment: just set parentId if you want a reply
   @POST("comments?part=snippet")
-  Future<void> insertComment(
+  Future<dynamic> insertComment(
       {@Query("access_token") required String accessToken,
       @Query("key") final String apiKey = apiKey,
       @Body() required CommentBody commentBody});
