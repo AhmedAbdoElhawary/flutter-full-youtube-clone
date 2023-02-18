@@ -25,7 +25,7 @@ mixin _$ChannelVideosState {
         shortPopularVideosLoaded,
     required TResult Function(VideosDetails videoDetails) shortVideosLoaded,
     required TResult Function(VideosDetails videoDetails) channelVideosLoaded,
-    required TResult Function(String error) error,
+    required TResult Function(NetworkExceptionModel networkExceptions) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -36,7 +36,7 @@ mixin _$ChannelVideosState {
     TResult? Function(VideosDetails videoDetails)? shortPopularVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? shortVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? channelVideosLoaded,
-    TResult? Function(String error)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -47,7 +47,7 @@ mixin _$ChannelVideosState {
     TResult Function(VideosDetails videoDetails)? shortPopularVideosLoaded,
     TResult Function(VideosDetails videoDetails)? shortVideosLoaded,
     TResult Function(VideosDetails videoDetails)? channelVideosLoaded,
-    TResult Function(String error)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -150,7 +150,7 @@ class _$_Initial implements _Initial {
         shortPopularVideosLoaded,
     required TResult Function(VideosDetails videoDetails) shortVideosLoaded,
     required TResult Function(VideosDetails videoDetails) channelVideosLoaded,
-    required TResult Function(String error) error,
+    required TResult Function(NetworkExceptionModel networkExceptions) error,
   }) {
     return initial();
   }
@@ -164,7 +164,7 @@ class _$_Initial implements _Initial {
     TResult? Function(VideosDetails videoDetails)? shortPopularVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? shortVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? channelVideosLoaded,
-    TResult? Function(String error)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? error,
   }) {
     return initial?.call();
   }
@@ -178,7 +178,7 @@ class _$_Initial implements _Initial {
     TResult Function(VideosDetails videoDetails)? shortPopularVideosLoaded,
     TResult Function(VideosDetails videoDetails)? shortVideosLoaded,
     TResult Function(VideosDetails videoDetails)? channelVideosLoaded,
-    TResult Function(String error)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -282,7 +282,7 @@ class _$Loading implements Loading {
         shortPopularVideosLoaded,
     required TResult Function(VideosDetails videoDetails) shortVideosLoaded,
     required TResult Function(VideosDetails videoDetails) channelVideosLoaded,
-    required TResult Function(String error) error,
+    required TResult Function(NetworkExceptionModel networkExceptions) error,
   }) {
     return loading();
   }
@@ -296,7 +296,7 @@ class _$Loading implements Loading {
     TResult? Function(VideosDetails videoDetails)? shortPopularVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? shortVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? channelVideosLoaded,
-    TResult? Function(String error)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? error,
   }) {
     return loading?.call();
   }
@@ -310,7 +310,7 @@ class _$Loading implements Loading {
     TResult Function(VideosDetails videoDetails)? shortPopularVideosLoaded,
     TResult Function(VideosDetails videoDetails)? shortVideosLoaded,
     TResult Function(VideosDetails videoDetails)? channelVideosLoaded,
-    TResult Function(String error)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -444,7 +444,7 @@ class _$PopularVideosLoaded implements PopularVideosLoaded {
         shortPopularVideosLoaded,
     required TResult Function(VideosDetails videoDetails) shortVideosLoaded,
     required TResult Function(VideosDetails videoDetails) channelVideosLoaded,
-    required TResult Function(String error) error,
+    required TResult Function(NetworkExceptionModel networkExceptions) error,
   }) {
     return popularVideosLoaded(videoDetails);
   }
@@ -458,7 +458,7 @@ class _$PopularVideosLoaded implements PopularVideosLoaded {
     TResult? Function(VideosDetails videoDetails)? shortPopularVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? shortVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? channelVideosLoaded,
-    TResult? Function(String error)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? error,
   }) {
     return popularVideosLoaded?.call(videoDetails);
   }
@@ -472,7 +472,7 @@ class _$PopularVideosLoaded implements PopularVideosLoaded {
     TResult Function(VideosDetails videoDetails)? shortPopularVideosLoaded,
     TResult Function(VideosDetails videoDetails)? shortVideosLoaded,
     TResult Function(VideosDetails videoDetails)? channelVideosLoaded,
-    TResult Function(String error)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? error,
     required TResult orElse(),
   }) {
     if (popularVideosLoaded != null) {
@@ -613,7 +613,7 @@ class _$ShortPopularVideosLoaded implements ShortPopularVideosLoaded {
         shortPopularVideosLoaded,
     required TResult Function(VideosDetails videoDetails) shortVideosLoaded,
     required TResult Function(VideosDetails videoDetails) channelVideosLoaded,
-    required TResult Function(String error) error,
+    required TResult Function(NetworkExceptionModel networkExceptions) error,
   }) {
     return shortPopularVideosLoaded(videoDetails);
   }
@@ -627,7 +627,7 @@ class _$ShortPopularVideosLoaded implements ShortPopularVideosLoaded {
     TResult? Function(VideosDetails videoDetails)? shortPopularVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? shortVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? channelVideosLoaded,
-    TResult? Function(String error)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? error,
   }) {
     return shortPopularVideosLoaded?.call(videoDetails);
   }
@@ -641,7 +641,7 @@ class _$ShortPopularVideosLoaded implements ShortPopularVideosLoaded {
     TResult Function(VideosDetails videoDetails)? shortPopularVideosLoaded,
     TResult Function(VideosDetails videoDetails)? shortVideosLoaded,
     TResult Function(VideosDetails videoDetails)? channelVideosLoaded,
-    TResult Function(String error)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? error,
     required TResult orElse(),
   }) {
     if (shortPopularVideosLoaded != null) {
@@ -780,7 +780,7 @@ class _$ShortVideosLoaded implements ShortVideosLoaded {
         shortPopularVideosLoaded,
     required TResult Function(VideosDetails videoDetails) shortVideosLoaded,
     required TResult Function(VideosDetails videoDetails) channelVideosLoaded,
-    required TResult Function(String error) error,
+    required TResult Function(NetworkExceptionModel networkExceptions) error,
   }) {
     return shortVideosLoaded(videoDetails);
   }
@@ -794,7 +794,7 @@ class _$ShortVideosLoaded implements ShortVideosLoaded {
     TResult? Function(VideosDetails videoDetails)? shortPopularVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? shortVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? channelVideosLoaded,
-    TResult? Function(String error)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? error,
   }) {
     return shortVideosLoaded?.call(videoDetails);
   }
@@ -808,7 +808,7 @@ class _$ShortVideosLoaded implements ShortVideosLoaded {
     TResult Function(VideosDetails videoDetails)? shortPopularVideosLoaded,
     TResult Function(VideosDetails videoDetails)? shortVideosLoaded,
     TResult Function(VideosDetails videoDetails)? channelVideosLoaded,
-    TResult Function(String error)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? error,
     required TResult orElse(),
   }) {
     if (shortVideosLoaded != null) {
@@ -948,7 +948,7 @@ class _$ChannelVideosLoaded implements ChannelVideosLoaded {
         shortPopularVideosLoaded,
     required TResult Function(VideosDetails videoDetails) shortVideosLoaded,
     required TResult Function(VideosDetails videoDetails) channelVideosLoaded,
-    required TResult Function(String error) error,
+    required TResult Function(NetworkExceptionModel networkExceptions) error,
   }) {
     return channelVideosLoaded(videoDetails);
   }
@@ -962,7 +962,7 @@ class _$ChannelVideosLoaded implements ChannelVideosLoaded {
     TResult? Function(VideosDetails videoDetails)? shortPopularVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? shortVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? channelVideosLoaded,
-    TResult? Function(String error)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? error,
   }) {
     return channelVideosLoaded?.call(videoDetails);
   }
@@ -976,7 +976,7 @@ class _$ChannelVideosLoaded implements ChannelVideosLoaded {
     TResult Function(VideosDetails videoDetails)? shortPopularVideosLoaded,
     TResult Function(VideosDetails videoDetails)? shortVideosLoaded,
     TResult Function(VideosDetails videoDetails)? channelVideosLoaded,
-    TResult Function(String error)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? error,
     required TResult orElse(),
   }) {
     if (channelVideosLoaded != null) {
@@ -1048,7 +1048,7 @@ abstract class _$$ErrorCopyWith<$Res> {
   factory _$$ErrorCopyWith(_$Error value, $Res Function(_$Error) then) =
       __$$ErrorCopyWithImpl<$Res>;
   @useResult
-  $Res call({String error});
+  $Res call({NetworkExceptionModel networkExceptions});
 }
 
 /// @nodoc
@@ -1061,13 +1061,13 @@ class __$$ErrorCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? error = null,
+    Object? networkExceptions = null,
   }) {
     return _then(_$Error(
-      null == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as String,
+      null == networkExceptions
+          ? _value.networkExceptions
+          : networkExceptions // ignore: cast_nullable_to_non_nullable
+              as NetworkExceptionModel,
     ));
   }
 }
@@ -1075,14 +1075,14 @@ class __$$ErrorCopyWithImpl<$Res>
 /// @nodoc
 
 class _$Error implements Error {
-  const _$Error(this.error);
+  const _$Error(this.networkExceptions);
 
   @override
-  final String error;
+  final NetworkExceptionModel networkExceptions;
 
   @override
   String toString() {
-    return 'ChannelVideosState.error(error: $error)';
+    return 'ChannelVideosState.error(networkExceptions: $networkExceptions)';
   }
 
   @override
@@ -1090,11 +1090,12 @@ class _$Error implements Error {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$Error &&
-            (identical(other.error, error) || other.error == error));
+            (identical(other.networkExceptions, networkExceptions) ||
+                other.networkExceptions == networkExceptions));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, error);
+  int get hashCode => Object.hash(runtimeType, networkExceptions);
 
   @JsonKey(ignore: true)
   @override
@@ -1112,9 +1113,9 @@ class _$Error implements Error {
         shortPopularVideosLoaded,
     required TResult Function(VideosDetails videoDetails) shortVideosLoaded,
     required TResult Function(VideosDetails videoDetails) channelVideosLoaded,
-    required TResult Function(String error) error,
+    required TResult Function(NetworkExceptionModel networkExceptions) error,
   }) {
-    return error(this.error);
+    return error(networkExceptions);
   }
 
   @override
@@ -1126,9 +1127,9 @@ class _$Error implements Error {
     TResult? Function(VideosDetails videoDetails)? shortPopularVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? shortVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? channelVideosLoaded,
-    TResult? Function(String error)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? error,
   }) {
-    return error?.call(this.error);
+    return error?.call(networkExceptions);
   }
 
   @override
@@ -1140,11 +1141,11 @@ class _$Error implements Error {
     TResult Function(VideosDetails videoDetails)? shortPopularVideosLoaded,
     TResult Function(VideosDetails videoDetails)? shortVideosLoaded,
     TResult Function(VideosDetails videoDetails)? channelVideosLoaded,
-    TResult Function(String error)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error(this.error);
+      return error(networkExceptions);
     }
     return orElse();
   }
@@ -1198,9 +1199,9 @@ class _$Error implements Error {
 }
 
 abstract class Error implements ChannelVideosState {
-  const factory Error(final String error) = _$Error;
+  const factory Error(final NetworkExceptionModel networkExceptions) = _$Error;
 
-  String get error;
+  NetworkExceptionModel get networkExceptions;
   @JsonKey(ignore: true)
   _$$ErrorCopyWith<_$Error> get copyWith => throw _privateConstructorUsedError;
 }
