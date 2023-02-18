@@ -1,4 +1,5 @@
 import 'package:youtube/core/functions/api_result.dart';
+import 'package:youtube/core/functions/network_exceptions.dart';
 
 import 'package:youtube/core/utility/private_key.dart';
 import 'package:youtube/data/data_sources/remote/api/single_video/single_video_apis.dart';
@@ -26,7 +27,7 @@ class SingleVideosDetailsRepoImpl implements SingleVideoDetailsRepository {
 
       return ApiResult.success(videosWithSubChannelDetails);
     } catch (e) {
-      return ApiResult.failure(e.toString());
+      return ApiResult.failure(NetworkExceptions.getDioException(e));
     }
   }
 
