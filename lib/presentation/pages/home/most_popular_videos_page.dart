@@ -7,7 +7,7 @@ import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/core/resources/styles_manager.dart';
 import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/presentation/common_widgets/custom_circle_progress.dart';
-import 'package:youtube/presentation/common_widgets/moved_thumbnail_video.dart';
+import 'package:youtube/presentation/common_widgets/thumbnail_of_video.dart';
 import 'package:youtube/presentation/cubit/videos/popular_videos/popular_videos_cubit.dart';
 
 class MostPopularVideosPage extends StatelessWidget {
@@ -207,7 +207,7 @@ class _BuildMoviesList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
         itemBuilder: (context, index) =>
-            MovedThumbnailVideo(videos.videoDetailsItem?[index]),
+            ThumbnailOfVideo(videos.videoDetailsItem?[index]),
         itemCount: videos.videoDetailsItem?.length ?? 0);
   }
 }
