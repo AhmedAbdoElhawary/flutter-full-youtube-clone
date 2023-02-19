@@ -68,7 +68,7 @@ class AppTheme {
     return TextTheme(
 
       bodyLarge: getNormalStyle(color: BaseColorManager.black, fontSize: 25),
-      bodyMedium: getNormalStyle(color: BaseColorManager.black, fontSize: 20),
+      bodyMedium: getNormalStyle(color: BaseColorManager.black, fontSize: 15),
       bodySmall: getMediumStyle(color: BaseColorManager.black, fontSize: 15),
       titleSmall: getNormalStyle(color: BaseColorManager.black, fontSize: 13),
       labelSmall: getMediumStyle(color: BaseColorManager.grey, fontSize: 13),
