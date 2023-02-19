@@ -8,14 +8,14 @@ import 'package:youtube/core/resources/assets_manager.dart';
 import 'package:youtube/data/models/channel_details/channel_details.dart';
 import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/presentation/common_widgets/circular_profile_image.dart';
-import 'package:youtube/presentation/common_widgets/small_thumbnail_video.dart';
+import 'package:youtube/presentation/common_widgets/thumbnail_image.dart';
 
 import '../../core/resources/color_manager.dart';
 import '../../core/resources/styles_manager.dart';
 import '../pages/home/logic/home_page_logic.dart';
 
-class MovedThumbnailVideo extends StatelessWidget {
-  const MovedThumbnailVideo(this.videoDetailsItem, {super.key});
+class ThumbnailOfVideo extends StatelessWidget {
+  const ThumbnailOfVideo(this.videoDetailsItem, {super.key});
   final VideoDetailsItem? videoDetailsItem;
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class MovedThumbnailVideo extends StatelessWidget {
             alignment: AlignmentDirectional.bottomEnd,
             children: [
               if (videoDetailsItem?.snippet?.thumbnails != null)
-                ThumbnailVideo(videoDetailsItem?.snippet?.thumbnails),
+                ThumbnailImage(videoDetailsItem?.snippet?.thumbnails),
               _VideoTime(videoDetailsItem)
             ],
           ),
