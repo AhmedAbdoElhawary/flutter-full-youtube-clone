@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:miniplayer/miniplayer.dart';
+import 'package:pod_player/pod_player.dart';
 import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/core/resources/styles_manager.dart';
 import 'package:youtube/data/models/common/base_comment_snippet/sub_comment_snippet.dart';
@@ -10,7 +11,6 @@ import 'package:youtube/presentation/common_widgets/circular_profile_image.dart'
 import 'package:youtube/presentation/cubit/single_video/single_video_cubit.dart';
 import 'package:youtube/presentation/pages/home/logic/home_page_logic.dart';
 import 'package:youtube/presentation/common_widgets/subscribe_button.dart';
-
 
 class MiniPlayerVideo extends StatefulWidget {
   const MiniPlayerVideo({super.key});
@@ -371,22 +371,42 @@ class _VideoOfMiniDisplay extends StatefulWidget {
   const _VideoOfMiniDisplay(this.height, this.percentage);
   final double height;
   final double percentage;
+
   @override
   State<_VideoOfMiniDisplay> createState() => _VideoOfMiniDisplayState();
 }
 
 class _VideoOfMiniDisplayState extends State<_VideoOfMiniDisplay> {
-  final controller = Get.find<MiniVideoViewLogic>(tag: "1");
+  final logic = Get.find<MiniVideoViewLogic>(tag: "1");
+  late PodPlayerController videoController;
+  String videoId = "";
+  @override
+  void initState() {
+    super.initState();
+    videoId = logic.selectedVideoDetails?.id ?? "";
+    videoController = PodPlayerController(
+      playVideoFrom: PlayVideoFrom.youtube('https://youtu.be/$videoId'),
+    )..initialise();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    videoController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    return Obx(() => Container(
-          height: controller.videoOfMiniDisplayHeight(),
-          width: controller.videoOfMiniDisplayWidth(screenWidth),
-          color: ColorManager.blue,
-          child: Center(child: Text("${controller.selectedVideoDetails}")),
-        ));
+    return Obx(
+      () => SizedBox(
+        height: logic.videoOfMiniDisplayHeight(),
+        width: logic.videoOfMiniDisplayWidth(screenWidth),
+        child: videoId.isEmpty
+            ? null
+            : PodVideoPlayer(controller: videoController),
+      ),
+    );
   }
 }
 

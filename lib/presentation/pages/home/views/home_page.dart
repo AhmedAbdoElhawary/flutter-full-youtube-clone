@@ -8,7 +8,7 @@ import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/core/resources/styles_manager.dart';
 import 'package:youtube/core/widgets/sliver_app_bar.dart';
 import 'package:youtube/presentation/common_widgets/custom_circle_progress.dart';
-import 'package:youtube/presentation/common_widgets/moved_thumbnail_video.dart';
+import 'package:youtube/presentation/common_widgets/thumbnail_of_video.dart';
 import 'package:youtube/presentation/cubit/videos/videos_details_cubit.dart';
 import 'package:youtube/presentation/pages/home/most_popular_videos_page.dart';
 
@@ -35,7 +35,7 @@ class HomePage extends StatelessWidget {
                     return SliverList(
                       delegate: SliverChildBuilderDelegate(
                         childCount: allVideosLoaded.videoDetailsItem?.length,
-                        (context, index) => MovedThumbnailVideo(
+                        (context, index) => ThumbnailOfVideo(
                             allVideosLoaded.videoDetailsItem?[index]),
                       ),
                     );

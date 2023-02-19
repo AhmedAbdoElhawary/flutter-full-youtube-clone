@@ -6,6 +6,8 @@ class ColorManager {
   ColorManager(this.context);
 
   Color transparent = const Color.fromRGBO(0, 0, 0, 0);
+  Color transparentWhite =
+      const Color.fromRGBO(255, 255, 255, 0.23921568627450981);
 
   Color white = const Color.fromRGBO(255, 255, 255, 1);
 
@@ -33,14 +35,13 @@ class ColorManager {
   Color black87 = const Color.fromRGBO(0, 0, 0, 0.867);
   Color black = const Color.fromARGB(255, 0, 0, 0);
 
-  static const Color teal =  Color.fromRGBO(0, 150, 136, 1);
+  static const Color teal = Color.fromRGBO(0, 150, 136, 1);
   static const Color blue = Color.fromRGBO(33, 150, 243, 1);
   static const Color darkBlue = Color.fromRGBO(0, 103, 187, 1.0);
   static const Color green = Color.fromRGBO(76, 175, 80, 1);
   static const Color purple = Color.fromRGBO(160, 4, 238, 1);
   static const Color lightPurple = Color.fromRGBO(137, 147, 255, 0.369);
-  static const Color lightBlue = Color.fromRGBO(
-      215, 233, 255, 1.0);
+  static const Color lightBlue = Color.fromRGBO(215, 233, 255, 1.0);
   static const Color redAccent = Color.fromRGBO(255, 82, 82, 1);
   static const Color red = Color.fromRGBO(253, 0, 24, 1.0);
   static const Color blackRed = Color.fromRGBO(211, 11, 11, 1.0);

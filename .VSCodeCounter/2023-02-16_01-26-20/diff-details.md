@@ -94,7 +94,7 @@ Total : 107 files,  6623 codes, 224 comments, 1024 blanks, all 7871 lines
 | [lib/domain/use_cases/videos_details/get_video_details_usecase.dart](/lib/domain/use_cases/videos_details/get_video_details_usecase.dart) | Dart | -19 | 0 | -5 | -24 |
 | [lib/main.dart](/lib/main.dart) | Dart | 14 | 0 | 1 | 15 |
 | [lib/presentation/common_widgets/mini_player_video.dart](/lib/presentation/common_widgets/mini_player_video.dart) | Dart | 37 | 0 | 7 | 44 |
-| [lib/presentation/common_widgets/moved_thumbnail_video.dart](/lib/presentation/common_widgets/moved_thumbnail_video.dart) | Dart | 2 | 0 | 0 | 2 |
+| [lib/presentation/common_widgets/moved_thumbnail_video.dart](/lib/presentation/common_widgets/thumbnail_of_video.dart) | Dart | 2 | 0 | 0 | 2 |
 | [lib/presentation/cubit/channel/channel_details_cubit.dart](/lib/presentation/cubit/channel/channel_details_cubit.dart) | Dart | 64 | 0 | 17 | 81 |
 | [lib/presentation/cubit/channel/channel_details_cubit.freezed.dart](/lib/presentation/cubit/channel/channel_details_cubit.freezed.dart) | Dart | 837 | 30 | 103 | 970 |
 | [lib/presentation/cubit/channel/channel_details_state.dart](/lib/presentation/cubit/channel/channel_details_state.dart) | Dart | 16 | 0 | 8 | 24 |
