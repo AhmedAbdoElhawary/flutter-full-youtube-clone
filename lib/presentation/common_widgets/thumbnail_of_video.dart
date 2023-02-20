@@ -37,7 +37,6 @@ class ThumbnailOfVideo extends StatelessWidget {
           const RSizedBox(height: 10),
           _VideoSubTitles(videoDetailsItem),
           const RSizedBox(height: 15),
-
         ],
       ),
     );
@@ -59,12 +58,17 @@ class _VideoSubTitles extends StatelessWidget {
     ChannelSubDetails? channelDetails = snippet?.channelSubDetails;
     String channelImage =
         channelDetails?.items?[0]?.snippet?.thumbnails?.high?.url ?? "";
+    String channelId = channelDetails?.items?[0]?.id ?? "";
     return Padding(
       padding: REdgeInsets.symmetric(horizontal: 13),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CircularProfileImage(imageUrl: channelImage),
+          CircularProfileImage(
+            imageUrl: channelImage,
+            channelId: channelId,
+            channelDetailsItem: channelDetails?.items?[0],
+          ),
           const RSizedBox(width: 10),
           Flexible(
             child: Column(
