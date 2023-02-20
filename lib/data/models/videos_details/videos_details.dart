@@ -13,8 +13,11 @@ class VideosDetails {
   String? prevPageToken;
   PageInfo? pageInfo;
 
-  VideosDetails(this.pageInfo, this.videoDetailsItem, this.nextPageToken,
-      this.prevPageToken);
+  VideosDetails(
+      {this.pageInfo,
+      this.videoDetailsItem,
+      this.nextPageToken,
+      this.prevPageToken});
 
   factory VideosDetails.fromJson(Map<String, dynamic> json) =>
       _$VideosDetailsFromJson(json);
@@ -69,17 +72,6 @@ class VideoSnippet {
 
   factory VideoSnippet.fromJson(Map<String, dynamic> json) =>
       _$VideoSnippetFromJson(json);
-}
-
-@JsonSerializable(includeIfNull: true, createToJson: false)
-class Localized {
-  Localized(this.title, this.description);
-
-  String? title;
-  String? description;
-
-  factory Localized.fromJson(Map<String, dynamic> json) =>
-      _$LocalizedFromJson(json);
 }
 
 @JsonSerializable(includeIfNull: true, createToJson: false)

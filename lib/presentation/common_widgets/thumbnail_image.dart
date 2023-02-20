@@ -18,23 +18,23 @@ class ThumbnailImage extends StatefulWidget {
 
 class _NetworkDisplayState extends State<ThumbnailImage> {
   @override
-  void didChangeDependencies() {
-    String? url = widget.thumbnailsVideo?.max?.url;
-    if (url != null) precacheImage(NetworkImage(url), context);
-    super.didChangeDependencies();
-  }
-
-  @override
   Widget build(BuildContext context) {
     ThumbnailDetails? thumbnail = widget.thumbnailsVideo?.max;
+    print(
+        "=========================> ${widget.thumbnailsVideo?.high?.url}${widget.thumbnailsVideo?.max?.url}");
+
     return CachedNetworkImage(
       imageUrl: thumbnail?.url ?? "",
-      color: ColorManager(context).grey1,
       fit: BoxFit.cover,
       width: widget.width.w,
       height: widget.height.h,
       memCacheHeight: thumbnail?.height,
       memCacheWidth: thumbnail?.width,
+      placeholder: (context, url) => Container(
+        color: ColorManager(context).grey1,
+        width: widget.width.w,
+        height: widget.height.h,
+      ),
       errorWidget: (context, url, error) =>
           Center(child: Text(error.toString())),
     );

@@ -6,6 +6,7 @@ import 'package:miniplayer/miniplayer.dart';
 import 'package:pod_player/pod_player.dart';
 import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/core/resources/styles_manager.dart';
+import 'package:youtube/data/models/comment_details/comment_details.dart';
 import 'package:youtube/data/models/common/base_comment_snippet/sub_comment_snippet.dart';
 import 'package:youtube/presentation/common_widgets/circular_profile_image.dart';
 import 'package:youtube/presentation/cubit/single_video/single_video_cubit.dart';
@@ -156,6 +157,7 @@ class _FirstComment extends StatelessWidget {
         builder: (context, state) {
           return state.maybeWhen(
               firstCommentLoaded: (firstCommentDetails) {
+                CommentDetails;
                 SubCommentSnippet? snippet = firstCommentDetails
                     .items?[0]?.snippet?.topLevelComment?.snippet;
 
@@ -179,7 +181,9 @@ class _FirstCommentBody extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        CircularProfileImage(imageUrl: snippet?.authorProfileImageUrl ?? ""),
+        CircularProfileImage(
+            imageUrl: snippet?.authorProfileImageUrl ?? "",
+            channelId: snippet?.authorChannelId?.value??""),
         const RSizedBox(width: 10),
         Flexible(
           child: Text(
@@ -399,9 +403,10 @@ class _VideoOfMiniDisplayState extends State<_VideoOfMiniDisplay> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     return Obx(
-      () => SizedBox(
+      () => Container(
         height: logic.videoOfMiniDisplayHeight(),
         width: logic.videoOfMiniDisplayWidth(screenWidth),
+        color: ColorManager(context).grey1,
         child: videoId.isEmpty
             ? null
             : PodVideoPlayer(controller: videoController),

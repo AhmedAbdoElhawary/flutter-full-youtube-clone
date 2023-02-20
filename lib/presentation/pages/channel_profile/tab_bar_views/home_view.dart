@@ -5,11 +5,18 @@ import 'package:youtube/core/resources/styles_manager.dart';
 
 import 'videos_horizontal_descriptions_list.dart';
 
-class TabBarHomeView extends StatelessWidget {
+class TabBarHomeView extends StatefulWidget {
   const TabBarHomeView({Key? key}) : super(key: key);
 
   @override
+  State<TabBarHomeView> createState() => _TabBarHomeViewState();
+}
+
+class _TabBarHomeViewState extends State<TabBarHomeView>
+    with AutomaticKeepAliveClientMixin<TabBarHomeView> {
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     return ListView.builder(
         itemBuilder: (context, index) => Padding(
               padding: REdgeInsetsDirectional.only(start: 15, top: 15),
@@ -19,6 +26,9 @@ class TabBarHomeView extends StatelessWidget {
             ),
         itemCount: 20);
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
 
 class _PopularVideosText extends StatelessWidget {

@@ -8,14 +8,14 @@ part of 'videos_details.dart';
 
 VideosDetails _$VideosDetailsFromJson(Map<String, dynamic> json) =>
     VideosDetails(
-      json['pageInfo'] == null
+      pageInfo: json['pageInfo'] == null
           ? null
           : PageInfo.fromJson(json['pageInfo'] as Map<String, dynamic>),
-      (json['items'] as List<dynamic>?)
+      videoDetailsItem: (json['items'] as List<dynamic>?)
           ?.map((e) => VideoDetailsItem.fromJson(e as Map<String, dynamic>))
           .toList(),
-      json['nextPageToken'] as String?,
-      json['prevPageToken'] as String?,
+      nextPageToken: json['nextPageToken'] as String?,
+      prevPageToken: json['prevPageToken'] as String?,
     );
 
 VideoDetailsItem _$VideoDetailsItemFromJson(Map<String, dynamic> json) =>
@@ -43,11 +43,6 @@ VideoSnippet _$VideoSnippetFromJson(Map<String, dynamic> json) => VideoSnippet(
       json['categoryId'] as String?,
       json['liveBroadcastContent'] as String?,
       json['defaultAudioLanguage'] as String?,
-    );
-
-Localized _$LocalizedFromJson(Map<String, dynamic> json) => Localized(
-      json['title'] as String?,
-      json['description'] as String?,
     );
 
 ContentDetails _$ContentDetailsFromJson(Map<String, dynamic> json) =>

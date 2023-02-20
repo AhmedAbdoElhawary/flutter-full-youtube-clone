@@ -21,7 +21,7 @@ class _SearchAPIs implements SearchAPIs {
   String? baseUrl;
 
   @override
-  Future<VideosIdsDetails> getIdsForThisSentence({
+  Future<SearchedVideosDetails> getIdsForThisSentence({
     apiKey = apiKey,
     required sentence,
   }) async {
@@ -32,25 +32,25 @@ class _SearchAPIs implements SearchAPIs {
     };
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<VideosIdsDetails>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<SearchedVideosDetails>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              'search?part=id',
+              'search?part=snippet',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = VideosIdsDetails.fromJson(_result.data!);
+    final value = SearchedVideosDetails.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<VideosIdsDetails> getRelatedVideosIdsToThisVideo({
+  Future<SearchedVideosDetails> getRelatedVideosIdsToThisVideo({
     apiKey = apiKey,
     required relatedToVideoId,
   }) async {
@@ -61,20 +61,20 @@ class _SearchAPIs implements SearchAPIs {
     };
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<VideosIdsDetails>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<SearchedVideosDetails>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              'search?part=id&maxResults=100&type=video',
+              'search?part=snippet&maxResults=100&type=video',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = VideosIdsDetails.fromJson(_result.data!);
+    final value = SearchedVideosDetails.fromJson(_result.data!);
     return value;
   }
 

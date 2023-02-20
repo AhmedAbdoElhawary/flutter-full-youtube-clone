@@ -16,6 +16,15 @@ class VideosIdsDetails {
   factory VideosIdsDetails.fromJson(Map<String, dynamic> json) =>
       _$VideosIdsDetailsFromJson(json);
 }
+@JsonSerializable(includeIfNull: true, createToJson: false)
+class VideoIdItem {
+  VideoIdItemDetails? id;
+
+  VideoIdItem(this.id);
+
+  factory VideoIdItem.fromJson(Map<String, dynamic> json) =>
+      _$VideoIdItemFromJson(json);
+}
 
 @JsonSerializable(includeIfNull: true, createToJson: false)
 class VideoIdItemDetails {
@@ -28,12 +37,3 @@ class VideoIdItemDetails {
       _$VideoIdItemDetailsFromJson(json);
 }
 
-@JsonSerializable(includeIfNull: true, createToJson: false)
-class VideoIdItem {
-  VideoIdItemDetails? id;
-
-  VideoIdItem(this.id);
-
-  factory VideoIdItem.fromJson(Map<String, dynamic> json) =>
-      _$VideoIdItemFromJson(json);
-}

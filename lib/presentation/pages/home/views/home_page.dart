@@ -10,7 +10,7 @@ import 'package:youtube/core/widgets/sliver_app_bar.dart';
 import 'package:youtube/presentation/common_widgets/custom_circle_progress.dart';
 import 'package:youtube/presentation/common_widgets/thumbnail_of_video.dart';
 import 'package:youtube/presentation/cubit/videos/videos_details_cubit.dart';
-import 'package:youtube/presentation/pages/home/most_popular_videos_page.dart';
+import 'package:youtube/presentation/pages/home/sub_views/most_popular_videos_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -27,44 +27,63 @@ class HomePage extends StatelessWidget {
                 child: const _SuggestionsList(),
               ),
             ),
-            BlocBuilder<VideosDetailsCubit, VideosDetailsState>(
-              bloc: VideosDetailsCubit.get(context)..getAllVideos(),
-              builder: (context, state) {
-                return state.maybeWhen(
-                  allVideosLoaded: (allVideosLoaded) {
-                    return SliverList(
-                      delegate: SliverChildBuilderDelegate(
-                        childCount: allVideosLoaded.videoDetailsItem?.length,
-                        (context, index) => ThumbnailOfVideo(
-                            allVideosLoaded.videoDetailsItem?[index]),
-                      ),
-                    );
-                  },
-                  loading: () {
-                    return const SliverFillRemaining(
-                        child: ThineCircularProgress());
-                  },
-                  error: (e) {
-                    return SliverFillRemaining(
-                      child: Center(
-                        child: Text(NetworkExceptions.getErrorMessage(e.networkExceptions),
-                            style: getNormalStyle(
-                                color: ColorManager(context).black,
-                                fontSize: 15)),
-                      ),
-                    );
-                  },
-                  orElse: () {
-                    return const SliverFillRemaining(child: SizedBox());
-                  },
-                );
-              },
-            ),
+            const _VideosList(),
           ],
         ),
       ),
     );
   }
+}
+
+class _VideosList extends StatefulWidget {
+  const _VideosList();
+
+  @override
+  State<_VideosList> createState() => _VideosListState();
+}
+
+class _VideosListState extends State<_VideosList>
+    with
+        AutomaticKeepAliveClientMixin<_VideosList>{
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return BlocBuilder<VideosDetailsCubit, VideosDetailsState>(
+      bloc: VideosDetailsCubit.get(context)..getAllVideos(),
+      builder: (context, state) {
+        return state.maybeWhen(
+          allVideosLoaded: (allVideosLoaded) {
+            return SliverList(
+              delegate: SliverChildBuilderDelegate(
+                childCount: allVideosLoaded.videoDetailsItem?.length,
+                (context, index) =>
+                    ThumbnailOfVideo(allVideosLoaded.videoDetailsItem?[index]),
+              ),
+            );
+          },
+          loading: () {
+            return const SliverFillRemaining(child: ThineCircularProgress());
+          },
+          error: (e) {
+            return SliverFillRemaining(
+              child: Center(
+                child: Text(
+                    NetworkExceptions.getErrorMessage(e.networkExceptions),
+                    style: getNormalStyle(
+                        color: ColorManager(context).black, fontSize: 15)),
+              ),
+            );
+          },
+          orElse: () {
+            return const SliverFillRemaining(child: SizedBox());
+          },
+        );
+      },
+    );
+  }
+
+  @override
+  bool get wantKeepAlive => true;
 }
 
 class _SuggestionsList extends StatelessWidget {

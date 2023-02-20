@@ -20,14 +20,14 @@ VideosIdsDetails _$VideosIdsDetailsFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-VideoIdItemDetails _$VideoIdItemDetailsFromJson(Map<String, dynamic> json) =>
-    VideoIdItemDetails(
-      json['kind'] as String?,
-      json['videoId'] as String?,
-    );
-
 VideoIdItem _$VideoIdItemFromJson(Map<String, dynamic> json) => VideoIdItem(
       json['id'] == null
           ? null
           : VideoIdItemDetails.fromJson(json['id'] as Map<String, dynamic>),
+    );
+
+VideoIdItemDetails _$VideoIdItemDetailsFromJson(Map<String, dynamic> json) =>
+    VideoIdItemDetails(
+      json['kind'] as String?,
+      json['videoId'] as String?,
     );

@@ -21,13 +21,13 @@ class _VideosAPIs implements VideosAPIs {
   String? baseUrl;
 
   @override
-  Future<VideosIdsDetails> getAllVideosIds({apiKey = apiKey}) async {
+  Future<SearchedVideosDetails> getAllVideosIds({apiKey = apiKey}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'key': apiKey};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<VideosIdsDetails>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<SearchedVideosDetails>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -39,30 +39,30 @@ class _VideosAPIs implements VideosAPIs {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = VideosIdsDetails.fromJson(_result.data!);
+    final value = SearchedVideosDetails.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<VideosIdsDetails> getAllShortVideosIds({apiKey = apiKey}) async {
+  Future<SearchedVideosDetails> getAllShortVideosIds({apiKey = apiKey}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'key': apiKey};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<VideosIdsDetails>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<SearchedVideosDetails>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              'search?part=id&maxResults=50&regionCode=EG&videoDuration=short',
+              'search?part=snippet&maxResults=50&regionCode=EG&videoDuration=short',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = VideosIdsDetails.fromJson(_result.data!);
+    final value = SearchedVideosDetails.fromJson(_result.data!);
     return value;
   }
 
@@ -86,7 +86,7 @@ class _VideosAPIs implements VideosAPIs {
     )
             .compose(
               _dio.options,
-              'search?part=snippet&maxResults=50&regionCode=EG',
+              'videos?part=contentDetails,statistics,snippet&maxResults=50&regionCode=EG',
               queryParameters: queryParameters,
               data: _data,
             )

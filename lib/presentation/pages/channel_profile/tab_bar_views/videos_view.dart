@@ -5,11 +5,19 @@ import '../../../../core/resources/color_manager.dart';
 import '../../../../core/resources/styles_manager.dart';
 import 'videos_horizontal_descriptions_list.dart';
 
-class TabBarVideosView extends StatelessWidget {
+class TabBarVideosView extends StatefulWidget {
   const TabBarVideosView({Key? key}) : super(key: key);
 
   @override
+  State<TabBarVideosView> createState() => _TabBarVideosViewState();
+}
+
+class _TabBarVideosViewState extends State<TabBarVideosView>
+    with
+        AutomaticKeepAliveClientMixin<TabBarVideosView>{
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     return ListView.builder(
         itemBuilder: (context, index) => Padding(
               padding: REdgeInsetsDirectional.only(start: 15, top: 15),
@@ -19,6 +27,9 @@ class TabBarVideosView extends StatelessWidget {
             ),
         itemCount: 20);
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
 
 class _FiltersButtons extends StatefulWidget {

@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:youtube/data/models/common/thumbnail_details/thumbnail_details.dart';
+import 'package:youtube/data/models/common/thumbnail_details/high_thumbnail_details.dart';
 
 part 'channel_details.g.dart';
 
@@ -53,7 +53,7 @@ class ChannelSnippet {
   String? description;
   String? customUrl;
   DateTime? publishedAt;
-  ChannelThumbnails? thumbnails;
+  HighThumbnails? thumbnails;
   String? country;
 
   ChannelSnippet(
@@ -83,15 +83,4 @@ class ChannelStatistics {
 
   factory ChannelStatistics.fromJson(Map<String, dynamic> json) =>
       _$ChannelStatisticsFromJson(json);
-}
-
-@JsonSerializable(includeIfNull: true, createToJson: false)
-class ChannelThumbnails {
-  ThumbnailDetails? medium;
-  ThumbnailDetails? high;
-
-  ChannelThumbnails(this.medium, this.high);
-
-  factory ChannelThumbnails.fromJson(Map<String, dynamic> json) =>
-      _$ChannelThumbnailsFromJson(json);
 }
