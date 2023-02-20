@@ -2,7 +2,7 @@ import 'package:youtube/core/functions/api_result.dart';
 import 'package:youtube/core/functions/network_exceptions.dart';
 
 import 'package:youtube/data/data_sources/remote/api/channel/channel_videos/channel_videos_apis.dart';
-import 'package:youtube/data/models/common/videos_ids/videos_ids.dart';
+import 'package:youtube/data/models/videos_details/searched_video_details/searched_video_details.dart';
 import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/domain/repositories/channel/channel_videos_repository.dart';
 import 'package:youtube/domain/repositories/videos_details_repository.dart';
@@ -18,7 +18,7 @@ class ChannelVideosDetailsRepoImpl implements ChannelVideosDetailsRepository {
   Future<ApiResult<VideosDetails>> getAllChannelShortVideos(
       {required String channelId}) async {
     try {
-      VideosIdsDetails shortVideosIds = await _channelVideosAPIs
+      SearchedVideosDetails shortVideosIds = await _channelVideosAPIs
           .getAllChannelShortVideosIds(channelId: channelId);
 
       VideosDetails videosWithSubChannelDetails = await _videosDetailsRepository
@@ -34,7 +34,7 @@ class ChannelVideosDetailsRepoImpl implements ChannelVideosDetailsRepository {
   Future<ApiResult<VideosDetails>> getAllChannelVideos(
       {required String channelId}) async {
     try {
-      VideosIdsDetails videosIds =
+      SearchedVideosDetails videosIds =
           await _channelVideosAPIs.getAllChannelVideosIds(channelId: channelId);
 
       VideosDetails videosWithSubChannelDetails = await _videosDetailsRepository
@@ -50,7 +50,7 @@ class ChannelVideosDetailsRepoImpl implements ChannelVideosDetailsRepository {
   Future<ApiResult<VideosDetails>> getAllPopularChannelShortVideos(
       {required String channelId}) async {
     try {
-      VideosIdsDetails shortVideosIds =
+      SearchedVideosDetails shortVideosIds =
           await _channelVideosAPIs.getAllChannelShortVideosIds(
               channelId: channelId, orderVideos: "viewCount");
 
@@ -67,7 +67,7 @@ class ChannelVideosDetailsRepoImpl implements ChannelVideosDetailsRepository {
   Future<ApiResult<VideosDetails>> getAllPopularChannelVideos(
       {required String channelId}) async {
     try {
-      VideosIdsDetails videosIds =
+      SearchedVideosDetails videosIds =
           await _channelVideosAPIs.getAllChannelVideosIds(
               channelId: channelId, orderVideos: "viewCount");
 
