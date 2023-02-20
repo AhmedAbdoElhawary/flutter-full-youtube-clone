@@ -60,10 +60,18 @@ class _TapBarView extends StatelessWidget {
   }
 }
 
-class _NowPopularVideos extends StatelessWidget {
+class _NowPopularVideos extends StatefulWidget {
   const _NowPopularVideos();
+
+  @override
+  State<_NowPopularVideos> createState() => _NowPopularVideosState();
+}
+
+class _NowPopularVideosState extends State<_NowPopularVideos>
+    with AutomaticKeepAliveClientMixin<_NowPopularVideos> {
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return BlocBuilder<PopularVideosCubit, PopularVideosState>(
       bloc: PopularVideosCubit.get(context)..getMostPopularVideos(),
       buildWhen: (previous, current) {
@@ -80,7 +88,8 @@ class _NowPopularVideos extends StatelessWidget {
           },
           error: (e) {
             return Center(
-              child: Text(NetworkExceptions.getErrorMessage(e.networkExceptions),
+              child: Text(
+                  NetworkExceptions.getErrorMessage(e.networkExceptions),
                   style: getNormalStyle(
                       color: ColorManager(context).black, fontSize: 15)),
             );
@@ -93,12 +102,23 @@ class _NowPopularVideos extends StatelessWidget {
       },
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
 
-class _MusicPopularVideos extends StatelessWidget {
+class _MusicPopularVideos extends StatefulWidget {
   const _MusicPopularVideos();
+
+  @override
+  State<_MusicPopularVideos> createState() => _MusicPopularVideosState();
+}
+
+class _MusicPopularVideosState extends State<_MusicPopularVideos>
+    with AutomaticKeepAliveClientMixin<_MusicPopularVideos> {
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return BlocBuilder<PopularVideosCubit, PopularVideosState>(
       bloc: PopularVideosCubit.get(context)..getMostPopularMusicVideos(),
       buildWhen: (previous, current) {
@@ -115,7 +135,8 @@ class _MusicPopularVideos extends StatelessWidget {
           },
           error: (e) {
             return Center(
-              child: Text(NetworkExceptions.getErrorMessage(e.networkExceptions),
+              child: Text(
+                  NetworkExceptions.getErrorMessage(e.networkExceptions),
                   style: getNormalStyle(
                       color: ColorManager(context).black, fontSize: 15)),
             );
@@ -128,12 +149,23 @@ class _MusicPopularVideos extends StatelessWidget {
       },
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
 
-class _GamingPopularVideos extends StatelessWidget {
+class _GamingPopularVideos extends StatefulWidget {
   const _GamingPopularVideos();
+
+  @override
+  State<_GamingPopularVideos> createState() => _GamingPopularVideosState();
+}
+
+class _GamingPopularVideosState extends State<_GamingPopularVideos>
+    with AutomaticKeepAliveClientMixin<_GamingPopularVideos> {
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return BlocBuilder<PopularVideosCubit, PopularVideosState>(
       bloc: PopularVideosCubit.get(context)..getMostPopularGamingVideos(),
       buildWhen: (previous, current) {
@@ -150,7 +182,8 @@ class _GamingPopularVideos extends StatelessWidget {
           },
           error: (e) {
             return Center(
-              child: Text(NetworkExceptions.getErrorMessage(e.networkExceptions),
+              child: Text(
+                  NetworkExceptions.getErrorMessage(e.networkExceptions),
                   style: getNormalStyle(
                       color: ColorManager(context).black, fontSize: 15)),
             );
@@ -163,12 +196,23 @@ class _GamingPopularVideos extends StatelessWidget {
       },
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
 
-class _MoviesPopularVideos extends StatelessWidget {
+class _MoviesPopularVideos extends StatefulWidget {
   const _MoviesPopularVideos();
+
+  @override
+  State<_MoviesPopularVideos> createState() => _MoviesPopularVideosState();
+}
+
+class _MoviesPopularVideosState extends State<_MoviesPopularVideos>
+    with AutomaticKeepAliveClientMixin<_MoviesPopularVideos> {
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return BlocBuilder<PopularVideosCubit, PopularVideosState>(
       bloc: PopularVideosCubit.get(context)..getMostPopularMoviesVideos(),
       buildWhen: (previous, current) {
@@ -185,7 +229,8 @@ class _MoviesPopularVideos extends StatelessWidget {
           },
           error: (e) {
             return Center(
-              child: Text(NetworkExceptions.getErrorMessage(e.networkExceptions),
+              child: Text(
+                  NetworkExceptions.getErrorMessage(e.networkExceptions),
                   style: getNormalStyle(
                       color: ColorManager(context).black, fontSize: 15)),
             );
@@ -198,6 +243,9 @@ class _MoviesPopularVideos extends StatelessWidget {
       },
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
 
 class _BuildMoviesList extends StatelessWidget {
