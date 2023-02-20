@@ -56,8 +56,7 @@ ChannelSnippet _$ChannelSnippetFromJson(Map<String, dynamic> json) =>
           : DateTime.parse(json['publishedAt'] as String),
       thumbnails: json['thumbnails'] == null
           ? null
-          : ChannelThumbnails.fromJson(
-              json['thumbnails'] as Map<String, dynamic>),
+          : HighThumbnails.fromJson(json['thumbnails'] as Map<String, dynamic>),
       country: json['country'] as String?,
     );
 
@@ -67,14 +66,4 @@ ChannelStatistics _$ChannelStatisticsFromJson(Map<String, dynamic> json) =>
       subscriberCount: json['subscriberCount'] as String?,
       hiddenSubscriberCount: json['hiddenSubscriberCount'] as bool?,
       videoCount: json['videoCount'] as String?,
-    );
-
-ChannelThumbnails _$ChannelThumbnailsFromJson(Map<String, dynamic> json) =>
-    ChannelThumbnails(
-      json['medium'] == null
-          ? null
-          : ThumbnailDetails.fromJson(json['medium'] as Map<String, dynamic>),
-      json['high'] == null
-          ? null
-          : ThumbnailDetails.fromJson(json['high'] as Map<String, dynamic>),
     );
