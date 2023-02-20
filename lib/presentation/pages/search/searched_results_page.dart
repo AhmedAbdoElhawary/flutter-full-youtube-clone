@@ -12,13 +12,20 @@ import '../../../core/resources/assets_manager.dart';
 import '../../../core/resources/color_manager.dart';
 import 'widgets/mic_button.dart';
 
-class SearchedResultsPage extends StatelessWidget {
+class SearchedResultsPage extends StatefulWidget {
   const SearchedResultsPage({required this.text, Key? key}) : super(key: key);
   final String text;
 
   @override
+  State<SearchedResultsPage> createState() => _SearchedResultsPageState();
+}
+
+class _SearchedResultsPageState extends State<SearchedResultsPage>
+    with AutomaticKeepAliveClientMixin<SearchedResultsPage> {
+  @override
   Widget build(BuildContext context) {
-    TextEditingController controller = TextEditingController(text: text);
+    super.build(context);
+    TextEditingController controller = TextEditingController(text: widget.text);
 
     return Scaffold(
       appBar: AppBar(
@@ -34,7 +41,7 @@ class SearchedResultsPage extends StatelessWidget {
         ],
       ),
       body: BlocBuilder<SearchCubit, SearchState>(
-        bloc: SearchCubit.get(context)..searchForThisSentence(text),
+        bloc: SearchCubit.get(context)..searchForThisSentence(widget.text),
         builder: (context, state) {
           return state.maybeWhen(
               searchForTheSentenceLoaded: (videosDetails) => ListView.builder(
@@ -45,13 +52,20 @@ class SearchedResultsPage extends StatelessWidget {
                       ),
                   itemCount: videosDetails.videoDetailsItem?.length),
               loading: () => const ThineCircularProgress(),
-              error: (e) => Center(
+              error: (e) {
+                print("====================================> ${e.error}");
+                return Center(
                   child: Text(
-                      NetworkExceptions.getErrorMessage(e.networkExceptions))),
+                      NetworkExceptions.getErrorMessage(e.networkExceptions)));
+              },
               orElse: () =>
                   const Center(child: Text("There is something wrong")));
         },
       ),
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }
