@@ -21,7 +21,7 @@ class _ChannelVideosAPIs implements ChannelVideosAPIs {
   String? baseUrl;
 
   @override
-  Future<VideosIdsDetails> getAllChannelVideosIds({
+  Future<SearchedVideosDetails> getAllChannelVideosIds({
     apiKey = apiKey,
     required channelId,
     orderVideos = "date",
@@ -34,25 +34,25 @@ class _ChannelVideosAPIs implements ChannelVideosAPIs {
     };
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<VideosIdsDetails>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<SearchedVideosDetails>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              'search?type=video&part=id&maxResults=50',
+              'search?part=snippet&type=video&maxResults=50',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = VideosIdsDetails.fromJson(_result.data!);
+    final value = SearchedVideosDetails.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<VideosIdsDetails> getAllChannelShortVideosIds({
+  Future<SearchedVideosDetails> getAllChannelShortVideosIds({
     apiKey = apiKey,
     required channelId,
     orderVideos = "date",
@@ -65,20 +65,20 @@ class _ChannelVideosAPIs implements ChannelVideosAPIs {
     };
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<VideosIdsDetails>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<SearchedVideosDetails>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              'search?type=video&part=id&maxResults=50&videoDuration=short',
+              'search?part=snippet&type=video&maxResults=50&videoDuration=short',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = VideosIdsDetails.fromJson(_result.data!);
+    final value = SearchedVideosDetails.fromJson(_result.data!);
     return value;
   }
 
