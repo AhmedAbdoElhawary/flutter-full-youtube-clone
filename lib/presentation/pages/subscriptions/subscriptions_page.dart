@@ -26,8 +26,8 @@ class SubscriptionsPage extends StatelessWidget {
               padding: REdgeInsets.only(bottom: 15),
               child: const RSizedBox(),
             ),
-          )),
-        ]),
+          ),),
+        ],),
       ),
     );
   }
