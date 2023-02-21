@@ -17,11 +17,20 @@ class ThumbnailImage extends StatefulWidget {
 }
 
 class _NetworkDisplayState extends State<ThumbnailImage> {
+  void cacheImage() {
+    String? url = widget.thumbnailsVideo?.max?.url;
+    if (url != null) precacheImage(NetworkImage(url), context);
+  }
+
+  @override
+  void didChangeDependencies() {
+    cacheImage();
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
     ThumbnailDetails? thumbnail = widget.thumbnailsVideo?.max;
-    print(
-        "=========================> ${widget.thumbnailsVideo?.high?.url}${widget.thumbnailsVideo?.max?.url}");
 
     return CachedNetworkImage(
       imageUrl: thumbnail?.url ?? "",
