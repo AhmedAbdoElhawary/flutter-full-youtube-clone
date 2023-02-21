@@ -29,7 +29,10 @@ ChannelDetailsItem _$ChannelDetailsItemFromJson(Map<String, dynamic> json) =>
           ? null
           : ChannelStatistics.fromJson(
               json['statistics'] as Map<String, dynamic>),
-    );
+    )..brandingSettings = json['brandingSettings'] == null
+        ? null
+        : BrandingSettings.fromJson(
+            json['brandingSettings'] as Map<String, dynamic>);
 
 ChannelContentDetails _$ChannelContentDetailsFromJson(
         Map<String, dynamic> json) =>

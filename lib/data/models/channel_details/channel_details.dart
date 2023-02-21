@@ -19,7 +19,7 @@ class ChannelDetailsItem {
   ChannelSnippet? snippet;
   ChannelContentDetails? contentDetails;
   ChannelStatistics? statistics;
-
+  BrandingSettings? brandingSettings;
   ChannelDetailsItem(
       {this.id, this.snippet, this.contentDetails, this.statistics});
   factory ChannelDetailsItem.fromJson(Map<String, dynamic> json) =>
@@ -83,4 +83,17 @@ class ChannelStatistics {
 
   factory ChannelStatistics.fromJson(Map<String, dynamic> json) =>
       _$ChannelStatisticsFromJson(json);
+}
+
+class BrandingSettings {
+  String? unsubscribedTrailer;
+  String? channelCover;
+  BrandingSettings({this.unsubscribedTrailer, this.channelCover});
+
+  factory BrandingSettings.fromJson(Map<String, dynamic> json) {
+    return BrandingSettings(
+      unsubscribedTrailer: json['channel']['unsubscribedTrailer'] as String?,
+      channelCover: json['image']['bannerExternalUrl'] as String?,
+    );
+  }
 }
