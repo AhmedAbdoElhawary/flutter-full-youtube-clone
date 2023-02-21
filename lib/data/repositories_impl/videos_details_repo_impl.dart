@@ -2,7 +2,7 @@ import 'package:youtube/core/functions/api_result.dart';
 import 'package:youtube/core/functions/network_exceptions.dart';
 
 import 'package:youtube/data/data_sources/remote/api/videos/videos_apis.dart';
-import 'package:youtube/data/models/videos_details/searched_video_details/searched_video_details.dart';
+import 'package:youtube/data/models/searched_video_details/searched_video_details.dart';
 import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/domain/repositories/channel/channel_details_repository.dart';
 import 'package:youtube/domain/repositories/videos_details_repository.dart';
@@ -71,16 +71,13 @@ class VideosDetailsRepoImpl implements VideosDetailsRepository {
         }
         ids += ",$id";
       }
-      print("----------------3333333333> $ids");
 
       VideosDetails videos =
           await _videosAPIs.getVideosOfThoseIds(videosIds: ids);
-      print("----------------444444444444444> ${videos.videoDetailsItem?[0].id}");
 
       VideosDetails videosWithSubChannelDetails =
           await _channelDetailsRepository.getSubChannelsDetails(
               videosDetails: videos);
-      print("----------------5555555555555555555> ${videosWithSubChannelDetails.videoDetailsItem?[0].id}");
 
       return videosWithSubChannelDetails;
     } catch (e) {
