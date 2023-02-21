@@ -48,7 +48,7 @@ class ChannelVideosCubit extends Cubit<ChannelVideosState> {
 
     shortPopularVideosDetails.when(
         success: (shortVideoDetails) =>
-            emit(ChannelVideosState.popularVideosLoaded(shortVideoDetails)),
+            emit(ChannelVideosState.shortPopularVideosLoaded(shortVideoDetails)),
         failure: (exception) => emit(ChannelVideosState.error(exception)));
   }
 
@@ -72,7 +72,7 @@ class ChannelVideosCubit extends Cubit<ChannelVideosState> {
 
     videosDetails.when(
         success: (videoDetails) =>
-            emit(ChannelVideosState.popularVideosLoaded(videoDetails)),
+            emit(ChannelVideosState.channelVideosLoaded(videoDetails)),
         failure: (exception) => emit(ChannelVideosState.error(exception)));
   }
 }
