@@ -58,6 +58,7 @@ class ChannelDetailsRepoImpl implements ChannelDetailsRepository {
         String channelId = item.snippet?.channelId ?? "";
         ChannelSubDetails subChannelDetails =
             await _channelAPIs.getSubChannelInfo(channelId: channelId);
+
         item.snippet?.channelSubDetails = subChannelDetails;
       }
       return videosDetails;

@@ -13,11 +13,12 @@ class VideosDetails {
   String? prevPageToken;
   PageInfo? pageInfo;
 
-  VideosDetails(
-      {this.pageInfo,
-      this.videoDetailsItem,
-      this.nextPageToken,
-      this.prevPageToken});
+  VideosDetails({
+    this.pageInfo,
+    this.videoDetailsItem,
+    this.nextPageToken,
+    this.prevPageToken,
+  });
 
   factory VideosDetails.fromJson(Map<String, dynamic> json) =>
       _$VideosDetailsFromJson(json);

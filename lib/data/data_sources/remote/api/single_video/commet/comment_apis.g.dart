@@ -40,7 +40,7 @@ class _CommentAPIs implements CommentAPIs {
     )
             .compose(
               _dio.options,
-              'commentThreads?part=snippet&maxResults=100',
+              'commentThreads?part=snippet&maxResults=2',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -98,7 +98,7 @@ class _CommentAPIs implements CommentAPIs {
     )
             .compose(
               _dio.options,
-              'commentThreads?part=replies&maxResults=100',
+              'commentThreads?part=replies&maxResults=2',
               queryParameters: queryParameters,
               data: _data,
             )

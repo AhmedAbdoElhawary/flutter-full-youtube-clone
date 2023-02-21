@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:youtube/data/models/channel_details/channel_details.dart';
+import 'package:youtube/presentation/pages/channel_profile/tab_bar_views/about_view.dart';
 
 import '../../../core/resources/color_manager.dart';
 import '../../../core/resources/styles_manager.dart';
@@ -9,10 +11,11 @@ import 'tab_bar_views/videos_view.dart';
 class ProfilePage extends StatelessWidget {
   final bool isThatMyPersonalId;
   final Widget widgetsAboveBio;
-
+  final ChannelDetailsItem? channelDetails;
   const ProfilePage(
       {required this.widgetsAboveBio,
       required this.isThatMyPersonalId,
+      required this.channelDetails,
       Key? key})
       : super(key: key);
 
@@ -31,7 +34,7 @@ class ProfilePage extends StatelessWidget {
           },
           body: Column(
               mainAxisSize: MainAxisSize.min,
-              children: const [_TabBarIcons(), _TapBarView()]),
+              children: [ const _TabBarIcons(), _TapBarView(channelDetails)]),
         ),
       ),
     );
@@ -39,20 +42,22 @@ class ProfilePage extends StatelessWidget {
 }
 
 class _TapBarView extends StatelessWidget {
-  const _TapBarView();
+  const _TapBarView(this.channelDetails);
+  final ChannelDetailsItem? channelDetails;
 
   @override
   Widget build(BuildContext context) {
-    return const Expanded(
+    return  Expanded(
       child: TabBarView(
+
         children: [
-          TabBarHomeView(),
-          TabBarVideosView(),
-          Center(child: Text("SHORTS")),
-          Center(child: Text("PLAYLISTS")),
-          Center(child: Text("COMMUNITY")),
-          Center(child: Text("CHANNELS")),
-          Center(child: Text("ABOUT")),
+          TabBarHomeView(channelDetails),
+           TabBarVideosView(channelDetails),
+          const Center(child: Text("SHORTS")),
+          const Center(child: Text("PLAYLISTS")),
+          const Center(child: Text("COMMUNITY")),
+          const Center(child: Text("CHANNELS")),
+          TabBarAboutView(channelDetails),
         ],
       ),
     );
@@ -69,6 +74,7 @@ class _TabBarIcons extends StatelessWidget {
           border:
               Border(bottom: BorderSide(color: ColorManager(context).grey2))),
       child: TabBar(
+
         unselectedLabelColor: ColorManager(context).grey7,
         labelColor: Theme.of(context).focusColor,
         indicatorSize: TabBarIndicatorSize.tab,

@@ -40,7 +40,7 @@ class _SearchAPIs implements SearchAPIs {
     )
             .compose(
               _dio.options,
-              'search?part=snippet',
+              'search?part=snippet&type=video',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -69,7 +69,7 @@ class _SearchAPIs implements SearchAPIs {
     )
             .compose(
               _dio.options,
-              'search?part=snippet&maxResults=100&type=video',
+              'search?part=snippet&maxResults=2&type=video',
               queryParameters: queryParameters,
               data: _data,
             )

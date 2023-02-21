@@ -1,25 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:youtube/data/models/common/thumbnail_details/max_thumbnail_details.dart';
-import 'package:youtube/data/models/common/thumbnail_details/thumbnail_details.dart';
 import '../../core/resources/color_manager.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
-class ThumbnailImage extends StatefulWidget {
-  const ThumbnailImage(this.thumbnailsVideo,
-      {this.width = double.infinity, this.height = 185, Key? key})
+class CustomNetworkDisplay extends StatefulWidget {
+  const CustomNetworkDisplay(
+      {required this.imageUrl,this.width = double.infinity, this.height = 90, Key? key})
       : super(key: key);
-  final MaxThumbnails? thumbnailsVideo;
+  final String imageUrl;
   final double height;
   final double width;
   @override
-  State<ThumbnailImage> createState() => _NetworkDisplayState();
+  State<CustomNetworkDisplay> createState() => _CustomNetworkDisplayState();
 }
 
-class _NetworkDisplayState extends State<ThumbnailImage> {
+class _CustomNetworkDisplayState extends State<CustomNetworkDisplay> {
   void cacheImage() {
-    String? url = widget.thumbnailsVideo?.max?.url;
-    if (url != null) precacheImage(NetworkImage(url), context);
+     precacheImage(NetworkImage(widget.imageUrl), context);
   }
 
   @override
@@ -30,15 +27,12 @@ class _NetworkDisplayState extends State<ThumbnailImage> {
 
   @override
   Widget build(BuildContext context) {
-    ThumbnailDetails? thumbnail = widget.thumbnailsVideo?.max;
 
     return CachedNetworkImage(
-      imageUrl: thumbnail?.url ?? "",
+      imageUrl: widget.imageUrl,
       fit: BoxFit.cover,
       width: widget.width.w,
       height: widget.height.h,
-      memCacheHeight: thumbnail?.height,
-      memCacheWidth: thumbnail?.width,
       placeholder: (context, url) => Container(
         color: ColorManager(context).grey1,
         width: widget.width.w,

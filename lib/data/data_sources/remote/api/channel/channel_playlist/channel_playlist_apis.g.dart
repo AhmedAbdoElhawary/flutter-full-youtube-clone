@@ -40,7 +40,7 @@ class _ChannelPlayListAPIs implements ChannelPlayListAPIs {
     )
             .compose(
               _dio.options,
-              'playlists?part=snippet%2CcontentDetails&maxResults=50',
+              'playlists?part=snippet%2CcontentDetails&maxResults=20',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -69,7 +69,7 @@ class _ChannelPlayListAPIs implements ChannelPlayListAPIs {
     )
             .compose(
               _dio.options,
-              'playlistItems?part=snippet,contentDetails&maxResults=50',
+              'playlistItems?part=snippet,contentDetails&maxResults=20',
               queryParameters: queryParameters,
               data: _data,
             )

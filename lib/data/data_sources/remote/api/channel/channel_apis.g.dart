@@ -69,7 +69,7 @@ class _ChannelAPIs implements ChannelAPIs {
     )
             .compose(
               _dio.options,
-              'subscriptions?part=snippet&mine=true&maxResults=100',
+              'subscriptions?part=snippet&mine=true&maxResults=2',
               queryParameters: queryParameters,
               data: _data,
             )

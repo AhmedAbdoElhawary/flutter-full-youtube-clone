@@ -1,35 +1,114 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:youtube/core/functions/network_exceptions.dart';
+import 'package:youtube/data/models/channel_details/channel_details.dart';
+import 'package:youtube/data/models/videos_details/videos_details.dart';
+import 'package:youtube/presentation/common_widgets/custom_circle_progress.dart';
+import 'package:youtube/presentation/cubit/channel/channel_videos/channel_videos_cubit.dart';
+import 'package:youtube/presentation/pages/channel_profile/channel_profile_logic.dart';
 
 import '../../../../core/resources/color_manager.dart';
 import '../../../../core/resources/styles_manager.dart';
 import 'videos_horizontal_descriptions_list.dart';
 
 class TabBarVideosView extends StatefulWidget {
-  const TabBarVideosView({Key? key}) : super(key: key);
+  const TabBarVideosView(this.channelDetails, {Key? key}) : super(key: key);
+  final ChannelDetailsItem? channelDetails;
 
   @override
   State<TabBarVideosView> createState() => _TabBarVideosViewState();
 }
 
 class _TabBarVideosViewState extends State<TabBarVideosView>
-    with
-        AutomaticKeepAliveClientMixin<TabBarVideosView>{
+    with AutomaticKeepAliveClientMixin<TabBarVideosView> {
+  final logic = Get.find<ChannelProfileLogic>(tag: "1");
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
+    return Obx(() {
+      return logic.getRecentlyVideosSelected
+          ? _NewestVideos(widget)
+          : _PopularVideos(widget);
+    });
+  }
+
+  @override
+  bool get wantKeepAlive => true;
+}
+
+class _PopularVideos extends StatelessWidget {
+  const _PopularVideos(this.widget);
+
+  final TabBarVideosView widget;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ChannelVideosCubit, ChannelVideosState>(
+      bloc: ChannelVideosCubit.get(context)
+        ..getPopularChannelVideos(widget.channelDetails?.id ?? ""),
+      buildWhen: (previous, current) {
+        return previous != current &&
+            (current is PopularVideosLoaded || current is ChannelVideosLoaded);
+      },
+      builder: (context, state) {
+        return state.maybeWhen(
+            popularVideosLoaded: (videoDetails) => _VideosList(videoDetails),
+            error: (error) => Center(
+                child: Text(NetworkExceptions.getErrorMessage(
+                    error.networkExceptions))),
+            loading: () => const ThineCircularProgress(),
+            orElse: () =>
+                const Center(child: Text("there is something wrong")));
+      },
+    );
+  }
+}
+
+class _NewestVideos extends StatelessWidget {
+  const _NewestVideos(this.widget);
+
+  final TabBarVideosView widget;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ChannelVideosCubit, ChannelVideosState>(
+      bloc: ChannelVideosCubit.get(context)
+        ..getChannelVideos(widget.channelDetails?.id ?? ""),
+      buildWhen: (previous, current) =>
+          previous != current &&
+          (current is PopularVideosLoaded || current is ChannelVideosLoaded),
+      builder: (context, state) {
+        return state.maybeWhen(
+            channelVideosLoaded: (videoDetails) => _VideosList(videoDetails),
+            error: (error) => Center(
+                child: Text(NetworkExceptions.getErrorMessage(
+                    error.networkExceptions))),
+            loading: () => const ThineCircularProgress(),
+            orElse: () =>
+                const Center(child: Text("there is something wrong")));
+      },
+    );
+  }
+}
+
+class _VideosList extends StatelessWidget {
+  const _VideosList(this.videoDetails);
+  final VideosDetails videoDetails;
+  @override
+  Widget build(BuildContext context) {
     return ListView.builder(
         itemBuilder: (context, index) => Padding(
               padding: REdgeInsetsDirectional.only(start: 15, top: 15),
               child: index == 0
                   ? const _FiltersButtons()
-                  : const VideoHorizontalDescriptionsList(),
+                  : VideoHorizontalDescriptionsList(
+                      videoDetails.videoDetailsItem![index]),
             ),
-        itemCount: 20);
+        itemCount: videoDetails.videoDetailsItem?.length ?? 0);
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }
 
 class _FiltersButtons extends StatefulWidget {
@@ -40,23 +119,25 @@ class _FiltersButtons extends StatefulWidget {
 }
 
 class _FiltersButtonsState extends State<_FiltersButtons> {
-  bool recentlyUploadedSelected = true;
+  final logic = Get.find<ChannelProfileLogic>(tag: "1");
+
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        GestureDetector(
-            onTap: () => setState(() => recentlyUploadedSelected = true),
-            child: _RoundedFilteredButton(
-                text: "Recently uploaded",
-                isSelected: recentlyUploadedSelected)),
-        const RSizedBox(width: 10),
-        GestureDetector(
-            onTap: () => setState(() => recentlyUploadedSelected = false),
-            child: _RoundedFilteredButton(
-                text: "Popular", isSelected: !recentlyUploadedSelected)),
-      ],
-    );
+    return Obx(() => Row(
+          children: [
+            GestureDetector(
+                onTap: () => logic.isRecentlyVideosSelected = true,
+                child: _RoundedFilteredButton(
+                    text: "Recently uploaded",
+                    isSelected: logic.getRecentlyVideosSelected)),
+            const RSizedBox(width: 10),
+            GestureDetector(
+                onTap: () => logic.isRecentlyVideosSelected = false,
+                child: _RoundedFilteredButton(
+                    text: "Popular",
+                    isSelected: !logic.getRecentlyVideosSelected)),
+          ],
+        ));
   }
 }
 
@@ -69,6 +150,7 @@ class _RoundedFilteredButton extends StatelessWidget {
   final bool isSelected;
 
   final String text;
+
   @override
   Widget build(BuildContext context) {
     return Container(

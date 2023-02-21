@@ -10,13 +10,13 @@ part 'channel_playlist_apis.g.dart';
 abstract class ChannelPlayListAPIs {
   factory ChannelPlayListAPIs(Dio dio, {String baseUrl}) = _ChannelPlayListAPIs;
 
-  @GET("playlists?part=snippet%2CcontentDetails&maxResults=50")
+  @GET("playlists?part=snippet%2CcontentDetails&maxResults=20")
   Future<PlayLists> getChannelPlayLists({
     @Query("key") final String apiKey = apiKey,
     @Query("channelId") required String channelId,
   });
 
-  @GET("playlistItems?part=snippet,contentDetails&maxResults=50")
+  @GET("playlistItems?part=snippet,contentDetails&maxResults=20")
   Future<PlayListVideos> getChannelPlayListItem({
     @Query("key") final String apiKey = apiKey,
     @Query("playlistId") required String playlistId,

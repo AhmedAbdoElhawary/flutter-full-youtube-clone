@@ -11,7 +11,7 @@ part 'comment_apis.g.dart';
 abstract class CommentAPIs {
   factory CommentAPIs(Dio dio, {String baseUrl}) = _CommentAPIs;
 
-  @GET("commentThreads?part=snippet&maxResults=100")
+  @GET("commentThreads?part=snippet&maxResults=2")
   Future<CommentDetails> getAllComments({
     @Query("key") final String apiKey = apiKey,
     @Query("videoId") required String videoId,
@@ -23,7 +23,7 @@ abstract class CommentAPIs {
     @Query("videoId") required String videoId,
   });
 
-  @GET("commentThreads?part=replies&maxResults=100")
+  @GET("commentThreads?part=replies&maxResults=2")
   Future<ReplyDetails> getRepliesForThisComment({
     @Query("key") final String apiKey = apiKey,
     @Query("id") required String commentId,
