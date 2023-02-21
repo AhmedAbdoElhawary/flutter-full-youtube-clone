@@ -2,7 +2,7 @@ import 'package:youtube/core/functions/api_result.dart';
 import 'package:youtube/core/functions/network_exceptions.dart';
 
 import 'package:youtube/data/data_sources/remote/api/channel/channel_videos/channel_videos_apis.dart';
-import 'package:youtube/data/models/videos_details/searched_video_details/searched_video_details.dart';
+import 'package:youtube/data/models/searched_video_details/searched_video_details.dart';
 import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/domain/repositories/channel/channel_videos_repository.dart';
 import 'package:youtube/domain/repositories/videos_details_repository.dart';
