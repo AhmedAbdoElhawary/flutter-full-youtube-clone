@@ -16,7 +16,7 @@ abstract class ChannelAPIs {
     @Query("id") required String channelId,
   });
 
-  @GET("subscriptions?part=snippet&mine=true&maxResults=100")
+  @GET("subscriptions?part=snippet&mine=true&maxResults=2")
   Future<MySubscriptionsDetails> getMySubscriptionsChannels({
     @Query("key") final String apiKey = apiKey,
     @Query("access_token") required String accessToken,
