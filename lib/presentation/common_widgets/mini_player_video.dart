@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:miniplayer/miniplayer.dart';
-import 'package:pod_player/pod_player.dart';
 import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/core/resources/styles_manager.dart';
-import 'package:youtube/data/models/comment_details/comment_details.dart';
 import 'package:youtube/data/models/common/base_comment_snippet/sub_comment_snippet.dart';
+import 'package:youtube/data/models/videos_details/video_details_extension.dart';
+import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/presentation/common_widgets/circular_profile_image.dart';
 import 'package:youtube/presentation/cubit/single_video/single_video_cubit.dart';
+import 'package:youtube/presentation/custom_packages/custom_mini_player/custom_mini_player.dart';
+import 'package:youtube/presentation/custom_packages/pod_player/src/controllers/pod_player_controller.dart';
+import 'package:youtube/presentation/custom_packages/pod_player/src/models/play_video_from.dart';
+import 'package:youtube/presentation/custom_packages/pod_player/src/pod_player.dart';
 import 'package:youtube/presentation/pages/home/logic/home_page_logic.dart';
 import 'package:youtube/presentation/common_widgets/subscribe_button.dart';
 
@@ -21,16 +24,17 @@ class MiniPlayerVideo extends StatefulWidget {
 }
 
 class _MiniPlayerVideoState extends State<MiniPlayerVideo> {
-  double minHeight = 50.h;
+  final double minHeight = 50.h;
   final _miniVideoViewLogic = Get.find<MiniVideoViewLogic>(tag: "1");
-
   @override
   Widget build(BuildContext context) {
     MediaQueryData mediaQuery = MediaQuery.of(context);
     double height = mediaQuery.size.height - 70.h;
+    final ValueNotifier<double> playerExpandProgress = ValueNotifier(height);
 
     return SafeArea(
-      child: Miniplayer(
+      child: CustomMiniPlayer(
+        valueNotifier: playerExpandProgress,
         minHeight: minHeight,
         maxHeight: height,
         onDismissed: () {
@@ -119,6 +123,8 @@ class _FirstCommentPreviewButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final miniVideoViewLogic = Get.find<MiniVideoViewLogic>(tag: "1");
+    String commentCount =
+        miniVideoViewLogic.selectedVideoDetails?.getVideoCommentsCount() ?? "0";
     return Padding(
       padding: REdgeInsets.symmetric(horizontal: 10),
       child: Column(
@@ -127,7 +133,7 @@ class _FirstCommentPreviewButton extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                miniVideoViewLogic.commentCount,
+                "Comments $commentCount",
                 style: getNormalStyle(
                     color: ColorManager(context).black, fontSize: 13),
               ),
@@ -157,7 +163,9 @@ class _FirstComment extends StatelessWidget {
         builder: (context, state) {
           return state.maybeWhen(
               firstCommentLoaded: (firstCommentDetails) {
-                CommentDetails;
+                if (firstCommentDetails.items?.isEmpty ?? true) {
+                  return const SizedBox();
+                }
                 SubCommentSnippet? snippet = firstCommentDetails
                     .items?[0]?.snippet?.topLevelComment?.snippet;
 
@@ -183,7 +191,7 @@ class _FirstCommentBody extends StatelessWidget {
       children: [
         CircularProfileImage(
             imageUrl: snippet?.authorProfileImageUrl ?? "",
-            channelId: snippet?.authorChannelId?.value??""),
+            channelId: snippet?.authorChannelId?.value ?? ""),
         const RSizedBox(width: 10),
         Flexible(
           child: Text(
@@ -204,38 +212,44 @@ class _CircleNameSubscribersWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<MiniVideoViewLogic>(tag: "1");
-
     return Padding(
       padding: REdgeInsets.symmetric(horizontal: 10, vertical: 2),
-      child: Row(
-        children: [
-          CircleAvatar(radius: 17.r, backgroundColor: ColorManager.teal),
-          const RSizedBox(width: 10),
-          Obx(
-            () => Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    controller.channelTitle,
-                    overflow: TextOverflow.ellipsis,
-                    style: getMediumStyle(
-                        color: ColorManager(context).black, fontSize: 15),
-                  ),
-                  const RSizedBox(height: 5),
-                  Text(
-                    controller.channelSubscribeCount,
-                    overflow: TextOverflow.ellipsis,
-                    style: getNormalStyle(
-                        color: ColorManager(context).grey, fontSize: 13),
-                  ),
-                ],
+      child: Obx(
+        () {
+          final logic = Get.find<MiniVideoViewLogic>(tag: "1");
+          VideoDetailsItem? videoDetails = logic.selectedVideoDetails;
+
+          return Row(
+            children: [
+              CircularProfileImage(
+                imageUrl: videoDetails?.getChannelProfileImageUrl() ?? "",
+                radius: 17.r,
               ),
-            ),
-          ),
-          const SubscribeButton(),
-        ],
+              const RSizedBox(width: 10),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      videoDetails?.getChannelName() ?? "",
+                      overflow: TextOverflow.ellipsis,
+                      style: getMediumStyle(
+                          color: ColorManager(context).black, fontSize: 15),
+                    ),
+                    const RSizedBox(height: 5),
+                    Text(
+                      "${videoDetails?.getSubscribersCount() ?? " "} subscribers",
+                      overflow: TextOverflow.ellipsis,
+                      style: getNormalStyle(
+                          color: ColorManager(context).grey, fontSize: 13),
+                    ),
+                  ],
+                ),
+              ),
+              const SubscribeButton(),
+            ],
+          );
+        },
       ),
     );
   }
@@ -279,8 +293,6 @@ class _VideoTitleSubNumbersTexts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<MiniVideoViewLogic>(tag: "1");
-
     return Padding(
       padding: REdgeInsets.symmetric(horizontal: 10),
       child: Row(
@@ -288,27 +300,31 @@ class _VideoTitleSubNumbersTexts extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Obx(
-            () => Flexible(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    controller.videoTitle,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 3,
-                    style: getNormalStyle(
-                        color: ColorManager(context).black, fontSize: 15),
-                  ),
-                  const RSizedBox(height: 8),
-                  Text(
-                    "${controller.viewCount} . ${controller.dateOfVideo}",
-                    overflow: TextOverflow.ellipsis,
-                    style: getNormalStyle(
-                        color: ColorManager(context).grey7, fontSize: 13),
-                  ),
-                ],
-              ),
-            ),
+            () {
+              final logic = Get.find<MiniVideoViewLogic>(tag: "1");
+              VideoDetailsItem? videoDetails = logic.selectedVideoDetails;
+              return Flexible(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      videoDetails?.getVideoTitle() ?? "",
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 3,
+                      style: getNormalStyle(
+                          color: ColorManager(context).black, fontSize: 15),
+                    ),
+                    const RSizedBox(height: 8),
+                    Text(
+                      "${videoDetails?.getVideoViewsCount()} views . ${videoDetails?.getVideoPublishedTime()} ago",
+                      overflow: TextOverflow.ellipsis,
+                      style: getNormalStyle(
+                          color: ColorManager(context).grey7, fontSize: 13),
+                    ),
+                  ],
+                ),
+              );
+            },
           ),
           const Icon(Icons.keyboard_arrow_down_outlined),
         ],
@@ -350,22 +366,21 @@ class _MiniVideoView extends StatelessWidget {
                     final miniVideoViewLogic =
                         Get.find<MiniVideoViewLogic>(tag: "1");
                     miniVideoViewLogic.selectedVideoDetails = null;
-                    // context
-                    //     .read(selectedVideoProvider)
-                    //     .state = null;
                   },
                 ),
               ),
             ],
           ),
         ),
-        const LinearProgressIndicator(
-          value: 0.4,
-          minHeight: 2,
-          valueColor: AlwaysStoppedAnimation<Color>(
-            Colors.red,
-          ),
-        ),
+
+        /// todo
+        // const LinearProgressIndicator(
+        //   value: 0.4,
+        //   minHeight: 2,
+        //   valueColor: AlwaysStoppedAnimation<Color>(
+        //     Colors.red,
+        //   ),
+        // ),
       ],
     );
   }
@@ -409,7 +424,11 @@ class _VideoOfMiniDisplayState extends State<_VideoOfMiniDisplay> {
         color: ColorManager(context).grey1,
         child: videoId.isEmpty
             ? null
-            : PodVideoPlayer(controller: videoController),
+            : CustomPodVideoPlayer(
+              controller: videoController,
+              matchFrameAspectRatioToVideo: true,
+              matchVideoAspectRatioToFrame: true,
+            ),
       ),
     );
   }
@@ -422,35 +441,38 @@ class VideoTitleSubTitleTexts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<MiniVideoViewLogic>(tag: "1");
-
     return Expanded(
       flex: 3,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Obx(
-          () => Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Flexible(
-                child: Text(
-                  controller.videoTitle,
-                  overflow: TextOverflow.ellipsis,
-                  style: getNormalStyle(
-                      color: ColorManager(context).black, fontSize: 12),
+          () {
+            final logic = Get.find<MiniVideoViewLogic>(tag: "1");
+            VideoDetailsItem? videoDetails = logic.selectedVideoDetails;
+
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Flexible(
+                  child: Text(
+                    videoDetails?.getVideoTitle() ?? "",
+                    overflow: TextOverflow.ellipsis,
+                    style: getNormalStyle(
+                        color: ColorManager(context).black, fontSize: 12),
+                  ),
                 ),
-              ),
-              Flexible(
-                child: Text(
-                  controller.channelTitle,
-                  overflow: TextOverflow.ellipsis,
-                  style: getNormalStyle(
-                      color: ColorManager(context).grey7, fontSize: 12),
+                Flexible(
+                  child: Text(
+                    videoDetails?.getChannelName() ?? "",
+                    overflow: TextOverflow.ellipsis,
+                    style: getNormalStyle(
+                        color: ColorManager(context).grey7, fontSize: 12),
+                  ),
                 ),
-              ),
-            ],
-          ),
+              ],
+            );
+          },
         ),
       ),
     );
