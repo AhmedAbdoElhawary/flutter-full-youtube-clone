@@ -39,16 +39,20 @@ dependencies:
   flutter_screenutil: ^5.6.0
   flutter_svg: ^2.0.0+1
   fluttertoast: ^8.1.3
-  miniplayer: ^1.0.1
   readmore: ^2.2.0
   easy_localization: ^3.0.1
   google_sign_in: ^5.4.4
   cached_network_image: ^3.2.3
-  pod_player: ^0.1.0
 
   #  youtube_player_flutter:
 #    path: D:\flutter_projects\main\youtube_player_flutter-master\youtube_player_flutter-master\packages\youtube_player_flutter
 #
+  lottie: ^1.3.0
+  video_player: ^2.4.5
+  http: ^0.13.4
+  wakelock: ^0.6.1+2
+  universal_html: ^2.0.8
+  youtube_explode_dart: ^1.11.0
 
 
   build_runner: ^2.3.0
@@ -67,7 +71,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  very_good_analysis: ^2.4.0
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
