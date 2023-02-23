@@ -13,8 +13,12 @@ class ShortsLogic extends GetxController {
 
   set stopVideo(bool value) {
     _stopVideo.value = value;
-    if (controller.value.isInitialized) {
-      value ? controller.pause() : controller.play();
+    try {
+      if (controller.value.isInitialized) {
+        value ? controller.pause() : controller.play();
+      }
+    } catch (e) {
+      rethrow;
     }
   }
 
