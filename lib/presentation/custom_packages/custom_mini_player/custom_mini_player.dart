@@ -5,7 +5,6 @@ import 'package:youtube/presentation/custom_packages/custom_mini_player/utils.da
 
 import 'mini_player_will_pop_scope.dart';
 
-
 ///Type definition for the builder function
 typedef MiniPlayerBuilder = Widget Function(double height, double percentage);
 
@@ -33,10 +32,6 @@ class CustomMiniPlayer extends StatefulWidget {
   ///Option to set the animation duration
   final Duration duration;
 
-  ///Allows you to use a global ValueNotifier with the current progress.
-  ///This can be used to hide the BottomNavigationBar.
-  final ValueNotifier<double>? valueNotifier;
-
   ///Deprecated
   @Deprecated(
       "Migrate onDismiss to onDismissed as onDismiss will be used differently in a future version.")
@@ -56,7 +51,6 @@ class CustomMiniPlayer extends StatefulWidget {
     this.curve = Curves.easeOut,
     this.elevation = 0,
     this.backgroundColor = const Color(0x70000000),
-    this.valueNotifier,
     this.duration = const Duration(milliseconds: 300),
     this.onDismiss,
     this.onDismissed,
@@ -67,8 +61,10 @@ class CustomMiniPlayer extends StatefulWidget {
   CustomMiniPlayerState createState() => CustomMiniPlayerState();
 }
 
-class CustomMiniPlayerState extends State<CustomMiniPlayer> with TickerProviderStateMixin {
+class CustomMiniPlayerState extends State<CustomMiniPlayer>
+    with TickerProviderStateMixin {
   late ValueNotifier<double> heightNotifier;
+  late ValueNotifier<double> percentageOfHeight;
   ValueNotifier<double> dragDownPercentage = ValueNotifier(0);
 
   ///Temporary variable as long as onDismiss is deprecated. Will be removed in a future version.
@@ -88,7 +84,7 @@ class CustomMiniPlayerState extends State<CustomMiniPlayer> with TickerProviderS
   int updateCount = 0;
 
   final StreamController<double> _heightController =
-  StreamController<double>.broadcast();
+      StreamController<double>.broadcast();
   AnimationController? _animationController;
 
   void _statusListener(AnimationStatus status) {
@@ -107,12 +103,9 @@ class CustomMiniPlayerState extends State<CustomMiniPlayer> with TickerProviderS
 
   @override
   void initState() {
-    if (widget.valueNotifier == null) {
-      heightNotifier = ValueNotifier(widget.maxHeight);
-    } else {
-      heightNotifier = widget.valueNotifier!;
-    }
-
+    heightNotifier = ValueNotifier(widget.maxHeight);
+    percentageOfHeight.value = (heightNotifier.value - widget.minHeight) /
+        (widget.maxHeight - widget.minHeight);
     _resetAnimationController();
 
     _dragHeight = heightNotifier.value;
@@ -153,70 +146,75 @@ class CustomMiniPlayerState extends State<CustomMiniPlayer> with TickerProviderS
         return true;
       },
       child: ValueListenableBuilder(
-        valueListenable: heightNotifier,
-        builder: (BuildContext context, double height, Widget? _) {
-          double percentage = ((height - widget.minHeight)) /
-              (widget.maxHeight - widget.minHeight);
-
-          return Stack(
-            alignment: Alignment.bottomCenter,
-            children: [
-              if (percentage > 0)
-                Opacity(
-                  opacity: borderDouble(
-                      minRange: 0.0, maxRange: 1.0, value: percentage),
-                  child: Container(color: widget.backgroundColor),
-                ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: SizedBox(
-                  height: height,
-                  child: GestureDetector(
-                    onPanStart: onPanStart,
-                    onPanEnd: onPanEnd,
-                    onPanUpdate: onPanUpdate,
-                    child: ValueListenableBuilder(
-                      valueListenable: dragDownPercentage,
-                      builder:
-                          (BuildContext context, double value, Widget? child) {
-                        if (value == 0) return child!;
-
-                        return Opacity(
-                          opacity: borderDouble(
-                              minRange: 0.0,
-                              maxRange: 1.0,
-                              value: 1 - value * 0.8),
-                          child: Transform.translate(
-                            offset: Offset(0.0, widget.minHeight * value * 0.5),
-                            child: child,
-                          ),
-                        );
+        valueListenable: percentageOfHeight,
+        builder: (context, double percentage, child) => ValueListenableBuilder(
+          valueListenable: heightNotifier,
+          builder: (BuildContext context, double height, Widget? _) {
+            return Stack(
+              alignment: Alignment.bottomCenter,
+              children: [
+                if (percentage > 0)
+                  Opacity(
+                    opacity: borderDouble(
+                        minRange: 0.0, maxRange: 1.0, value: percentage),
+                    child: Container(color: widget.backgroundColor),
+                  ),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: SizedBox(
+                    height: height,
+                    child: GestureDetector(
+                      onTap: () {
+                        _snapToPosition(PanelState.max);
                       },
-                      child: Material(
-                        child: Container(
-                          constraints: const BoxConstraints.expand(),
-                          decoration: BoxDecoration(
-                            boxShadow: <BoxShadow>[
-                              BoxShadow(
-                                  color: Colors.black45,
-                                  blurRadius: widget.elevation,
-                                  offset: const Offset(0.0, 4))
-                            ],
-                            color: Theme.of(context).canvasColor,
+                      onPanStart: onPanStart,
+                      onPanEnd: onPanEnd,
+                      onPanUpdate: onPanUpdate,
+                      child: ValueListenableBuilder(
+                        valueListenable: dragDownPercentage,
+                        builder: (BuildContext context, double value,
+                            Widget? child) {
+                          if (value == 0) return child!;
+
+                          return Opacity(
+                            opacity: borderDouble(
+                                minRange: 0.0,
+                                maxRange: 1.0,
+                                value: 1 - value * 0.8),
+                            child: Transform.translate(
+                              offset:
+                                  Offset(0.0, widget.minHeight * value * 0.5),
+                              child: child,
+                            ),
+                          );
+                        },
+                        child: Material(
+                          child: Container(
+                            constraints: const BoxConstraints.expand(),
+                            decoration: BoxDecoration(
+                              boxShadow: <BoxShadow>[
+                                BoxShadow(
+                                    color: Colors.black45,
+                                    blurRadius: widget.elevation,
+                                    offset: const Offset(0.0, 4))
+                              ],
+                              color: Theme.of(context).canvasColor,
+                            ),
+                            child: widget.builder(height, percentage),
                           ),
-                          child: widget.builder(height, percentage),
                         ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          );
-        },
+              ],
+            );
+          },
+        ),
       ),
     );
   }
+
   void onPanStart(DragStartDetails details) {
     _startHeight = _dragHeight;
     updateCount = 0;
@@ -224,14 +222,12 @@ class CustomMiniPlayerState extends State<CustomMiniPlayer> with TickerProviderS
     if (animating) _resetAnimationController();
   }
 
-  Future<void> onPanEnd(DragEndDetails details)async {
+  Future<void> onPanEnd(DragEndDetails details) async {
     ///Calculates drag speed
-    double speed = (_dragHeight - _startHeight * _dragHeight <
-        _startHeight
-        ? 1
-        : -1) /
-        updateCount *
-        100;
+    double speed =
+        (_dragHeight - _startHeight * _dragHeight < _startHeight ? 1 : -1) /
+            updateCount *
+            100;
 
     ///Define the percentage distance depending on the speed with which the widget should snap
     double snapPercentage = 0.005;
@@ -247,9 +243,7 @@ class CustomMiniPlayerState extends State<CustomMiniPlayer> with TickerProviderS
     PanelState snap = PanelState.min;
 
     final percentageMax = percentageFromValueInRange(
-        min: widget.minHeight,
-        max: widget.maxHeight,
-        value: _dragHeight);
+        min: widget.minHeight, max: widget.maxHeight, value: _dragHeight);
 
     ///Started from expanded state
     if (_startHeight > widget.minHeight) {
@@ -264,12 +258,10 @@ class CustomMiniPlayerState extends State<CustomMiniPlayer> with TickerProviderS
         snap = PanelState.max;
       } else
 
-        ///DismissedPercentage > 0.2 -> dismiss
+      ///DismissedPercentage > 0.2 -> dismiss
       if (onDismissed != null &&
           percentageFromValueInRange(
-              min: widget.minHeight,
-              max: 0,
-              value: _dragHeight) >
+                  min: widget.minHeight, max: 0, value: _dragHeight) >
               snapPercentage) {
         snap = PanelState.dismiss;
       }
@@ -297,6 +289,8 @@ class CustomMiniPlayerState extends State<CustomMiniPlayer> with TickerProviderS
       if (_dragHeight > widget.maxHeight) return;
 
       heightNotifier.value = _dragHeight;
+      percentageOfHeight.value = (heightNotifier.value - widget.minHeight) /
+          (widget.maxHeight - widget.minHeight);
     }
 
     ///Drag below minHeight
@@ -319,7 +313,6 @@ class CustomMiniPlayerState extends State<CustomMiniPlayer> with TickerProviderS
       }
     }
   }
-
 
   ///Animates the panel height according to a SnapPoint
   void _snapToPosition(PanelState snapPosition) {
