@@ -10,6 +10,7 @@ import 'package:youtube/core/resources/assets_manager.dart';
 import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/core/resources/styles_manager.dart';
 import 'package:youtube/presentation/common_widgets/custom_circle_progress.dart';
+import 'package:youtube/presentation/layouts/base_layout_logic.dart';
 import 'package:youtube/presentation/pages/search/search_page.dart';
 import 'package:youtube/presentation/pages/shorts/logic/shorts_page_logic.dart';
 

@@ -9,23 +9,19 @@ class _ShortPlayer extends StatefulWidget {
 
 class _ShortPlayerState extends State<_ShortPlayer> {
   final logic = Get.find<ShortsLogic>(tag: "1");
+  final baseLayoutLogic = Get.find<BaseLayoutLogic>(tag: "1");
 
   @override
   void initState() {
-    super.initState();
     logic.controller = VideoPlayerController.network(
         "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4")
       ..setLooping(true)
       ..initialize().then((_) => logic.controller.play());
     logic.initializeVideoPlayerFuture = logic.controller.initialize();
-
+    baseLayoutLogic.isShortsInitialize = true;
+    super.initState();
   }
 
-  @override
-  void dispose() {
-    logic.controller.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
