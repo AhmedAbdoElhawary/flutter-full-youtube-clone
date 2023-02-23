@@ -19,7 +19,7 @@ Total : 82 files,  2527 codes, -180 comments, 317 blanks, all 2664 lines
 | [lib/core/resources/color_manager.dart](/lib/core/resources/color_manager.dart) | Dart | 1 | 0 | 0 | 1 |
 | [lib/core/utility/constants.dart](/lib/core/utility/constants.dart) | Dart | 1 | 0 | 0 | 1 |
 | [lib/core/utility/injector.dart](/lib/core/utility/injector.dart) | Dart | 11 | 0 | 1 | 12 |
-| [lib/core/widgets/multi_bloc_provider.dart](/lib/core/widgets/multi_bloc_provider.dart) | Dart | 4 | 0 | 0 | 4 |
+| [lib/core/widgets/multi_bloc_provider.dart](/lib/presentation/common_widgets/multi_bloc_provider.dart) | Dart | 4 | 0 | 0 | 4 |
 | [lib/data/data_sources/remote/api/channel/channel_apis.g.dart](/lib/data/data_sources/remote/api/channel/channel_apis.g.dart) | Dart | 30 | 0 | 1 | 31 |
 | [lib/data/data_sources/remote/api/search/auto_complete_search/auto_complete_text_apis.dart](/lib/data/data_sources/remote/api/search/auto_complete_search/auto_complete_text_apis.dart) | Dart | 19 | 0 | 7 | 26 |
 | [lib/data/data_sources/remote/api/single_video/commet/comment_apis.g.dart](/lib/data/data_sources/remote/api/single_video/commet/comment_apis.g.dart) | Dart | 1 | 0 | 0 | 1 |
@@ -57,7 +57,7 @@ Total : 82 files,  2527 codes, -180 comments, 317 blanks, all 2664 lines
 | [lib/domain/use_cases/channel_details/subscribe_to_channel_use_case.dart](/lib/domain/use_cases/channel_details/subscribe_to_channel_use_case.dart) | Dart | -1 | 0 | 0 | -1 |
 | [lib/domain/use_cases/search_details/suggestion_search_texts_use_case.dart](/lib/domain/use_cases/search_details/suggestion_search_texts_use_case.dart) | Dart | 20 | 0 | 5 | 25 |
 | [lib/domain/use_cases/videos_details/most_popular_videos_use_case.dart](/lib/domain/use_cases/videos_details/most_popular_videos_use_case.dart) | Dart | 6 | 0 | 2 | 8 |
-| [lib/main.dart](/lib/main.dart) | Dart | -6 | 0 | 5 | -1 |
+| [lib/main.dart](/lib/presentation/main.dart) | Dart | -6 | 0 | 5 | -1 |
 | [lib/presentation/common_widgets/circular_profile_image.dart](/lib/presentation/common_widgets/circular_profile_image.dart) | Dart | 9 | 0 | 1 | 10 |
 | [lib/presentation/common_widgets/mini_player_video.dart](/lib/presentation/common_widgets/mini_player_video.dart) | Dart | 24 | 0 | 1 | 25 |
 | [lib/presentation/common_widgets/moved_thumbnail_video.dart](/lib/presentation/common_widgets/moved_thumbnail_video.dart) | Dart | -110 | 0 | -7 | -117 |
