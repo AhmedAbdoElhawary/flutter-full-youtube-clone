@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:youtube/core/my_app.dart';
+import 'package:youtube/presentation/my_app.dart';
 import 'package:youtube/core/utility/injector.dart';
 import 'package:youtube/core/utility/private_key.dart';
 
