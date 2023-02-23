@@ -6,7 +6,7 @@ class BaseLayoutLogic extends GetxController {
   final tabController = CupertinoTabController();
   final RxBool _isShortsPageSelected = false.obs;
   final _shortsLogic = Get.find<ShortsLogic>(tag: "1");
-
+  final RxBool _isShortsInitialize = false.obs;
   @override
   void onInit() {
     tabControllerListener();
@@ -14,18 +14,23 @@ class BaseLayoutLogic extends GetxController {
   }
 
   tabControllerListener() {
-    tabController.addListener(() {
-      int selectedPage = tabController.index;
-      if (selectedPage == 1) {
-        _isShortsPageSelected.value = true;
-        _shortsLogic.stopVideo = false;
-
-      } else if (isShortsPageSelected) {
-        _shortsLogic.stopVideo = true;
-        _isShortsPageSelected.value = false;
-      }
-    });
+    tabController.addListener(
+      () {
+        int selectedPage = tabController.index;
+        if (selectedPage == 1) {
+          _isShortsPageSelected.value = true;
+          if (isShortsInitialize) _shortsLogic.stopVideo = false;
+        } else if (isShortsPageSelected) {
+          _isShortsPageSelected.value = false;
+          if (isShortsInitialize) _shortsLogic.stopVideo = true;
+        }
+      },
+    );
   }
+
+  bool get isShortsInitialize => _isShortsInitialize.value;
+
+  set isShortsInitialize(bool value) => _isShortsInitialize.value = value;
 
   bool get isShortsPageSelected => _isShortsPageSelected.value;
 }
