@@ -25,6 +25,7 @@ class CustomPodVideoPlayer extends StatefulWidget {
   final Widget? videoTitle;
   final Color? backgroundColor;
   final DecorationImage? videoThumbnail;
+  final bool displayOverlay;
 
   /// Optional callback, fired when full screen mode toggles.
   ///
@@ -39,6 +40,7 @@ class CustomPodVideoPlayer extends StatefulWidget {
   CustomPodVideoPlayer({
     Key? key,
     required this.controller,
+    required this.displayOverlay,
     this.frameAspectRatio = 16 / 9,
     this.videoAspectRatio = 16 / 9,
     this.alwaysShowProgressBar = true,
@@ -237,6 +239,7 @@ class _CustomPodVideoPlayerState extends State<CustomPodVideoPlayer>
             videoPlayerCtr: podCtr.videoCtr!,
             videoAspectRatio: videoAspectRatio,
             tag: widget.controller.getTag,
+            displayOverlay: widget.displayOverlay,
           );
         },
       );
@@ -245,6 +248,7 @@ class _CustomPodVideoPlayerState extends State<CustomPodVideoPlayer>
         videoPlayerCtr: podCtr.videoCtr!,
         videoAspectRatio: videoAspectRatio,
         tag: widget.controller.getTag,
+        displayOverlay: widget.displayOverlay,
       );
     }
   }

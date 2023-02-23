@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/core/resources/styles_manager.dart';
-import 'package:youtube/core/widgets/sliver_app_bar.dart';
+import 'package:youtube/presentation/common_widgets/sliver_app_bar.dart';
 import '../../../core/resources/assets_manager.dart';
 import '../../common_widgets/thumbnail_image.dart';
 

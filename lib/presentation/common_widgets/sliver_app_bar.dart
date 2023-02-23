@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:youtube/config/routes/route_app.dart';
 import 'package:youtube/core/resources/color_manager.dart';
 
-import '../../presentation/pages/search/search_page.dart';
+import '../pages/search/search_page.dart';
 
 class MainSliverAppBar extends StatelessWidget {
   const MainSliverAppBar({required this.preferredSizeWidget, Key? key})

@@ -109,7 +109,7 @@ Total : 282 files,  20060 codes, 1000 comments, 2779 blanks, all 23839 lines
 | [lib/core/functions/reformat/date_reformat.dart](/lib/core/functions/reformat/date_reformat.dart) | Dart | 38 | 0 | 7 | 45 |
 | [lib/core/functions/reformat/views_reformat.dart](/lib/core/functions/reformat/views_reformat.dart) | Dart | 51 | 0 | 8 | 59 |
 | [lib/core/functions/toast_show.dart](/lib/core/functions/toast_show.dart) | Dart | 34 | 0 | 5 | 39 |
-| [lib/core/my_app.dart](/lib/core/my_app.dart) | Dart | 62 | 0 | 7 | 69 |
+| [lib/core/my_app.dart](/lib/presentation/my_app.dart) | Dart | 62 | 0 | 7 | 69 |
 | [lib/core/resources/assets_manager.dart](/lib/core/resources/assets_manager.dart) | Dart | 91 | 0 | 21 | 112 |
 | [lib/core/resources/color_manager.dart](/lib/core/resources/color_manager.dart) | Dart | 77 | 1 | 19 | 97 |
 | [lib/core/resources/font_manager.dart](/lib/core/resources/font_manager.dart) | Dart | 34 | 0 | 11 | 45 |
@@ -124,8 +124,8 @@ Total : 282 files,  20060 codes, 1000 comments, 2779 blanks, all 23839 lines
 | [lib/core/use_case/use_case.dart](/lib/core/use_case/use_case.dart) | Dart | 6 | 0 | 1 | 7 |
 | [lib/core/utility/constants.dart](/lib/core/utility/constants.dart) | Dart | 4 | 0 | 0 | 4 |
 | [lib/core/utility/injector.dart](/lib/core/utility/injector.dart) | Dart | 186 | 9 | 42 | 237 |
-| [lib/core/widgets/multi_bloc_provider.dart](/lib/core/widgets/multi_bloc_provider.dart) | Dart | 40 | 0 | 4 | 44 |
-| [lib/core/widgets/sliver_app_bar.dart](/lib/core/widgets/sliver_app_bar.dart) | Dart | 35 | 0 | 3 | 38 |
+| [lib/core/widgets/multi_bloc_provider.dart](/lib/presentation/common_widgets/multi_bloc_provider.dart) | Dart | 40 | 0 | 4 | 44 |
+| [lib/core/widgets/sliver_app_bar.dart](/lib/presentation/common_widgets/sliver_app_bar.dart) | Dart | 35 | 0 | 3 | 38 |
 | [lib/data/data_sources/remote/api/channel/channel_apis.dart](/lib/data/data_sources/remote/api/channel/channel_apis.dart) | Dart | 31 | 7 | 6 | 44 |
 | [lib/data/data_sources/remote/api/channel/channel_apis.g.dart](/lib/data/data_sources/remote/api/channel/channel_apis.g.dart) | Dart | 133 | 5 | 12 | 150 |
 | [lib/data/data_sources/remote/api/channel/channel_playlist/channel_playlist_apis.dart](/lib/data/data_sources/remote/api/channel/channel_playlist/channel_playlist_apis.dart) | Dart | 21 | 0 | 4 | 25 |
@@ -219,7 +219,7 @@ Total : 282 files,  20060 codes, 1000 comments, 2779 blanks, all 23839 lines
 | [lib/domain/use_cases/videos_details/all_short_videos_use_case.dart](/lib/domain/use_cases/videos_details/all_short_videos_use_case.dart) | Dart | 12 | 0 | 4 | 16 |
 | [lib/domain/use_cases/videos_details/all_videos_use_case.dart](/lib/domain/use_cases/videos_details/all_videos_use_case.dart) | Dart | 13 | 0 | 4 | 17 |
 | [lib/domain/use_cases/videos_details/most_popular_videos_use_case.dart](/lib/domain/use_cases/videos_details/most_popular_videos_use_case.dart) | Dart | 19 | 0 | 6 | 25 |
-| [lib/main.dart](/lib/main.dart) | Dart | 18 | 0 | 8 | 26 |
+| [lib/main.dart](/lib/presentation/main.dart) | Dart | 18 | 0 | 8 | 26 |
 | [lib/presentation/common_widgets/circular_profile_image.dart](/lib/presentation/common_widgets/circular_profile_image.dart) | Dart | 40 | 0 | 5 | 45 |
 | [lib/presentation/common_widgets/custom_circle_progress.dart](/lib/presentation/common_widgets/custom_circle_progress.dart) | Dart | 29 | 0 | 5 | 34 |
 | [lib/presentation/common_widgets/mini_player_video.dart](/lib/presentation/common_widgets/mini_player_video.dart) | Dart | 415 | 6 | 38 | 459 |

@@ -1,13 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:youtube/core/utility/injector.dart';
-import 'package:youtube/presentation/cubit/channel/channel_details_cubit.dart';
-import 'package:youtube/presentation/cubit/channel/channel_videos/channel_videos_cubit.dart';
-import 'package:youtube/presentation/cubit/channel/playlist/play_list_cubit.dart';
-import 'package:youtube/presentation/cubit/search/search_cubit.dart';
-import 'package:youtube/presentation/cubit/single_video/single_video_cubit.dart';
-import 'package:youtube/presentation/cubit/videos/popular_videos/popular_videos_cubit.dart';
-import 'package:youtube/presentation/cubit/videos/videos_details_cubit.dart';
+part of'../my_app.dart';
 
 class MultiBlocs extends StatelessWidget {
   final Widget materialApp;

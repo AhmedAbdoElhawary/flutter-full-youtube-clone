@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:youtube/core/functions/reformat/date_reformat.dart';
 import 'package:youtube/core/functions/reformat/views_reformat.dart';
 import 'package:youtube/core/resources/assets_manager.dart';
 import 'package:youtube/data/models/channel_details/channel_details.dart';
+import 'package:youtube/data/models/videos_details/video_details_extension.dart';
 import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/presentation/common_widgets/circular_profile_image.dart';
 import 'package:youtube/presentation/common_widgets/thumbnail_image.dart';
@@ -44,21 +44,19 @@ class ThumbnailOfVideo extends StatelessWidget {
 }
 
 class _VideoSubTitles extends StatelessWidget {
-  const _VideoSubTitles(this.videoDetailsItem);
-  final VideoDetailsItem? videoDetailsItem;
+  const _VideoSubTitles(this.videoItem);
+  final VideoDetailsItem? videoItem;
 
   @override
   Widget build(BuildContext context) {
-    VideoSnippet? snippet = videoDetailsItem?.snippet;
-    String channelTitle = snippet?.channelTitle ?? "";
-    String viewCount = videoDetailsItem?.statistics.viewCount ?? "";
-    DateTime? dateInUtc = snippet?.publishedAt;
-    String date = DateReformat.oneDigitFormat(dateInUtc);
-    String viewsReformat = CountsReformat.basicCountFormat(viewCount);
-    ChannelSubDetails? channelDetails = snippet?.channelSubDetails;
-    String channelImage =
-        channelDetails?.items?[0]?.snippet?.thumbnails?.high?.url ?? "";
-    String channelId = channelDetails?.items?[0]?.id ?? "";
+    String channelName = videoItem?.getChannelName() ?? "";
+    String videoViews = videoItem?.getVideoViewsCount() ?? "";
+
+    String date = videoItem?.getVideoPublishedTime() ?? "";
+    ChannelDetailsItem? channelDetailsItem = videoItem?.getChannelSubDetails();
+    String channelImage = videoItem?.getChannelProfileImageUrl() ?? "";
+    String channelId = videoItem?.getChannelId() ?? "";
+
     return Padding(
       padding: REdgeInsets.symmetric(horizontal: 13),
       child: Row(
@@ -67,20 +65,20 @@ class _VideoSubTitles extends StatelessWidget {
           CircularProfileImage(
             imageUrl: channelImage,
             channelId: channelId,
-            channelDetailsItem: channelDetails?.items?[0],
+            channelDetailsItem: channelDetailsItem,
           ),
           const RSizedBox(width: 10),
-          Flexible(
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(videoDetailsItem?.snippet?.title ?? "",
+                Text(videoItem?.snippet?.title ?? "",
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: getMediumStyle(
                         fontSize: 14, color: ColorManager(context).black)),
                 const RSizedBox(height: 5),
-                Text("$channelTitle . $viewsReformat . $date",
+                Text("$channelName . $videoViews . $date",
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: getNormalStyle(
