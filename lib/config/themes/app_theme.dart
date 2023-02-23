@@ -12,7 +12,7 @@ class AppTheme {
       primaryColorLight: BaseColorManager.veryLightGrey,
       hintColor: BaseColorManager.lowOpacityGrey,
       shadowColor: BaseColorManager.veryLowOpacityGrey,
-      focusColor: BaseColorManager.black,
+      focusColor: BaseColorManager.grey11,
       disabledColor: BaseColorManager.black54,
       dialogBackgroundColor: BaseColorManager.black87,
       hoverColor: BaseColorManager.black45,
