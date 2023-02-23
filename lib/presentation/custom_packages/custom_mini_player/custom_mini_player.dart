@@ -104,8 +104,10 @@ class CustomMiniPlayerState extends State<CustomMiniPlayer>
   @override
   void initState() {
     heightNotifier = ValueNotifier(widget.maxHeight);
-    percentageOfHeight.value = (heightNotifier.value - widget.minHeight) /
-        (widget.maxHeight - widget.minHeight);
+    percentageOfHeight = ValueNotifier(
+        (heightNotifier.value - widget.minHeight) /
+            (widget.maxHeight - widget.minHeight));
+
     _resetAnimationController();
 
     _dragHeight = heightNotifier.value;
@@ -289,8 +291,9 @@ class CustomMiniPlayerState extends State<CustomMiniPlayer>
       if (_dragHeight > widget.maxHeight) return;
 
       heightNotifier.value = _dragHeight;
-      percentageOfHeight.value = (heightNotifier.value - widget.minHeight) /
-          (widget.maxHeight - widget.minHeight);
+      percentageOfHeight.value =
+          (heightNotifier.value - widget.minHeight) /
+              (widget.maxHeight - widget.minHeight);
     }
 
     ///Drag below minHeight
