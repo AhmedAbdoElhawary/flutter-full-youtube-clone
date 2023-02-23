@@ -94,7 +94,7 @@ class IconsAssets {
   static const String messengerIcon = "$iconPath/messenger.svg";
   static const String favorite = "$iconPath/favorite.svg";
   static const String home = "$iconPath/house_white.svg";
-  static const String search = "$iconPath/search.svg";
+  static const String search = "$iconPath/new/search.svg";
   static const String video = "$iconPath/video.svg";
   static const String shop = "$iconPath/shop_white.svg";
   static const String compassIcon = "$iconPath/compass.svg";

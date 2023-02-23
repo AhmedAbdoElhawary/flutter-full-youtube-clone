@@ -44,7 +44,7 @@ class ColorManager {
   static const Color lightBlue = Color.fromRGBO(215, 233, 255, 1.0);
   static const Color redAccent = Color.fromRGBO(255, 82, 82, 1);
   static const Color red = Color.fromRGBO(253, 0, 24, 1.0);
-  static const Color blackRed = Color.fromRGBO(211, 11, 11, 1.0);
+  static const Color blackRed = Color.fromRGBO(217, 11, 11, 1.0);
   static const Color yellow = Color.fromRGBO(252, 219, 3, 1);
   static const Color lightYellow = Color.fromRGBO(255, 240, 27, 0.859);
   static const Color orange = Color.fromRGBO(170, 115, 33, 1);
@@ -68,6 +68,7 @@ class BaseColorManager {
   static const Color black26 = Color(0x42000000);
   static const Color black12 = Color(0x0000001F);
   static const Color shimmerDarkGrey = Color(0xFFAFAFAF);
+  static const Color grey11 = Color.fromRGBO(38, 38, 38, 1);
 
   static const Color lightBlack = Color(0x19242424);
   static const Color darkGray = Color(0xff282828);
