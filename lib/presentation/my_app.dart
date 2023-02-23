@@ -7,8 +7,21 @@ import 'package:youtube/config/themes/theme_service.dart';
 import 'package:youtube/core/translations/app_lang.dart';
 import 'package:youtube/core/translations/translations.dart';
 import 'package:youtube/core/utility/constants.dart';
-import 'package:youtube/core/widgets/multi_bloc_provider.dart';
 import 'package:youtube/presentation/layouts/base_layout.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:youtube/core/utility/injector.dart';
+import 'package:youtube/presentation/cubit/channel/channel_details_cubit.dart';
+import 'package:youtube/presentation/cubit/channel/channel_videos/channel_videos_cubit.dart';
+import 'package:youtube/presentation/cubit/channel/playlist/play_list_cubit.dart';
+import 'package:youtube/presentation/cubit/search/search_cubit.dart';
+import 'package:youtube/presentation/cubit/single_video/single_video_cubit.dart';
+import 'package:youtube/presentation/cubit/videos/popular_videos/popular_videos_cubit.dart';
+import 'package:youtube/presentation/cubit/videos/videos_details_cubit.dart';
+import 'package:youtube/presentation/layouts/base_layout_logic.dart';
+import 'package:youtube/presentation/pages/shorts/logic/shorts_page_logic.dart';
+
+part 'common_widgets/navigator_observer.dart';
+part 'common_widgets/multi_bloc_provider.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -40,9 +53,11 @@ class _GetBuilder extends StatelessWidget {
           builder: (controller) {
             return AnnotatedRegion<SystemUiOverlayStyle>(
               value: const SystemUiOverlayStyle(
-                  statusBarColor: Colors.white,
-                  statusBarIconBrightness: Brightness.dark),
+                statusBarColor: Colors.white,
+                statusBarIconBrightness: Brightness.dark,
+              ),
               child: GetMaterialApp(
+                  navigatorObservers: [MyNavigatorObserver()],
                   title: 'Youtube',
                   theme: AppTheme.light,
                   translations: Translation(),
