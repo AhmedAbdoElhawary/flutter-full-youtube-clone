@@ -30,11 +30,9 @@ class _MiniPlayerVideoState extends State<MiniPlayerVideo> {
   Widget build(BuildContext context) {
     MediaQueryData mediaQuery = MediaQuery.of(context);
     double height = mediaQuery.size.height - 70.h;
-    final ValueNotifier<double> playerExpandProgress = ValueNotifier(height);
 
     return SafeArea(
       child: CustomMiniPlayer(
-        valueNotifier: playerExpandProgress,
         minHeight: minHeight,
         maxHeight: height,
         onDismissed: () {
@@ -425,10 +423,9 @@ class _VideoOfMiniDisplayState extends State<_VideoOfMiniDisplay> {
         child: videoId.isEmpty
             ? null
             : CustomPodVideoPlayer(
-              controller: videoController,
-              matchFrameAspectRatioToVideo: true,
-              matchVideoAspectRatioToFrame: true,
-            ),
+                controller: videoController,
+                displayOverlay: widget.percentage == 1,
+              ),
       ),
     );
   }
