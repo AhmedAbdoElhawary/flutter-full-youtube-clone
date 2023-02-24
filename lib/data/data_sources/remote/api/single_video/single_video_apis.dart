@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:youtube/core/utility/constants.dart';
 import 'package:youtube/core/utility/private_key.dart';
+import 'package:youtube/data/models/rating_details/rating_details.dart';
 import 'package:youtube/data/models/videos_details/videos_details.dart';
 part 'single_video_apis.g.dart';
 
@@ -29,4 +30,12 @@ abstract class SingleVideosAPIs {
     @Query('rating')required String rating,
     @Query('access_token')required String accessToken,
   });
+
+
+  @GET("videos/getRating?")
+  Future<RatingDetails> getVideoRating({
+    @Query('access_token')required String accessToken,
+    @Query("id") required String videoId,
+  });
+
 }
