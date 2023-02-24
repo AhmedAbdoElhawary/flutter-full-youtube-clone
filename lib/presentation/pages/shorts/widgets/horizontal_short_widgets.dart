@@ -3,8 +3,8 @@ part of '../shorts_page.dart';
 /// below and bov
 
 class _HorizontalButtons extends StatelessWidget {
-  const _HorizontalButtons({Key? key}) : super(key: key);
-
+  const _HorizontalButtons(this.videoDetailsItem, {Key? key}) : super(key: key);
+  final VideoDetailsItem videoDetailsItem;
   @override
   Widget build(BuildContext context) {
     return PositionedDirectional(
@@ -15,7 +15,7 @@ class _HorizontalButtons extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            const _LikeDisLikeButtons(),
+            _LikeDisLikeButtons(videoDetailsItem),
             const _CommentButton(),
             fiveSpace,
             const _CommentCount(),
@@ -38,9 +38,15 @@ class _HorizontalButtons extends StatelessWidget {
   Widget get twentyFiveSpace => const SizedBox(height: 15);
 }
 
-class _LikeDisLikeButtons extends StatelessWidget {
-  const _LikeDisLikeButtons();
+class _LikeDisLikeButtons extends StatefulWidget {
+  const _LikeDisLikeButtons(this.videoDetailsItem);
+  final VideoDetailsItem videoDetailsItem;
 
+  @override
+  State<_LikeDisLikeButtons> createState() => _LikeDisLikeButtonsState();
+}
+
+class _LikeDisLikeButtonsState extends State<_LikeDisLikeButtons> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -48,11 +54,11 @@ class _LikeDisLikeButtons extends StatelessWidget {
       children: [
         const _LikeButton(),
         fiveSpace,
-        const _NumberOfLikes(),
+        _NumberOfLikes(widget.videoDetailsItem),
         space,
         const _DisLikeButton(),
         fiveSpace,
-        const _DisLikeCount(),
+        const _DisLikeText(),
         space,
       ],
     );
@@ -91,7 +97,8 @@ class _LikeButtonState extends State<_LikeButton> {
 }
 
 class _NumberOfLikes extends StatelessWidget {
-  const _NumberOfLikes();
+  const _NumberOfLikes(this.videoDetailsItem);
+  final VideoDetailsItem videoDetailsItem;
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +107,7 @@ class _NumberOfLikes extends StatelessWidget {
       child: Align(
         alignment: Alignment.topCenter,
         child: Text(
-          "1",
+          videoDetailsItem.getVideoLikesCount(),
           style: getNormalStyle(color: BaseColorManager.white),
         ),
       ),
@@ -134,8 +141,8 @@ class _DisLikeButtonState extends State<_DisLikeButton> {
   }
 }
 
-class _DisLikeCount extends StatelessWidget {
-  const _DisLikeCount();
+class _DisLikeText extends StatelessWidget {
+  const _DisLikeText();
 
   @override
   Widget build(BuildContext context) {

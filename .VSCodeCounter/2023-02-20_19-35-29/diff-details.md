@@ -59,7 +59,7 @@ Total : 82 files,  2527 codes, -180 comments, 317 blanks, all 2664 lines
 | [lib/domain/use_cases/videos_details/most_popular_videos_use_case.dart](/lib/domain/use_cases/videos_details/most_popular_videos_use_case.dart) | Dart | 6 | 0 | 2 | 8 |
 | [lib/main.dart](/lib/presentation/main.dart) | Dart | -6 | 0 | 5 | -1 |
 | [lib/presentation/common_widgets/circular_profile_image.dart](/lib/presentation/common_widgets/circular_profile_image.dart) | Dart | 9 | 0 | 1 | 10 |
-| [lib/presentation/common_widgets/mini_player_video.dart](/lib/presentation/common_widgets/mini_player_video.dart) | Dart | 24 | 0 | 1 | 25 |
+| [lib/presentation/common_widgets/mini_player_video.dart](/lib/presentation/common_widgets/mini_player_video/mini_player_video.dart) | Dart | 24 | 0 | 1 | 25 |
 | [lib/presentation/common_widgets/moved_thumbnail_video.dart](/lib/presentation/common_widgets/moved_thumbnail_video.dart) | Dart | -110 | 0 | -7 | -117 |
 | [lib/presentation/common_widgets/small_thumbnail_video.dart](/lib/presentation/common_widgets/small_thumbnail_video.dart) | Dart | -22 | 0 | -3 | -25 |
 | [lib/presentation/common_widgets/thumbnail_image.dart](/lib/presentation/common_widgets/thumbnail_image.dart) | Dart | 39 | 0 | 4 | 43 |

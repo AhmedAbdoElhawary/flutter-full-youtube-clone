@@ -226,7 +226,7 @@ Total : 319 files,  23811 codes, 1213 comments, 3252 blanks, all 28276 lines
 | [lib/presentation/common_widgets/circular_profile_image.dart](/lib/presentation/common_widgets/circular_profile_image.dart) | Dart | 57 | 0 | 8 | 65 |
 | [lib/presentation/common_widgets/custom_circle_progress.dart](/lib/presentation/common_widgets/custom_circle_progress.dart) | Dart | 29 | 0 | 5 | 34 |
 | [lib/presentation/common_widgets/custom_network_display.dart](/lib/presentation/common_widgets/custom_network_display.dart) | Dart | 40 | 0 | 6 | 46 |
-| [lib/presentation/common_widgets/mini_player_video.dart](/lib/presentation/common_widgets/mini_player_video.dart) | Dart | 432 | 11 | 37 | 480 |
+| [lib/presentation/common_widgets/mini_player_video.dart](/lib/presentation/common_widgets/mini_player_video/mini_player_video.dart) | Dart | 432 | 11 | 37 | 480 |
 | [lib/presentation/common_widgets/read_more.dart](/lib/presentation/common_widgets/read_more.dart) | Dart | 0 | 23 | 1 | 24 |
 | [lib/presentation/common_widgets/subscribe_button.dart](/lib/presentation/common_widgets/subscribe_button.dart) | Dart | 18 | 0 | 5 | 23 |
 | [lib/presentation/common_widgets/thumbnail_image.dart](/lib/presentation/common_widgets/thumbnail_image.dart) | Dart | 46 | 0 | 6 | 52 |

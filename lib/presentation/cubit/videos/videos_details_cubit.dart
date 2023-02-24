@@ -43,4 +43,5 @@ class VideosDetailsCubit extends Cubit<VideosDetailsState> {
             emit(VideosDetailsState.allShortVideosLoaded(allShortVideos)),
         failure: (exception) => emit(VideosDetailsState.error(exception)));
   }
+
 }

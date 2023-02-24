@@ -9,6 +9,11 @@ class SingleVideoState with _$SingleVideoState {
   const factory SingleVideoState.videoDetailsLoaded(
       VideosDetails videoDetails) = VideoDetailsLoaded;
 
+  const factory SingleVideoState.getVideoRatingLoaded(
+      RatingDetails videoDetails) = GetVideoRatingLoaded;
+
+  const factory SingleVideoState.ratingVideoLoaded() = RatingVideoLoaded;
+
   const factory SingleVideoState.firstCommentLoaded(
       CommentDetails firstCommentDetails) = FirstCommentLoaded;
 

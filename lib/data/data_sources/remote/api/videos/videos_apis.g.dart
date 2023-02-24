@@ -34,7 +34,7 @@ class _VideosAPIs implements VideosAPIs {
     )
             .compose(
               _dio.options,
-              'search?part=snippet&maxResults=2&regionCode=EG&type=video',
+              'search?part=snippet&maxResults=2&regionCode=EG&videoDuration=medium&videoDuration=long&type=video',
               queryParameters: queryParameters,
               data: _data,
             )

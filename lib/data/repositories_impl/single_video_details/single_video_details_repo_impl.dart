@@ -3,6 +3,7 @@ import 'package:youtube/core/functions/network_exceptions.dart';
 
 import 'package:youtube/core/utility/private_key.dart';
 import 'package:youtube/data/data_sources/remote/api/single_video/single_video_apis.dart';
+import 'package:youtube/data/models/rating_details/rating_details.dart';
 import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/domain/repositories/channel/channel_details_repository.dart';
 import 'package:youtube/domain/repositories/video_comment_details/single_video_details_repository.dart';
@@ -32,13 +33,30 @@ class SingleVideosDetailsRepoImpl implements SingleVideoDetailsRepository {
   }
 
   @override
-  Future<void> rateVideo(
-      {required String videoId, required String rating}) async {
+  Future<ApiResult<void>> rateVideo(
+      {required String videoId, required Rating rating}) async {
     try {
       await _singleVideosAPIs.rateVideo(
-          videoId: videoId, rating: rating, accessToken: accessToken);
+          videoId: videoId,
+          rating: rating.toString(),
+          accessToken: accessToken);
+
+      return const ApiResult.success(null);
     } catch (e) {
-      return Future.error(e);
+      return ApiResult.failure(NetworkExceptions.getDioException(e));
+    }
+  }
+
+  @override
+  Future<ApiResult<RatingDetails>> getVideoRating(
+      {required String videoId}) async {
+    try {
+      RatingDetails rating = await _singleVideosAPIs.getVideoRating(
+          videoId: videoId, accessToken: accessToken);
+
+      return ApiResult.success(rating);
+    } catch (e) {
+      return ApiResult.failure(NetworkExceptions.getDioException(e));
     }
   }
 }

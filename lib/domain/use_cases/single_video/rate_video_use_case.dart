@@ -1,13 +1,15 @@
+import 'package:youtube/core/functions/api_result.dart';
 import 'package:youtube/core/use_case/use_case.dart';
+import 'package:youtube/data/models/rating_details/rating_details.dart';
 import 'package:youtube/domain/repositories/video_comment_details/single_video_details_repository.dart';
 
-class RateVideoUseCase implements UseCase<void, RateVideoUseCaseParameter> {
+class RateVideoUseCase implements UseCase<ApiResult<void>, RateVideoUseCaseParameter> {
   final SingleVideoDetailsRepository _videoDetailsRepository;
 
   RateVideoUseCase(this._videoDetailsRepository);
 
   @override
-  Future<void> call({required RateVideoUseCaseParameter params}) {
+  Future<ApiResult<void>> call({required RateVideoUseCaseParameter params}) {
     return _videoDetailsRepository.rateVideo(
         videoId: params.videoId, rating: params.rating);
   }
@@ -23,7 +25,7 @@ class RateVideoUseCase implements UseCase<void, RateVideoUseCaseParameter> {
 
 class RateVideoUseCaseParameter {
   String videoId;
-  String rating;
+  Rating rating;
 
   RateVideoUseCaseParameter({required this.videoId, required this.rating});
 }
