@@ -27,7 +27,7 @@ Total : 60 files,  3751 codes, 213 comments, 473 blanks, all 4437 lines
 | [lib/main.dart](/lib/presentation/main.dart) | Dart | -6 | 8 | -2 | 0 |
 | [lib/presentation/common_widgets/circular_profile_image.dart](/lib/presentation/common_widgets/circular_profile_image.dart) | Dart | 17 | 0 | 3 | 20 |
 | [lib/presentation/common_widgets/custom_network_display.dart](/lib/presentation/common_widgets/custom_network_display.dart) | Dart | 40 | 0 | 6 | 46 |
-| [lib/presentation/common_widgets/mini_player_video.dart](/lib/presentation/common_widgets/mini_player_video.dart) | Dart | 17 | 5 | -1 | 21 |
+| [lib/presentation/common_widgets/mini_player_video.dart](/lib/presentation/common_widgets/mini_player_video/mini_player_video.dart) | Dart | 17 | 5 | -1 | 21 |
 | [lib/presentation/common_widgets/thumbnail_image.dart](/lib/presentation/common_widgets/thumbnail_image.dart) | Dart | 7 | 0 | 2 | 9 |
 | [lib/presentation/custom_packages/custom_mini_player/custom_mini_player.dart](/lib/presentation/custom_packages/custom_mini_player/custom_mini_player.dart) | Dart | 319 | 36 | 79 | 434 |
 | [lib/presentation/custom_packages/custom_mini_player/mini_player_will_pop_scope.dart](/lib/presentation/custom_packages/custom_mini_player/mini_player_will_pop_scope.dart) | Dart | 54 | 0 | 13 | 67 |
