@@ -222,7 +222,7 @@ Total : 282 files,  20060 codes, 1000 comments, 2779 blanks, all 23839 lines
 | [lib/main.dart](/lib/presentation/main.dart) | Dart | 18 | 0 | 8 | 26 |
 | [lib/presentation/common_widgets/circular_profile_image.dart](/lib/presentation/common_widgets/circular_profile_image.dart) | Dart | 40 | 0 | 5 | 45 |
 | [lib/presentation/common_widgets/custom_circle_progress.dart](/lib/presentation/common_widgets/custom_circle_progress.dart) | Dart | 29 | 0 | 5 | 34 |
-| [lib/presentation/common_widgets/mini_player_video.dart](/lib/presentation/common_widgets/mini_player_video.dart) | Dart | 415 | 6 | 38 | 459 |
+| [lib/presentation/common_widgets/mini_player_video.dart](/lib/presentation/common_widgets/mini_player_video/mini_player_video.dart) | Dart | 415 | 6 | 38 | 459 |
 | [lib/presentation/common_widgets/read_more.dart](/lib/presentation/common_widgets/read_more.dart) | Dart | 0 | 23 | 1 | 24 |
 | [lib/presentation/common_widgets/subscribe_button.dart](/lib/presentation/common_widgets/subscribe_button.dart) | Dart | 18 | 0 | 5 | 23 |
 | [lib/presentation/common_widgets/thumbnail_image.dart](/lib/presentation/common_widgets/thumbnail_image.dart) | Dart | 39 | 0 | 4 | 43 |
