@@ -37,6 +37,7 @@ import 'package:youtube/domain/use_cases/single_video/comment/get_all_comments_u
 import 'package:youtube/domain/use_cases/single_video/comment/get_all_replies_use_case.dart';
 import 'package:youtube/domain/use_cases/single_video/comment/get_first_comment_use_case.dart';
 import 'package:youtube/domain/use_cases/single_video/get_video_details_use_case.dart';
+import 'package:youtube/domain/use_cases/single_video/get_video_rating_use_case.dart';
 import 'package:youtube/domain/use_cases/single_video/rate_video_use_case.dart';
 import 'package:youtube/domain/use_cases/videos_details/all_short_videos_use_case.dart';
 import 'package:youtube/domain/use_cases/videos_details/all_videos_use_case.dart';
@@ -187,6 +188,9 @@ Future<void> initializeDependencies() async {
   injector.registerLazySingleton<GetAllCommentsUseCase>(
     () => GetAllCommentsUseCase(injector()),
   );
+  injector.registerLazySingleton<GetVideoRatingUseCase>(
+    () => GetVideoRatingUseCase(injector()),
+  );
   // *--------->
   /// ================================ Blocs ========================================>
 
@@ -204,7 +208,14 @@ Future<void> initializeDependencies() async {
     () => ChannelDetailsCubit(injector(), injector(), injector(), injector()),
   );
   injector.registerFactory<SingleVideoCubit>(
-    () => SingleVideoCubit(injector(), injector(), injector(), injector()),
+    () => SingleVideoCubit(
+      injector(),
+      injector(),
+      injector(),
+      injector(),
+      injector(),
+      injector(),
+    ),
   );
   injector.registerFactory<VideosDetailsCubit>(
     () => VideosDetailsCubit(injector(), injector()),
