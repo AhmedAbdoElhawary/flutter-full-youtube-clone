@@ -10,6 +10,7 @@ class ColorManager {
       const Color.fromRGBO(255, 255, 255, 0.23921568627450981);
 
   Color white = const Color.fromRGBO(255, 255, 255, 1);
+  Color greyPoint5 = const Color.fromRGBO(246, 246, 246, 1.0);
 
   Color grey1 = const Color.fromRGBO(238, 238, 238, 1);
   Color grey1Point5 = const Color.fromRGBO(228, 228, 228, 1);

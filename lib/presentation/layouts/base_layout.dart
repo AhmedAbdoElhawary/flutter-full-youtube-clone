@@ -10,7 +10,7 @@ import 'package:youtube/presentation/pages/library/library_page.dart';
 import 'package:youtube/presentation/pages/shorts/shorts_page.dart';
 
 import '../pages/subscriptions/subscriptions_page.dart';
-import '../common_widgets/mini_player_video.dart';
+import '../common_widgets/mini_player_video/mini_player_video.dart';
 
 class BaseLayout extends StatelessWidget {
   const BaseLayout({Key? key}) : super(key: key);
