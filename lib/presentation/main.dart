@@ -12,7 +12,7 @@ Future<void> main() async {
   final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
   final googleAuth = await googleUser?.authentication;
   String? token = googleAuth?.accessToken ?? "";
-  accessToken = "Bearer $token";
+  accessToken = token;
   runApp(const MyApp());
 }
 
