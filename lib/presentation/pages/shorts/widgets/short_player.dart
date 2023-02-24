@@ -1,8 +1,8 @@
 part of '../shorts_page.dart';
 
 class _ShortPlayer extends StatefulWidget {
-  const _ShortPlayer({Key? key}) : super(key: key);
-
+  const _ShortPlayer(this.videoDetailsItem, {Key? key}) : super(key: key);
+  final VideoDetailsItem videoDetailsItem;
   @override
   State<_ShortPlayer> createState() => _ShortPlayerState();
 }
@@ -10,18 +10,15 @@ class _ShortPlayer extends StatefulWidget {
 class _ShortPlayerState extends State<_ShortPlayer> {
   final logic = Get.find<ShortsLogic>(tag: "1");
   final baseLayoutLogic = Get.find<BaseLayoutLogic>(tag: "1");
-
+  String videoId = "";
   @override
   void initState() {
-    logic.controller = VideoPlayerController.network(
-        "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4")
-      ..setLooping(true)
-      ..initialize().then((_) => logic.controller.play());
-    logic.initializeVideoPlayerFuture = logic.controller.initialize();
-    baseLayoutLogic.isShortsInitialize = true;
     super.initState();
+    videoId = widget.videoDetailsItem.id ?? "";
+    logic.videoController = PodPlayerController(
+      playVideoFrom: PlayVideoFrom.youtube('https://youtu.be/$videoId'),
+    )..initialise();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -30,43 +27,31 @@ class _ShortPlayerState extends State<_ShortPlayer> {
       tag: "1",
       builder: (logic) {
         return Stack(
-          children: [
-            GestureDetector(
-              onTap: onTapVideo,
-              child: FutureBuilder(
-                future: logic.initializeVideoPlayerFuture,
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.done) {
-                    return AnimatedBuilder(
-                      animation: logic.controller,
-                      builder: (context, child) =>
-                          VideoPlayer(logic.controller),
-                    );
-                  } else {
-                    return const ThineCircularProgress(
-                        color: BaseColorManager.white);
-                  }
-                },
-              ),
-            ),
-            Center(child: logic.videoStatusAnimation),
-          ],
-        );
+            children: [
+        GestureDetector(
+          onTap: onTapVideo,
+          child: CustomPodVideoPlayer(
+              controller: logic.videoController,
+              frameAspectRatio: 9 / 17.7),
+        ),
+        Center(child: logic.videoStatusAnimation),
+            ],
+          );
       },
     );
   }
 
   void onTapVideo() {
-    if (!logic.controller.value.isInitialized) return;
+    if (!logic.videoController.isInitialised) return;
 
-    if (!logic.controller.value.isPlaying) {
+    if (!logic.videoController.isVideoPlaying) {
       logic.videoStatusAnimation = const _FadeAnimation(
           child: _VolumeContainer(Icons.play_arrow_rounded));
-      logic.controller.play();
+      logic.videoController.play();
     } else {
       logic.videoStatusAnimation =
           const _FadeAnimation(child: _VolumeContainer(Icons.pause));
-      logic.controller.pause();
+      logic.videoController.pause();
     }
   }
 }
