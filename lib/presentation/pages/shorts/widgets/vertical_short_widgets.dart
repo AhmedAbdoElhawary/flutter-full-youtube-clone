@@ -1,8 +1,8 @@
 part of '../shorts_page.dart';
 
 class _VerticalButtons extends StatelessWidget {
-  const _VerticalButtons({Key? key}) : super(key: key);
-
+  const _VerticalButtons(this.videoDetailsItem, {Key? key}) : super(key: key);
+  final VideoDetailsItem videoDetailsItem;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -16,19 +16,18 @@ class _VerticalButtons extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                GestureDetector(
-                  onTap: () {},
-                  child: CircleAvatar(
-                    radius: 18.r,
-                    backgroundColor: ColorManager(context).white,
-                  ),
+                CircularProfileImage(
+                  radius: 18.r,
+                  imageUrl: videoDetailsItem.getChannelProfileImageUrl(),
+                  channelId: videoDetailsItem.getChannelId(),
+                  channelDetailsItem: videoDetailsItem.getChannelSubDetails(),
                 ),
-                const SizedBox(width: 10),
+                const RSizedBox(width: 10),
                 Flexible(
                   child: GestureDetector(
                     onTap: () {},
                     child: Text(
-                      "@AhmedAbdo Ahm",
+                      videoDetailsItem.getCustomUserName(),
                       style: getNormalStyle(color: ColorManager(context).white),
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
@@ -44,7 +43,7 @@ class _VerticalButtons extends StatelessWidget {
           Padding(
             padding: REdgeInsetsDirectional.only(end: 42.0),
             child: Text(
-              "Caption " * 15,
+              videoDetailsItem.getVideoDescription(),
               style: getNormalStyle(color: ColorManager(context).white),
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
@@ -64,25 +63,26 @@ class _SubscribeButton extends StatefulWidget {
 }
 
 class _SubscribeButtonState extends State<_SubscribeButton> {
-  bool isClicked=false;
+  bool isClicked = false;
   @override
   Widget build(BuildContext context) {
-
     return GestureDetector(
       onTap: () async {
         setState(() {
-          isClicked=!isClicked;
+          isClicked = !isClicked;
         });
       },
       child: Container(
         padding: REdgeInsets.all(4),
         decoration: BoxDecoration(
-            color:isClicked?ColorManager(context).black26: ColorManager.blackRed,
+            color: isClicked
+                ? ColorManager(context).black26
+                : ColorManager.blackRed,
             borderRadius: BorderRadius.circular(2.r)),
         child: Text(
-          isClicked?"SUBSCRIBED":"SUBSCRIBE",
+          isClicked ? "SUBSCRIBED" : "SUBSCRIBE",
           style:
-              getMediumStyle(color:ColorManager(context).white, fontSize: 13),
+              getMediumStyle(color: ColorManager(context).white, fontSize: 13),
         ),
       ),
     );

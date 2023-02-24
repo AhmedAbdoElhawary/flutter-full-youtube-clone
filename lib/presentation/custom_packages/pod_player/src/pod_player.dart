@@ -40,7 +40,7 @@ class CustomPodVideoPlayer extends StatefulWidget {
   CustomPodVideoPlayer({
     Key? key,
     required this.controller,
-    required this.displayOverlay,
+    this.displayOverlay=false,
     this.frameAspectRatio = 16 / 9,
     this.videoAspectRatio = 16 / 9,
     this.alwaysShowProgressBar = true,
