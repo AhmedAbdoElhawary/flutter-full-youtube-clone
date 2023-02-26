@@ -28,7 +28,7 @@ Total : 107 files,  6623 codes, 224 comments, 1024 blanks, all 7871 lines
 | [lib/data/data_sources/remote/api/videos/videos_apis.dart](/lib/data/data_sources/remote/api/videos/videos_apis.dart) | Dart | 10 | 1 | 2 | 13 |
 | [lib/data/data_sources/remote/api/videos/videos_apis.g.dart](/lib/data/data_sources/remote/api/videos/videos_apis.g.dart) | Dart | 44 | 0 | 2 | 46 |
 | [lib/data/models/channel_details/channel_details.dart](/lib/data/models/channel_details/channel_details.dart) | Dart | -11 | 0 | -1 | -12 |
-| [lib/data/models/channel_details/my_subscriptions_details.dart](/lib/data/models/channel_details/my_subscriptions_details.dart) | Dart | 47 | 0 | 14 | 61 |
+| [lib/data/models/channel_details/my_subscriptions_details.dart](/lib/data/models/channel_details/my_subscriptions/my_subscriptions_details.dart) | Dart | 47 | 0 | 14 | 61 |
 | [lib/data/models/channel_details/playlists/playlist_videos.dart](/lib/data/models/channel_details/playlists/playlist_videos.dart) | Dart | 56 | 0 | 14 | 70 |
 | [lib/data/models/channel_details/playlists/playlist_videos.g.dart](/lib/data/models/channel_details/playlists/playlist_videos.g.dart) | Dart | 51 | 4 | 7 | 62 |
 | [lib/data/models/channel_details/playlists/playlists.dart](/lib/data/models/channel_details/playlists/playlists.dart) | Dart | 28 | 0 | 11 | 39 |

@@ -10,7 +10,7 @@ import 'package:youtube/presentation/common_widgets/sliver_app_bar.dart';
 import 'package:youtube/presentation/common_widgets/custom_circle_progress.dart';
 import 'package:youtube/presentation/common_widgets/thumbnail_of_video.dart';
 import 'package:youtube/presentation/cubit/videos/videos_details_cubit.dart';
-import 'package:youtube/presentation/pages/home/sub_views/most_popular_videos_page.dart';
+import 'package:youtube/presentation/pages/most_popular/most_popular_videos_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
