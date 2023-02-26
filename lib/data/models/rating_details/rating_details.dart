@@ -1,11 +1,11 @@
 class RatingDetails {
-  Rating rating;
+  String rating;
 
-  RatingDetails({this.rating = Rating.non});
+  RatingDetails({this.rating = "none"});
 
   factory RatingDetails.fromJson(Map<String, dynamic> json) {
-    return RatingDetails(rating: json["items"][0]["rating"] ?? Rating.non);
+
+    return RatingDetails(rating: json["items"][0]["rating"] ?? "none");
   }
 }
 
-enum Rating { like, dislike, non }
