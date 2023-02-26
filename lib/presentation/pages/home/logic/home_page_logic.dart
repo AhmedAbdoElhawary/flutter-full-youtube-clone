@@ -3,10 +3,15 @@ import 'dart:math';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:youtube/data/models/videos_details/videos_details.dart';
+import 'package:youtube/presentation/custom_packages/custom_mini_player/custom_mini_player.dart';
+import 'package:youtube/presentation/custom_packages/pod_player/src/controllers/pod_player_controller.dart';
+import 'package:youtube/presentation/custom_packages/pod_player/src/models/play_video_from.dart';
 
 class MiniVideoViewLogic extends GetxController {
   final Rx<VideoDetailsItem?> _selectedVideoDetails = Rxn<VideoDetailsItem?>();
-
+  final Rx<String> _selectedVideoRating = "none".obs;
+  late PodPlayerController videoController;
+  MiniPlayerController miniPlayerController=MiniPlayerController();
   final RxDouble _percentageOFMiniPage = 0.0.obs;
   final RxDouble _heightOFMiniPage = 50.0.obs;
 
@@ -22,9 +27,15 @@ class MiniVideoViewLogic extends GetxController {
     return height;
   }
 
-  set selectedVideoDetails(VideoDetailsItem? value) {
-    _selectedVideoDetails.value = value;
-  }
+  static PlayVideoFrom getPlayVideoFrom(String videoId) =>
+      PlayVideoFrom.youtube('https://youtu.be/$videoId');
+
+  String get selectedVideoRating => _selectedVideoRating.value;
+
+  set selectedVideoRating(String value) => _selectedVideoRating.value = value;
+
+  set selectedVideoDetails(VideoDetailsItem? value) =>
+      _selectedVideoDetails.value = value;
 
   set percentageOFMiniPage(double value) => _percentageOFMiniPage.value = value;
   set heightOFMiniPage(double value) => _heightOFMiniPage.value = value;
@@ -33,5 +44,4 @@ class MiniVideoViewLogic extends GetxController {
   double get heightOFMiniPage => _heightOFMiniPage.value;
 
   VideoDetailsItem? get selectedVideoDetails => _selectedVideoDetails.value;
-
 }
