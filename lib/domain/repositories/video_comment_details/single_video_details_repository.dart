@@ -4,6 +4,6 @@ import 'package:youtube/data/models/videos_details/videos_details.dart';
 
 abstract class SingleVideoDetailsRepository {
   Future<ApiResult<VideosDetails>> getVideoDetails({required String videoId});
-  Future<ApiResult<void>> rateVideo({required String videoId, required Rating rating});
+  Future<ApiResult<void>> rateVideo({required String videoId, required String rating});
   Future<ApiResult<RatingDetails>> getVideoRating({required String videoId});
 }
