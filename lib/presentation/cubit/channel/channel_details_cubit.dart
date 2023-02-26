@@ -5,6 +5,7 @@ import 'package:youtube/core/functions/api_result.dart';
 import 'package:youtube/core/functions/network_exception_model.dart';
 
 import 'package:youtube/data/models/channel_details/channel_details.dart';
+import 'package:youtube/data/models/channel_details/my_subscriptions/my_subscriptions_details.dart';
 import 'package:youtube/domain/entities/channel_details_use_case_parameters.dart';
 import 'package:youtube/domain/use_cases/channel_details/channel_sub_details_use_case.dart';
 import 'package:youtube/domain/use_cases/channel_details/delete_subscription_use_case.dart';
@@ -43,11 +44,11 @@ class ChannelDetailsCubit extends Cubit<ChannelDetailsState> {
         failure: (exception) => emit(ChannelDetailsState.error(exception)));
   }
 
-  Future<void> subscribeToChannel(String channelId) async {
+  Future<void> subscribeToChannel(String subscriptionId) async {
     emit(const ChannelDetailsState.loading());
 
     ApiResult<void> channelDetails = await _subscribeToChannelUseCase.call(
-        params: ChannelDetailsUseCaseParameters(channelId: channelId));
+        params: ChannelDetailsUseCaseParameters(channelId: subscriptionId));
 
     channelDetails.when(
         success: (_) =>
@@ -55,11 +56,11 @@ class ChannelDetailsCubit extends Cubit<ChannelDetailsState> {
         failure: (exception) => emit(ChannelDetailsState.error(exception)));
   }
 
-  Future<void> deleteSubscription() async {
+  Future<void> deleteSubscription(String subscriptionId) async {
     emit(const ChannelDetailsState.loading());
 
-    ApiResult<void> channelDetails =
-        await _deleteSubscriptionUseCase.call(params: null);
+    ApiResult<void> channelDetails = await _deleteSubscriptionUseCase.call(
+        params: DeleteSubscriptionUseCaseParameter(subscriptionId:subscriptionId));
 
     channelDetails.when(
         success: (_) =>
@@ -70,12 +71,13 @@ class ChannelDetailsCubit extends Cubit<ChannelDetailsState> {
   Future<void> getMySubscriptionsChannels() async {
     emit(const ChannelDetailsState.loading());
 
-    ApiResult<void> channelDetails =
+    ApiResult<MySubscriptionsDetails> channelDetails =
         await _mySubscriptionsChannelsUseCase.call(params: null);
 
     channelDetails.when(
-        success: (_) =>
-            emit(const ChannelDetailsState.mySubscriptionsChannelsLoaded()),
+        success: (mySubscriptionsDetails) => emit(
+            ChannelDetailsState.mySubscriptionsChannelsLoaded(
+                mySubscriptionsDetails)),
         failure: (exception) => emit(ChannelDetailsState.error(exception)));
   }
 }
