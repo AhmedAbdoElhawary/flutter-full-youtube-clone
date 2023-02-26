@@ -9,20 +9,33 @@ import 'package:youtube/data/models/videos_details/video_details_extension.dart'
 import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/presentation/common_widgets/circular_profile_image.dart';
 import 'package:youtube/presentation/common_widgets/thumbnail_image.dart';
+import 'package:youtube/presentation/custom_packages/custom_mini_player/custom_mini_player.dart';
 
 import '../../core/resources/color_manager.dart';
 import '../../core/resources/styles_manager.dart';
 import '../pages/home/logic/home_page_logic.dart';
 
 class ThumbnailOfVideo extends StatelessWidget {
-  const ThumbnailOfVideo(this.videoDetailsItem, {super.key});
+  const ThumbnailOfVideo(this.videoDetailsItem,
+      {this.enablePlaying = true, super.key});
   final VideoDetailsItem? videoDetailsItem;
+  final bool enablePlaying;
   @override
   Widget build(BuildContext context) {
     final miniVideoViewLogic = Get.find<MiniVideoViewLogic>(tag: "1");
     return InkWell(
       onTap: () {
         miniVideoViewLogic.selectedVideoDetails = videoDetailsItem;
+        miniVideoViewLogic.miniPlayerController.dispose();
+        miniVideoViewLogic.miniPlayerController = MiniPlayerController();
+        String playVideoFrom =
+            miniVideoViewLogic.selectedVideoDetails?.id ?? "";
+        if (playVideoFrom.isNotEmpty &&
+            miniVideoViewLogic.videoController.isInitialised) {
+          miniVideoViewLogic.videoController.changeVideo(
+            playVideoFrom: MiniVideoViewLogic.getPlayVideoFrom(playVideoFrom),
+          );
+        }
       },
       child: Column(
         children: [

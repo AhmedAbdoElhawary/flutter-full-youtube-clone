@@ -34,11 +34,11 @@ class SingleVideosDetailsRepoImpl implements SingleVideoDetailsRepository {
 
   @override
   Future<ApiResult<void>> rateVideo(
-      {required String videoId, required Rating rating}) async {
+      {required String videoId, required String rating}) async {
     try {
       await _singleVideosAPIs.rateVideo(
           videoId: videoId,
-          rating: rating.toString(),
+          rating: rating,
           accessToken: accessToken);
 
       return const ApiResult.success(null);

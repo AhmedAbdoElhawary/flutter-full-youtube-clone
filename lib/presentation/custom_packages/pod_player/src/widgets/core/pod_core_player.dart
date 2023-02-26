@@ -44,7 +44,6 @@ class PodCoreVideoPlayer extends StatelessWidget {
                   child: VideoPlayer(videoPlayerCtr),
                 ),
               ),
-
               if (displayOverlay) ...[
                 GetBuilder<PodGetXVideoController>(
                   tag: tag,

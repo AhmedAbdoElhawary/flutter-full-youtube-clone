@@ -14,6 +14,8 @@ class _DislikeButton extends StatelessWidget {
       return BlocBuilder<SingleVideoCubit, SingleVideoState>(
         bloc: BlocProvider.of<SingleVideoCubit>(context)
           ..getVideoRating(videoId: videoId),
+        buildWhen: (previous, current) =>
+            previous != current && current is GetVideoRatingLoaded,
         builder: (context, state) => state.maybeWhen(
           getVideoRatingLoaded: (ratingDetails) {
             return _DislikeIconButton(
@@ -22,6 +24,7 @@ class _DislikeButton extends StatelessWidget {
               videoDetails: videoDetails,
             );
           },
+          loading: () => const SizedBox(),
           error: (error) {
             ToastShow.reformatToast(context, error.error);
             return _DislikeIconButton(
@@ -50,33 +53,37 @@ class _DislikeIconButton extends StatefulWidget {
 }
 
 class _DislikeIconButtonState extends State<_DislikeIconButton> {
+  final miniVideoViewLogic = Get.find<MiniVideoViewLogic>(tag: "1");
+
   @override
   Widget build(BuildContext context) {
-    bool isDisliked = widget.ratingDetails?.rating == Rating.dislike;
-
     return InkWell(
       onTap: () {
         if (widget.videoId.isNotEmpty) {
-          SingleVideoCubit.get(context).rateThisVideo(
-              videoId: widget.videoId,
-              rating: isDisliked ? Rating.non : Rating.dislike);
+          String rating =widget.ratingDetails?.rating == "none"
+              ? "none"
+              : "dislike";
+          SingleVideoCubit.get(context)
+              .rateThisVideo(videoId: widget.videoId, rating: rating);
 
-          setState(() => isDisliked = !isDisliked);
+          miniVideoViewLogic.selectedVideoRating = rating;
         }
       },
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(Icons.thumb_down_alt_rounded,
-              color: isDisliked ? ColorManager.blue : null),
-          const RSizedBox(height: 5),
-          Text(
-            widget.ratingDetails == null ? "" : "Dislike",
-            style: getNormalStyle(
-                color: ColorManager(context).black, fontSize: 13),
-          )
-        ],
-      ),
+      child: Obx(() => Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              miniVideoViewLogic.selectedVideoRating == "dislike"
+                  ? const Icon(Icons.thumb_down_alt_rounded,
+                      color: ColorManager.blue)
+                  : const Icon(Icons.thumb_down_off_alt_outlined, color: null),
+              const RSizedBox(height: 5),
+              Text(
+                "Dislike",
+                style: getNormalStyle(
+                    color: ColorManager(context).black, fontSize: 13),
+              )
+            ],
+          )),
     );
   }
 }

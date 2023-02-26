@@ -14,6 +14,8 @@ class _LikeButton extends StatelessWidget {
       return BlocBuilder<SingleVideoCubit, SingleVideoState>(
         bloc: BlocProvider.of<SingleVideoCubit>(context)
           ..getVideoRating(videoId: videoId),
+        buildWhen: (previous, current) =>
+            previous != current && current is GetVideoRatingLoaded,
         builder: (context, state) => state.maybeWhen(
           getVideoRatingLoaded: (ratingDetails) {
             return _LikeIconButton(
@@ -51,35 +53,44 @@ class _LikeIconButton extends StatefulWidget {
 }
 
 class _LikeIconButtonState extends State<_LikeIconButton> {
+  final miniVideoViewLogic = Get.find<MiniVideoViewLogic>(tag: "1");
+  String likeText = "";
+  @override
+  void initState() {
+    super.initState();
+
+    likeText = widget.videoDetails?.getVideoLikesCount() ?? "Like";
+  }
+
   @override
   Widget build(BuildContext context) {
-    bool isLiked = widget.ratingDetails?.rating == Rating.like;
-
     return InkWell(
       onTap: () {
         if (widget.videoId.isNotEmpty) {
-          SingleVideoCubit.get(context).rateThisVideo(
-              videoId: widget.videoId,
-              rating: isLiked ? Rating.non : Rating.dislike);
+          String rating = widget.ratingDetails?.rating == "none"
+              ? "none"
+              : "like";
+          SingleVideoCubit.get(context)
+              .rateThisVideo(videoId: widget.videoId, rating: rating);
 
-          setState(() => isLiked = !isLiked);
+          miniVideoViewLogic.selectedVideoRating = rating;
         }
       },
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(Icons.thumb_up_alt_rounded,
-              color: isLiked ? ColorManager.blue : null),
-          const RSizedBox(height: 5),
-          Text(
-            widget.ratingDetails == null
-                ? ""
-                : widget.videoDetails?.getVideoLikesCount() ?? "Like",
-            style: getNormalStyle(
-                color: ColorManager(context).black, fontSize: 13),
-          )
-        ],
-      ),
+      child: Obx(() => Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              miniVideoViewLogic.selectedVideoRating == "like"
+                  ? const Icon(Icons.thumb_up_alt_rounded,
+                      color: ColorManager.blue)
+                  : const Icon(Icons.thumb_up_off_alt_outlined, color: null),
+              const RSizedBox(height: 5),
+              Text(
+                likeText,
+                style: getNormalStyle(
+                    color: ColorManager(context).black, fontSize: 13),
+              )
+            ],
+          )),
     );
   }
 }

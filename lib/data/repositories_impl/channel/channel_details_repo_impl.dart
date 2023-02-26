@@ -4,7 +4,7 @@ import 'package:youtube/core/functions/network_exceptions.dart';
 import 'package:youtube/core/utility/private_key.dart';
 import 'package:youtube/data/data_sources/remote/api/channel/channel_apis.dart';
 import 'package:youtube/data/models/channel_details/channel_details.dart';
-import 'package:youtube/data/models/channel_details/my_subscriptions_details.dart';
+import 'package:youtube/data/models/channel_details/my_subscriptions/my_subscriptions_details.dart';
 import 'package:youtube/data/models/channel_details/subscribe_request_body.dart';
 import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/domain/repositories/channel/channel_details_repository.dart';
@@ -39,10 +39,10 @@ class ChannelDetailsRepoImpl implements ChannelDetailsRepository {
   }
 
   @override
-  Future<ApiResult<void>> deleteSubscription() async {
+  Future<ApiResult<void>> deleteSubscription(String subscriptionId) async {
     try {
       await _channelAPIs.deleteSubscription(
-          accessToken: accessToken, id: idToken);
+          accessToken: accessToken, id: subscriptionId);
       return const ApiResult.success(null);
     } catch (e) {
       return ApiResult.failure(NetworkExceptions.getDioException(e));

@@ -1,6 +1,6 @@
 import 'package:youtube/core/functions/api_result.dart';
 import 'package:youtube/data/models/channel_details/channel_details.dart';
-import 'package:youtube/data/models/channel_details/my_subscriptions_details.dart';
+import 'package:youtube/data/models/channel_details/my_subscriptions/my_subscriptions_details.dart';
 import 'package:youtube/data/models/videos_details/videos_details.dart';
 
 abstract class ChannelDetailsRepository {
@@ -9,6 +9,6 @@ abstract class ChannelDetailsRepository {
   Future<VideosDetails> getSubChannelsDetails(
       {required VideosDetails videosDetails});
   Future<ApiResult<void>> subscribeToChannel({required String channelId});
-  Future<ApiResult<void>> deleteSubscription();
+  Future<ApiResult<void>> deleteSubscription(String subscriptionId);
   Future<ApiResult<MySubscriptionsDetails>> getMySubscriptionsChannels();
 }

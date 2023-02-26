@@ -234,7 +234,7 @@ class MobileOverlayBottomControlles extends StatelessWidget {
               ),
               const Spacer(),
               MaterialIconButton(
-                toolTipMesg: podCtr.isFullScreen
+                toolTipMsg: podCtr.isFullScreen
                     ? podCtr.podPlayerLabels.exitFullScreen ??
                         'Exit full screen${kIsWeb ? ' (f)' : ''}'
                     : podCtr.podPlayerLabels.fullscreen ??

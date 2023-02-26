@@ -63,7 +63,7 @@ class SingleVideoCubit extends Cubit<SingleVideoState> {
   }
 
   Future<void> rateThisVideo(
-      {required String videoId, required Rating rating}) async {
+      {required String videoId, required String rating}) async {
     emit(const SingleVideoState.loading());
 
     ApiResult<void> result = await _rateVideoUseCase.call(

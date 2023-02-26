@@ -3,7 +3,7 @@ import 'package:retrofit/retrofit.dart';
 import 'package:youtube/core/utility/constants.dart';
 import 'package:youtube/core/utility/private_key.dart';
 import 'package:youtube/data/models/channel_details/channel_details.dart';
-import 'package:youtube/data/models/channel_details/my_subscriptions_details.dart';
+import 'package:youtube/data/models/channel_details/my_subscriptions/my_subscriptions_details.dart';
 part 'channel_apis.g.dart';
 
 @RestApi(baseUrl: youtubeBaseUrl)

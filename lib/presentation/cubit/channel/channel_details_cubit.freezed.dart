@@ -24,7 +24,8 @@ mixin _$ChannelDetailsState {
         channelSubDetailsLoaded,
     required TResult Function() subscribeToChannelLoaded,
     required TResult Function() deleteSubscriptionLoaded,
-    required TResult Function() mySubscriptionsChannelsLoaded,
+    required TResult Function(MySubscriptionsDetails mySubscriptionsDetails)
+        mySubscriptionsChannelsLoaded,
     required TResult Function(NetworkExceptionModel networkExceptions) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +37,8 @@ mixin _$ChannelDetailsState {
         channelSubDetailsLoaded,
     TResult? Function()? subscribeToChannelLoaded,
     TResult? Function()? deleteSubscriptionLoaded,
-    TResult? Function()? mySubscriptionsChannelsLoaded,
+    TResult? Function(MySubscriptionsDetails mySubscriptionsDetails)?
+        mySubscriptionsChannelsLoaded,
     TResult? Function(NetworkExceptionModel networkExceptions)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -48,7 +50,8 @@ mixin _$ChannelDetailsState {
         channelSubDetailsLoaded,
     TResult Function()? subscribeToChannelLoaded,
     TResult Function()? deleteSubscriptionLoaded,
-    TResult Function()? mySubscriptionsChannelsLoaded,
+    TResult Function(MySubscriptionsDetails mySubscriptionsDetails)?
+        mySubscriptionsChannelsLoaded,
     TResult Function(NetworkExceptionModel networkExceptions)? error,
     required TResult orElse(),
   }) =>
@@ -156,7 +159,8 @@ class _$_Initial implements _Initial {
         channelSubDetailsLoaded,
     required TResult Function() subscribeToChannelLoaded,
     required TResult Function() deleteSubscriptionLoaded,
-    required TResult Function() mySubscriptionsChannelsLoaded,
+    required TResult Function(MySubscriptionsDetails mySubscriptionsDetails)
+        mySubscriptionsChannelsLoaded,
     required TResult Function(NetworkExceptionModel networkExceptions) error,
   }) {
     return initial();
@@ -171,7 +175,8 @@ class _$_Initial implements _Initial {
         channelSubDetailsLoaded,
     TResult? Function()? subscribeToChannelLoaded,
     TResult? Function()? deleteSubscriptionLoaded,
-    TResult? Function()? mySubscriptionsChannelsLoaded,
+    TResult? Function(MySubscriptionsDetails mySubscriptionsDetails)?
+        mySubscriptionsChannelsLoaded,
     TResult? Function(NetworkExceptionModel networkExceptions)? error,
   }) {
     return initial?.call();
@@ -186,7 +191,8 @@ class _$_Initial implements _Initial {
         channelSubDetailsLoaded,
     TResult Function()? subscribeToChannelLoaded,
     TResult Function()? deleteSubscriptionLoaded,
-    TResult Function()? mySubscriptionsChannelsLoaded,
+    TResult Function(MySubscriptionsDetails mySubscriptionsDetails)?
+        mySubscriptionsChannelsLoaded,
     TResult Function(NetworkExceptionModel networkExceptions)? error,
     required TResult orElse(),
   }) {
@@ -295,7 +301,8 @@ class _$Loading implements Loading {
         channelSubDetailsLoaded,
     required TResult Function() subscribeToChannelLoaded,
     required TResult Function() deleteSubscriptionLoaded,
-    required TResult Function() mySubscriptionsChannelsLoaded,
+    required TResult Function(MySubscriptionsDetails mySubscriptionsDetails)
+        mySubscriptionsChannelsLoaded,
     required TResult Function(NetworkExceptionModel networkExceptions) error,
   }) {
     return loading();
@@ -310,7 +317,8 @@ class _$Loading implements Loading {
         channelSubDetailsLoaded,
     TResult? Function()? subscribeToChannelLoaded,
     TResult? Function()? deleteSubscriptionLoaded,
-    TResult? Function()? mySubscriptionsChannelsLoaded,
+    TResult? Function(MySubscriptionsDetails mySubscriptionsDetails)?
+        mySubscriptionsChannelsLoaded,
     TResult? Function(NetworkExceptionModel networkExceptions)? error,
   }) {
     return loading?.call();
@@ -325,7 +333,8 @@ class _$Loading implements Loading {
         channelSubDetailsLoaded,
     TResult Function()? subscribeToChannelLoaded,
     TResult Function()? deleteSubscriptionLoaded,
-    TResult Function()? mySubscriptionsChannelsLoaded,
+    TResult Function(MySubscriptionsDetails mySubscriptionsDetails)?
+        mySubscriptionsChannelsLoaded,
     TResult Function(NetworkExceptionModel networkExceptions)? error,
     required TResult orElse(),
   }) {
@@ -464,7 +473,8 @@ class _$ChannelSubDetailsLoaded implements ChannelSubDetailsLoaded {
         channelSubDetailsLoaded,
     required TResult Function() subscribeToChannelLoaded,
     required TResult Function() deleteSubscriptionLoaded,
-    required TResult Function() mySubscriptionsChannelsLoaded,
+    required TResult Function(MySubscriptionsDetails mySubscriptionsDetails)
+        mySubscriptionsChannelsLoaded,
     required TResult Function(NetworkExceptionModel networkExceptions) error,
   }) {
     return channelSubDetailsLoaded(channelSubDetails);
@@ -479,7 +489,8 @@ class _$ChannelSubDetailsLoaded implements ChannelSubDetailsLoaded {
         channelSubDetailsLoaded,
     TResult? Function()? subscribeToChannelLoaded,
     TResult? Function()? deleteSubscriptionLoaded,
-    TResult? Function()? mySubscriptionsChannelsLoaded,
+    TResult? Function(MySubscriptionsDetails mySubscriptionsDetails)?
+        mySubscriptionsChannelsLoaded,
     TResult? Function(NetworkExceptionModel networkExceptions)? error,
   }) {
     return channelSubDetailsLoaded?.call(channelSubDetails);
@@ -494,7 +505,8 @@ class _$ChannelSubDetailsLoaded implements ChannelSubDetailsLoaded {
         channelSubDetailsLoaded,
     TResult Function()? subscribeToChannelLoaded,
     TResult Function()? deleteSubscriptionLoaded,
-    TResult Function()? mySubscriptionsChannelsLoaded,
+    TResult Function(MySubscriptionsDetails mySubscriptionsDetails)?
+        mySubscriptionsChannelsLoaded,
     TResult Function(NetworkExceptionModel networkExceptions)? error,
     required TResult orElse(),
   }) {
@@ -612,7 +624,8 @@ class _$SubscribeToChannelLoaded implements SubscribeToChannelLoaded {
         channelSubDetailsLoaded,
     required TResult Function() subscribeToChannelLoaded,
     required TResult Function() deleteSubscriptionLoaded,
-    required TResult Function() mySubscriptionsChannelsLoaded,
+    required TResult Function(MySubscriptionsDetails mySubscriptionsDetails)
+        mySubscriptionsChannelsLoaded,
     required TResult Function(NetworkExceptionModel networkExceptions) error,
   }) {
     return subscribeToChannelLoaded();
@@ -627,7 +640,8 @@ class _$SubscribeToChannelLoaded implements SubscribeToChannelLoaded {
         channelSubDetailsLoaded,
     TResult? Function()? subscribeToChannelLoaded,
     TResult? Function()? deleteSubscriptionLoaded,
-    TResult? Function()? mySubscriptionsChannelsLoaded,
+    TResult? Function(MySubscriptionsDetails mySubscriptionsDetails)?
+        mySubscriptionsChannelsLoaded,
     TResult? Function(NetworkExceptionModel networkExceptions)? error,
   }) {
     return subscribeToChannelLoaded?.call();
@@ -642,7 +656,8 @@ class _$SubscribeToChannelLoaded implements SubscribeToChannelLoaded {
         channelSubDetailsLoaded,
     TResult Function()? subscribeToChannelLoaded,
     TResult Function()? deleteSubscriptionLoaded,
-    TResult Function()? mySubscriptionsChannelsLoaded,
+    TResult Function(MySubscriptionsDetails mySubscriptionsDetails)?
+        mySubscriptionsChannelsLoaded,
     TResult Function(NetworkExceptionModel networkExceptions)? error,
     required TResult orElse(),
   }) {
@@ -754,7 +769,8 @@ class _$DeleteSubscriptionLoaded implements DeleteSubscriptionLoaded {
         channelSubDetailsLoaded,
     required TResult Function() subscribeToChannelLoaded,
     required TResult Function() deleteSubscriptionLoaded,
-    required TResult Function() mySubscriptionsChannelsLoaded,
+    required TResult Function(MySubscriptionsDetails mySubscriptionsDetails)
+        mySubscriptionsChannelsLoaded,
     required TResult Function(NetworkExceptionModel networkExceptions) error,
   }) {
     return deleteSubscriptionLoaded();
@@ -769,7 +785,8 @@ class _$DeleteSubscriptionLoaded implements DeleteSubscriptionLoaded {
         channelSubDetailsLoaded,
     TResult? Function()? subscribeToChannelLoaded,
     TResult? Function()? deleteSubscriptionLoaded,
-    TResult? Function()? mySubscriptionsChannelsLoaded,
+    TResult? Function(MySubscriptionsDetails mySubscriptionsDetails)?
+        mySubscriptionsChannelsLoaded,
     TResult? Function(NetworkExceptionModel networkExceptions)? error,
   }) {
     return deleteSubscriptionLoaded?.call();
@@ -784,7 +801,8 @@ class _$DeleteSubscriptionLoaded implements DeleteSubscriptionLoaded {
         channelSubDetailsLoaded,
     TResult Function()? subscribeToChannelLoaded,
     TResult Function()? deleteSubscriptionLoaded,
-    TResult Function()? mySubscriptionsChannelsLoaded,
+    TResult Function(MySubscriptionsDetails mySubscriptionsDetails)?
+        mySubscriptionsChannelsLoaded,
     TResult Function(NetworkExceptionModel networkExceptions)? error,
     required TResult orElse(),
   }) {
@@ -857,6 +875,8 @@ abstract class _$$MySubscriptionsChannelsLoadedCopyWith<$Res> {
           _$MySubscriptionsChannelsLoaded value,
           $Res Function(_$MySubscriptionsChannelsLoaded) then) =
       __$$MySubscriptionsChannelsLoadedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({MySubscriptionsDetails mySubscriptionsDetails});
 }
 
 /// @nodoc
@@ -868,27 +888,52 @@ class __$$MySubscriptionsChannelsLoadedCopyWithImpl<$Res>
       _$MySubscriptionsChannelsLoaded _value,
       $Res Function(_$MySubscriptionsChannelsLoaded) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? mySubscriptionsDetails = null,
+  }) {
+    return _then(_$MySubscriptionsChannelsLoaded(
+      null == mySubscriptionsDetails
+          ? _value.mySubscriptionsDetails
+          : mySubscriptionsDetails // ignore: cast_nullable_to_non_nullable
+              as MySubscriptionsDetails,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$MySubscriptionsChannelsLoaded implements MySubscriptionsChannelsLoaded {
-  const _$MySubscriptionsChannelsLoaded();
+  const _$MySubscriptionsChannelsLoaded(this.mySubscriptionsDetails);
+
+  @override
+  final MySubscriptionsDetails mySubscriptionsDetails;
 
   @override
   String toString() {
-    return 'ChannelDetailsState.mySubscriptionsChannelsLoaded()';
+    return 'ChannelDetailsState.mySubscriptionsChannelsLoaded(mySubscriptionsDetails: $mySubscriptionsDetails)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MySubscriptionsChannelsLoaded);
+            other is _$MySubscriptionsChannelsLoaded &&
+            (identical(other.mySubscriptionsDetails, mySubscriptionsDetails) ||
+                other.mySubscriptionsDetails == mySubscriptionsDetails));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, mySubscriptionsDetails);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MySubscriptionsChannelsLoadedCopyWith<_$MySubscriptionsChannelsLoaded>
+      get copyWith => __$$MySubscriptionsChannelsLoadedCopyWithImpl<
+          _$MySubscriptionsChannelsLoaded>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -899,10 +944,11 @@ class _$MySubscriptionsChannelsLoaded implements MySubscriptionsChannelsLoaded {
         channelSubDetailsLoaded,
     required TResult Function() subscribeToChannelLoaded,
     required TResult Function() deleteSubscriptionLoaded,
-    required TResult Function() mySubscriptionsChannelsLoaded,
+    required TResult Function(MySubscriptionsDetails mySubscriptionsDetails)
+        mySubscriptionsChannelsLoaded,
     required TResult Function(NetworkExceptionModel networkExceptions) error,
   }) {
-    return mySubscriptionsChannelsLoaded();
+    return mySubscriptionsChannelsLoaded(mySubscriptionsDetails);
   }
 
   @override
@@ -914,10 +960,11 @@ class _$MySubscriptionsChannelsLoaded implements MySubscriptionsChannelsLoaded {
         channelSubDetailsLoaded,
     TResult? Function()? subscribeToChannelLoaded,
     TResult? Function()? deleteSubscriptionLoaded,
-    TResult? Function()? mySubscriptionsChannelsLoaded,
+    TResult? Function(MySubscriptionsDetails mySubscriptionsDetails)?
+        mySubscriptionsChannelsLoaded,
     TResult? Function(NetworkExceptionModel networkExceptions)? error,
   }) {
-    return mySubscriptionsChannelsLoaded?.call();
+    return mySubscriptionsChannelsLoaded?.call(mySubscriptionsDetails);
   }
 
   @override
@@ -929,12 +976,13 @@ class _$MySubscriptionsChannelsLoaded implements MySubscriptionsChannelsLoaded {
         channelSubDetailsLoaded,
     TResult Function()? subscribeToChannelLoaded,
     TResult Function()? deleteSubscriptionLoaded,
-    TResult Function()? mySubscriptionsChannelsLoaded,
+    TResult Function(MySubscriptionsDetails mySubscriptionsDetails)?
+        mySubscriptionsChannelsLoaded,
     TResult Function(NetworkExceptionModel networkExceptions)? error,
     required TResult orElse(),
   }) {
     if (mySubscriptionsChannelsLoaded != null) {
-      return mySubscriptionsChannelsLoaded();
+      return mySubscriptionsChannelsLoaded(mySubscriptionsDetails);
     }
     return orElse();
   }
@@ -993,8 +1041,14 @@ class _$MySubscriptionsChannelsLoaded implements MySubscriptionsChannelsLoaded {
 }
 
 abstract class MySubscriptionsChannelsLoaded implements ChannelDetailsState {
-  const factory MySubscriptionsChannelsLoaded() =
+  const factory MySubscriptionsChannelsLoaded(
+          final MySubscriptionsDetails mySubscriptionsDetails) =
       _$MySubscriptionsChannelsLoaded;
+
+  MySubscriptionsDetails get mySubscriptionsDetails;
+  @JsonKey(ignore: true)
+  _$$MySubscriptionsChannelsLoadedCopyWith<_$MySubscriptionsChannelsLoaded>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1066,7 +1120,8 @@ class _$Error implements Error {
         channelSubDetailsLoaded,
     required TResult Function() subscribeToChannelLoaded,
     required TResult Function() deleteSubscriptionLoaded,
-    required TResult Function() mySubscriptionsChannelsLoaded,
+    required TResult Function(MySubscriptionsDetails mySubscriptionsDetails)
+        mySubscriptionsChannelsLoaded,
     required TResult Function(NetworkExceptionModel networkExceptions) error,
   }) {
     return error(networkExceptions);
@@ -1081,7 +1136,8 @@ class _$Error implements Error {
         channelSubDetailsLoaded,
     TResult? Function()? subscribeToChannelLoaded,
     TResult? Function()? deleteSubscriptionLoaded,
-    TResult? Function()? mySubscriptionsChannelsLoaded,
+    TResult? Function(MySubscriptionsDetails mySubscriptionsDetails)?
+        mySubscriptionsChannelsLoaded,
     TResult? Function(NetworkExceptionModel networkExceptions)? error,
   }) {
     return error?.call(networkExceptions);
@@ -1096,7 +1152,8 @@ class _$Error implements Error {
         channelSubDetailsLoaded,
     TResult Function()? subscribeToChannelLoaded,
     TResult Function()? deleteSubscriptionLoaded,
-    TResult Function()? mySubscriptionsChannelsLoaded,
+    TResult Function(MySubscriptionsDetails mySubscriptionsDetails)?
+        mySubscriptionsChannelsLoaded,
     TResult Function(NetworkExceptionModel networkExceptions)? error,
     required TResult orElse(),
   }) {

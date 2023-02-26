@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/presentation/custom_packages/pod_player/src/controllers/pod_getx_video_controller.dart';
 import 'package:youtube/presentation/custom_packages/pod_player/src/utils/enums.dart';
 import 'package:youtube/presentation/custom_packages/pod_player/src/widgets/material_icon_button.dart';
@@ -50,7 +52,6 @@ class AnimatedPlayPauseIconState extends State<AnimatedPlayPauseIcon>
 
   @override
   void dispose() {
-    // podLog('Play-pause-controller-disposed');
     _payCtr.dispose();
     super.dispose();
   }
@@ -65,7 +66,7 @@ class AnimatedPlayPauseIconState extends State<AnimatedPlayPauseIcon>
           tag: widget.tag,
           id: 'podVideoState',
           builder: (f) => MaterialIconButton(
-            toolTipMesg: f.isvideoPlaying
+            toolTipMsg: f.isvideoPlaying
                 ? podCtr.podPlayerLabels.pause ??
                     'Pause${kIsWeb ? ' (space)' : ''}'
                 : podCtr.podPlayerLabels.play ??
@@ -89,11 +90,15 @@ class AnimatedPlayPauseIconState extends State<AnimatedPlayPauseIcon>
   }
 
   Widget _playPause(PodGetXVideoController _) {
-    return AnimatedIcon(
-      icon: AnimatedIcons.play_pause,
-      progress: _payCtr,
-      color: Colors.white,
-      size: widget.size,
+    return Container(
+      padding: REdgeInsets.all(10),
+      decoration: const BoxDecoration(shape: BoxShape.circle,color: BaseColorManager.black38),
+      child: AnimatedIcon(
+        icon: AnimatedIcons.play_pause,
+        progress: _payCtr,
+        color: Colors.white,
+        size: widget.size,
+      ),
     );
   }
 }

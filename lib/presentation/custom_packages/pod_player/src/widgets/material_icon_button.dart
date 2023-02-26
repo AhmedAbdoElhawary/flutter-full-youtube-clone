@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:youtube/core/resources/color_manager.dart';
 
 class MaterialIconButton extends StatelessWidget {
   const MaterialIconButton({
@@ -7,7 +8,7 @@ class MaterialIconButton extends StatelessWidget {
     this.color,
     required this.child,
     this.radius = 12,
-    required this.toolTipMesg,
+    required this.toolTipMsg,
     this.onPressed,
     this.onHover,
     this.onTapDown,
@@ -16,7 +17,7 @@ class MaterialIconButton extends StatelessWidget {
   final Color? color;
   final Widget child;
   final double radius;
-  final String toolTipMesg;
+  final String toolTipMsg;
   final void Function()? onPressed;
   final void Function(bool)? onHover;
   final void Function(TapDownDetails details)? onTapDown;
@@ -24,24 +25,33 @@ class MaterialIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       type: MaterialType.transparency,
+      color: BaseColorManager.orange,
+      surfaceTintColor: BaseColorManager.blue,
+      shadowColor: BaseColorManager.yellow,
       shape: const CircleBorder(),
       child: Tooltip(
-        message: toolTipMesg,
-        // textStyle: TextStyle(fontSize: 0.01),
+        message: toolTipMsg,
         child: InkWell(
           borderRadius: BorderRadius.circular(radius * 4),
           onHover: onHover,
           onTap: onPressed,
           onTapDown: onTapDown,
-          child: Padding(
-            padding: REdgeInsetsDirectional.only(top: 12,end: 12,start: 12,bottom: 4),
-            child: IconTheme(
-              data: IconThemeData(color: color, size: 24),
-              child: child,
-            ),
-          ),
+          child: color == null
+              ? _buildChild()
+              : Padding(
+                  padding: REdgeInsetsDirectional.only(
+                      top: 12, end: 12, start: 12, bottom: 4),
+                  child: _buildChild(),
+                ),
         ),
       ),
+    );
+  }
+
+  Widget _buildChild() {
+    return IconTheme(
+      data: IconThemeData(color: color, size: 24),
+      child: child,
     );
   }
 }

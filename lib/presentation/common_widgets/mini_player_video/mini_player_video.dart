@@ -11,10 +11,12 @@ import 'package:youtube/data/models/rating_details/rating_details.dart';
 import 'package:youtube/data/models/videos_details/video_details_extension.dart';
 import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/presentation/common_widgets/circular_profile_image.dart';
+import 'package:youtube/presentation/common_widgets/custom_circle_progress.dart';
+import 'package:youtube/presentation/common_widgets/thumbnail_of_video.dart';
+import 'package:youtube/presentation/cubit/search/search_cubit.dart';
 import 'package:youtube/presentation/cubit/single_video/single_video_cubit.dart';
 import 'package:youtube/presentation/custom_packages/custom_mini_player/custom_mini_player.dart';
 import 'package:youtube/presentation/custom_packages/pod_player/src/controllers/pod_player_controller.dart';
-import 'package:youtube/presentation/custom_packages/pod_player/src/models/play_video_from.dart';
 import 'package:youtube/presentation/custom_packages/pod_player/src/pod_player.dart';
 import 'package:youtube/presentation/pages/home/logic/home_page_logic.dart';
 import 'package:youtube/presentation/common_widgets/subscribe_button.dart';
@@ -41,6 +43,7 @@ class _MiniPlayerVideoState extends State<MiniPlayerVideo> {
 
     return SafeArea(
       child: CustomMiniPlayer(
+        controller:_miniVideoViewLogic. miniPlayerController,
         minHeight: minHeight,
         maxHeight: height,
         onDismissed: () {
@@ -91,35 +94,65 @@ class _MiniVideoDisplay extends StatelessWidget {
 }
 
 class NextVideosSuggestions extends StatelessWidget {
-  const NextVideosSuggestions({
-    super.key,
-  });
+  const NextVideosSuggestions({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-        itemBuilder: (context, index) {
-          // if (index == 0) {
-          return Padding(
-            padding: REdgeInsets.only(top: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const _VideoTitleSubNumbersTexts(),
-                const _InteractButtons(),
-                Divider(color: ColorManager(context).grey1Point5),
-                const _CircleNameSubscribersWidget(),
-                Divider(color: ColorManager(context).grey1Point5),
-                const _FirstCommentPreviewButton(),
-              ],
-            ),
-          );
-          // }
-          // return MovedThumbnailVideo(index);
+    return Obx(() {
+      final logic = Get.find<MiniVideoViewLogic>(tag: "1");
+      String videoId = logic.selectedVideoDetails?.id ?? "";
+      return BlocBuilder<SearchCubit, SearchState>(
+        bloc: SearchCubit.get(context)..relatedVideosToThisVideo(videoId),
+        builder: (context, state) {
+          return state.maybeWhen(
+              relatedVideosLoaded: (videosDetails) => ListView.separated(
+                  itemBuilder: (context, index) {
+                    if (index == 0) {
+                      return const _VideoInfo();
+                    } else {
+                      return ThumbnailOfVideo(
+                          videosDetails.videoDetailsItem![index - 1],
+                          enablePlaying: false);
+                    }
+                  },
+                  separatorBuilder: (context, index) =>
+                      const RSizedBox(height: 20),
+                  itemCount: (videosDetails.videoDetailsItem?.length ?? 0) + 1),
+              loading: () => const ThineCircularProgress(),
+              error: (e) {
+                ToastShow.reformatToast(context, e.error);
+
+                return const SizedBox();
+              },
+              orElse: () => const SizedBox());
         },
-        separatorBuilder: (context, index) => const RSizedBox(height: 20),
-        itemCount: 1);
+      );
+    });
+  }
+}
+
+class _VideoInfo extends StatelessWidget {
+  const _VideoInfo();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: REdgeInsets.only(top: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const _VideoTitleSubNumbersTexts(),
+          const _InteractButtons(),
+          Divider(color: ColorManager(context).grey1Point5),
+          const _CircleNameSubscribersWidget(),
+          Divider(color: ColorManager(context).grey1Point5),
+          const _FirstCommentPreviewButton(),
+          const RSizedBox(height: 15),
+          Divider(color: ColorManager(context).grey1, height: 1, thickness: 7),
+        ],
+      ),
+    );
   }
 }
 
@@ -165,7 +198,8 @@ class _FirstComment extends StatelessWidget {
       return BlocBuilder<SingleVideoCubit, SingleVideoState>(
         bloc: BlocProvider.of<SingleVideoCubit>(context)
           ..getFirstComment(videoId),
-        buildWhen: (previous, current) => current.maybeWhen(orElse: () => true),
+        buildWhen: (previous, current) =>
+            previous != current && current is FirstCommentLoaded,
         builder: (context, state) {
           return state.maybeWhen(
               firstCommentLoaded: (firstCommentDetails) {
@@ -271,11 +305,11 @@ class _InteractButtons extends StatelessWidget {
       child: Row(
         children: [
           Padding(
-            padding: REdgeInsetsDirectional.only(start: 45, end: 3, top: 15),
+            padding: REdgeInsetsDirectional.only(start: 35, end: 3, top: 15),
             child: const _LikeButton(),
           ),
           Padding(
-            padding: REdgeInsetsDirectional.only(start: 45, end: 3, top: 15),
+            padding: REdgeInsetsDirectional.only(start: 35, end: 3, top: 15),
             child: const _DislikeButton(),
           ),
         ],

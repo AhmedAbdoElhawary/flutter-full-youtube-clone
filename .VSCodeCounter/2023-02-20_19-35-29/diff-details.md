@@ -30,7 +30,7 @@ Total : 82 files,  2527 codes, -180 comments, 317 blanks, all 2664 lines
 | [lib/data/models/channel_details/channel_details.dart](/lib/data/models/channel_details/channel_details.dart) | Dart | -8 | 0 | -3 | -11 |
 | [lib/data/models/channel_details/channel_details.g.dart](/lib/data/models/channel_details/channel_details.g.dart) | Dart | -14 | 0 | -1 | -15 |
 | [lib/data/models/channel_details/channel_sub_details/channel_sub_details_extension.dart](/lib/data/models/channel_details/channel_sub_details/channel_sub_details_extension.dart) | Dart | 20 | 1 | 5 | 26 |
-| [lib/data/models/channel_details/my_subscriptions_details.g.dart](/lib/data/models/channel_details/my_subscriptions_details.g.dart) | Dart | 42 | 4 | 7 | 53 |
+| [lib/data/models/channel_details/my_subscriptions_details.g.dart](/lib/data/models/channel_details/my_subscriptions/my_subscriptions_details.g.dart) | Dart | 42 | 4 | 7 | 53 |
 | [lib/data/models/common/thumbnail_details/high_thumbnail_details.dart](/lib/data/models/common/thumbnail_details/high_thumbnail_details.dart) | Dart | 11 | 0 | 5 | 16 |
 | [lib/data/models/common/thumbnail_details/high_thumbnail_details.g.dart](/lib/data/models/common/thumbnail_details/high_thumbnail_details.g.dart) | Dart | 10 | 4 | 4 | 18 |
 | [lib/data/models/searched_video_details/searched_video_details.dart](/lib/data/models/searched_video_details/searched_video_details.dart) | Dart | 61 | 0 | 15 | 76 |
@@ -84,7 +84,7 @@ Total : 82 files,  2527 codes, -180 comments, 317 blanks, all 2664 lines
 | [lib/presentation/pages/channel_profile/tab_bar_views/home_view.dart](/lib/presentation/pages/channel_profile/tab_bar_views/home_view.dart) | Dart | 8 | 0 | 2 | 10 |
 | [lib/presentation/pages/channel_profile/tab_bar_views/videos_view.dart](/lib/presentation/pages/channel_profile/tab_bar_views/videos_view.dart) | Dart | 5 | 0 | 2 | 7 |
 | [lib/presentation/pages/channel_profile/user_profile_page.dart](/lib/presentation/pages/channel_profile/user_profile_page.dart) | Dart | 47 | 0 | 4 | 51 |
-| [lib/presentation/pages/home/sub_views/most_popular_videos_page.dart](/lib/presentation/pages/home/sub_views/most_popular_videos_page.dart) | Dart | 265 | 0 | 25 | 290 |
+| [lib/presentation/pages/home/sub_views/most_popular_videos_page.dart](/lib/presentation/pages/most_popular/most_popular_videos_page.dart) | Dart | 265 | 0 | 25 | 290 |
 | [lib/presentation/pages/home/views/home_page.dart](/lib/presentation/pages/home/views/home_page.dart) | Dart | 136 | 0 | 15 | 151 |
 | [lib/presentation/pages/home/views/video_view_page/video_view_page.dart](/lib/presentation/pages/home/views/video_view_page/video_view_page.dart) | Dart | -13 | 0 | -3 | -16 |
 | [lib/presentation/pages/search/search_page.dart](/lib/presentation/pages/search/search_page.dart) | Dart | 17 | 0 | 1 | 18 |
