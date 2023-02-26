@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:youtube/core/functions/toast_show.dart';
 import 'package:youtube/core/resources/color_manager.dart';
+import 'package:youtube/data/models/channel_details/my_subscriptions/my_subscription_item_extension.dart';
+import 'package:youtube/data/models/channel_details/my_subscriptions/my_subscriptions_details.dart';
+import 'package:youtube/presentation/common_widgets/circular_profile_image.dart';
+import 'package:youtube/presentation/common_widgets/shimmer_loading.dart';
 import 'package:youtube/presentation/common_widgets/sliver_app_bar.dart';
+import 'package:youtube/presentation/cubit/channel/channel_details_cubit.dart';
 
 import '../../../core/resources/styles_manager.dart';
 import 'logic/subscriptions_page_logic.dart';
@@ -14,20 +21,23 @@ class SubscriptionsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: CustomScrollView(slivers: [
-          MainSliverAppBar(
-              preferredSizeWidget: PreferredSize(
-                  preferredSize: Size.fromHeight(130.h),
-                  child: const SubscriptionsBottomAppBarWidget())),
-          SliverList(
+        child: CustomScrollView(
+          slivers: [
+            MainSliverAppBar(
+                preferredSizeWidget: PreferredSize(
+                    preferredSize: Size.fromHeight(130.h),
+                    child: const SubscriptionsBottomAppBarWidget())),
+            SliverList(
               delegate: SliverChildBuilderDelegate(
-            childCount: 30,
-            (context, index) => Padding(
-              padding: REdgeInsets.only(bottom: 15),
-              child: const RSizedBox(),
+                childCount: 30,
+                (context, index) => Padding(
+                  padding: REdgeInsets.only(bottom: 15),
+                  child: const RSizedBox(),
+                ),
+              ),
             ),
-          ),),
-        ],),
+          ],
+        ),
       ),
     );
   }
@@ -119,22 +129,65 @@ class _ChannelsCircularImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 85.h,
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        physics: const BouncingScrollPhysics(),
-        itemBuilder: (context, index) => _ChannelItem(index),
-        separatorBuilder: (context, index) => const RSizedBox(width: 5),
-        itemCount: 50,
-      ),
+    return BlocBuilder<ChannelDetailsCubit, ChannelDetailsState>(
+      bloc: ChannelDetailsCubit.get(context)..getMySubscriptionsChannels(),
+      buildWhen: (previous, current) =>
+          previous != current && current is MySubscriptionsChannelsLoaded,
+      builder: (context, state) {
+        return
+        state.maybeWhen(
+            mySubscriptionsChannelsLoaded: (mySubscriptionsDetails) => SizedBox(
+                  height: 85.h,
+                  child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    physics: const BouncingScrollPhysics(),
+                    itemBuilder: (context, index) => _ChannelItem(
+                        index, mySubscriptionsDetails.items![index]),
+                    separatorBuilder: (context, index) =>
+                        const RSizedBox(width: 5),
+                    itemCount: mySubscriptionsDetails.items?.length ?? 0,
+                  ),
+                ),
+            loading: () => const _CircularLoading(),
+            error: (e) {
+              ToastShow.reformatToast(context, e.error);
+              return const SizedBox();
+            },
+            orElse: () => const SizedBox());
+      },
+    );
+  }
+}
+
+class _CircularLoading extends StatelessWidget {
+  const _CircularLoading();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        ShimmerLoading(
+          child: CircleAvatar(
+              radius: 30, backgroundColor: ColorManager(context).grey),
+        ),
+        const RSizedBox(height: 5),
+        ShimmerLoading(
+            child: Container(
+          width: 50.w,
+          height: 5.h,
+          color: ColorManager(context).grey,
+        )),
+      ],
     );
   }
 }
 
 class _ChannelItem extends StatelessWidget {
-  const _ChannelItem(this.index);
+  const _ChannelItem(this.index, this.mySubscriptionsItem);
   final int index;
+  final MySubscriptionsItem? mySubscriptionsItem;
   @override
   Widget build(BuildContext context) {
     final logic = Get.find<SubscriptionsPageLogic>(tag: "1");
@@ -153,12 +206,12 @@ class _ChannelItem extends StatelessWidget {
                   : null,
               width: 65.w,
               child: selectedIndex == index || selectedIndex == null
-                  ? const _ChannelImageName()
-                  : const ColorFiltered(
-                      colorFilter: ColorFilter.mode(
+                  ? _ChannelImageName(mySubscriptionsItem)
+                  : ColorFiltered(
+                      colorFilter: const ColorFilter.mode(
                           Color.fromARGB(48, 180, 180, 180),
                           BlendMode.modulate),
-                      child: _ChannelImageName()),
+                      child: _ChannelImageName(mySubscriptionsItem)),
             );
           },
         ),
@@ -168,7 +221,8 @@ class _ChannelItem extends StatelessWidget {
 }
 
 class _ChannelImageName extends StatelessWidget {
-  const _ChannelImageName();
+  const _ChannelImageName(this.mySubscriptionsItem);
+  final MySubscriptionsItem? mySubscriptionsItem;
 
   @override
   Widget build(BuildContext context) {
@@ -176,22 +230,26 @@ class _ChannelImageName extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        CircleAvatar(radius: 30, backgroundColor: ColorManager(context).grey2),
+        CircularProfileImage(
+          imageUrl: mySubscriptionsItem?.getChannelHighUrl() ?? "",
+          radius: 30.r,
+          enableTapping: false,
+        ),
         const RSizedBox(height: 5),
-        const _ChannelName()
+        _ChannelName(mySubscriptionsItem)
       ],
     );
   }
 }
 
 class _ChannelName extends StatelessWidget {
-  const _ChannelName();
-
+  const _ChannelName(this.mySubscriptionsItem);
+  final MySubscriptionsItem? mySubscriptionsItem;
   @override
   Widget build(BuildContext context) {
     return Flexible(
       child: Text(
-        "Ahmed Abdo" * 2,
+        mySubscriptionsItem?.getChannelName() ?? "",
         style: getNormalStyle(color: ColorManager(context).grey7, fontSize: 12),
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
