@@ -64,21 +64,20 @@ class _VideoOfMiniDisplay extends StatefulWidget {
 
 class _VideoOfMiniDisplayState extends State<_VideoOfMiniDisplay> {
   final logic = Get.find<MiniVideoViewLogic>(tag: "1");
-  late PodPlayerController videoController;
   String videoId = "";
   @override
   void initState() {
     super.initState();
     videoId = logic.selectedVideoDetails?.id ?? "";
-    videoController = PodPlayerController(
-      playVideoFrom: PlayVideoFrom.youtube('https://youtu.be/$videoId'),
+    logic.videoController = PodPlayerController(
+      playVideoFrom: MiniVideoViewLogic.getPlayVideoFrom(videoId),
     )..initialise();
   }
 
   @override
   void dispose() {
     super.dispose();
-    videoController.dispose();
+    logic. videoController.dispose();
   }
 
   @override
@@ -92,7 +91,7 @@ class _VideoOfMiniDisplayState extends State<_VideoOfMiniDisplay> {
         child: videoId.isEmpty
             ? null
             : CustomPodVideoPlayer(
-          controller: videoController,
+          controller: logic.videoController,
           displayOverlay: widget.percentage == 1,
         ),
       ),
