@@ -1,6 +1,5 @@
 import 'package:youtube/core/functions/api_result.dart';
 import 'package:youtube/core/use_case/use_case.dart';
-import 'package:youtube/data/models/rating_details/rating_details.dart';
 import 'package:youtube/domain/repositories/video_comment_details/single_video_details_repository.dart';
 
 class RateVideoUseCase implements UseCase<ApiResult<void>, RateVideoUseCaseParameter> {
@@ -25,7 +24,7 @@ class RateVideoUseCase implements UseCase<ApiResult<void>, RateVideoUseCaseParam
 
 class RateVideoUseCaseParameter {
   String videoId;
-  Rating rating;
+  String rating;
 
   RateVideoUseCaseParameter({required this.videoId, required this.rating});
 }
