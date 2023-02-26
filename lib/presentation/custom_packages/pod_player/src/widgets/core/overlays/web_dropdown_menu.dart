@@ -26,7 +26,7 @@ class WebSettingsDropdownState extends State<WebSettingsDropdown> {
         tag: widget.tag,
         builder: (podCtr) {
           return MaterialIconButton(
-            toolTipMesg: podCtr.podPlayerLabels.settings,
+            toolTipMsg: podCtr.podPlayerLabels.settings,
             color: Colors.white,
             child: const Icon(Icons.settings),
             onPressed: () => podCtr.isFullScreen
