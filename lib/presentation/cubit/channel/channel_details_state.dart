@@ -15,7 +15,8 @@ class ChannelDetailsState with _$ChannelDetailsState {
   const factory ChannelDetailsState.deleteSubscriptionLoaded() =
       DeleteSubscriptionLoaded;
 
-  const factory ChannelDetailsState.mySubscriptionsChannelsLoaded() =
+  const factory ChannelDetailsState.mySubscriptionsChannelsLoaded(
+          MySubscriptionsDetails mySubscriptionsDetails) =
       MySubscriptionsChannelsLoaded;
 
   const factory ChannelDetailsState.error(
