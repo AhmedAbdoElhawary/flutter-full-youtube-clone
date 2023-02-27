@@ -3,7 +3,33 @@ import 'package:easy_localization/easy_localization.dart';
 class DateReformat {
   static String dateOfNow() => DateTime.now().toString();
 
-  static String oneDigitFormat(DateTime? dateUtc) {
+  static String oneDigitFormat(String theDate) {
+    final DateTime dateOne = DateTime.now();
+    final DateTime? dateTwo = DateTime.tryParse(theDate);
+    if (dateTwo == null) return "";
+    final Duration duration = dateOne.difference(dateTwo);
+    int year = (duration.inDays / 256).ceil();
+    int month = (duration.inDays / 30).ceil();
+    int week = month * 4;
+    int day = duration.inDays;
+    int hour = duration.inHours;
+    int minute = duration.inMinutes;
+    int second = duration.inSeconds;
+    String text = second > 60
+        ? (minute > 60
+            ? (hour > 24
+                ? (day > 30
+                    ? (week > 4
+                        ? (month > 12 ? "$year y" : "$month m")
+                        : "$week w")
+                    : "$day d")
+                : "$hour h")
+            : "$minute m")
+        : "$second s";
+    return "$text ago";
+  }
+
+  static String fullDigitFormat(DateTime? dateUtc) {
     if (dateUtc == null) return "";
     DateTime dateTime =
         DateFormat("yyyy-MM-dd HH:mm:ss").parse(dateUtc.toString(), true);
