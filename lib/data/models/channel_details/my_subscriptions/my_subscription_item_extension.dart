@@ -5,7 +5,7 @@ import 'package:youtube/data/models/common/thumbnail_details/max_thumbnail_detai
 extension MySubscriptionItemExtension on MySubscriptionsItem {
   String getChannelName() => snippet?.title ?? "";
   String getChannelPublishedTime() =>
-      DateReformat.oneDigitFormat(snippet?.publishedAt);
+      DateReformat.fullDigitFormat(snippet?.publishedAt);
   String getChannelBio() => snippet?.description ?? "";
   String getChannelId() => snippet?.resourceId?.channelId ?? "";
 
