@@ -1,4 +1,4 @@
-part of'../../mini_player_video.dart';
+part of '../../mini_player_video.dart';
 
 class _HeadOfBottomSheet extends StatelessWidget {
   const _HeadOfBottomSheet({this.headTitle = "Description", Key? key})
@@ -6,8 +6,6 @@ class _HeadOfBottomSheet extends StatelessWidget {
   final String headTitle;
   @override
   Widget build(BuildContext context) {
-    final miniVideoViewLogic = Get.find<MiniVideoViewLogic>(tag: "1");
-
     return Material(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -34,15 +32,14 @@ class _HeadOfBottomSheet extends StatelessWidget {
                       color: ColorManager(context).black, fontSize: 18),
                 ),
                 InkWell(
-                    onTap: () async {
-                      await miniVideoViewLogic.descriptionSheetController
-                          .collapse();
+                    onTap: () {
+                      Go(context).back();
                     },
-                    child: SvgPicture.asset(IconsAssets.closeIcon, height: 25)),
+                    child: Container(padding: REdgeInsets.all(5),color: BaseColorManager.transparent,child: SvgPicture.asset(IconsAssets.closeIcon, height: 25))),
               ],
             ),
           ),
-            Divider(color: ColorManager(context).grey2, height: 1),
+          Divider(color: ColorManager(context).grey2, height: 1),
         ],
       ),
     );
