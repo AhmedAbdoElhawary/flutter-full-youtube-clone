@@ -14,7 +14,7 @@ extension ChannelDetailsItemExtension on ChannelDetailsItem {
 
   String getChannelCountry() => snippet?.country ?? "";
   String getPublishedTime() =>
-      DateReformat.oneDigitFormat(snippet?.publishedAt);
+      DateReformat.fullDigitFormat(snippet?.publishedAt);
 
   String getVideosViewsCount() => _viewsCount(statistics?.viewCount);
   String getSubscribersCount() => _viewsCount(statistics?.subscriberCount);
