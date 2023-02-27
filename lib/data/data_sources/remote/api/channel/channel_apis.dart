@@ -16,10 +16,10 @@ abstract class ChannelAPIs {
     @Query("id") required String channelId,
   });
 
-  @GET("subscriptions?part=snippet&mine=true&maxResults=2")
+  @GET("subscriptions?part=snippet&mine=true&access_token={accessToken}&key%20={apiKey}&maxResults=2")
   Future<MySubscriptionsDetails> getMySubscriptionsChannels({
-    @Query("key") final String apiKey = apiKey,
-    @Query("access_token") required String accessToken,
+    @Path() final String apiKey = apiKey,
+    @Path() required String accessToken,
   });
 
   /// use in [body] this SubscriptionRequestBody.toJson(channelId)
