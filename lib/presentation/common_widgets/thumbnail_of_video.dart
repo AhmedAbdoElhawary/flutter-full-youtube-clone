@@ -31,8 +31,8 @@ class ThumbnailOfVideo extends StatelessWidget {
         String playVideoFrom =
             miniVideoViewLogic.selectedVideoDetails?.id ?? "";
         if (playVideoFrom.isNotEmpty &&
-            miniVideoViewLogic.videoController.isInitialised) {
-          miniVideoViewLogic.videoController.changeVideo(
+            miniVideoViewLogic.videoController!=null) {
+          miniVideoViewLogic.videoController!.changeVideo(
             playVideoFrom: MiniVideoViewLogic.getPlayVideoFrom(playVideoFrom),
           );
         }
