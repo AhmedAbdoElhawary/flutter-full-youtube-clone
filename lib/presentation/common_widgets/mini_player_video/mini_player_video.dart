@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:sliding_sheet/sliding_sheet.dart';
 import 'package:youtube/core/functions/toast_show.dart';
+import 'package:youtube/core/resources/assets_manager.dart';
 import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/core/resources/styles_manager.dart';
 import 'package:youtube/data/models/common/base_comment_snippet/sub_comment_snippet.dart';
@@ -12,6 +15,7 @@ import 'package:youtube/data/models/videos_details/video_details_extension.dart'
 import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/presentation/common_widgets/circular_profile_image.dart';
 import 'package:youtube/presentation/common_widgets/custom_circle_progress.dart';
+import 'package:youtube/presentation/common_widgets/text_links.dart';
 import 'package:youtube/presentation/common_widgets/thumbnail_of_video.dart';
 import 'package:youtube/presentation/cubit/search/search_cubit.dart';
 import 'package:youtube/presentation/cubit/single_video/single_video_cubit.dart';
@@ -25,6 +29,11 @@ part 'sub_widgets/like_button.dart';
 part 'sub_widgets/dislike_button.dart';
 part 'sub_widgets/interaction_simmer_loading.dart';
 part 'sub_widgets/mini_video_view.dart';
+part 'sub_widgets/draggable_bottom_sheet.dart';
+part 'sub_widgets/fisrt_comment_preview_button.dart';
+part 'sub_widgets/bottom_sheet/description_bottom_sheet.dart';
+part 'sub_widgets/bottom_sheet/head_of_bottom_sheet.dart';
+part 'sub_widgets/bottom_sheet/comments_bottom_sheet.dart';
 
 class MiniPlayerVideo extends StatefulWidget {
   const MiniPlayerVideo({super.key});
@@ -43,7 +52,7 @@ class _MiniPlayerVideoState extends State<MiniPlayerVideo> {
 
     return SafeArea(
       child: CustomMiniPlayer(
-        controller:_miniVideoViewLogic. miniPlayerController,
+        controller: _miniVideoViewLogic.miniPlayerController,
         minHeight: minHeight,
         maxHeight: height,
         onDismissed: () {
@@ -156,96 +165,6 @@ class _VideoInfo extends StatelessWidget {
   }
 }
 
-class _FirstCommentPreviewButton extends StatelessWidget {
-  const _FirstCommentPreviewButton();
-
-  @override
-  Widget build(BuildContext context) {
-    final miniVideoViewLogic = Get.find<MiniVideoViewLogic>(tag: "1");
-    String commentCount =
-        miniVideoViewLogic.selectedVideoDetails?.getVideoCommentsCount() ?? "0";
-    return Padding(
-      padding: REdgeInsets.symmetric(horizontal: 10),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Comments $commentCount",
-                style: getNormalStyle(
-                    color: ColorManager(context).black, fontSize: 13),
-              ),
-              const Icon(Icons.keyboard_arrow_down_outlined),
-            ],
-          ),
-          const RSizedBox(height: 10),
-          const _FirstComment()
-        ],
-      ),
-    );
-  }
-}
-
-class _FirstComment extends StatelessWidget {
-  const _FirstComment();
-
-  @override
-  Widget build(BuildContext context) {
-    return Obx(() {
-      final miniVideoViewLogic = Get.find<MiniVideoViewLogic>(tag: "1");
-      final String videoId = miniVideoViewLogic.selectedVideoDetails?.id ?? "";
-      return BlocBuilder<SingleVideoCubit, SingleVideoState>(
-        bloc: BlocProvider.of<SingleVideoCubit>(context)
-          ..getFirstComment(videoId),
-        buildWhen: (previous, current) =>
-            previous != current && current is FirstCommentLoaded,
-        builder: (context, state) {
-          return state.maybeWhen(
-              firstCommentLoaded: (firstCommentDetails) {
-                if (firstCommentDetails.items?.isEmpty ?? true) {
-                  return const SizedBox();
-                }
-                SubCommentSnippet? snippet = firstCommentDetails
-                    .items?[0]?.snippet?.topLevelComment?.snippet;
-
-                return _FirstCommentBody(snippet: snippet);
-              },
-              loading: () => const SizedBox(),
-              orElse: () => const SizedBox());
-        },
-      );
-    });
-  }
-}
-
-class _FirstCommentBody extends StatelessWidget {
-  const _FirstCommentBody({required this.snippet});
-
-  final SubCommentSnippet? snippet;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        CircularProfileImage(
-            imageUrl: snippet?.authorProfileImageUrl ?? "",
-            channelId: snippet?.authorChannelId?.value ?? ""),
-        const RSizedBox(width: 10),
-        Flexible(
-          child: Text(
-            snippet?.textOriginal ?? "",
-            style: getNormalStyle(
-                color: ColorManager(context).black, fontSize: 13),
-            maxLines: 4,
-            overflow: TextOverflow.ellipsis,
-          ),
-        )
-      ],
-    );
-  }
-}
 
 class _CircleNameSubscribersWidget extends StatelessWidget {
   const _CircleNameSubscribersWidget();
@@ -321,43 +240,51 @@ class _InteractButtons extends StatelessWidget {
 class _VideoTitleSubNumbersTexts extends StatelessWidget {
   const _VideoTitleSubNumbersTexts();
 
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: REdgeInsets.symmetric(horizontal: 10),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Obx(
-            () {
-              final logic = Get.find<MiniVideoViewLogic>(tag: "1");
-              VideoDetailsItem? videoDetails = logic.selectedVideoDetails;
-              return Flexible(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      videoDetails?.getVideoTitle() ?? "",
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 3,
-                      style: getNormalStyle(
-                          color: ColorManager(context).black, fontSize: 15),
-                    ),
-                    const RSizedBox(height: 8),
-                    Text(
-                      "${videoDetails?.getVideoViewsCount()} views . ${videoDetails?.getVideoPublishedTime()} ago",
-                      overflow: TextOverflow.ellipsis,
-                      style: getNormalStyle(
-                          color: ColorManager(context).grey7, fontSize: 13),
-                    ),
-                  ],
-                ),
-              );
-            },
-          ),
-          const Icon(Icons.keyboard_arrow_down_outlined),
-        ],
+    return InkWell(
+      onTap: () {
+        draggableBottomSheet(context);
+      },
+      child: Padding(
+        padding: REdgeInsets.symmetric(horizontal: 10),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Obx(
+                  () {
+                final logic = Get.find<MiniVideoViewLogic>(tag: "1");
+                VideoDetailsItem? videoDetails = logic.selectedVideoDetails;
+                return Flexible(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        videoDetails?.getVideoTitle() ?? "",
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 3,
+                        style: getNormalStyle(
+                            color: ColorManager(context).black, fontSize: 15),
+                      ),
+                      const RSizedBox(height: 8),
+                      Text(
+                        "${videoDetails
+                            ?.getVideoViewsCount()} views . ${videoDetails
+                            ?.getVideoPublishedTime()} ago",
+                        overflow: TextOverflow.ellipsis,
+                        style: getNormalStyle(
+                            color: ColorManager(context).grey7, fontSize: 13),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+            const Icon(Icons.keyboard_arrow_down_outlined),
+          ],
+        ),
       ),
     );
   }

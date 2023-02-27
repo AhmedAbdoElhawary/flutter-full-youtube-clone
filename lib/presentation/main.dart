@@ -18,8 +18,3 @@ Future<void> main() async {
 
 final GoogleSignIn googleSignIn =
     GoogleSignIn(scopes: ['https://www.googleapis.com/auth/youtube.force-ssl']);
-
-
-
-
-
