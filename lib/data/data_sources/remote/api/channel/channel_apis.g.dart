@@ -55,10 +55,7 @@ class _ChannelAPIs implements ChannelAPIs {
     required accessToken,
   }) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{
-      r'key': apiKey,
-      r'access_token': accessToken,
-    };
+    final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
@@ -69,7 +66,7 @@ class _ChannelAPIs implements ChannelAPIs {
     )
             .compose(
               _dio.options,
-              'subscriptions?part=snippet&mine=true&maxResults=2',
+              'subscriptions?part=snippet&mine=true&access_token=${accessToken}&key%20=${apiKey}&maxResults=2',
               queryParameters: queryParameters,
               data: _data,
             )
