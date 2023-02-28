@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
   <g id="help-circle" transform="translate(-1.5 -1.5)">
-    <circle id="Elipse_126" data-name="Elipse 126" cx="7" cy="7" r="7" transform="translate(2 2)" fill="none" stroke="#172026" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+    <circle id="Elipse_126"  data-name="Elipse 126" cx="7" cy="7" r="7" transform="translate(2 2)" fill="none" stroke="#172026" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
     <path id="Trazado_38006" data-name="Trazado 38006" d="M9.09,9a3,3,0,0,1,5.83,1c0,2-3,3-3,3" transform="translate(-2.869 -2.163)" fill="none" stroke="#172026" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
     <line id="Línea_472" data-name="Línea 472" transform="translate(9 13)" fill="none" stroke="#172026" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
   </g>
