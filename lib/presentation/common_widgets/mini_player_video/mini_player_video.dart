@@ -53,8 +53,7 @@ class _MiniPlayerVideoState extends State<MiniPlayerVideo> {
   @override
   Widget build(BuildContext context) {
     MediaQueryData mediaQuery = MediaQuery.of(context);
-    double height = mediaQuery.size.height - 70.h;
-
+    double height = mediaQuery.size.height - 10.h;
     return SafeArea(
       child: CustomMiniPlayer(
         controller: _miniVideoViewLogic.miniPlayerController,
@@ -64,8 +63,10 @@ class _MiniPlayerVideoState extends State<MiniPlayerVideo> {
           _miniVideoViewLogic.selectedVideoDetails = null;
         },
         builder: (height, percentage) {
-          _miniVideoViewLogic.percentageOFMiniPage = percentage;
-          _miniVideoViewLogic.heightOFMiniPage = height;
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            _miniVideoViewLogic.percentageOFMiniPage = percentage;
+            _miniVideoViewLogic.heightOFMiniPage = height;
+          });
 
           return _MiniVideoDisplay(height, percentage);
         },
@@ -170,7 +171,6 @@ class _VideoInfo extends StatelessWidget {
   }
 }
 
-
 class _CircleNameSubscribersWidget extends StatelessWidget {
   const _CircleNameSubscribersWidget();
 
@@ -242,7 +242,6 @@ class _InteractButtons extends StatelessWidget {
 class _VideoTitleSubNumbersTexts extends StatelessWidget {
   const _VideoTitleSubNumbersTexts();
 
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -256,7 +255,7 @@ class _VideoTitleSubNumbersTexts extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Obx(
-                  () {
+              () {
                 final logic = Get.find<MiniVideoViewLogic>(tag: "1");
                 VideoDetailsItem? videoDetails = logic.selectedVideoDetails;
                 return Flexible(
@@ -272,9 +271,7 @@ class _VideoTitleSubNumbersTexts extends StatelessWidget {
                       ),
                       const RSizedBox(height: 8),
                       Text(
-                        "${videoDetails
-                            ?.getVideoViewsCount()} views . ${videoDetails
-                            ?.getVideoPublishedTime()} ago",
+                        "${videoDetails?.getVideoViewsCount()} views . ${videoDetails?.getVideoPublishedTime()} ago",
                         overflow: TextOverflow.ellipsis,
                         style: getNormalStyle(
                             color: ColorManager(context).grey7, fontSize: 13),

@@ -2,23 +2,38 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:youtube/config/routes/route_app.dart';
+import 'package:youtube/core/functions/network_exceptions.dart';
 import 'package:youtube/core/functions/toast_show.dart';
 import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/data/models/channel_details/my_subscriptions/my_subscription_item_extension.dart';
 import 'package:youtube/data/models/channel_details/my_subscriptions/my_subscriptions_details.dart';
 import 'package:youtube/presentation/common_widgets/circular_profile_image.dart';
+import 'package:youtube/presentation/common_widgets/custom_circle_progress.dart';
 import 'package:youtube/presentation/common_widgets/shimmer_loading.dart';
 import 'package:youtube/presentation/common_widgets/sliver_app_bar.dart';
+import 'package:youtube/presentation/common_widgets/thumbnail_of_video.dart';
 import 'package:youtube/presentation/cubit/channel/channel_details_cubit.dart';
+import 'package:youtube/presentation/cubit/channel/channel_videos/channel_videos_cubit.dart';
+import 'package:youtube/presentation/pages/channel_profile/user_channel_page.dart';
 
 import '../../../core/resources/styles_manager.dart';
 import 'logic/subscriptions_page_logic.dart';
 
-class SubscriptionsPage extends StatelessWidget {
+class SubscriptionsPage extends StatefulWidget {
   const SubscriptionsPage({Key? key}) : super(key: key);
 
   @override
+  State<SubscriptionsPage> createState() => _SubscriptionsPageState();
+}
+
+class _SubscriptionsPageState extends State<SubscriptionsPage>
+    with AutomaticKeepAliveClientMixin<SubscriptionsPage> {
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
+    Get.put(SubscriptionsPageLogic(), tag: "1");
+
     return Scaffold(
       body: SafeArea(
         child: CustomScrollView(
@@ -27,20 +42,70 @@ class SubscriptionsPage extends StatelessWidget {
                 preferredSizeWidget: PreferredSize(
                     preferredSize: Size.fromHeight(130.h),
                     child: const SubscriptionsBottomAppBarWidget())),
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-                childCount: 30,
-                (context, index) => Padding(
-                  padding: REdgeInsets.only(bottom: 15),
-                  child: const RSizedBox(),
-                ),
-              ),
-            ),
+            const _SubscribedVideos(),
           ],
         ),
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
+}
+
+class _SubscribedVideos extends StatefulWidget {
+  const _SubscribedVideos();
+
+  @override
+  State<_SubscribedVideos> createState() => _SubscribedVideosState();
+}
+
+class _SubscribedVideosState extends State<_SubscribedVideos>
+    with AutomaticKeepAliveClientMixin<_SubscribedVideos> {
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    final logic = Get.find<SubscriptionsPageLogic>(tag: "1");
+
+    return Obx(
+      () {
+        return BlocBuilder<ChannelVideosCubit, ChannelVideosState>(
+          bloc: ChannelVideosCubit.get(context)
+            ..getVideosOfThoseChannels(logic.allSubscribedChannels),
+          buildWhen: (previous, current) =>
+              previous != current && current is VideosOfThoseChannelsLoaded,
+          builder: (context, state) {
+            return state.maybeWhen(
+                videosOfThoseChannelsLoaded: (videosItems) {
+                  return SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      childCount: videosItems.length,
+                      (context, index) => Padding(
+                        padding: REdgeInsets.only(bottom: 15),
+                        child: ThumbnailOfVideo(videosItems[index]),
+                      ),
+                    ),
+                  );
+                },
+                loading: () =>
+                    const SliverFillRemaining(child: ThineCircularProgress()),
+                error: (e) {
+                  ToastShow.reformatToast(context, e.error);
+                  return SliverFillRemaining(
+                      child: Center(
+                    child: Text(
+                        NetworkExceptions.getErrorMessage(e.networkExceptions)),
+                  ));
+                },
+                orElse: () => const SliverFillRemaining(child: SizedBox()));
+          },
+        );
+      },
+    );
+  }
+
+  @override
+  bool get wantKeepAlive => true;
 }
 
 class SubscriptionsBottomAppBarWidget extends StatelessWidget {
@@ -48,7 +113,6 @@ class SubscriptionsBottomAppBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(SubscriptionsPageLogic(), tag: "1");
     return Container(
       width: MediaQuery.of(context).size.width,
       color: ColorManager(context).white,
@@ -91,7 +155,12 @@ class _BottomChannelsWidget extends StatelessWidget {
             child: Padding(
               padding: REdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
               child: InkWell(
-                onTap: () {},
+                onTap: () {
+                  Go(context).to(UserChannelPage(
+                    channelId:
+                        logic.selectedChannelItemDetails?.getChannelId() ?? "",
+                  ));
+                },
                 child: Text(
                   "VIEW CHANNELS",
                   style: getMediumStyle(
@@ -124,30 +193,38 @@ class _AllChannelsTextButton extends StatelessWidget {
   }
 }
 
-class _ChannelsCircularImage extends StatelessWidget {
+class _ChannelsCircularImage extends StatefulWidget {
   const _ChannelsCircularImage();
 
   @override
+  State<_ChannelsCircularImage> createState() => _ChannelsCircularImageState();
+}
+
+class _ChannelsCircularImageState extends State<_ChannelsCircularImage>
+    with AutomaticKeepAliveClientMixin<_ChannelsCircularImage> {
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     return BlocBuilder<ChannelDetailsCubit, ChannelDetailsState>(
       bloc: ChannelDetailsCubit.get(context)..getMySubscriptionsChannels(),
       buildWhen: (previous, current) =>
           previous != current && current is MySubscriptionsChannelsLoaded,
       builder: (context, state) {
-        return
-        state.maybeWhen(
-            mySubscriptionsChannelsLoaded: (mySubscriptionsDetails) => SizedBox(
-                  height: 85.h,
-                  child: ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    physics: const BouncingScrollPhysics(),
-                    itemBuilder: (context, index) => _ChannelItem(
-                        index, mySubscriptionsDetails.items![index]),
-                    separatorBuilder: (context, index) =>
-                        const RSizedBox(width: 5),
-                    itemCount: mySubscriptionsDetails.items?.length ?? 0,
-                  ),
+        return state.maybeWhen(
+            mySubscriptionsChannelsLoaded: (mySubscriptionsDetails) {
+              return SizedBox(
+                height: 85.h,
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  physics: const BouncingScrollPhysics(),
+                  itemBuilder: (context, index) =>
+                      _ChannelItem(index, mySubscriptionsDetails.items![index]),
+                  separatorBuilder: (context, index) =>
+                      const RSizedBox(width: 5),
+                  itemCount: mySubscriptionsDetails.items?.length ?? 0,
                 ),
+              );
+            },
             loading: () => const _CircularLoading(),
             error: (e) {
               ToastShow.reformatToast(context, e.error);
@@ -157,6 +234,9 @@ class _ChannelsCircularImage extends StatelessWidget {
       },
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
 
 class _CircularLoading extends StatelessWidget {
@@ -195,7 +275,10 @@ class _ChannelItem extends StatelessWidget {
       padding: REdgeInsetsDirectional.only(
           start: index == 0 ? 10 : 0, end: index == 49 ? 10 : 0),
       child: InkWell(
-        onTap: () => logic.selectedChannelIndex.value = index,
+        onTap: () {
+          logic.selectedChannelItemDetails = mySubscriptionsItem;
+          logic.selectedChannelIndex.value = index;
+        },
         child: Obx(
           () {
             int? selectedIndex = logic.selectedChannelIndex.value;

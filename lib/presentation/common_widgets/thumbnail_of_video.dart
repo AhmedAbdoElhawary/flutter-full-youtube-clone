@@ -42,8 +42,8 @@ class ThumbnailOfVideo extends StatelessWidget {
           Stack(
             alignment: AlignmentDirectional.bottomEnd,
             children: [
-              if (videoDetailsItem?.snippet?.thumbnails != null)
-                ThumbnailImage(videoDetailsItem?.snippet?.thumbnails),
+              if (videoDetailsItem?.getVideoThumbnails() != null)
+                ThumbnailImage(videoDetailsItem?.getVideoThumbnails()),
               _VideoTime(videoDetailsItem)
             ],
           ),
