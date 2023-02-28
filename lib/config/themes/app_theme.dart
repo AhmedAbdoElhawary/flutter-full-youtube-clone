@@ -20,15 +20,30 @@ class AppTheme {
       dividerColor: BaseColorManager.black12,
       scaffoldBackgroundColor: BaseColorManager.white,
       iconTheme: const IconThemeData(color: BaseColorManager.black),
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        selectedItemColor: BaseColorManager.black,
+        unselectedItemColor: BaseColorManager.black,
+        selectedIconTheme: const IconThemeData(size: 24),
+        unselectedIconTheme: const IconThemeData(size: 24),
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
+        selectedLabelStyle:
+            getNormalStyle(color: BaseColorManager.black, fontSize: 11),
+        unselectedLabelStyle:
+            getNormalStyle(color: BaseColorManager.black, fontSize: 11),
+        elevation: 0,
+        type: BottomNavigationBarType.fixed,
+      ),
       elevatedButtonTheme: elevatedButtonThemeData(),
-      chipTheme:
-          const ChipThemeData(backgroundColor: BaseColorManager.veryLowOpacityGrey),
+      chipTheme: const ChipThemeData(
+          backgroundColor: BaseColorManager.veryLowOpacityGrey),
       canvasColor: BaseColorManager.transparent,
       splashColor: BaseColorManager.white,
       appBarTheme: appBarTheme(),
       tabBarTheme: tabBarTheme(),
       textTheme: textTheme(),
-      bottomAppBarTheme: const BottomAppBarTheme(color: BaseColorManager.black26),
+      bottomAppBarTheme:
+          const BottomAppBarTheme(color: BaseColorManager.black26),
       colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.grey)
           .copyWith(background: BaseColorManager.lightBlack)
           .copyWith(error: BaseColorManager.black),
@@ -66,7 +81,6 @@ class AppTheme {
 
   static TextTheme textTheme() {
     return TextTheme(
-
       bodyLarge: getNormalStyle(color: BaseColorManager.black, fontSize: 25),
       bodyMedium: getNormalStyle(color: BaseColorManager.black, fontSize: 15),
       bodySmall: getMediumStyle(color: BaseColorManager.black, fontSize: 15),
@@ -92,7 +106,7 @@ class AppTheme {
   static OutlinedButtonThemeData outlinedButtonTheme() {
     return OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
-        textStyle: getMediumStyle(fontSize: 17,color: BaseColorManager.black),
+        textStyle: getMediumStyle(fontSize: 17, color: BaseColorManager.black),
         padding: REdgeInsets.symmetric(horizontal: 20),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2.0)),
         side: const BorderSide(width: 1, color: BaseColorManager.black45),
@@ -103,7 +117,6 @@ class AppTheme {
   static ThemeData get dark {
     return ThemeData(
       useMaterial3: true,
-
       primaryColor: BaseColorManager.black,
       primaryColorLight: BaseColorManager.black54,
       hintColor: BaseColorManager.darkGray,
@@ -125,16 +138,19 @@ class AppTheme {
         iconTheme: const IconThemeData(color: BaseColorManager.white),
         color: BaseColorManager.black,
         shadowColor: BaseColorManager.lowOpacityGrey,
-        titleTextStyle:
-            getNormalStyle(fontSize: FontSize.s16, color: BaseColorManager.white),
+        titleTextStyle: getNormalStyle(
+            fontSize: FontSize.s16, color: BaseColorManager.white),
       ),
       textTheme: TextTheme(
         bodyLarge: getNormalStyle(color: BaseColorManager.white),
         bodyMedium: getNormalStyle(color: BaseColorManager.darkGray),
         bodySmall: getNormalStyle(color: BaseColorManager.veryLightGrey),
-        displayLarge: getNormalStyle(color: BaseColorManager.grey, fontSize: 15),
-        displayMedium: getBoldStyle(color: BaseColorManager.white, fontSize: 15),
-        displaySmall: getMediumStyle(color: BaseColorManager.white, fontSize: 15),
+        displayLarge:
+            getNormalStyle(color: BaseColorManager.grey, fontSize: 15),
+        displayMedium:
+            getBoldStyle(color: BaseColorManager.white, fontSize: 15),
+        displaySmall:
+            getMediumStyle(color: BaseColorManager.white, fontSize: 15),
         headlineSmall: getNormalStyle(color: Colors.grey[500]!),
         titleLarge: getNormalStyle(color: BaseColorManager.shimmerDarkGrey),
         titleSmall: getNormalStyle(color: BaseColorManager.darkGray),
