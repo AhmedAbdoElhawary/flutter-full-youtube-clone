@@ -77,7 +77,7 @@ class _VideoOfMiniDisplayState extends State<_VideoOfMiniDisplay> {
   @override
   void dispose() {
     super.dispose();
-    logic. videoController.dispose();
+    logic. videoController?.dispose();
   }
 
   @override
@@ -91,7 +91,7 @@ class _VideoOfMiniDisplayState extends State<_VideoOfMiniDisplay> {
         child: videoId.isEmpty
             ? null
             : CustomPodVideoPlayer(
-          controller: logic.videoController,
+          controller: logic.videoController!,
           displayOverlay: widget.percentage == 1,
         ),
       ),

@@ -5,16 +5,21 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
+import 'package:youtube/config/routes/route_app.dart';
+import 'package:youtube/core/functions/network_exceptions.dart';
 import 'package:youtube/core/functions/toast_show.dart';
 import 'package:youtube/core/resources/assets_manager.dart';
 import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/core/resources/styles_manager.dart';
+import 'package:youtube/data/models/comment_details/comment_details.dart';
+import 'package:youtube/data/models/comment_details/comment_details_extension.dart';
 import 'package:youtube/data/models/common/base_comment_snippet/sub_comment_snippet.dart';
 import 'package:youtube/data/models/rating_details/rating_details.dart';
 import 'package:youtube/data/models/videos_details/video_details_extension.dart';
 import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/presentation/common_widgets/circular_profile_image.dart';
 import 'package:youtube/presentation/common_widgets/custom_circle_progress.dart';
+import 'package:youtube/presentation/common_widgets/read_more_text.dart';
 import 'package:youtube/presentation/common_widgets/text_links.dart';
 import 'package:youtube/presentation/common_widgets/thumbnail_of_video.dart';
 import 'package:youtube/presentation/cubit/search/search_cubit.dart';
@@ -48,8 +53,7 @@ class _MiniPlayerVideoState extends State<MiniPlayerVideo> {
   @override
   Widget build(BuildContext context) {
     MediaQueryData mediaQuery = MediaQuery.of(context);
-    double height = mediaQuery.size.height - 70.h;
-
+    double height = mediaQuery.size.height - 10.h;
     return SafeArea(
       child: CustomMiniPlayer(
         controller: _miniVideoViewLogic.miniPlayerController,
@@ -59,8 +63,10 @@ class _MiniPlayerVideoState extends State<MiniPlayerVideo> {
           _miniVideoViewLogic.selectedVideoDetails = null;
         },
         builder: (height, percentage) {
-          _miniVideoViewLogic.percentageOFMiniPage = percentage;
-          _miniVideoViewLogic.heightOFMiniPage = height;
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            _miniVideoViewLogic.percentageOFMiniPage = percentage;
+            _miniVideoViewLogic.heightOFMiniPage = height;
+          });
 
           return _MiniVideoDisplay(height, percentage);
         },
@@ -165,7 +171,6 @@ class _VideoInfo extends StatelessWidget {
   }
 }
 
-
 class _CircleNameSubscribersWidget extends StatelessWidget {
   const _CircleNameSubscribersWidget();
 
@@ -223,10 +228,7 @@ class _InteractButtons extends StatelessWidget {
       height: 60.h,
       child: Row(
         children: [
-          Padding(
-            padding: REdgeInsetsDirectional.only(start: 35, end: 3, top: 15),
-            child: const _LikeButton(),
-          ),
+          const _LikeButton(),
           Padding(
             padding: REdgeInsetsDirectional.only(start: 35, end: 3, top: 15),
             child: const _DislikeButton(),
@@ -239,7 +241,6 @@ class _InteractButtons extends StatelessWidget {
 
 class _VideoTitleSubNumbersTexts extends StatelessWidget {
   const _VideoTitleSubNumbersTexts();
-
 
   @override
   Widget build(BuildContext context) {
@@ -254,7 +255,7 @@ class _VideoTitleSubNumbersTexts extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Obx(
-                  () {
+              () {
                 final logic = Get.find<MiniVideoViewLogic>(tag: "1");
                 VideoDetailsItem? videoDetails = logic.selectedVideoDetails;
                 return Flexible(
@@ -270,9 +271,7 @@ class _VideoTitleSubNumbersTexts extends StatelessWidget {
                       ),
                       const RSizedBox(height: 8),
                       Text(
-                        "${videoDetails
-                            ?.getVideoViewsCount()} views . ${videoDetails
-                            ?.getVideoPublishedTime()} ago",
+                        "${videoDetails?.getVideoViewsCount()} views . ${videoDetails?.getVideoPublishedTime()} ago",
                         overflow: TextOverflow.ellipsis,
                         style: getNormalStyle(
                             color: ColorManager(context).grey7, fontSize: 13),

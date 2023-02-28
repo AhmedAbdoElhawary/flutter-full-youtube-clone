@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:get/get.dart';
 import 'package:youtube/core/functions/api_result.dart';
 import 'package:youtube/core/functions/network_exception_model.dart';
 
@@ -11,6 +12,7 @@ import 'package:youtube/domain/use_cases/channel_details/channel_sub_details_use
 import 'package:youtube/domain/use_cases/channel_details/delete_subscription_use_case.dart';
 import 'package:youtube/domain/use_cases/channel_details/my_subscriptions_channels_use_case.dart';
 import 'package:youtube/domain/use_cases/channel_details/subscribe_to_channel_use_case.dart';
+import 'package:youtube/presentation/pages/subscriptions/logic/subscriptions_page_logic.dart';
 
 part 'channel_details_state.dart';
 part 'channel_details_cubit.freezed.dart';
@@ -60,7 +62,8 @@ class ChannelDetailsCubit extends Cubit<ChannelDetailsState> {
     emit(const ChannelDetailsState.loading());
 
     ApiResult<void> channelDetails = await _deleteSubscriptionUseCase.call(
-        params: DeleteSubscriptionUseCaseParameter(subscriptionId:subscriptionId));
+        params:
+            DeleteSubscriptionUseCaseParameter(subscriptionId: subscriptionId));
 
     channelDetails.when(
         success: (_) =>
@@ -75,9 +78,12 @@ class ChannelDetailsCubit extends Cubit<ChannelDetailsState> {
         await _mySubscriptionsChannelsUseCase.call(params: null);
 
     channelDetails.when(
-        success: (mySubscriptionsDetails) => emit(
-            ChannelDetailsState.mySubscriptionsChannelsLoaded(
-                mySubscriptionsDetails)),
+        success: (mySubscriptionsDetails) {
+          final logic = Get.find<SubscriptionsPageLogic>(tag: "1");
+          logic.allSubscribedChannels = mySubscriptionsDetails;
+          emit(ChannelDetailsState.mySubscriptionsChannelsLoaded(
+              mySubscriptionsDetails));
+        },
         failure: (exception) => emit(ChannelDetailsState.error(exception)));
   }
 }

@@ -31,8 +31,8 @@ class ThumbnailOfVideo extends StatelessWidget {
         String playVideoFrom =
             miniVideoViewLogic.selectedVideoDetails?.id ?? "";
         if (playVideoFrom.isNotEmpty &&
-            miniVideoViewLogic.videoController.isInitialised) {
-          miniVideoViewLogic.videoController.changeVideo(
+            miniVideoViewLogic.videoController!=null) {
+          miniVideoViewLogic.videoController!.changeVideo(
             playVideoFrom: MiniVideoViewLogic.getPlayVideoFrom(playVideoFrom),
           );
         }
@@ -42,8 +42,8 @@ class ThumbnailOfVideo extends StatelessWidget {
           Stack(
             alignment: AlignmentDirectional.bottomEnd,
             children: [
-              if (videoDetailsItem?.snippet?.thumbnails != null)
-                ThumbnailImage(videoDetailsItem?.snippet?.thumbnails),
+              if (videoDetailsItem?.getVideoThumbnails() != null)
+                ThumbnailImage(videoDetailsItem?.getVideoThumbnails()),
               _VideoTime(videoDetailsItem)
             ],
           ),

@@ -19,16 +19,27 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: CustomScrollView(
-          slivers: [
-            MainSliverAppBar(
-              preferredSizeWidget: PreferredSize(
-                preferredSize: Size.fromHeight(50.h),
-                child: const _SuggestionsList(),
+        child: NotificationListener<ScrollNotification>(
+          onNotification: (scrollNotification) {
+            if (scrollNotification is ScrollUpdateNotification) {
+              double pixels = scrollNotification.metrics.pixels;
+              double itemHeight = 200.h;
+              (pixels / itemHeight).floor();
+
+            }
+            return true;
+          },
+          child: CustomScrollView(
+            slivers: [
+              MainSliverAppBar(
+                preferredSizeWidget: PreferredSize(
+                  preferredSize: Size.fromHeight(50.h),
+                  child: const _SuggestionsList(),
+                ),
               ),
-            ),
-            const _VideosList(),
-          ],
+              const _VideosList(),
+            ],
+          ),
         ),
       ),
     );
@@ -43,19 +54,23 @@ class _VideosList extends StatefulWidget {
 }
 
 class _VideosListState extends State<_VideosList>
-    with
-        AutomaticKeepAliveClientMixin<_VideosList>{
+    with AutomaticKeepAliveClientMixin<_VideosList>  {
   @override
   Widget build(BuildContext context) {
     super.build(context);
     return BlocBuilder<VideosDetailsCubit, VideosDetailsState>(
       bloc: VideosDetailsCubit.get(context)..getAllVideos(),
+      buildWhen: (previous, current) =>
+          previous != current && current is AllVideosLoaded,
       builder: (context, state) {
         return state.maybeWhen(
           allVideosLoaded: (allVideosLoaded) {
             return SliverList(
               delegate: SliverChildBuilderDelegate(
                 childCount: allVideosLoaded.videoDetailsItem?.length,
+                /// todo
+                addRepaintBoundaries:false ,
+                /// --->
                 (context, index) =>
                     ThumbnailOfVideo(allVideosLoaded.videoDetailsItem?[index]),
               ),

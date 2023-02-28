@@ -1,4 +1,6 @@
 
+import 'package:flutter/foundation.dart';
+
 class CountsReformat {
   static String basicCountFormat(String views) {
     int length = views.length;
@@ -34,28 +36,36 @@ class CountsReformat {
   }
 
   static String videoDurationFormat(String durationString) {
-    RegExp regExp = RegExp(r"P(?:(\d+)D)?T(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?");
-    Iterable<Match> matches = regExp.allMatches(durationString);
-    Match match = matches.first;
+    try {
+      RegExp regExp = RegExp(r"""
+P(?:(\d+)D)?T(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?""");
+      Iterable<Match> matches = regExp.allMatches(durationString);
+      Match match = matches.first;
 
-    int days = int.parse(match.group(1) ?? '0');
-    int hours = int.parse(match.group(2) ?? '0');
-    int minutes = int.parse(match.group(3) ?? '0');
-    int seconds = int.parse(match.group(4) ?? '0');
+      int days = int.parse(match.group(1) ?? '0');
+      int hours = int.parse(match.group(2) ?? '0');
+      int minutes = int.parse(match.group(3) ?? '0');
+      int seconds = int.parse(match.group(4) ?? '0');
 
-    Duration duration =
-        Duration(days: days, hours: hours, minutes: minutes, seconds: seconds);
+      Duration duration = Duration(
+          days: days, hours: hours, minutes: minutes, seconds: seconds);
 
-    int hoursInt = duration.inHours;
-    int minutesInt = duration.inMinutes.remainder(60);
-    int secondsInt = duration.inSeconds.remainder(60);
+      int hoursInt = duration.inHours;
+      int minutesInt = duration.inMinutes.remainder(60);
+      int secondsInt = duration.inSeconds.remainder(60);
 
-    String hoursStr = hoursInt.toString().padLeft(2, '0');
-    String minutesStr = minutesInt.toString().padLeft(2, '0');
-    String secondsStr = secondsInt.toString().padLeft(2, '0');
+      String hoursStr = hoursInt.toString().padLeft(2, '0');
+      String minutesStr = minutesInt.toString().padLeft(2, '0');
+      String secondsStr = secondsInt.toString().padLeft(2, '0');
 
-    return hoursInt > 0
-        ? '$hoursStr:$minutesStr:$secondsStr'
-        : '$minutesStr:$secondsStr';
+      return hoursInt > 0
+          ? '$hoursStr:$minutesStr:$secondsStr'
+          : '$minutesStr:$secondsStr';
+    } catch (e) {
+      if (kDebugMode) {
+        print('============-----------------> $e');
+      }
+      return "";
+    }
   }
 }

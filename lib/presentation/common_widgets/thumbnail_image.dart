@@ -44,8 +44,13 @@ class _NetworkDisplayState extends State<ThumbnailImage> {
         width: widget.width.w,
         height: widget.height.h,
       ),
-      errorWidget: (context, url, error) =>
-          Center(child: Text(error.toString())),
+      errorWidget: (context, url, error) {
+        return Container(
+          color: ColorManager(context).grey1,
+          width: widget.width.w,
+          height: widget.height.h,
+        );
+      },
     );
   }
 }

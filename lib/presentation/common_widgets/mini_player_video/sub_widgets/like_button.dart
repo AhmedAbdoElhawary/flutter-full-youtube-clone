@@ -24,7 +24,10 @@ class _LikeButton extends StatelessWidget {
               videoDetails: videoDetails,
             );
           },
-          loading: () => const _InteractionShimmerLoading(),
+          loading: () => Padding(
+            padding: REdgeInsetsDirectional.only(start: 15, end: 3, top: 15),
+            child: const _InteractionShimmerLoading(),
+          ),
           error: (error) {
             ToastShow.reformatToast(context, error.error);
             return _LikeIconButton(
@@ -64,33 +67,36 @@ class _LikeIconButtonState extends State<_LikeIconButton> {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        if (widget.videoId.isNotEmpty) {
-          String rating = widget.ratingDetails?.rating == "none"
-              ? "none"
-              : "like";
-          SingleVideoCubit.get(context)
-              .rateThisVideo(videoId: widget.videoId, rating: rating);
+    return Padding(
+      padding: REdgeInsetsDirectional.only(start: 35, end: 3, top: 15),
+      child: InkWell(
+        onTap: () {
+          if (widget.videoId.isNotEmpty) {
+            String rating = widget.ratingDetails?.rating == "none"
+                ? "none"
+                : "like";
+            SingleVideoCubit.get(context)
+                .rateThisVideo(videoId: widget.videoId, rating: rating);
 
-          miniVideoViewLogic.selectedVideoRating = rating;
-        }
-      },
-      child: Obx(() => Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              miniVideoViewLogic.selectedVideoRating == "like"
-                  ? const Icon(Icons.thumb_up_alt_rounded,
-                      color: ColorManager.blue)
-                  : const Icon(Icons.thumb_up_off_alt_outlined, color: null),
-              const RSizedBox(height: 5),
-              Text(
-                likeText,
-                style: getNormalStyle(
-                    color: ColorManager(context).black, fontSize: 13),
-              )
-            ],
-          )),
+            miniVideoViewLogic.selectedVideoRating = rating;
+          }
+        },
+        child: Obx(() => Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                miniVideoViewLogic.selectedVideoRating == "like"
+                    ? const Icon(Icons.thumb_up_alt_rounded,
+                        color: ColorManager.blue)
+                    : const Icon(Icons.thumb_up_off_alt_outlined, color: null),
+                const RSizedBox(height: 5),
+                Text(
+                  likeText,
+                  style: getNormalStyle(
+                      color: ColorManager(context).black, fontSize: 13),
+                )
+              ],
+            )),
+      ),
     );
   }
 }

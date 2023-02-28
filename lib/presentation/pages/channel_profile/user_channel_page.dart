@@ -18,9 +18,9 @@ import '../../../core/resources/color_manager.dart';
 import '../../common_widgets/subscribe_button.dart';
 import 'profile_page.dart';
 
-class UserProfilePage extends StatelessWidget {
-  const UserProfilePage(
-      {Key? key, required this.channelDetailsItem, required this.channelId})
+class UserChannelPage extends StatelessWidget {
+  const UserChannelPage(
+      {Key? key, this.channelDetailsItem, required this.channelId})
       : super(key: key);
   final ChannelDetailsItem? channelDetailsItem;
   final String channelId;

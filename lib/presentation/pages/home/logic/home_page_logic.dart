@@ -1,8 +1,8 @@
 import 'dart:math';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:sliding_sheet/sliding_sheet.dart';
 import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/presentation/custom_packages/custom_mini_player/custom_mini_player.dart';
 import 'package:youtube/presentation/custom_packages/pod_player/src/controllers/pod_player_controller.dart';
@@ -11,11 +11,12 @@ import 'package:youtube/presentation/custom_packages/pod_player/src/models/play_
 class MiniVideoViewLogic extends GetxController {
   final Rx<VideoDetailsItem?> _selectedVideoDetails = Rxn<VideoDetailsItem?>();
   final Rx<String> _selectedVideoRating = "none".obs;
-  late PodPlayerController videoController;
-  MiniPlayerController miniPlayerController=MiniPlayerController();
+  PodPlayerController? videoController;
+  MiniPlayerController miniPlayerController = MiniPlayerController();
   final RxDouble _percentageOFMiniPage = 0.0.obs;
   final RxDouble _heightOFMiniPage = 50.0.obs;
-final descriptionSheetController=SheetController();
+  late AnimationController navigationTabController;
+
   double videoOfMiniDisplayWidth(double screenWidth) {
     double basicWidth = (screenWidth * percentageOFMiniPage * 12) + 130.w;
     return min(basicWidth, screenWidth);
@@ -38,7 +39,11 @@ final descriptionSheetController=SheetController();
   set selectedVideoDetails(VideoDetailsItem? value) =>
       _selectedVideoDetails.value = value;
 
-  set percentageOFMiniPage(double value) => _percentageOFMiniPage.value = value;
+  set percentageOFMiniPage(double value) {
+    _percentageOFMiniPage.value = value;
+    navigationTabController.value = 1 - value;
+  }
+
   set heightOFMiniPage(double value) => _heightOFMiniPage.value = value;
 
   double get percentageOFMiniPage => _percentageOFMiniPage.value;

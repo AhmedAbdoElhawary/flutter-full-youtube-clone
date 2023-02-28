@@ -18,6 +18,9 @@ class ChannelVideosState with _$ChannelVideosState {
   const factory ChannelVideosState.channelVideosLoaded(
       VideosDetails videoDetails) = ChannelVideosLoaded;
 
+  const factory ChannelVideosState.videosOfThoseChannelsLoaded(
+      List<VideoDetailsItem> videoDetails) = VideosOfThoseChannelsLoaded;
+
   const factory ChannelVideosState.error(
       NetworkExceptionModel networkExceptions) = Error;
 }

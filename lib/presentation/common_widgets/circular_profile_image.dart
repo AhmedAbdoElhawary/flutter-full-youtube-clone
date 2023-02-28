@@ -5,7 +5,7 @@ import 'package:youtube/config/routes/route_app.dart';
 import 'package:youtube/data/models/channel_details/channel_details.dart';
 
 import '../../core/resources/color_manager.dart';
-import '../pages/channel_profile/user_profile_page.dart';
+import '../pages/channel_profile/user_channel_page.dart';
 
 class CircularProfileImage extends StatefulWidget {
   final bool enableTapping;
@@ -46,7 +46,7 @@ class _CircularProfileImageState extends State<CircularProfileImage> {
         if (!widget.enableTapping || widget.channelId.isEmpty) return;
 
         Go(context).to(
-          UserProfilePage(
+          UserChannelPage(
             channelDetailsItem: widget.channelDetailsItem,
             channelId: widget.channelId,
           ),

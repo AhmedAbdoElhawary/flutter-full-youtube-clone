@@ -2,6 +2,8 @@ import 'package:youtube/core/functions/api_result.dart';
 import 'package:youtube/core/functions/network_exceptions.dart';
 
 import 'package:youtube/data/data_sources/remote/api/channel/channel_videos/channel_videos_apis.dart';
+import 'package:youtube/data/models/channel_details/my_subscriptions/my_subscription_item_extension.dart';
+import 'package:youtube/data/models/channel_details/my_subscriptions/my_subscriptions_details.dart';
 import 'package:youtube/data/models/searched_video_details/searched_video_details.dart';
 import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/domain/repositories/channel/channel_videos_repository.dart';
@@ -75,6 +77,29 @@ class ChannelVideosDetailsRepoImpl implements ChannelVideosDetailsRepository {
           .getCompleteVideosDetailsOfThoseIds(videosIds);
 
       return ApiResult.success(videosWithSubChannelDetails);
+    } catch (e) {
+      return ApiResult.failure(NetworkExceptions.getDioException(e));
+    }
+  }
+
+  @override
+  Future<ApiResult<List<VideosDetails>>> getVideosOfThoseChannels(
+      {required MySubscriptionsDetails mySubscriptionsDetails}) async {
+    try {
+      List<MySubscriptionsItem?>? item = mySubscriptionsDetails.items;
+      List<VideosDetails> channelsVideosDetails = [];
+      for (final channelDetails in item ?? <MySubscriptionsItem>[]) {
+        SearchedVideosDetails videosIds = await _channelVideosAPIs
+            .getAllChannelVideosIds(channelId: channelDetails?.getChannelId() ?? "");
+
+        VideosDetails videosWithSubChannelDetails =
+            await _videosDetailsRepository
+                .getCompleteVideosDetailsOfThoseIds(videosIds);
+
+        channelsVideosDetails.add(videosWithSubChannelDetails);
+      }
+
+      return ApiResult.success(channelsVideosDetails);
     } catch (e) {
       return ApiResult.failure(NetworkExceptions.getDioException(e));
     }
