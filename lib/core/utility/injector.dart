@@ -26,6 +26,7 @@ import 'package:youtube/domain/use_cases/channel_details/channel_videos/channel_
 import 'package:youtube/domain/use_cases/channel_details/channel_videos/channel_short_videos_use_case.dart';
 import 'package:youtube/domain/use_cases/channel_details/channel_videos/channel_videos_use_case.dart';
 import 'package:youtube/domain/use_cases/channel_details/delete_subscription_use_case.dart';
+import 'package:youtube/domain/use_cases/channel_details/get_videos_of_those_channels_use_case.dart';
 import 'package:youtube/domain/use_cases/channel_details/my_subscriptions_channels_use_case.dart';
 import 'package:youtube/domain/use_cases/channel_details/playlist/channel_playlist_items_use_case.dart';
 import 'package:youtube/domain/use_cases/channel_details/playlist/channel_playlists_use_case.dart';
@@ -191,11 +192,15 @@ Future<void> initializeDependencies() async {
   injector.registerLazySingleton<GetVideoRatingUseCase>(
     () => GetVideoRatingUseCase(injector()),
   );
+  injector.registerLazySingleton<GetVideosOfThoseChannelsUseCase>(
+    () => GetVideosOfThoseChannelsUseCase(injector()),
+  );
   // *--------->
   /// ================================ Blocs ========================================>
 
   injector.registerFactory<ChannelVideosCubit>(
-    () => ChannelVideosCubit(injector(), injector(), injector(), injector()),
+    () => ChannelVideosCubit(
+        injector(), injector(), injector(), injector(), injector()),
   );
   injector.registerFactory<PlayListCubit>(
     () => PlayListCubit(injector(), injector()),
