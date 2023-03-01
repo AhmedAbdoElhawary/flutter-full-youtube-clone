@@ -5,17 +5,17 @@ import '../../../../../domain/entities/cache_items/cached_item.dart';
 part '../implements/cache_videos_apis_impl.dart';
 
 abstract class CacheVideosAPIs {
-  VideosDetails? getAllVideos();
-  VideosDetails? getAllShortVideos();
-  VideosDetails? getAllPopularVideos(String videoCategoryId);
+  Future<VideosDetails?> getAllVideos();
+  Future<VideosDetails?> getAllShortVideos();
+  Future<VideosDetails?> getAllPopularVideos(String videoCategoryId);
 
-  void saveAllVideos({required VideosDetails videosDetails});
-  void saveAllShortVideos({required VideosDetails videosDetails});
-  void saveAllPopularVideos(
+  Future<void> saveAllVideos({required VideosDetails videosDetails});
+  Future<void> saveAllShortVideos({required VideosDetails videosDetails});
+  Future<void> saveAllPopularVideos(
       {required String videoCategoryId, required VideosDetails videosDetails});
 
-  void clearAllVideos();
-  void clearAllShortVideos();
-  void clearAllPopularVideos(
+  Future<void> clearAllVideos();
+  Future<void> clearAllShortVideos();
+  Future<void> clearAllPopularVideos(
       {required String videoCategoryId, bool clearAll = false});
 }
