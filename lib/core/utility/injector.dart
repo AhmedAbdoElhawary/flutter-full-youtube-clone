@@ -1,5 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:youtube/data/data_sources/local/channnel/interfaces/cache_channel_apis.dart';
+import 'package:youtube/data/data_sources/local/channnel/interfaces/cache_channel_playlist_apis.dart';
+import 'package:youtube/data/data_sources/local/channnel/interfaces/cache_channel_videos_apis.dart';
+import 'package:youtube/data/data_sources/local/videos/interfaces/cache_videos_apis.dart';
 import 'package:youtube/data/data_sources/remote/api/channel/channel_apis.dart';
 import 'package:youtube/data/data_sources/remote/api/channel/channel_playlist/channel_playlist_apis.dart';
 import 'package:youtube/data/data_sources/remote/api/channel/channel_videos/channel_videos_apis.dart';
@@ -54,6 +58,21 @@ import 'package:youtube/presentation/cubit/videos/videos_details_cubit.dart';
 final injector = GetIt.I;
 
 Future<void> initializeDependencies() async {
+  /// ===============================Local Data source =========================================>
+  injector.registerLazySingleton<CacheChannelVideosAPIs>(
+    () => CacheChannelVideosAPIsImpl(),
+  );
+  injector.registerLazySingleton<CacheChannelPlaylistAPIs>(
+    () => CacheChannelPlaylistAPIsImpl(),
+  );
+  injector.registerLazySingleton<CacheChannelAPIs>(
+    () => CacheChannelAPIsImpl(),
+  );
+
+  injector.registerLazySingleton<CacheVideosAPIs>(
+    () => CacheVideosAPIsImpl(),
+  );
+
   /// =============================== Data source =========================================>
 
   injector
@@ -85,10 +104,10 @@ Future<void> initializeDependencies() async {
   // videos details Repository
 
   injector.registerLazySingleton<VideosDetailsRepository>(
-    () => VideosDetailsRepoImpl(injector(), injector()),
+    () => VideosDetailsRepoImpl(injector(), injector(), injector()),
   );
   injector.registerLazySingleton<ChannelDetailsRepository>(
-    () => ChannelDetailsRepoImpl(injector()),
+    () => ChannelDetailsRepoImpl(injector(),injector()),
   );
   injector.registerLazySingleton<VideoCommentDetailsRepository>(
     () => VideoCommentDetailsRepoImpl(injector()),
@@ -98,7 +117,7 @@ Future<void> initializeDependencies() async {
     () => SingleVideosDetailsRepoImpl(injector(), injector()),
   );
   injector.registerLazySingleton<ChannelVideosDetailsRepository>(
-    () => ChannelVideosDetailsRepoImpl(injector(), injector()),
+    () => ChannelVideosDetailsRepoImpl(injector(), injector(),injector()),
   );
   injector.registerLazySingleton<SearchDetailsRepository>(
     () => SearchDetailsRepoImpl(injector(), injector(), injector()),
