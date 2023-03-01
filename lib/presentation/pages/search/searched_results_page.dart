@@ -65,6 +65,5 @@ class _SearchedResultsPageState extends State<SearchedResultsPage>
   }
 
   @override
-  // TODO: implement wantKeepAlive
   bool get wantKeepAlive => true;
 }
