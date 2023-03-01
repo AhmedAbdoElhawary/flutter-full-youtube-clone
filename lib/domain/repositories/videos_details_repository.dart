@@ -9,9 +9,9 @@ abstract class VideosDetailsRepository {
   Future<VideosDetails> getCompleteVideosDetailsOfThoseIds(
       SearchedVideosDetails searchedVideos);
 
-  void clearAllVideos();
-  void clearAllShortVideos();
-  void clearAllPopularVideos(
+  Future<void> clearAllVideos();
+  Future<void> clearAllShortVideos();
+  Future<void> clearAllPopularVideos(
       {required String videoCategoryId,required bool clearAll });
 
 }
