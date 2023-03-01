@@ -9,6 +9,7 @@ import 'package:youtube/data/models/channel_details/channel_details.dart';
 import 'package:youtube/data/models/channel_details/my_subscriptions/my_subscriptions_details.dart';
 import 'package:youtube/domain/entities/parameters/channel_details_use_case_parameters.dart';
 import 'package:youtube/domain/use_cases/channel/channel_details/channel_sub_details_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/channel_details/clear/clear_my_subscriptions_channels_use_case.dart';
 import 'package:youtube/domain/use_cases/channel/channel_details/delete_subscription_use_case.dart';
 import 'package:youtube/domain/use_cases/channel/channel_details/my_subscriptions_channels_use_case.dart';
 import 'package:youtube/domain/use_cases/channel/channel_details/subscribe_to_channel_use_case.dart';
@@ -22,13 +23,15 @@ class ChannelDetailsCubit extends Cubit<ChannelDetailsState> {
   final DeleteSubscriptionUseCase _deleteSubscriptionUseCase;
   final SubscribeToChannelUseCase _subscribeToChannelUseCase;
   final MySubscriptionsChannelsUseCase _mySubscriptionsChannelsUseCase;
-
+  final ClearMySubscriptionsChannelsUseCase
+      _clearMySubscriptionsChannelsUseCase;
   ChannelDetailsCubit(
-      this._channelSubDetailsUseCase,
-      this._deleteSubscriptionUseCase,
-      this._subscribeToChannelUseCase,
-      this._mySubscriptionsChannelsUseCase)
-      : super(const ChannelDetailsState.initial());
+    this._channelSubDetailsUseCase,
+    this._deleteSubscriptionUseCase,
+    this._subscribeToChannelUseCase,
+    this._mySubscriptionsChannelsUseCase,
+    this._clearMySubscriptionsChannelsUseCase,
+  ) : super(const ChannelDetailsState.initial());
 
   static ChannelDetailsCubit get(BuildContext context) =>
       BlocProvider.of(context);
@@ -85,5 +88,9 @@ class ChannelDetailsCubit extends Cubit<ChannelDetailsState> {
               mySubscriptionsDetails));
         },
         failure: (exception) => emit(ChannelDetailsState.error(exception)));
+  }
+
+  Future<void> clearMySubscriptionsChannels() async {
+    await _clearMySubscriptionsChannelsUseCase.call(params: null);
   }
 }

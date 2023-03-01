@@ -74,14 +74,14 @@ class ChannelDetailsRepoImpl implements ChannelDetailsRepository {
     try {
       /// get from caching if it exist.
       MySubscriptionsDetails? channels =
-          _cacheChannelAPIs.getMySubscriptionsChannels();
+          await _cacheChannelAPIs.getMySubscriptionsChannels();
       if (channels != null) return ApiResult.success(channels);
 
       MySubscriptionsDetails mySubscriptions = await _channelAPIs
           .getMySubscriptionsChannels(accessToken: accessToken);
 
       /// caching videos
-      _cacheChannelAPIs.saveMySubscriptionsChannels(mySubscriptions);
+      await _cacheChannelAPIs.saveMySubscriptionsChannels(mySubscriptions);
 
       return ApiResult.success(mySubscriptions);
     } catch (e) {
@@ -90,7 +90,7 @@ class ChannelDetailsRepoImpl implements ChannelDetailsRepository {
   }
 
   @override
-  void clearMySubscriptionsChannels() {
-    _cacheChannelAPIs.clearMySubscriptionsChannels();
+  Future<void> clearMySubscriptionsChannels()async {
+   await _cacheChannelAPIs.clearMySubscriptionsChannels();
   }
 }

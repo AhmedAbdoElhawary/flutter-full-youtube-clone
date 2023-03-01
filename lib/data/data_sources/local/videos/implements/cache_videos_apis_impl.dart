@@ -8,19 +8,20 @@ const _cacheAllPopularVideosKey = "CACHE_ALL_POPULAR_VIDEOS_KEY";
 
 class CacheVideosAPIsImpl implements CacheVideosAPIs {
   Map<String, Map<String, CachedItem<VideosDetails>>> cacheMap = {};
+
   @override
-  void clearAllVideos() {
+  Future<void> clearAllVideos() async {
     cacheMap[_cacheAllVideosKey]?.clear();
   }
 
   @override
-  void clearAllShortVideos() {
+  Future<void> clearAllShortVideos() async {
     cacheMap[_cacheAllShortVideosKey]?.clear();
   }
 
   @override
-  void clearAllPopularVideos(
-      {required String videoCategoryId, bool clearAll = false}) {
+  Future<void> clearAllPopularVideos(
+      {required String videoCategoryId, bool clearAll = false}) async {
     if (clearAll) {
       cacheMap[_cacheAllPopularVideosKey]?.clear();
     } else {
@@ -29,42 +30,76 @@ class CacheVideosAPIsImpl implements CacheVideosAPIs {
   }
 
   @override
-  VideosDetails? getAllShortVideos() {
+  Future<VideosDetails?> getAllVideos() async {
+    if (!cacheMap.containsKey(_cacheAllVideosKey) ||
+        !cacheMap[_cacheAllVideosKey]!.containsKey(_cacheMyVideosKey)) {
+      return null;
+    }
+
     CachedItem<VideosDetails>? cachedItem =
-        cacheMap[_cacheAllShortVideosKey]?[_cacheMyVideosKey];
+        cacheMap[_cacheAllVideosKey]![_cacheMyVideosKey];
     return cachedItem?.data;
   }
 
   @override
-  VideosDetails? getAllVideos() {
+  Future<VideosDetails?> getAllShortVideos() async {
+    if (!cacheMap.containsKey(_cacheAllShortVideosKey) ||
+        !cacheMap[_cacheAllShortVideosKey]!.containsKey(_cacheMyVideosKey)) {
+      return null;
+    }
+
     CachedItem<VideosDetails>? cachedItem =
-        cacheMap[_cacheAllVideosKey]?[_cacheMyVideosKey];
+        cacheMap[_cacheAllShortVideosKey]![_cacheMyVideosKey];
     return cachedItem?.data;
   }
 
   @override
-  VideosDetails? getAllPopularVideos(String videoCategoryId) {
+  Future<VideosDetails?> getAllPopularVideos(String videoCategoryId) async {
+    if (!cacheMap.containsKey(_cacheAllPopularVideosKey) ||
+        !cacheMap[_cacheAllPopularVideosKey]!.containsKey(videoCategoryId)) {
+      return null;
+    }
+
     CachedItem<VideosDetails>? cachedItem =
-        cacheMap[_cacheAllPopularVideosKey]?[videoCategoryId];
+        cacheMap[_cacheAllPopularVideosKey]![videoCategoryId];
     return cachedItem?.data;
   }
 
   @override
-  void saveAllShortVideos({required VideosDetails videosDetails}) {
-    cacheMap[_cacheAllShortVideosKey]?[_cacheMyVideosKey] =
+  Future<void> saveAllVideos({required VideosDetails videosDetails}) async {
+    if (!cacheMap.containsKey(_cacheAllVideosKey)) {
+      cacheMap[_cacheAllVideosKey] = {};
+    }
+
+    if (!cacheMap[_cacheAllVideosKey]!.containsKey(_cacheMyVideosKey)) {
+      cacheMap[_cacheAllVideosKey]![_cacheMyVideosKey] =
+          CachedItem(videosDetails);
+    } else {
+      cacheMap[_cacheAllVideosKey]![_cacheMyVideosKey]!.data = videosDetails;
+    }
+  }
+
+  @override
+  Future<void> saveAllShortVideos(
+      {required VideosDetails videosDetails}) async {
+    if (!cacheMap.containsKey(_cacheAllShortVideosKey)) {
+      cacheMap[_cacheAllShortVideosKey] = {};
+    }
+
+    cacheMap[_cacheAllShortVideosKey]![_cacheMyVideosKey] =
         CachedItem(videosDetails);
   }
 
   @override
-  void saveAllVideos({required VideosDetails videosDetails}) {
-    cacheMap[_cacheAllVideosKey]?[_cacheMyVideosKey] =
-        CachedItem(videosDetails);
-  }
+  Future<void> saveAllPopularVideos({
+    required String videoCategoryId,
+    required VideosDetails videosDetails,
+  }) async {
+    if (!cacheMap.containsKey(_cacheAllPopularVideosKey)) {
+      cacheMap[_cacheAllPopularVideosKey] = {};
+    }
 
-  @override
-  void saveAllPopularVideos(
-      {required String videoCategoryId, required VideosDetails videosDetails}) {
-    cacheMap[_cacheAllPopularVideosKey]?[videoCategoryId] =
+    cacheMap[_cacheAllPopularVideosKey]![videoCategoryId] =
         CachedItem(videosDetails);
   }
 }
