@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:youtube/core/functions/network_exceptions.dart';
+import 'package:youtube/core/functions/toast_show.dart';
 import 'package:youtube/data/models/channel_details/channel_details.dart';
 import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/presentation/common_widgets/custom_circle_progress.dart';
@@ -30,8 +31,8 @@ class _TabBarVideosViewState extends State<TabBarVideosView>
     super.build(context);
     return Obx(() {
       return logic.getRecentlyVideosSelected
-          ? _NewestVideos(widget)
-          : _PopularVideos(widget);
+          ? _NewestVideos(widget.channelDetails)
+          : _PopularVideos(widget.channelDetails);
     });
   }
 
@@ -40,25 +41,24 @@ class _TabBarVideosViewState extends State<TabBarVideosView>
 }
 
 class _PopularVideos extends StatelessWidget {
-  const _PopularVideos(this.widget);
+  const _PopularVideos(this.channelDetails);
 
-  final TabBarVideosView widget;
+  final ChannelDetailsItem? channelDetails;
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ChannelVideosCubit, ChannelVideosState>(
       bloc: ChannelVideosCubit.get(context)
-        ..getPopularChannelVideos(widget.channelDetails?.id ?? ""),
-      buildWhen: (previous, current) {
-        return previous != current &&
-            (current is PopularVideosLoaded || current is ChannelVideosLoaded);
-      },
+        ..getPopularChannelVideos(channelDetails?.id ?? ""),
       builder: (context, state) {
         return state.maybeWhen(
             popularVideosLoaded: (videoDetails) => _VideosList(videoDetails),
-            error: (error) => Center(
+            error: (e) {
+              ToastShow.reformatToast(context, e.error);
+              return Center(
                 child: Text(NetworkExceptions.getErrorMessage(
-                    error.networkExceptions))),
+                    e.networkExceptions)));
+            },
             loading: () => const ThineCircularProgress(),
             orElse: () =>
                 const Center(child: Text("there is something wrong")));
@@ -68,24 +68,24 @@ class _PopularVideos extends StatelessWidget {
 }
 
 class _NewestVideos extends StatelessWidget {
-  const _NewestVideos(this.widget);
+  const _NewestVideos(this.channelDetails);
 
-  final TabBarVideosView widget;
+  final ChannelDetailsItem? channelDetails;
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ChannelVideosCubit, ChannelVideosState>(
       bloc: ChannelVideosCubit.get(context)
-        ..getChannelVideos(widget.channelDetails?.id ?? ""),
-      buildWhen: (previous, current) =>
-          previous != current &&
-          (current is PopularVideosLoaded || current is ChannelVideosLoaded),
+        ..getChannelVideos(channelDetails?.id ?? ""),
       builder: (context, state) {
         return state.maybeWhen(
             channelVideosLoaded: (videoDetails) => _VideosList(videoDetails),
-            error: (error) => Center(
+            error: (e) {
+              ToastShow.reformatToast(context, e.error);
+              return Center(
                 child: Text(NetworkExceptions.getErrorMessage(
-                    error.networkExceptions))),
+                    e.networkExceptions)));
+            },
             loading: () => const ThineCircularProgress(),
             orElse: () =>
                 const Center(child: Text("there is something wrong")));
