@@ -24,17 +24,24 @@ import 'package:youtube/domain/repositories/search_details_repository.dart';
 import 'package:youtube/domain/repositories/video_comment_details/single_video_details_repository.dart';
 import 'package:youtube/domain/repositories/video_comment_details/video_comment_details_repositroy.dart';
 import 'package:youtube/domain/repositories/videos_details_repository.dart';
-import 'package:youtube/domain/use_cases/channel_details/channel_sub_details_use_case.dart';
-import 'package:youtube/domain/use_cases/channel_details/channel_videos/channel_popular_videos_use_case.dart';
-import 'package:youtube/domain/use_cases/channel_details/channel_videos/channel_short_poupal_videos_use_case.dart';
-import 'package:youtube/domain/use_cases/channel_details/channel_videos/channel_short_videos_use_case.dart';
-import 'package:youtube/domain/use_cases/channel_details/channel_videos/channel_videos_use_case.dart';
-import 'package:youtube/domain/use_cases/channel_details/delete_subscription_use_case.dart';
-import 'package:youtube/domain/use_cases/channel_details/get_videos_of_those_channels_use_case.dart';
-import 'package:youtube/domain/use_cases/channel_details/my_subscriptions_channels_use_case.dart';
-import 'package:youtube/domain/use_cases/channel_details/playlist/channel_playlist_items_use_case.dart';
-import 'package:youtube/domain/use_cases/channel_details/playlist/channel_playlists_use_case.dart';
-import 'package:youtube/domain/use_cases/channel_details/subscribe_to_channel_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/channel_details/channel_sub_details_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/channel_details/clear/clear_my_subscriptions_channels_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/channel_details/delete_subscription_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/channel_details/get_videos_of_those_channels_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/channel_details/my_subscriptions_channels_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/channel_details/subscribe_to_channel_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/channel_videos/channel_popular_videos_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/channel_videos/channel_short_poupal_videos_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/channel_videos/channel_short_videos_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/channel_videos/channel_videos_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/channel_videos/clear/clear_all_channel_short_videos_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/channel_videos/clear/clear_all_channel_videos_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/channel_videos/clear/clear_all_popular_channel_short_videos_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/channel_videos/clear/clear_all_popular_channel_videos_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/channel_videos/clear/clear_videos_of_those_channels_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/playlist/channel_playlist_items_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/playlist/channel_playlists_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/playlist/clear/clear_channel_playlists_use_case.dart';
 import 'package:youtube/domain/use_cases/search_details/related_videos_to_this_video_use_case.dart';
 import 'package:youtube/domain/use_cases/search_details/search_for_this_sentence_use_case.dart';
 import 'package:youtube/domain/use_cases/search_details/suggestion_search_texts_use_case.dart';
@@ -46,6 +53,9 @@ import 'package:youtube/domain/use_cases/single_video/get_video_rating_use_case.
 import 'package:youtube/domain/use_cases/single_video/rate_video_use_case.dart';
 import 'package:youtube/domain/use_cases/videos_details/all_short_videos_use_case.dart';
 import 'package:youtube/domain/use_cases/videos_details/all_videos_use_case.dart';
+import 'package:youtube/domain/use_cases/videos_details/clear/clear_all_short_videos_use_case.dart';
+import 'package:youtube/domain/use_cases/videos_details/clear/clear_all_videos_use_case.dart';
+import 'package:youtube/domain/use_cases/videos_details/clear/clear_most_popular_videos_use_case.dart';
 import 'package:youtube/domain/use_cases/videos_details/most_popular_videos_use_case.dart';
 import 'package:youtube/presentation/cubit/channel/channel_details_cubit.dart';
 import 'package:youtube/presentation/cubit/channel/channel_videos/channel_videos_cubit.dart';
@@ -107,7 +117,7 @@ Future<void> initializeDependencies() async {
     () => VideosDetailsRepoImpl(injector(), injector(), injector()),
   );
   injector.registerLazySingleton<ChannelDetailsRepository>(
-    () => ChannelDetailsRepoImpl(injector(),injector()),
+    () => ChannelDetailsRepoImpl(injector(), injector()),
   );
   injector.registerLazySingleton<VideoCommentDetailsRepository>(
     () => VideoCommentDetailsRepoImpl(injector()),
@@ -117,7 +127,7 @@ Future<void> initializeDependencies() async {
     () => SingleVideosDetailsRepoImpl(injector(), injector()),
   );
   injector.registerLazySingleton<ChannelVideosDetailsRepository>(
-    () => ChannelVideosDetailsRepoImpl(injector(), injector(),injector()),
+    () => ChannelVideosDetailsRepoImpl(injector(), injector(), injector()),
   );
   injector.registerLazySingleton<SearchDetailsRepository>(
     () => SearchDetailsRepoImpl(injector(), injector(), injector()),
@@ -214,12 +224,65 @@ Future<void> initializeDependencies() async {
   injector.registerLazySingleton<GetVideosOfThoseChannelsUseCase>(
     () => GetVideosOfThoseChannelsUseCase(injector()),
   );
+
+  // clear use cases
+
+  injector.registerLazySingleton<CleaChannelPlaylistsUseCase>(
+    () => CleaChannelPlaylistsUseCase(injector()),
+  );
+
+  injector.registerLazySingleton<ClearVideosOfThoseChannelsUseCase>(
+    () => ClearVideosOfThoseChannelsUseCase(injector()),
+  );
+
+  injector.registerLazySingleton<ClearAllPopularChannelVideosUseCase>(
+    () => ClearAllPopularChannelVideosUseCase(injector()),
+  );
+
+  injector.registerLazySingleton<ClearAllPopularChannelShortVideosUseCase>(
+    () => ClearAllPopularChannelShortVideosUseCase(injector()),
+  );
+
+  injector.registerLazySingleton<ClearAllChannelVideosUseCase>(
+    () => ClearAllChannelVideosUseCase(injector()),
+  );
+
+  injector.registerLazySingleton<ClearAllChannelShortVideosUseCase>(
+    () => ClearAllChannelShortVideosUseCase(injector()),
+  );
+
+  injector.registerLazySingleton<ClearMySubscriptionsChannelsUseCase>(
+    () => ClearMySubscriptionsChannelsUseCase(injector()),
+  );
+
+  injector.registerLazySingleton<ClearAllPopularVideosUseCase>(
+    () => ClearAllPopularVideosUseCase(injector()),
+  );
+
+  injector.registerLazySingleton<ClearAllVideosUseCase>(
+    () => ClearAllVideosUseCase(injector()),
+  );
+
+  injector.registerLazySingleton<ClearAllShortVideosUseCase>(
+    () => ClearAllShortVideosUseCase(injector()),
+  );
+
   // *--------->
   /// ================================ Blocs ========================================>
 
   injector.registerFactory<ChannelVideosCubit>(
     () => ChannelVideosCubit(
-        injector(), injector(), injector(), injector(), injector()),
+        injector(),
+        injector(),
+        injector(),
+        injector(),
+        injector(),
+        injector(),
+        injector(),
+        injector(),
+        injector(),
+        injector(),
+        injector()),
   );
   injector.registerFactory<PlayListCubit>(
     () => PlayListCubit(injector(), injector()),
@@ -229,7 +292,8 @@ Future<void> initializeDependencies() async {
   );
 
   injector.registerFactory<ChannelDetailsCubit>(
-    () => ChannelDetailsCubit(injector(), injector(), injector(), injector()),
+    () => ChannelDetailsCubit(
+        injector(), injector(), injector(), injector(), injector()),
   );
   injector.registerFactory<SingleVideoCubit>(
     () => SingleVideoCubit(
@@ -242,10 +306,10 @@ Future<void> initializeDependencies() async {
     ),
   );
   injector.registerFactory<VideosDetailsCubit>(
-    () => VideosDetailsCubit(injector(), injector()),
+    () => VideosDetailsCubit(injector(), injector(), injector(), injector()),
   );
   injector.registerFactory<PopularVideosCubit>(
-    () => PopularVideosCubit(injector()),
+    () => PopularVideosCubit(injector(), injector()),
   );
 
   // *

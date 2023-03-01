@@ -6,7 +6,7 @@ import 'package:youtube/domain/repositories/video_comment_details/single_video_d
 
 class VideoDetailsUseCase
     implements
-        UseCase<ApiResult<VideosDetails>, VideoDetailsUseCaseParameters> {
+        FutureUseCase<ApiResult<VideosDetails>, VideoDetailsUseCaseParameters> {
   final SingleVideoDetailsRepository _videoDetailsRepository;
 
   VideoDetailsUseCase(this._videoDetailsRepository);

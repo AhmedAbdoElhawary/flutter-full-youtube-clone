@@ -15,8 +15,8 @@ class ChannelPlayListDetailsRepoImpl
       this._channelPlayListAPIs, this._cacheChannelPlaylistAPIs);
 
   @override
-  void clearChannelPlayLists({required String channelId}) {
-    _cacheChannelPlaylistAPIs.clearChannelPlayLists(channelId: channelId);
+  Future<void> clearChannelPlayLists({required String channelId}) async{
+   await _cacheChannelPlaylistAPIs.clearChannelPlayLists(channelId: channelId);
   }
 
   @override
@@ -25,14 +25,14 @@ class ChannelPlayListDetailsRepoImpl
     try {
       /// get from caching if it exist.
       PlayLists? cachedVideos =
-          _cacheChannelPlaylistAPIs.getChannelPlayLists(channelId: channelId);
+      await  _cacheChannelPlaylistAPIs.getChannelPlayLists(channelId: channelId);
       if (cachedVideos != null) return ApiResult.success(cachedVideos);
 
       PlayLists playLists =
           await _channelPlayListAPIs.getChannelPlayLists(channelId: channelId);
 
       /// caching videos
-      _cacheChannelPlaylistAPIs.saveChannelPlayLists(
+      await _cacheChannelPlaylistAPIs.saveChannelPlayLists(
           channelId: channelId, playLists: playLists);
 
       return ApiResult.success(playLists);

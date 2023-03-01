@@ -2,7 +2,7 @@ import 'package:youtube/core/functions/api_result.dart';
 import 'package:youtube/core/use_case/use_case.dart';
 import 'package:youtube/domain/repositories/channel/channel_details_repository.dart';
 
-class DeleteSubscriptionUseCase implements UseCase<ApiResult<void>, DeleteSubscriptionUseCaseParameter> {
+class DeleteSubscriptionUseCase implements FutureUseCase<ApiResult<void>, DeleteSubscriptionUseCaseParameter> {
   final ChannelDetailsRepository _channelDetailsRepository;
 
   DeleteSubscriptionUseCase(this._channelDetailsRepository);

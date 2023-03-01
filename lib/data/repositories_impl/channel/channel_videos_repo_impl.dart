@@ -23,7 +23,7 @@ class ChannelVideosDetailsRepoImpl implements ChannelVideosDetailsRepository {
       {required String channelId}) async {
     try {
       /// get from caching if it exist.
-      VideosDetails? cachedVideos = _cacheChannelVideosAPIs
+      VideosDetails? cachedVideos = await _cacheChannelVideosAPIs
           .getAllChannelShortVideos(channelId: channelId);
       if (cachedVideos != null) return ApiResult.success(cachedVideos);
 
@@ -34,7 +34,7 @@ class ChannelVideosDetailsRepoImpl implements ChannelVideosDetailsRepository {
           .getCompleteVideosDetailsOfThoseIds(shortVideosIds);
 
       /// caching videos
-      _cacheChannelVideosAPIs.saveAllChannelShortVideos(
+      await _cacheChannelVideosAPIs.saveAllChannelShortVideos(
           channelId: channelId, videosDetails: completeVideosDetails);
 
       return ApiResult.success(completeVideosDetails);
@@ -49,7 +49,7 @@ class ChannelVideosDetailsRepoImpl implements ChannelVideosDetailsRepository {
     try {
       /// get from caching if it exist.
       VideosDetails? cachedVideos =
-          _cacheChannelVideosAPIs.getAllChannelVideos(channelId: channelId);
+      await _cacheChannelVideosAPIs.getAllChannelVideos(channelId: channelId);
       if (cachedVideos != null) return ApiResult.success(cachedVideos);
 
       SearchedVideosDetails videosIds =
@@ -59,7 +59,7 @@ class ChannelVideosDetailsRepoImpl implements ChannelVideosDetailsRepository {
           .getCompleteVideosDetailsOfThoseIds(videosIds);
 
       /// caching videos
-      _cacheChannelVideosAPIs.saveAllChannelShortVideos(
+      await _cacheChannelVideosAPIs.saveAllChannelVideos(
           channelId: channelId, videosDetails: completeVideosDetails);
 
       return ApiResult.success(completeVideosDetails);
@@ -73,7 +73,7 @@ class ChannelVideosDetailsRepoImpl implements ChannelVideosDetailsRepository {
       {required String channelId}) async {
     try {
       /// get from caching if it exist.
-      VideosDetails? cachedVideos = _cacheChannelVideosAPIs
+      VideosDetails? cachedVideos = await _cacheChannelVideosAPIs
           .getAllPopularChannelShortVideos(channelId: channelId);
       if (cachedVideos != null) return ApiResult.success(cachedVideos);
 
@@ -85,7 +85,7 @@ class ChannelVideosDetailsRepoImpl implements ChannelVideosDetailsRepository {
           .getCompleteVideosDetailsOfThoseIds(shortVideosIds);
 
       /// caching videos
-      _cacheChannelVideosAPIs.saveAllPopularChannelShortVideos(
+      await _cacheChannelVideosAPIs.saveAllPopularChannelShortVideos(
           channelId: channelId, videosDetails: completeVideosDetails);
 
       return ApiResult.success(completeVideosDetails);
@@ -98,8 +98,9 @@ class ChannelVideosDetailsRepoImpl implements ChannelVideosDetailsRepository {
   Future<ApiResult<VideosDetails>> getAllPopularChannelVideos(
       {required String channelId}) async {
     try {
+
       /// get from caching if it exist.
-      VideosDetails? cachedVideos = _cacheChannelVideosAPIs
+      VideosDetails? cachedVideos = await _cacheChannelVideosAPIs
           .getAllPopularChannelVideos(channelId: channelId);
       if (cachedVideos != null) return ApiResult.success(cachedVideos);
 
@@ -111,7 +112,7 @@ class ChannelVideosDetailsRepoImpl implements ChannelVideosDetailsRepository {
           .getCompleteVideosDetailsOfThoseIds(videosIds);
 
       /// caching videos
-      _cacheChannelVideosAPIs.saveAllPopularChannelVideos(
+      await _cacheChannelVideosAPIs.saveAllPopularChannelVideos(
           channelId: channelId, videosDetails: completeVideosDetails);
 
       return ApiResult.success(completeVideosDetails);
@@ -124,6 +125,11 @@ class ChannelVideosDetailsRepoImpl implements ChannelVideosDetailsRepository {
   Future<ApiResult<List<VideosDetails>>> getVideosOfThoseChannels(
       {required MySubscriptionsDetails mySubscriptionsDetails}) async {
     try {
+      /// get from caching if it exist.
+      List<VideosDetails>? cachedVideos =
+      await _cacheChannelVideosAPIs.getVideosOfThoseChannels();
+      if (cachedVideos != null) return ApiResult.success(cachedVideos);
+
       List<MySubscriptionsItem?>? item = mySubscriptionsDetails.items;
       List<VideosDetails> channelsVideosDetails = [];
       for (final channelDetails in item ?? <MySubscriptionsItem>[]) {
@@ -138,6 +144,10 @@ class ChannelVideosDetailsRepoImpl implements ChannelVideosDetailsRepository {
         channelsVideosDetails.add(videosWithSubChannelDetails);
       }
 
+      /// caching videos
+      await _cacheChannelVideosAPIs.saveVideosOfThoseChannels(
+          videosDetails: channelsVideosDetails);
+
       return ApiResult.success(channelsVideosDetails);
     } catch (e) {
       return ApiResult.failure(NetworkExceptions.getDioException(e));
@@ -145,35 +155,35 @@ class ChannelVideosDetailsRepoImpl implements ChannelVideosDetailsRepository {
   }
 
   @override
-  void clearAllChannelShortVideos(
-      {required String channelId, required bool clearAll}) {
-    _cacheChannelVideosAPIs.clearAllChannelShortVideos(
+  Future<void> clearAllChannelShortVideos(
+      {required String channelId, required bool clearAll}) async{
+    await _cacheChannelVideosAPIs.clearAllChannelShortVideos(
         channelId: channelId, clearAll: clearAll);
   }
 
   @override
-  void clearAllChannelVideos(
-      {required String channelId, required bool clearAll}) {
-    _cacheChannelVideosAPIs.clearAllChannelVideos(
+  Future<void> clearAllChannelVideos(
+      {required String channelId, required bool clearAll}) async{
+    await _cacheChannelVideosAPIs.clearAllChannelVideos(
         channelId: channelId, clearAll: clearAll);
   }
 
   @override
-  void clearAllPopularChannelShortVideos(
-      {required String channelId, required bool clearAll}) {
-    _cacheChannelVideosAPIs.clearAllPopularChannelShortVideos(
+  Future<void> clearAllPopularChannelShortVideos(
+      {required String channelId, required bool clearAll}) async{
+    await _cacheChannelVideosAPIs.clearAllPopularChannelShortVideos(
         channelId: channelId, clearAll: clearAll);
   }
 
   @override
-  void clearAllPopularChannelVideos(
-      {required String channelId, required bool clearAll}) {
-    _cacheChannelVideosAPIs.clearAllPopularChannelVideos(
+  Future<void> clearAllPopularChannelVideos(
+      {required String channelId, required bool clearAll})async {
+    await _cacheChannelVideosAPIs.clearAllPopularChannelVideos(
         channelId: channelId, clearAll: clearAll);
   }
 
   @override
-  void clearVideosOfThoseChannels() {
-    _cacheChannelVideosAPIs.clearVideosOfThoseChannels();
+  Future<void> clearVideosOfThoseChannels() async{
+   await _cacheChannelVideosAPIs.clearVideosOfThoseChannels();
   }
 }

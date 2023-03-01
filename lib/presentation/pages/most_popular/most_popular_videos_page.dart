@@ -10,9 +10,20 @@ import 'package:youtube/presentation/common_widgets/custom_circle_progress.dart'
 import 'package:youtube/presentation/common_widgets/thumbnail_of_video.dart';
 import 'package:youtube/presentation/cubit/videos/popular_videos/popular_videos_cubit.dart';
 
-class MostPopularVideosPage extends StatelessWidget {
+class MostPopularVideosPage extends StatefulWidget {
   const MostPopularVideosPage({Key? key}) : super(key: key);
 
+  @override
+  State<MostPopularVideosPage> createState() => _MostPopularVideosPageState();
+}
+
+class _MostPopularVideosPageState extends State<MostPopularVideosPage> {
+
+  @override
+  void dispose() {
+    PopularVideosCubit.get(context).clearAllPopularVideos(videoCategoryId: "");
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

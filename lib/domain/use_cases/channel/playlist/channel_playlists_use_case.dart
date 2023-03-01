@@ -5,7 +5,7 @@ import 'package:youtube/domain/entities/parameters/channel_details_use_case_para
 import 'package:youtube/domain/repositories/channel/channel_playlist_repository.dart';
 
 class ChannelPlayListUseCase
-    implements UseCase<ApiResult<PlayLists>, ChannelDetailsUseCaseParameters> {
+    implements FutureUseCase<ApiResult<PlayLists>, ChannelDetailsUseCaseParameters> {
   final ChannelPlayListDetailsRepository _listDetailsRepository;
 
   ChannelPlayListUseCase(this._listDetailsRepository);

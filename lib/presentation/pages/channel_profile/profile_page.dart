@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:youtube/data/models/channel_details/channel_details.dart';
+import 'package:youtube/presentation/cubit/channel/channel_videos/channel_videos_cubit.dart';
 import 'package:youtube/presentation/pages/channel_profile/tab_bar_views/about_view.dart';
 
 import '../../../core/resources/color_manager.dart';
@@ -8,7 +9,7 @@ import '../../../core/resources/styles_manager.dart';
 import 'tab_bar_views/home_view.dart';
 import 'tab_bar_views/videos_view.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   final bool isThatMyPersonalId;
   final Widget widgetsAboveBio;
   final ChannelDetailsItem? channelDetails;
@@ -20,6 +21,18 @@ class ProfilePage extends StatelessWidget {
       : super(key: key);
 
   @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  @override
+  void dispose() {
+    ChannelVideosCubit.get(context)
+        .clearChannelCachedDetails(widget.channelDetails?.id ?? "");
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Center(
       child: DefaultTabController(
@@ -28,13 +41,14 @@ class ProfilePage extends StatelessWidget {
           headerSliverBuilder: (_, __) {
             return [
               SliverList(
-                delegate: SliverChildListDelegate([widgetsAboveBio]),
+                delegate: SliverChildListDelegate([widget.widgetsAboveBio]),
               ),
             ];
           },
-          body: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [ const _TabBarIcons(), _TapBarView(channelDetails)]),
+          body: Column(mainAxisSize: MainAxisSize.min, children: [
+            const _TabBarIcons(),
+            _TapBarView(widget.channelDetails)
+          ]),
         ),
       ),
     );
@@ -47,12 +61,11 @@ class _TapBarView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Expanded(
+    return Expanded(
       child: TabBarView(
-
         children: [
           TabBarHomeView(channelDetails),
-           TabBarVideosView(channelDetails),
+          TabBarVideosView(channelDetails),
           const Center(child: Text("SHORTS")),
           const Center(child: Text("PLAYLISTS")),
           const Center(child: Text("COMMUNITY")),
@@ -74,7 +87,6 @@ class _TabBarIcons extends StatelessWidget {
           border:
               Border(bottom: BorderSide(color: ColorManager(context).grey2))),
       child: TabBar(
-
         unselectedLabelColor: ColorManager(context).grey7,
         labelColor: Theme.of(context).focusColor,
         indicatorSize: TabBarIndicatorSize.tab,

@@ -5,7 +5,7 @@ import 'package:youtube/domain/repositories/video_comment_details/single_video_d
 
 class GetVideoRatingUseCase
     implements
-        UseCase<ApiResult<RatingDetails>, GetVideoRatingUseCaseParameter> {
+        FutureUseCase<ApiResult<RatingDetails>, GetVideoRatingUseCaseParameter> {
   final SingleVideoDetailsRepository _videoDetailsRepository;
 
   GetVideoRatingUseCase(this._videoDetailsRepository);

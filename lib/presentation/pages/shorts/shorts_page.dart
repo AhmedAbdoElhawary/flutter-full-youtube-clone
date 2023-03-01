@@ -35,6 +35,12 @@ class ShortsPage extends StatefulWidget {
 }
 
 class ShortsPageState extends State<ShortsPage> {
+
+  @override
+  void dispose() {
+    VideosDetailsCubit.get(context).clearAllShortVideos();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return WillPopScope(

@@ -10,8 +10,9 @@ class Go {
   to(Widget page, {bool materialRoute = false}) {
     return Navigator.of(context, rootNavigator: true).push(
       materialRoute
-          ? MaterialPageRoute(builder: (context) => page)
-          : CupertinoPageRoute(builder: (context) => page),
+          ? MaterialPageRoute(builder: (context) => page, maintainState: false)
+          : CupertinoPageRoute(
+              builder: (context) => page, maintainState: false),
     );
   }
 
@@ -19,10 +20,12 @@ class Go {
       CupertinoPageRoute(builder: (context) => page), (route) => false);
 
   offCurrent(Widget page, {bool materialRoute = false}) {
-    return Navigator.of(context)
-      .pushReplacement(   materialRoute
-        ? MaterialPageRoute(builder: (context) => page)
-        : CupertinoPageRoute(builder: (context) => page),);
+    return Navigator.of(context).pushReplacement(
+      materialRoute
+          ? MaterialPageRoute(builder: (context) => page, maintainState: false)
+          : CupertinoPageRoute(
+              builder: (context) => page, maintainState: false),
+    );
   }
 
   back() => Navigator.of(context).maybePop();

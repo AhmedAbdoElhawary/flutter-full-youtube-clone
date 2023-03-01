@@ -5,7 +5,7 @@ import 'package:youtube/domain/repositories/search_details_repository.dart';
 
 class SuggestionSearchTextsUseCase
     implements
-        UseCase<ApiResult<SuggestionTexts>,
+        FutureUseCase<ApiResult<SuggestionTexts>,
             SuggestionSearchTextsUseCaseParameter> {
   final SearchDetailsRepository _searchDetailsRepository;
 

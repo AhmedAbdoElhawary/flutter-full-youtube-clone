@@ -3,7 +3,7 @@ import 'package:youtube/core/use_case/use_case.dart';
 import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/domain/repositories/videos_details_repository.dart';
 
-class AllShortVideosUseCase implements UseCase<ApiResult<VideosDetails>, void> {
+class AllShortVideosUseCase implements FutureUseCase<ApiResult<VideosDetails>, void> {
   final VideosDetailsRepository _detailsRepository;
 
   AllShortVideosUseCase(this._detailsRepository);

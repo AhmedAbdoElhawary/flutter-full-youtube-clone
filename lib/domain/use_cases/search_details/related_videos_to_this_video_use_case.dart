@@ -5,7 +5,7 @@ import 'package:youtube/domain/repositories/search_details_repository.dart';
 
 class RelatedVideosToThisVideoUseCase
     implements
-        UseCase<ApiResult<VideosDetails>, RelatedVideosToThisVideoUseCasePara> {
+        FutureUseCase<ApiResult<VideosDetails>, RelatedVideosToThisVideoUseCasePara> {
   final SearchDetailsRepository _searchDetailsRepository;
 
   RelatedVideosToThisVideoUseCase(this._searchDetailsRepository);
