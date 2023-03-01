@@ -1,111 +1,118 @@
-const String iconPath = "assets/icons";
+const String _iconPath = "assets/icons";
+const String _iconNewPath = "$_iconPath/new";
 
 class IconsAssets {
-  static const String settingsIcon = "$iconPath/settings.svg";
-  static const String closeIcon = "$iconPath/close.svg";
-  static const String menuPointsVerticalIcon = "$iconPath/menu-vertical.svg";
-  static const String menuPointsHorizontalIcon = "$iconPath/menu.svg";
-  static const String menuIcon = "$iconPath/menu-chart.svg";
+  static const String youtubeLogo = "$_iconNewPath/YouTube_Logo.svg";
+  static const String youtubeLogoSolo = "$_iconNewPath/youtube_solo_logo.svg";
+  static const String searchIcon = "$_iconNewPath/search.svg";
+  static const String notificationIcon = "$_iconNewPath/bell.svg";
+  static const String broadcastIcon = "$_iconNewPath/broadcast.svg";
 
-  static const String plusIcon = "$iconPath/plus.svg";
+  static const String settingsIcon = "$_iconPath/settings.svg";
+  static const String closeIcon = "$_iconPath/close.svg";
+  static const String menuPointsVerticalIcon = "$_iconPath/menu-vertical.svg";
+  static const String menuPointsHorizontalIcon = "$_iconPath/menu.svg";
+  static const String menuIcon = "$_iconPath/menu-chart.svg";
 
-  static const String mapPinSmallIcon = "$iconPath/map-pin-small.svg";
-  static const String zapSmallIcon = "$iconPath/zap-small.svg";
-  static const String bellIcon = "$iconPath/bell.svg";
+  static const String plusIcon = "$_iconPath/plus.svg";
 
-  static const String shareIcon = "$iconPath/share-2.svg";
+  static const String mapPinSmallIcon = "$_iconPath/map-pin-small.svg";
+  static const String zapSmallIcon = "$_iconPath/zap-small.svg";
+  static const String bellIcon = "$_iconPath/bell.svg";
 
-  static const String eyeOnIcon = "$iconPath/eye_on.svg";
-  static const String eyeOffIcon = "$iconPath/eye-off.svg";
-  static const String shieldClose = "$iconPath/shield.svg";
+  static const String shareIcon = "$_iconPath/share-2.svg";
 
-  static const String smallClose = "$iconPath/small-close.svg";
-  static const String facebookIcon = "$iconPath/facebook.svg";
-  static const String sendIcon = "$iconPath/send.svg";
-  static const String globalIcon = "$iconPath/globe.svg";
-  static const String instagramIcon = "$iconPath/instagram.svg";
+  static const String eyeOnIcon = "$_iconPath/eye_on.svg";
+  static const String eyeOffIcon = "$_iconPath/eye-off.svg";
+  static const String shieldClose = "$_iconPath/shield.svg";
 
-  static const String mailIcon = "$iconPath/mail.svg";
-  static const String userIcon = "$iconPath/user.svg";
-  static const String homeIcon = "$iconPath/home.svg";
-  static const String calendarIcon = "$iconPath/calendar.svg";
-  static const String favoriteIcon = "$iconPath/favorite.svg";
+  static const String smallClose = "$_iconPath/small-close.svg";
+  static const String facebookIcon = "$_iconPath/facebook.svg";
+  static const String sendIcon = "$_iconPath/send.svg";
+  static const String globalIcon = "$_iconPath/globe.svg";
+  static const String instagramIcon = "$_iconPath/instagram.svg";
 
-  static const String phoneIcon = "$iconPath/phone.svg";
-  static const String starIcon = "$iconPath/star.svg";
-  static const String bigStarIcon = "$iconPath/big-star.svg";
-  static const String bigStar2Icon = "$iconPath/star (3).svg";
-  static const String arrowUpIcon = "$iconPath/arrow-up.svg";
-  static const String shoppingCart = "$iconPath/shopping-cart.svg";
-  static const String trashIcon = "$iconPath/trash-2.svg";
-  static const String helpCircleBigIcon = "$iconPath/help-circle-big.svg";
+  static const String mailIcon = "$_iconPath/mail.svg";
+  static const String userIcon = "$_iconPath/user.svg";
+  static const String homeIcon = "$_iconPath/home.svg";
+  static const String calendarIcon = "$_iconPath/calendar.svg";
+  static const String favoriteIcon = "$_iconPath/favorite.svg";
 
-  static const String helpCircleIcon = "$iconPath/help-circle.svg";
-  static const String chromeIcon = "$iconPath/chrome.svg";
+  static const String phoneIcon = "$_iconPath/phone.svg";
+  static const String starIcon = "$_iconPath/star.svg";
+  static const String bigStarIcon = "$_iconPath/big-star.svg";
+  static const String bigStar2Icon = "$_iconPath/star (3).svg";
+  static const String arrowUpIcon = "$_iconPath/arrow-up.svg";
+  static const String shoppingCart = "$_iconPath/shopping-cart.svg";
+  static const String trashIcon = "$_iconPath/trash-2.svg";
+  static const String helpCircleBigIcon = "$_iconPath/help-circle-big.svg";
 
-  static const String visaIcon = "$iconPath/visa-light-large.svg";
-  static const String mastercardIcon = "$iconPath/mastercard-light-large.svg";
+  static const String helpCircleIcon = "$_iconPath/help-circle.svg";
+  static const String chromeIcon = "$_iconPath/chrome.svg";
+
+  static const String visaIcon = "$_iconPath/visa-light-large.svg";
+  static const String mastercardIcon = "$_iconPath/mastercard-light-large.svg";
   static const String americanExpressIcon =
-      "$iconPath/americanexpress-light-large.svg";
-  static const String maestroIcon = "$iconPath/maestro-light-large.svg";
-  static const String paypalIcon = "$iconPath/paypal-light-large.svg";
-  static const String maestro2Icon = "$iconPath/cirrus-light-large.svg";
-  static const String discoverIcon = "$iconPath/discover-light-large.svg";
+      "$_iconPath/americanexpress-light-large.svg";
+  static const String maestroIcon = "$_iconPath/maestro-light-large.svg";
+  static const String paypalIcon = "$_iconPath/paypal-light-large.svg";
+  static const String maestro2Icon = "$_iconPath/cirrus-light-large.svg";
+  static const String discoverIcon = "$_iconPath/discover-light-large.svg";
 
-  static const String editIcon = "$iconPath/edit.svg";
+  static const String editIcon = "$_iconPath/edit.svg";
 
-  static const String starFullIcon = "$iconPath/star_full.svg";
-  static const String normalStarIcon = "$iconPath/star_2.svg";
+  static const String starFullIcon = "$_iconPath/star_full.svg";
+  static const String normalStarIcon = "$_iconPath/star_2.svg";
 
-  static const String deleteIcon = "$iconPath/trash-2.svg";
-  static const String heartIcon = "$iconPath/heart.svg";
-  static const String uploadIcon = "$iconPath/upload.svg";
-  static const String cameraIcon = "$iconPath/camera.svg";
-  static const String arrowLeftIcon = "$iconPath/arrow-left.svg";
+  static const String deleteIcon = "$_iconPath/trash-2.svg";
+  static const String heartIcon = "$_iconPath/heart.svg";
+  static const String uploadIcon = "$_iconPath/upload.svg";
+  static const String cameraIcon = "$_iconPath/camera.svg";
+  static const String arrowLeftIcon = "$_iconPath/arrow-left.svg";
 
-  static const String zapOffIcon = "$iconPath/zap-off.svg";
+  static const String zapOffIcon = "$_iconPath/zap-off.svg";
 
-  static const String mail2Icon = "$iconPath/mail (1).svg";
-  static const String folderPlusIcon = "$iconPath/folder-plus.svg";
-  static const String mapPinIcon = "$iconPath/map-pin (1).svg";
+  static const String mail2Icon = "$_iconPath/mail (1).svg";
+  static const String folderPlusIcon = "$_iconPath/folder-plus.svg";
+  static const String mapPinIcon = "$_iconPath/map-pin (1).svg";
 
-  static const String smartphoneIcon = "$iconPath/smartphone.svg";
-  static const String arrowRightIcon = "$iconPath/chevron-right.svg";
-  static const String videoIcon = "$iconPath/play.svg";
+  static const String smartphoneIcon = "$_iconPath/smartphone.svg";
+  static const String arrowRightIcon = "$_iconPath/chevron-right.svg";
+  static const String videoIcon = "$_iconPath/play.svg";
 
-  static const String eyeIcon = "$iconPath/eye.svg";
+  static const String eyeIcon = "$_iconPath/eye.svg";
 
-  static const String mapIcon = "$iconPath/map-pin.svg";
+  static const String mapIcon = "$_iconPath/map-pin.svg";
 
-  static const String loveIcon = "$iconPath/heart.svg";
-  static const String commentIcon = "$iconPath/comment.svg";
-  static const String profileIcon = "$iconPath/profile.svg";
-  static const String instagramLogo = "$iconPath/logo_instagram.svg";
-  static const String addIcon = "$iconPath/add.svg";
-  static const String add2Icon = "$iconPath/add-2.svg";
-  static const String minusIcon = "$iconPath/minus.svg";
-  static const String gridIcon = "$iconPath/grid.svg";
-  static const String cancelIcon = "$iconPath/cancel.svg";
-  static const String warningIcon = "$iconPath/warning.svg";
-  static const String addLikeLoadingIcon = "$iconPath/add.svg";
-  static const String noMoreData = "$iconPath/check-circle.svg";
-  static const String shareCircle = "$iconPath/share-circle.svg";
-  static const String point = "$iconPath/circle.svg";
-  static const String messengerIcon = "$iconPath/messenger.svg";
-  static const String favorite = "$iconPath/favorite.svg";
-  static const String home = "$iconPath/house_white.svg";
-  static const String search = "$iconPath/new/search.svg";
-  static const String video = "$iconPath/video.svg";
-  static const String shop = "$iconPath/shop_white.svg";
-  static const String compassIcon = "$iconPath/compass.svg";
+  static const String loveIcon = "$_iconPath/heart.svg";
+  static const String commentIcon = "$_iconPath/comment.svg";
+  static const String profileIcon = "$_iconPath/profile.svg";
+  static const String instagramLogo = "$_iconPath/logo_instagram.svg";
+  static const String addIcon = "$_iconPath/add.svg";
+  static const String add2Icon = "$_iconPath/add-2.svg";
+  static const String minusIcon = "$_iconPath/minus.svg";
+  static const String gridIcon = "$_iconPath/grid.svg";
+  static const String cancelIcon = "$_iconPath/cancel.svg";
+  static const String warningIcon = "$_iconPath/warning.svg";
+  static const String addLikeLoadingIcon = "$_iconPath/add.svg";
+  static const String noMoreData = "$_iconPath/check-circle.svg";
+  static const String shareCircle = "$_iconPath/share-circle.svg";
+  static const String point = "$_iconPath/circle.svg";
+  static const String messengerIcon = "$_iconPath/messenger.svg";
+  static const String favorite = "$_iconPath/favorite.svg";
+  static const String home = "$_iconPath/house_white.svg";
+  static const String search = "$_iconPath/new/search.svg";
+  static const String video = "$_iconPath/video.svg";
+  static const String shop = "$_iconPath/shop_white.svg";
+  static const String compassIcon = "$_iconPath/compass.svg";
   static const String splashIcon = "assets/splash/instagram-image-splash.png";
-  static const String phone = "$iconPath/phone.svg";
-  static const String videoPoint = "$iconPath/video_point.svg";
-  static const String gallery = "$iconPath/gallery.svg";
-  static const String galleryBold = "$iconPath/gallery_blod.svg";
+  static const String phone = "$_iconPath/phone.svg";
+  static const String videoPoint = "$_iconPath/video_point.svg";
+  static const String gallery = "$_iconPath/gallery.svg";
+  static const String galleryBold = "$_iconPath/gallery_blod.svg";
 
   static const String addInstagramStoryIcon =
-      "$iconPath/add-instagram-story.svg";
+      "$_iconPath/add-instagram-story.svg";
   static const String instagramHighlightStoryIcon =
-      "$iconPath/instagram-highlight-story.svg";
+      "$_iconPath/instagram-highlight-story.svg";
 }
