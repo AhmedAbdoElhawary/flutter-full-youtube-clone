@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:sliding_sheet/sliding_sheet.dart';
 import 'package:youtube/config/routes/route_app.dart';
 import 'package:youtube/core/functions/network_exceptions.dart';
 import 'package:youtube/core/functions/toast_show.dart';
@@ -27,14 +26,17 @@ import 'package:youtube/presentation/cubit/single_video/single_video_cubit.dart'
 import 'package:youtube/presentation/custom_packages/custom_mini_player/custom_mini_player.dart';
 import 'package:youtube/presentation/custom_packages/pod_player/src/controllers/pod_player_controller.dart';
 import 'package:youtube/presentation/custom_packages/pod_player/src/pod_player.dart';
+import 'package:youtube/presentation/pages/channel_profile/user_channel_page.dart';
 import 'package:youtube/presentation/pages/home/logic/home_page_logic.dart';
 import 'package:youtube/presentation/common_widgets/subscribe_button.dart';
+
+import '../../custom_packages/sliding_sheet/sliding_sheet.dart';
 
 part 'sub_widgets/like_button.dart';
 part 'sub_widgets/dislike_button.dart';
 part 'sub_widgets/interaction_simmer_loading.dart';
 part 'sub_widgets/mini_video_view.dart';
-part 'sub_widgets/draggable_bottom_sheet.dart';
+part 'sub_widgets/bottom_sheet/draggable_bottom_sheet.dart';
 part 'sub_widgets/fisrt_comment_preview_button.dart';
 part 'sub_widgets/bottom_sheet/description_bottom_sheet.dart';
 part 'sub_widgets/bottom_sheet/head_of_bottom_sheet.dart';
@@ -81,8 +83,6 @@ class _MiniVideoDisplay extends StatelessWidget {
   final double percentage;
   @override
   Widget build(BuildContext context) {
-    final miniVideoViewLogic = Get.find<MiniVideoViewLogic>(tag: "1");
-
     return SafeArea(
       child: Container(
         color: Theme.of(context).primaryColor,
@@ -91,12 +91,19 @@ class _MiniVideoDisplay extends StatelessWidget {
             Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Flexible(
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                        top: miniVideoViewLogic.videoOfMiniDisplayHeight()),
-                    child: const NextVideosSuggestions(),
-                  ),
+                Obx(
+                  () {
+                    final miniVideoViewLogic =
+                        Get.find<MiniVideoViewLogic>(tag: "1");
+
+                    return Flexible(
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                            top: miniVideoViewLogic.videoOfMiniDisplayHeight()),
+                        child: const NextVideosSuggestions(),
+                      ),
+                    );
+                  },
                 )
               ],
             ),
@@ -183,35 +190,45 @@ class _CircleNameSubscribersWidget extends StatelessWidget {
           final logic = Get.find<MiniVideoViewLogic>(tag: "1");
           VideoDetailsItem? videoDetails = logic.selectedVideoDetails;
 
-          return Row(
-            children: [
-              CircularProfileImage(
-                imageUrl: videoDetails?.getChannelProfileImageUrl() ?? "",
-                radius: 17.r,
-              ),
-              const RSizedBox(width: 10),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      videoDetails?.getChannelName() ?? "",
-                      overflow: TextOverflow.ellipsis,
-                      style: getMediumStyle(
-                          color: ColorManager(context).black, fontSize: 15),
-                    ),
-                    const RSizedBox(height: 5),
-                    Text(
-                      "${videoDetails?.getSubscribersCount() ?? " "} subscribers",
-                      overflow: TextOverflow.ellipsis,
-                      style: getNormalStyle(
-                          color: ColorManager(context).grey, fontSize: 13),
-                    ),
-                  ],
+          return InkWell(
+            onTap: () {
+              Go(context).to(
+                UserChannelPage(
+                  channelDetailsItem: videoDetails?.getChannelSubDetails(),
+                  channelId: videoDetails?.getChannelId() ?? "",
                 ),
-              ),
-              const SubscribeButton(),
-            ],
+              );
+            },
+            child: Row(
+              children: [
+                CircularProfileImage(
+                  imageUrl: videoDetails?.getChannelProfileImageUrl() ?? "",
+                  radius: 17.r,
+                ),
+                const RSizedBox(width: 10),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        videoDetails?.getChannelName() ?? "",
+                        overflow: TextOverflow.ellipsis,
+                        style: getMediumStyle(
+                            color: ColorManager(context).black, fontSize: 15),
+                      ),
+                      const RSizedBox(height: 5),
+                      Text(
+                        "${videoDetails?.getSubscribersCount() ?? " "} subscribers",
+                        overflow: TextOverflow.ellipsis,
+                        style: getNormalStyle(
+                            color: ColorManager(context).grey, fontSize: 13),
+                      ),
+                    ],
+                  ),
+                ),
+                SubscribeButton(channelId: videoDetails?.getChannelId() ?? ""),
+              ],
+            ),
           );
         },
       ),
