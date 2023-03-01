@@ -5,7 +5,7 @@ import 'package:youtube/domain/repositories/video_comment_details/video_comment_
 
 
 class GetAllRepliesUseCase
-    implements UseCase<ApiResult<ReplyDetails>, GetAllRepliesUseCaseParameters> {
+    implements FutureUseCase<ApiResult<ReplyDetails>, GetAllRepliesUseCaseParameters> {
   final VideoCommentDetailsRepository _commentDetailsRepository;
 
   GetAllRepliesUseCase(this._commentDetailsRepository);
