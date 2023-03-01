@@ -7,8 +7,8 @@ import 'package:youtube/core/functions/network_exception_model.dart';
 import 'package:youtube/data/models/channel_details/playlists/playlist_videos.dart';
 import 'package:youtube/data/models/channel_details/playlists/playlists.dart';
 import 'package:youtube/domain/entities/parameters/channel_details_use_case_parameters.dart';
-import 'package:youtube/domain/use_cases/channel_details/playlist/channel_playlist_items_use_case.dart';
-import 'package:youtube/domain/use_cases/channel_details/playlist/channel_playlists_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/playlist/channel_playlist_items_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/playlist/channel_playlists_use_case.dart';
 
 part 'play_list_state.dart';
 part 'play_list_cubit.freezed.dart';

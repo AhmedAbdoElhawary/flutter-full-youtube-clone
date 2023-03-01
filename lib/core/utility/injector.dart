@@ -24,17 +24,17 @@ import 'package:youtube/domain/repositories/search_details_repository.dart';
 import 'package:youtube/domain/repositories/video_comment_details/single_video_details_repository.dart';
 import 'package:youtube/domain/repositories/video_comment_details/video_comment_details_repositroy.dart';
 import 'package:youtube/domain/repositories/videos_details_repository.dart';
-import 'package:youtube/domain/use_cases/channel_details/channel_sub_details_use_case.dart';
-import 'package:youtube/domain/use_cases/channel_details/channel_videos/channel_popular_videos_use_case.dart';
-import 'package:youtube/domain/use_cases/channel_details/channel_videos/channel_short_poupal_videos_use_case.dart';
-import 'package:youtube/domain/use_cases/channel_details/channel_videos/channel_short_videos_use_case.dart';
-import 'package:youtube/domain/use_cases/channel_details/channel_videos/channel_videos_use_case.dart';
-import 'package:youtube/domain/use_cases/channel_details/delete_subscription_use_case.dart';
-import 'package:youtube/domain/use_cases/channel_details/get_videos_of_those_channels_use_case.dart';
-import 'package:youtube/domain/use_cases/channel_details/my_subscriptions_channels_use_case.dart';
-import 'package:youtube/domain/use_cases/channel_details/playlist/channel_playlist_items_use_case.dart';
-import 'package:youtube/domain/use_cases/channel_details/playlist/channel_playlists_use_case.dart';
-import 'package:youtube/domain/use_cases/channel_details/subscribe_to_channel_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/channel_details/channel_sub_details_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/channel_details/delete_subscription_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/channel_details/get_videos_of_those_channels_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/channel_details/my_subscriptions_channels_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/channel_details/subscribe_to_channel_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/channel_videos/channel_popular_videos_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/channel_videos/channel_short_poupal_videos_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/channel_videos/channel_short_videos_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/channel_videos/channel_videos_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/playlist/channel_playlist_items_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/playlist/channel_playlists_use_case.dart';
 import 'package:youtube/domain/use_cases/search_details/related_videos_to_this_video_use_case.dart';
 import 'package:youtube/domain/use_cases/search_details/search_for_this_sentence_use_case.dart';
 import 'package:youtube/domain/use_cases/search_details/suggestion_search_texts_use_case.dart';
@@ -107,7 +107,7 @@ Future<void> initializeDependencies() async {
     () => VideosDetailsRepoImpl(injector(), injector(), injector()),
   );
   injector.registerLazySingleton<ChannelDetailsRepository>(
-    () => ChannelDetailsRepoImpl(injector(),injector()),
+    () => ChannelDetailsRepoImpl(injector(), injector()),
   );
   injector.registerLazySingleton<VideoCommentDetailsRepository>(
     () => VideoCommentDetailsRepoImpl(injector()),
@@ -117,7 +117,7 @@ Future<void> initializeDependencies() async {
     () => SingleVideosDetailsRepoImpl(injector(), injector()),
   );
   injector.registerLazySingleton<ChannelVideosDetailsRepository>(
-    () => ChannelVideosDetailsRepoImpl(injector(), injector(),injector()),
+    () => ChannelVideosDetailsRepoImpl(injector(), injector(), injector()),
   );
   injector.registerLazySingleton<SearchDetailsRepository>(
     () => SearchDetailsRepoImpl(injector(), injector(), injector()),
