@@ -7,11 +7,11 @@ import 'package:youtube/data/models/channel_details/my_subscriptions/my_subscrip
 
 import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/domain/entities/parameters/channel_details_use_case_parameters.dart';
-import 'package:youtube/domain/use_cases/channel_details/channel_videos/channel_popular_videos_use_case.dart';
-import 'package:youtube/domain/use_cases/channel_details/channel_videos/channel_short_poupal_videos_use_case.dart';
-import 'package:youtube/domain/use_cases/channel_details/channel_videos/channel_short_videos_use_case.dart';
-import 'package:youtube/domain/use_cases/channel_details/channel_videos/channel_videos_use_case.dart';
-import 'package:youtube/domain/use_cases/channel_details/get_videos_of_those_channels_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/channel_details/get_videos_of_those_channels_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/channel_videos/channel_popular_videos_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/channel_videos/channel_short_poupal_videos_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/channel_videos/channel_short_videos_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/channel_videos/channel_videos_use_case.dart';
 
 part 'channel_videos_state.dart';
 part 'channel_videos_cubit.freezed.dart';

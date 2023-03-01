@@ -8,10 +8,10 @@ import 'package:youtube/core/functions/network_exception_model.dart';
 import 'package:youtube/data/models/channel_details/channel_details.dart';
 import 'package:youtube/data/models/channel_details/my_subscriptions/my_subscriptions_details.dart';
 import 'package:youtube/domain/entities/parameters/channel_details_use_case_parameters.dart';
-import 'package:youtube/domain/use_cases/channel_details/channel_sub_details_use_case.dart';
-import 'package:youtube/domain/use_cases/channel_details/delete_subscription_use_case.dart';
-import 'package:youtube/domain/use_cases/channel_details/my_subscriptions_channels_use_case.dart';
-import 'package:youtube/domain/use_cases/channel_details/subscribe_to_channel_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/channel_details/channel_sub_details_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/channel_details/delete_subscription_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/channel_details/my_subscriptions_channels_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/channel_details/subscribe_to_channel_use_case.dart';
 import 'package:youtube/presentation/pages/subscriptions/logic/subscriptions_page_logic.dart';
 
 part 'channel_details_state.dart';
