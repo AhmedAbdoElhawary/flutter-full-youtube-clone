@@ -29,6 +29,12 @@ class SubscriptionsPage extends StatefulWidget {
 
 class _SubscriptionsPageState extends State<SubscriptionsPage>
     with AutomaticKeepAliveClientMixin<SubscriptionsPage> {
+
+  @override
+  void dispose() {
+    ChannelDetailsCubit.get(context).clearMySubscriptionsChannels();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     super.build(context);
