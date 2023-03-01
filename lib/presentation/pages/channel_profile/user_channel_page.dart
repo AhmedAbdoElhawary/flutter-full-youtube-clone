@@ -130,12 +130,8 @@ class _ButtonsAboveBio extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SizedBox(
-          width: double.infinity,
-          height: 90.h,
-          child:
-              CustomNetworkDisplay(imageUrl: channelItem.getChannelCoverUrl()),
-        ),
+        CustomNetworkDisplay(
+            imageUrl: channelItem.getChannelCoverUrl()),
         const RSizedBox(height: 10),
         CircularProfileImage(
             enableTapping: false,
@@ -147,7 +143,7 @@ class _ButtonsAboveBio extends StatelessWidget {
           style: getBoldStyle(color: ColorManager(context).black, fontSize: 22),
         ),
         const RSizedBox(height: 10),
-         SubscribeButton(fontSize: 15,channelId: channelItem.id??""),
+        SubscribeButton(fontSize: 15, channelId: channelItem.id ?? ""),
         const RSizedBox(height: 5),
         Text(
           "${channelItem.getCustomUserName()} . $subscribersCount . $viewsCount",
