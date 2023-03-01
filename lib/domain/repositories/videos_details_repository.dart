@@ -8,4 +8,10 @@ abstract class VideosDetailsRepository {
   Future<ApiResult<VideosDetails>> getMostPopularVideos(String videoCategoryId);
   Future<VideosDetails> getCompleteVideosDetailsOfThoseIds(
       SearchedVideosDetails searchedVideos);
+
+  void clearAllVideos();
+  void clearAllShortVideos();
+  void clearAllPopularVideos(
+      {required String videoCategoryId,required bool clearAll });
+
 }
