@@ -55,6 +55,12 @@ class _VideosList extends StatefulWidget {
 
 class _VideosListState extends State<_VideosList>
     with AutomaticKeepAliveClientMixin<_VideosList>  {
+
+  @override
+  void dispose() {
+    VideosDetailsCubit.get(context).clearAllVideos();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -68,9 +74,6 @@ class _VideosListState extends State<_VideosList>
             return SliverList(
               delegate: SliverChildBuilderDelegate(
                 childCount: allVideosLoaded.videoDetailsItem?.length,
-                /// todo
-                addRepaintBoundaries:false ,
-                /// --->
                 (context, index) =>
                     ThumbnailOfVideo(allVideosLoaded.videoDetailsItem?[index]),
               ),
