@@ -6,7 +6,7 @@ import 'package:youtube/domain/repositories/channel/channel_details_repository.d
 
 class ChannelSubDetailsUseCase
     implements
-        UseCase<ApiResult<ChannelSubDetails>,
+        FutureUseCase<ApiResult<ChannelSubDetails>,
             ChannelDetailsUseCaseParameters> {
   final ChannelDetailsRepository _channelDetailsRepository;
 
