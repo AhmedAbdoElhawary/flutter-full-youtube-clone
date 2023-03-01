@@ -80,7 +80,6 @@ class _BuildScaffold extends StatelessWidget {
         maxLines: 1,
       ),
       actions: [
-        const _FavoriteIconButton(),
         Padding(
             padding: REdgeInsets.symmetric(horizontal: 20),
             child: SvgPicture.asset(IconsAssets.menuPointsVerticalIcon)),
@@ -148,7 +147,7 @@ class _ButtonsAboveBio extends StatelessWidget {
           style: getBoldStyle(color: ColorManager(context).black, fontSize: 22),
         ),
         const RSizedBox(height: 10),
-        const SubscribeButton(fontSize: 15),
+         SubscribeButton(fontSize: 15,channelId: channelItem.id??""),
         const RSizedBox(height: 5),
         Text(
           "${channelItem.getCustomUserName()} . $subscribersCount . $viewsCount",

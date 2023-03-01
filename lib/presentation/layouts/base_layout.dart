@@ -65,17 +65,17 @@ class BaseLayoutState extends State<BaseLayout>
         unselectedLabelStyle:
             getNormalStyle(color: iconLabelColor, fontSize: 11),
       ),
-      child: Scaffold(
-        body: Stack(
-          children: [
-            PageStorage(bucket: bucket, child: _pages[_selectedIndex]),
-            Obx(() => miniVideoLogic.selectedVideoDetails == null
-                ? const SizedBox()
-                : const MiniPlayerVideo()),
-          ],
-        ),
-        bottomNavigationBar: _bottomSheet(context),
-      ),
+      child:Obx(() =>Scaffold(
+      body: Stack(
+      children: [
+      PageStorage(bucket: bucket, child: _pages[_selectedIndex]),
+        miniVideoLogic.selectedVideoDetails == null
+            ? const SizedBox()
+            : const MiniPlayerVideo(),
+      ],
+    ),
+    bottomNavigationBar: _bottomSheet(context),
+    )) ,
     );
   }
 
@@ -89,24 +89,22 @@ class BaseLayoutState extends State<BaseLayout>
                     : ColorManager(context).grey1,
                 width: 1.w)),
       ),
-      child: Obx(
-        () => SizeTransition(
-          sizeFactor: miniVideoLogic.navigationTabController,
-          child: BottomNavigationBar(
-            currentIndex: _selectedIndex,
-            type: BottomNavigationBarType.fixed,
-            onTap: (value) => _onItemTapped(value, context),
-            items: [
-              navigationBarItem(Icons.home_outlined, Icons.home, "Home"),
-              navigationBarItem(Icons.home_outlined, Icons.home, "Shorts"),
-              navigationBarItem(Icons.add_circle_outline_outlined,
-                  Icons.add_circle_outlined, "Account"),
-              navigationBarItem(Icons.subscriptions_outlined,
-                  Icons.subscriptions, "Subscriptions"),
-              navigationBarItem(
-                  Icons.video_library_outlined, Icons.video_library, "Library"),
-            ],
-          ),
+      child:SizeTransition(
+        sizeFactor: miniVideoLogic.navigationTabController,
+        child: BottomNavigationBar(
+          currentIndex: _selectedIndex,
+          type: BottomNavigationBarType.fixed,
+          onTap: (value) => _onItemTapped(value, context),
+          items: [
+            navigationBarItem(Icons.home_outlined, Icons.home, "Home"),
+            navigationBarItem(Icons.home_outlined, Icons.home, "Shorts"),
+            navigationBarItem(Icons.add_circle_outline_outlined,
+                Icons.add_circle_outlined, "Account"),
+            navigationBarItem(Icons.subscriptions_outlined,
+                Icons.subscriptions, "Subscriptions"),
+            navigationBarItem(
+                Icons.video_library_outlined, Icons.video_library, "Library"),
+          ],
         ),
       ),
     );

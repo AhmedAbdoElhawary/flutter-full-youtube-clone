@@ -1,4 +1,4 @@
-part of '../mini_player_video.dart';
+part of '../../mini_player_video.dart';
 
 Future<void> draggableBottomSheet(BuildContext context,
     {bool isThatDescription = true}) async {
@@ -13,7 +13,7 @@ Future<void> draggableBottomSheet(BuildContext context,
       color: Theme.of(context).splashColor,
       dismissOnBackdropTap: false,
       isBackdropInteractable: true,
-      snapSpec: const SnapSpec(initialSnap: 0.694, snappings: [.7, 0.694, .962]),
+      snapSpec: const SnapSpec(initialSnap: 0.6945, snappings: [.7, 0.6945, .963]),
       builder: (context, state) => isThatDescription
           ? const _BodyOfDescriptionSheet()
           : const _BodyOfCommentsSheet(),
