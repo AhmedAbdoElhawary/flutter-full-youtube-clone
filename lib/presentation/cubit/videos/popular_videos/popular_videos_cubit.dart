@@ -5,6 +5,7 @@ import 'package:youtube/core/functions/api_result.dart';
 import 'package:youtube/core/functions/network_exception_model.dart';
 
 import 'package:youtube/data/models/videos_details/videos_details.dart';
+import 'package:youtube/domain/use_cases/videos_details/clear/clear_most_popular_videos_use_case.dart';
 import 'package:youtube/domain/use_cases/videos_details/most_popular_videos_use_case.dart';
 
 part 'popular_videos_state.dart';
@@ -12,8 +13,10 @@ part 'popular_videos_cubit.freezed.dart';
 
 class PopularVideosCubit extends Cubit<PopularVideosState> {
   final MostPopularVideosUseCase _mostPopularVideosUseCase;
+  final ClearAllPopularVideosUseCase _clearAllPopularVideosUseCase;
 
-  PopularVideosCubit(this._mostPopularVideosUseCase)
+  PopularVideosCubit(
+      this._mostPopularVideosUseCase, this._clearAllPopularVideosUseCase)
       : super(const PopularVideosState.initial());
 
   static PopularVideosCubit get(BuildContext context) =>
@@ -67,5 +70,12 @@ class PopularVideosCubit extends Cubit<PopularVideosState> {
             PopularVideosState.mostPopularMoviesVideosLoaded(
                 mostPopularVideos)),
         failure: (exception) => emit(PopularVideosState.error(exception)));
+  }
+
+  Future<void> clearAllPopularVideos(
+      {required String videoCategoryId, bool clearAll = true}) async {
+    _clearAllPopularVideosUseCase.call(
+        params: ClearAllPopularVideosUseCasePara(
+            clearAll: clearAll, videoCategoryId: videoCategoryId));
   }
 }
