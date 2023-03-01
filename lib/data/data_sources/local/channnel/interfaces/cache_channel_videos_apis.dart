@@ -5,29 +5,29 @@ import '../../../../../domain/entities/cache_items/cached_item.dart';
 part '../implements/cache_channel_videos_apis_impl.dart';
 
 abstract class CacheChannelVideosAPIs {
-  VideosDetails? getAllChannelVideos({required String channelId});
-  VideosDetails? getVideosOfThoseChannels();
-  VideosDetails? getAllChannelShortVideos({required String channelId});
-  VideosDetails? getAllPopularChannelVideos({required String channelId});
-  VideosDetails? getAllPopularChannelShortVideos({required String channelId});
+  Future<VideosDetails?> getAllChannelVideos({required String channelId});
+  Future<List<VideosDetails>?> getVideosOfThoseChannels();
+  Future<VideosDetails?> getAllChannelShortVideos({required String channelId});
+  Future<VideosDetails?> getAllPopularChannelVideos({required String channelId});
+  Future<VideosDetails?> getAllPopularChannelShortVideos({required String channelId});
 
-  void saveAllChannelVideos(
+  Future<void> saveAllChannelVideos(
       {required String channelId, required VideosDetails videosDetails});
-  void saveVideosOfThoseChannels({required VideosDetails videosDetails});
-  void saveAllChannelShortVideos(
+  Future<void> saveVideosOfThoseChannels({required List<VideosDetails> videosDetails});
+  Future<void> saveAllChannelShortVideos(
       {required String channelId, required VideosDetails videosDetails});
-  void saveAllPopularChannelVideos(
+  Future<void> saveAllPopularChannelVideos(
       {required String channelId, required VideosDetails videosDetails});
-  void saveAllPopularChannelShortVideos(
+  Future<void> saveAllPopularChannelShortVideos(
       {required String channelId, required VideosDetails videosDetails});
 
-  void clearAllChannelVideos(
+  Future<void> clearAllChannelVideos(
       {required String channelId, bool clearAll = false});
-  void clearVideosOfThoseChannels();
-  void clearAllChannelShortVideos(
+  Future<void> clearVideosOfThoseChannels();
+  Future<void> clearAllChannelShortVideos(
       {required String channelId, bool clearAll = false});
-  void clearAllPopularChannelVideos(
+  Future<void> clearAllPopularChannelVideos(
       {required String channelId, bool clearAll = false});
-  void clearAllPopularChannelShortVideos(
+  Future<void> clearAllPopularChannelShortVideos(
       {required String channelId, bool clearAll = false});
 }

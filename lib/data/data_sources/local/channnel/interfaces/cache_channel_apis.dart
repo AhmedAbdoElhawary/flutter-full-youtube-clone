@@ -4,7 +4,7 @@ import '../../../../models/channel_details/my_subscriptions/my_subscriptions_det
 part '../implements/cache_channel_apis_impl.dart';
 
 abstract class CacheChannelAPIs {
-  MySubscriptionsDetails? getMySubscriptionsChannels();
-  void saveMySubscriptionsChannels(MySubscriptionsDetails subscriptions);
-  void clearMySubscriptionsChannels();
+  Future<MySubscriptionsDetails?> getMySubscriptionsChannels();
+  Future<void> saveMySubscriptionsChannels(MySubscriptionsDetails subscriptions);
+  Future<void> clearMySubscriptionsChannels();
 }

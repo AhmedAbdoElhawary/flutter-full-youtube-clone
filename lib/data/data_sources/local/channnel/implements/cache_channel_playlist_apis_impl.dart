@@ -4,19 +4,22 @@ class CacheChannelPlaylistAPIsImpl implements CacheChannelPlaylistAPIs {
   Map<String, CachedItem<PlayLists>> cacheMap = {};
 
   @override
-  void clearChannelPlayLists({required String channelId}) {
+  Future<void> clearChannelPlayLists({required String channelId}) async {
     cacheMap.remove(channelId);
   }
 
   @override
-  PlayLists? getChannelPlayLists({required String channelId}) {
+  Future<PlayLists?> getChannelPlayLists({required String channelId}) async {
+
     CachedItem<PlayLists>? cachedItem = cacheMap[channelId];
+
     return cachedItem?.data;
   }
 
   @override
-  void saveChannelPlayLists(
-      {required String channelId, required PlayLists playLists}) {
+  Future<void> saveChannelPlayLists(
+      {required String channelId, required PlayLists playLists}) async {
     cacheMap[channelId] = CachedItem(playLists);
+
   }
 }
