@@ -5,7 +5,7 @@ import 'package:youtube/domain/repositories/channel/channel_playlist_repository.
 
 class ChannelPlayListItemsUseCase
     implements
-        UseCase<ApiResult<PlayListVideos>,
+        FutureUseCase<ApiResult<PlayListVideos>,
             ChannelPlayListItemUseCaseParameter> {
   final ChannelPlayListDetailsRepository _listDetailsRepository;
 
