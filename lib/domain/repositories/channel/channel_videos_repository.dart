@@ -21,13 +21,13 @@ abstract class ChannelVideosDetailsRepository {
     required String channelId,
   });
 
-  void clearAllChannelVideos(
+  Future<void> clearAllChannelVideos(
       {required String channelId, required bool clearAll});
-  void clearVideosOfThoseChannels();
-  void clearAllChannelShortVideos(
+  Future<void> clearVideosOfThoseChannels();
+  Future<void> clearAllChannelShortVideos(
       {required String channelId, required bool clearAll});
-  void clearAllPopularChannelVideos(
+  Future<void> clearAllPopularChannelVideos(
       {required String channelId, required bool clearAll});
-  void clearAllPopularChannelShortVideos(
+  Future<void> clearAllPopularChannelShortVideos(
       {required String channelId, required bool clearAll});
 }
