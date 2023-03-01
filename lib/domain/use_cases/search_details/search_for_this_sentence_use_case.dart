@@ -5,7 +5,7 @@ import 'package:youtube/domain/repositories/search_details_repository.dart';
 
 class SearchForThisSentenceUseCase
     implements
-        UseCase<ApiResult<VideosDetails>, SearchForThisSentenceUseCasePara> {
+        FutureUseCase<ApiResult<VideosDetails>, SearchForThisSentenceUseCasePara> {
   final SearchDetailsRepository _searchDetailsRepository;
 
   SearchForThisSentenceUseCase(this._searchDetailsRepository);

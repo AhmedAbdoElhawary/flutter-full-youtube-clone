@@ -4,7 +4,7 @@ import 'package:youtube/domain/entities/parameters/channel_details_use_case_para
 import 'package:youtube/domain/repositories/channel/channel_details_repository.dart';
 
 class SubscribeToChannelUseCase
-    implements UseCase<ApiResult<void>, ChannelDetailsUseCaseParameters> {
+    implements FutureUseCase<ApiResult<void>, ChannelDetailsUseCaseParameters> {
   final ChannelDetailsRepository _channelDetailsRepository;
 
   SubscribeToChannelUseCase(this._channelDetailsRepository);
