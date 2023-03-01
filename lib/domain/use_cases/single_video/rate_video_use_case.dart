@@ -2,7 +2,7 @@ import 'package:youtube/core/functions/api_result.dart';
 import 'package:youtube/core/use_case/use_case.dart';
 import 'package:youtube/domain/repositories/video_comment_details/single_video_details_repository.dart';
 
-class RateVideoUseCase implements UseCase<ApiResult<void>, RateVideoUseCaseParameter> {
+class RateVideoUseCase implements FutureUseCase<ApiResult<void>, RateVideoUseCaseParameter> {
   final SingleVideoDetailsRepository _videoDetailsRepository;
 
   RateVideoUseCase(this._videoDetailsRepository);
