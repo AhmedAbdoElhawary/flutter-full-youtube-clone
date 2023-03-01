@@ -3,13 +3,13 @@ import 'package:youtube/domain/entities/parameters/clear_channel_videos_use_case
 import 'package:youtube/domain/repositories/channel/channel_videos_repository.dart';
 
 class ClearAllChannelVideosUseCase
-    implements UseCase<void, ClearAllChannelVideosUseCasePara> {
+    implements FutureUseCase<void, ClearAllChannelVideosUseCasePara> {
   final ChannelVideosDetailsRepository _videosDetailsRepository;
 
   ClearAllChannelVideosUseCase(this._videosDetailsRepository);
 
   @override
-  void call({required ClearAllChannelVideosUseCasePara params}) {
+  Future<void> call({required ClearAllChannelVideosUseCasePara params}) {
     return _videosDetailsRepository.clearAllChannelVideos(
         channelId: params.channelId, clearAll: params.clearAll);
   }
