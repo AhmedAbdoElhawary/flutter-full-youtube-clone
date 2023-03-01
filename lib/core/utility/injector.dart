@@ -272,7 +272,17 @@ Future<void> initializeDependencies() async {
 
   injector.registerFactory<ChannelVideosCubit>(
     () => ChannelVideosCubit(
-        injector(), injector(), injector(), injector(), injector()),
+        injector(),
+        injector(),
+        injector(),
+        injector(),
+        injector(),
+        injector(),
+        injector(),
+        injector(),
+        injector(),
+        injector(),
+        injector()),
   );
   injector.registerFactory<PlayListCubit>(
     () => PlayListCubit(injector(), injector()),
@@ -282,7 +292,8 @@ Future<void> initializeDependencies() async {
   );
 
   injector.registerFactory<ChannelDetailsCubit>(
-    () => ChannelDetailsCubit(injector(), injector(), injector(), injector()),
+    () => ChannelDetailsCubit(
+        injector(), injector(), injector(), injector(), injector()),
   );
   injector.registerFactory<SingleVideoCubit>(
     () => SingleVideoCubit(
@@ -295,10 +306,10 @@ Future<void> initializeDependencies() async {
     ),
   );
   injector.registerFactory<VideosDetailsCubit>(
-    () => VideosDetailsCubit(injector(), injector()),
+    () => VideosDetailsCubit(injector(), injector(), injector(), injector()),
   );
   injector.registerFactory<PopularVideosCubit>(
-    () => PopularVideosCubit(injector()),
+    () => PopularVideosCubit(injector(), injector()),
   );
 
   // *
