@@ -6,7 +6,7 @@ const _cacheAllVideosKey = "CACHE_ALL_VIDEOS_KEY";
 const _cacheAllShortVideosKey = "CACHE_ALL_SHORT_VIDEOS_KEY";
 const _cacheAllPopularVideosKey = "CACHE_ALL_POPULAR_VIDEOS_KEY";
 
-class CacheChannelVideosAPIsImpl implements CacheVideosAPIs {
+class CacheVideosAPIsImpl implements CacheVideosAPIs {
   Map<String, Map<String, CachedItem<VideosDetails>>> cacheMap = {};
   @override
   void clearAllVideos() {

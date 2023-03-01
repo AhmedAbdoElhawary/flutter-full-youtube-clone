@@ -20,4 +20,14 @@ abstract class ChannelVideosDetailsRepository {
   Future<ApiResult<VideosDetails>> getAllPopularChannelShortVideos({
     required String channelId,
   });
+
+  void clearAllChannelVideos(
+      {required String channelId, required bool clearAll});
+  void clearVideosOfThoseChannels();
+  void clearAllChannelShortVideos(
+      {required String channelId, required bool clearAll});
+  void clearAllPopularChannelVideos(
+      {required String channelId, required bool clearAll});
+  void clearAllPopularChannelShortVideos(
+      {required String channelId, required bool clearAll});
 }

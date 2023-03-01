@@ -6,7 +6,7 @@ import 'package:youtube/core/functions/network_exception_model.dart';
 import 'package:youtube/data/models/channel_details/my_subscriptions/my_subscriptions_details.dart';
 
 import 'package:youtube/data/models/videos_details/videos_details.dart';
-import 'package:youtube/domain/entities/channel_details_use_case_parameters.dart';
+import 'package:youtube/domain/entities/parameters/channel_details_use_case_parameters.dart';
 import 'package:youtube/domain/use_cases/channel_details/channel_videos/channel_popular_videos_use_case.dart';
 import 'package:youtube/domain/use_cases/channel_details/channel_videos/channel_short_poupal_videos_use_case.dart';
 import 'package:youtube/domain/use_cases/channel_details/channel_videos/channel_short_videos_use_case.dart';

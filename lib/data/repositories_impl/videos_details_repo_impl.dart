@@ -1,5 +1,6 @@
 import 'package:youtube/core/functions/api_result.dart';
 import 'package:youtube/core/functions/network_exceptions.dart';
+import 'package:youtube/data/data_sources/local/videos/interfaces/cache_videos_apis.dart';
 
 import 'package:youtube/data/data_sources/remote/api/videos/videos_apis.dart';
 import 'package:youtube/data/models/searched_video_details/searched_video_details.dart';
@@ -10,17 +11,24 @@ import 'package:youtube/domain/repositories/videos_details_repository.dart';
 class VideosDetailsRepoImpl implements VideosDetailsRepository {
   final VideosAPIs _videosAPIs;
   final ChannelDetailsRepository _channelDetailsRepository;
-  VideosDetailsRepoImpl(this._videosAPIs, this._channelDetailsRepository);
+  final CacheVideosAPIs _cacheVideosAPIs;
+  VideosDetailsRepoImpl(
+      this._videosAPIs, this._channelDetailsRepository, this._cacheVideosAPIs);
 
   @override
   Future<ApiResult<VideosDetails>> getAllVideos() async {
     try {
+      VideosDetails? cachedAllVideos = _cacheVideosAPIs.getAllVideos();
+      if (cachedAllVideos != null) return ApiResult.success(cachedAllVideos);
+
       SearchedVideosDetails videos = await _videosAPIs.getAllVideosIds();
 
-      VideosDetails videosWithSubChannelDetails =
+      VideosDetails completeVideosDetails =
           await getCompleteVideosDetailsOfThoseIds(videos);
 
-      return ApiResult.success(videosWithSubChannelDetails);
+      _cacheVideosAPIs.saveAllVideos(videosDetails: completeVideosDetails);
+
+      return ApiResult.success(completeVideosDetails);
     } catch (e) {
       return ApiResult.failure(NetworkExceptions.getDioException(e));
     }
@@ -29,12 +37,17 @@ class VideosDetailsRepoImpl implements VideosDetailsRepository {
   @override
   Future<ApiResult<VideosDetails>> getAllShortVideos() async {
     try {
+      VideosDetails? cachedVideos = _cacheVideosAPIs.getAllShortVideos();
+      if (cachedVideos != null) return ApiResult.success(cachedVideos);
+
       SearchedVideosDetails videos = await _videosAPIs.getAllShortVideosIds();
 
-      VideosDetails videosWithSubChannelDetails =
+      VideosDetails completeVideosDetails =
           await getCompleteVideosDetailsOfThoseIds(videos);
 
-      return ApiResult.success(videosWithSubChannelDetails);
+      _cacheVideosAPIs.saveAllShortVideos(videosDetails: completeVideosDetails);
+
+      return ApiResult.success(completeVideosDetails);
     } catch (e) {
       return ApiResult.failure(NetworkExceptions.getDioException(e));
     }
@@ -44,14 +57,21 @@ class VideosDetailsRepoImpl implements VideosDetailsRepository {
   Future<ApiResult<VideosDetails>> getMostPopularVideos(
       String videoCategoryId) async {
     try {
+      VideosDetails? cachedVideos =
+          _cacheVideosAPIs.getAllPopularVideos(videoCategoryId);
+      if (cachedVideos != null) return ApiResult.success(cachedVideos);
+
       VideosDetails videos = await _videosAPIs.getMostPopularVideos(
           videoCategoryId: videoCategoryId);
 
-      VideosDetails videosWithSubChannelDetails =
-          await _channelDetailsRepository.getSubChannelsDetails(
-              videosDetails: videos);
+      VideosDetails completeVideosDetails = await _channelDetailsRepository
+          .getSubChannelsDetails(videosDetails: videos);
 
-      return ApiResult.success(videosWithSubChannelDetails);
+      _cacheVideosAPIs.saveAllPopularVideos(
+          videoCategoryId: videoCategoryId,
+          videosDetails: completeVideosDetails);
+
+      return ApiResult.success(completeVideosDetails);
     } catch (e) {
       return ApiResult.failure(NetworkExceptions.getDioException(e));
     }
@@ -62,7 +82,8 @@ class VideosDetailsRepoImpl implements VideosDetailsRepository {
       SearchedVideosDetails searchedVideos) async {
     try {
       String ids = "";
-      for (final videoIdItem in  searchedVideos.videoDetailsItem ?? <SearchedVideosItem>[]) {
+      for (final videoIdItem
+          in searchedVideos.videoDetailsItem ?? <SearchedVideosItem>[]) {
         String id = videoIdItem.id?.videoId ?? "";
         if (id.isEmpty) continue;
         if (ids.isEmpty) {
@@ -83,5 +104,22 @@ class VideosDetailsRepoImpl implements VideosDetailsRepository {
     } catch (e) {
       return Future.error(e);
     }
+  }
+
+  @override
+  void clearAllVideos() {
+    _cacheVideosAPIs.clearAllVideos();
+  }
+
+  @override
+  void clearAllShortVideos() {
+    _cacheVideosAPIs.clearAllShortVideos();
+  }
+
+  @override
+  void clearAllPopularVideos(
+      {required String videoCategoryId, required bool clearAll}) {
+    _cacheVideosAPIs.clearAllPopularVideos(
+        videoCategoryId: videoCategoryId, clearAll: clearAll);
   }
 }
