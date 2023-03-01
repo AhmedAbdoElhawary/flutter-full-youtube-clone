@@ -47,4 +47,5 @@ class PlayListCubit extends Cubit<PlayListState> {
             emit(PlayListState.channelPlayListLoaded(playLists)),
         failure: (exception) => emit(PlayListState.error(exception)));
   }
+
 }
