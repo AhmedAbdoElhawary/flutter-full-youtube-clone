@@ -95,6 +95,7 @@ class BaseLayoutState extends State<BaseLayout>
           currentIndex: _selectedIndex,
           type: BottomNavigationBarType.fixed,
           enableFeedback: true,
+
           onTap: (value) => _onItemTapped(value, context),
           items: [
             navigationBarItem(Icons.home_outlined, Icons.home, "Home"),
