@@ -8,7 +8,7 @@ part 'channel_playlist_apis.g.dart';
 
 @RestApi(baseUrl: youtubeBaseUrl)
 abstract class ChannelPlayListAPIs {
-  factory ChannelPlayListAPIs(Dio dio, {String baseUrl}) = _ChannelPlayListAPIs;
+  factory ChannelPlayListAPIs(Dio dio) = _ChannelPlayListAPIs;
 
   @GET("playlists?part=snippet%2CcontentDetails&maxResults=20")
   Future<PlayLists> getChannelPlayLists({
