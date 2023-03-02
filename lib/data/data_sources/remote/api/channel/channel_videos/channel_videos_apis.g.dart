@@ -52,35 +52,6 @@ class _ChannelVideosAPIs implements ChannelVideosAPIs {
   }
 
   @override
-  Future<SearchedVideosDetails> getAllPopularChannelVideosIds({
-    apiKey = apiKey,
-    required channelId,
-  }) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{
-      r'key': apiKey,
-      r'channelId': channelId,
-    };
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<SearchedVideosDetails>(Options(
-      method: 'GET',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              'search?part=snippet&type=video&maxResults=2&order=viewCount',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = SearchedVideosDetails.fromJson(_result.data!);
-    return value;
-  }
-
-  @override
   Future<SearchedVideosDetails> getAllChannelShortVideosIds({
     apiKey = apiKey,
     required channelId,
