@@ -9,10 +9,7 @@ class Go {
   Go(this.context);
   to(Widget page, {bool materialRoute = false}) {
     return Navigator.of(context, rootNavigator: true).push(
-      materialRoute
-          ? MaterialPageRoute(builder: (context) => page, maintainState: false)
-          : CupertinoPageRoute(
-              builder: (context) => page, maintainState: false),
+      MaterialPageRoute(builder: (context) => page, maintainState: false),
     );
   }
 
@@ -21,11 +18,7 @@ class Go {
 
   offCurrent(Widget page, {bool materialRoute = false}) {
     return Navigator.of(context).pushReplacement(
-      materialRoute
-          ? MaterialPageRoute(builder: (context) => page, maintainState: false)
-          : CupertinoPageRoute(
-              builder: (context) => page, maintainState: false),
-    );
+        MaterialPageRoute(builder: (context) => page, maintainState: false));
   }
 
   back() => Navigator.of(context).maybePop();

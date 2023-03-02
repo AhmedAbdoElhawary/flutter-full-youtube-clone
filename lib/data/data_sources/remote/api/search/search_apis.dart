@@ -9,7 +9,7 @@ part 'search_apis.g.dart';
 abstract class SearchAPIs {
   factory SearchAPIs(Dio dio, {String baseUrl}) = _SearchAPIs;
 
-  @GET("search?part=snippet&type=video")
+  @GET("search?part=snippet&type=video&videoDuration=medium&videoDuration=long")
   Future<SearchedVideosDetails> getIdsForThisSentence({
     @Query("key") final String apiKey = apiKey,
     @Query("q") required String sentence,

@@ -9,39 +9,50 @@ import 'package:youtube/domain/use_cases/channel/channel_videos/clear/clear_all_
 import 'package:youtube/domain/use_cases/channel/channel_videos/clear/clear_all_popular_channel_videos_use_case.dart';
 import 'package:youtube/domain/use_cases/channel/channel_videos/clear/clear_videos_of_those_channels_use_case.dart';
 import 'package:youtube/domain/use_cases/channel/playlist/clear/clear_channel_playlists_use_case.dart';
+
 class ChannelProfileLogic extends GetxController {
-  final   _clearAllChannelShortVideosUseCase=injector<ClearAllChannelShortVideosUseCase>();
-  final   _clearAllChannelVideosUseCase=injector<ClearAllChannelVideosUseCase>();
-  final   _clearAllPopularChannelShortVideosUseCase=injector<ClearAllPopularChannelShortVideosUseCase>();
-  final   _clearAllPopularChannelVideosUseCase=injector<ClearAllPopularChannelVideosUseCase>();
-  final   _clearVideosOfThoseChannelsUseCase=injector<ClearVideosOfThoseChannelsUseCase>();
-  final   _clearChannelPlaylistsUseCase=injector<ClearChannelPlaylistsUseCase>();
+  final _clearAllChannelShortVideos =
+      injector<ClearAllChannelShortVideosUseCase>();
+  final _clearAllChannelVideos = injector<ClearAllChannelVideosUseCase>();
+  final _clearAllPopularChannelShortVideos =
+      injector<ClearAllPopularChannelShortVideosUseCase>();
+  final _clearAllPopularChannelVideos =
+      injector<ClearAllPopularChannelVideosUseCase>();
+  final _clearVideosOfThoseChannels =
+      injector<ClearVideosOfThoseChannelsUseCase>();
+  final _clearChannelPlaylists = injector<ClearChannelPlaylistsUseCase>();
 
   final RxBool _isRecentlyVideosSelected = true.obs;
+  final RxBool _isRecentlyShortVideosSelected = true.obs;
+
+  bool get getRecentlyShortVideosSelected =>
+      _isRecentlyShortVideosSelected.value;
+
+  set isRecentlyShortVideosSelected(bool value) =>
+      _isRecentlyShortVideosSelected.value = value;
 
   bool get getRecentlyVideosSelected => _isRecentlyVideosSelected.value;
 
   set isRecentlyVideosSelected(bool value) =>
       _isRecentlyVideosSelected.value = value;
 
-
   Future<void> clearChannelCachedDetails(String channelId) async {
-    _clearAllChannelShortVideosUseCase.call(
+    _clearAllChannelShortVideos.call(
         params: ClearAllChannelVideosUseCasePara(
             channelId: channelId, clearAll: false));
-    _clearAllChannelVideosUseCase.call(
+    _clearAllChannelVideos.call(
         params: ClearAllChannelVideosUseCasePara(
             channelId: channelId, clearAll: false));
-    _clearAllPopularChannelShortVideosUseCase.call(
+    _clearAllPopularChannelShortVideos.call(
         params: ClearAllChannelVideosUseCasePara(
             channelId: channelId, clearAll: false));
-    _clearAllPopularChannelVideosUseCase.call(
+    _clearAllPopularChannelVideos.call(
         params: ClearAllChannelVideosUseCasePara(
             channelId: channelId, clearAll: false));
-    _clearVideosOfThoseChannelsUseCase.call(
+    _clearVideosOfThoseChannels.call(
         params: ClearAllChannelVideosUseCasePara(
             channelId: channelId, clearAll: false));
-    _clearChannelPlaylistsUseCase.call(
+    _clearChannelPlaylists.call(
         params: ChannelDetailsUseCaseParameters(channelId: channelId));
   }
 }

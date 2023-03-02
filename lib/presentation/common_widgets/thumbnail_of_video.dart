@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:youtube/core/functions/reformat/views_reformat.dart';
 import 'package:youtube/core/resources/assets_manager.dart';
 import 'package:youtube/data/models/channel_details/channel_details.dart';
 import 'package:youtube/data/models/videos_details/video_details_extension.dart';
 import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/presentation/common_widgets/circular_profile_image.dart';
 import 'package:youtube/presentation/common_widgets/thumbnail_image.dart';
+import 'package:youtube/presentation/common_widgets/video_duration.dart';
 import 'package:youtube/presentation/custom_packages/custom_mini_player/custom_mini_player.dart';
 
 import '../../core/resources/color_manager.dart';
@@ -44,7 +44,7 @@ class ThumbnailOfVideo extends StatelessWidget {
             children: [
               if (videoDetailsItem?.getVideoThumbnails() != null)
                 ThumbnailImage(videoDetailsItem?.getVideoThumbnails()),
-              _VideoTime(videoDetailsItem)
+              VideoDurationWidget(videoDetailsItem)
             ],
           ),
           const RSizedBox(height: 10),
@@ -102,31 +102,6 @@ class _VideoSubTitles extends StatelessWidget {
           const RSizedBox(width: 10),
           SvgPicture.asset(IconsAssets.menuPointsVerticalIcon),
         ],
-      ),
-    );
-  }
-}
-
-class _VideoTime extends StatelessWidget {
-  const _VideoTime(this.videoDetailsItem);
-  final VideoDetailsItem? videoDetailsItem;
-
-  @override
-  Widget build(BuildContext context) {
-    String duration = videoDetailsItem?.contentDetails.duration ?? "";
-    String durationReformat = CountsReformat.videoDurationFormat(duration);
-    return Padding(
-      padding: REdgeInsets.all(8.0),
-      child: Container(
-        padding: REdgeInsets.symmetric(horizontal: 2, vertical: 1.5),
-        decoration: BoxDecoration(
-            color: ColorManager(context).black87,
-            borderRadius: BorderRadius.circular(2)),
-        child: Text(
-          durationReformat,
-          style:
-              getMediumStyle(color: ColorManager(context).white, fontSize: 12),
-        ),
       ),
     );
   }
