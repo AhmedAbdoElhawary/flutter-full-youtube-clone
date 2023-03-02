@@ -222,7 +222,7 @@ Total : 319 files,  23811 codes, 1213 comments, 3252 blanks, all 28276 lines
 | [lib/domain/use_cases/videos_details/all_short_videos_use_case.dart](/lib/domain/use_cases/videos_details/all_short_videos_use_case.dart) | Dart | 12 | 0 | 4 | 16 |
 | [lib/domain/use_cases/videos_details/all_videos_use_case.dart](/lib/domain/use_cases/videos_details/all_videos_use_case.dart) | Dart | 13 | 0 | 4 | 17 |
 | [lib/domain/use_cases/videos_details/most_popular_videos_use_case.dart](/lib/domain/use_cases/videos_details/most_popular_videos_use_case.dart) | Dart | 19 | 0 | 6 | 25 |
-| [lib/main.dart](/lib/presentation/main.dart) | Dart | 12 | 8 | 6 | 26 |
+| [lib/main.dart](/lib/main.dart) | Dart | 12 | 8 | 6 | 26 |
 | [lib/presentation/common_widgets/circular_profile_image.dart](/lib/presentation/common_widgets/circular_profile_image.dart) | Dart | 57 | 0 | 8 | 65 |
 | [lib/presentation/common_widgets/custom_circle_progress.dart](/lib/presentation/common_widgets/custom_circle_progress.dart) | Dart | 29 | 0 | 5 | 34 |
 | [lib/presentation/common_widgets/custom_network_display.dart](/lib/presentation/common_widgets/custom_network_display.dart) | Dart | 40 | 0 | 6 | 46 |
