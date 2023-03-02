@@ -21,13 +21,11 @@ class TabBarVideosView extends StatefulWidget {
   State<TabBarVideosView> createState() => _TabBarVideosViewState();
 }
 
-class _TabBarVideosViewState extends State<TabBarVideosView>
-    with AutomaticKeepAliveClientMixin<TabBarVideosView> {
+class _TabBarVideosViewState extends State<TabBarVideosView> {
   final logic = Get.find<ChannelProfileLogic>(tag: "1");
 
   @override
   Widget build(BuildContext context) {
-    super.build(context);
     return Obx(() {
       return logic.getRecentlyVideosSelected
           ? _NewestVideos(widget.channelDetails)
@@ -35,8 +33,6 @@ class _TabBarVideosViewState extends State<TabBarVideosView>
     });
   }
 
-  @override
-  bool get wantKeepAlive => true;
 }
 
 class _PopularVideos extends StatelessWidget {
