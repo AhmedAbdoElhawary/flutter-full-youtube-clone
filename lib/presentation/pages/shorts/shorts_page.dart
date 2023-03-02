@@ -2,40 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
-
 import 'package:youtube/config/routes/route_app.dart';
-import 'package:youtube/core/functions/network_exceptions.dart';
 import 'package:youtube/core/resources/assets_manager.dart';
 import 'package:youtube/core/resources/color_manager.dart';
-import 'package:youtube/core/resources/styles_manager.dart';
-import 'package:youtube/data/models/videos_details/video_details_extension.dart';
 import 'package:youtube/data/models/videos_details/videos_details.dart';
-import 'package:youtube/presentation/common_widgets/circular_profile_image.dart';
+import 'package:youtube/presentation/common_widgets/error_message_widget.dart';
 import 'package:youtube/presentation/cubit/videos/videos_details_cubit.dart';
-import 'package:youtube/presentation/custom_packages/pod_player/src/controllers/pod_player_controller.dart';
-import 'package:youtube/presentation/custom_packages/pod_player/src/models/play_video_from.dart';
-import 'package:youtube/presentation/custom_packages/pod_player/src/pod_player.dart';
-import 'package:youtube/presentation/layouts/base_layout_logic.dart';
 import 'package:youtube/presentation/pages/search/search_page.dart';
-import 'package:youtube/presentation/pages/shorts/logic/shorts_page_logic.dart';
-
-part 'widgets/short_player.dart';
-
-part 'widgets/vertical_short_widgets.dart';
-
-part 'widgets/horizontal_short_widgets.dart';
+import 'package:youtube/presentation/pages/shorts/widgets/shorts_page_view.dart';
 
 class ShortsPage extends StatefulWidget {
-  const ShortsPage({Key? key}) : super(key: key);
-
+  const ShortsPage({this.videoDetailsItem, Key? key}) : super(key: key);
+  final List<VideoDetailsItem>? videoDetailsItem;
   @override
   ShortsPageState createState() => ShortsPageState();
 }
 
 class ShortsPageState extends State<ShortsPage> {
-
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -44,13 +28,18 @@ class ShortsPageState extends State<ShortsPage> {
         backgroundColor: BaseColorManager.black87,
         extendBodyBehindAppBar: true,
         appBar: appBar(),
-        body: const _PageViewBody(),
+        body: widget.videoDetailsItem != null
+            ? ShortsPageView(widget.videoDetailsItem)
+            : const _PageViewBody(),
       ),
     );
   }
 
   AppBar appBar() => AppBar(
         backgroundColor: BaseColorManager.transparent,
+        leading: widget.videoDetailsItem != null
+            ? const Icon(Icons.arrow_back, color: BaseColorManager.white)
+            : null,
         actions: [
           InkWell(
             onTap: () {
@@ -86,34 +75,11 @@ class _PageViewBody extends StatelessWidget {
       builder: (context, state) {
         return state.maybeWhen(
             allShortVideosLoaded: (mostPopularVideos) =>
-                _BuildPageView(mostPopularVideos.videoDetailsItem),
-            error: (error) => Center(
-                child: Text(NetworkExceptions.getErrorMessage(
-                    error.networkExceptions))),
+                ShortsPageView(mostPopularVideos.videoDetailsItem),
+            error: (error) => ErrorMessageWidget(error),
             loading: () => const _ShimmerLoading(),
             orElse: () =>
                 const Center(child: Text("There is something wrong!")));
-      },
-    );
-  }
-}
-
-class _BuildPageView extends StatelessWidget {
-  const _BuildPageView(this.videoDetailsItem);
-  final List<VideoDetailsItem>? videoDetailsItem;
-  @override
-  Widget build(BuildContext context) {
-    return PageView.builder(
-      scrollDirection: Axis.vertical,
-      itemCount: videoDetailsItem?.length ?? 0,
-      itemBuilder: (context, index) {
-        return Stack(children: [
-          SizedBox(
-              height: double.infinity,
-              child: _ShortPlayer(videoDetailsItem![index])),
-          _HorizontalButtons(videoDetailsItem![index]),
-          _VerticalButtons(videoDetailsItem![index]),
-        ]);
       },
     );
   }
