@@ -21,6 +21,7 @@ class VideoHorizontalDescriptionsList extends StatelessWidget {
         const RSizedBox(width: 15),
         Flexible(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 videoDetails.getVideoTitle(),
