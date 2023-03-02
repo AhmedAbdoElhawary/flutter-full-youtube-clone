@@ -1,4 +1,4 @@
-part of '../shorts_page.dart';
+part of 'shorts_page_view.dart';
 
 class _ShortPlayer extends StatefulWidget {
   const _ShortPlayer(this.videoDetailsItem, {Key? key}) : super(key: key);

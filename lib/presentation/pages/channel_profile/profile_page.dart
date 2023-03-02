@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:youtube/data/models/channel_details/channel_details.dart';
 import 'package:youtube/presentation/pages/channel_profile/channel_profile_logic.dart';
 import 'package:youtube/presentation/pages/channel_profile/tab_bar_views/about_view.dart';
+import 'package:youtube/presentation/pages/channel_profile/tab_bar_views/shorts_view.dart';
 
 import '../../../core/resources/color_manager.dart';
 import '../../../core/resources/styles_manager.dart';
@@ -67,7 +68,7 @@ class _TapBarView extends StatelessWidget {
         children: [
           TabBarHomeView(channelDetails),
           TabBarVideosView(channelDetails),
-          const Center(child: Text("SHORTS")),
+          TabBarShortVideosView(channelDetails),
           const Center(child: Text("PLAYLISTS")),
           const Center(child: Text("COMMUNITY")),
           const Center(child: Text("CHANNELS")),
