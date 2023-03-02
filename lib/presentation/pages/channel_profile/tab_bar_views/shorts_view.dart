@@ -123,7 +123,10 @@ class _BuildGridItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Go(context).to(ShortsPage(videoDetailsItem: videoDetailsItem));
+        Go<ShortsPageParameters>(context).to(
+          Routes.shortsPage,
+          arg: ShortsPageParameters(videoDetailsItem: videoDetailsItem),
+        );
       },
       child: Stack(
         alignment: AlignmentDirectional.bottomStart,
