@@ -19,19 +19,24 @@ import '../../../core/resources/color_manager.dart';
 import '../../common_widgets/subscribe_button.dart';
 import 'profile_page.dart';
 
-class UserChannelPage extends StatelessWidget {
-  const UserChannelPage(
-      {Key? key, this.channelDetailsItem, required this.channelId})
-      : super(key: key);
+class UserChannelPageParameters {
   final ChannelDetailsItem? channelDetailsItem;
   final String channelId;
+
+  UserChannelPageParameters({this.channelDetailsItem, required this.channelId});
+}
+
+class UserChannelPage extends StatelessWidget {
+  const UserChannelPage(this.parameters, {Key? key}) : super(key: key);
+  final UserChannelPageParameters parameters;
 
   @override
   Widget build(BuildContext context) {
     Get.put(ChannelProfileLogic(), tag: "1");
-    if (channelDetailsItem == null) {
+    if (parameters.channelDetailsItem == null) {
       return BlocBuilder<ChannelDetailsCubit, ChannelDetailsState>(
-        bloc: ChannelDetailsCubit.get(context)..getChannelSubDetails(channelId),
+        bloc: ChannelDetailsCubit.get(context)
+          ..getChannelSubDetails(parameters.channelId),
         builder: (context, state) {
           return state.maybeWhen(
               channelSubDetailsLoaded: (channelSubDetails) =>
@@ -43,7 +48,7 @@ class UserChannelPage extends StatelessWidget {
         },
       );
     } else {
-      return _BuildScaffold(channelDetailsItem);
+      return _BuildScaffold(parameters.channelDetailsItem);
     }
   }
 }
@@ -70,7 +75,7 @@ class _BuildScaffold extends StatelessWidget {
 
   AppBar appBar(BuildContext context, ChannelDetailsItem? channelDetails) {
     return AppBar(
-      leading:  const ArrowBack(),
+      leading: const ArrowBack(),
       backgroundColor: ColorManager(context).white,
       title: Text(
         channelDetails?.getName() ?? "",
