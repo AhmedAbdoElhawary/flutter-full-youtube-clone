@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:youtube/core/functions/network_exceptions.dart';
+import 'package:youtube/presentation/common_widgets/arrow_back.dart';
 import 'package:youtube/presentation/common_widgets/custom_circle_progress.dart';
 import 'package:youtube/presentation/common_widgets/thumbnail_of_video.dart';
 import 'package:youtube/presentation/cubit/search/search_cubit.dart';
@@ -29,7 +30,7 @@ class _SearchedResultsPageState extends State<SearchedResultsPage>
 
     return Scaffold(
       appBar: AppBar(
-        titleSpacing: 5.w,
+        leading:  const ArrowBack(),
         surfaceTintColor: ColorManager(context).white,
         title: SearchTextField(controller: controller, enableOnTap: true),
         actions: [
