@@ -8,7 +8,7 @@ part 'videos_apis.g.dart';
 
 @RestApi(baseUrl: youtubeBaseUrl)
 abstract class VideosAPIs {
-  factory VideosAPIs(Dio dio) = _VideosAPIs;
+  factory VideosAPIs(Dio dio, {String baseUrl}) = _VideosAPIs;
 
   @GET(
       "search?part=snippet&maxResults=2&regionCode=EG&videoDuration=medium&videoDuration=long&type=video")

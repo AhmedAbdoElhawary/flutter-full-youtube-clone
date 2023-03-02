@@ -8,7 +8,7 @@ part 'single_video_apis.g.dart';
 
 @RestApi(baseUrl: youtubeBaseUrl)
 abstract class SingleVideosAPIs {
-  factory SingleVideosAPIs(Dio dio) = _SingleVideosAPIs;
+  factory SingleVideosAPIs(Dio dio, {String baseUrl}) = _SingleVideosAPIs;
 
   @GET("videos?part=contentDetails,statistics,snippet")
   Future<VideosDetails> getVideoDetails({
@@ -26,16 +26,14 @@ abstract class SingleVideosAPIs {
 
   @POST('videos/rate')
   Future<dynamic> rateVideo({
-    @Query('id')required String videoId,
-    @Query('rating')required String rating,
-    @Query('access_token')required String accessToken,
+    @Query('id') required String videoId,
+    @Query('rating') required String rating,
+    @Query('access_token') required String accessToken,
   });
-
 
   @GET("videos/getRating?")
   Future<RatingDetails> getVideoRating({
-    @Query('access_token')required String accessToken,
+    @Query('access_token') required String accessToken,
     @Query("id") required String videoId,
   });
-
 }
