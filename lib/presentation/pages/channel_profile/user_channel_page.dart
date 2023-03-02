@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:youtube/core/resources/styles_manager.dart';
 import 'package:youtube/data/models/channel_details/channel_details.dart';
 import 'package:youtube/data/models/channel_details/channel_sub_details/channel_sub_details_extension.dart';
+import 'package:youtube/presentation/common_widgets/arrow_back.dart';
 import 'package:youtube/presentation/common_widgets/circular_profile_image.dart';
 import 'package:youtube/presentation/common_widgets/custom_circle_progress.dart';
 import 'package:youtube/presentation/common_widgets/custom_network_display.dart';
@@ -69,7 +70,7 @@ class _BuildScaffold extends StatelessWidget {
 
   AppBar appBar(BuildContext context, ChannelDetailsItem? channelDetails) {
     return AppBar(
-      leadingWidth: 60.w,
+      leading:  const ArrowBack(),
       backgroundColor: ColorManager(context).white,
       title: Text(
         channelDetails?.getName() ?? "",
