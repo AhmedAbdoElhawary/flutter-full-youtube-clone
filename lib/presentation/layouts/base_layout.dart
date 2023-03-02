@@ -28,7 +28,7 @@ class BaseLayoutState extends State<BaseLayout>
 
   final List<Widget> _pages = [
     const HomePage(),
-    const ShortsPage(),
+     const ShortsPage(),
     const LibraryPage(),
     const SubscriptionsPage(),
     const LibraryPage(),
