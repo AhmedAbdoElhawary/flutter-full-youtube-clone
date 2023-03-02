@@ -57,7 +57,7 @@ Total : 54 files,  1387 codes, -41 comments, 154 blanks, all 1500 lines
 | [lib/presentation/custom_packages/pod_player/src/widgets/full_screen_view.dart](/lib/presentation/custom_packages/pod_player/src/widgets/full_screen_view.dart) | Dart | 0 | 0 | -1 | -1 |
 | [lib/presentation/layouts/base_layout.dart](/lib/presentation/layouts/base_layout.dart) | Dart | 25 | 0 | 2 | 27 |
 | [lib/presentation/layouts/base_layout_logic.dart](/lib/presentation/layouts/base_layout_logic.dart) | Dart | 31 | 0 | 6 | 37 |
-| [lib/presentation/main.dart](/lib/presentation/main.dart) | Dart | 18 | 0 | 8 | 26 |
+| [lib/presentation/main.dart](/lib/main.dart) | Dart | 18 | 0 | 8 | 26 |
 | [lib/presentation/my_app.dart](/lib/presentation/my_app.dart) | Dart | 76 | 0 | 8 | 84 |
 | [lib/presentation/pages/shorts/logic/shorts_page_logic.dart](/lib/presentation/pages/shorts/logic/shorts_page_logic.dart) | Dart | 25 | 0 | 6 | 31 |
 | [lib/presentation/pages/shorts/shorts_page.dart](/lib/presentation/pages/shorts/shorts_page.dart) | Dart | 151 | 0 | 14 | 165 |

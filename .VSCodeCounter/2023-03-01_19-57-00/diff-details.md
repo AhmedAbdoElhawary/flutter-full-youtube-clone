@@ -674,7 +674,7 @@ Total : 715 files,  3396 codes, 220 comments, 567 blanks, all 4183 lines
 | [lib/presentation/custom_packages/sliding_sheet/src/util.dart](/lib/presentation/custom_packages/sliding_sheet/src/util.dart) | Dart | 31 | 1 | 7 | 39 |
 | [lib/presentation/layouts/base_layout.dart](/lib/presentation/layouts/base_layout.dart) | Dart | 111 | 0 | 11 | 122 |
 | [lib/presentation/layouts/base_layout_logic.dart](/lib/presentation/layouts/base_layout_logic.dart) | Dart | 22 | 0 | 7 | 29 |
-| [lib/presentation/main.dart](/lib/presentation/main.dart) | Dart | 18 | 0 | 3 | 21 |
+| [lib/presentation/main.dart](/lib/main.dart) | Dart | 18 | 0 | 3 | 21 |
 | [lib/presentation/my_app.dart](/lib/presentation/my_app.dart) | Dart | 76 | 0 | 8 | 84 |
 | [lib/presentation/pages/channel_profile/channel_profile_logic.dart](/lib/presentation/pages/channel_profile/channel_profile_logic.dart) | Dart | 7 | 0 | 4 | 11 |
 | [lib/presentation/pages/channel_profile/profile_page.dart](/lib/presentation/pages/channel_profile/profile_page.dart) | Dart | 90 | 0 | 10 | 100 |

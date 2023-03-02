@@ -18,12 +18,12 @@ class MostPopularVideosPage extends StatefulWidget {
 }
 
 class _MostPopularVideosPageState extends State<MostPopularVideosPage> {
-
   @override
   void dispose() {
     PopularVideosCubit.get(context).clearAllPopularVideos(videoCategoryId: "");
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,44 +78,28 @@ class _NowPopularVideos extends StatefulWidget {
   State<_NowPopularVideos> createState() => _NowPopularVideosState();
 }
 
-class _NowPopularVideosState extends State<_NowPopularVideos>
-    with AutomaticKeepAliveClientMixin<_NowPopularVideos> {
+class _NowPopularVideosState extends State<_NowPopularVideos> {
   @override
   Widget build(BuildContext context) {
-    super.build(context);
     return BlocBuilder<PopularVideosCubit, PopularVideosState>(
       bloc: PopularVideosCubit.get(context)..getMostPopularVideos(),
-      buildWhen: (previous, current) {
-        return current.maybeWhen(
-            mostPopularVideosLoaded: (_) => true,
-            loading: () => true,
-            error: (_) => true,
-            orElse: () => false);
-      },
       builder: (context, state) {
-        return state.maybeWhen(
-          mostPopularVideosLoaded: (mostPopularVideos) {
-            return _BuildMoviesList(mostPopularVideos);
-          },
-          error: (e) {
-            return Center(
-              child: Text(
-                  NetworkExceptions.getErrorMessage(e.networkExceptions),
-                  style: getNormalStyle(
-                      color: ColorManager(context).black, fontSize: 15)),
-            );
-          },
-          loading: () {
-            return const ThineCircularProgress();
-          },
-          orElse: () => const SizedBox(),
-        );
+        if (state is MostPopularVideosLoaded) {
+          return _BuildMoviesList(state.mostPopularVideos);
+        } else if (state is Error) {
+          return Center(
+            child: Text(
+                NetworkExceptions.getErrorMessage(
+                    state.networkExceptions.networkExceptions),
+                style: getNormalStyle(
+                    color: ColorManager(context).black, fontSize: 15)),
+          );
+        } else {
+          return const ThineCircularProgress();
+        }
       },
     );
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }
 
 class _MusicPopularVideos extends StatefulWidget {
@@ -125,44 +109,28 @@ class _MusicPopularVideos extends StatefulWidget {
   State<_MusicPopularVideos> createState() => _MusicPopularVideosState();
 }
 
-class _MusicPopularVideosState extends State<_MusicPopularVideos>
-    with AutomaticKeepAliveClientMixin<_MusicPopularVideos> {
+class _MusicPopularVideosState extends State<_MusicPopularVideos> {
   @override
   Widget build(BuildContext context) {
-    super.build(context);
     return BlocBuilder<PopularVideosCubit, PopularVideosState>(
       bloc: PopularVideosCubit.get(context)..getMostPopularMusicVideos(),
-      buildWhen: (previous, current) {
-        return current.maybeWhen(
-            mostPopularMusicVideosLoaded: (mostPopularVideos) => true,
-            loading: () => true,
-            error: (error) => true,
-            orElse: () => false);
-      },
       builder: (context, state) {
-        return state.maybeWhen(
-          mostPopularMusicVideosLoaded: (mostPopularVideos) {
-            return _BuildMoviesList(mostPopularVideos);
-          },
-          error: (e) {
-            return Center(
-              child: Text(
-                  NetworkExceptions.getErrorMessage(e.networkExceptions),
-                  style: getNormalStyle(
-                      color: ColorManager(context).black, fontSize: 15)),
-            );
-          },
-          loading: () {
-            return const ThineCircularProgress();
-          },
-          orElse: () => const SizedBox(),
-        );
+        if (state is MostPopularMusicVideosLoaded) {
+          return _BuildMoviesList(state.mostPopularVideos);
+        } else if (state is Error) {
+          return Center(
+            child: Text(
+                NetworkExceptions.getErrorMessage(
+                    state.networkExceptions.networkExceptions),
+                style: getNormalStyle(
+                    color: ColorManager(context).black, fontSize: 15)),
+          );
+        } else {
+          return const ThineCircularProgress();
+        }
       },
     );
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }
 
 class _GamingPopularVideos extends StatefulWidget {
@@ -172,44 +140,28 @@ class _GamingPopularVideos extends StatefulWidget {
   State<_GamingPopularVideos> createState() => _GamingPopularVideosState();
 }
 
-class _GamingPopularVideosState extends State<_GamingPopularVideos>
-    with AutomaticKeepAliveClientMixin<_GamingPopularVideos> {
+class _GamingPopularVideosState extends State<_GamingPopularVideos> {
   @override
   Widget build(BuildContext context) {
-    super.build(context);
     return BlocBuilder<PopularVideosCubit, PopularVideosState>(
       bloc: PopularVideosCubit.get(context)..getMostPopularGamingVideos(),
-      buildWhen: (previous, current) {
-        return current.maybeWhen(
-            mostPopularGamingVideosLoaded: (_) => true,
-            loading: () => true,
-            error: (_) => true,
-            orElse: () => false);
-      },
       builder: (context, state) {
-        return state.maybeWhen(
-          mostPopularGamingVideosLoaded: (mostPopularVideos) {
-            return _BuildMoviesList(mostPopularVideos);
-          },
-          error: (e) {
-            return Center(
-              child: Text(
-                  NetworkExceptions.getErrorMessage(e.networkExceptions),
-                  style: getNormalStyle(
-                      color: ColorManager(context).black, fontSize: 15)),
-            );
-          },
-          loading: () {
-            return const ThineCircularProgress();
-          },
-          orElse: () => const SizedBox(),
-        );
+        if (state is MostPopularGamingVideosLoaded) {
+          return _BuildMoviesList(state.mostPopularVideos);
+        } else if (state is Error) {
+          return Center(
+            child: Text(
+                NetworkExceptions.getErrorMessage(
+                    state.networkExceptions.networkExceptions),
+                style: getNormalStyle(
+                    color: ColorManager(context).black, fontSize: 15)),
+          );
+        } else {
+          return const ThineCircularProgress();
+        }
       },
     );
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }
 
 class _MoviesPopularVideos extends StatefulWidget {
@@ -219,44 +171,29 @@ class _MoviesPopularVideos extends StatefulWidget {
   State<_MoviesPopularVideos> createState() => _MoviesPopularVideosState();
 }
 
-class _MoviesPopularVideosState extends State<_MoviesPopularVideos>
-    with AutomaticKeepAliveClientMixin<_MoviesPopularVideos> {
+class _MoviesPopularVideosState extends State<_MoviesPopularVideos> {
   @override
   Widget build(BuildContext context) {
-    super.build(context);
     return BlocBuilder<PopularVideosCubit, PopularVideosState>(
       bloc: PopularVideosCubit.get(context)..getMostPopularMoviesVideos(),
-      buildWhen: (previous, current) {
-        return current.maybeWhen(
-            mostPopularMoviesVideosLoaded: (_) => true,
-            loading: () => true,
-            error: (_) => true,
-            orElse: () => false);
-      },
       builder: (context, state) {
-        return state.maybeWhen(
-          mostPopularMoviesVideosLoaded: (mostPopularVideos) {
-            return _BuildMoviesList(mostPopularVideos);
-          },
-          error: (e) {
-            return Center(
-              child: Text(
-                  NetworkExceptions.getErrorMessage(e.networkExceptions),
-                  style: getNormalStyle(
-                      color: ColorManager(context).black, fontSize: 15)),
-            );
-          },
-          loading: () {
-            return const ThineCircularProgress();
-          },
-          orElse: () => const SizedBox(),
-        );
+        if (state is MostPopularMoviesVideosLoaded) {
+          return _BuildMoviesList(state.mostPopularVideos);
+        } else if (state is Error) {
+          return Center(
+            child: Text(
+                NetworkExceptions.getErrorMessage(
+                    state.networkExceptions.networkExceptions),
+                style: getNormalStyle(
+                    color: ColorManager(context).black, fontSize: 15)),
+          );
+        } else {
+          return const ThineCircularProgress();
+        }
       },
     );
   }
 
-  @override
-  bool get wantKeepAlive => true;
 }
 
 class _BuildMoviesList extends StatelessWidget {

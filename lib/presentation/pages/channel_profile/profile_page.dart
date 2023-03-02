@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:youtube/data/models/channel_details/channel_details.dart';
-import 'package:youtube/presentation/cubit/channel/channel_videos/channel_videos_cubit.dart';
+import 'package:youtube/presentation/pages/channel_profile/channel_profile_logic.dart';
 import 'package:youtube/presentation/pages/channel_profile/tab_bar_views/about_view.dart';
 
 import '../../../core/resources/color_manager.dart';
@@ -27,8 +28,8 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   void dispose() {
-    ChannelVideosCubit.get(context)
-        .clearChannelCachedDetails(widget.channelDetails?.id ?? "");
+    final logic = Get.find<ChannelProfileLogic>(tag: "1");
+    logic.clearChannelCachedDetails(widget.channelDetails?.id ?? "");
     super.dispose();
   }
 

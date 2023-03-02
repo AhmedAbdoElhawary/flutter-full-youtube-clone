@@ -26,16 +26,14 @@ abstract class SingleVideosAPIs {
 
   @POST('videos/rate')
   Future<dynamic> rateVideo({
-    @Query('id')required String videoId,
-    @Query('rating')required String rating,
-    @Query('access_token')required String accessToken,
+    @Query('id') required String videoId,
+    @Query('rating') required String rating,
+    @Query('access_token') required String accessToken,
   });
-
 
   @GET("videos/getRating?")
   Future<RatingDetails> getVideoRating({
-    @Query('access_token')required String accessToken,
+    @Query('access_token') required String accessToken,
     @Query("id") required String videoId,
   });
-
 }

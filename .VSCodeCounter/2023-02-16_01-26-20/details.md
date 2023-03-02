@@ -206,7 +206,7 @@ Total : 267 files,  17533 codes, 1180 comments, 2462 blanks, all 21175 lines
 | [lib/domain/use_cases/videos_details/all_short_videos_use_case.dart](/lib/domain/use_cases/videos_details/all_short_videos_use_case.dart) | Dart | 12 | 0 | 4 | 16 |
 | [lib/domain/use_cases/videos_details/all_videos_use_case.dart](/lib/domain/use_cases/videos_details/all_videos_use_case.dart) | Dart | 13 | 0 | 4 | 17 |
 | [lib/domain/use_cases/videos_details/most_popular_videos_use_case.dart](/lib/domain/use_cases/videos_details/most_popular_videos_use_case.dart) | Dart | 13 | 0 | 4 | 17 |
-| [lib/main.dart](/lib/presentation/main.dart) | Dart | 24 | 0 | 3 | 27 |
+| [lib/main.dart](/lib/main.dart) | Dart | 24 | 0 | 3 | 27 |
 | [lib/presentation/common_widgets/circular_profile_image.dart](/lib/presentation/common_widgets/circular_profile_image.dart) | Dart | 31 | 0 | 4 | 35 |
 | [lib/presentation/common_widgets/custom_circle_progress.dart](/lib/presentation/common_widgets/custom_circle_progress.dart) | Dart | 29 | 0 | 5 | 34 |
 | [lib/presentation/common_widgets/mini_player_video.dart](/lib/presentation/common_widgets/mini_player_video/mini_player_video.dart) | Dart | 391 | 6 | 37 | 434 |

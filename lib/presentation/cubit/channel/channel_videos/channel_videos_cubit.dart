@@ -7,18 +7,11 @@ import 'package:youtube/data/models/channel_details/my_subscriptions/my_subscrip
 
 import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/domain/entities/parameters/channel_details_use_case_parameters.dart';
-import 'package:youtube/domain/entities/parameters/clear_channel_videos_use_case_parameters.dart';
 import 'package:youtube/domain/use_cases/channel/channel_details/get_videos_of_those_channels_use_case.dart';
 import 'package:youtube/domain/use_cases/channel/channel_videos/channel_popular_videos_use_case.dart';
 import 'package:youtube/domain/use_cases/channel/channel_videos/channel_short_poupal_videos_use_case.dart';
 import 'package:youtube/domain/use_cases/channel/channel_videos/channel_short_videos_use_case.dart';
 import 'package:youtube/domain/use_cases/channel/channel_videos/channel_videos_use_case.dart';
-import 'package:youtube/domain/use_cases/channel/channel_videos/clear/clear_all_channel_short_videos_use_case.dart';
-import 'package:youtube/domain/use_cases/channel/channel_videos/clear/clear_all_channel_videos_use_case.dart';
-import 'package:youtube/domain/use_cases/channel/channel_videos/clear/clear_all_popular_channel_short_videos_use_case.dart';
-import 'package:youtube/domain/use_cases/channel/channel_videos/clear/clear_all_popular_channel_videos_use_case.dart';
-import 'package:youtube/domain/use_cases/channel/channel_videos/clear/clear_videos_of_those_channels_use_case.dart';
-import 'package:youtube/domain/use_cases/channel/playlist/clear/clear_channel_playlists_use_case.dart';
 
 part 'channel_videos_state.dart';
 part 'channel_videos_cubit.freezed.dart';
@@ -29,14 +22,7 @@ class ChannelVideosCubit extends Cubit<ChannelVideosState> {
   final ChannelShortVideosUseCase _shortVideosUseCase;
   final ChannelVideosUseCase _videosUseCase;
   final GetVideosOfThoseChannelsUseCase _getVideosOfThoseChannelsUseCase;
-  final ClearAllChannelShortVideosUseCase _clearAllChannelShortVideosUseCase;
-  final ClearAllChannelVideosUseCase _clearAllChannelVideosUseCase;
-  final ClearAllPopularChannelShortVideosUseCase
-      _clearAllPopularChannelShortVideosUseCase;
-  final ClearAllPopularChannelVideosUseCase
-      _clearAllPopularChannelVideosUseCase;
-  final ClearVideosOfThoseChannelsUseCase _clearVideosOfThoseChannelsUseCase;
-  final CleaChannelPlaylistsUseCase _cleaChannelPlaylistsUseCase;
+
 
   ChannelVideosCubit(
     this._videosUseCase,
@@ -44,12 +30,6 @@ class ChannelVideosCubit extends Cubit<ChannelVideosState> {
     this._shortPopularVideosUseCase,
     this._popularVideosUseCase,
     this._getVideosOfThoseChannelsUseCase,
-    this._clearAllChannelShortVideosUseCase,
-    this._clearAllChannelVideosUseCase,
-    this._clearAllPopularChannelShortVideosUseCase,
-    this._clearAllPopularChannelVideosUseCase,
-    this._clearVideosOfThoseChannelsUseCase,
-    this._cleaChannelPlaylistsUseCase,
   ) : super(const ChannelVideosState.initial());
 
   static ChannelVideosCubit get(BuildContext context) =>
@@ -126,25 +106,5 @@ class ChannelVideosCubit extends Cubit<ChannelVideosState> {
           emit(ChannelVideosState.videosOfThoseChannelsLoaded(videosItems));
         },
         failure: (exception) => emit(ChannelVideosState.error(exception)));
-  }
-
-  Future<void> clearChannelCachedDetails(String channelId) async {
-    _clearAllChannelShortVideosUseCase.call(
-        params: ClearAllChannelVideosUseCasePara(
-            channelId: channelId, clearAll: false));
-    _clearAllChannelVideosUseCase.call(
-        params: ClearAllChannelVideosUseCasePara(
-            channelId: channelId, clearAll: false));
-    _clearAllPopularChannelShortVideosUseCase.call(
-        params: ClearAllChannelVideosUseCasePara(
-            channelId: channelId, clearAll: false));
-    _clearAllPopularChannelVideosUseCase.call(
-        params: ClearAllChannelVideosUseCasePara(
-            channelId: channelId, clearAll: false));
-    _clearVideosOfThoseChannelsUseCase.call(
-        params: ClearAllChannelVideosUseCasePara(
-            channelId: channelId, clearAll: false));
-    _cleaChannelPlaylistsUseCase.call(
-        params: ChannelDetailsUseCaseParameters(channelId: channelId));
   }
 }
