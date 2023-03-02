@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:youtube/data/models/videos_details/video_details_extension.dart';
 import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/presentation/common_widgets/thumbnail_image.dart';
+import 'package:youtube/presentation/common_widgets/video_duration.dart';
 
 import '../../../../core/resources/assets_manager.dart';
 import '../../../../core/resources/color_manager.dart';
@@ -17,7 +18,14 @@ class VideoHorizontalDescriptionsList extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ThumbnailImage(videoDetails.getVideoThumbnails(),height: 80, width: 160),
+        Stack(
+          alignment: AlignmentDirectional.bottomEnd,
+          children: [
+            ThumbnailImage(videoDetails.getVideoThumbnails(),height: 80, width: 160),
+            VideoDurationWidget(videoDetails)
+
+          ],
+        ),
         const RSizedBox(width: 15),
         Flexible(
           child: Column(
