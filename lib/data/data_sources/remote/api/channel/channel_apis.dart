@@ -8,7 +8,7 @@ part 'channel_apis.g.dart';
 
 @RestApi(baseUrl: youtubeBaseUrl)
 abstract class ChannelAPIs {
-  factory ChannelAPIs(Dio dio, {String baseUrl}) = _ChannelAPIs;
+  factory ChannelAPIs(Dio dio) = _ChannelAPIs;
 
   @GET("channels?part=brandingSettings,contentDetails,statistics,snippet")
   Future<ChannelSubDetails> getSubChannelInfo({
