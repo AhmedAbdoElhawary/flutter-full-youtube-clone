@@ -13,12 +13,14 @@ import 'package:youtube/data/data_sources/remote/api/single_video/commet/comment
 import 'package:youtube/data/data_sources/remote/api/single_video/single_video_apis.dart';
 import 'package:youtube/data/data_sources/remote/api/videos/videos_apis.dart';
 import 'package:youtube/data/repositories_impl/channel/channel_details_repo_impl.dart';
+import 'package:youtube/data/repositories_impl/channel/channel_playlist_repo_impl.dart';
 import 'package:youtube/data/repositories_impl/channel/channel_videos_repo_impl.dart';
 import 'package:youtube/data/repositories_impl/search_details_repo_impl.dart';
 import 'package:youtube/data/repositories_impl/single_video_details/single_video_details_repo_impl.dart';
 import 'package:youtube/data/repositories_impl/single_video_details/video_comment_details_repo_impl.dart';
 import 'package:youtube/data/repositories_impl/videos_details_repo_impl.dart';
 import 'package:youtube/domain/repositories/channel/channel_details_repository.dart';
+import 'package:youtube/domain/repositories/channel/channel_playlist_repository.dart';
 import 'package:youtube/domain/repositories/channel/channel_videos_repository.dart';
 import 'package:youtube/domain/repositories/search_details_repository.dart';
 import 'package:youtube/domain/repositories/video_comment_details/single_video_details_repository.dart';
@@ -132,6 +134,9 @@ Future<void> initializeDependencies() async {
   injector.registerLazySingleton<SearchDetailsRepository>(
     () => SearchDetailsRepoImpl(injector(), injector(), injector()),
   );
+  injector.registerLazySingleton<ChannelPlayListDetailsRepository>(
+    () => ChannelPlayListDetailsRepoImpl(injector(), injector()),
+  );
 
   // *
   /// ================================ Use cases ========================================>
@@ -227,8 +232,8 @@ Future<void> initializeDependencies() async {
 
   // clear use cases
 
-  injector.registerLazySingleton<CleaChannelPlaylistsUseCase>(
-    () => CleaChannelPlaylistsUseCase(injector()),
+  injector.registerLazySingleton<ClearChannelPlaylistsUseCase>(
+    () => ClearChannelPlaylistsUseCase(injector()),
   );
 
   injector.registerLazySingleton<ClearVideosOfThoseChannelsUseCase>(
@@ -272,17 +277,12 @@ Future<void> initializeDependencies() async {
 
   injector.registerFactory<ChannelVideosCubit>(
     () => ChannelVideosCubit(
-        injector(),
-        injector(),
-        injector(),
-        injector(),
-        injector(),
-        injector(),
-        injector(),
-        injector(),
-        injector(),
-        injector(),
-        injector()),
+      injector(),
+      injector(),
+      injector(),
+      injector(),
+      injector(),
+    ),
   );
   injector.registerFactory<PlayListCubit>(
     () => PlayListCubit(injector(), injector()),

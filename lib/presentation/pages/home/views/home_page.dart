@@ -57,11 +57,6 @@ class _VideosListState extends State<_VideosList>
     with AutomaticKeepAliveClientMixin<_VideosList>  {
 
   @override
-  void dispose() {
-    VideosDetailsCubit.get(context).clearAllVideos();
-    super.dispose();
-  }
-  @override
   Widget build(BuildContext context) {
     super.build(context);
     return BlocBuilder<VideosDetailsCubit, VideosDetailsState>(

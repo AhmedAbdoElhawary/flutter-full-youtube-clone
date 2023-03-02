@@ -27,22 +27,27 @@ class _TabBarHomeViewState extends State<TabBarHomeView>
       bloc: ChannelVideosCubit.get(context)
         ..getChannelVideos(widget.channelDetails?.id ?? ""),
       builder: (context, state) {
-        return state.maybeWhen(
-            channelVideosLoaded: (videoDetails) => ListView.builder(
-                itemBuilder: (context, index) => Padding(
-                      padding: REdgeInsetsDirectional.only(start: 15, top: 15),
-                      child: index == 0
-                          ? const _PopularVideosText()
-                          : VideoHorizontalDescriptionsList(
-                              videoDetails.videoDetailsItem![index]),
-                    ),
-                itemCount: videoDetails.videoDetailsItem?.length ?? 0),
-            error: (error) => Center(
-                child: Text(NetworkExceptions.getErrorMessage(
-                    error.networkExceptions))),
-            loading: () => const ThineCircularProgress(),
-            orElse: () =>
-                const Center(child: Text("there is something wrong")));
+        if (state is ChannelVideosLoaded) {
+          return ListView.builder(
+              itemBuilder: (context, index) => Padding(
+                padding: REdgeInsetsDirectional.only(start: 15, top: 15),
+                child: index == 0
+                    ? const _PopularVideosText()
+                    : VideoHorizontalDescriptionsList(
+                    state.videoDetails.videoDetailsItem![index]),
+              ),
+              itemCount:state. videoDetails.videoDetailsItem?.length ?? 0);
+        } else if (state is Error) {
+          return Center(
+            child: Text(
+                NetworkExceptions.getErrorMessage(
+                    state.networkExceptions.networkExceptions),
+                style: getNormalStyle(
+                    color: ColorManager(context).black, fontSize: 15)),
+          );
+        } else {
+          return const ThineCircularProgress();
+        }
       },
     );
   }
