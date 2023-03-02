@@ -11,16 +11,23 @@ import 'searched_results_page.dart';
 import 'widgets/mic_button.dart';
 import 'widgets/searched_text_field.dart';
 
-class SearchPage extends StatelessWidget {
-  const SearchPage({this.text = "", Key? key}) : super(key: key);
+class SearchPageParameters {
   final String text;
+
+  SearchPageParameters({this.text = ""});
+}
+
+class SearchPage extends StatelessWidget {
+  const SearchPage(this.parameters, {Key? key}) : super(key: key);
+  final SearchPageParameters parameters;
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController controller = TextEditingController(text: text);
+    TextEditingController controller =
+        TextEditingController(text: parameters.text);
     return Scaffold(
       appBar: AppBar(
-        leading:  const ArrowBack(),
+        leading: const ArrowBack(),
         surfaceTintColor: ColorManager(context).white,
         title: SearchTextField(controller: controller),
         actions: const [
@@ -37,7 +44,6 @@ class SearchPage extends StatelessWidget {
                     _ItemBuilderWidget(suggestionTexts.suggestions[index]),
                 itemCount: suggestionTexts.suggestions.length);
           }, error: (error) {
-
             return const SizedBox();
           }, orElse: () {
             return const SizedBox();
@@ -55,8 +61,9 @@ class _ItemBuilderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Go(context)
-            .offCurrent(materialRoute: true, SearchedResultsPage(text: text));
+        Go<SearchedResultsPageParameter>(context).offCurrent(
+            Routes.searchedResultsPage,
+            arg: SearchedResultsPageParameter(text: text));
       },
 
       /// To be nice alignment when tapping on it
