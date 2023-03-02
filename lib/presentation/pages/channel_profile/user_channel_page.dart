@@ -3,13 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:youtube/core/functions/network_exceptions.dart';
 import 'package:youtube/core/resources/styles_manager.dart';
 import 'package:youtube/data/models/channel_details/channel_details.dart';
 import 'package:youtube/data/models/channel_details/channel_sub_details/channel_sub_details_extension.dart';
 import 'package:youtube/presentation/common_widgets/circular_profile_image.dart';
 import 'package:youtube/presentation/common_widgets/custom_circle_progress.dart';
 import 'package:youtube/presentation/common_widgets/custom_network_display.dart';
+import 'package:youtube/presentation/common_widgets/error_message_widget.dart';
 import 'package:youtube/presentation/cubit/channel/channel_details_cubit.dart';
 import 'package:youtube/presentation/pages/channel_profile/channel_profile_logic.dart';
 
@@ -36,9 +36,7 @@ class UserChannelPage extends StatelessWidget {
               channelSubDetailsLoaded: (channelSubDetails) =>
                   _BuildScaffold(channelSubDetails.items?[0]),
               loading: () => const ThineCircularProgress(),
-              error: (error) => Center(
-                  child: Text(NetworkExceptions.getErrorMessage(
-                      error.networkExceptions))),
+              error: (error) => ErrorMessageWidget(error),
               orElse: () =>
                   const Center(child: Text("There is something wrong")));
         },
@@ -130,8 +128,7 @@ class _ButtonsAboveBio extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        CustomNetworkDisplay(
-            imageUrl: channelItem.getChannelCoverUrl()),
+        CustomNetworkDisplay(imageUrl: channelItem.getChannelCoverUrl()),
         const RSizedBox(height: 10),
         CircularProfileImage(
             enableTapping: false,

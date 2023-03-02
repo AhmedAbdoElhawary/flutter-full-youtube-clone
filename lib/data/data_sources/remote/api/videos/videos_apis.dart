@@ -17,7 +17,7 @@ abstract class VideosAPIs {
   });
 
   @GET(
-      "search?part=snippet&maxResults=2&regionCode=EG&videoDuration=short&type=video")
+      "search?part=snippet&maxResults=2&regionCode=EG&videoDuration=1&type=video")
   Future<SearchedVideosDetails> getAllShortVideosIds({
     @Query("key") final String apiKey = apiKey,
   });
