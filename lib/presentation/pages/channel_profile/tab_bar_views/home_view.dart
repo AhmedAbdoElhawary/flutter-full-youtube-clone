@@ -18,11 +18,9 @@ class TabBarHomeView extends StatefulWidget {
   State<TabBarHomeView> createState() => _TabBarHomeViewState();
 }
 
-class _TabBarHomeViewState extends State<TabBarHomeView>
-    with AutomaticKeepAliveClientMixin<TabBarHomeView> {
+class _TabBarHomeViewState extends State<TabBarHomeView>{
   @override
   Widget build(BuildContext context) {
-    super.build(context);
     return BlocBuilder<ChannelVideosCubit, ChannelVideosState>(
       bloc: ChannelVideosCubit.get(context)
         ..getChannelVideos(widget.channelDetails?.id ?? ""),
@@ -52,8 +50,6 @@ class _TabBarHomeViewState extends State<TabBarHomeView>
     );
   }
 
-  @override
-  bool get wantKeepAlive => true;
 }
 
 class _PopularVideosText extends StatelessWidget {
