@@ -7,7 +7,7 @@ part 'search_apis.g.dart';
 
 @RestApi(baseUrl: youtubeBaseUrl)
 abstract class SearchAPIs {
-  factory SearchAPIs(Dio dio, {String baseUrl}) = _SearchAPIs;
+  factory SearchAPIs(Dio dio) = _SearchAPIs;
 
   @GET("search?part=snippet&type=video")
   Future<SearchedVideosDetails> getIdsForThisSentence({

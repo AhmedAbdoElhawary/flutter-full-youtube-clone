@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:youtube/core/functions/network_exceptions.dart';
-import 'package:youtube/core/functions/toast_show.dart';
 import 'package:youtube/data/models/channel_details/channel_details.dart';
 import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/presentation/common_widgets/custom_circle_progress.dart';
@@ -51,17 +50,19 @@ class _PopularVideos extends StatelessWidget {
       bloc: ChannelVideosCubit.get(context)
         ..getPopularChannelVideos(channelDetails?.id ?? ""),
       builder: (context, state) {
-        return state.maybeWhen(
-            popularVideosLoaded: (videoDetails) => _VideosList(videoDetails),
-            error: (e) {
-              ToastShow.reformatToast(context, e.error);
-              return Center(
-                child: Text(NetworkExceptions.getErrorMessage(
-                    e.networkExceptions)));
-            },
-            loading: () => const ThineCircularProgress(),
-            orElse: () =>
-                const Center(child: Text("there is something wrong")));
+        if (state is PopularVideosLoaded) {
+          return _VideosList(state.videoDetails);
+        } else if (state is Error) {
+          return Center(
+            child: Text(
+                NetworkExceptions.getErrorMessage(
+                    state.networkExceptions.networkExceptions),
+                style: getNormalStyle(
+                    color: ColorManager(context).black, fontSize: 15)),
+          );
+        } else {
+          return const ThineCircularProgress();
+        }
       },
     );
   }
@@ -78,17 +79,19 @@ class _NewestVideos extends StatelessWidget {
       bloc: ChannelVideosCubit.get(context)
         ..getChannelVideos(channelDetails?.id ?? ""),
       builder: (context, state) {
-        return state.maybeWhen(
-            channelVideosLoaded: (videoDetails) => _VideosList(videoDetails),
-            error: (e) {
-              ToastShow.reformatToast(context, e.error);
-              return Center(
-                child: Text(NetworkExceptions.getErrorMessage(
-                    e.networkExceptions)));
-            },
-            loading: () => const ThineCircularProgress(),
-            orElse: () =>
-                const Center(child: Text("there is something wrong")));
+        if (state is ChannelVideosLoaded) {
+          return _VideosList(state.videoDetails);
+        } else if (state is Error) {
+          return Center(
+            child: Text(
+                NetworkExceptions.getErrorMessage(
+                    state.networkExceptions.networkExceptions),
+                style: getNormalStyle(
+                    color: ColorManager(context).black, fontSize: 15)),
+          );
+        } else {
+          return const ThineCircularProgress();
+        }
       },
     );
   }

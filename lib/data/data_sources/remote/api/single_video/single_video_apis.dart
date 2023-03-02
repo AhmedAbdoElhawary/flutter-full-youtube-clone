@@ -8,7 +8,7 @@ part 'single_video_apis.g.dart';
 
 @RestApi(baseUrl: youtubeBaseUrl)
 abstract class SingleVideosAPIs {
-  factory SingleVideosAPIs(Dio dio, {String baseUrl}) = _SingleVideosAPIs;
+  factory SingleVideosAPIs(Dio dio) = _SingleVideosAPIs;
 
   @GET("videos?part=contentDetails,statistics,snippet")
   Future<VideosDetails> getVideoDetails({
