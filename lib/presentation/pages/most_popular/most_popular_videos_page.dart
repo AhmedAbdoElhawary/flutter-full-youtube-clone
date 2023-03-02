@@ -3,13 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:youtube/config/routes/route_app.dart';
 import 'package:youtube/core/functions/network_exceptions.dart';
-import 'package:youtube/core/resources/assets_manager.dart';
 
 import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/core/resources/styles_manager.dart';
 import 'package:youtube/data/models/videos_details/videos_details.dart';
+import 'package:youtube/presentation/common_widgets/arrow_back.dart';
 import 'package:youtube/presentation/common_widgets/custom_circle_progress.dart';
-import 'package:youtube/presentation/common_widgets/svg_icon.dart';
 import 'package:youtube/presentation/common_widgets/thumbnail_of_video.dart';
 import 'package:youtube/presentation/cubit/videos/popular_videos/popular_videos_cubit.dart';
 import 'package:youtube/presentation/pages/search/search_page.dart';
@@ -39,23 +38,31 @@ class _MostPopularVideosPageState extends State<MostPopularVideosPage> {
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
               SliverAppBar(
-                leading: const SvgIcon(IconsAssets.arrowLeftIcon),
+                leading: const ArrowBack(),
+                titleSpacing: 0,
                 actionsIconTheme: const IconThemeData(size: 20),
                 backgroundColor: ColorManager(context).white,
                 surfaceTintColor: ColorManager(context).white,
-                title: const Text("Trending"),
+                title: Text(
+                  "Trending",
+                  style: getMediumStyle(
+                      color: ColorManager(context).black, fontSize: 20),
+                ),
                 floating: true,
                 pinned: true,
                 snap: true,
                 actions: [
-                  const RSizedBox(width: 20),
-                  GestureDetector(
-                      onTap: () {
-                        Go(context).to(const SearchPage());
-                      },
-                      child:
-                          const SvgIcon(IconsAssets.broadcastIcon, height: 20)),
-                  const RSizedBox(width: 20),
+                  Row(
+                    children: [
+                      const RSizedBox(width: 20),
+                      GestureDetector(
+                          onTap: () {
+                            Go(context).to(const SearchPage());
+                          },
+                          child: const Icon(Icons.search_rounded, size: 25)),
+                      const RSizedBox(width: 20),
+                    ],
+                  ),
                 ],
                 bottom: PreferredSize(
                   preferredSize: Size.fromHeight(50.h),
