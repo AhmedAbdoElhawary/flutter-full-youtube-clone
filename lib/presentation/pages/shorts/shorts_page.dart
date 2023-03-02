@@ -13,9 +13,15 @@ import 'package:youtube/presentation/cubit/videos/videos_details_cubit.dart';
 import 'package:youtube/presentation/pages/search/search_page.dart';
 import 'package:youtube/presentation/pages/shorts/widgets/shorts_page_view.dart';
 
-class ShortsPage extends StatefulWidget {
-  const ShortsPage({this.videoDetailsItem, Key? key}) : super(key: key);
+class ShortsPageParameters {
   final List<VideoDetailsItem>? videoDetailsItem;
+
+  ShortsPageParameters({this.videoDetailsItem});
+}
+
+class ShortsPage extends StatefulWidget {
+  const ShortsPage({this.parameters, Key? key}) : super(key: key);
+  final ShortsPageParameters? parameters;
   @override
   ShortsPageState createState() => ShortsPageState();
 }
@@ -29,8 +35,8 @@ class ShortsPageState extends State<ShortsPage> {
         backgroundColor: BaseColorManager.black87,
         extendBodyBehindAppBar: true,
         appBar: appBar(),
-        body: widget.videoDetailsItem != null
-            ? ShortsPageView(widget.videoDetailsItem)
+        body: widget.parameters?.videoDetailsItem != null
+            ? ShortsPageView(widget.parameters?.videoDetailsItem)
             : const _PageViewBody(),
       ),
     );
@@ -38,13 +44,13 @@ class ShortsPageState extends State<ShortsPage> {
 
   AppBar appBar() => AppBar(
         backgroundColor: BaseColorManager.transparent,
-        leading: widget.videoDetailsItem != null
+        leading: widget.parameters?.videoDetailsItem != null
             ? const ArrowBack(makeItWhite: true)
             : null,
         actions: [
           InkWell(
             onTap: () {
-              Go(context).to(const SearchPage());
+              Go<SearchPageParameters>(context).to(Routes.searchPage);
             },
             child: SvgPicture.asset(
               IconsAssets.search,

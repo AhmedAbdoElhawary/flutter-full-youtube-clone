@@ -24,8 +24,8 @@ class SearchTextField extends StatelessWidget {
       onTap: !enableOnTap
           ? null
           : () {
-              Go(context)
-                  .to(materialRoute: true, SearchPage(text: controller.text));
+              Go<SearchPageParameters>(context).to(Routes.searchPage,
+                  arg: SearchPageParameters(text: controller.text));
             },
       controller: controller,
       cursorColor: ColorManager(context).black,
