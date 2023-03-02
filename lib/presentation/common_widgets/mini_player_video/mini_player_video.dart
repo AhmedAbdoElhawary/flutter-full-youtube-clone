@@ -192,8 +192,9 @@ class _CircleNameSubscribersWidget extends StatelessWidget {
 
           return InkWell(
             onTap: () {
-              Go(context).to(
-                UserChannelPage(
+              Go<UserChannelPageParameters>(context).to(
+                Routes.userChannelPage,
+                arg: UserChannelPageParameters(
                   channelDetailsItem: videoDetails?.getChannelSubDetails(),
                   channelId: videoDetails?.getChannelId() ?? "",
                 ),
