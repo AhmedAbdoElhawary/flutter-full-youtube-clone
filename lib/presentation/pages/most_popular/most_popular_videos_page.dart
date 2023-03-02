@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:youtube/config/routes/route_app.dart';
 import 'package:youtube/core/functions/network_exceptions.dart';
+import 'package:youtube/core/resources/assets_manager.dart';
 
 import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/core/resources/styles_manager.dart';
 import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/presentation/common_widgets/custom_circle_progress.dart';
+import 'package:youtube/presentation/common_widgets/svg_icon.dart';
 import 'package:youtube/presentation/common_widgets/thumbnail_of_video.dart';
 import 'package:youtube/presentation/cubit/videos/popular_videos/popular_videos_cubit.dart';
+import 'package:youtube/presentation/pages/search/search_page.dart';
 
 class MostPopularVideosPage extends StatefulWidget {
   const MostPopularVideosPage({Key? key}) : super(key: key);
@@ -20,7 +24,9 @@ class MostPopularVideosPage extends StatefulWidget {
 class _MostPopularVideosPageState extends State<MostPopularVideosPage> {
   @override
   void dispose() {
-    PopularVideosCubit.get(context).clearAllPopularVideos(videoCategoryId: "");
+    /// todo
+    print("object");
+    // PopularVideosCubit.get(context).clearAllPopularVideos(videoCategoryId: "");
     super.dispose();
   }
 
@@ -33,14 +39,24 @@ class _MostPopularVideosPageState extends State<MostPopularVideosPage> {
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
               SliverAppBar(
-                leading: const Icon(Icons.yard_outlined, size: 40),
+                leading: const SvgIcon(IconsAssets.arrowLeftIcon),
                 actionsIconTheme: const IconThemeData(size: 20),
                 backgroundColor: ColorManager(context).white,
                 surfaceTintColor: ColorManager(context).white,
-                title: const Text("Application"),
+                title: const Text("Trending"),
                 floating: true,
                 pinned: true,
                 snap: true,
+                actions: [
+                  const RSizedBox(width: 20),
+                  GestureDetector(
+                      onTap: () {
+                        Go(context).to(const SearchPage());
+                      },
+                      child:
+                          const SvgIcon(IconsAssets.broadcastIcon, height: 20)),
+                  const RSizedBox(width: 20),
+                ],
                 bottom: PreferredSize(
                   preferredSize: Size.fromHeight(50.h),
                   child: const _TabBarIcons(),
@@ -193,7 +209,6 @@ class _MoviesPopularVideosState extends State<_MoviesPopularVideos> {
       },
     );
   }
-
 }
 
 class _BuildMoviesList extends StatelessWidget {
