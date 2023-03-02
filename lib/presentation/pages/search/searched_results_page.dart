@@ -13,9 +13,14 @@ import '../../../core/resources/assets_manager.dart';
 import '../../../core/resources/color_manager.dart';
 import 'widgets/mic_button.dart';
 
-class SearchedResultsPage extends StatefulWidget {
-  const SearchedResultsPage({required this.text, Key? key}) : super(key: key);
+class SearchedResultsPageParameter{
   final String text;
+
+  SearchedResultsPageParameter({required this.text});
+}
+class SearchedResultsPage extends StatefulWidget {
+  const SearchedResultsPage(this.parameter,{Key? key}) : super(key: key);
+  final SearchedResultsPageParameter parameter;
 
   @override
   State<SearchedResultsPage> createState() => _SearchedResultsPageState();
@@ -26,7 +31,7 @@ class _SearchedResultsPageState extends State<SearchedResultsPage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    TextEditingController controller = TextEditingController(text: widget.text);
+    TextEditingController controller = TextEditingController(text: widget.parameter.text);
 
     return Scaffold(
       appBar: AppBar(
@@ -42,7 +47,7 @@ class _SearchedResultsPageState extends State<SearchedResultsPage>
         ],
       ),
       body: BlocBuilder<SearchCubit, SearchState>(
-        bloc: SearchCubit.get(context)..searchForThisSentence(widget.text),
+        bloc: SearchCubit.get(context)..searchForThisSentence(widget.parameter.text),
         builder: (context, state) {
           return state.maybeWhen(
               searchForTheSentenceLoaded: (videosDetails) => ListView.builder(
