@@ -57,7 +57,8 @@ class _MostPopularVideosPageState extends State<MostPopularVideosPage> {
                       const RSizedBox(width: 20),
                       GestureDetector(
                           onTap: () {
-                            Go(context).to(const SearchPage());
+                            Go<SearchPageParameters>(context)
+                                .to(Routes.searchPage);
                           },
                           child: const Icon(Icons.search_rounded, size: 25)),
                       const RSizedBox(width: 20),
