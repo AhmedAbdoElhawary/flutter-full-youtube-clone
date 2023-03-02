@@ -7,7 +7,7 @@ part 'channel_videos_apis.g.dart';
 
 @RestApi(baseUrl: youtubeBaseUrl)
 abstract class ChannelVideosAPIs {
-  factory ChannelVideosAPIs(Dio dio) = _ChannelVideosAPIs;
+  factory ChannelVideosAPIs(Dio dio, {String baseUrl}) = _ChannelVideosAPIs;
   @GET("search?part=snippet&type=video&maxResults=2")
   Future<SearchedVideosDetails> getAllChannelVideosIds({
     @Query("key") final String apiKey = apiKey,
