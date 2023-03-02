@@ -42,7 +42,7 @@ class _ChannelVideosAPIs implements ChannelVideosAPIs {
     )
             .compose(
               _dio.options,
-              'search?part=snippet&type=video&maxResults=2',
+              'search?part=snippet&type=video&maxResults=2&videoDuration=long&videoDuration=medium',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -73,7 +73,7 @@ class _ChannelVideosAPIs implements ChannelVideosAPIs {
     )
             .compose(
               _dio.options,
-              'search?part=snippet&type=video&maxResults=2&videoDuration=short',
+              'search?part=snippet&type=video&maxResults=2&videoDuration=1',
               queryParameters: queryParameters,
               data: _data,
             )
