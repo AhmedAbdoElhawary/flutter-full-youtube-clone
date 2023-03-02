@@ -9,7 +9,7 @@ part 'comment_apis.g.dart';
 
 @RestApi(baseUrl: youtubeBaseUrl)
 abstract class CommentAPIs {
-  factory CommentAPIs(Dio dio) = _CommentAPIs;
+  factory CommentAPIs(Dio dio, {String baseUrl}) = _CommentAPIs;
 
   @GET("commentThreads?part=snippet&maxResults=2")
   Future<CommentDetails> getAllComments({
