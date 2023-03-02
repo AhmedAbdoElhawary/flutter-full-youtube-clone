@@ -105,8 +105,8 @@ class ChannelVideosDetailsRepoImpl implements ChannelVideosDetailsRepository {
       if (cachedVideos != null) return ApiResult.success(cachedVideos);
 
       SearchedVideosDetails videosIds =
-          await _channelVideosAPIs.getAllChannelVideosIds(
-              channelId: channelId, orderVideos: "viewCount");
+          await _channelVideosAPIs.getAllPopularChannelVideosIds(
+              channelId: channelId);
 
       VideosDetails completeVideosDetails = await _videosDetailsRepository
           .getCompleteVideosDetailsOfThoseIds(videosIds);

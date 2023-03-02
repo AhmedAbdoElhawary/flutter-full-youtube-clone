@@ -299,7 +299,7 @@ Total : 340 files,  25198 codes, 1172 comments, 3406 blanks, all 29776 lines
 | [lib/presentation/custom_packages/pod_player/src/widgets/pod_progress_bar.dart](/lib/presentation/custom_packages/pod_player/src/widgets/pod_progress_bar.dart) | Dart | 238 | 1 | 25 | 264 |
 | [lib/presentation/layouts/base_layout.dart](/lib/presentation/layouts/base_layout.dart) | Dart | 128 | 0 | 15 | 143 |
 | [lib/presentation/layouts/base_layout_logic.dart](/lib/presentation/layouts/base_layout_logic.dart) | Dart | 31 | 0 | 6 | 37 |
-| [lib/presentation/main.dart](/lib/presentation/main.dart) | Dart | 18 | 0 | 8 | 26 |
+| [lib/presentation/main.dart](/lib/main.dart) | Dart | 18 | 0 | 8 | 26 |
 | [lib/presentation/my_app.dart](/lib/presentation/my_app.dart) | Dart | 76 | 0 | 8 | 84 |
 | [lib/presentation/pages/channel_profile/channel_profile_logic.dart](/lib/presentation/pages/channel_profile/channel_profile_logic.dart) | Dart | 7 | 0 | 4 | 11 |
 | [lib/presentation/pages/channel_profile/profile_page.dart](/lib/presentation/pages/channel_profile/profile_page.dart) | Dart | 90 | 0 | 10 | 100 |
