@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:youtube/config/routes/route_app.dart';
+import 'package:youtube/presentation/common_widgets/arrow_back.dart';
 import 'package:youtube/presentation/cubit/search/search_cubit.dart';
 
 import '../../../core/resources/color_manager.dart';
@@ -19,7 +20,7 @@ class SearchPage extends StatelessWidget {
     TextEditingController controller = TextEditingController(text: text);
     return Scaffold(
       appBar: AppBar(
-        titleSpacing: 5.w,
+        leading:  const ArrowBack(),
         surfaceTintColor: ColorManager(context).white,
         title: SearchTextField(controller: controller),
         actions: const [
