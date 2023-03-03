@@ -18,6 +18,7 @@ class _ShortPlayerState extends State<_ShortPlayer> {
     logic.videoController = PodPlayerController(
       playVideoFrom: PlayVideoFrom.youtube('https://youtu.be/$videoId'),
     )..initialise();
+    baseLayoutLogic.isShortsInitialize=true;
   }
 
   @override

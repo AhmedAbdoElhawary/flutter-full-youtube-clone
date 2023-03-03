@@ -47,7 +47,7 @@ class Routes {
 
   static const String searchPage = "/searchPage";
 
-  /// [userChannelPage] parameter is : videoDetailsItem
+  /// [shortsPage] parameter is : videoDetailsItem
 
   static const String shortsPage = "/shortsPage";
 
@@ -84,11 +84,11 @@ class RouteGenerator {
     }
   }
 
-  static MaterialPageRoute<dynamic> _material(Widget page) =>
-      MaterialPageRoute(builder: (_) => page);
+  static CupertinoPageRoute<dynamic> _material(Widget page) =>
+      CupertinoPageRoute(builder: (_) => page);
 
   static Route<dynamic> unDefinedRoute() {
-    return MaterialPageRoute(
+    return CupertinoPageRoute(
         builder: (_) => Scaffold(
               appBar: AppBar(title: const Text("No route found")),
               body: const Center(child: Text("No route found")),
