@@ -27,7 +27,7 @@ class SearchCubit extends Cubit<SearchState> {
   static SearchCubit get(BuildContext context) => BlocProvider.of(context);
 
   Future<void> getSuggestionTexts(String text) async {
-    emit(const SearchState.loading());
+    emit(const SearchState.searchLoading());
 
     ApiResult<SuggestionTexts> result = await _suggestionSearchTextsUseCase
         .call(params: SuggestionSearchTextsUseCaseParameter(text: text));
@@ -36,11 +36,11 @@ class SearchCubit extends Cubit<SearchState> {
         success: (suggestionTexts) {
           emit(SearchState.suggestionTextsLoaded(suggestionTexts));
         },
-        failure: (exception) => emit(SearchState.error(exception)));
+        failure: (exception) => emit(SearchState.searchError(exception)));
   }
 
   Future<void> searchForThisSentence(String sentence) async {
-    emit(const SearchState.loading());
+    emit(const SearchState.searchLoading());
 
     ApiResult<VideosDetails> result = await _searchForThisSentenceUseCase.call(
         params: SearchForThisSentenceUseCasePara(sentence: sentence));
@@ -48,11 +48,11 @@ class SearchCubit extends Cubit<SearchState> {
     result.when(
         success: (videoDetails) =>
             emit(SearchState.searchForTheSentenceLoaded(videoDetails)),
-        failure: (exception) => emit(SearchState.error(exception)));
+        failure: (exception) => emit(SearchState.searchError(exception)));
   }
 
   Future<void> relatedVideosToThisVideo(String relatedToVideoId) async {
-    emit(const SearchState.loading());
+    emit(const SearchState.searchLoading());
 
     ApiResult<VideosDetails> result =
         await _relatedVideosToThisVideoUseCase.call(
@@ -62,6 +62,6 @@ class SearchCubit extends Cubit<SearchState> {
     result.when(
         success: (videoDetails) =>
             emit(SearchState.relatedVideosLoaded(videoDetails)),
-        failure: (exception) => emit(SearchState.error(exception)));
+        failure: (exception) => emit(SearchState.searchError(exception)));
   }
 }
