@@ -8,17 +8,25 @@ class _ShortPlayer extends StatefulWidget {
 }
 
 class _ShortPlayerState extends State<_ShortPlayer> {
-  final logic = Get.find<ShortsLogic>(tag: "1");
+  final logic = Get.put(ShortsLogic(), tag: "1");
   final baseLayoutLogic = Get.find<BaseLayoutLogic>(tag: "1");
   String videoId = "";
   @override
   void initState() {
     super.initState();
     videoId = widget.videoDetailsItem.id ?? "";
+
+    String videoUrl = 'https://youtu.be/$videoId';
+
+    if ((logic.videoController?.isInitialised ?? false) &&
+        logic.videoController?.videoUrl == videoUrl) return;
+
     logic.videoController = PodPlayerController(
-      playVideoFrom: PlayVideoFrom.youtube('https://youtu.be/$videoId'),
+      playVideoFrom: PlayVideoFrom.youtube(videoUrl),
+      getTag: UniqueKey().toString(),
     )..initialise();
-    baseLayoutLogic.isShortsInitialize=true;
+
+    baseLayoutLogic.isShortsInitialize = true;
   }
 
   @override
@@ -28,31 +36,31 @@ class _ShortPlayerState extends State<_ShortPlayer> {
       tag: "1",
       builder: (logic) {
         return Stack(
-            children: [
-        GestureDetector(
-          onTap: onTapVideo,
-          child: CustomPodVideoPlayer(
-              controller: logic.videoController,
-              frameAspectRatio: 9 / 17.7),
-        ),
-        Center(child: logic.videoStatusAnimation),
-            ],
-          );
+          children: [
+            GestureDetector(
+              onTap: onTapVideo,
+              child: CustomPodVideoPlayer(
+                  controller: logic.videoController!,
+                  frameAspectRatio: 9 / 17.7),
+            ),
+            Center(child: logic.videoStatusAnimation),
+          ],
+        );
       },
     );
   }
 
   void onTapVideo() {
-    if (!logic.videoController.isInitialised) return;
+    if (!(logic.videoController?.isInitialised ?? false)) return;
 
-    if (!logic.videoController.isVideoPlaying) {
+    if (!logic.videoController!.isVideoPlaying) {
       logic.videoStatusAnimation = const _FadeAnimation(
           child: _VolumeContainer(Icons.play_arrow_rounded));
-      logic.videoController.play();
+      logic.videoController?.play();
     } else {
       logic.videoStatusAnimation =
           const _FadeAnimation(child: _VolumeContainer(Icons.pause));
-      logic.videoController.pause();
+      logic.videoController?.pause();
     }
   }
 }
@@ -66,10 +74,10 @@ class _VolumeContainer extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(40),
           color: ColorManager(context).black87),
-      padding: const EdgeInsetsDirectional.all(25),
+      padding: const EdgeInsetsDirectional.all(15),
       child: Icon(
         icon,
-        size: 23.0,
+        size: 35.0,
         color: ColorManager(context).white,
       ),
     );
