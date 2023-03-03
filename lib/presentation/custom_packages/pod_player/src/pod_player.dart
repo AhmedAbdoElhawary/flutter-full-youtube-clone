@@ -40,7 +40,7 @@ class CustomPodVideoPlayer extends StatefulWidget {
   CustomPodVideoPlayer({
     Key? key,
     required this.controller,
-    this.displayOverlay=false,
+    this.displayOverlay = false,
     this.frameAspectRatio = 16 / 9,
     this.videoAspectRatio = 16 / 9,
     this.alwaysShowProgressBar = true,
@@ -138,6 +138,7 @@ class _CustomPodVideoPlayerState extends State<CustomPodVideoPlayer>
 
   @override
   Widget build(BuildContext context) {
+    Get.put(PodGetXVideoController(), tag: widget.controller.getTag);
     final circularProgressIndicator = _thumbnailAndLoadingWidget();
     podCtr.mainContext = context;
 

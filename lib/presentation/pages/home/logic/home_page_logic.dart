@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:youtube/data/models/videos_details/videos_details.dart';
@@ -15,7 +14,7 @@ class MiniVideoViewLogic extends GetxController {
   MiniPlayerController miniPlayerController = MiniPlayerController();
   final RxDouble _percentageOFMiniPage = 0.0.obs;
   final RxDouble _heightOFMiniPage = 50.0.obs;
-  late AnimationController navigationTabController;
+  final RxDouble heightOfNavigationBar = 44.0.obs;
 
   double videoOfMiniDisplayWidth(double screenWidth) {
     double basicWidth = (screenWidth * percentageOFMiniPage * 12) + 130.w;
@@ -41,7 +40,8 @@ class MiniVideoViewLogic extends GetxController {
 
   set percentageOFMiniPage(double value) {
     _percentageOFMiniPage.value = value;
-    navigationTabController.value = 1 - value;
+
+    heightOfNavigationBar.value = (1 - value) * 44;
   }
 
   set heightOFMiniPage(double value) => _heightOFMiniPage.value = value;

@@ -29,7 +29,6 @@ class SubscriptionsPage extends StatefulWidget {
 
 class _SubscriptionsPageState extends State<SubscriptionsPage>
     with AutomaticKeepAliveClientMixin<SubscriptionsPage> {
-
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -157,10 +156,13 @@ class _BottomChannelsWidget extends StatelessWidget {
               padding: REdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
               child: InkWell(
                 onTap: () {
-                  Go(context).to(UserChannelPage(
-                    channelId:
-                        logic.selectedChannelItemDetails?.getChannelId() ?? "",
-                  ));
+                  Go<UserChannelPageParameters>(context).to(
+                      Routes.userChannelPage,
+                      arg: UserChannelPageParameters(
+                        channelId:
+                            logic.selectedChannelItemDetails?.getChannelId() ??
+                                "",
+                      ));
                 },
                 child: Text(
                   "VIEW CHANNELS",

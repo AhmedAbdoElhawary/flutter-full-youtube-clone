@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:youtube/config/routes/route_app.dart';
 import 'package:youtube/config/themes/app_theme.dart';
 import 'package:youtube/config/themes/theme_service.dart';
 import 'package:youtube/core/translations/app_lang.dart';
@@ -57,16 +58,19 @@ class _GetBuilder extends StatelessWidget {
                 statusBarIconBrightness: Brightness.dark,
               ),
               child: GetMaterialApp(
-                  navigatorObservers: [MyNavigatorObserver()],
-                  title: 'Youtube',
-                  theme: AppTheme.light,
-                  translations: Translation(),
-                  locale: Locale(controller.appLang),
-                  fallbackLocale: const Locale('en'),
-                  darkTheme: AppTheme.dark,
-                  themeMode: ThemeOfApp().theme,
-                  debugShowCheckedModeBanner: false,
-                  home: const BaseLayout()),
+                navigatorObservers: [MyNavigatorObserver()],
+                title: 'Youtube',
+                theme: AppTheme.light,
+                translations: Translation(),
+                locale: Locale(controller.appLang),
+                fallbackLocale: const Locale('en'),
+                darkTheme: AppTheme.dark,
+                themeMode: ThemeOfApp().theme,
+                debugShowCheckedModeBanner: false,
+                onGenerateRoute: RouteGenerator.getRoute,
+                initialRoute: Routes.baseLayout,
+                home: const BaseLayout(),
+              ),
             );
           },
         );

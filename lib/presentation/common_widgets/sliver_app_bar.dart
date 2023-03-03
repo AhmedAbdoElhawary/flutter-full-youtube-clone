@@ -27,18 +27,16 @@ class MainSliverAppBar extends StatelessWidget {
             children: [
               const RSizedBox(width: 20),
               const SvgIcon(IconsAssets.youtubeLogo, height: 20),
-
               const Spacer(),
-              GestureDetector(
-                  onTap: () {
-                    Go(context).to(const SearchPage());
-                  },
-                  child:
-                      const SvgIcon(IconsAssets.broadcastIcon, height: 20)),
+              const SvgIcon(IconsAssets.broadcastIcon, height: 20),
               const RSizedBox(width: 20),
               const SvgIcon(IconsAssets.notificationIcon),
               const RSizedBox(width: 20),
-              const Icon(Icons.search_rounded, size: 25),
+              GestureDetector(
+                  onTap: () {
+                    Go<SearchPageParameters>(context).to(Routes.searchPage);
+                  },
+                  child: const Icon(Icons.search_rounded, size: 25)),
               const RSizedBox(width: 20),
               const CircleAvatar(
                   backgroundColor: ColorManager.teal, radius: 13),

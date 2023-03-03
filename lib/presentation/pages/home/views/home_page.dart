@@ -10,7 +10,6 @@ import 'package:youtube/presentation/common_widgets/sliver_app_bar.dart';
 import 'package:youtube/presentation/common_widgets/custom_circle_progress.dart';
 import 'package:youtube/presentation/common_widgets/thumbnail_of_video.dart';
 import 'package:youtube/presentation/cubit/videos/videos_details_cubit.dart';
-import 'package:youtube/presentation/pages/most_popular/most_popular_videos_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -25,7 +24,6 @@ class HomePage extends StatelessWidget {
               double pixels = scrollNotification.metrics.pixels;
               double itemHeight = 200.h;
               (pixels / itemHeight).floor();
-
             }
             return true;
           },
@@ -54,8 +52,7 @@ class _VideosList extends StatefulWidget {
 }
 
 class _VideosListState extends State<_VideosList>
-    with AutomaticKeepAliveClientMixin<_VideosList>  {
-
+    with AutomaticKeepAliveClientMixin<_VideosList> {
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -206,7 +203,7 @@ class _PopularButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Go(context).to(const MostPopularVideosPage());
+        Go(context).to(Routes.mostPopularVideosPage);
       },
       child: Padding(
         padding: REdgeInsets.symmetric(vertical: 12.0),

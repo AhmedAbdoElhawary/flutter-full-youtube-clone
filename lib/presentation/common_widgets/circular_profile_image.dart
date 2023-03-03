@@ -45,8 +45,9 @@ class _CircularProfileImageState extends State<CircularProfileImage> {
       onTap: () {
         if (!widget.enableTapping || widget.channelId.isEmpty) return;
 
-        Go(context).to(
-          UserChannelPage(
+        Go<UserChannelPageParameters>(context).to(
+          Routes.userChannelPage,
+          arg: UserChannelPageParameters(
             channelDetailsItem: widget.channelDetailsItem,
             channelId: widget.channelId,
           ),
