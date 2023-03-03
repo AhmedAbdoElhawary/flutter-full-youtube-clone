@@ -20,11 +20,9 @@ class BaseLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final baseLayoutLogic = Get.find<BaseLayoutLogic>(tag: "1");
+    final miniVideoLogic = Get.find<MiniVideoViewLogic>(tag: "1");
 
-    return GetBuilder<MiniVideoViewLogic>(
-        tag: "1",
-        id: "BaseLayout",
-        builder: (miniVideoLogic) => CustomCupertinoTabScaffold(
+    return Obx(() => CustomCupertinoTabScaffold(
               tabBar: CustomCupertinoTabBar(
                 backgroundColor: baseLayoutLogic.isShortsPageSelected
                     ? Theme.of(context).focusColor
