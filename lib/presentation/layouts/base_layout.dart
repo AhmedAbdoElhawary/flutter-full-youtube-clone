@@ -1,115 +1,74 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:youtube/core/resources/color_manager.dart';
-import 'package:youtube/core/resources/styles_manager.dart';
-import 'package:youtube/presentation/common_widgets/mini_player_video/mini_player_video.dart';
+import 'package:youtube/presentation/custom_packages/custom_tab_scaffold/custom_bottom_tab_bar.dart';
+import 'package:youtube/presentation/custom_packages/custom_tab_scaffold/custom_tab_scaffold.dart';
 import 'package:youtube/presentation/layouts/base_layout_logic.dart';
 import 'package:youtube/presentation/pages/home/logic/home_page_logic.dart';
 import 'package:youtube/presentation/pages/home/views/home_page.dart';
 import 'package:youtube/presentation/pages/library/library_page.dart';
 import 'package:youtube/presentation/pages/shorts/shorts_page.dart';
-import 'package:youtube/presentation/pages/subscriptions/subscriptions_page.dart';
 
-class BaseLayout extends StatefulWidget {
-  const BaseLayout({super.key});
+import '../pages/subscriptions/subscriptions_page.dart';
+import '../common_widgets/mini_player_video/mini_player_video.dart';
 
-  @override
-  BaseLayoutState createState() => BaseLayoutState();
-}
-
-class BaseLayoutState extends State<BaseLayout>
-    with SingleTickerProviderStateMixin {
-  int _selectedIndex = 0;
-  Color iconLabelColor = BaseColorManager.black;
-  final baseLayoutLogic = Get.find<BaseLayoutLogic>(tag: "1");
-  final miniVideoLogic = Get.find<MiniVideoViewLogic>(tag: "1");
-  final PageStorageBucket bucket = PageStorageBucket();
-
-  final List<Widget> _pages = [
-    const HomePage(),
-     const ShortsPage(),
-    const LibraryPage(),
-    const SubscriptionsPage(),
-    const LibraryPage(),
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-
-    miniVideoLogic.navigationTabController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 300), value: 1);
-  }
-
-  void _onItemTapped(int index, BuildContext context) {
-    setState(() {
-      _selectedIndex = index;
-      baseLayoutLogic.changeSelectedPage = index;
-      iconLabelColor = _selectedIndex == 1
-          ? BaseColorManager.white
-          : Theme.of(context).focusColor;
-    });
-  }
+class BaseLayout extends StatelessWidget {
+  const BaseLayout({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBarTheme(
-      data: BottomNavigationBarThemeData(
-        backgroundColor: _selectedIndex == 1
-            ? BaseColorManager.black
-            : Theme.of(context).primaryColor,
-        selectedItemColor: iconLabelColor,
-        unselectedItemColor: iconLabelColor,
-        selectedLabelStyle: getNormalStyle(color: iconLabelColor, fontSize: 11),
-        unselectedLabelStyle:
-            getNormalStyle(color: iconLabelColor, fontSize: 11),
-      ),
-      child: Obx(() => Scaffold(
-            body: Stack(
-              children: [
-                PageStorage(bucket: bucket, child: _pages[_selectedIndex]),
-                miniVideoLogic.selectedVideoDetails == null
-                    ? const SizedBox()
-                    : const MiniPlayerVideo(),
-              ],
-            ),
-            bottomNavigationBar: _bottomSheet(context),
-          )),
-    );
-  }
+    final baseLayoutLogic = Get.find<BaseLayoutLogic>(tag: "1");
 
-  Container _bottomSheet(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border(
-            top: BorderSide(
-                color: _selectedIndex == 1
-                    ? ColorManager(context).grey9
-                    : ColorManager(context).grey1,
-                width: 1.w)),
-      ),
-      child: SizeTransition(
-        sizeFactor: miniVideoLogic.navigationTabController,
-        child: BottomNavigationBar(
-          currentIndex: _selectedIndex,
-          type: BottomNavigationBarType.fixed,
-          enableFeedback: true,
-
-          onTap: (value) => _onItemTapped(value, context),
-          items: [
-            navigationBarItem(Icons.home_outlined, Icons.home, "Home"),
-            navigationBarItem(Icons.home_outlined, Icons.home, "Shorts"),
-            navigationBarItem(Icons.add_circle_outline_outlined,
-                Icons.add_circle_outlined, "Account"),
-            navigationBarItem(Icons.subscriptions_outlined, Icons.subscriptions,
-                "Subscriptions"),
-            navigationBarItem(
-                Icons.video_library_outlined, Icons.video_library, "Library"),
-          ],
-        ),
-      ),
-    );
+    return GetBuilder<MiniVideoViewLogic>(
+        tag: "1",
+        id: "BaseLayout",
+        builder: (miniVideoLogic) => CustomCupertinoTabScaffold(
+              tabBar: CustomCupertinoTabBar(
+                backgroundColor: baseLayoutLogic.isShortsPageSelected
+                    ? Theme.of(context).focusColor
+                    : Theme.of(context).primaryColor,
+                height: miniVideoLogic.heightOfNavigationBar.value.h,
+                border: Border(
+                    top: BorderSide(
+                        color: baseLayoutLogic.isShortsPageSelected
+                            ? ColorManager(context).grey9
+                            : ColorManager(context).grey1,
+                        width: 1.w)),
+                inactiveColor: baseLayoutLogic.isShortsPageSelected
+                    ? ColorManager(context).white
+                    : ColorManager(context).black,
+                activeColor: baseLayoutLogic.isShortsPageSelected
+                    ? ColorManager(context).white
+                    : ColorManager(context).black,
+                items: [
+                  navigationBarItem(Icons.home_outlined, Icons.home, "Home"),
+                  navigationBarItem(Icons.home_outlined, Icons.home, "Shorts"),
+                  navigationBarItem(Icons.add_circle_outline_outlined,
+                      Icons.add_circle_outlined, "Account"),
+                  navigationBarItem(Icons.subscriptions_outlined,
+                      Icons.subscriptions, "Subscriptions"),
+                  navigationBarItem(Icons.video_library_outlined,
+                      Icons.video_library, "Library"),
+                ],
+              ),
+              controller: baseLayoutLogic.tabController,
+              tabBuilder: (context, index) {
+                return Stack(
+                  children: [
+                    WhichPage(index),
+                    Obx(
+                      () {
+                        return miniVideoLogic.selectedVideoDetails == null
+                            ? const SizedBox()
+                            : const MiniPlayerVideo();
+                      },
+                    ),
+                  ],
+                );
+              },
+            ));
   }
 
   BottomNavigationBarItem navigationBarItem(
@@ -118,6 +77,69 @@ class BaseLayoutState extends State<BaseLayout>
     return BottomNavigationBarItem(
         icon: Icon(icon, size: isThatAdd ? 40.r : 25.r),
         activeIcon: Icon(activeIcon, size: isThatAdd ? 40.r : 25.r),
-        label: isThatAdd ? "" : label);
+        label: isThatAdd ? null : label);
+  }
+}
+
+class WhichPage extends StatelessWidget {
+  const WhichPage(this.index, {Key? key}) : super(key: key);
+  final int index;
+  @override
+  Widget build(BuildContext context) {
+    switch (index) {
+      case 0:
+        return const _HomePage();
+      case 1:
+        return const _ShortsPage();
+      case 3:
+        return const _SubscriptionsPage();
+      default:
+        return const _LibraryPage();
+    }
+  }
+}
+
+class _HomePage extends StatelessWidget {
+  const _HomePage();
+
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoTabView(
+      builder: (context) => const CupertinoPageScaffold(child: HomePage()),
+    );
+  }
+}
+
+class _ShortsPage extends StatelessWidget {
+  const _ShortsPage();
+
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoTabView(
+      builder: (context) => const CupertinoPageScaffold(child: ShortsPage()),
+    );
+  }
+}
+
+class _SubscriptionsPage extends StatelessWidget {
+  const _SubscriptionsPage();
+
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoTabView(
+      builder: (context) =>
+          const CupertinoPageScaffold(child: SubscriptionsPage()),
+    );
+  }
+}
+
+class _LibraryPage extends StatelessWidget {
+  const _LibraryPage();
+
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoTabView(
+      builder: (context) => const CupertinoPageScaffold(child: LibraryPage()),
+    );
   }
 }
