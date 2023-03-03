@@ -4,7 +4,7 @@ part of 'search_cubit.dart';
 class SearchState with _$SearchState {
   const factory SearchState.initial() = _Initial;
 
-  const factory SearchState.loading() = Loading;
+  const factory SearchState.searchLoading() = SearchLoading;
 
   const factory SearchState.searchForTheSentenceLoaded(
       VideosDetails videosDetails) = SearchForTheSentenceLoaded;
@@ -15,6 +15,6 @@ class SearchState with _$SearchState {
   const factory SearchState.relatedVideosLoaded(VideosDetails videosDetails) =
       RelatedVideosLoaded;
 
-  const factory SearchState.error(NetworkExceptionModel networkExceptions) =
-      Error;
+  const factory SearchState.searchError(NetworkExceptionModel networkExceptions) =
+  SearchError;
 }
