@@ -57,8 +57,8 @@ class _SearchedResultsPageState extends State<SearchedResultsPage>
                             videosDetails.videoDetailsItem?[index]),
                       ),
                   itemCount: videosDetails.videoDetailsItem?.length),
-              loading: () => const ThineCircularProgress(),
-              error: (e) {
+              searchLoading: () => const ThineCircularProgress(),
+              searchError: (e) {
                 return Center(
                   child: Text(
                       NetworkExceptions.getErrorMessage(e.networkExceptions)));
