@@ -12,7 +12,7 @@ import 'pod_getx_video_controller.dart';
 
 class PodPlayerController {
   late PodGetXVideoController _ctr;
-  late String getTag;
+  String getTag;
   bool _isCtrInitialised = false;
 
   Object? _initializationError;
@@ -24,12 +24,12 @@ class PodPlayerController {
   PodPlayerController({
     required this.playVideoFrom,
     this.podPlayerConfig = const PodPlayerConfig(),
+    required this.getTag,
   }) {
     _init();
   }
 
   void _init() {
-    getTag = UniqueKey().toString();
     Get.config(enableLog: CustomPodVideoPlayer.enableGetxLogs);
     _ctr = Get.put(PodGetXVideoController(), permanent: true, tag: getTag)
       ..config(
