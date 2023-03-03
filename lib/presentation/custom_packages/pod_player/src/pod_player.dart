@@ -138,7 +138,7 @@ class _CustomPodVideoPlayerState extends State<CustomPodVideoPlayer>
 
   @override
   Widget build(BuildContext context) {
-    Get.put(PodGetXVideoController(), tag: "UniqueKey().toString()");
+    Get.put(PodGetXVideoController(), tag: widget.controller.getTag);
     final circularProgressIndicator = _thumbnailAndLoadingWidget();
     podCtr.mainContext = context;
 
