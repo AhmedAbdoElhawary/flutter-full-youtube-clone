@@ -2,17 +2,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:youtube/presentation/layouts/base_layout.dart';
 import 'package:youtube/presentation/pages/channel_profile/user_channel_page.dart';
-import 'package:youtube/presentation/pages/most_popular/most_popular_videos_page.dart';
+import 'package:youtube/presentation/pages/home/views/home_page.dart';
+import 'package:youtube/presentation/pages/library/library_page.dart';
 import 'package:youtube/presentation/pages/search/search_page.dart';
 import 'package:youtube/presentation/pages/search/searched_results_page.dart';
 import 'package:youtube/presentation/pages/shorts/shorts_page.dart';
+import 'package:youtube/presentation/pages/subscriptions/subscriptions_page.dart';
 
 class Go<T> {
   final BuildContext context;
   Go(this.context);
 
   to(String routeName, {bool appearNavigationBar = true, T? arg}) {
-    return Navigator.of(context, rootNavigator: appearNavigationBar)
+    return Navigator.of(context, rootNavigator: !appearNavigationBar)
         .pushNamed(routeName, arguments: arg);
   }
 
@@ -30,6 +32,10 @@ class Go<T> {
 class Routes {
   /// [baseLayout] no parameters
   static const String baseLayout = "/";
+
+  static const String homePage = "/homePage";
+  static const String libraryPage = "/libraryPage";
+  static const String subscriptionsPage = "/subscriptionsPage";
 
   /// [mostPopularVideosPage] no parameters
   static const String mostPopularVideosPage = "/mostPopularVideosPage";
@@ -56,8 +62,13 @@ class RouteGenerator {
     switch (routeSettings.name) {
       case Routes.baseLayout:
         return _material(const BaseLayout());
+      case Routes.homePage:
+        return _material(const HomePage());
       case Routes.mostPopularVideosPage:
-        return _material(const MostPopularVideosPage());
+      case Routes.libraryPage:
+        return _material(const LibraryPage());
+      case Routes.subscriptionsPage:
+        return _material(const SubscriptionsPage());
       case Routes.userChannelPage:
         return _material(UserChannelPage(arg as UserChannelPageParameters));
       case Routes.searchPage:
