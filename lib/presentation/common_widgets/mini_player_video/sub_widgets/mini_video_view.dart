@@ -31,7 +31,9 @@ class _MiniVideoView extends StatelessWidget {
                   child: const Icon(Icons.close),
                   onTap: () {
                     final miniVideoViewLogic =
-                    Get.find<MiniVideoViewLogic>(tag: "1");
+                        Get.find<MiniVideoViewLogic>(tag: "1");
+                    miniVideoViewLogic.videoController?.dispose();
+
                     miniVideoViewLogic.selectedVideoDetails = null;
                   },
                 ),
@@ -44,9 +46,7 @@ class _MiniVideoView extends StatelessWidget {
         // const LinearProgressIndicator(
         //   value: 0.4,
         //   minHeight: 2,
-        //   valueColor: AlwaysStoppedAnimation<Color>(
-        //     Colors.red,
-        //   ),
+        //   valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
         // ),
       ],
     );
@@ -69,31 +69,35 @@ class _VideoOfMiniDisplayState extends State<_VideoOfMiniDisplay> {
   void initState() {
     super.initState();
     videoId = logic.selectedVideoDetails?.id ?? "";
-    logic.videoController = PodPlayerController(
-      playVideoFrom: MiniVideoViewLogic.getPlayVideoFrom(videoId),
-    )..initialise();
-  }
 
-  @override
-  void dispose() {
-    super.dispose();
-    logic. videoController?.dispose();
+    String url = 'https://youtu.be/$videoId';
+
+    print("====================================> 11111");
+
+    if ((logic.videoController?.isInitialised ?? false) &&
+        logic.videoController?.videoUrl == url) return;
+    print("====================================> 22222222");
+
+    logic.videoController = PodPlayerController(
+      playVideoFrom: logic.getPlayVideoFrom(videoId),
+      getTag: "mini",
+    )..initialise();
   }
 
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     return Obx(
-          () => Container(
+      () => Container(
         height: logic.videoOfMiniDisplayHeight(),
         width: logic.videoOfMiniDisplayWidth(screenWidth),
         color: ColorManager(context).grey1,
         child: videoId.isEmpty
             ? null
             : CustomPodVideoPlayer(
-          controller: logic.videoController!,
-          displayOverlay: widget.percentage == 1,
-        ),
+                controller: logic.videoController!,
+                displayOverlay: widget.percentage == 1,
+              ),
       ),
     );
   }
@@ -109,7 +113,7 @@ class VideoTitleSubTitleTexts extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Obx(
-              () {
+          () {
             final logic = Get.find<MiniVideoViewLogic>(tag: "1");
             VideoDetailsItem? videoDetails = logic.selectedVideoDetails;
 

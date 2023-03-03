@@ -22,20 +22,30 @@ class ThumbnailOfVideo extends StatelessWidget {
   final bool enablePlaying;
   @override
   Widget build(BuildContext context) {
-    final miniVideoViewLogic = Get.find<MiniVideoViewLogic>(tag: "1");
     return InkWell(
       onTap: () {
-        miniVideoViewLogic.selectedVideoDetails = videoDetailsItem;
-        miniVideoViewLogic.miniPlayerController.dispose();
-        miniVideoViewLogic.miniPlayerController = MiniPlayerController();
-        String playVideoFrom =
-            miniVideoViewLogic.selectedVideoDetails?.id ?? "";
-        if (playVideoFrom.isNotEmpty &&
-            miniVideoViewLogic.videoController!=null) {
-          miniVideoViewLogic.videoController!.changeVideo(
-            playVideoFrom: MiniVideoViewLogic.getPlayVideoFrom(playVideoFrom),
+        final logic = Get.find<MiniVideoViewLogic>(tag: "1");
+
+        logic.selectedVideoDetails = videoDetailsItem;
+        logic.miniPlayerController.dispose();
+        logic.miniPlayerController = MiniPlayerController();
+        String videoId = logic.selectedVideoDetails?.id ?? "";
+
+        String url = 'https://youtu.be/$videoId';
+
+        print("====================================> 333333333");
+
+        if ((logic.videoController?.isInitialised ?? false) &&
+            logic.videoController?.videoUrl == url) return;
+        print("====================================> 4444444444");
+
+        if (videoId.isNotEmpty && logic.videoController != null) {
+          logic.videoController?.changeVideo(
+            playVideoFrom: logic.getPlayVideoFrom(videoId),
           );
+          print("====================================> 55555555555555");
         }
+        print("====================================> 6666666666");
       },
       child: Column(
         children: [

@@ -1,11 +1,11 @@
 import 'package:get/get.dart';
 import 'package:youtube/presentation/custom_packages/custom_tab_scaffold/custom_tab_scaffold.dart';
+import 'package:youtube/presentation/pages/home/logic/home_page_logic.dart';
 import 'package:youtube/presentation/pages/shorts/logic/shorts_page_logic.dart';
 
 class BaseLayoutLogic extends GetxController {
   final tabController = CustomCupertinoTabController();
   final RxBool _isShortsPageSelected = false.obs;
-  final _shortsLogic = Get.find<ShortsLogic>(tag: "1");
   final RxBool _isShortsInitialize = false.obs;
   @override
   void onInit() {
@@ -19,14 +19,19 @@ class BaseLayoutLogic extends GetxController {
         int selectedPage = tabController.index;
         if (selectedPage == 1) {
           _isShortsPageSelected.value = true;
-          if (getShortsInitialize){
-            _shortsLogic.stopVideo = false;
+          final logic = Get.find<MiniVideoViewLogic>(tag: "1").videoController;
+          if (logic != null) logic.pause();
+
+          if (getShortsInitialize) {
+            final shortsLogic = Get.find<ShortsLogic>(tag: "1");
+            shortsLogic.stopVideo = false;
           }
         } else if (isShortsPageSelected) {
-
           _isShortsPageSelected.value = false;
-          if (getShortsInitialize){
-            _shortsLogic.stopVideo = true;
+          if (getShortsInitialize) {
+            final shortsLogic = Get.find<ShortsLogic>(tag: "1");
+
+            shortsLogic.stopVideo = true;
           }
         }
       },
@@ -37,5 +42,7 @@ class BaseLayoutLogic extends GetxController {
 
   set isShortsInitialize(bool value) => _isShortsInitialize.value = value;
 
-  bool get isShortsPageSelected => _isShortsPageSelected.value;
+  bool get isShortsPageSelected {
+    return _isShortsPageSelected.value;
+  }
 }

@@ -43,7 +43,7 @@ class SearchPage extends StatelessWidget {
                 itemBuilder: (context, index) =>
                     _ItemBuilderWidget(suggestionTexts.suggestions[index]),
                 itemCount: suggestionTexts.suggestions.length);
-          }, error: (error) {
+          }, searchError: (error) {
             return const SizedBox();
           }, orElse: () {
             return const SizedBox();

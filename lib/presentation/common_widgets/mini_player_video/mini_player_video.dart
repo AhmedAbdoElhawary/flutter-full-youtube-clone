@@ -26,6 +26,7 @@ import 'package:youtube/presentation/cubit/single_video/single_video_cubit.dart'
 import 'package:youtube/presentation/custom_packages/custom_mini_player/custom_mini_player.dart';
 import 'package:youtube/presentation/custom_packages/pod_player/src/controllers/pod_player_controller.dart';
 import 'package:youtube/presentation/custom_packages/pod_player/src/pod_player.dart';
+import 'package:youtube/presentation/layouts/base_layout_logic.dart';
 import 'package:youtube/presentation/pages/channel_profile/user_channel_page.dart';
 import 'package:youtube/presentation/pages/home/logic/home_page_logic.dart';
 import 'package:youtube/presentation/common_widgets/subscribe_button.dart';
@@ -52,6 +53,8 @@ class MiniPlayerVideo extends StatefulWidget {
 class _MiniPlayerVideoState extends State<MiniPlayerVideo> {
   final double minHeight = 50.h;
   final _miniVideoViewLogic = Get.find<MiniVideoViewLogic>(tag: "1");
+  final baseLayoutLogic = Get.find<BaseLayoutLogic>(tag: "1");
+
   @override
   Widget build(BuildContext context) {
     MediaQueryData mediaQuery = MediaQuery.of(context);
@@ -59,10 +62,12 @@ class _MiniPlayerVideoState extends State<MiniPlayerVideo> {
     return SafeArea(
       child: CustomMiniPlayer(
         controller: _miniVideoViewLogic.miniPlayerController,
-        minHeight: minHeight,
+        minHeight: baseLayoutLogic.isShortsPageSelected ? 0 : minHeight,
         maxHeight: height,
         onDismissed: () {
+          // Get.put(PodGetXVideoController(), permanent: true,tag: "mini");
           _miniVideoViewLogic.selectedVideoDetails = null;
+          _miniVideoViewLogic.videoController?.dispose();
         },
         builder: (height, percentage) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -107,7 +112,9 @@ class _MiniVideoDisplay extends StatelessWidget {
                 )
               ],
             ),
-            _MiniVideoView(height: height, percentage: percentage),
+            SingleChildScrollView(
+                physics: const NeverScrollableScrollPhysics(),
+                child: _MiniVideoView(height: height, percentage: percentage)),
           ],
         ),
       ),
@@ -125,28 +132,31 @@ class NextVideosSuggestions extends StatelessWidget {
       String videoId = logic.selectedVideoDetails?.id ?? "";
       return BlocBuilder<SearchCubit, SearchState>(
         bloc: SearchCubit.get(context)..relatedVideosToThisVideo(videoId),
+        buildWhen: (previous, current) =>
+            previous != current && current is RelatedVideosLoaded,
         builder: (context, state) {
-          return state.maybeWhen(
-              relatedVideosLoaded: (videosDetails) => ListView.separated(
-                  itemBuilder: (context, index) {
-                    if (index == 0) {
-                      return const _VideoInfo();
-                    } else {
-                      return ThumbnailOfVideo(
-                          videosDetails.videoDetailsItem![index - 1],
-                          enablePlaying: false);
-                    }
-                  },
-                  separatorBuilder: (context, index) =>
-                      const RSizedBox(height: 20),
-                  itemCount: (videosDetails.videoDetailsItem?.length ?? 0) + 1),
-              loading: () => const ThineCircularProgress(),
-              error: (e) {
-                ToastShow.reformatToast(context, e.error);
+          if (state is RelatedVideosLoaded) {
+            return ListView.separated(
+                itemBuilder: (context, index) {
+                  if (index == 0) {
+                    return const _VideoInfo();
+                  } else {
+                    return ThumbnailOfVideo(
+                        state.videosDetails.videoDetailsItem![index - 1],
+                        enablePlaying: false);
+                  }
+                },
+                separatorBuilder: (context, index) =>
+                    const RSizedBox(height: 20),
+                itemCount:
+                    (state.videosDetails.videoDetailsItem?.length ?? 0) + 1);
+          } else if (state is SearchError) {
+            ToastShow.reformatToast(context, state.networkExceptions.error);
 
-                return const SizedBox();
-              },
-              orElse: () => const SizedBox());
+            return const SizedBox();
+          } else {
+            return const ThineCircularProgress();
+          }
         },
       );
     });

@@ -28,7 +28,7 @@ class MiniVideoViewLogic extends GetxController {
     return height;
   }
 
-  static PlayVideoFrom getPlayVideoFrom(String videoId) =>
+   PlayVideoFrom getPlayVideoFrom(String videoId) =>
       PlayVideoFrom.youtube('https://youtu.be/$videoId');
 
   String get selectedVideoRating => _selectedVideoRating.value;
