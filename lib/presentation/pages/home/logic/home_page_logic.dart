@@ -42,7 +42,6 @@ class MiniVideoViewLogic extends GetxController {
     _percentageOFMiniPage.value = value;
 
     heightOfNavigationBar.value = (1 - value) * 44;
-    update(["BaseLayout"]);
   }
 
   set heightOFMiniPage(double value) => _heightOFMiniPage.value = value;
