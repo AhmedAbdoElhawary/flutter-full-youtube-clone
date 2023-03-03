@@ -19,16 +19,21 @@ class BaseLayoutLogic extends GetxController {
         int selectedPage = tabController.index;
         if (selectedPage == 1) {
           _isShortsPageSelected.value = true;
-          if (isShortsInitialize) _shortsLogic.stopVideo = false;
+          if (getShortsInitialize){
+            _shortsLogic.stopVideo = false;
+          }
         } else if (isShortsPageSelected) {
+
           _isShortsPageSelected.value = false;
-          if (isShortsInitialize) _shortsLogic.stopVideo = true;
+          if (getShortsInitialize){
+            _shortsLogic.stopVideo = true;
+          }
         }
       },
     );
   }
 
-  bool get isShortsInitialize => _isShortsInitialize.value;
+  bool get getShortsInitialize => _isShortsInitialize.value;
 
   set isShortsInitialize(bool value) => _isShortsInitialize.value = value;
 
