@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:youtube/config/routes/route_app.dart';
-import 'package:youtube/core/functions/network_exceptions.dart';
+import 'package:youtube/core/functions/handling_errors/network_exceptions.dart';
 import 'package:youtube/core/functions/toast_show.dart';
 import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/data/models/channel_details/my_subscriptions/my_subscription_item_extension.dart';

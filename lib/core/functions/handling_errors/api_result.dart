@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:youtube/core/functions/network_exception_model.dart';
+import 'package:youtube/core/functions/handling_errors/network_exception_model.dart';
 
 part 'api_result.freezed.dart';
 

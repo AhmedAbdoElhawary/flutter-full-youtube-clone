@@ -1,5 +1,5 @@
-import 'package:youtube/core/functions/api_result.dart';
-import 'package:youtube/core/functions/network_exceptions.dart';
+import 'package:youtube/core/functions/handling_errors/api_result.dart';
+import 'package:youtube/core/functions/handling_errors/network_exceptions.dart';
 import 'package:youtube/data/data_sources/local/channnel/interfaces/cache_channel_videos_apis.dart';
 
 import 'package:youtube/data/data_sources/remote/api/channel/channel_videos/channel_videos_apis.dart';
@@ -48,8 +48,8 @@ class ChannelVideosDetailsRepoImpl implements ChannelVideosDetailsRepository {
       {required String channelId}) async {
     try {
       /// get from caching if it exist.
-      VideosDetails? cachedVideos =
-      await _cacheChannelVideosAPIs.getAllChannelVideos(channelId: channelId);
+      VideosDetails? cachedVideos = await _cacheChannelVideosAPIs
+          .getAllChannelVideos(channelId: channelId);
       if (cachedVideos != null) return ApiResult.success(cachedVideos);
 
       SearchedVideosDetails videosIds =
@@ -98,7 +98,6 @@ class ChannelVideosDetailsRepoImpl implements ChannelVideosDetailsRepository {
   Future<ApiResult<VideosDetails>> getAllPopularChannelVideos(
       {required String channelId}) async {
     try {
-
       /// get from caching if it exist.
       VideosDetails? cachedVideos = await _cacheChannelVideosAPIs
           .getAllPopularChannelVideos(channelId: channelId);
@@ -127,7 +126,7 @@ class ChannelVideosDetailsRepoImpl implements ChannelVideosDetailsRepository {
     try {
       /// get from caching if it exist.
       List<VideosDetails>? cachedVideos =
-      await _cacheChannelVideosAPIs.getVideosOfThoseChannels();
+          await _cacheChannelVideosAPIs.getVideosOfThoseChannels();
       if (cachedVideos != null) return ApiResult.success(cachedVideos);
 
       List<MySubscriptionsItem?>? item = mySubscriptionsDetails.items;
@@ -156,34 +155,34 @@ class ChannelVideosDetailsRepoImpl implements ChannelVideosDetailsRepository {
 
   @override
   Future<void> clearAllChannelShortVideos(
-      {required String channelId, required bool clearAll}) async{
+      {required String channelId, required bool clearAll}) async {
     await _cacheChannelVideosAPIs.clearAllChannelShortVideos(
         channelId: channelId, clearAll: clearAll);
   }
 
   @override
   Future<void> clearAllChannelVideos(
-      {required String channelId, required bool clearAll}) async{
+      {required String channelId, required bool clearAll}) async {
     await _cacheChannelVideosAPIs.clearAllChannelVideos(
         channelId: channelId, clearAll: clearAll);
   }
 
   @override
   Future<void> clearAllPopularChannelShortVideos(
-      {required String channelId, required bool clearAll}) async{
+      {required String channelId, required bool clearAll}) async {
     await _cacheChannelVideosAPIs.clearAllPopularChannelShortVideos(
         channelId: channelId, clearAll: clearAll);
   }
 
   @override
   Future<void> clearAllPopularChannelVideos(
-      {required String channelId, required bool clearAll})async {
+      {required String channelId, required bool clearAll}) async {
     await _cacheChannelVideosAPIs.clearAllPopularChannelVideos(
         channelId: channelId, clearAll: clearAll);
   }
 
   @override
-  Future<void> clearVideosOfThoseChannels() async{
-   await _cacheChannelVideosAPIs.clearVideosOfThoseChannels();
+  Future<void> clearVideosOfThoseChannels() async {
+    await _cacheChannelVideosAPIs.clearVideosOfThoseChannels();
   }
 }

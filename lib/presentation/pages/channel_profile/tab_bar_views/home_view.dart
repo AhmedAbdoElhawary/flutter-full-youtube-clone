@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:youtube/core/functions/network_exceptions.dart';
+import 'package:youtube/core/functions/handling_errors/network_exceptions.dart';
 import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/core/resources/styles_manager.dart';
 import 'package:youtube/data/models/channel_details/channel_details.dart';
@@ -18,7 +18,7 @@ class TabBarHomeView extends StatefulWidget {
   State<TabBarHomeView> createState() => _TabBarHomeViewState();
 }
 
-class _TabBarHomeViewState extends State<TabBarHomeView>{
+class _TabBarHomeViewState extends State<TabBarHomeView> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ChannelVideosCubit, ChannelVideosState>(
@@ -28,13 +28,13 @@ class _TabBarHomeViewState extends State<TabBarHomeView>{
         if (state is ChannelVideosLoaded) {
           return ListView.builder(
               itemBuilder: (context, index) => Padding(
-                padding: REdgeInsetsDirectional.only(start: 15, top: 15),
-                child: index == 0
-                    ? const _PopularVideosText()
-                    : VideoHorizontalDescriptionsList(
-                    state.videoDetails.videoDetailsItem![index]),
-              ),
-              itemCount:state. videoDetails.videoDetailsItem?.length ?? 0);
+                    padding: REdgeInsetsDirectional.only(start: 15, top: 15),
+                    child: index == 0
+                        ? const _PopularVideosText()
+                        : VideoHorizontalDescriptionsList(
+                            state.videoDetails.videoDetailsItem![index]),
+                  ),
+              itemCount: state.videoDetails.videoDetailsItem?.length ?? 0);
         } else if (state is Error) {
           return Center(
             child: Text(
@@ -49,7 +49,6 @@ class _TabBarHomeViewState extends State<TabBarHomeView>{
       },
     );
   }
-
 }
 
 class _PopularVideosText extends StatelessWidget {

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:youtube/core/functions/api_result.dart';
-import 'package:youtube/core/functions/network_exception_model.dart';
+import 'package:youtube/core/functions/handling_errors/api_result.dart';
+import 'package:youtube/core/functions/handling_errors/network_exception_model.dart';
 
-import 'package:youtube/data/models/channel_details/playlists/playlist_videos/playlist_videos.dart';
 import 'package:youtube/data/models/channel_details/playlists/playlists.dart';
+import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/domain/entities/parameters/channel_details_use_case_parameters.dart';
 import 'package:youtube/domain/use_cases/channel/playlist/channel_playlist_items_use_case.dart';
 import 'package:youtube/domain/use_cases/channel/playlist/channel_playlists_use_case.dart';
@@ -25,7 +25,7 @@ class PlayListCubit extends Cubit<PlayListState> {
   Future<void> getPlayListItems({required String playlistId}) async {
     emit(const PlayListState.playlistLoading());
 
-    ApiResult<PlayListVideos> playListItemsDetails =
+    ApiResult<List<VideosDetails>> playListItemsDetails =
         await _channelPlayListItemUseCase.call(
             params:
                 ChannelPlayListItemUseCaseParameter(playlistId: playlistId));
@@ -47,5 +47,4 @@ class PlayListCubit extends Cubit<PlayListState> {
             emit(PlayListState.channelPlayListLoaded(playLists)),
         failure: (exception) => emit(PlayListState.playlistError(exception)));
   }
-
 }

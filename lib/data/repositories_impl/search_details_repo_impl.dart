@@ -1,5 +1,5 @@
-import 'package:youtube/core/functions/api_result.dart';
-import 'package:youtube/core/functions/network_exceptions.dart';
+import 'package:youtube/core/functions/handling_errors/api_result.dart';
+import 'package:youtube/core/functions/handling_errors/network_exceptions.dart';
 import 'package:youtube/data/data_sources/remote/api/search/auto_complete_search/auto_complete_text_apis.dart';
 
 import 'package:youtube/data/data_sources/remote/api/search/search_apis.dart';
@@ -8,7 +8,6 @@ import 'package:youtube/data/models/searched_video_details/searched_video_detail
 import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/domain/repositories/search_details_repository.dart';
 import 'package:youtube/domain/repositories/videos_details_repository.dart';
-
 
 class SearchDetailsRepoImpl implements SearchDetailsRepository {
   final SearchAPIs _searchAPIs;
@@ -50,7 +49,8 @@ class SearchDetailsRepoImpl implements SearchDetailsRepository {
   Future<ApiResult<VideosDetails>> searchForThisSentence(
       {required String sentence}) async {
     try {
-      SearchedVideosDetails videos = await _searchAPIs.getIdsForThisSentence(sentence: sentence);
+      SearchedVideosDetails videos =
+          await _searchAPIs.getIdsForThisSentence(sentence: sentence);
 
       VideosDetails videosWithSubChannelDetails = await _videosDetailsRepository
           .getCompleteVideosDetailsOfThoseIds(videos);

@@ -1,5 +1,5 @@
-import 'package:youtube/core/functions/api_result.dart';
-import 'package:youtube/core/functions/network_exceptions.dart';
+import 'package:youtube/core/functions/handling_errors/api_result.dart';
+import 'package:youtube/core/functions/handling_errors/network_exceptions.dart';
 
 import 'package:youtube/data/data_sources/remote/api/single_video/commet/comment_apis.dart';
 import 'package:youtube/data/models/comment_details/comment_details.dart';

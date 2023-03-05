@@ -1,5 +1,5 @@
-import 'package:youtube/core/functions/api_result.dart';
-import 'package:youtube/core/functions/network_exceptions.dart';
+import 'package:youtube/core/functions/handling_errors/api_result.dart';
+import 'package:youtube/core/functions/handling_errors/network_exceptions.dart';
 import 'package:youtube/data/data_sources/local/videos/interfaces/cache_videos_apis.dart';
 
 import 'package:youtube/data/data_sources/remote/api/videos/videos_apis.dart';
@@ -18,7 +18,7 @@ class VideosDetailsRepoImpl implements VideosDetailsRepository {
   @override
   Future<ApiResult<VideosDetails>> getAllVideos() async {
     try {
-      VideosDetails? cachedAllVideos =  await _cacheVideosAPIs.getAllVideos();
+      VideosDetails? cachedAllVideos = await _cacheVideosAPIs.getAllVideos();
       if (cachedAllVideos != null) return ApiResult.success(cachedAllVideos);
 
       SearchedVideosDetails videos = await _videosAPIs.getAllVideosIds();
@@ -26,7 +26,8 @@ class VideosDetailsRepoImpl implements VideosDetailsRepository {
       VideosDetails completeVideosDetails =
           await getCompleteVideosDetailsOfThoseIds(videos);
 
-      await _cacheVideosAPIs.saveAllVideos(videosDetails: completeVideosDetails);
+      await _cacheVideosAPIs.saveAllVideos(
+          videosDetails: completeVideosDetails);
 
       return ApiResult.success(completeVideosDetails);
     } catch (e) {
@@ -37,7 +38,7 @@ class VideosDetailsRepoImpl implements VideosDetailsRepository {
   @override
   Future<ApiResult<VideosDetails>> getAllShortVideos() async {
     try {
-      VideosDetails? cachedVideos =  await _cacheVideosAPIs.getAllShortVideos();
+      VideosDetails? cachedVideos = await _cacheVideosAPIs.getAllShortVideos();
       if (cachedVideos != null) return ApiResult.success(cachedVideos);
 
       SearchedVideosDetails videos = await _videosAPIs.getAllShortVideosIds();
@@ -45,7 +46,8 @@ class VideosDetailsRepoImpl implements VideosDetailsRepository {
       VideosDetails completeVideosDetails =
           await getCompleteVideosDetailsOfThoseIds(videos);
 
-      await _cacheVideosAPIs.saveAllShortVideos(videosDetails: completeVideosDetails);
+      await _cacheVideosAPIs.saveAllShortVideos(
+          videosDetails: completeVideosDetails);
 
       return ApiResult.success(completeVideosDetails);
     } catch (e) {
@@ -58,7 +60,7 @@ class VideosDetailsRepoImpl implements VideosDetailsRepository {
       String videoCategoryId) async {
     try {
       VideosDetails? cachedVideos =
-       await _cacheVideosAPIs.getAllPopularVideos(videoCategoryId);
+          await _cacheVideosAPIs.getAllPopularVideos(videoCategoryId);
       if (cachedVideos != null) return ApiResult.success(cachedVideos);
 
       VideosDetails videos = await _videosAPIs.getMostPopularVideos(
@@ -67,7 +69,7 @@ class VideosDetailsRepoImpl implements VideosDetailsRepository {
       VideosDetails completeVideosDetails = await _channelDetailsRepository
           .getSubChannelsDetails(videosDetails: videos);
 
-       await _cacheVideosAPIs.saveAllPopularVideos(
+      await _cacheVideosAPIs.saveAllPopularVideos(
           videoCategoryId: videoCategoryId,
           videosDetails: completeVideosDetails);
 

@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:youtube/config/routes/route_app.dart';
-import 'package:youtube/core/functions/network_exceptions.dart';
+import 'package:youtube/core/functions/handling_errors/network_exceptions.dart';
 import 'package:youtube/core/functions/toast_show.dart';
 import 'package:youtube/core/resources/assets_manager.dart';
 import 'package:youtube/core/resources/color_manager.dart';
