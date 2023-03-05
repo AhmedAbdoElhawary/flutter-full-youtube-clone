@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:youtube/core/resources/assets_manager.dart';
+import 'package:youtube/presentation/common_widgets/rounded_button.dart';
+import 'package:youtube/presentation/common_widgets/svg_icon.dart';
 import 'package:youtube/presentation/cubit/channel/channel_details_cubit.dart';
 
 import '../../core/resources/color_manager.dart';
@@ -23,33 +26,49 @@ class _SubscribeButtonState extends State<SubscribeButton> {
     return BlocBuilder<ChannelDetailsCubit, ChannelDetailsState>(
       // bloc: ChannelDetailsCubit.get(context)..subscribeToChannel(widget.channelId),
       builder: (context, state) {
-        return GestureDetector(
-          onTap: () async {
-            setState(() => isClicked = !isClicked);
-          },
-          child: isClicked
-              ? Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "SUBSCRIBED",
-                    style: getMediumStyle(
-                        color: ColorManager(context).black, fontSize: 15),
-                  ),
-                  const RSizedBox(width: 10),
-                  Icon(
-                    Icons.notifications_active_rounded,
-                    color: ColorManager(context).black54,
-                  )
-                ],
-              )
-              : Text(
-                  "SUBSCRIBE",
-                  style: getMediumStyle(color: ColorManager.red, fontSize: 15),
-                ),
-        );
+        return RoundedButton(
+            backgroundColor: isClicked
+                ? ColorManager(context).grey1
+                : ColorManager(context).black,
+            child: Padding(
+              padding: const EdgeInsets.all(1.0),
+              child: isClicked
+                  ? const _SubscribedWidgets()
+                  : Text(
+                      "Subscribe",
+                      style: getMediumStyle(
+                          color: ColorManager(context).white, fontSize: 15),
+                    ),
+            ),
+            onTap: () {
+              setState(() => isClicked = !isClicked);
+            });
       },
+    );
+  }
+}
+
+class _SubscribedWidgets extends StatelessWidget {
+  const _SubscribedWidgets();
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const SvgIcon(
+          IconsAssets.notificationIcon,
+          height: 20,
+        ),
+        const RSizedBox(width: 5),
+        Text(
+          "Subscribed",
+          style:
+              getMediumStyle(color: ColorManager(context).black, fontSize: 15),
+        ),
+        const RSizedBox(width: 5),
+        const SvgIcon(IconsAssets.downArrowIcon, height: 20)
+      ],
     );
   }
 }
