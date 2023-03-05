@@ -34,10 +34,8 @@ class _NetworkDisplayState extends State<ThumbnailImage> {
 
   @override
   Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(5)),
-      ),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(10.r),
       child: Stack(
         alignment: AlignmentDirectional.bottomEnd,
         children: [
