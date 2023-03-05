@@ -72,11 +72,8 @@ class _VideoOfMiniDisplayState extends State<_VideoOfMiniDisplay> {
 
     String url = 'https://youtu.be/$videoId';
 
-    print("====================================> 11111");
-
     if ((logic.videoController?.isInitialised ?? false) &&
         logic.videoController?.videoUrl == url) return;
-    print("====================================> 22222222");
 
     logic.videoController = PodPlayerController(
       playVideoFrom: logic.getPlayVideoFrom(videoId),
