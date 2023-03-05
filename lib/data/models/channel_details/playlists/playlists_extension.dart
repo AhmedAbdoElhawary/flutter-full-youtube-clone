@@ -8,6 +8,7 @@ extension PlaylistsExtension on PlayListsItem {
       DateReformat.fullDigitFormat(snippet?.publishedAt);
   String getPlaylistDescription() => snippet?.description ?? "";
   MaxThumbnails? getPlaylistThumbnails() => snippet?.thumbnails;
+  String? getPlaylistCoverImageUrl() => getPlaylistThumbnails()?.high?.url;
 
   String getChannelName() => snippet?.channelTitle ?? "";
   int getPlaylistCount() => contentDetails?.itemCount ?? 0;
