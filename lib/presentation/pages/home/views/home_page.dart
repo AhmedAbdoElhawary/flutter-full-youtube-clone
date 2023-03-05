@@ -10,6 +10,7 @@ import 'package:youtube/presentation/common_widgets/sliver_app_bar.dart';
 import 'package:youtube/presentation/common_widgets/custom_circle_progress.dart';
 import 'package:youtube/presentation/common_widgets/thumbnail_of_video.dart';
 import 'package:youtube/presentation/cubit/videos/videos_details_cubit.dart';
+import 'package:youtube/presentation/pages/most_popular/most_popular_videos_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -203,7 +204,7 @@ class _PopularButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Go(context).to(Routes.mostPopularVideosPage);
+        Go(context).to(const MostPopularVideosPage());
       },
       child: Padding(
         padding: REdgeInsets.symmetric(vertical: 12.0),

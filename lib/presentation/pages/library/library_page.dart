@@ -166,7 +166,8 @@ class _ItemBuilderWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: const [
-              ThumbnailImage(null, height: 70, width: 140),
+              ThumbnailImage(null,
+                  height: 70, width: 140, childAboveImage: SizedBox()),
               RSizedBox(height: 8),
               _VideoNameWithIconOptions(),
               RSizedBox(height: 5),
