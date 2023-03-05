@@ -10,12 +10,14 @@ class ThumbnailImage extends StatefulWidget {
       {this.width = double.infinity,
       this.height = 185,
       required this.childAboveImage,
+        this.borderRadius=10,
       Key? key})
       : super(key: key);
   final MaxThumbnails? thumbnailsVideo;
   final double height;
   final double width;
   final Widget childAboveImage;
+  final double borderRadius;
   @override
   State<ThumbnailImage> createState() => _NetworkDisplayState();
 }
@@ -35,7 +37,7 @@ class _NetworkDisplayState extends State<ThumbnailImage> {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(10.r),
+      borderRadius: BorderRadius.circular(widget.borderRadius.r),
       child: Stack(
         alignment: AlignmentDirectional.bottomEnd,
         children: [

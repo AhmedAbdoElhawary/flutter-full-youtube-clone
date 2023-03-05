@@ -54,7 +54,7 @@ class _NewestVideos extends StatelessWidget {
           return SliverFillRemaining(
               child: ErrorMessageWidget(state.networkExceptions));
         } else {
-          return const SliverHorizontalVideosShimmerLoading(isThatForPlaylist: true);
+          return const SliverHorizontalVideosShimmerLoading(forTwoTexts: true);
         }
       },
     );
@@ -153,7 +153,7 @@ class _SortPlaylistsState extends State<_SortPlaylists> {
 
 class PlaylistHorizontalDescriptionsList extends StatelessWidget {
   const PlaylistHorizontalDescriptionsList(this.playListsItem, {super.key});
-  final PlayListsItem? playListsItem;
+  final PlayListItem? playListsItem;
   @override
   Widget build(BuildContext context) {
     String? playlistTitle = playListsItem?.getPlaylistTitle();
@@ -211,7 +211,7 @@ class PlaylistHorizontalDescriptionsList extends StatelessWidget {
 class _PlaylistCountBanner extends StatelessWidget {
   const _PlaylistCountBanner({required this.playListsItem});
 
-  final PlayListsItem? playListsItem;
+  final PlayListItem? playListsItem;
 
   @override
   Widget build(BuildContext context) {
