@@ -9,6 +9,7 @@ import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/domain/entities/parameters/channel_details_use_case_parameters.dart';
 import 'package:youtube/domain/use_cases/channel/playlist/channel_playlist_items_use_case.dart';
 import 'package:youtube/domain/use_cases/channel/playlist/channel_playlists_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/playlist/my_playlists_use_case.dart';
 
 part 'play_list_state.dart';
 part 'play_list_cubit.freezed.dart';
@@ -16,8 +17,10 @@ part 'play_list_cubit.freezed.dart';
 class PlayListCubit extends Cubit<PlayListState> {
   final ChannelPlayListItemsUseCase _channelPlayListItemUseCase;
   final ChannelPlayListUseCase _channelPlayListUseCase;
+  final MyPlaylistsUseCase _myPlaylistsUseCase;
 
-  PlayListCubit(this._channelPlayListItemUseCase, this._channelPlayListUseCase)
+  PlayListCubit(this._channelPlayListItemUseCase, this._channelPlayListUseCase,
+      this._myPlaylistsUseCase)
       : super(const PlayListState.initial());
 
   static PlayListCubit get(BuildContext context) => BlocProvider.of(context);
@@ -45,6 +48,17 @@ class PlayListCubit extends Cubit<PlayListState> {
     playListDetails.when(
         success: (playLists) =>
             emit(PlayListState.channelPlayListLoaded(playLists)),
+        failure: (exception) => emit(PlayListState.playlistError(exception)));
+  }
+
+  Future<void> getMyPlayLists() async {
+    emit(const PlayListState.playlistLoading());
+
+    ApiResult<PlayLists> playListDetails =
+        await _myPlaylistsUseCase.call(params: null);
+
+    playListDetails.when(
+        success: (playLists) => emit(PlayListState.myPlayListLoaded(playLists)),
         failure: (exception) => emit(PlayListState.playlistError(exception)));
   }
 }
