@@ -7,7 +7,7 @@ part 'playlists.g.dart';
 @JsonSerializable(includeIfNull: true, createToJson: false)
 class PlayLists {
   PageInfo? pageInfo;
-  List<PlayListsItem?>? items;
+  List<PlayListItem?>? items;
 
   PlayLists({this.pageInfo, this.items});
 
@@ -16,18 +16,19 @@ class PlayLists {
 }
 
 @JsonSerializable(includeIfNull: true, createToJson: false)
-class PlayListsItem {
+class PlayListItem {
   String? id;
   BaseSnippet? snippet;
   PlayListContentDetails? contentDetails;
+  PlayListStatus? status;
 
   @JsonKey(includeToJson: false, includeFromJson: false)
   String? blurHash;
 
-  PlayListsItem({this.id, this.snippet, this.contentDetails});
+  PlayListItem({this.id, this.snippet, this.contentDetails});
 
-  factory PlayListsItem.fromJson(Map<String, dynamic> json) =>
-      _$PlayListsItemFromJson(json);
+  factory PlayListItem.fromJson(Map<String, dynamic> json) =>
+      _$PlayListItemFromJson(json);
 }
 
 @JsonSerializable(includeIfNull: true, createToJson: false)
@@ -38,4 +39,14 @@ class PlayListContentDetails {
 
   factory PlayListContentDetails.fromJson(Map<String, dynamic> json) =>
       _$PlayListContentDetailsFromJson(json);
+}
+
+@JsonSerializable(includeIfNull: true, createToJson: false)
+class PlayListStatus {
+  String? privacyStatus;
+
+  PlayListStatus({this.privacyStatus});
+
+  factory PlayListStatus.fromJson(Map<String, dynamic> json) =>
+      _$PlayListStatusFromJson(json);
 }

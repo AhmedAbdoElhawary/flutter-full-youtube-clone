@@ -13,12 +13,11 @@ PlayLists _$PlayListsFromJson(Map<String, dynamic> json) => PlayLists(
       items: (json['items'] as List<dynamic>?)
           ?.map((e) => e == null
               ? null
-              : PlayListsItem.fromJson(e as Map<String, dynamic>))
+              : PlayListItem.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-PlayListsItem _$PlayListsItemFromJson(Map<String, dynamic> json) =>
-    PlayListsItem(
+PlayListItem _$PlayListItemFromJson(Map<String, dynamic> json) => PlayListItem(
       id: json['id'] as String?,
       snippet: json['snippet'] == null
           ? null
@@ -27,10 +26,17 @@ PlayListsItem _$PlayListsItemFromJson(Map<String, dynamic> json) =>
           ? null
           : PlayListContentDetails.fromJson(
               json['contentDetails'] as Map<String, dynamic>),
-    );
+    )..status = json['status'] == null
+        ? null
+        : PlayListStatus.fromJson(json['status'] as Map<String, dynamic>);
 
 PlayListContentDetails _$PlayListContentDetailsFromJson(
         Map<String, dynamic> json) =>
     PlayListContentDetails(
       itemCount: json['itemCount'] as int?,
+    );
+
+PlayListStatus _$PlayListStatusFromJson(Map<String, dynamic> json) =>
+    PlayListStatus(
+      privacyStatus: json['privacyStatus'] as String?,
     );

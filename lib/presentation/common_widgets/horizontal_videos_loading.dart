@@ -5,8 +5,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SliverHorizontalVideosShimmerLoading extends StatelessWidget {
   const SliverHorizontalVideosShimmerLoading(
-      {this.isThatForPlaylist = false, super.key});
-  final bool isThatForPlaylist;
+      {this.forTwoTexts = false,
+      this.heightOfImage = 80,
+      this.widthOfImage = 160,
+      this.withoutTopPaddingInFirstIndex = false,
+      this.borderRadius = 10,
+      super.key});
+  final bool forTwoTexts;
+  final double heightOfImage;
+  final double widthOfImage;
+  final double  borderRadius;
+  final bool withoutTopPaddingInFirstIndex;
   @override
   Widget build(BuildContext context) {
     return SliverList(
@@ -16,15 +25,15 @@ class SliverHorizontalVideosShimmerLoading extends StatelessWidget {
           baseColor: ColorManager(context).grey1,
           highlightColor: ColorManager(context).greyPoint5,
           child: Padding(
-            padding: REdgeInsetsDirectional.only(start: 15, top: 15),
+            padding: REdgeInsetsDirectional.only(start: 15, top:withoutTopPaddingInFirstIndex?0: 15),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(10.r),
+                  borderRadius: BorderRadius.circular(borderRadius.r),
                   child: Container(
-                    height: 80,
-                    width: 160,
+                    height: heightOfImage.h,
+                    width: widthOfImage.w,
                     color: ColorManager(context).grey2,
                   ),
                 ),
@@ -42,7 +51,7 @@ class SliverHorizontalVideosShimmerLoading extends StatelessWidget {
                           width: 90.w,
                           height: 10.h,
                           color: ColorManager(context).grey2),
-                      if (!isThatForPlaylist) ...[
+                      if (!forTwoTexts) ...[
                         const RSizedBox(height: 8),
                         Container(
                             width: 50.w,

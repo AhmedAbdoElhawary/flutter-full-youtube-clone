@@ -12,6 +12,9 @@ class PlayListState with _$PlayListState {
   const factory PlayListState.channelPlayListLoaded(PlayLists playLists) =
       ChannelPlayListLoaded;
 
-  const factory PlayListState.playlistError(NetworkExceptionModel networkExceptions) =
-  PlaylistError;
+  const factory PlayListState.myPlayListLoaded(PlayLists playLists) =
+      MyPlayListLoaded;
+
+  const factory PlayListState.playlistError(
+      NetworkExceptionModel networkExceptions) = PlaylistError;
 }

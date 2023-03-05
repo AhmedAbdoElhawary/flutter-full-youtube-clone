@@ -44,6 +44,7 @@ import 'package:youtube/domain/use_cases/channel/channel_videos/clear/clear_vide
 import 'package:youtube/domain/use_cases/channel/playlist/channel_playlist_items_use_case.dart';
 import 'package:youtube/domain/use_cases/channel/playlist/channel_playlists_use_case.dart';
 import 'package:youtube/domain/use_cases/channel/playlist/clear/clear_channel_playlists_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/playlist/my_playlists_use_case.dart';
 import 'package:youtube/domain/use_cases/search_details/related_videos_to_this_video_use_case.dart';
 import 'package:youtube/domain/use_cases/search_details/search_for_this_sentence_use_case.dart';
 import 'package:youtube/domain/use_cases/search_details/suggestion_search_texts_use_case.dart';
@@ -272,6 +273,10 @@ Future<void> initializeDependencies() async {
     () => ClearAllShortVideosUseCase(injector()),
   );
 
+  injector.registerLazySingleton<MyPlaylistsUseCase>(
+    () => MyPlaylistsUseCase(injector()),
+  );
+
   // *--------->
   /// ================================ Blocs ========================================>
 
@@ -285,7 +290,7 @@ Future<void> initializeDependencies() async {
     ),
   );
   injector.registerFactory<PlayListCubit>(
-    () => PlayListCubit(injector(), injector()),
+    () => PlayListCubit(injector(), injector(), injector()),
   );
   injector.registerFactory<SearchCubit>(
     () => SearchCubit(injector(), injector(), injector()),

@@ -6,7 +6,7 @@ import 'package:youtube/core/functions/handling_errors/network_exceptions.dart';
 
 import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/core/resources/styles_manager.dart';
-import 'package:youtube/presentation/common_widgets/horizontal_videos_loading.dart';
+import 'package:youtube/presentation/common_widgets/custom_circle_progress.dart';
 import 'package:youtube/presentation/common_widgets/sliver_app_bar.dart';
 import 'package:youtube/presentation/common_widgets/thumbnail_of_video.dart';
 import 'package:youtube/presentation/cubit/videos/videos_details_cubit.dart';
@@ -72,9 +72,8 @@ class _VideosListState extends State<_VideosList>
               ),
             );
           },
-          loading: () {
-            return const SliverHorizontalVideosShimmerLoading();
-          },
+          loading: () =>
+              const SliverFillRemaining(child: ThineCircularProgress()),
           error: (e) {
             return SliverFillRemaining(
               child: Center(

@@ -40,7 +40,36 @@ class _ChannelPlayListAPIs implements ChannelPlayListAPIs {
     )
             .compose(
               _dio.options,
-              'playlists?part=snippet%2CcontentDetails&maxResults=20',
+              'playlists?part=snippet,contentDetails,status&maxResults=50',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = PlayLists.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<PlayLists> getMyPlayLists({
+    apiKey = apiKey,
+    required accessToken,
+  }) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'key': apiKey,
+      r'access_token': accessToken,
+    };
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<PlayLists>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'playlists?part=snippet,contentDetails,status&maxResults=50&mine=true',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -53,11 +82,13 @@ class _ChannelPlayListAPIs implements ChannelPlayListAPIs {
   Future<PlayListVideos> getChannelPlayListItemsIds({
     apiKey = apiKey,
     required playlistId,
+    required accessToken,
   }) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'key': apiKey,
       r'playlistId': playlistId,
+      r'access_token': accessToken,
     };
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -69,7 +100,7 @@ class _ChannelPlayListAPIs implements ChannelPlayListAPIs {
     )
             .compose(
               _dio.options,
-              'playlistItems?part=contentDetails&maxResults=20',
+              'playlistItems?part=contentDetails&maxResults=50',
               queryParameters: queryParameters,
               data: _data,
             )
