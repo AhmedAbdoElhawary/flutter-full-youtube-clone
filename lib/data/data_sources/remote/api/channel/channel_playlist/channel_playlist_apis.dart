@@ -16,8 +16,8 @@ abstract class ChannelPlayListAPIs {
     @Query("channelId") required String channelId,
   });
 
-  @GET("playlistItems?part=snippet,contentDetails&maxResults=20")
-  Future<PlayListVideos> getChannelPlayListItem({
+  @GET("playlistItems?part=contentDetails&maxResults=20")
+  Future<PlayListVideos> getChannelPlayListItemsIds({
     @Query("key") final String apiKey = apiKey,
     @Query("playlistId") required String playlistId,
   });

@@ -55,7 +55,7 @@ class BaseColorManager {
   static const Color white = Color(0xffFFFFFF);
   static const Color lightDarkGray = Color(0xff696969);
   static const Color grey = Color(0xff9E9E9E);
-  static const Color transparentGrey = Color(0xd79f9f9f);
+  static const Color transparentGrey = Color(0x67b6b6b6);
   static const Color lightGrey = Color(0xffb9b9b9);
   static const Color veryLightGrey = Color.fromARGB(255, 231, 231, 231);
 

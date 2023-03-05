@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:youtube/data/models/channel_details/channel_details.dart';
 import 'package:youtube/data/models/videos_details/videos_details.dart';
-import 'package:youtube/presentation/common_widgets/custom_circle_progress.dart';
 import 'package:youtube/presentation/common_widgets/error_message_widget.dart';
+import 'package:youtube/presentation/common_widgets/horizontal_videos_loading.dart';
 import 'package:youtube/presentation/cubit/channel/channel_videos/channel_videos_cubit.dart';
 import 'package:youtube/presentation/pages/channel_profile/channel_profile_logic.dart';
 import 'package:youtube/presentation/pages/channel_profile/widgets/rounded_filtered_button.dart';
@@ -56,7 +56,7 @@ class _PopularVideos extends StatelessWidget {
           return SliverFillRemaining(
               child: ErrorMessageWidget(state.networkExceptions));
         } else {
-          return const SliverFillRemaining(child: ThineCircularProgress());
+          return const SliverHorizontalVideosShimmerLoading();
         }
       },
     );
@@ -80,7 +80,7 @@ class _NewestVideos extends StatelessWidget {
           return SliverFillRemaining(
               child: ErrorMessageWidget(state.networkExceptions));
         } else {
-          return const SliverFillRemaining(child: ThineCircularProgress());
+          return const SliverHorizontalVideosShimmerLoading();
         }
       },
     );

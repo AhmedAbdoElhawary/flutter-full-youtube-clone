@@ -12,9 +12,9 @@ Total : 82 files,  2527 codes, -180 comments, 317 blanks, all 2664 lines
 | filename | language | code | comment | blank | total |
 | :--- | :--- | ---: | ---: | ---: | ---: |
 | [android/app/build.gradle](/android/app/build.gradle) | Groovy | 2 | 0 | 2 | 4 |
-| [lib/core/functions/api_result.freezed.dart](/lib/core/functions/api_result.freezed.dart) | Dart | -8 | 0 | -2 | -10 |
-| [lib/core/functions/network_exception_model.dart](/lib/core/functions/network_exception_model.dart) | Dart | 6 | 0 | 3 | 9 |
-| [lib/core/functions/network_exceptions.dart](/lib/core/functions/network_exceptions.dart) | Dart | -9 | 0 | 1 | -8 |
+| [lib/core/functions/api_result.freezed.dart](/lib/core/functions/handling_errors/api_result.freezed.dart) | Dart | -8 | 0 | -2 | -10 |
+| [lib/core/functions/network_exception_model.dart](/lib/core/functions/handling_errors/network_exception_model.dart) | Dart | 6 | 0 | 3 | 9 |
+| [lib/core/functions/network_exceptions.dart](/lib/core/functions/handling_errors/network_exceptions.dart) | Dart | -9 | 0 | 1 | -8 |
 | [lib/core/functions/reformat/views_reformat.dart](/lib/core/functions/reformat/views_reformat.dart) | Dart | 10 | 0 | 4 | 14 |
 | [lib/core/resources/color_manager.dart](/lib/core/resources/color_manager.dart) | Dart | 1 | 0 | 0 | 1 |
 | [lib/core/utility/constants.dart](/lib/core/utility/constants.dart) | Dart | 1 | 0 | 0 | 1 |

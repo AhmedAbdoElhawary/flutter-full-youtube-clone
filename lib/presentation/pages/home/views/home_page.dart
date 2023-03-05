@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:youtube/config/routes/route_app.dart';
-import 'package:youtube/core/functions/network_exceptions.dart';
+import 'package:youtube/core/functions/handling_errors/network_exceptions.dart';
 
 import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/core/resources/styles_manager.dart';
+import 'package:youtube/presentation/common_widgets/horizontal_videos_loading.dart';
 import 'package:youtube/presentation/common_widgets/sliver_app_bar.dart';
-import 'package:youtube/presentation/common_widgets/custom_circle_progress.dart';
 import 'package:youtube/presentation/common_widgets/thumbnail_of_video.dart';
 import 'package:youtube/presentation/cubit/videos/videos_details_cubit.dart';
 import 'package:youtube/presentation/pages/most_popular/most_popular_videos_page.dart';
@@ -73,7 +73,7 @@ class _VideosListState extends State<_VideosList>
             );
           },
           loading: () {
-            return const SliverFillRemaining(child: ThineCircularProgress());
+            return const SliverHorizontalVideosShimmerLoading();
           },
           error: (e) {
             return SliverFillRemaining(

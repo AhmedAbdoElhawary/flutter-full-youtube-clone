@@ -58,7 +58,7 @@ class AppTheme {
         ),
         minimumSize:
             MaterialStateProperty.all<Size>(const Size(double.infinity, 0)),
-        padding: MaterialStateProperty.all<REdgeInsets>(REdgeInsets.all(13)),
+        padding: MaterialStateProperty.all<REdgeInsets>(REdgeInsets.all(8)),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             const RoundedRectangleBorder(borderRadius: BorderRadius.zero)),
       ),

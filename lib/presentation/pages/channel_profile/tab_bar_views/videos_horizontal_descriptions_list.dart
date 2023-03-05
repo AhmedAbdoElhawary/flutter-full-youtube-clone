@@ -15,47 +15,47 @@ class VideoHorizontalDescriptionsList extends StatelessWidget {
   final VideoDetailsItem videoDetails;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Stack(
-          alignment: AlignmentDirectional.bottomEnd,
-          children: [
-            ThumbnailImage(videoDetails.getVideoThumbnails(),
-                height: 80,
-                width: 160,
-                childAboveImage: VideoDurationWidget(videoDetails)),
-          ],
-        ),
-        const RSizedBox(width: 15),
-        Flexible(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                videoDetails.getVideoTitle(),
-                overflow: TextOverflow.ellipsis,
-                maxLines: 3,
-                style: getNormalStyle(
-                    color: ColorManager(context).black, fontSize: 14),
-              ),
-              const RSizedBox(height: 3),
-              Text(
-                "${videoDetails.getVideoViewsCount()} views . ${videoDetails.getVideoPublishedTime()} ago",
-                style: getNormalStyle(
-                    color: ColorManager(context).grey7, fontSize: 12),
-                overflow: TextOverflow.ellipsis,
-                maxLines: 2,
-              ),
-            ],
+    return InkWell(
+      onTap: () {
+
+      },
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ThumbnailImage(videoDetails.getVideoThumbnails(),
+              height: 80,
+              width: 160,
+              childAboveImage: VideoDurationWidget(videoDetails)),
+          const RSizedBox(width: 15),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  videoDetails.getVideoTitle(),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 3,
+                  style: getNormalStyle(
+                      color: ColorManager(context).black, fontSize: 14),
+                ),
+                const RSizedBox(height: 3),
+                Text(
+                  "${videoDetails.getVideoViewsCount()} views . ${videoDetails.getVideoPublishedTime()} ago",
+                  style: getNormalStyle(
+                      color: ColorManager(context).grey7, fontSize: 12),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
+                ),
+              ],
+            ),
           ),
-        ),
-        Padding(
-          padding: REdgeInsetsDirectional.only(start: 10, end: 15),
-          child:
-              SvgPicture.asset(IconsAssets.menuPointsVerticalIcon, height: 12),
-        ),
-      ],
+          Padding(
+            padding: REdgeInsetsDirectional.only(start: 10, end: 15),
+            child:
+                SvgPicture.asset(IconsAssets.menuPointsVerticalIcon, height: 12),
+          ),
+        ],
+      ),
     );
   }
 }

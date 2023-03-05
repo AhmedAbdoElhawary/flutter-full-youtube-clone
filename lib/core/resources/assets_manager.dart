@@ -7,6 +7,11 @@ class IconsAssets {
   static const String searchIcon = "$_iconNewPath/search.svg";
   static const String notificationIcon = "$_iconNewPath/bell.svg";
   static const String broadcastIcon = "$_iconNewPath/broadcast.svg";
+  static const String shareIcon = "$_iconNewPath/share.svg";
+  static const String shuffleIcon = "$_iconNewPath/shuffle.svg";
+  static const String playIcon = "$_iconNewPath/play.svg";
+  static const String rightArrowIcon = "$_iconNewPath/right-arrow.svg";
+  static const String downArrowIcon = "$_iconNewPath/caret-down.svg";
 
   static const String settingsIcon = "$_iconPath/settings.svg";
   static const String closeIcon = "$_iconPath/close.svg";
@@ -20,7 +25,6 @@ class IconsAssets {
   static const String zapSmallIcon = "$_iconPath/zap-small.svg";
   static const String bellIcon = "$_iconPath/bell.svg";
 
-  static const String shareIcon = "$_iconPath/share-2.svg";
 
   static const String eyeOnIcon = "$_iconPath/eye_on.svg";
   static const String eyeOffIcon = "$_iconPath/eye-off.svg";

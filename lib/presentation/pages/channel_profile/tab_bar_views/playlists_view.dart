@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_blurhash/flutter_blurhash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
+import 'package:youtube/config/routes/route_app.dart';
 import 'package:youtube/data/models/channel_details/channel_details.dart';
 import 'package:youtube/data/models/channel_details/playlists/playlists.dart';
 import 'package:youtube/data/models/channel_details/playlists/playlists_extension.dart';
-import 'package:youtube/presentation/common_widgets/custom_circle_progress.dart';
 import 'package:youtube/presentation/common_widgets/error_message_widget.dart';
+import 'package:youtube/presentation/common_widgets/horizontal_videos_loading.dart';
 import 'package:youtube/presentation/cubit/channel/playlist/play_list_cubit.dart';
-import 'package:youtube/presentation/pages/channel_profile/channel_profile_logic.dart';
-import 'package:youtube/presentation/pages/channel_profile/widgets/rounded_filtered_button.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:youtube/presentation/common_widgets/thumbnail_image.dart';
+import 'package:youtube/presentation/pages/playlist_details/playlist_details.dart';
 
 import '../../../../core/resources/assets_manager.dart';
 import '../../../../core/resources/color_manager.dart';
@@ -26,50 +26,16 @@ class TabBarPlaylistView extends StatefulWidget {
 }
 
 class _TabBarPlaylistViewViewState extends State<TabBarPlaylistView> {
-  final logic = Get.find<ChannelProfileLogic>(tag: "1");
-
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        const _FiltersButtons(),
+        const _SortPlaylists(),
         _NewestVideos(widget.channelDetails),
-        // Obx(() {
-        //   return
-        //       // logic.getRecentlyVideosSelected
-        //       //   ?
-        //
-        //       // : _PopularVideos(widget.channelDetails)
-        //       ;
-        // })
       ],
     );
   }
 }
-//
-// class _PopularVideos extends StatelessWidget {
-//   const _PopularVideos(this.channelDetails);
-//
-//   final ChannelDetailsItem? channelDetails;
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return BlocBuilder<ChannelVideosCubit, ChannelVideosState>(
-//       bloc: ChannelVideosCubit.get(context)
-//         ..getPopularChannelVideos(channelDetails?.id ?? ""),
-//       builder: (context, state) {
-//         if (state is PopularVideosLoaded) {
-//           return _PlaylistsList(state.videoDetails);
-//         } else if (state is Error) {
-//           return SliverFillRemaining(
-//               child: ErrorMessageWidget(state.networkExceptions));
-//         } else {
-//           return const SliverFillRemaining(child: ThineCircularProgress());
-//         }
-//       },
-//     );
-//   }
-// }
 
 class _NewestVideos extends StatelessWidget {
   const _NewestVideos(this.channelDetails);
@@ -88,7 +54,7 @@ class _NewestVideos extends StatelessWidget {
           return SliverFillRemaining(
               child: ErrorMessageWidget(state.networkExceptions));
         } else {
-          return const SliverFillRemaining(child: ThineCircularProgress());
+          return const SliverHorizontalVideosShimmerLoading(isThatForPlaylist: true);
         }
       },
     );
@@ -112,39 +78,77 @@ class _PlaylistsList extends StatelessWidget {
   }
 }
 
-class _FiltersButtons extends StatefulWidget {
-  const _FiltersButtons();
+class _SortPlaylists extends StatefulWidget {
+  const _SortPlaylists({
+    Key? key,
+  }) : super(key: key);
 
   @override
-  State<_FiltersButtons> createState() => _FiltersButtonsState();
+  State<_SortPlaylists> createState() => _SortPlaylistsState();
 }
 
-class _FiltersButtonsState extends State<_FiltersButtons> {
-  final logic = Get.find<ChannelProfileLogic>(tag: "1");
-
+class _SortPlaylistsState extends State<_SortPlaylists> {
+  int selectedValue = 0;
   @override
   Widget build(BuildContext context) {
-    return Obx(() => SliverToBoxAdapter(
-          child: Padding(
-            padding: REdgeInsetsDirectional.only(start: 15, top: 15),
-            child: Row(
-              children: [
-                GestureDetector(
-                    onTap: () => logic.isRecentlyVideosSelected = true,
-                    child: RoundedFilteredButton(
-                        text: "Recently uploaded",
-                        isSelected: logic.getRecentlyVideosSelected)),
-                const RSizedBox(width: 10),
-                GestureDetector(
-                    onTap: () => logic.isRecentlyVideosSelected = false,
-                    child: RoundedFilteredButton(
-                        text: "Popular",
-                        isSelected: !logic.getRecentlyVideosSelected)),
-              ],
+    return SliverList(
+      delegate: SliverChildListDelegate(
+        [
+          PopupMenuButton<int>(
+            elevation: 7,
+            color: ColorManager(context).white,
+            surfaceTintColor: ColorManager(context).white,
+            shape:
+                const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+            enableFeedback: true,
+            initialValue: selectedValue,
+            constraints: BoxConstraints(maxWidth: 190.w),
+            onSelected: (int item) => onSelectedProfileMenu(item),
+            itemBuilder: (context) => profileItems(context),
+            child: Padding(
+              padding: REdgeInsetsDirectional.only(start: 15, top: 15),
+              child: Row(
+                children: [
+                  const Icon(Icons.menu_rounded, size: 18),
+                  const RSizedBox(width: 5),
+                  Text("Sort by",
+                      style: getNormalStyle(
+                          color: ColorManager(context).black, fontSize: 15)),
+                  const RSizedBox(width: 5),
+                  const Icon(Icons.keyboard_arrow_down_sharp, size: 20),
+                ],
+              ),
             ),
           ),
-        ));
+        ],
+      ),
+    );
   }
+
+  onSelectedProfileMenu(int item) {
+    setState(() => selectedValue = item == 0 ? 0 : 1);
+  }
+
+  List<PopupMenuEntry<int>> profileItems(BuildContext context) => [
+        PopupMenuItem<int>(
+          height: 40.r,
+          value: 0,
+          child: Text(
+            "Date added (newest)",
+            style: getNormalStyle(
+                color: Theme.of(context).focusColor, fontSize: 15),
+          ),
+        ),
+        PopupMenuItem<int>(
+          value: 1,
+          height: 40.r,
+          child: Text(
+            "Last video added",
+            style: getNormalStyle(
+                color: Theme.of(context).focusColor, fontSize: 15),
+          ),
+        ),
+      ];
 }
 
 class PlaylistHorizontalDescriptionsList extends StatelessWidget {
@@ -152,83 +156,101 @@ class PlaylistHorizontalDescriptionsList extends StatelessWidget {
   final PlayListsItem? playListsItem;
   @override
   Widget build(BuildContext context) {
-    int? playlistCount = playListsItem?.getPlaylistCount();
     String? playlistTitle = playListsItem?.getPlaylistTitle();
     String? channelName = playListsItem?.getChannelName();
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        ThumbnailImage(
-          playListsItem?.getPlaylistThumbnails(),
-          height: 80,
-          width: 160,
-          childAboveImage: _PlaylistCountBanner(playlistCount: playlistCount),
-        ),
-        const RSizedBox(width: 15),
-        Flexible(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              if (playlistTitle != null)
-                Text(
-                  playlistTitle,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 3,
-                  style: getNormalStyle(
-                      color: ColorManager(context).black, fontSize: 14),
-                ),
-              const RSizedBox(height: 3),
-              if (channelName != null)
-                Text(
-                  channelName,
-                  style: getNormalStyle(
-                      color: ColorManager(context).grey7, fontSize: 12),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 2,
-                ),
-            ],
+    return InkWell(
+      enableFeedback: true,
+      onTap: () {
+        Go(context).to(PlaylistDetailsPage(playListsItem: playListsItem));
+      },
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ThumbnailImage(
+            playListsItem?.getPlaylistThumbnails(),
+            height: 80,
+            width: 160,
+            childAboveImage: _PlaylistCountBanner(playListsItem: playListsItem),
           ),
-        ),
-        Padding(
-          padding: REdgeInsetsDirectional.only(start: 10, end: 15),
-          child:
-              SvgPicture.asset(IconsAssets.menuPointsVerticalIcon, height: 12),
-        ),
-      ],
+          const RSizedBox(width: 15),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (playlistTitle != null)
+                  Text(
+                    playlistTitle,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 3,
+                    style: getNormalStyle(
+                        color: ColorManager(context).black, fontSize: 14),
+                  ),
+                const RSizedBox(height: 3),
+                if (channelName != null)
+                  Text(
+                    channelName,
+                    style: getNormalStyle(
+                        color: ColorManager(context).grey7, fontSize: 12),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                  ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: REdgeInsetsDirectional.only(start: 10, end: 15),
+            child: SvgPicture.asset(IconsAssets.menuPointsVerticalIcon,
+                height: 12),
+          ),
+        ],
+      ),
     );
   }
 }
 
 class _PlaylistCountBanner extends StatelessWidget {
-  const _PlaylistCountBanner({required this.playlistCount});
+  const _PlaylistCountBanner({required this.playListsItem});
 
-  final int? playlistCount;
+  final PlayListsItem? playListsItem;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    int? playlistCount = playListsItem?.getPlaylistCount();
+
+    return SizedBox(
       width: 160.w,
       height: 15.h,
-      color: BaseColorManager.black,
-      child: Center(
-          child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
+      child: Stack(
         children: [
-          const Icon(
-            Icons.playlist_play_outlined,
-            color: BaseColorManager.white,
-            size: 12,
+          Container(
+            width: 160.w,
+            height: 15.h,
+            color: BaseColorManager.black,
+            child: BlurHash(
+              imageFit: BoxFit.cover,
+              hash: playListsItem?.blurHash ?? 'LKO2?U%2Tw=w]~RBVZRi};RPxuwH',
+            ),
           ),
-          const RSizedBox(width: 5),
-          if (playlistCount != null && playlistCount != 0)
-            Text(
-              "$playlistCount",
-              style:
-                  getMediumStyle(color: BaseColorManager.white, fontSize: 12),
-            )
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(
+                Icons.playlist_play_outlined,
+                color: BaseColorManager.white,
+                size: 15,
+              ),
+              const RSizedBox(width: 2),
+              if (playlistCount != null && playlistCount != 0)
+                Text(
+                  "$playlistCount",
+                  style: getMediumStyle(
+                      color: BaseColorManager.white, fontSize: 12),
+                )
+            ],
+          )
         ],
-      )),
+      ),
     );
   }
 }

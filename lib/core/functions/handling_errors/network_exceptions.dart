@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:youtube/core/functions/error_model.dart';
-import 'package:youtube/core/functions/network_exception_model.dart';
+import 'package:youtube/core/functions/handling_errors/error_model.dart';
+import 'package:youtube/core/functions/handling_errors/network_exception_model.dart';
 
 part 'network_exceptions.freezed.dart';
 

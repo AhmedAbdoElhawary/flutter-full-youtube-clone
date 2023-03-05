@@ -1,5 +1,5 @@
-import 'package:youtube/core/functions/api_result.dart';
-import 'package:youtube/core/functions/network_exceptions.dart';
+import 'package:youtube/core/functions/handling_errors/api_result.dart';
+import 'package:youtube/core/functions/handling_errors/network_exceptions.dart';
 
 import 'package:youtube/core/utility/private_key.dart';
 import 'package:youtube/data/data_sources/local/channnel/interfaces/cache_channel_apis.dart';
@@ -90,7 +90,7 @@ class ChannelDetailsRepoImpl implements ChannelDetailsRepository {
   }
 
   @override
-  Future<void> clearMySubscriptionsChannels()async {
-   await _cacheChannelAPIs.clearMySubscriptionsChannels();
+  Future<void> clearMySubscriptionsChannels() async {
+    await _cacheChannelAPIs.clearMySubscriptionsChannels();
   }
 }

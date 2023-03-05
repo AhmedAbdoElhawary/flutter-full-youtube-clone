@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:youtube/config/routes/route_app.dart';
-import 'package:youtube/core/resources/assets_manager.dart';
 import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/presentation/common_widgets/arrow_back.dart';
 import 'package:youtube/presentation/common_widgets/error_message_widget.dart';
+import 'package:youtube/presentation/common_widgets/search_icon.dart';
 import 'package:youtube/presentation/cubit/videos/videos_details_cubit.dart';
-import 'package:youtube/presentation/pages/search/search_page.dart';
 import 'package:youtube/presentation/pages/shorts/widgets/shorts_page_view.dart';
 
 class ShortsPageParameters {
@@ -48,17 +45,7 @@ class ShortsPageState extends State<ShortsPage> {
             ? const ArrowBack(makeItWhite: true)
             : null,
         actions: [
-          InkWell(
-            onTap: () {
-              Go(context).to(const SearchPage());
-            },
-            child: SvgPicture.asset(
-              IconsAssets.search,
-              height: 25,
-              colorFilter: const ColorFilter.mode(
-                  BaseColorManager.white, BlendMode.srcIn),
-            ),
-          ),
+          const SearchIcon(),
           const RSizedBox(width: 15),
           IconButton(
             onPressed: () {},

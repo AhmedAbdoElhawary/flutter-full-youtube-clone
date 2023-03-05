@@ -21,6 +21,9 @@ class PlayListsItem {
   BaseSnippet? snippet;
   PlayListContentDetails? contentDetails;
 
+  @JsonKey(includeToJson: false, includeFromJson: false)
+  String? blurHash;
+
   PlayListsItem({this.id, this.snippet, this.contentDetails});
 
   factory PlayListsItem.fromJson(Map<String, dynamic> json) =>

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:youtube/core/functions/network_exceptions.dart';
+import 'package:youtube/core/functions/handling_errors/network_exceptions.dart';
 import 'package:youtube/presentation/common_widgets/arrow_back.dart';
 import 'package:youtube/presentation/common_widgets/custom_circle_progress.dart';
 import 'package:youtube/presentation/common_widgets/thumbnail_of_video.dart';
@@ -13,13 +13,14 @@ import '../../../core/resources/assets_manager.dart';
 import '../../../core/resources/color_manager.dart';
 import 'widgets/mic_button.dart';
 
-class SearchedResultsPageParameter{
+class SearchedResultsPageParameter {
   final String text;
 
   SearchedResultsPageParameter({required this.text});
 }
+
 class SearchedResultsPage extends StatefulWidget {
-  const SearchedResultsPage(this.parameter,{Key? key}) : super(key: key);
+  const SearchedResultsPage(this.parameter, {Key? key}) : super(key: key);
   final SearchedResultsPageParameter parameter;
 
   @override
@@ -31,11 +32,12 @@ class _SearchedResultsPageState extends State<SearchedResultsPage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    TextEditingController controller = TextEditingController(text: widget.parameter.text);
+    TextEditingController controller =
+        TextEditingController(text: widget.parameter.text);
 
     return Scaffold(
       appBar: AppBar(
-        leading:  const ArrowBack(),
+        leading: const ArrowBack(),
         surfaceTintColor: ColorManager(context).white,
         title: SearchTextField(controller: controller, enableOnTap: true),
         actions: [
@@ -47,7 +49,8 @@ class _SearchedResultsPageState extends State<SearchedResultsPage>
         ],
       ),
       body: BlocBuilder<SearchCubit, SearchState>(
-        bloc: SearchCubit.get(context)..searchForThisSentence(widget.parameter.text),
+        bloc: SearchCubit.get(context)
+          ..searchForThisSentence(widget.parameter.text),
         builder: (context, state) {
           return state.maybeWhen(
               searchForTheSentenceLoaded: (videosDetails) => ListView.builder(
@@ -60,8 +63,8 @@ class _SearchedResultsPageState extends State<SearchedResultsPage>
               searchLoading: () => const ThineCircularProgress(),
               searchError: (e) {
                 return Center(
-                  child: Text(
-                      NetworkExceptions.getErrorMessage(e.networkExceptions)));
+                    child: Text(NetworkExceptions.getErrorMessage(
+                        e.networkExceptions)));
               },
               orElse: () =>
                   const Center(child: Text("There is something wrong")));
