@@ -50,7 +50,7 @@ class _ChannelPlayListAPIs implements ChannelPlayListAPIs {
   }
 
   @override
-  Future<PlayListVideos> getChannelPlayListItem({
+  Future<PlayListVideos> getChannelPlayListItemsIds({
     apiKey = apiKey,
     required playlistId,
   }) async {
@@ -69,7 +69,7 @@ class _ChannelPlayListAPIs implements ChannelPlayListAPIs {
     )
             .compose(
               _dio.options,
-              'playlistItems?part=snippet,contentDetails&maxResults=20',
+              'playlistItems?part=contentDetails&maxResults=20',
               queryParameters: queryParameters,
               data: _data,
             )
