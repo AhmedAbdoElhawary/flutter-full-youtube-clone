@@ -57,6 +57,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "8.1.1"
+  blurhash:
+    dependency: "direct main"
+    description:
+      name: blurhash
+      sha256: bda07108a8055aab659fc506950722774018fc6c82829fc019bf3a4fb634079b
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
+  blurhash_dart:
+    dependency: transitive
+    description:
+      name: blurhash_dart
+      sha256: d18fa567dce8bc897d31e14e084d2b1a4306e6bfde30a0e72ebf5f5ff549ced9
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
+  blurhash_web:
+    dependency: transitive
+    description:
+      name: blurhash_web
+      sha256: ad85144ee90637235b928c7466147e9ab3761b071d374dcf4cc67f76cbacc3aa
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   boolean_selector:
     dependency: transitive
     description:
@@ -311,7 +335,7 @@ packages:
     source: hosted
     version: "8.1.2"
   flutter_blurhash:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: flutter_blurhash
       sha256: "05001537bd3fac7644fa6558b09ec8c0a3f2eba78c0765f88912882b1331a5c6"
@@ -533,6 +557,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.2"
+  image:
+    dependency: transitive
+    description:
+      name: image
+      sha256: "8e9d133755c3e84c73288363e6343157c383a0c6c56fc51afcc5d4d7180306d6"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.3.0"
   intl:
     dependency: transitive
     description:
