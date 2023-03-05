@@ -20,7 +20,7 @@ import 'package:youtube/presentation/pages/channel_profile/tab_bar_views/videos_
 class PlaylistDetailsPage extends StatelessWidget {
   const PlaylistDetailsPage({required this.playListsItem, Key? key})
       : super(key: key);
-  final PlayListsItem? playListsItem;
+  final PlayListItem? playListsItem;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +38,7 @@ class PlaylistDetailsPage extends StatelessWidget {
 class _PlayListOverview extends StatelessWidget {
   const _PlayListOverview({required this.playListsItem});
 
-  final PlayListsItem? playListsItem;
+  final PlayListItem? playListsItem;
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +67,7 @@ class _PlayListOverview extends StatelessWidget {
 class _WidgetsAboveBlurHash extends StatelessWidget {
   const _WidgetsAboveBlurHash({required this.playListsItem});
 
-  final PlayListsItem? playListsItem;
+  final PlayListItem? playListsItem;
 
   @override
   Widget build(BuildContext context) {
@@ -159,10 +159,13 @@ class _ShuffleButton extends StatelessWidget {
 class _InteractionsButtonsWithSubInfo extends StatelessWidget {
   const _InteractionsButtonsWithSubInfo({required this.playListsItem});
 
-  final PlayListsItem? playListsItem;
+  final PlayListItem? playListsItem;
 
   @override
   Widget build(BuildContext context) {
+    String? privacy = playListsItem?.getPlayListStatus();
+    bool isPrivacyPrivate = privacy == "private";
+    bool isThatMe=playListsItem?.getChannelName()=="ahmed abdo";
     return Row(
       children: [
         Expanded(
@@ -175,34 +178,72 @@ class _InteractionsButtonsWithSubInfo extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis),
               const RSizedBox(height: 5),
-              Text("${playListsItem?.getPlaylistCount() ?? 0} videos",
-                  style: getMediumStyle(
-                      color: BaseColorManager.veryLightGrey, fontSize: 12),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis),
+              Row(
+                children: [
+                  Text("${playListsItem?.getPlaylistCount() ?? 0} videos",
+                      style: getMediumStyle(
+                          color: BaseColorManager.veryLightGrey, fontSize: 12),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis),
+                  const RSizedBox(width: 5),
+                  if (isPrivacyPrivate) ...[
+                    const SvgIcon(
+                      IconsAssets.lockIcon,
+                      height: 15,
+                      color: BaseColorManager.veryLightGrey,
+                    ),
+                    Text("Private",
+                        style: getMediumStyle(
+                            color: BaseColorManager.veryLightGrey,
+                            fontSize: 12),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis),
+                  ],
+                ],
+              ),
             ],
           ),
         ),
-        _RoundedIconButton(
-            const Icon(
-              Icons.library_add_outlined,
-              color: BaseColorManager.white,
-              size: 20,
-            ),
-            onTap: () {}),
-        const RSizedBox(width: 5),
-        _RoundedIconButton(
-            const Icon(
-              Icons.download,
-              color: BaseColorManager.white,
-              size: 20,
-            ),
-            onTap: () {}),
-        const RSizedBox(width: 5),
-        _RoundedIconButton(
-            const SvgIcon(IconsAssets.shareIcon,
-                height: 20, color: BaseColorManager.white),
-            onTap: () {}),
+        if(isThatMe)...[
+          _RoundedIconButton(
+              const Icon(
+                Icons.mode_edit_outlined,
+                color: BaseColorManager.white,
+                size: 20,
+              ),
+              onTap: () {}),
+          const RSizedBox(width: 5),
+          _RoundedIconButton(
+              const Icon(
+                Icons.download,
+                color: BaseColorManager.white,
+                size: 20,
+              ),
+              onTap: () {}),
+
+        ]else...[
+          _RoundedIconButton(
+              const Icon(
+                Icons.library_add_outlined,
+                color: BaseColorManager.white,
+                size: 20,
+              ),
+              onTap: () {}),
+          const RSizedBox(width: 5),
+          _RoundedIconButton(
+              const Icon(
+                Icons.download,
+                color: BaseColorManager.white,
+                size: 20,
+              ),
+              onTap: () {}),
+          const RSizedBox(width: 5),
+          _RoundedIconButton(
+              const SvgIcon(IconsAssets.shareIcon,
+                  height: 20, color: BaseColorManager.white),
+              onTap: () {}),
+        ],
+
       ],
     );
   }
