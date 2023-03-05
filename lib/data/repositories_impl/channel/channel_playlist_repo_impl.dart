@@ -3,7 +3,7 @@ import 'package:youtube/core/functions/network_exceptions.dart';
 import 'package:youtube/data/data_sources/local/channnel/interfaces/cache_channel_playlist_apis.dart';
 
 import 'package:youtube/data/data_sources/remote/api/channel/channel_playlist/channel_playlist_apis.dart';
-import 'package:youtube/data/models/channel_details/playlists/playlist_videos.dart';
+import 'package:youtube/data/models/channel_details/playlists/playlist_videos/playlist_videos.dart';
 import 'package:youtube/data/models/channel_details/playlists/playlists.dart';
 import 'package:youtube/domain/repositories/channel/channel_playlist_repository.dart';
 
