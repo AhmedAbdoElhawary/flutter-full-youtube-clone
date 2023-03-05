@@ -19,58 +19,59 @@ mixin _$PlayListState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function() playlistLoading,
     required TResult Function(PlayListVideos playListVideos)
         playListItemsLoaded,
     required TResult Function(PlayLists playLists) channelPlayListLoaded,
-    required TResult Function(NetworkExceptionModel networkExceptions) error,
+    required TResult Function(NetworkExceptionModel networkExceptions)
+        playlistError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
+    TResult? Function()? playlistLoading,
     TResult? Function(PlayListVideos playListVideos)? playListItemsLoaded,
     TResult? Function(PlayLists playLists)? channelPlayListLoaded,
-    TResult? Function(NetworkExceptionModel networkExceptions)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? playlistError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function()? playlistLoading,
     TResult Function(PlayListVideos playListVideos)? playListItemsLoaded,
     TResult Function(PlayLists playLists)? channelPlayListLoaded,
-    TResult Function(NetworkExceptionModel networkExceptions)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? playlistError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(Loading value) loading,
+    required TResult Function(PlaylistLoading value) playlistLoading,
     required TResult Function(PlayListItemsLoaded value) playListItemsLoaded,
     required TResult Function(ChannelPlayListLoaded value)
         channelPlayListLoaded,
-    required TResult Function(Error value) error,
+    required TResult Function(PlaylistError value) playlistError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(Loading value)? loading,
+    TResult? Function(PlaylistLoading value)? playlistLoading,
     TResult? Function(PlayListItemsLoaded value)? playListItemsLoaded,
     TResult? Function(ChannelPlayListLoaded value)? channelPlayListLoaded,
-    TResult? Function(Error value)? error,
+    TResult? Function(PlaylistError value)? playlistError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(Loading value)? loading,
+    TResult Function(PlaylistLoading value)? playlistLoading,
     TResult Function(PlayListItemsLoaded value)? playListItemsLoaded,
     TResult Function(ChannelPlayListLoaded value)? channelPlayListLoaded,
-    TResult Function(Error value)? error,
+    TResult Function(PlaylistError value)? playlistError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -132,11 +133,12 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function() playlistLoading,
     required TResult Function(PlayListVideos playListVideos)
         playListItemsLoaded,
     required TResult Function(PlayLists playLists) channelPlayListLoaded,
-    required TResult Function(NetworkExceptionModel networkExceptions) error,
+    required TResult Function(NetworkExceptionModel networkExceptions)
+        playlistError,
   }) {
     return initial();
   }
@@ -145,10 +147,10 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
+    TResult? Function()? playlistLoading,
     TResult? Function(PlayListVideos playListVideos)? playListItemsLoaded,
     TResult? Function(PlayLists playLists)? channelPlayListLoaded,
-    TResult? Function(NetworkExceptionModel networkExceptions)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? playlistError,
   }) {
     return initial?.call();
   }
@@ -157,10 +159,10 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function()? playlistLoading,
     TResult Function(PlayListVideos playListVideos)? playListItemsLoaded,
     TResult Function(PlayLists playLists)? channelPlayListLoaded,
-    TResult Function(NetworkExceptionModel networkExceptions)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? playlistError,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -173,11 +175,11 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(Loading value) loading,
+    required TResult Function(PlaylistLoading value) playlistLoading,
     required TResult Function(PlayListItemsLoaded value) playListItemsLoaded,
     required TResult Function(ChannelPlayListLoaded value)
         channelPlayListLoaded,
-    required TResult Function(Error value) error,
+    required TResult Function(PlaylistError value) playlistError,
   }) {
     return initial(this);
   }
@@ -186,10 +188,10 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(Loading value)? loading,
+    TResult? Function(PlaylistLoading value)? playlistLoading,
     TResult? Function(PlayListItemsLoaded value)? playListItemsLoaded,
     TResult? Function(ChannelPlayListLoaded value)? channelPlayListLoaded,
-    TResult? Function(Error value)? error,
+    TResult? Function(PlaylistError value)? playlistError,
   }) {
     return initial?.call(this);
   }
@@ -198,10 +200,10 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(Loading value)? loading,
+    TResult Function(PlaylistLoading value)? playlistLoading,
     TResult Function(PlayListItemsLoaded value)? playListItemsLoaded,
     TResult Function(ChannelPlayListLoaded value)? channelPlayListLoaded,
-    TResult Function(Error value)? error,
+    TResult Function(PlaylistError value)? playlistError,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -216,33 +218,35 @@ abstract class _Initial implements PlayListState {
 }
 
 /// @nodoc
-abstract class _$$LoadingCopyWith<$Res> {
-  factory _$$LoadingCopyWith(_$Loading value, $Res Function(_$Loading) then) =
-      __$$LoadingCopyWithImpl<$Res>;
+abstract class _$$PlaylistLoadingCopyWith<$Res> {
+  factory _$$PlaylistLoadingCopyWith(
+          _$PlaylistLoading value, $Res Function(_$PlaylistLoading) then) =
+      __$$PlaylistLoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadingCopyWithImpl<$Res>
-    extends _$PlayListStateCopyWithImpl<$Res, _$Loading>
-    implements _$$LoadingCopyWith<$Res> {
-  __$$LoadingCopyWithImpl(_$Loading _value, $Res Function(_$Loading) _then)
+class __$$PlaylistLoadingCopyWithImpl<$Res>
+    extends _$PlayListStateCopyWithImpl<$Res, _$PlaylistLoading>
+    implements _$$PlaylistLoadingCopyWith<$Res> {
+  __$$PlaylistLoadingCopyWithImpl(
+      _$PlaylistLoading _value, $Res Function(_$PlaylistLoading) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$Loading implements Loading {
-  const _$Loading();
+class _$PlaylistLoading implements PlaylistLoading {
+  const _$PlaylistLoading();
 
   @override
   String toString() {
-    return 'PlayListState.loading()';
+    return 'PlayListState.playlistLoading()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$Loading);
+        (other.runtimeType == runtimeType && other is _$PlaylistLoading);
   }
 
   @override
@@ -252,39 +256,40 @@ class _$Loading implements Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function() playlistLoading,
     required TResult Function(PlayListVideos playListVideos)
         playListItemsLoaded,
     required TResult Function(PlayLists playLists) channelPlayListLoaded,
-    required TResult Function(NetworkExceptionModel networkExceptions) error,
+    required TResult Function(NetworkExceptionModel networkExceptions)
+        playlistError,
   }) {
-    return loading();
+    return playlistLoading();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
+    TResult? Function()? playlistLoading,
     TResult? Function(PlayListVideos playListVideos)? playListItemsLoaded,
     TResult? Function(PlayLists playLists)? channelPlayListLoaded,
-    TResult? Function(NetworkExceptionModel networkExceptions)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? playlistError,
   }) {
-    return loading?.call();
+    return playlistLoading?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function()? playlistLoading,
     TResult Function(PlayListVideos playListVideos)? playListItemsLoaded,
     TResult Function(PlayLists playLists)? channelPlayListLoaded,
-    TResult Function(NetworkExceptionModel networkExceptions)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? playlistError,
     required TResult orElse(),
   }) {
-    if (loading != null) {
-      return loading();
+    if (playlistLoading != null) {
+      return playlistLoading();
     }
     return orElse();
   }
@@ -293,46 +298,46 @@ class _$Loading implements Loading {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(Loading value) loading,
+    required TResult Function(PlaylistLoading value) playlistLoading,
     required TResult Function(PlayListItemsLoaded value) playListItemsLoaded,
     required TResult Function(ChannelPlayListLoaded value)
         channelPlayListLoaded,
-    required TResult Function(Error value) error,
+    required TResult Function(PlaylistError value) playlistError,
   }) {
-    return loading(this);
+    return playlistLoading(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(Loading value)? loading,
+    TResult? Function(PlaylistLoading value)? playlistLoading,
     TResult? Function(PlayListItemsLoaded value)? playListItemsLoaded,
     TResult? Function(ChannelPlayListLoaded value)? channelPlayListLoaded,
-    TResult? Function(Error value)? error,
+    TResult? Function(PlaylistError value)? playlistError,
   }) {
-    return loading?.call(this);
+    return playlistLoading?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(Loading value)? loading,
+    TResult Function(PlaylistLoading value)? playlistLoading,
     TResult Function(PlayListItemsLoaded value)? playListItemsLoaded,
     TResult Function(ChannelPlayListLoaded value)? channelPlayListLoaded,
-    TResult Function(Error value)? error,
+    TResult Function(PlaylistError value)? playlistError,
     required TResult orElse(),
   }) {
-    if (loading != null) {
-      return loading(this);
+    if (playlistLoading != null) {
+      return playlistLoading(this);
     }
     return orElse();
   }
 }
 
-abstract class Loading implements PlayListState {
-  const factory Loading() = _$Loading;
+abstract class PlaylistLoading implements PlayListState {
+  const factory PlaylistLoading() = _$PlaylistLoading;
 }
 
 /// @nodoc
@@ -402,11 +407,12 @@ class _$PlayListItemsLoaded implements PlayListItemsLoaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function() playlistLoading,
     required TResult Function(PlayListVideos playListVideos)
         playListItemsLoaded,
     required TResult Function(PlayLists playLists) channelPlayListLoaded,
-    required TResult Function(NetworkExceptionModel networkExceptions) error,
+    required TResult Function(NetworkExceptionModel networkExceptions)
+        playlistError,
   }) {
     return playListItemsLoaded(playListVideos);
   }
@@ -415,10 +421,10 @@ class _$PlayListItemsLoaded implements PlayListItemsLoaded {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
+    TResult? Function()? playlistLoading,
     TResult? Function(PlayListVideos playListVideos)? playListItemsLoaded,
     TResult? Function(PlayLists playLists)? channelPlayListLoaded,
-    TResult? Function(NetworkExceptionModel networkExceptions)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? playlistError,
   }) {
     return playListItemsLoaded?.call(playListVideos);
   }
@@ -427,10 +433,10 @@ class _$PlayListItemsLoaded implements PlayListItemsLoaded {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function()? playlistLoading,
     TResult Function(PlayListVideos playListVideos)? playListItemsLoaded,
     TResult Function(PlayLists playLists)? channelPlayListLoaded,
-    TResult Function(NetworkExceptionModel networkExceptions)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? playlistError,
     required TResult orElse(),
   }) {
     if (playListItemsLoaded != null) {
@@ -443,11 +449,11 @@ class _$PlayListItemsLoaded implements PlayListItemsLoaded {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(Loading value) loading,
+    required TResult Function(PlaylistLoading value) playlistLoading,
     required TResult Function(PlayListItemsLoaded value) playListItemsLoaded,
     required TResult Function(ChannelPlayListLoaded value)
         channelPlayListLoaded,
-    required TResult Function(Error value) error,
+    required TResult Function(PlaylistError value) playlistError,
   }) {
     return playListItemsLoaded(this);
   }
@@ -456,10 +462,10 @@ class _$PlayListItemsLoaded implements PlayListItemsLoaded {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(Loading value)? loading,
+    TResult? Function(PlaylistLoading value)? playlistLoading,
     TResult? Function(PlayListItemsLoaded value)? playListItemsLoaded,
     TResult? Function(ChannelPlayListLoaded value)? channelPlayListLoaded,
-    TResult? Function(Error value)? error,
+    TResult? Function(PlaylistError value)? playlistError,
   }) {
     return playListItemsLoaded?.call(this);
   }
@@ -468,10 +474,10 @@ class _$PlayListItemsLoaded implements PlayListItemsLoaded {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(Loading value)? loading,
+    TResult Function(PlaylistLoading value)? playlistLoading,
     TResult Function(PlayListItemsLoaded value)? playListItemsLoaded,
     TResult Function(ChannelPlayListLoaded value)? channelPlayListLoaded,
-    TResult Function(Error value)? error,
+    TResult Function(PlaylistError value)? playlistError,
     required TResult orElse(),
   }) {
     if (playListItemsLoaded != null) {
@@ -558,11 +564,12 @@ class _$ChannelPlayListLoaded implements ChannelPlayListLoaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function() playlistLoading,
     required TResult Function(PlayListVideos playListVideos)
         playListItemsLoaded,
     required TResult Function(PlayLists playLists) channelPlayListLoaded,
-    required TResult Function(NetworkExceptionModel networkExceptions) error,
+    required TResult Function(NetworkExceptionModel networkExceptions)
+        playlistError,
   }) {
     return channelPlayListLoaded(playLists);
   }
@@ -571,10 +578,10 @@ class _$ChannelPlayListLoaded implements ChannelPlayListLoaded {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
+    TResult? Function()? playlistLoading,
     TResult? Function(PlayListVideos playListVideos)? playListItemsLoaded,
     TResult? Function(PlayLists playLists)? channelPlayListLoaded,
-    TResult? Function(NetworkExceptionModel networkExceptions)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? playlistError,
   }) {
     return channelPlayListLoaded?.call(playLists);
   }
@@ -583,10 +590,10 @@ class _$ChannelPlayListLoaded implements ChannelPlayListLoaded {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function()? playlistLoading,
     TResult Function(PlayListVideos playListVideos)? playListItemsLoaded,
     TResult Function(PlayLists playLists)? channelPlayListLoaded,
-    TResult Function(NetworkExceptionModel networkExceptions)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? playlistError,
     required TResult orElse(),
   }) {
     if (channelPlayListLoaded != null) {
@@ -599,11 +606,11 @@ class _$ChannelPlayListLoaded implements ChannelPlayListLoaded {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(Loading value) loading,
+    required TResult Function(PlaylistLoading value) playlistLoading,
     required TResult Function(PlayListItemsLoaded value) playListItemsLoaded,
     required TResult Function(ChannelPlayListLoaded value)
         channelPlayListLoaded,
-    required TResult Function(Error value) error,
+    required TResult Function(PlaylistError value) playlistError,
   }) {
     return channelPlayListLoaded(this);
   }
@@ -612,10 +619,10 @@ class _$ChannelPlayListLoaded implements ChannelPlayListLoaded {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(Loading value)? loading,
+    TResult? Function(PlaylistLoading value)? playlistLoading,
     TResult? Function(PlayListItemsLoaded value)? playListItemsLoaded,
     TResult? Function(ChannelPlayListLoaded value)? channelPlayListLoaded,
-    TResult? Function(Error value)? error,
+    TResult? Function(PlaylistError value)? playlistError,
   }) {
     return channelPlayListLoaded?.call(this);
   }
@@ -624,10 +631,10 @@ class _$ChannelPlayListLoaded implements ChannelPlayListLoaded {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(Loading value)? loading,
+    TResult Function(PlaylistLoading value)? playlistLoading,
     TResult Function(PlayListItemsLoaded value)? playListItemsLoaded,
     TResult Function(ChannelPlayListLoaded value)? channelPlayListLoaded,
-    TResult Function(Error value)? error,
+    TResult Function(PlaylistError value)? playlistError,
     required TResult orElse(),
   }) {
     if (channelPlayListLoaded != null) {
@@ -648,18 +655,20 @@ abstract class ChannelPlayListLoaded implements PlayListState {
 }
 
 /// @nodoc
-abstract class _$$ErrorCopyWith<$Res> {
-  factory _$$ErrorCopyWith(_$Error value, $Res Function(_$Error) then) =
-      __$$ErrorCopyWithImpl<$Res>;
+abstract class _$$PlaylistErrorCopyWith<$Res> {
+  factory _$$PlaylistErrorCopyWith(
+          _$PlaylistError value, $Res Function(_$PlaylistError) then) =
+      __$$PlaylistErrorCopyWithImpl<$Res>;
   @useResult
   $Res call({NetworkExceptionModel networkExceptions});
 }
 
 /// @nodoc
-class __$$ErrorCopyWithImpl<$Res>
-    extends _$PlayListStateCopyWithImpl<$Res, _$Error>
-    implements _$$ErrorCopyWith<$Res> {
-  __$$ErrorCopyWithImpl(_$Error _value, $Res Function(_$Error) _then)
+class __$$PlaylistErrorCopyWithImpl<$Res>
+    extends _$PlayListStateCopyWithImpl<$Res, _$PlaylistError>
+    implements _$$PlaylistErrorCopyWith<$Res> {
+  __$$PlaylistErrorCopyWithImpl(
+      _$PlaylistError _value, $Res Function(_$PlaylistError) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -667,7 +676,7 @@ class __$$ErrorCopyWithImpl<$Res>
   $Res call({
     Object? networkExceptions = null,
   }) {
-    return _then(_$Error(
+    return _then(_$PlaylistError(
       null == networkExceptions
           ? _value.networkExceptions
           : networkExceptions // ignore: cast_nullable_to_non_nullable
@@ -678,22 +687,22 @@ class __$$ErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$Error implements Error {
-  const _$Error(this.networkExceptions);
+class _$PlaylistError implements PlaylistError {
+  const _$PlaylistError(this.networkExceptions);
 
   @override
   final NetworkExceptionModel networkExceptions;
 
   @override
   String toString() {
-    return 'PlayListState.error(networkExceptions: $networkExceptions)';
+    return 'PlayListState.playlistError(networkExceptions: $networkExceptions)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$Error &&
+            other is _$PlaylistError &&
             (identical(other.networkExceptions, networkExceptions) ||
                 other.networkExceptions == networkExceptions));
   }
@@ -704,46 +713,47 @@ class _$Error implements Error {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ErrorCopyWith<_$Error> get copyWith =>
-      __$$ErrorCopyWithImpl<_$Error>(this, _$identity);
+  _$$PlaylistErrorCopyWith<_$PlaylistError> get copyWith =>
+      __$$PlaylistErrorCopyWithImpl<_$PlaylistError>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function() playlistLoading,
     required TResult Function(PlayListVideos playListVideos)
         playListItemsLoaded,
     required TResult Function(PlayLists playLists) channelPlayListLoaded,
-    required TResult Function(NetworkExceptionModel networkExceptions) error,
+    required TResult Function(NetworkExceptionModel networkExceptions)
+        playlistError,
   }) {
-    return error(networkExceptions);
+    return playlistError(networkExceptions);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
+    TResult? Function()? playlistLoading,
     TResult? Function(PlayListVideos playListVideos)? playListItemsLoaded,
     TResult? Function(PlayLists playLists)? channelPlayListLoaded,
-    TResult? Function(NetworkExceptionModel networkExceptions)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? playlistError,
   }) {
-    return error?.call(networkExceptions);
+    return playlistError?.call(networkExceptions);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function()? playlistLoading,
     TResult Function(PlayListVideos playListVideos)? playListItemsLoaded,
     TResult Function(PlayLists playLists)? channelPlayListLoaded,
-    TResult Function(NetworkExceptionModel networkExceptions)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? playlistError,
     required TResult orElse(),
   }) {
-    if (error != null) {
-      return error(networkExceptions);
+    if (playlistError != null) {
+      return playlistError(networkExceptions);
     }
     return orElse();
   }
@@ -752,48 +762,50 @@ class _$Error implements Error {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(Loading value) loading,
+    required TResult Function(PlaylistLoading value) playlistLoading,
     required TResult Function(PlayListItemsLoaded value) playListItemsLoaded,
     required TResult Function(ChannelPlayListLoaded value)
         channelPlayListLoaded,
-    required TResult Function(Error value) error,
+    required TResult Function(PlaylistError value) playlistError,
   }) {
-    return error(this);
+    return playlistError(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(Loading value)? loading,
+    TResult? Function(PlaylistLoading value)? playlistLoading,
     TResult? Function(PlayListItemsLoaded value)? playListItemsLoaded,
     TResult? Function(ChannelPlayListLoaded value)? channelPlayListLoaded,
-    TResult? Function(Error value)? error,
+    TResult? Function(PlaylistError value)? playlistError,
   }) {
-    return error?.call(this);
+    return playlistError?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(Loading value)? loading,
+    TResult Function(PlaylistLoading value)? playlistLoading,
     TResult Function(PlayListItemsLoaded value)? playListItemsLoaded,
     TResult Function(ChannelPlayListLoaded value)? channelPlayListLoaded,
-    TResult Function(Error value)? error,
+    TResult Function(PlaylistError value)? playlistError,
     required TResult orElse(),
   }) {
-    if (error != null) {
-      return error(this);
+    if (playlistError != null) {
+      return playlistError(this);
     }
     return orElse();
   }
 }
 
-abstract class Error implements PlayListState {
-  const factory Error(final NetworkExceptionModel networkExceptions) = _$Error;
+abstract class PlaylistError implements PlayListState {
+  const factory PlaylistError(final NetworkExceptionModel networkExceptions) =
+      _$PlaylistError;
 
   NetworkExceptionModel get networkExceptions;
   @JsonKey(ignore: true)
-  _$$ErrorCopyWith<_$Error> get copyWith => throw _privateConstructorUsedError;
+  _$$PlaylistErrorCopyWith<_$PlaylistError> get copyWith =>
+      throw _privateConstructorUsedError;
 }

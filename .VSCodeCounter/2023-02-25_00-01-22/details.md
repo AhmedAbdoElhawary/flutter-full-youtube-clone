@@ -155,8 +155,8 @@ Total : 340 files,  25198 codes, 1172 comments, 3406 blanks, all 29776 lines
 | [lib/data/models/channel_details/channel_sub_details/channel_sub_details_extension.dart](/lib/data/models/channel_details/channel_sub_details/channel_sub_details_extension.dart) | Dart | 22 | 1 | 6 | 29 |
 | [lib/data/models/channel_details/my_subscriptions_details.dart](/lib/data/models/channel_details/my_subscriptions/my_subscriptions_details.dart) | Dart | 47 | 0 | 14 | 61 |
 | [lib/data/models/channel_details/my_subscriptions_details.g.dart](/lib/data/models/channel_details/my_subscriptions/my_subscriptions_details.g.dart) | Dart | 42 | 4 | 7 | 53 |
-| [lib/data/models/channel_details/playlists/playlist_videos.dart](/lib/data/models/channel_details/playlists/playlist_videos.dart) | Dart | 56 | 0 | 14 | 70 |
-| [lib/data/models/channel_details/playlists/playlist_videos.g.dart](/lib/data/models/channel_details/playlists/playlist_videos.g.dart) | Dart | 51 | 4 | 7 | 62 |
+| [lib/data/models/channel_details/playlists/playlist_videos.dart](/lib/data/models/channel_details/playlists/playlist_videos/playlist_videos.dart) | Dart | 56 | 0 | 14 | 70 |
+| [lib/data/models/channel_details/playlists/playlist_videos.g.dart](/lib/data/models/channel_details/playlists/playlist_videos/playlist_videos.g.dart) | Dart | 51 | 4 | 7 | 62 |
 | [lib/data/models/channel_details/playlists/playlists.dart](/lib/data/models/channel_details/playlists/playlists.dart) | Dart | 28 | 0 | 11 | 39 |
 | [lib/data/models/channel_details/playlists/playlists.g.dart](/lib/data/models/channel_details/playlists/playlists.g.dart) | Dart | 27 | 4 | 6 | 37 |
 | [lib/data/models/channel_details/subscribe_request_body.dart](/lib/data/models/channel_details/subscribe_request_body.dart) | Dart | 12 | 0 | 1 | 13 |

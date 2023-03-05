@@ -4,7 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:youtube/core/functions/api_result.dart';
 import 'package:youtube/core/functions/network_exception_model.dart';
 
-import 'package:youtube/data/models/channel_details/playlists/playlist_videos.dart';
+import 'package:youtube/data/models/channel_details/playlists/playlist_videos/playlist_videos.dart';
 import 'package:youtube/data/models/channel_details/playlists/playlists.dart';
 import 'package:youtube/domain/entities/parameters/channel_details_use_case_parameters.dart';
 import 'package:youtube/domain/use_cases/channel/playlist/channel_playlist_items_use_case.dart';
@@ -23,7 +23,7 @@ class PlayListCubit extends Cubit<PlayListState> {
   static PlayListCubit get(BuildContext context) => BlocProvider.of(context);
 
   Future<void> getPlayListItems({required String playlistId}) async {
-    emit(const PlayListState.loading());
+    emit(const PlayListState.playlistLoading());
 
     ApiResult<PlayListVideos> playListItemsDetails =
         await _channelPlayListItemUseCase.call(
@@ -33,11 +33,11 @@ class PlayListCubit extends Cubit<PlayListState> {
     playListItemsDetails.when(
         success: (playListVideos) =>
             emit(PlayListState.playListItemsLoaded(playListVideos)),
-        failure: (exception) => emit(PlayListState.error(exception)));
+        failure: (exception) => emit(PlayListState.playlistError(exception)));
   }
 
-  Future<void> getChannelPlayList({required String channelId}) async {
-    emit(const PlayListState.loading());
+  Future<void> getChannelPlayLists({required String channelId}) async {
+    emit(const PlayListState.playlistLoading());
 
     ApiResult<PlayLists> playListDetails = await _channelPlayListUseCase.call(
         params: ChannelDetailsUseCaseParameters(channelId: channelId));
@@ -45,7 +45,7 @@ class PlayListCubit extends Cubit<PlayListState> {
     playListDetails.when(
         success: (playLists) =>
             emit(PlayListState.channelPlayListLoaded(playLists)),
-        failure: (exception) => emit(PlayListState.error(exception)));
+        failure: (exception) => emit(PlayListState.playlistError(exception)));
   }
 
 }
