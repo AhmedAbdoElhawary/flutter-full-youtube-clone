@@ -156,13 +156,15 @@ class _BottomChannelsWidget extends StatelessWidget {
               padding: REdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
               child: InkWell(
                 onTap: () {
-                  Go<UserChannelPageParameters>(context).to(
-                      Routes.userChannelPage,
-                      arg: UserChannelPageParameters(
+                  Go(context).to(
+                    UserChannelPage(
+                      UserChannelPageParameters(
                         channelId:
                             logic.selectedChannelItemDetails?.getChannelId() ??
                                 "",
-                      ));
+                      ),
+                    ),
+                  );
                 },
                 child: Text(
                   "VIEW CHANNELS",
