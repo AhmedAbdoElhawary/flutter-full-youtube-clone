@@ -7,7 +7,7 @@ class PlayListState with _$PlayListState {
   const factory PlayListState.playlistLoading() = PlaylistLoading;
 
   const factory PlayListState.playListItemsLoaded(
-      PlayListVideos playListVideos) = PlayListItemsLoaded;
+      List<VideosDetails> playListVideos) = PlayListItemsLoaded;
 
   const factory PlayListState.channelPlayListLoaded(PlayLists playLists) =
       ChannelPlayListLoaded;

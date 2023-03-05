@@ -135,7 +135,7 @@ Future<void> initializeDependencies() async {
     () => SearchDetailsRepoImpl(injector(), injector(), injector()),
   );
   injector.registerLazySingleton<ChannelPlayListDetailsRepository>(
-    () => ChannelPlayListDetailsRepoImpl(injector(), injector()),
+    () => ChannelPlayListDetailsRepoImpl(injector(), injector(), injector()),
   );
 
   // *
