@@ -34,7 +34,7 @@ class MainSliverAppBar extends StatelessWidget {
               const RSizedBox(width: 20),
               GestureDetector(
                   onTap: () {
-                    Go<SearchPageParameters>(context).to(Routes.searchPage);
+                    Go(context).to(const SearchPage());
                   },
                   child: const Icon(Icons.search_rounded, size: 25)),
               const RSizedBox(width: 20),
