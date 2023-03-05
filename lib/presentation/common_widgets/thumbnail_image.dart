@@ -7,11 +7,15 @@ import 'package:cached_network_image/cached_network_image.dart';
 
 class ThumbnailImage extends StatefulWidget {
   const ThumbnailImage(this.thumbnailsVideo,
-      {this.width = double.infinity, this.height = 185, Key? key})
+      {this.width = double.infinity,
+      this.height = 185,
+      required this.childAboveImage,
+      Key? key})
       : super(key: key);
   final MaxThumbnails? thumbnailsVideo;
   final double height;
   final double width;
+  final Widget childAboveImage;
   @override
   State<ThumbnailImage> createState() => _NetworkDisplayState();
 }
@@ -30,25 +34,56 @@ class _NetworkDisplayState extends State<ThumbnailImage> {
 
   @override
   Widget build(BuildContext context) {
-    ThumbnailDetails? thumbnail = widget.thumbnailsVideo?.max;
+    return DecoratedBox(
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(5)),
+      ),
+      child: Stack(
+        alignment: AlignmentDirectional.bottomEnd,
+        children: [
+          _CachedImage(
+            thumbnailsVideo: widget.thumbnailsVideo,
+            height: widget.height,
+            width: widget.width,
+          ),
+          widget.childAboveImage,
+        ],
+      ),
+    );
+  }
+}
+class _CachedImage extends StatelessWidget {
+  const _CachedImage({
+    required this.thumbnailsVideo,
+    required this.height,
+    required this.width,
+  });
+
+  final MaxThumbnails? thumbnailsVideo;
+  final double height;
+  final double width;
+
+  @override
+  Widget build(BuildContext context) {
+    ThumbnailDetails? thumbnail = thumbnailsVideo?.max;
 
     return CachedNetworkImage(
       imageUrl: thumbnail?.url ?? "",
       fit: BoxFit.cover,
-      width: widget.width.w,
-      height: widget.height.h,
+      width: width.w,
+      height: height.h,
       memCacheHeight: thumbnail?.height,
       memCacheWidth: thumbnail?.width,
       placeholder: (context, url) => Container(
         color: ColorManager(context).grey1,
-        width: widget.width.w,
-        height: widget.height.h,
+        width: width.w,
+        height: height.h,
       ),
       errorWidget: (context, url, error) {
         return Container(
           color: ColorManager(context).grey1,
-          width: widget.width.w,
-          height: widget.height.h,
+          width: width.w,
+          height: height.h,
         );
       },
     );

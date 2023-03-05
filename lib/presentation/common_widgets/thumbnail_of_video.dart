@@ -33,30 +33,20 @@ class ThumbnailOfVideo extends StatelessWidget {
 
         String url = 'https://youtu.be/$videoId';
 
-        print("====================================> 333333333");
-
         if ((logic.videoController?.isInitialised ?? false) &&
             logic.videoController?.videoUrl == url) return;
-        print("====================================> 4444444444");
 
         if (videoId.isNotEmpty && logic.videoController != null) {
           logic.videoController?.changeVideo(
             playVideoFrom: logic.getPlayVideoFrom(videoId),
           );
-          print("====================================> 55555555555555");
         }
-        print("====================================> 6666666666");
       },
       child: Column(
         children: [
-          Stack(
-            alignment: AlignmentDirectional.bottomEnd,
-            children: [
-              if (videoDetailsItem?.getVideoThumbnails() != null)
-                ThumbnailImage(videoDetailsItem?.getVideoThumbnails()),
-              VideoDurationWidget(videoDetailsItem)
-            ],
-          ),
+          if (videoDetailsItem?.getVideoThumbnails() != null)
+            ThumbnailImage(videoDetailsItem?.getVideoThumbnails(),
+                childAboveImage: VideoDurationWidget(videoDetailsItem)),
           const RSizedBox(height: 10),
           _VideoSubTitles(videoDetailsItem),
           const RSizedBox(height: 15),
