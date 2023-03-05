@@ -12,6 +12,7 @@ class IconsAssets {
   static const String playIcon = "$_iconNewPath/play.svg";
   static const String rightArrowIcon = "$_iconNewPath/right-arrow.svg";
   static const String downArrowIcon = "$_iconNewPath/caret-down.svg";
+  static const String lockIcon = "$_iconNewPath/lock.svg";
 
   static const String settingsIcon = "$_iconPath/settings.svg";
   static const String closeIcon = "$_iconPath/close.svg";
