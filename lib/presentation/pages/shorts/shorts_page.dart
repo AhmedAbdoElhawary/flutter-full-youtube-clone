@@ -50,7 +50,7 @@ class ShortsPageState extends State<ShortsPage> {
         actions: [
           InkWell(
             onTap: () {
-              Go<SearchPageParameters>(context).to(Routes.searchPage);
+              Go(context).to(const SearchPage());
             },
             child: SvgPicture.asset(
               IconsAssets.search,
