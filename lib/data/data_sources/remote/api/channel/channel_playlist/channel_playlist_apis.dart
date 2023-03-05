@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:youtube/core/utility/constants.dart';
 import 'package:youtube/core/utility/private_key.dart';
-import 'package:youtube/data/models/channel_details/playlists/playlist_videos.dart';
+import 'package:youtube/data/models/channel_details/playlists/playlist_videos/playlist_videos.dart';
 import 'package:youtube/data/models/channel_details/playlists/playlists.dart';
 part 'channel_playlist_apis.g.dart';
 

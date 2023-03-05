@@ -21,9 +21,10 @@ class VideoHorizontalDescriptionsList extends StatelessWidget {
         Stack(
           alignment: AlignmentDirectional.bottomEnd,
           children: [
-            ThumbnailImage(videoDetails.getVideoThumbnails(),height: 80, width: 160),
-            VideoDurationWidget(videoDetails)
-
+            ThumbnailImage(videoDetails.getVideoThumbnails(),
+                height: 80,
+                width: 160,
+                childAboveImage: VideoDurationWidget(videoDetails)),
           ],
         ),
         const RSizedBox(width: 15),

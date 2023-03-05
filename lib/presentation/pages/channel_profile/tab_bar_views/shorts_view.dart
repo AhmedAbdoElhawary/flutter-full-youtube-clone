@@ -123,26 +123,21 @@ class _BuildGridItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Go<ShortsPageParameters>(context).to(
-          Routes.shortsPage,
-          arg: ShortsPageParameters(videoDetailsItem: videoDetailsItem),
-        );
+        Go(context).to(ShortsPage(
+          parameters: ShortsPageParameters(videoDetailsItem: videoDetailsItem),
+        ));
       },
-      child: Stack(
-        alignment: AlignmentDirectional.bottomStart,
-        children: [
-          ThumbnailImage(videoDetailsItem[index].getVideoThumbnails()),
-          Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: Text(
-              "${videoDetailsItem[index].getVideoViewsCount()} views",
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style:
-                  getNormalStyle(color: BaseColorManager.white, fontSize: 12),
-            ),
-          )
-        ],
+      child: ThumbnailImage(
+        videoDetailsItem[index].getVideoThumbnails(),
+        childAboveImage: Padding(
+          padding: const EdgeInsets.all(5.0),
+          child: Text(
+            "${videoDetailsItem[index].getVideoViewsCount()} views",
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: getNormalStyle(color: BaseColorManager.white, fontSize: 12),
+          ),
+        ),
       ),
     );
   }

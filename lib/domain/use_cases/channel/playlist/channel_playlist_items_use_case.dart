@@ -1,6 +1,6 @@
 import 'package:youtube/core/functions/api_result.dart';
 import 'package:youtube/core/use_case/use_case.dart';
-import 'package:youtube/data/models/channel_details/playlists/playlist_videos.dart';
+import 'package:youtube/data/models/channel_details/playlists/playlist_videos/playlist_videos.dart';
 import 'package:youtube/domain/repositories/channel/channel_playlist_repository.dart';
 
 class ChannelPlayListItemsUseCase

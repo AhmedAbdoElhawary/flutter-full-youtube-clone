@@ -4,7 +4,7 @@ part of 'play_list_cubit.dart';
 class PlayListState with _$PlayListState {
   const factory PlayListState.initial() = _Initial;
 
-  const factory PlayListState.loading() = Loading;
+  const factory PlayListState.playlistLoading() = PlaylistLoading;
 
   const factory PlayListState.playListItemsLoaded(
       PlayListVideos playListVideos) = PlayListItemsLoaded;
@@ -12,6 +12,6 @@ class PlayListState with _$PlayListState {
   const factory PlayListState.channelPlayListLoaded(PlayLists playLists) =
       ChannelPlayListLoaded;
 
-  const factory PlayListState.error(NetworkExceptionModel networkExceptions) =
-      Error;
+  const factory PlayListState.playlistError(NetworkExceptionModel networkExceptions) =
+  PlaylistError;
 }
