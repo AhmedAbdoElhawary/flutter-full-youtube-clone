@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:youtube/config/routes/route_app.dart';
 import 'package:youtube/core/functions/handling_errors/network_exceptions.dart';
 import 'package:youtube/core/functions/toast_show.dart';
@@ -17,11 +16,14 @@ import 'package:youtube/data/models/rating_details/rating_details.dart';
 import 'package:youtube/data/models/videos_details/video_details_extension.dart';
 import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/presentation/common_widgets/circular_profile_image.dart';
+import 'package:youtube/presentation/common_widgets/container_loading.dart';
 import 'package:youtube/presentation/common_widgets/custom_circle_progress.dart';
 import 'package:youtube/presentation/common_widgets/error_message_widget.dart';
 import 'package:youtube/presentation/common_widgets/read_more_text.dart';
+import 'package:youtube/presentation/common_widgets/subscribe_button.dart';
 import 'package:youtube/presentation/common_widgets/text_links.dart';
 import 'package:youtube/presentation/common_widgets/thumbnail_of_video.dart';
+import 'package:youtube/presentation/common_widgets/videos_list_loading.dart';
 import 'package:youtube/presentation/cubit/search/search_cubit.dart';
 import 'package:youtube/presentation/cubit/single_video/single_video_cubit.dart';
 import 'package:youtube/presentation/custom_packages/custom_mini_player/custom_mini_player.dart';
@@ -32,10 +34,11 @@ import 'package:youtube/presentation/pages/channel_profile/user_channel_page.dar
 import 'package:youtube/presentation/pages/home/logic/home_page_logic.dart';
 
 import '../../custom_packages/sliding_sheet/sliding_sheet.dart';
+import 'sub_widgets/interaction_simmer_loading.dart';
 
 part 'sub_widgets/like_button.dart';
+part 'sub_widgets/loading_widgets.dart';
 part 'sub_widgets/dislike_button.dart';
-part 'sub_widgets/interaction_simmer_loading.dart';
 part 'sub_widgets/mini_video_view.dart';
 part 'sub_widgets/bottom_sheet/draggable_bottom_sheet.dart';
 part 'sub_widgets/fisrt_comment_preview_button.dart';
@@ -96,12 +99,7 @@ class _MiniVideoDisplay extends StatelessWidget {
               return Padding(
                 padding: EdgeInsets.only(
                     top: miniVideoViewLogic.videoOfMiniDisplayHeight()),
-                child: const CustomScrollView(
-                  slivers: [
-                    _VideoInfo(),
-                    _RelatedVideosCubit(),
-                  ],
-                ),
+                child: const _NextVideosSuggestions(),
               );
             }),
             _MiniVideoView(height: height, percentage: percentage),
@@ -112,27 +110,31 @@ class _MiniVideoDisplay extends StatelessWidget {
   }
 }
 
-class _RelatedVideosCubit extends StatelessWidget {
-  const _RelatedVideosCubit();
+class _NextVideosSuggestions extends StatelessWidget {
+  const _NextVideosSuggestions();
 
   @override
   Widget build(BuildContext context) {
     return Obx(() {
       final logic = Get.find<MiniVideoViewLogic>(tag: "1");
       String videoId = logic.selectedVideoDetails?.id ?? "";
-
       return BlocBuilder<SearchCubit, SearchState>(
         bloc: SearchCubit.get(context)..relatedVideosToThisVideo(videoId),
         buildWhen: (previous, current) =>
-            previous != current && current is RelatedVideosLoaded,
+            previous != current &&
+            (current is RelatedVideosLoaded || current is SearchLoading),
         builder: (context, state) {
           if (state is RelatedVideosLoaded) {
-            return _RelatedVideosList(state);
+            return CustomScrollView(
+              slivers: [
+                const _VideoInfo(),
+                _RelatedVideosList(state),
+              ],
+            );
           } else if (state is SearchError) {
-            return SliverFillRemaining(
-                child: ErrorMessageWidget(state.networkExceptions));
+            return ErrorMessageWidget(state.networkExceptions);
           } else {
-            return const SliverFillRemaining(child: ThineCircularProgress());
+            return const _LoadingWidgets();
           }
         },
       );
@@ -233,7 +235,10 @@ class _CircleNameSubscribersWidget extends StatelessWidget {
                     ],
                   ),
                 ),
-                // SubscribeButton(channelId: videoDetails?.getChannelId() ?? ""),
+                SubscribeButton(
+                    channelId: videoDetails?.getChannelId() ?? "",
+                    makeItExpanded: false,
+                    fontSize: 13),
               ],
             ),
           );
