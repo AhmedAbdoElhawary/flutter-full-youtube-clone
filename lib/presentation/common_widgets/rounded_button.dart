@@ -20,6 +20,7 @@ class RoundedButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           backgroundColor: backgroundColor,
           enableFeedback: true,
+          minimumSize: makeItExpanded ? null : const Size(0, 0),
           elevation: 0,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(50).r),

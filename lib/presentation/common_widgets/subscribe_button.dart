@@ -12,7 +12,7 @@ import '../../core/resources/styles_manager.dart';
 class SubscribeButton extends StatefulWidget {
   const SubscribeButton(
       {required this.channelId,
-      this.fontSize = 17,
+      this.fontSize = 15,
       this.makeItExpanded = true,
       Key? key})
       : super(key: key);
@@ -37,13 +37,14 @@ class _SubscribeButtonState extends State<SubscribeButton> {
                 ? ColorManager(context).grey1
                 : ColorManager(context).black,
             child: Padding(
-              padding: const EdgeInsets.all(1.0),
+              padding: const EdgeInsets.symmetric(horizontal: 3,vertical: 1),
               child: isClicked
-                  ? const _SubscribedWidgets()
+                  ? _SubscribedWidgets(widget.fontSize)
                   : Text(
                       "Subscribe",
                       style: getMediumStyle(
-                          color: ColorManager(context).white, fontSize: 15),
+                          color: ColorManager(context).white,
+                          fontSize: widget.fontSize),
                     ),
             ),
             onTap: () {
@@ -55,22 +56,16 @@ class _SubscribeButtonState extends State<SubscribeButton> {
 }
 
 class _SubscribedWidgets extends StatelessWidget {
-  const _SubscribedWidgets();
-
+  const _SubscribedWidgets(this.fontSize);
+  final double fontSize;
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const SvgIcon(IconsAssets.notificationIcon, height: 20),
+        SvgIcon(IconsAssets.notificationIcon, height: fontSize + 5),
         const RSizedBox(width: 5),
-        Text(
-          "Subscribed",
-          style:
-              getMediumStyle(color: ColorManager(context).black, fontSize: 15),
-        ),
-        const RSizedBox(width: 5),
-        const SvgIcon(IconsAssets.downArrowIcon, height: 20)
+        SvgIcon(IconsAssets.downArrowIcon, height: fontSize + 5)
       ],
     );
   }
