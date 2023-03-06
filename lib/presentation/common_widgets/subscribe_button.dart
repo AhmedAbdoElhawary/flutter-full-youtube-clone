@@ -10,10 +10,16 @@ import '../../core/resources/color_manager.dart';
 import '../../core/resources/styles_manager.dart';
 
 class SubscribeButton extends StatefulWidget {
-  const SubscribeButton({required this.channelId, this.fontSize = 17, Key? key})
+  const SubscribeButton(
+      {required this.channelId,
+      this.fontSize = 17,
+      this.makeItExpanded = true,
+      Key? key})
       : super(key: key);
   final double fontSize;
   final String channelId;
+  final bool makeItExpanded;
+
   @override
   State<SubscribeButton> createState() => _SubscribeButtonState();
 }
@@ -24,9 +30,9 @@ class _SubscribeButtonState extends State<SubscribeButton> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ChannelDetailsCubit, ChannelDetailsState>(
-      // bloc: ChannelDetailsCubit.get(context)..subscribeToChannel(widget.channelId),
       builder: (context, state) {
         return RoundedButton(
+            makeItExpanded: widget.makeItExpanded,
             backgroundColor: isClicked
                 ? ColorManager(context).grey1
                 : ColorManager(context).black,
@@ -56,10 +62,7 @@ class _SubscribedWidgets extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const SvgIcon(
-          IconsAssets.notificationIcon,
-          height: 20,
-        ),
+        const SvgIcon(IconsAssets.notificationIcon, height: 20),
         const RSizedBox(width: 5),
         Text(
           "Subscribed",
