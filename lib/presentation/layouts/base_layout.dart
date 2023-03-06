@@ -20,24 +20,23 @@ class BaseLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final miniVideoLogic = Get.find<MiniVideoViewLogic>(tag: "1");
+    final baseLayoutLogic = Get.find<BaseLayoutLogic>(tag: "1");
 
-    return Material(
-      color: ColorManager(context).white,
-      shadowColor: ColorManager(context).grey1,
-      surfaceTintColor: ColorManager(context).grey1,
-      child: Stack(
-        children: [
-          const _BaseLayout(),
-          Obx(
-            () => miniVideoLogic.selectedVideoDetails == null
+    return Scaffold(
+      body: SafeArea(
+        child: Stack(
+          children: [
+            const _BaseLayout(),
+            Obx(() => miniVideoLogic.selectedVideoDetails == null ||
+                    baseLayoutLogic.isShortsPageSelected
                 ? const SizedBox()
                 : Padding(
                     padding: EdgeInsets.only(
                         bottom: miniVideoLogic.heightOfNavigationBar.value.h),
                     child: const MiniPlayerVideo(),
-                  ),
-          ),
-        ],
+                  )),
+          ],
+        ),
       ),
     );
   }
