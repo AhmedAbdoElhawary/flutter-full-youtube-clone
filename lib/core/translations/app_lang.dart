@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:youtube/core/translations/local_storage/local_storage.dart';
 import 'package:youtube/presentation/layouts/base_layout_logic.dart';
-import 'package:youtube/presentation/pages/home/logic/home_page_logic.dart';
 
 class AppLanguage extends GetxController {
   String _appLocale = 'en';
@@ -11,7 +10,6 @@ class AppLanguage extends GetxController {
   void onInit() async {
     super.onInit();
     LocalStorage localStorage = LocalStorage();
-    Get.put(MiniVideoViewLogic(), tag: "1");
     Get.put(BaseLayoutLogic(), tag: "1");
 
     _appLocale = await localStorage.languageSelected ?? 'en';

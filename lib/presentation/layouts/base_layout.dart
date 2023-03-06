@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:youtube/core/resources/color_manager.dart';
+import 'package:youtube/core/utility/constants.dart';
 import 'package:youtube/presentation/custom_packages/custom_tab_scaffold/custom_bottom_tab_bar.dart';
 import 'package:youtube/presentation/custom_packages/custom_tab_scaffold/custom_tab_scaffold.dart';
 import 'package:youtube/presentation/layouts/base_layout_logic.dart';
@@ -19,36 +20,10 @@ class BaseLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final miniVideoLogic = Get.find<MiniVideoViewLogic>(tag: "1");
+    screenSize = MediaQuery.of(context).size;
+
     final baseLayoutLogic = Get.find<BaseLayoutLogic>(tag: "1");
-
-    return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          children: [
-            const _BaseLayout(),
-            Obx(() => miniVideoLogic.selectedVideoDetails == null ||
-                    baseLayoutLogic.isShortsPageSelected
-                ? const SizedBox()
-                : Padding(
-                    padding: EdgeInsets.only(
-                        bottom: miniVideoLogic.heightOfNavigationBar.value.h),
-                    child: const MiniPlayerVideo(),
-                  )),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _BaseLayout extends StatelessWidget {
-  const _BaseLayout({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final baseLayoutLogic = Get.find<BaseLayoutLogic>(tag: "1");
-    final miniVideoLogic = Get.find<MiniVideoViewLogic>(tag: "1");
+    final miniVideoLogic = Get.put(MiniVideoViewLogic(), tag: "1");
 
     return Obx(
       () => CustomCupertinoTabScaffold(
@@ -82,7 +57,20 @@ class _BaseLayout extends StatelessWidget {
         ),
         controller: baseLayoutLogic.tabController,
         tabBuilder: (context, index) {
-          return WhichPage(index);
+          if (index == 1) return const _ShortsPage();
+
+          return Obx(() {
+            Widget floatingVideo = miniVideoLogic.selectedVideoDetails == null
+                ? const SizedBox()
+                : const MiniPlayerVideo();
+
+            return Stack(
+              children: [
+                WhichPage(index),
+                floatingVideo,
+              ],
+            );
+          });
         },
       ),
     );

@@ -51,22 +51,20 @@ class MiniPlayerVideo extends StatefulWidget {
 }
 
 class _MiniPlayerVideoState extends State<MiniPlayerVideo> {
-  final double minHeight = 50.h;
   final _miniVideoViewLogic = Get.find<MiniVideoViewLogic>(tag: "1");
   final baseLayoutLogic = Get.find<BaseLayoutLogic>(tag: "1");
 
   @override
   Widget build(BuildContext context) {
-    MediaQueryData mediaQuery = MediaQuery.of(context);
-    double height = mediaQuery.size.height - 10.h;
     return SafeArea(
       child: CustomMiniPlayer(
         controller: _miniVideoViewLogic.miniPlayerController,
-        minHeight: minHeight,
-        maxHeight: height,
+        minHeight: _miniVideoViewLogic.minHeight,
+        maxHeight: _miniVideoViewLogic.maxHeight,
         onDismissed: () {
           _miniVideoViewLogic.selectedVideoDetails = null;
           _miniVideoViewLogic.videoController?.dispose();
+          _miniVideoViewLogic.isMiniVideoPlayed.value = false;
         },
         builder: (height, percentage) {
           WidgetsBinding.instance.addPostFrameCallback((_) {

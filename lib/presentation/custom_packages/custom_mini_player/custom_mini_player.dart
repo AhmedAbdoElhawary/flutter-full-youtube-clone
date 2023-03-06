@@ -1,8 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/presentation/custom_packages/custom_mini_player/utils.dart';
+import 'package:youtube/presentation/pages/home/logic/home_page_logic.dart';
 
 import 'mini_player_will_pop_scope.dart';
 
@@ -68,6 +70,8 @@ class CustomMiniPlayerState extends State<CustomMiniPlayer>
   late ValueNotifier<double> percentageOfHeight;
   ValueNotifier<double> dragDownPercentage = ValueNotifier(0);
 
+  final miniVideoLogic = Get.find<MiniVideoViewLogic>(tag: "1");
+
   ///Temporary variable as long as onDismiss is deprecated. Will be removed in a future version.
   Function? onDismissed;
 
@@ -104,7 +108,17 @@ class CustomMiniPlayerState extends State<CustomMiniPlayer>
 
   @override
   void initState() {
-    heightNotifier = ValueNotifier(widget.maxHeight);
+    super.initState();
+    _init();
+  }
+
+  void _init() {
+    if (!miniVideoLogic.isMiniVideoPlayed.value) {
+      heightNotifier = ValueNotifier(widget.maxHeight);
+    } else {
+      heightNotifier = ValueNotifier(widget.minHeight);
+    }
+    miniVideoLogic.isMiniVideoPlayed.value = true;
     percentageOfHeight = ValueNotifier(
         (heightNotifier.value - widget.minHeight) /
             (widget.maxHeight - widget.minHeight));
@@ -120,8 +134,6 @@ class CustomMiniPlayerState extends State<CustomMiniPlayer>
     if (widget.onDismissed != null) {
       onDismissed = widget.onDismissed;
     }
-
-    super.initState();
   }
 
   @override
@@ -143,7 +155,7 @@ class CustomMiniPlayerState extends State<CustomMiniPlayer>
     return MiniPlayerWillPopScope(
       onWillPop: () async {
         if (heightNotifier.value > widget.minHeight) {
-          _snapToPosition(PanelState.min);
+          snapToPosition(PanelState.min);
           return false;
         }
         return true;
@@ -168,7 +180,7 @@ class CustomMiniPlayerState extends State<CustomMiniPlayer>
                     height: height,
                     child: GestureDetector(
                       onTap: () {
-                        _snapToPosition(PanelState.max);
+                        snapToPosition(PanelState.max);
                       },
                       onPanStart: onPanStart,
                       onPanEnd: onPanEnd,
@@ -271,7 +283,7 @@ class CustomMiniPlayerState extends State<CustomMiniPlayer>
     }
 
     ///Snap to position
-    _snapToPosition(snap);
+    snapToPosition(snap);
   }
 
   void onPanUpdate(DragUpdateDetails details) {
@@ -292,9 +304,8 @@ class CustomMiniPlayerState extends State<CustomMiniPlayer>
       if (_dragHeight > widget.maxHeight) return;
 
       heightNotifier.value = _dragHeight;
-      percentageOfHeight.value =
-          (heightNotifier.value - widget.minHeight) /
-              (widget.maxHeight - widget.minHeight);
+      percentageOfHeight.value = (heightNotifier.value - widget.minHeight) /
+          (widget.maxHeight - widget.minHeight);
     }
 
     ///Drag below minHeight
@@ -319,7 +330,7 @@ class CustomMiniPlayerState extends State<CustomMiniPlayer>
   }
 
   ///Animates the panel height according to a SnapPoint
-  void _snapToPosition(PanelState snapPosition) {
+  void snapToPosition(PanelState snapPosition) {
     switch (snapPosition) {
       case PanelState.max:
         _animateToHeight(widget.maxHeight);
