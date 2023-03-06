@@ -37,7 +37,7 @@ class ChannelDetailsCubit extends Cubit<ChannelDetailsState> {
       BlocProvider.of(context);
 
   Future<void> getChannelSubDetails(String channelId) async {
-    emit(const ChannelDetailsState.loading());
+    emit(const ChannelDetailsState.subscriptionLoading());
 
     ApiResult<ChannelSubDetails> channelSubDetails =
         await _channelSubDetailsUseCase.call(
@@ -46,11 +46,11 @@ class ChannelDetailsCubit extends Cubit<ChannelDetailsState> {
     channelSubDetails.when(
         success: (videoDetails) =>
             emit(ChannelDetailsState.channelSubDetailsLoaded(videoDetails)),
-        failure: (exception) => emit(ChannelDetailsState.error(exception)));
+        failure: (exception) => emit(ChannelDetailsState.subscriptionError(exception)));
   }
 
   Future<void> subscribeToChannel(String subscriptionId) async {
-    emit(const ChannelDetailsState.loading());
+    emit(const ChannelDetailsState.subscriptionLoading());
 
     ApiResult<void> channelDetails = await _subscribeToChannelUseCase.call(
         params: ChannelDetailsUseCaseParameters(channelId: subscriptionId));
@@ -58,11 +58,11 @@ class ChannelDetailsCubit extends Cubit<ChannelDetailsState> {
     channelDetails.when(
         success: (_) =>
             emit(const ChannelDetailsState.subscribeToChannelLoaded()),
-        failure: (exception) => emit(ChannelDetailsState.error(exception)));
+        failure: (exception) => emit(ChannelDetailsState.subscriptionError(exception)));
   }
 
   Future<void> deleteSubscription(String subscriptionId) async {
-    emit(const ChannelDetailsState.loading());
+    emit(const ChannelDetailsState.subscriptionLoading());
 
     ApiResult<void> channelDetails = await _deleteSubscriptionUseCase.call(
         params:
@@ -71,11 +71,11 @@ class ChannelDetailsCubit extends Cubit<ChannelDetailsState> {
     channelDetails.when(
         success: (_) =>
             emit(const ChannelDetailsState.subscribeToChannelLoaded()),
-        failure: (exception) => emit(ChannelDetailsState.error(exception)));
+        failure: (exception) => emit(ChannelDetailsState.subscriptionError(exception)));
   }
 
   Future<void> getMySubscriptionsChannels() async {
-    emit(const ChannelDetailsState.loading());
+    emit(const ChannelDetailsState.subscriptionLoading());
 
     ApiResult<MySubscriptionsDetails> channelDetails =
         await _mySubscriptionsChannelsUseCase.call(params: null);
@@ -87,7 +87,7 @@ class ChannelDetailsCubit extends Cubit<ChannelDetailsState> {
           emit(ChannelDetailsState.mySubscriptionsChannelsLoaded(
               mySubscriptionsDetails));
         },
-        failure: (exception) => emit(ChannelDetailsState.error(exception)));
+        failure: (exception) => emit(ChannelDetailsState.subscriptionError(exception)));
   }
 
   Future<void> clearMySubscriptionsChannels() async {
