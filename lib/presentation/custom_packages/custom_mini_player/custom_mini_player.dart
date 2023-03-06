@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/presentation/custom_packages/custom_mini_player/utils.dart';
 
 import 'mini_player_will_pop_scope.dart';
@@ -196,9 +197,9 @@ class CustomMiniPlayerState extends State<CustomMiniPlayer>
                             decoration: BoxDecoration(
                               boxShadow: <BoxShadow>[
                                 BoxShadow(
-                                    color: Colors.black45,
+                                    color: BaseColorManager.veryLightGrey,
                                     blurRadius: widget.elevation,
-                                    offset: const Offset(0.0, 4))
+                                    offset: const Offset(0, 0))
                               ],
                               color: Theme.of(context).canvasColor,
                             ),
