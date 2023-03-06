@@ -11,8 +11,7 @@ import 'package:youtube/presentation/custom_packages/pod_player/src/widgets/pod_
 class MobileBottomSheet extends StatelessWidget {
   final String tag;
 
-  const
-  MobileBottomSheet({
+  const MobileBottomSheet({
     Key? key,
     required this.tag,
   }) : super(key: key);
@@ -94,9 +93,7 @@ class MobileBottomSheet extends StatelessWidget {
         alignment: Alignment.centerLeft,
         child: Row(
           children: [
-            Text(
-              title,
-            ),
+            Text(title),
             if (subText != null) const SizedBox(width: 6),
             if (subText != null)
               const SizedBox(
@@ -207,58 +204,61 @@ class MobileOverlayBottomControlles extends StatelessWidget {
       builder: (podCtr) => Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Row(
-            children: [
-              const RSizedBox(width: 15),
-              GetBuilder<PodGetXVideoController>(
-                tag: tag,
-                id: 'video-progress',
-                builder: (podCtr) {
-                  return Row(
-                    children: [
-                      Text(
-                        podCtr.calculateVideoDuration(podCtr.videoPosition),
-                        style: TextStyle(color: itemColor, fontSize: 12.sp),
-                      ),
-                      Text(
-                        ' / ',
-                        style: durationTextStyle,
-                      ),
-                      Text(
-                        podCtr.calculateVideoDuration(podCtr.videoDuration),
-                        style: durationTextStyle,
-                      ),
-                    ],
-                  );
-                },
-              ),
-              const Spacer(),
-              MaterialIconButton(
-                toolTipMsg: podCtr.isFullScreen
-                    ? podCtr.podPlayerLabels.exitFullScreen ??
-                        'Exit full screen${kIsWeb ? ' (f)' : ''}'
-                    : podCtr.podPlayerLabels.fullscreen ??
-                        'Fullscreen${kIsWeb ? ' (f)' : ''}',
-                color: itemColor,
-                onPressed: () {
-                  if (podCtr.isOverlayVisible) {
-                    if (podCtr.isFullScreen) {
-                      podCtr.disableFullScreen(context, tag);
-                    } else {
-                      podCtr.enableFullScreen(tag);
-                    }
-                  } else {
-                    podCtr.toggleVideoOverlay();
-                  }
-                },
-                child: Icon(
-                  podCtr.isFullScreen
-                      ? Icons.fullscreen_exit
-                      : Icons.fullscreen,
+          Expanded(
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const RSizedBox(width: 15),
+                GetBuilder<PodGetXVideoController>(
+                  tag: tag,
+                  id: 'video-progress',
+                  builder: (podCtr) {
+                    return Row(
+                      children: [
+                        Text(
+                          podCtr.calculateVideoDuration(podCtr.videoPosition),
+                          style: TextStyle(color: itemColor, fontSize: 12.sp),
+                        ),
+                        Text(
+                          ' / ',
+                          style: durationTextStyle,
+                        ),
+                        Text(
+                          podCtr.calculateVideoDuration(podCtr.videoDuration),
+                          style: durationTextStyle,
+                        ),
+                      ],
+                    );
+                  },
                 ),
-              ),
-              const RSizedBox(width: 6),
-            ],
+                const Spacer(),
+                MaterialIconButton(
+                  toolTipMsg: podCtr.isFullScreen
+                      ? podCtr.podPlayerLabels.exitFullScreen ??
+                          'Exit full screen${kIsWeb ? ' (f)' : ''}'
+                      : podCtr.podPlayerLabels.fullscreen ??
+                          'Fullscreen${kIsWeb ? ' (f)' : ''}',
+                  color: itemColor,
+                  onPressed: () {
+                    if (podCtr.isOverlayVisible) {
+                      if (podCtr.isFullScreen) {
+                        podCtr.disableFullScreen(context, tag);
+                      } else {
+                        podCtr.enableFullScreen(tag);
+                      }
+                    } else {
+                      podCtr.toggleVideoOverlay();
+                    }
+                  },
+                  child: Icon(
+                    podCtr.isFullScreen
+                        ? Icons.fullscreen_exit
+                        : Icons.fullscreen,
+                  ),
+                ),
+                const RSizedBox(width: 6),
+              ],
+            ),
           ),
           GetBuilder<PodGetXVideoController>(
             tag: tag,

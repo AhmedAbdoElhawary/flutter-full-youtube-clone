@@ -5,9 +5,11 @@ class RoundedButton extends StatelessWidget {
   final Color? backgroundColor;
   final Widget child;
   final VoidCallback onTap;
+  final bool makeItExpanded;
   const RoundedButton(
       {Key? key,
       this.backgroundColor,
+      this.makeItExpanded = true,
       required this.child,
       required this.onTap})
       : super(key: key);

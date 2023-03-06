@@ -12,9 +12,11 @@ class _MiniVideoView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Flexible(
           child: Row(
+            mainAxisSize: MainAxisSize.min,
             children: [
               _VideoOfMiniDisplay(height, percentage),
               const VideoTitleSubTitleTexts(),

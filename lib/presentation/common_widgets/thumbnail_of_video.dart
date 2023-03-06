@@ -46,6 +46,7 @@ class ThumbnailOfVideo extends StatelessWidget {
         children: [
           if (videoDetailsItem?.getVideoThumbnails() != null)
             ThumbnailImage(videoDetailsItem?.getVideoThumbnails(),
+                borderRadius: 0,
                 childAboveImage: VideoDurationWidget(videoDetailsItem)),
           const RSizedBox(height: 10),
           _VideoSubTitles(videoDetailsItem),
