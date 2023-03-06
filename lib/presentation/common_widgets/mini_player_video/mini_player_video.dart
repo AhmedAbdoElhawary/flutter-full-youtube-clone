@@ -18,6 +18,7 @@ import 'package:youtube/data/models/videos_details/video_details_extension.dart'
 import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/presentation/common_widgets/circular_profile_image.dart';
 import 'package:youtube/presentation/common_widgets/custom_circle_progress.dart';
+import 'package:youtube/presentation/common_widgets/error_message_widget.dart';
 import 'package:youtube/presentation/common_widgets/read_more_text.dart';
 import 'package:youtube/presentation/common_widgets/text_links.dart';
 import 'package:youtube/presentation/common_widgets/thumbnail_of_video.dart';
@@ -29,7 +30,6 @@ import 'package:youtube/presentation/custom_packages/pod_player/src/pod_player.d
 import 'package:youtube/presentation/layouts/base_layout_logic.dart';
 import 'package:youtube/presentation/pages/channel_profile/user_channel_page.dart';
 import 'package:youtube/presentation/pages/home/logic/home_page_logic.dart';
-import 'package:youtube/presentation/common_widgets/subscribe_button.dart';
 
 import '../../custom_packages/sliding_sheet/sliding_sheet.dart';
 
@@ -62,10 +62,9 @@ class _MiniPlayerVideoState extends State<MiniPlayerVideo> {
     return SafeArea(
       child: CustomMiniPlayer(
         controller: _miniVideoViewLogic.miniPlayerController,
-        minHeight: baseLayoutLogic.isShortsPageSelected ? 0 : minHeight,
+        minHeight: minHeight,
         maxHeight: height,
         onDismissed: () {
-          // Get.put(PodGetXVideoController(), permanent: true,tag: "mini");
           _miniVideoViewLogic.selectedVideoDetails = null;
           _miniVideoViewLogic.videoController?.dispose();
         },
@@ -93,28 +92,21 @@ class _MiniVideoDisplay extends StatelessWidget {
         color: Theme.of(context).primaryColor,
         child: Stack(
           children: [
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Obx(
-                  () {
-                    final miniVideoViewLogic =
-                        Get.find<MiniVideoViewLogic>(tag: "1");
+            Obx(() {
+              final miniVideoViewLogic = Get.find<MiniVideoViewLogic>(tag: "1");
 
-                    return Flexible(
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            top: miniVideoViewLogic.videoOfMiniDisplayHeight()),
-                        child: const NextVideosSuggestions(),
-                      ),
-                    );
-                  },
-                )
-              ],
-            ),
-            SingleChildScrollView(
-                physics: const NeverScrollableScrollPhysics(),
-                child: _MiniVideoView(height: height, percentage: percentage)),
+              return Padding(
+                padding: EdgeInsets.only(
+                    top: miniVideoViewLogic.videoOfMiniDisplayHeight()),
+                child: const CustomScrollView(
+                  slivers: [
+                    _VideoInfo(),
+                    _RelatedVideosCubit(),
+                  ],
+                ),
+              );
+            }),
+            _MiniVideoView(height: height, percentage: percentage),
           ],
         ),
       ),
@@ -122,44 +114,48 @@ class _MiniVideoDisplay extends StatelessWidget {
   }
 }
 
-class NextVideosSuggestions extends StatelessWidget {
-  const NextVideosSuggestions({super.key});
+class _RelatedVideosCubit extends StatelessWidget {
+  const _RelatedVideosCubit();
 
   @override
   Widget build(BuildContext context) {
     return Obx(() {
       final logic = Get.find<MiniVideoViewLogic>(tag: "1");
       String videoId = logic.selectedVideoDetails?.id ?? "";
+
       return BlocBuilder<SearchCubit, SearchState>(
         bloc: SearchCubit.get(context)..relatedVideosToThisVideo(videoId),
         buildWhen: (previous, current) =>
             previous != current && current is RelatedVideosLoaded,
         builder: (context, state) {
           if (state is RelatedVideosLoaded) {
-            return ListView.separated(
-                itemBuilder: (context, index) {
-                  if (index == 0) {
-                    return const _VideoInfo();
-                  } else {
-                    return ThumbnailOfVideo(
-                        state.videosDetails.videoDetailsItem![index - 1],
-                        enablePlaying: false);
-                  }
-                },
-                separatorBuilder: (context, index) =>
-                    const RSizedBox(height: 20),
-                itemCount:
-                    (state.videosDetails.videoDetailsItem?.length ?? 0) + 1);
+            return _RelatedVideosList(state);
           } else if (state is SearchError) {
-            ToastShow.reformatToast(context, state.networkExceptions.error);
-
-            return const SizedBox();
+            return SliverFillRemaining(
+                child: ErrorMessageWidget(state.networkExceptions));
           } else {
-            return const ThineCircularProgress();
+            return const SliverFillRemaining(child: ThineCircularProgress());
           }
         },
       );
     });
+  }
+}
+
+class _RelatedVideosList extends StatelessWidget {
+  const _RelatedVideosList(this.state);
+  final RelatedVideosLoaded state;
+  @override
+  Widget build(BuildContext context) {
+    return SliverList(
+      delegate: SliverChildBuilderDelegate(
+        (BuildContext context, int index) {
+          return ThumbnailOfVideo(state.videosDetails.videoDetailsItem![index],
+              enablePlaying: false);
+        },
+        childCount: state.videosDetails.videoDetailsItem?.length ?? 0,
+      ),
+    );
   }
 }
 
@@ -168,21 +164,24 @@ class _VideoInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return SliverPadding(
       padding: REdgeInsets.only(top: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const _VideoTitleSubNumbersTexts(),
-          const _InteractButtons(),
-          Divider(color: ColorManager(context).grey1Point5),
-          const _CircleNameSubscribersWidget(),
-          Divider(color: ColorManager(context).grey1Point5),
-          const _FirstCommentPreviewButton(),
-          const RSizedBox(height: 15),
-          Divider(color: ColorManager(context).grey1, height: 1, thickness: 7),
-        ],
+      sliver: SliverToBoxAdapter(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const _VideoTitleSubNumbersTexts(),
+            const _InteractButtons(),
+            Divider(color: ColorManager(context).grey1Point5),
+            const _CircleNameSubscribersWidget(),
+            Divider(color: ColorManager(context).grey1Point5),
+            const _FirstCommentPreviewButton(),
+            const RSizedBox(height: 15),
+            Divider(
+                color: ColorManager(context).grey1, height: 1, thickness: 7),
+          ],
+        ),
       ),
     );
   }
@@ -236,7 +235,7 @@ class _CircleNameSubscribersWidget extends StatelessWidget {
                     ],
                   ),
                 ),
-                SubscribeButton(channelId: videoDetails?.getChannelId() ?? ""),
+                // SubscribeButton(channelId: videoDetails?.getChannelId() ?? ""),
               ],
             ),
           );
