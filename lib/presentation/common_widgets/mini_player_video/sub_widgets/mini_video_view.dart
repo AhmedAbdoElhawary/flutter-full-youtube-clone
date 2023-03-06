@@ -37,6 +37,7 @@ class _MiniVideoView extends StatelessWidget {
                     miniVideoViewLogic.videoController?.dispose();
 
                     miniVideoViewLogic.selectedVideoDetails = null;
+                    miniVideoViewLogic.isMiniVideoPlayed.value = false;
                   },
                 ),
               ),
