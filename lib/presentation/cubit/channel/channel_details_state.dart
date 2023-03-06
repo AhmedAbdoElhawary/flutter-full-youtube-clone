@@ -4,7 +4,7 @@ part of 'channel_details_cubit.dart';
 class ChannelDetailsState with _$ChannelDetailsState {
   const factory ChannelDetailsState.initial() = _Initial;
 
-  const factory ChannelDetailsState.loading() = Loading;
+  const factory ChannelDetailsState.subscriptionLoading() = SubscriptionLoading;
 
   const factory ChannelDetailsState.channelSubDetailsLoaded(
       ChannelSubDetails channelSubDetails) = ChannelSubDetailsLoaded;
@@ -19,6 +19,6 @@ class ChannelDetailsState with _$ChannelDetailsState {
           MySubscriptionsDetails mySubscriptionsDetails) =
       MySubscriptionsChannelsLoaded;
 
-  const factory ChannelDetailsState.error(
-      NetworkExceptionModel networkExceptions) = Error;
+  const factory ChannelDetailsState.subscriptionError(
+      NetworkExceptionModel networkExceptions) = SubscriptionError;
 }
