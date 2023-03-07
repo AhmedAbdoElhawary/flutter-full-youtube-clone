@@ -9,7 +9,6 @@ import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/presentation/common_widgets/circular_profile_image.dart';
 import 'package:youtube/presentation/common_widgets/thumbnail_image.dart';
 import 'package:youtube/presentation/common_widgets/video_duration.dart';
-import 'package:youtube/presentation/custom_packages/custom_mini_player/custom_mini_player.dart';
 
 import '../../core/resources/color_manager.dart';
 import '../../core/resources/styles_manager.dart';
@@ -25,22 +24,7 @@ class ThumbnailOfVideo extends StatelessWidget {
     return InkWell(
       onTap: () {
         final logic = Get.find<MiniVideoViewLogic>(tag: "1");
-
-        logic.selectedVideoDetails = videoDetailsItem;
-        logic.miniPlayerController.dispose();
-        logic.miniPlayerController = MiniPlayerController();
-        String videoId = logic.selectedVideoDetails?.id ?? "";
-
-        String url = 'https://youtu.be/$videoId';
-
-        if ((logic.videoController?.isInitialised ?? false) &&
-            logic.videoController?.videoUrl == url) return;
-
-        if (videoId.isNotEmpty && logic.videoController != null) {
-          logic.videoController?.changeVideo(
-            playVideoFrom: logic.getPlayVideoFrom(videoId),
-          );
-        }
+        logic.initializeVideoController(videoDetailsItem: videoDetailsItem);
       },
       child: Column(
         children: [
