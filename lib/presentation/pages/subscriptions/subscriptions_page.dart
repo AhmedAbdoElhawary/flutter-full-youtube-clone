@@ -3,16 +3,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:youtube/config/routes/route_app.dart';
-import 'package:youtube/core/functions/handling_errors/network_exceptions.dart';
 import 'package:youtube/core/functions/toast_show.dart';
 import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/data/models/channel_details/my_subscriptions/my_subscription_item_extension.dart';
 import 'package:youtube/data/models/channel_details/my_subscriptions/my_subscriptions_details.dart';
 import 'package:youtube/presentation/common_widgets/circular_profile_image.dart';
-import 'package:youtube/presentation/common_widgets/custom_circle_progress.dart';
+import 'package:youtube/presentation/common_widgets/error_message_widget.dart';
 import 'package:youtube/presentation/common_widgets/shimmer_loading.dart';
 import 'package:youtube/presentation/common_widgets/sliver_app_bar.dart';
 import 'package:youtube/presentation/common_widgets/thumbnail_of_video.dart';
+import 'package:youtube/presentation/common_widgets/videos_list_loading.dart';
 import 'package:youtube/presentation/cubit/channel/channel_details_cubit.dart';
 import 'package:youtube/presentation/cubit/channel/channel_videos/channel_videos_cubit.dart';
 import 'package:youtube/presentation/pages/channel_profile/user_channel_page.dart';
@@ -67,41 +67,34 @@ class _SubscribedVideosState extends State<_SubscribedVideos>
     super.build(context);
     final logic = Get.find<SubscriptionsPageLogic>(tag: "1");
 
-    return Obx(
-      () {
-        return BlocBuilder<ChannelVideosCubit, ChannelVideosState>(
-          bloc: ChannelVideosCubit.get(context)
-            ..getVideosOfThoseChannels(logic.allSubscribedChannels),
-          buildWhen: (previous, current) =>
-              previous != current && current is VideosOfThoseChannelsLoaded,
-          builder: (context, state) {
-            return state.maybeWhen(
-                videosOfThoseChannelsLoaded: (videosItems) {
-                  return SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                      childCount: videosItems.length,
-                      (context, index) => Padding(
-                        padding: REdgeInsets.only(bottom: 15),
-                        child: ThumbnailOfVideo(videosItems[index]),
-                      ),
+    return Obx(() {
+      return BlocBuilder<ChannelVideosCubit, ChannelVideosState>(
+        bloc: ChannelVideosCubit.get(context)
+          ..getVideosOfThoseChannels(logic.allSubscribedChannels),
+        buildWhen: (previous, current) =>
+            previous != current && current is VideosOfThoseChannelsLoaded,
+        builder: (context, state) {
+          return state.maybeWhen(
+              videosOfThoseChannelsLoaded: (videosItems) {
+                return SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    childCount: videosItems.length,
+                    (context, index) => Padding(
+                      padding: REdgeInsets.only(bottom: 15),
+                      child: ThumbnailOfVideo(videosItems[index]),
                     ),
-                  );
-                },
-                loading: () =>
-                    const SliverFillRemaining(child: ThineCircularProgress()),
-                error: (e) {
-                  ToastShow.reformatToast(context, e.error);
-                  return SliverFillRemaining(
-                      child: Center(
-                    child: Text(
-                        NetworkExceptions.getErrorMessage(e.networkExceptions)),
-                  ));
-                },
-                orElse: () => const SliverFillRemaining(child: SizedBox()));
-          },
-        );
-      },
-    );
+                  ),
+                );
+              },
+              loading: () =>
+                  const SliverFillRemaining(child: VideosListLoading()),
+              error: (e) {
+                return SliverFillRemaining(child: ErrorMessageWidget(e));
+              },
+              orElse: () => const SliverFillRemaining(child: SizedBox()));
+        },
+      );
+    });
   }
 
   @override
@@ -215,27 +208,24 @@ class _ChannelsCircularImageState extends State<_ChannelsCircularImage>
       buildWhen: (previous, current) =>
           previous != current && current is MySubscriptionsChannelsLoaded,
       builder: (context, state) {
-        return state.maybeWhen(
-            mySubscriptionsChannelsLoaded: (mySubscriptionsDetails) {
-              return SizedBox(
-                height: 85.h,
-                child: ListView.separated(
-                  scrollDirection: Axis.horizontal,
-                  physics: const BouncingScrollPhysics(),
-                  itemBuilder: (context, index) =>
-                      _ChannelItem(index, mySubscriptionsDetails.items![index]),
-                  separatorBuilder: (context, index) =>
-                      const RSizedBox(width: 5),
-                  itemCount: mySubscriptionsDetails.items?.length ?? 0,
-                ),
-              );
-            },
-            loading: () => const _CircularLoading(),
-            error: (e) {
-              ToastShow.reformatToast(context, e.error);
-              return const SizedBox();
-            },
-            orElse: () => const SizedBox());
+        if (state is MySubscriptionsChannelsLoaded) {
+          return SizedBox(
+            height: 85.h,
+            child: ListView.separated(
+              scrollDirection: Axis.horizontal,
+              physics: const BouncingScrollPhysics(),
+              itemBuilder: (context, index) => _ChannelItem(
+                  index, state.mySubscriptionsDetails.items![index]),
+              separatorBuilder: (context, index) => const RSizedBox(width: 5),
+              itemCount: state.mySubscriptionsDetails.items?.length ?? 0,
+            ),
+          );
+        } else if (state is SubscriptionError) {
+          ToastShow.reformatToast(context, state.networkExceptions.error);
+          return const SizedBox();
+        } else {
+          return const _CircularLoading();
+        }
       },
     );
   }

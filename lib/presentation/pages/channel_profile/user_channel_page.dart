@@ -40,8 +40,8 @@ class UserChannelPage extends StatelessWidget {
           return state.maybeWhen(
               channelSubDetailsLoaded: (channelSubDetails) =>
                   _BuildScaffold(channelSubDetails.items?[0]),
-              loading: () => const ThineCircularProgress(),
-              error: (error) => ErrorMessageWidget(error),
+              subscriptionLoading: () => const ThineCircularProgress(),
+              subscriptionError: (error) => ErrorMessageWidget(error),
               orElse: () =>
                   const Center(child: Text("There is something wrong")));
         },

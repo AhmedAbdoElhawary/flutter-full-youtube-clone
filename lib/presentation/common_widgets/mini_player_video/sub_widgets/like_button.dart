@@ -24,10 +24,7 @@ class _LikeButton extends StatelessWidget {
               videoDetails: videoDetails,
             );
           },
-          loading: () => Padding(
-            padding: REdgeInsetsDirectional.only(start: 15, end: 3, top: 15),
-            child: const _InteractionShimmerLoading(),
-          ),
+          loading: () => const InteractionShimmerLoading(),
           error: (error) {
             ToastShow.reformatToast(context, error.error);
             return _LikeIconButton(

@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:youtube/core/resources/assets_manager.dart';
 import 'package:youtube/presentation/custom_packages/pod_player/src/controllers/pod_getx_video_controller.dart';
 import 'package:youtube/presentation/custom_packages/pod_player/src/widgets/animated_play_pause_icon.dart';
 import 'package:youtube/presentation/custom_packages/pod_player/src/widgets/core/overlays/mobile_bottomsheet.dart';
@@ -158,9 +159,7 @@ class LeftRightDoubleTapBox extends StatelessWidget {
                 alignment: Alignment.center,
                 children: [
                   Lottie.asset(
-                    isLeft
-                        ? 'packages/pod_player/assets/forward_left.json'
-                        : 'packages/pod_player/assets/forward_right.json',
+                    isLeft ? IconsAssets.forwardLeft : IconsAssets.forwardRight,
                   ),
                   if (isLeft
                       ? podCtr.isLeftDbTapIconVisible

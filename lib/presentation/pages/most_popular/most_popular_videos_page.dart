@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:youtube/core/functions/handling_errors/network_exceptions.dart';
 import 'package:youtube/core/resources/assets_manager.dart';
 
 import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/core/resources/styles_manager.dart';
 import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/presentation/common_widgets/arrow_back.dart';
-import 'package:youtube/presentation/common_widgets/custom_circle_progress.dart';
+import 'package:youtube/presentation/common_widgets/error_message_widget.dart';
 import 'package:youtube/presentation/common_widgets/search_icon.dart';
 import 'package:youtube/presentation/common_widgets/svg_icon.dart';
 import 'package:youtube/presentation/common_widgets/thumbnail_of_video.dart';
+import 'package:youtube/presentation/common_widgets/videos_list_loading.dart';
 import 'package:youtube/presentation/cubit/videos/popular_videos/popular_videos_cubit.dart';
 
 class MostPopularVideosPage extends StatefulWidget {
@@ -107,15 +107,9 @@ class _NowPopularVideosState extends State<_NowPopularVideos> {
         if (state is MostPopularVideosLoaded) {
           return _BuildMoviesList(state.mostPopularVideos);
         } else if (state is Error) {
-          return Center(
-            child: Text(
-                NetworkExceptions.getErrorMessage(
-                    state.networkExceptions.networkExceptions),
-                style: getNormalStyle(
-                    color: ColorManager(context).black, fontSize: 15)),
-          );
+          return ErrorMessageWidget(state.networkExceptions);
         } else {
-          return const ThineCircularProgress();
+          return const VideosListLoading();
         }
       },
     );
@@ -138,15 +132,9 @@ class _MusicPopularVideosState extends State<_MusicPopularVideos> {
         if (state is MostPopularMusicVideosLoaded) {
           return _BuildMoviesList(state.mostPopularVideos);
         } else if (state is Error) {
-          return Center(
-            child: Text(
-                NetworkExceptions.getErrorMessage(
-                    state.networkExceptions.networkExceptions),
-                style: getNormalStyle(
-                    color: ColorManager(context).black, fontSize: 15)),
-          );
+          return ErrorMessageWidget(state.networkExceptions);
         } else {
-          return const ThineCircularProgress();
+          return const VideosListLoading();
         }
       },
     );
@@ -169,15 +157,9 @@ class _GamingPopularVideosState extends State<_GamingPopularVideos> {
         if (state is MostPopularGamingVideosLoaded) {
           return _BuildMoviesList(state.mostPopularVideos);
         } else if (state is Error) {
-          return Center(
-            child: Text(
-                NetworkExceptions.getErrorMessage(
-                    state.networkExceptions.networkExceptions),
-                style: getNormalStyle(
-                    color: ColorManager(context).black, fontSize: 15)),
-          );
+          return ErrorMessageWidget(state.networkExceptions);
         } else {
-          return const ThineCircularProgress();
+          return const VideosListLoading();
         }
       },
     );
@@ -200,15 +182,9 @@ class _MoviesPopularVideosState extends State<_MoviesPopularVideos> {
         if (state is MostPopularMoviesVideosLoaded) {
           return _BuildMoviesList(state.mostPopularVideos);
         } else if (state is Error) {
-          return Center(
-            child: Text(
-                NetworkExceptions.getErrorMessage(
-                    state.networkExceptions.networkExceptions),
-                style: getNormalStyle(
-                    color: ColorManager(context).black, fontSize: 15)),
-          );
+          return ErrorMessageWidget(state.networkExceptions);
         } else {
-          return const ThineCircularProgress();
+          return const VideosListLoading();
         }
       },
     );

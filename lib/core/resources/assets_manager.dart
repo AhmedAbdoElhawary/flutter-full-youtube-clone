@@ -14,6 +14,9 @@ class IconsAssets {
   static const String downArrowIcon = "$_iconNewPath/caret-down.svg";
   static const String lockIcon = "$_iconNewPath/lock.svg";
 
+  static const String forwardLeft = "assets/forward_left.json";
+  static const String forwardRight = "assets/forward_right.json";
+
   static const String settingsIcon = "$_iconPath/settings.svg";
   static const String closeIcon = "$_iconPath/close.svg";
   static const String menuPointsVerticalIcon = "$_iconPath/menu-vertical.svg";

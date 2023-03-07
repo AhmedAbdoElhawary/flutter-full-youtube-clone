@@ -204,7 +204,7 @@ class MobileOverlayBottomControlles extends StatelessWidget {
       builder: (podCtr) => Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Expanded(
+          Flexible(
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [

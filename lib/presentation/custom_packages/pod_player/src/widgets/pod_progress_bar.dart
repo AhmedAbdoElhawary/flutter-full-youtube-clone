@@ -176,10 +176,7 @@ class _ProgressBarPainter extends CustomPainter {
 
     canvas.drawRRect(
       RRect.fromRectAndRadius(
-        Rect.fromPoints(
-          Offset.zero,
-          Offset(width, height),
-        ),
+        Rect.fromPoints(Offset.zero, Offset(width, height)),
         Radius.circular(curveRadius),
       ),
       backgroundPaint,
@@ -211,10 +208,7 @@ class _ProgressBarPainter extends CustomPainter {
 
       canvas.drawRRect(
         RRect.fromRectAndRadius(
-          Rect.fromPoints(
-            Offset(start, 0),
-            Offset(end, height),
-          ),
+          Rect.fromPoints(Offset(start, 0), Offset(end, height)),
           Radius.circular(curveRadius),
         ),
         bufferedPaint,
