@@ -27,7 +27,6 @@ import 'package:youtube/presentation/common_widgets/videos_list_loading.dart';
 import 'package:youtube/presentation/cubit/search/search_cubit.dart';
 import 'package:youtube/presentation/cubit/single_video/single_video_cubit.dart';
 import 'package:youtube/presentation/custom_packages/custom_mini_player/custom_mini_player.dart';
-import 'package:youtube/presentation/custom_packages/pod_player/src/controllers/pod_player_controller.dart';
 import 'package:youtube/presentation/custom_packages/pod_player/src/pod_player.dart';
 import 'package:youtube/presentation/layouts/base_layout_logic.dart';
 import 'package:youtube/presentation/pages/channel_profile/user_channel_page.dart';
@@ -67,7 +66,7 @@ class _MiniPlayerVideoState extends State<MiniPlayerVideo> {
         onDismissed: () {
           _miniVideoViewLogic.selectedVideoDetails = null;
           _miniVideoViewLogic.videoController?.dispose();
-          _miniVideoViewLogic.isMiniVideoPlayed.value = false;
+          _miniVideoViewLogic.isMiniVideoInitialized.value = false;
         },
         builder: (height, percentage) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -91,19 +90,25 @@ class _MiniVideoDisplay extends StatelessWidget {
     return SafeArea(
       child: Container(
         color: Theme.of(context).primaryColor,
-        child: Stack(
-          children: [
-            Obx(() {
-              final miniVideoViewLogic = Get.find<MiniVideoViewLogic>(tag: "1");
-
-              return Padding(
+        child: GetBuilder<MiniVideoViewLogic>(
+          tag: "1",
+          id: "update mini player",
+          builder: (miniVideoViewLogic) => Stack(
+            children: [
+              Padding(
                 padding: EdgeInsets.only(
-                    top: miniVideoViewLogic.videoOfMiniDisplayHeight()),
+                    top: miniVideoViewLogic.videoOfMiniDisplayHeight(
+                        screenHeight: height, percentage: percentage)),
                 child: const _NextVideosSuggestions(),
-              );
-            }),
-            _MiniVideoView(height: height, percentage: percentage),
-          ],
+              ),
+              _MiniVideoView(
+                  height: height,
+                  percentage: percentage,
+                  durationVideoValue:
+                      miniVideoViewLogic.getDurationVideoValue(),
+                  isPlaying: miniVideoViewLogic.isMiniVideoPlaying),
+            ],
+          ),
         ),
       ),
     );

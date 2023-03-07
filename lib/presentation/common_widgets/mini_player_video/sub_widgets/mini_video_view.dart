@@ -4,13 +4,18 @@ class _MiniVideoView extends StatelessWidget {
   const _MiniVideoView({
     required this.height,
     required this.percentage,
+    required this.isPlaying,
+    required this.durationVideoValue,
   });
 
   final double height;
   final double percentage;
-
+  final bool isPlaying;
+  final double durationVideoValue;
   @override
   Widget build(BuildContext context) {
+    double value = (1 - percentage * 12);
+    double opacity = value <= 0 ? 0 : (value > 1 ? 1 : value);
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -23,8 +28,17 @@ class _MiniVideoView extends StatelessWidget {
               Expanded(
                 flex: 1,
                 child: GestureDetector(
-                  child: const Icon(Icons.play_arrow),
-                  onTap: () {},
+                  child: isPlaying
+                      ? const Icon(Icons.pause)
+                      : const Icon(Icons.play_arrow),
+                  onTap: () {
+                    final miniVideoViewLogic =
+                        Get.find<MiniVideoViewLogic>(tag: "1");
+
+                    miniVideoViewLogic.isMiniVideoPlaying
+                        ? miniVideoViewLogic.videoController?.pause()
+                        : miniVideoViewLogic.videoController?.play();
+                  },
                 ),
               ),
               Expanded(
@@ -34,23 +48,28 @@ class _MiniVideoView extends StatelessWidget {
                   onTap: () {
                     final miniVideoViewLogic =
                         Get.find<MiniVideoViewLogic>(tag: "1");
-                    miniVideoViewLogic.videoController?.dispose();
 
+                    miniVideoViewLogic.videoController?.dispose();
                     miniVideoViewLogic.selectedVideoDetails = null;
-                    miniVideoViewLogic.isMiniVideoPlayed.value = false;
+                    miniVideoViewLogic.isMiniVideoInitialized.value = false;
                   },
                 ),
               ),
             ],
           ),
         ),
-
-        /// todo
-        // const LinearProgressIndicator(
-        //   value: 0.4,
-        //   minHeight: 2,
-        //   valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
-        // ),
+        AnimatedOpacity(
+          opacity: opacity,
+          duration: const Duration(milliseconds: 50),
+          child: Align(
+            alignment: AlignmentDirectional.bottomStart,
+            child: LinearProgressIndicator(
+              value: durationVideoValue,
+              minHeight: 2,
+              valueColor: const AlwaysStoppedAnimation<Color>(Colors.red),
+            ),
+          ),
+        ),
       ],
     );
   }
@@ -72,16 +91,6 @@ class _VideoOfMiniDisplayState extends State<_VideoOfMiniDisplay> {
   void initState() {
     super.initState();
     videoId = logic.selectedVideoDetails?.id ?? "";
-
-    String url = 'https://youtu.be/$videoId';
-
-    if ((logic.videoController?.isInitialised ?? false) &&
-        logic.videoController?.videoUrl == url) return;
-
-    logic.videoController = PodPlayerController(
-      playVideoFrom: logic.getPlayVideoFrom(videoId),
-      getTag: "mini",
-    )..initialise();
   }
 
   @override
@@ -89,7 +98,8 @@ class _VideoOfMiniDisplayState extends State<_VideoOfMiniDisplay> {
     double screenWidth = MediaQuery.of(context).size.width;
     return Obx(
       () => Container(
-        height: logic.videoOfMiniDisplayHeight(),
+        height: logic.videoOfMiniDisplayHeight(
+            percentage: widget.percentage, screenHeight: widget.height),
         width: logic.videoOfMiniDisplayWidth(screenWidth),
         color: ColorManager(context).grey1,
         child: videoId.isEmpty
