@@ -113,12 +113,12 @@ class CustomMiniPlayerState extends State<CustomMiniPlayer>
   }
 
   void _init() {
-    if (!miniVideoLogic.isMiniVideoPlayed.value) {
+    if (!miniVideoLogic.isMiniVideoInitialized.value) {
       heightNotifier = ValueNotifier(widget.maxHeight);
     } else {
       heightNotifier = ValueNotifier(widget.minHeight);
     }
-    miniVideoLogic.isMiniVideoPlayed.value = true;
+    miniVideoLogic.isMiniVideoInitialized.value = true;
     percentageOfHeight = ValueNotifier(
         (heightNotifier.value - widget.minHeight) /
             (widget.maxHeight - widget.minHeight));
