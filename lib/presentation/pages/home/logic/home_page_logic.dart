@@ -5,8 +5,7 @@ import 'package:get/get.dart';
 import 'package:youtube/core/utility/constants.dart';
 import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/presentation/custom_packages/custom_mini_player/custom_mini_player.dart';
-import 'package:youtube/presentation/custom_packages/pod_player/src/controllers/pod_player_controller.dart';
-import 'package:youtube/presentation/custom_packages/pod_player/src/models/play_video_from.dart';
+import 'package:youtube/presentation/custom_packages/pod_player/pod_player.dart';
 
 class MiniVideoViewLogic extends GetxController {
   final Rx<VideoDetailsItem?> _selectedVideoDetails = Rxn<VideoDetailsItem?>();
@@ -18,23 +17,76 @@ class MiniVideoViewLogic extends GetxController {
   final RxDouble heightOfNavigationBar = 44.0.obs;
   final double _minHeight = 50.h;
   final double _height = screenSize.height - 10.h;
-  final RxBool isMiniVideoPlayed=false.obs;
+  final RxBool isMiniVideoInitialized = false.obs;
+  final RxBool _isMiniVideoPlaying = false.obs;
 
+  void initializeVideoController({VideoDetailsItem? videoDetailsItem}) {
+    selectedVideoDetails = videoDetailsItem;
+    String videoId = selectedVideoDetails?.id ?? "";
+
+    if (videoController?.videoUrl == _url(videoId)) return;
+
+    if (videoController?.isInitialised ?? false) {
+      _changeController(videoId, videoDetailsItem);
+    } else {
+      _firstInitialized(videoId);
+    }
+  }
+
+  void _changeController(String videoId, VideoDetailsItem? videoDetailsItem) {
+    if (videoId.isNotEmpty && videoController != null) {
+      videoController?.changeVideo(playVideoFrom: getPlayVideoFrom(videoId));
+      _addVideoListener();
+    }
+  }
+
+  void _firstInitialized(String videoId) {
+    videoController = PodPlayerController(
+      playVideoFrom: getPlayVideoFrom(videoId),
+      getTag: "mini",
+    )..initialise();
+    _addVideoListener();
+  }
+
+  void _addVideoListener() {
+    videoController!.addListener(() {
+      _isMiniVideoPlaying.value = videoController?.isVideoPlaying ?? true;
+      getDurationVideoValue();
+      videoOfMiniDisplayHeight(
+          percentage: percentageOFMiniPage, screenHeight: heightOFMiniPage);
+      update(["update mini player"]);
+    });
+  }
+
+  double getDurationVideoValue() {
+    VideoPlayerValue? videoPlayerValue = videoController?.videoPlayerValue;
+    int totalDuration = videoPlayerValue?.duration.inSeconds ?? 1;
+    int currentValue = videoPlayerValue?.position.inSeconds ?? 0;
+    double durationValue = (currentValue / totalDuration);
+    return durationValue;
+  }
 
   double videoOfMiniDisplayWidth(double screenWidth) {
     double basicWidth = (screenWidth * percentageOFMiniPage * 12) + 130.w;
     return min(basicWidth, screenWidth);
   }
 
-  double videoOfMiniDisplayHeight() {
-    double newHeight = 48.h + (heightOFMiniPage - 50.h);
-    double secondHeight = max(percentageOFMiniPage * 185.h, 90.h);
-    double height = percentageOFMiniPage <= 0.05 ? newHeight : secondHeight;
+  double videoOfMiniDisplayHeight(
+      {required double screenHeight, required double percentage}) {
+    double newHeight = 48.h + (screenHeight - 50.h);
+    double secondHeight = max(percentage * 185.h, 90.h);
+    double height = percentage <= 0.05 ? newHeight : secondHeight;
     return height;
   }
 
   PlayVideoFrom getPlayVideoFrom(String videoId) =>
-      PlayVideoFrom.youtube('https://youtu.be/$videoId');
+      PlayVideoFrom.youtube(_url(videoId));
+
+  String _url(String videoId) => 'https://youtu.be/$videoId';
+
+  bool get isMiniVideoPlaying => _isMiniVideoPlaying.value;
+
+  set isMiniVideoPlaying(bool value) => _isMiniVideoPlaying.value = value;
 
   String get selectedVideoRating => _selectedVideoRating.value;
 
@@ -50,8 +102,6 @@ class MiniVideoViewLogic extends GetxController {
   }
 
   set heightOFMiniPage(double value) => _heightOFMiniPage.value = value;
-
-
 
   double get percentageOFMiniPage => _percentageOFMiniPage.value;
   double get heightOFMiniPage => _heightOFMiniPage.value;
