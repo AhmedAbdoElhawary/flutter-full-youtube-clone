@@ -155,7 +155,7 @@ class _ButtonsAboveBio extends StatelessWidget {
                 ),
                 const RSizedBox(width: 5),
                 SvgIcon(IconsAssets.rightArrowIcon,
-                    color: ColorManager(context).grey8, height: 20)
+                    color: ColorManager(context).grey8, size: 20)
               ],
             ),
             const RSizedBox(height: 10),

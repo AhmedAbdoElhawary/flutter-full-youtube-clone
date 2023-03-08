@@ -63,9 +63,9 @@ class _SubscribedWidgets extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SvgIcon(IconsAssets.notificationIcon, height: fontSize + 5),
+        SvgIcon(IconsAssets.notificationIcon, size: fontSize + 5),
         const RSizedBox(width: 5),
-        SvgIcon(IconsAssets.downArrowIcon, height: fontSize + 5)
+        SvgIcon(IconsAssets.downArrowIcon, size: fontSize + 5)
       ],
     );
   }
