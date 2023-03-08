@@ -14,6 +14,6 @@ class SearchIcon extends StatelessWidget {
         onTap: () {
           Go(context).to(const SearchPage());
         },
-        child:const SvgIcon(IconsAssets.searchIcon,height: 20));
+        child:const SvgIcon(IconsAssets.searchIcon,size: 20));
   }
 }
