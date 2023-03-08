@@ -1,6 +1,5 @@
 import 'dart:typed_data';
 
-import 'package:dio/dio.dart';
 import 'package:youtube/core/functions/handling_errors/api_result.dart';
 import 'package:youtube/core/functions/handling_errors/network_exceptions.dart';
 import 'package:youtube/core/utility/private_key.dart';
@@ -10,10 +9,8 @@ import 'package:youtube/data/data_sources/remote/api/channel/channel_playlist/ch
 import 'package:youtube/data/data_sources/remote/api/single_video/single_video_apis.dart';
 import 'package:youtube/data/models/channel_details/playlists/playlist_videos/playlist_videos.dart';
 import 'package:youtube/data/models/channel_details/playlists/playlists.dart';
-import 'package:youtube/data/models/channel_details/playlists/playlists_extension.dart';
 import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/domain/repositories/channel/channel_playlist_repository.dart';
-import 'package:youtube/presentation/common_widgets/custom_blur_hash.dart';
 
 class ChannelPlayListDetailsRepoImpl
     implements ChannelPlayListDetailsRepository {
@@ -45,8 +42,6 @@ class ChannelPlayListDetailsRepoImpl
       PlayLists playLists =
           await _channelPlayListAPIs.getMyPlayLists(accessToken: accessToken);
 
-      playLists = await getBlurHashForPlaylists(playLists);
-
       /// caching videos
       await _cacheChannelPlaylistAPIs.saveMyPlayLists(playLists: playLists);
 
@@ -68,8 +63,6 @@ class ChannelPlayListDetailsRepoImpl
       PlayLists playLists =
           await _channelPlayListAPIs.getChannelPlayLists(channelId: channelId);
 
-      playLists = await getBlurHashForPlaylists(playLists);
-
       /// caching videos
       await _cacheChannelPlaylistAPIs.saveChannelPlayLists(
           channelId: channelId, playLists: playLists);
@@ -78,28 +71,6 @@ class ChannelPlayListDetailsRepoImpl
     } catch (e) {
       return ApiResult.failure(NetworkExceptions.getDioException(e));
     }
-  }
-
-  Future<PlayLists> getBlurHashForPlaylists(PlayLists playLists) async {
-    for (final item in playLists.items ?? <PlayListItem?>[]) {
-      if (item == null) continue;
-      String? url = item.getPlaylistCoverImageUrl();
-
-      if (url == null) continue;
-      Uint8List? image = await _networkImageToUnit8List(url);
-
-      if (image == null) continue;
-      String blurHash = await CustomBlurHash.blurHashEncode(image);
-      item.blurHash = blurHash;
-    }
-    return playLists;
-  }
-
-  Future<Uint8List?> _networkImageToUnit8List(String imageUrl) async {
-    final response = await Dio().get<List<int>>(imageUrl,
-        options: Options(responseType: ResponseType.bytes));
-    if (response.data != null) return Uint8List.fromList(response.data!);
-    return null;
   }
 
   @override
