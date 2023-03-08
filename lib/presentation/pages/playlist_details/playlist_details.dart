@@ -115,7 +115,7 @@ class _PlayAllButton extends StatelessWidget {
             const SvgIcon(
               IconsAssets.playIcon,
               color: BaseColorManager.black,
-              height: 20,
+              size: 20,
             ),
             const RSizedBox(width: 5),
             Text(
@@ -142,7 +142,7 @@ class _ShuffleButton extends StatelessWidget {
             const SvgIcon(
               IconsAssets.shuffleIcon,
               color: BaseColorManager.white,
-              height: 20,
+              size: 20,
             ),
             const RSizedBox(width: 5),
             Text(
@@ -189,7 +189,7 @@ class _InteractionsButtonsWithSubInfo extends StatelessWidget {
                   if (isPrivacyPrivate) ...[
                     const SvgIcon(
                       IconsAssets.lockIcon,
-                      height: 15,
+                      size: 15,
                       color: BaseColorManager.veryLightGrey,
                     ),
                     Text("Private",
@@ -240,7 +240,7 @@ class _InteractionsButtonsWithSubInfo extends StatelessWidget {
           const RSizedBox(width: 5),
           _RoundedIconButton(
               const SvgIcon(IconsAssets.shareIcon,
-                  height: 20, color: BaseColorManager.white),
+                  size: 20, color: BaseColorManager.white),
               onTap: () {}),
         ],
 
