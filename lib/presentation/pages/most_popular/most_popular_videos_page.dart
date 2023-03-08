@@ -56,7 +56,7 @@ class _MostPopularVideosPageState extends State<MostPopularVideosPage> {
                       RSizedBox(width: 20),
                       SearchIcon(),
                       RSizedBox(width: 20),
-                      SvgIcon(IconsAssets.menuPointsVerticalIcon, height: 15),
+                      SvgIcon(IconsAssets.menuPointsVerticalIcon, size: 15),
                       RSizedBox(width: 20),
                     ],
                   ),
