@@ -60,9 +60,8 @@ class _DislikeIconButtonState extends State<_DislikeIconButton> {
     return InkWell(
       onTap: () {
         if (widget.videoId.isNotEmpty) {
-          String rating =widget.ratingDetails?.rating == "none"
-              ? "none"
-              : "dislike";
+          String rating =
+              widget.ratingDetails?.rating == "none" ? "none" : "dislike";
           SingleVideoCubit.get(context)
               .rateThisVideo(videoId: widget.videoId, rating: rating);
 
@@ -72,10 +71,13 @@ class _DislikeIconButtonState extends State<_DislikeIconButton> {
       child: Obx(() => Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              miniVideoViewLogic.selectedVideoRating == "dislike"
-                  ? const Icon(Icons.thumb_down_alt_rounded,
-                      color: ColorManager.blue)
-                  : const Icon(Icons.thumb_down_off_alt_outlined, color: null),
+              Transform.rotate(
+                alignment: Alignment.center,
+                angle: 180,
+                child: miniVideoViewLogic.selectedVideoRating == "dislike"
+                    ? const SvgIcon(IconsAssets.likeIcon)
+                    : const SvgIcon(IconsAssets.likeColoredIcon),
+              ),
               const RSizedBox(height: 5),
               Text(
                 "Dislike",
