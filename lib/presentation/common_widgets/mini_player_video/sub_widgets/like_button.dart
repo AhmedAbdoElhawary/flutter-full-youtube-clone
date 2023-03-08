@@ -82,9 +82,8 @@ class _LikeIconButtonState extends State<_LikeIconButton> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 miniVideoViewLogic.selectedVideoRating == "like"
-                    ? const Icon(Icons.thumb_up_alt_rounded,
-                        color: ColorManager.blue)
-                    : const Icon(Icons.thumb_up_off_alt_outlined, color: null),
+                    ?const SvgIcon(IconsAssets.likeIcon)
+                    :const SvgIcon(IconsAssets.likeColoredIcon),
                 const RSizedBox(height: 5),
                 Text(
                   likeText,
