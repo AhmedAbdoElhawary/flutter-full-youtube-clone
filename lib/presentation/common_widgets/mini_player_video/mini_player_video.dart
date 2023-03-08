@@ -21,6 +21,7 @@ import 'package:youtube/presentation/common_widgets/custom_circle_progress.dart'
 import 'package:youtube/presentation/common_widgets/error_message_widget.dart';
 import 'package:youtube/presentation/common_widgets/read_more_text.dart';
 import 'package:youtube/presentation/common_widgets/subscribe_button.dart';
+import 'package:youtube/presentation/common_widgets/svg_icon.dart';
 import 'package:youtube/presentation/common_widgets/text_links.dart';
 import 'package:youtube/presentation/common_widgets/thumbnail_of_video.dart';
 import 'package:youtube/presentation/common_widgets/videos_list_loading.dart';

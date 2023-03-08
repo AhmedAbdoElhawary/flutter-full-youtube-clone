@@ -2,8 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:youtube/core/resources/assets_manager.dart';
 import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/core/utility/constants.dart';
+import 'package:youtube/presentation/common_widgets/svg_icon.dart';
 import 'package:youtube/presentation/custom_packages/custom_tab_scaffold/custom_bottom_tab_bar.dart';
 import 'package:youtube/presentation/custom_packages/custom_tab_scaffold/custom_tab_scaffold.dart';
 import 'package:youtube/presentation/layouts/base_layout_logic.dart';
@@ -44,15 +46,28 @@ class BaseLayout extends StatelessWidget {
           activeColor: baseLayoutLogic.isShortsPageSelected
               ? ColorManager(context).white
               : ColorManager(context).black,
-          items: [
-            navigationBarItem(Icons.home_outlined, Icons.home, "Home"),
-            navigationBarItem(Icons.home_outlined, Icons.home, "Shorts"),
-            navigationBarItem(Icons.add_circle_outline_outlined,
-                Icons.add_circle_outlined, "Account"),
-            navigationBarItem(Icons.subscriptions_outlined, Icons.subscriptions,
-                "Subscriptions"),
-            navigationBarItem(
-                Icons.video_library_outlined, Icons.video_library, "Library"),
+          items: const [
+            BottomNavigationBarItem(
+                icon: SvgIcon(IconsAssets.homeIcon, size: 25),
+                activeIcon: SvgIcon(IconsAssets.homeColoredIcon, size: 25),
+                label: "Home"),
+            BottomNavigationBarItem(
+                icon: SvgIcon(IconsAssets.shortsIcon, size: 25),
+                activeIcon: SvgIcon(IconsAssets.shortsColoredIcon, size: 25),
+                label: "Shorts"),
+            BottomNavigationBarItem(
+              icon: SvgIcon(IconsAssets.addIcon, size: 35),
+              activeIcon: SvgIcon(IconsAssets.addIcon, size: 35),
+            ),
+            BottomNavigationBarItem(
+                icon: SvgIcon(IconsAssets.subscriptionIcon, size: 25),
+                activeIcon:
+                    SvgIcon(IconsAssets.subscriptionColoredIcon, size: 25),
+                label: "Subscriptions"),
+            BottomNavigationBarItem(
+                icon: SvgIcon(IconsAssets.libraryIcon, size: 25),
+                activeIcon: SvgIcon(IconsAssets.libraryColoredIcon, size: 25),
+                label: "Library"),
           ],
         ),
         controller: baseLayoutLogic.tabController,
@@ -77,11 +92,11 @@ class BaseLayout extends StatelessWidget {
   }
 
   BottomNavigationBarItem navigationBarItem(
-      IconData icon, IconData activeIcon, String label) {
+      String icon, String activeIcon, String label) {
     bool isThatAdd = label == "Account";
     return BottomNavigationBarItem(
-        icon: Icon(icon, size: isThatAdd ? 40.r : 25.r),
-        activeIcon: Icon(activeIcon, size: isThatAdd ? 40.r : 25.r),
+        icon: SvgIcon(icon, size: isThatAdd ? 40.r : 25.r),
+        activeIcon: SvgIcon(activeIcon, size: isThatAdd ? 40.r : 25.r),
         label: isThatAdd ? null : label);
   }
 }

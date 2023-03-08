@@ -14,6 +14,21 @@ class IconsAssets {
   static const String downArrowIcon = "$_iconNewPath/caret-down.svg";
   static const String lockIcon = "$_iconNewPath/lock.svg";
 
+  static const String homeIcon = "$_iconNewPath/home_illustrator-01.svg";
+  static const String homeColoredIcon = "$_iconNewPath/colored-home-illustrator.svg";
+  static const String shortsIcon = "$_iconNewPath/shorts-edit-01.svg";
+  static const String shortsColoredIcon = "$_iconNewPath/shorts-colored-edit.svg";
+  static const String addIcon = "$_iconNewPath/add.svg";
+  static const String subscriptionColoredIcon = "$_iconNewPath/video-playlist-colored-illustrator.svg";
+  static const String subscriptionIcon = "$_iconNewPath/video-playlist.svg";
+  static const String libraryIcon = "$_iconNewPath/video-library-1.svg";
+  static const String libraryColoredIcon = "$_iconNewPath/video-library-colored-1.svg";
+
+  static const String trendingIcon = "$_iconNewPath/navigation.svg";
+  static const String likeIcon = "$_iconNewPath/thumbs-up.svg";
+  static const String likeColoredIcon =
+      "$_iconNewPath/thumbs-up-colored-illestrator.svg";
+
   static const String forwardLeft = "assets/forward_left.json";
   static const String forwardRight = "assets/forward_right.json";
 
@@ -29,7 +44,6 @@ class IconsAssets {
   static const String zapSmallIcon = "$_iconPath/zap-small.svg";
   static const String bellIcon = "$_iconPath/bell.svg";
 
-
   static const String eyeOnIcon = "$_iconPath/eye_on.svg";
   static const String eyeOffIcon = "$_iconPath/eye-off.svg";
   static const String shieldClose = "$_iconPath/shield.svg";
@@ -42,7 +56,6 @@ class IconsAssets {
 
   static const String mailIcon = "$_iconPath/mail.svg";
   static const String userIcon = "$_iconPath/user.svg";
-  static const String homeIcon = "$_iconPath/home.svg";
   static const String calendarIcon = "$_iconPath/calendar.svg";
   static const String favoriteIcon = "$_iconPath/favorite.svg";
 
@@ -96,7 +109,6 @@ class IconsAssets {
   static const String commentIcon = "$_iconPath/comment.svg";
   static const String profileIcon = "$_iconPath/profile.svg";
   static const String instagramLogo = "$_iconPath/logo_instagram.svg";
-  static const String addIcon = "$_iconPath/add.svg";
   static const String add2Icon = "$_iconPath/add-2.svg";
   static const String minusIcon = "$_iconPath/minus.svg";
   static const String gridIcon = "$_iconPath/grid.svg";

@@ -22,8 +22,6 @@ class PlayListItem {
   PlayListContentDetails? contentDetails;
   PlayListStatus? status;
 
-  @JsonKey(includeToJson: false, includeFromJson: false)
-  String? blurHash;
 
   PlayListItem({this.id, this.snippet, this.contentDetails});
 

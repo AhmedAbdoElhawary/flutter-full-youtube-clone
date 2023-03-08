@@ -24,9 +24,9 @@ class MainSliverAppBar extends StatelessWidget {
           child: Row(
             children: const [
               RSizedBox(width: 20),
-              SvgIcon(IconsAssets.youtubeLogo, height: 20),
+              SvgIcon(IconsAssets.youtubeLogo, size: 20),
               Spacer(),
-              SvgIcon(IconsAssets.broadcastIcon, height: 20),
+              SvgIcon(IconsAssets.broadcastIcon, size: 20),
               RSizedBox(width: 20),
               SvgIcon(IconsAssets.notificationIcon),
               RSizedBox(width: 20),
