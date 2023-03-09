@@ -13,7 +13,6 @@ Future<void> main() async {
   final googleAuth = await googleUser?.authentication;
   String? token = googleAuth?.accessToken ?? "";
   accessToken = token;
-  print("==============> $accessToken");
   runApp(const MyApp());
 }
 
