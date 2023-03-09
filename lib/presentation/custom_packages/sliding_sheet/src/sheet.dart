@@ -970,9 +970,9 @@ class SlidingSheetState extends State<SlidingSheet>
                       ),
                       elevation: widget.elevation,
                       shadowColor: widget.shadowColor,
-                      customBorders: BorderRadius.vertical(
-                        top: Radius.circular(cornerRadius!),
-                      ),
+                      customBorders: cornerRadius == null
+                          ? null
+                          : BorderRadius.circular(cornerRadius!),
                       child: sheet,
                     ),
                   ),
@@ -1109,7 +1109,6 @@ class SlidingSheetState extends State<SlidingSheet>
 
         // see: https://github.com/BendixMa/sliding-sheet/issues/30
         if (opacity >= 0.05 || didStartDragWhenNotCollapsed) {
-
           if (widget.isBackdropIntractable) {
             return _delegateInteractions(backDrop,
                 onTap: widget.closeOnBackdropTap ? onTap : null);
