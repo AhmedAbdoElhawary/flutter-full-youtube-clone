@@ -25,7 +25,7 @@ class PlaylistDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar.normalAppBar(context, ""),
+      appBar: CustomAppBar(context).normalAppBar( ""),
       body: CustomScrollView(
         slivers: [
           _PlayListOverview(playListsItem: playListsItem),

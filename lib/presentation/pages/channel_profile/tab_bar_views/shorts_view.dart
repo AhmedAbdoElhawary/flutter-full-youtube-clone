@@ -53,6 +53,8 @@ class _PopularShortVideos extends StatelessWidget {
     return BlocBuilder<ChannelVideosCubit, ChannelVideosState>(
       bloc: ChannelVideosCubit.get(context)
         ..getPopularChannelShortVideos(channelDetails?.id ?? ""),
+      buildWhen: (previous, current) =>
+          previous != current && current is ShortPopularVideosLoaded,
       builder: (context, state) {
         if (state is ShortPopularVideosLoaded) {
           return _ShortVideosGridView(state.videoDetails);
@@ -77,6 +79,8 @@ class _NewestShortVideos extends StatelessWidget {
     return BlocBuilder<ChannelVideosCubit, ChannelVideosState>(
       bloc: ChannelVideosCubit.get(context)
         ..getChannelShortVideos(channelDetails?.id ?? ""),
+      buildWhen: (previous, current) =>
+          previous != current && current is ShortVideosLoaded,
       builder: (context, state) {
         if (state is ShortVideosLoaded) {
           return _ShortVideosGridView(state.videoDetails);

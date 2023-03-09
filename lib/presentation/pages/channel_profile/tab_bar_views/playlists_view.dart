@@ -48,6 +48,8 @@ class _NewestVideos extends StatelessWidget {
     return BlocBuilder<PlayListCubit, PlayListState>(
       bloc: PlayListCubit.get(context)
         ..getChannelPlayLists(channelId: channelDetails?.id ?? ""),
+      buildWhen: (previous, current) =>
+          previous != current && current is ChannelPlayListLoaded,
       builder: (context, state) {
         if (state is ChannelPlayListLoaded) {
           return _PlaylistsList(state.playLists);

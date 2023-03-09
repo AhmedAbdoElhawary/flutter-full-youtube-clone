@@ -73,8 +73,8 @@ class _DislikeIconButtonState extends State<_DislikeIconButton> {
             children: [
               Transform.rotate(
                 alignment: Alignment.center,
-                angle: 180,
-                child: miniVideoViewLogic.selectedVideoRating == "dislike"
+                angle: 3.14159,
+                child: miniVideoViewLogic.selectedVideoRating != "dislike"
                     ? const SvgIcon(IconsAssets.likeIcon)
                     : const SvgIcon(IconsAssets.likeColoredIcon),
               ),

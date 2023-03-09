@@ -29,32 +29,33 @@ class MiniVideoViewLogic extends GetxController {
     if (videoController?.isInitialised ?? false) {
       _changeController(videoId, videoDetailsItem);
     } else {
-      _firstInitialized(videoId);
+    _firstInitialized(videoId);
     }
   }
 
-  void _changeController(String videoId, VideoDetailsItem? videoDetailsItem) {
+  Future<void> _changeController(String videoId, VideoDetailsItem? videoDetailsItem) async {
     if (videoId.isNotEmpty && videoController != null) {
-      videoController?.changeVideo(playVideoFrom: getPlayVideoFrom(videoId));
+      await videoController?.changeVideo(playVideoFrom: getPlayVideoFrom(videoId));
       _addVideoListener();
     }
   }
 
   void _firstInitialized(String videoId) {
-    videoController = PodPlayerController(
-      playVideoFrom: getPlayVideoFrom(videoId),
-      getTag: "mini",
-    )..initialise();
+      videoController = PodPlayerController(
+        playVideoFrom: getPlayVideoFrom(videoId),
+        getTag: "mini",
+      )..initialise();
+
     _addVideoListener();
   }
 
   void _addVideoListener() {
     videoController!.addListener(() {
-      _isMiniVideoPlaying.value = videoController?.isVideoPlaying ?? true;
-      getDurationVideoValue();
-      videoOfMiniDisplayHeight(
-          percentage: percentageOFMiniPage, screenHeight: heightOFMiniPage);
-      update(["update mini player"]);
+      if (percentageOFMiniPage <= 0.4) {
+        _isMiniVideoPlaying.value = videoController?.isVideoPlaying ?? true;
+        getDurationVideoValue();
+        update(["update mini player"]);
+      }
     });
   }
 
