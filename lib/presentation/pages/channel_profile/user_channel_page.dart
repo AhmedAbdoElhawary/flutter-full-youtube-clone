@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:youtube/config/routes/route_app.dart';
 import 'package:youtube/core/resources/assets_manager.dart';
 import 'package:youtube/core/resources/styles_manager.dart';
 import 'package:youtube/data/models/channel_details/channel_details.dart';
@@ -37,13 +38,13 @@ class UserChannelPage extends StatelessWidget {
         bloc: ChannelDetailsCubit.get(context)
           ..getChannelSubDetails(parameters.channelId),
         builder: (context, state) {
-          return state.maybeWhen(
-              channelSubDetailsLoaded: (channelSubDetails) =>
-                  _BuildScaffold(channelSubDetails.items?[0]),
-              subscriptionLoading: () => const ThineCircularProgress(),
-              subscriptionError: (error) => ErrorMessageWidget(error),
-              orElse: () =>
-                  const Center(child: Text("There is something wrong")));
+          if (state is ChannelSubDetailsLoaded) {
+            return _BuildScaffold(state.channelSubDetails.items?[0]);
+          } else if (state is SubscriptionError) {
+            return ErrorMessageWidget(state.networkExceptions);
+          } else {
+            return const ThineCircularProgress();
+          }
         },
       );
     } else {
@@ -62,8 +63,14 @@ class _BuildScaffold extends StatelessWidget {
       return const Center(child: Text("There is something wrong"));
     } else {
       return Scaffold(
-        appBar:
-            CustomAppBar.normalAppBar(context, channelDetails?.getName() ?? ""),
+        appBar: CustomAppBar(context).normalAppBar(
+          channelDetails?.getName() ?? "",
+          onTabBack: () {
+            final logic = Get.find<ChannelProfileLogic>(tag: "1");
+            logic.clearChannelCachedDetails(channelDetails?.id ?? "");
+            Go(context).back();
+          },
+        ),
         body: ProfilePage(
           isThatMyPersonalId: true,
           widgetsAboveBio: _ButtonsAboveBio(channelDetails!),
@@ -120,49 +127,50 @@ class _ButtonsAboveBio extends StatelessWidget {
         const RSizedBox(height: 10),
         Padding(
           padding: REdgeInsets.symmetric(horizontal: 15),
-          child: Column(children: [
-            CircularProfileImage(
-                enableTapping: false,
-                radius: 30,
-                imageUrl: channelItem.getProfileImageUrl()),
-            const RSizedBox(height: 15),
-            Text(
-              channelItem.getName(),
-              style:
-              getBoldStyle(color: ColorManager(context).black, fontSize: 22),
-            ),
-            const RSizedBox(height: 5),
-            Text(
-              "${channelItem.getCustomUserName()} . $subscribersCount . $viewsCount",
-              style: getNormalStyle(
-                  color: ColorManager(context).black, fontSize: 12),
-            ),
-            const RSizedBox(height: 5),
-            Row(
-              children: [
-                Flexible(
-                  child: GestureDetector(
-                    onTap: () {},
-                    child: Text(
-                      channelItem.getBio(),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
-                      textAlign: TextAlign.center,
-                      style: getNormalStyle(
-                          color: ColorManager(context).grey, fontSize: 12),
+          child: Column(
+            children: [
+              CircularProfileImage(
+                  enableTapping: false,
+                  radius: 30,
+                  imageUrl: channelItem.getProfileImageUrl()),
+              const RSizedBox(height: 15),
+              Text(
+                channelItem.getName(),
+                style: getBoldStyle(
+                    color: ColorManager(context).black, fontSize: 22),
+              ),
+              const RSizedBox(height: 5),
+              Text(
+                "${channelItem.getCustomUserName()} . $subscribersCount . $viewsCount",
+                style: getNormalStyle(
+                    color: ColorManager(context).black, fontSize: 12),
+              ),
+              const RSizedBox(height: 5),
+              Row(
+                children: [
+                  Flexible(
+                    child: GestureDetector(
+                      onTap: () {},
+                      child: Text(
+                        channelItem.getBio(),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                        textAlign: TextAlign.center,
+                        style: getNormalStyle(
+                            color: ColorManager(context).grey, fontSize: 12),
+                      ),
                     ),
                   ),
-                ),
-                const RSizedBox(width: 5),
-                SvgIcon(IconsAssets.rightArrowIcon,
-                    color: ColorManager(context).grey8, size: 20)
-              ],
-            ),
-            const RSizedBox(height: 10),
-            SubscribeButton(fontSize: 15, channelId: channelItem.id ?? ""),
-          ],),
+                  const RSizedBox(width: 5),
+                  SvgIcon(IconsAssets.rightArrowIcon,
+                      color: ColorManager(context).grey8, size: 20)
+                ],
+              ),
+              const RSizedBox(height: 10),
+              SubscribeButton(fontSize: 15, channelId: channelItem.id ?? ""),
+            ],
+          ),
         ),
-
       ],
     );
   }

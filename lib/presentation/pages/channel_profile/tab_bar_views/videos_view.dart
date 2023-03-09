@@ -34,9 +34,7 @@ class _TabBarVideosViewState extends State<TabBarVideosView> {
         })
       ],
     );
-
   }
-
 }
 
 class _PopularVideos extends StatelessWidget {
@@ -49,6 +47,8 @@ class _PopularVideos extends StatelessWidget {
     return BlocBuilder<ChannelVideosCubit, ChannelVideosState>(
       bloc: ChannelVideosCubit.get(context)
         ..getPopularChannelVideos(channelDetails?.id ?? ""),
+      buildWhen: (previous, current) =>
+          previous != current && current is PopularVideosLoaded,
       builder: (context, state) {
         if (state is PopularVideosLoaded) {
           return _VideosList(state.videoDetails);
@@ -73,6 +73,8 @@ class _NewestVideos extends StatelessWidget {
     return BlocBuilder<ChannelVideosCubit, ChannelVideosState>(
       bloc: ChannelVideosCubit.get(context)
         ..getChannelVideos(channelDetails?.id ?? ""),
+      buildWhen: (previous, current) =>
+          previous != current && current is ChannelVideosLoaded,
       builder: (context, state) {
         if (state is ChannelVideosLoaded) {
           return _VideosList(state.videoDetails);
@@ -94,12 +96,12 @@ class _VideosList extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
-        childCount:videoDetails.videoDetailsItem?.length ?? 0,
-            (context, index) => Padding(
-              padding: REdgeInsetsDirectional.only(start: 15, top: 15),
-              child: VideoHorizontalDescriptionsList(
-                  videoDetails.videoDetailsItem![index]),
-            ),
+        childCount: videoDetails.videoDetailsItem?.length ?? 0,
+        (context, index) => Padding(
+          padding: REdgeInsetsDirectional.only(start: 15, top: 15),
+          child: VideoHorizontalDescriptionsList(
+              videoDetails.videoDetailsItem![index]),
+        ),
       ),
     );
   }
@@ -117,10 +119,10 @@ class _FiltersButtonsState extends State<_FiltersButtons> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() =>  SliverToBoxAdapter(
-      child: Padding(
-        padding: REdgeInsetsDirectional.only(start: 15, top: 15),
-        child: Row(
+    return Obx(() => SliverToBoxAdapter(
+          child: Padding(
+            padding: REdgeInsetsDirectional.only(start: 15, top: 15),
+            child: Row(
               children: [
                 GestureDetector(
                     onTap: () => logic.isRecentlyVideosSelected = true,
@@ -135,7 +137,7 @@ class _FiltersButtonsState extends State<_FiltersButtons> {
                         isSelected: !logic.getRecentlyVideosSelected)),
               ],
             ),
-      ),
-    ));
+          ),
+        ));
   }
 }
