@@ -11,6 +11,8 @@ abstract class ChannelDetailsRepository {
   Future<ApiResult<void>> subscribeToChannel({required String channelId});
   Future<ApiResult<void>> deleteSubscription(String subscriptionId);
   Future<ApiResult<MySubscriptionsDetails>> getMySubscriptionsChannels();
+  Future<ApiResult<ChannelSubDetails>> getMyChannelInfo();
   Future<void> clearMySubscriptionsChannels();
+  Future<void> clearMyChannelInfo();
 
 }

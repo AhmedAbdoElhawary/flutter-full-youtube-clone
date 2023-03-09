@@ -1,5 +1,5 @@
+import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_blurhash/flutter_blurhash.dart';
 import 'package:youtube/core/resources/assets_manager.dart';
 import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/core/resources/styles_manager.dart';
@@ -9,6 +9,7 @@ import 'package:youtube/presentation/common_widgets/app_bars/custom_app_bar.dart
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:youtube/data/models/videos_details/videos_details.dart';
+import 'package:youtube/presentation/common_widgets/custom_network_display.dart';
 import 'package:youtube/presentation/common_widgets/error_message_widget.dart';
 import 'package:youtube/presentation/common_widgets/horizontal_videos_loading.dart';
 import 'package:youtube/presentation/common_widgets/rounded_button.dart';
@@ -42,22 +43,19 @@ class _PlayListOverview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String imageUrl = playListsItem?.getPlaylistCoverImageUrl() ?? "";
     return SliverToBoxAdapter(
       child: SizedBox(
         width: double.infinity,
         height: 325.h,
-        child: Stack(
-          children: [
-            SizedBox(
-              width: double.infinity,
-              height: 325.h,
-              child: BlurHash(
-                imageFit: BoxFit.cover,
-                hash: playListsItem?.blurHash ?? 'LKO2?U%2Tw=w]~RBVZRi};RPxuwH',
-              ),
-            ),
-            _WidgetsAboveBlurHash(playListsItem: playListsItem),
-          ],
+        child: CustomNetworkDisplay(
+          imageUrl: imageUrl,
+          height: 325,
+          width: double.infinity,
+        ).blurred(
+          colorOpacity: 0,
+          blur: 55,
+          overlay: _WidgetsAboveBlurHash(playListsItem: playListsItem),
         ),
       ),
     );
@@ -165,7 +163,7 @@ class _InteractionsButtonsWithSubInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     String? privacy = playListsItem?.getPlayListStatus();
     bool isPrivacyPrivate = privacy == "private";
-    bool isThatMe=playListsItem?.getChannelName()=="ahmed abdo";
+    bool isThatMe = playListsItem?.getChannelName() == "ahmed abdo";
     return Row(
       children: [
         Expanded(
@@ -204,7 +202,7 @@ class _InteractionsButtonsWithSubInfo extends StatelessWidget {
             ],
           ),
         ),
-        if(isThatMe)...[
+        if (isThatMe) ...[
           _RoundedIconButton(
               const Icon(
                 Icons.mode_edit_outlined,
@@ -220,8 +218,7 @@ class _InteractionsButtonsWithSubInfo extends StatelessWidget {
                 size: 20,
               ),
               onTap: () {}),
-
-        ]else...[
+        ] else ...[
           _RoundedIconButton(
               const Icon(
                 Icons.library_add_outlined,
@@ -243,7 +240,6 @@ class _InteractionsButtonsWithSubInfo extends StatelessWidget {
                   size: 20, color: BaseColorManager.white),
               onTap: () {}),
         ],
-
       ],
     );
   }

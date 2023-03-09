@@ -1,11 +1,12 @@
+import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_blurhash/flutter_blurhash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:youtube/config/routes/route_app.dart';
 import 'package:youtube/data/models/channel_details/channel_details.dart';
 import 'package:youtube/data/models/channel_details/playlists/playlists.dart';
 import 'package:youtube/data/models/channel_details/playlists/playlists_extension.dart';
+import 'package:youtube/presentation/common_widgets/custom_network_display.dart';
 import 'package:youtube/presentation/common_widgets/error_message_widget.dart';
 import 'package:youtube/presentation/common_widgets/horizontal_videos_loading.dart';
 import 'package:youtube/presentation/cubit/channel/playlist/play_list_cubit.dart';
@@ -79,9 +80,7 @@ class _PlaylistsList extends StatelessWidget {
 }
 
 class _SortPlaylists extends StatefulWidget {
-  const _SortPlaylists({
-    Key? key,
-  }) : super(key: key);
+  const _SortPlaylists({Key? key}) : super(key: key);
 
   @override
   State<_SortPlaylists> createState() => _SortPlaylistsState();
@@ -216,39 +215,39 @@ class _PlaylistCountBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int? playlistCount = playListsItem?.getPlaylistCount();
+    String? imageUrl = playListsItem?.getPlaylistCoverImageUrl() ?? "";
 
     return SizedBox(
       width: 160.w,
       height: 15.h,
       child: Stack(
         children: [
-          Container(
+          CustomNetworkDisplay(
+            imageUrl: imageUrl,
             width: 160.w,
             height: 15.h,
-            color: BaseColorManager.black,
-            child: BlurHash(
-              imageFit: BoxFit.cover,
-              hash: playListsItem?.blurHash ?? 'LKO2?U%2Tw=w]~RBVZRi};RPxuwH',
+          ).blurred(
+            colorOpacity: 0.1,
+            blur: 10,
+            overlay: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(
+                  Icons.playlist_play_outlined,
+                  color: BaseColorManager.white,
+                  size: 15,
+                ),
+                const RSizedBox(width: 2),
+                if (playlistCount != null && playlistCount != 0)
+                  Text(
+                    "$playlistCount",
+                    style: getMediumStyle(
+                        color: BaseColorManager.white, fontSize: 12),
+                  )
+              ],
             ),
           ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(
-                Icons.playlist_play_outlined,
-                color: BaseColorManager.white,
-                size: 15,
-              ),
-              const RSizedBox(width: 2),
-              if (playlistCount != null && playlistCount != 0)
-                Text(
-                  "$playlistCount",
-                  style: getMediumStyle(
-                      color: BaseColorManager.white, fontSize: 12),
-                )
-            ],
-          )
         ],
       ),
     );

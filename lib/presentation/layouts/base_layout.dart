@@ -28,66 +28,76 @@ class BaseLayout extends StatelessWidget {
     final miniVideoLogic = Get.put(MiniVideoViewLogic(), tag: "1");
 
     return Obx(
-      () => CustomCupertinoTabScaffold(
-        tabBar: CustomCupertinoTabBar(
-          backgroundColor: baseLayoutLogic.isShortsPageSelected
-              ? Theme.of(context).focusColor
-              : Theme.of(context).primaryColor,
-          height: miniVideoLogic.heightOfNavigationBar.value.h,
-          border: Border(
-              top: BorderSide(
-                  color: baseLayoutLogic.isShortsPageSelected
-                      ? ColorManager(context).grey9
-                      : ColorManager(context).grey1,
-                  width: 1.w)),
-          inactiveColor: baseLayoutLogic.isShortsPageSelected
-              ? ColorManager(context).white
-              : ColorManager(context).black,
-          activeColor: baseLayoutLogic.isShortsPageSelected
-              ? ColorManager(context).white
-              : ColorManager(context).black,
-          items: const [
-            BottomNavigationBarItem(
-                icon: SvgIcon(IconsAssets.homeIcon, size: 25),
-                activeIcon: SvgIcon(IconsAssets.homeColoredIcon, size: 25),
-                label: "Home"),
-            BottomNavigationBarItem(
-                icon: SvgIcon(IconsAssets.shortsIcon, size: 25),
-                activeIcon: SvgIcon(IconsAssets.shortsColoredIcon, size: 25),
-                label: "Shorts"),
-            BottomNavigationBarItem(
-              icon: SvgIcon(IconsAssets.addIcon, size: 35),
-              activeIcon: SvgIcon(IconsAssets.addIcon, size: 35),
-            ),
-            BottomNavigationBarItem(
-                icon: SvgIcon(IconsAssets.subscriptionIcon, size: 25),
-                activeIcon:
-                    SvgIcon(IconsAssets.subscriptionColoredIcon, size: 25),
-                label: "Subscriptions"),
-            BottomNavigationBarItem(
-                icon: SvgIcon(IconsAssets.libraryIcon, size: 25),
-                activeIcon: SvgIcon(IconsAssets.libraryColoredIcon, size: 25),
-                label: "Library"),
-          ],
-        ),
-        controller: baseLayoutLogic.tabController,
-        tabBuilder: (context, index) {
-          if (index == 1) return const _ShortsPage();
+      () {
+        Color? color = baseLayoutLogic.isShortsPageSelected
+            ? BaseColorManager.white
+            : null;
+        return CustomCupertinoTabScaffold(
+          tabBar: CustomCupertinoTabBar(
+            backgroundColor: baseLayoutLogic.isShortsPageSelected
+                ? Theme.of(context).focusColor
+                : Theme.of(context).primaryColor,
+            height: miniVideoLogic.heightOfNavigationBar.value.h,
+            border: Border(
+                top: BorderSide(
+                    color: baseLayoutLogic.isShortsPageSelected
+                        ? ColorManager(context).grey9
+                        : ColorManager(context).grey1,
+                    width: 1.w)),
+            inactiveColor: baseLayoutLogic.isShortsPageSelected
+                ? ColorManager(context).white
+                : ColorManager(context).black,
+            activeColor: baseLayoutLogic.isShortsPageSelected
+                ? ColorManager(context).white
+                : ColorManager(context).black,
+            items: [
+              BottomNavigationBarItem(
+                  icon: SvgIcon(IconsAssets.homeIcon, size: 25, color: color),
+                  activeIcon:
+                      const SvgIcon(IconsAssets.homeColoredIcon, size: 25),
+                  label: "Home"),
+              BottomNavigationBarItem(
+                  icon: SvgIcon(IconsAssets.shortsIcon, size: 25, color: color),
+                  activeIcon:
+                      SvgIcon(IconsAssets.shortsIcon, size: 25, color: color),
+                  label: "Shorts"),
+              BottomNavigationBarItem(
+                icon: SvgIcon(IconsAssets.addIcon, size: 35, color: color),
+                activeIcon: const SvgIcon(IconsAssets.addIcon, size: 35),
+              ),
+              BottomNavigationBarItem(
+                  icon: SvgIcon(IconsAssets.subscriptionIcon,
+                      size: 25, color: color),
+                  activeIcon: const SvgIcon(IconsAssets.subscriptionColoredIcon,
+                      size: 25),
+                  label: "Subscriptions"),
+              BottomNavigationBarItem(
+                  icon:
+                      SvgIcon(IconsAssets.libraryIcon, size: 25, color: color),
+                  activeIcon:
+                      const SvgIcon(IconsAssets.libraryColoredIcon, size: 25),
+                  label: "Library"),
+            ],
+          ),
+          controller: baseLayoutLogic.tabController,
+          tabBuilder: (context, index) {
+            if (index == 1) return const _ShortsPage();
 
-          return Obx(() {
-            Widget floatingVideo = miniVideoLogic.selectedVideoDetails == null
-                ? const SizedBox()
-                : const MiniPlayerVideo();
+            return Obx(() {
+              Widget floatingVideo = miniVideoLogic.selectedVideoDetails == null
+                  ? const SizedBox()
+                  : const MiniPlayerVideo();
 
-            return Stack(
-              children: [
-                WhichPage(index),
-                floatingVideo,
-              ],
-            );
-          });
-        },
-      ),
+              return Stack(
+                children: [
+                  WhichPage(index),
+                  floatingVideo,
+                ],
+              );
+            });
+          },
+        );
+      },
     );
   }
 

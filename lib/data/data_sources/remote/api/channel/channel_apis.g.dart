@@ -50,6 +50,35 @@ class _ChannelAPIs implements ChannelAPIs {
   }
 
   @override
+  Future<ChannelSubDetails> getMyChannelInfo({
+    apiKey = apiKey,
+    required accessToken,
+  }) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'key': apiKey,
+      r'access_token': accessToken,
+    };
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ChannelSubDetails>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'channels?part=brandingSettings,contentDetails,statistics,snippet&mine=true',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ChannelSubDetails.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
   Future<MySubscriptionsDetails> getMySubscriptionsChannels({
     apiKey = apiKey,
     required accessToken,

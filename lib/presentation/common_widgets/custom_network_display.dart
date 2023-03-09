@@ -5,7 +5,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 
 class CustomNetworkDisplay extends StatefulWidget {
   const CustomNetworkDisplay(
-      {required this.imageUrl,this.width = double.infinity, this.height = 90, Key? key})
+      {required this.imageUrl,
+      this.width = double.infinity,
+      this.height = 90,
+      Key? key})
       : super(key: key);
   final String imageUrl;
   final double height;
@@ -16,7 +19,9 @@ class CustomNetworkDisplay extends StatefulWidget {
 
 class _CustomNetworkDisplayState extends State<CustomNetworkDisplay> {
   void cacheImage() {
-     precacheImage(NetworkImage(widget.imageUrl), context);
+    if (widget.imageUrl.isNotEmpty) {
+      precacheImage(NetworkImage(widget.imageUrl), context);
+    }
   }
 
   @override
@@ -27,19 +32,21 @@ class _CustomNetworkDisplayState extends State<CustomNetworkDisplay> {
 
   @override
   Widget build(BuildContext context) {
-
     return CachedNetworkImage(
       imageUrl: widget.imageUrl,
       fit: BoxFit.cover,
       width: widget.width.w,
       height: widget.height.h,
-      placeholder: (context, url) => Container(
-        color: ColorManager(context).grey1,
-        width: widget.width.w,
-        height: widget.height.h,
-      ),
-      errorWidget: (context, url, error) =>
-          Center(child: Text(error.toString())),
+      placeholder: (context, url) => buildContainer(context),
+      errorWidget: (context, url, error) =>buildContainer(context),
+    );
+  }
+
+  Container buildContainer(BuildContext context) {
+    return Container(
+      color: ColorManager(context).grey1,
+      width: widget.width.w,
+      height: widget.height.h,
     );
   }
 }

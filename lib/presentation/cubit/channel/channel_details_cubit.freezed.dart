@@ -20,6 +20,7 @@ mixin _$ChannelDetailsState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() subscriptionLoading,
+    required TResult Function(ChannelSubDetails info) myChannelInfoLoaded,
     required TResult Function(ChannelSubDetails channelSubDetails)
         channelSubDetailsLoaded,
     required TResult Function() subscribeToChannelLoaded,
@@ -34,6 +35,7 @@ mixin _$ChannelDetailsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? subscriptionLoading,
+    TResult? Function(ChannelSubDetails info)? myChannelInfoLoaded,
     TResult? Function(ChannelSubDetails channelSubDetails)?
         channelSubDetailsLoaded,
     TResult? Function()? subscribeToChannelLoaded,
@@ -48,6 +50,7 @@ mixin _$ChannelDetailsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? subscriptionLoading,
+    TResult Function(ChannelSubDetails info)? myChannelInfoLoaded,
     TResult Function(ChannelSubDetails channelSubDetails)?
         channelSubDetailsLoaded,
     TResult Function()? subscribeToChannelLoaded,
@@ -63,6 +66,7 @@ mixin _$ChannelDetailsState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(SubscriptionLoading value) subscriptionLoading,
+    required TResult Function(MyChannelInfoLoaded value) myChannelInfoLoaded,
     required TResult Function(ChannelSubDetailsLoaded value)
         channelSubDetailsLoaded,
     required TResult Function(SubscribeToChannelLoaded value)
@@ -78,6 +82,7 @@ mixin _$ChannelDetailsState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(SubscriptionLoading value)? subscriptionLoading,
+    TResult? Function(MyChannelInfoLoaded value)? myChannelInfoLoaded,
     TResult? Function(ChannelSubDetailsLoaded value)? channelSubDetailsLoaded,
     TResult? Function(SubscribeToChannelLoaded value)? subscribeToChannelLoaded,
     TResult? Function(DeleteSubscriptionLoaded value)? deleteSubscriptionLoaded,
@@ -90,6 +95,7 @@ mixin _$ChannelDetailsState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(SubscriptionLoading value)? subscriptionLoading,
+    TResult Function(MyChannelInfoLoaded value)? myChannelInfoLoaded,
     TResult Function(ChannelSubDetailsLoaded value)? channelSubDetailsLoaded,
     TResult Function(SubscribeToChannelLoaded value)? subscribeToChannelLoaded,
     TResult Function(DeleteSubscriptionLoaded value)? deleteSubscriptionLoaded,
@@ -158,6 +164,7 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() subscriptionLoading,
+    required TResult Function(ChannelSubDetails info) myChannelInfoLoaded,
     required TResult Function(ChannelSubDetails channelSubDetails)
         channelSubDetailsLoaded,
     required TResult Function() subscribeToChannelLoaded,
@@ -175,6 +182,7 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? subscriptionLoading,
+    TResult? Function(ChannelSubDetails info)? myChannelInfoLoaded,
     TResult? Function(ChannelSubDetails channelSubDetails)?
         channelSubDetailsLoaded,
     TResult? Function()? subscribeToChannelLoaded,
@@ -192,6 +200,7 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? subscriptionLoading,
+    TResult Function(ChannelSubDetails info)? myChannelInfoLoaded,
     TResult Function(ChannelSubDetails channelSubDetails)?
         channelSubDetailsLoaded,
     TResult Function()? subscribeToChannelLoaded,
@@ -213,6 +222,7 @@ class _$_Initial implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(SubscriptionLoading value) subscriptionLoading,
+    required TResult Function(MyChannelInfoLoaded value) myChannelInfoLoaded,
     required TResult Function(ChannelSubDetailsLoaded value)
         channelSubDetailsLoaded,
     required TResult Function(SubscribeToChannelLoaded value)
@@ -231,6 +241,7 @@ class _$_Initial implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(SubscriptionLoading value)? subscriptionLoading,
+    TResult? Function(MyChannelInfoLoaded value)? myChannelInfoLoaded,
     TResult? Function(ChannelSubDetailsLoaded value)? channelSubDetailsLoaded,
     TResult? Function(SubscribeToChannelLoaded value)? subscribeToChannelLoaded,
     TResult? Function(DeleteSubscriptionLoaded value)? deleteSubscriptionLoaded,
@@ -246,6 +257,7 @@ class _$_Initial implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(SubscriptionLoading value)? subscriptionLoading,
+    TResult Function(MyChannelInfoLoaded value)? myChannelInfoLoaded,
     TResult Function(ChannelSubDetailsLoaded value)? channelSubDetailsLoaded,
     TResult Function(SubscribeToChannelLoaded value)? subscribeToChannelLoaded,
     TResult Function(DeleteSubscriptionLoaded value)? deleteSubscriptionLoaded,
@@ -305,6 +317,7 @@ class _$SubscriptionLoading implements SubscriptionLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() subscriptionLoading,
+    required TResult Function(ChannelSubDetails info) myChannelInfoLoaded,
     required TResult Function(ChannelSubDetails channelSubDetails)
         channelSubDetailsLoaded,
     required TResult Function() subscribeToChannelLoaded,
@@ -322,6 +335,7 @@ class _$SubscriptionLoading implements SubscriptionLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? subscriptionLoading,
+    TResult? Function(ChannelSubDetails info)? myChannelInfoLoaded,
     TResult? Function(ChannelSubDetails channelSubDetails)?
         channelSubDetailsLoaded,
     TResult? Function()? subscribeToChannelLoaded,
@@ -339,6 +353,7 @@ class _$SubscriptionLoading implements SubscriptionLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? subscriptionLoading,
+    TResult Function(ChannelSubDetails info)? myChannelInfoLoaded,
     TResult Function(ChannelSubDetails channelSubDetails)?
         channelSubDetailsLoaded,
     TResult Function()? subscribeToChannelLoaded,
@@ -360,6 +375,7 @@ class _$SubscriptionLoading implements SubscriptionLoading {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(SubscriptionLoading value) subscriptionLoading,
+    required TResult Function(MyChannelInfoLoaded value) myChannelInfoLoaded,
     required TResult Function(ChannelSubDetailsLoaded value)
         channelSubDetailsLoaded,
     required TResult Function(SubscribeToChannelLoaded value)
@@ -378,6 +394,7 @@ class _$SubscriptionLoading implements SubscriptionLoading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(SubscriptionLoading value)? subscriptionLoading,
+    TResult? Function(MyChannelInfoLoaded value)? myChannelInfoLoaded,
     TResult? Function(ChannelSubDetailsLoaded value)? channelSubDetailsLoaded,
     TResult? Function(SubscribeToChannelLoaded value)? subscribeToChannelLoaded,
     TResult? Function(DeleteSubscriptionLoaded value)? deleteSubscriptionLoaded,
@@ -393,6 +410,7 @@ class _$SubscriptionLoading implements SubscriptionLoading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(SubscriptionLoading value)? subscriptionLoading,
+    TResult Function(MyChannelInfoLoaded value)? myChannelInfoLoaded,
     TResult Function(ChannelSubDetailsLoaded value)? channelSubDetailsLoaded,
     TResult Function(SubscribeToChannelLoaded value)? subscribeToChannelLoaded,
     TResult Function(DeleteSubscriptionLoaded value)? deleteSubscriptionLoaded,
@@ -410,6 +428,192 @@ class _$SubscriptionLoading implements SubscriptionLoading {
 
 abstract class SubscriptionLoading implements ChannelDetailsState {
   const factory SubscriptionLoading() = _$SubscriptionLoading;
+}
+
+/// @nodoc
+abstract class _$$MyChannelInfoLoadedCopyWith<$Res> {
+  factory _$$MyChannelInfoLoadedCopyWith(_$MyChannelInfoLoaded value,
+          $Res Function(_$MyChannelInfoLoaded) then) =
+      __$$MyChannelInfoLoadedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ChannelSubDetails info});
+}
+
+/// @nodoc
+class __$$MyChannelInfoLoadedCopyWithImpl<$Res>
+    extends _$ChannelDetailsStateCopyWithImpl<$Res, _$MyChannelInfoLoaded>
+    implements _$$MyChannelInfoLoadedCopyWith<$Res> {
+  __$$MyChannelInfoLoadedCopyWithImpl(
+      _$MyChannelInfoLoaded _value, $Res Function(_$MyChannelInfoLoaded) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? info = null,
+  }) {
+    return _then(_$MyChannelInfoLoaded(
+      null == info
+          ? _value.info
+          : info // ignore: cast_nullable_to_non_nullable
+              as ChannelSubDetails,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$MyChannelInfoLoaded implements MyChannelInfoLoaded {
+  const _$MyChannelInfoLoaded(this.info);
+
+  @override
+  final ChannelSubDetails info;
+
+  @override
+  String toString() {
+    return 'ChannelDetailsState.myChannelInfoLoaded(info: $info)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MyChannelInfoLoaded &&
+            (identical(other.info, info) || other.info == info));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, info);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MyChannelInfoLoadedCopyWith<_$MyChannelInfoLoaded> get copyWith =>
+      __$$MyChannelInfoLoadedCopyWithImpl<_$MyChannelInfoLoaded>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() subscriptionLoading,
+    required TResult Function(ChannelSubDetails info) myChannelInfoLoaded,
+    required TResult Function(ChannelSubDetails channelSubDetails)
+        channelSubDetailsLoaded,
+    required TResult Function() subscribeToChannelLoaded,
+    required TResult Function() deleteSubscriptionLoaded,
+    required TResult Function(MySubscriptionsDetails mySubscriptionsDetails)
+        mySubscriptionsChannelsLoaded,
+    required TResult Function(NetworkExceptionModel networkExceptions)
+        subscriptionError,
+  }) {
+    return myChannelInfoLoaded(info);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? subscriptionLoading,
+    TResult? Function(ChannelSubDetails info)? myChannelInfoLoaded,
+    TResult? Function(ChannelSubDetails channelSubDetails)?
+        channelSubDetailsLoaded,
+    TResult? Function()? subscribeToChannelLoaded,
+    TResult? Function()? deleteSubscriptionLoaded,
+    TResult? Function(MySubscriptionsDetails mySubscriptionsDetails)?
+        mySubscriptionsChannelsLoaded,
+    TResult? Function(NetworkExceptionModel networkExceptions)?
+        subscriptionError,
+  }) {
+    return myChannelInfoLoaded?.call(info);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? subscriptionLoading,
+    TResult Function(ChannelSubDetails info)? myChannelInfoLoaded,
+    TResult Function(ChannelSubDetails channelSubDetails)?
+        channelSubDetailsLoaded,
+    TResult Function()? subscribeToChannelLoaded,
+    TResult Function()? deleteSubscriptionLoaded,
+    TResult Function(MySubscriptionsDetails mySubscriptionsDetails)?
+        mySubscriptionsChannelsLoaded,
+    TResult Function(NetworkExceptionModel networkExceptions)?
+        subscriptionError,
+    required TResult orElse(),
+  }) {
+    if (myChannelInfoLoaded != null) {
+      return myChannelInfoLoaded(info);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(SubscriptionLoading value) subscriptionLoading,
+    required TResult Function(MyChannelInfoLoaded value) myChannelInfoLoaded,
+    required TResult Function(ChannelSubDetailsLoaded value)
+        channelSubDetailsLoaded,
+    required TResult Function(SubscribeToChannelLoaded value)
+        subscribeToChannelLoaded,
+    required TResult Function(DeleteSubscriptionLoaded value)
+        deleteSubscriptionLoaded,
+    required TResult Function(MySubscriptionsChannelsLoaded value)
+        mySubscriptionsChannelsLoaded,
+    required TResult Function(SubscriptionError value) subscriptionError,
+  }) {
+    return myChannelInfoLoaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(SubscriptionLoading value)? subscriptionLoading,
+    TResult? Function(MyChannelInfoLoaded value)? myChannelInfoLoaded,
+    TResult? Function(ChannelSubDetailsLoaded value)? channelSubDetailsLoaded,
+    TResult? Function(SubscribeToChannelLoaded value)? subscribeToChannelLoaded,
+    TResult? Function(DeleteSubscriptionLoaded value)? deleteSubscriptionLoaded,
+    TResult? Function(MySubscriptionsChannelsLoaded value)?
+        mySubscriptionsChannelsLoaded,
+    TResult? Function(SubscriptionError value)? subscriptionError,
+  }) {
+    return myChannelInfoLoaded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(SubscriptionLoading value)? subscriptionLoading,
+    TResult Function(MyChannelInfoLoaded value)? myChannelInfoLoaded,
+    TResult Function(ChannelSubDetailsLoaded value)? channelSubDetailsLoaded,
+    TResult Function(SubscribeToChannelLoaded value)? subscribeToChannelLoaded,
+    TResult Function(DeleteSubscriptionLoaded value)? deleteSubscriptionLoaded,
+    TResult Function(MySubscriptionsChannelsLoaded value)?
+        mySubscriptionsChannelsLoaded,
+    TResult Function(SubscriptionError value)? subscriptionError,
+    required TResult orElse(),
+  }) {
+    if (myChannelInfoLoaded != null) {
+      return myChannelInfoLoaded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MyChannelInfoLoaded implements ChannelDetailsState {
+  const factory MyChannelInfoLoaded(final ChannelSubDetails info) =
+      _$MyChannelInfoLoaded;
+
+  ChannelSubDetails get info;
+  @JsonKey(ignore: true)
+  _$$MyChannelInfoLoadedCopyWith<_$MyChannelInfoLoaded> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -480,6 +684,7 @@ class _$ChannelSubDetailsLoaded implements ChannelSubDetailsLoaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() subscriptionLoading,
+    required TResult Function(ChannelSubDetails info) myChannelInfoLoaded,
     required TResult Function(ChannelSubDetails channelSubDetails)
         channelSubDetailsLoaded,
     required TResult Function() subscribeToChannelLoaded,
@@ -497,6 +702,7 @@ class _$ChannelSubDetailsLoaded implements ChannelSubDetailsLoaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? subscriptionLoading,
+    TResult? Function(ChannelSubDetails info)? myChannelInfoLoaded,
     TResult? Function(ChannelSubDetails channelSubDetails)?
         channelSubDetailsLoaded,
     TResult? Function()? subscribeToChannelLoaded,
@@ -514,6 +720,7 @@ class _$ChannelSubDetailsLoaded implements ChannelSubDetailsLoaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? subscriptionLoading,
+    TResult Function(ChannelSubDetails info)? myChannelInfoLoaded,
     TResult Function(ChannelSubDetails channelSubDetails)?
         channelSubDetailsLoaded,
     TResult Function()? subscribeToChannelLoaded,
@@ -535,6 +742,7 @@ class _$ChannelSubDetailsLoaded implements ChannelSubDetailsLoaded {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(SubscriptionLoading value) subscriptionLoading,
+    required TResult Function(MyChannelInfoLoaded value) myChannelInfoLoaded,
     required TResult Function(ChannelSubDetailsLoaded value)
         channelSubDetailsLoaded,
     required TResult Function(SubscribeToChannelLoaded value)
@@ -553,6 +761,7 @@ class _$ChannelSubDetailsLoaded implements ChannelSubDetailsLoaded {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(SubscriptionLoading value)? subscriptionLoading,
+    TResult? Function(MyChannelInfoLoaded value)? myChannelInfoLoaded,
     TResult? Function(ChannelSubDetailsLoaded value)? channelSubDetailsLoaded,
     TResult? Function(SubscribeToChannelLoaded value)? subscribeToChannelLoaded,
     TResult? Function(DeleteSubscriptionLoaded value)? deleteSubscriptionLoaded,
@@ -568,6 +777,7 @@ class _$ChannelSubDetailsLoaded implements ChannelSubDetailsLoaded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(SubscriptionLoading value)? subscriptionLoading,
+    TResult Function(MyChannelInfoLoaded value)? myChannelInfoLoaded,
     TResult Function(ChannelSubDetailsLoaded value)? channelSubDetailsLoaded,
     TResult Function(SubscribeToChannelLoaded value)? subscribeToChannelLoaded,
     TResult Function(DeleteSubscriptionLoaded value)? deleteSubscriptionLoaded,
@@ -634,6 +844,7 @@ class _$SubscribeToChannelLoaded implements SubscribeToChannelLoaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() subscriptionLoading,
+    required TResult Function(ChannelSubDetails info) myChannelInfoLoaded,
     required TResult Function(ChannelSubDetails channelSubDetails)
         channelSubDetailsLoaded,
     required TResult Function() subscribeToChannelLoaded,
@@ -651,6 +862,7 @@ class _$SubscribeToChannelLoaded implements SubscribeToChannelLoaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? subscriptionLoading,
+    TResult? Function(ChannelSubDetails info)? myChannelInfoLoaded,
     TResult? Function(ChannelSubDetails channelSubDetails)?
         channelSubDetailsLoaded,
     TResult? Function()? subscribeToChannelLoaded,
@@ -668,6 +880,7 @@ class _$SubscribeToChannelLoaded implements SubscribeToChannelLoaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? subscriptionLoading,
+    TResult Function(ChannelSubDetails info)? myChannelInfoLoaded,
     TResult Function(ChannelSubDetails channelSubDetails)?
         channelSubDetailsLoaded,
     TResult Function()? subscribeToChannelLoaded,
@@ -689,6 +902,7 @@ class _$SubscribeToChannelLoaded implements SubscribeToChannelLoaded {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(SubscriptionLoading value) subscriptionLoading,
+    required TResult Function(MyChannelInfoLoaded value) myChannelInfoLoaded,
     required TResult Function(ChannelSubDetailsLoaded value)
         channelSubDetailsLoaded,
     required TResult Function(SubscribeToChannelLoaded value)
@@ -707,6 +921,7 @@ class _$SubscribeToChannelLoaded implements SubscribeToChannelLoaded {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(SubscriptionLoading value)? subscriptionLoading,
+    TResult? Function(MyChannelInfoLoaded value)? myChannelInfoLoaded,
     TResult? Function(ChannelSubDetailsLoaded value)? channelSubDetailsLoaded,
     TResult? Function(SubscribeToChannelLoaded value)? subscribeToChannelLoaded,
     TResult? Function(DeleteSubscriptionLoaded value)? deleteSubscriptionLoaded,
@@ -722,6 +937,7 @@ class _$SubscribeToChannelLoaded implements SubscribeToChannelLoaded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(SubscriptionLoading value)? subscriptionLoading,
+    TResult Function(MyChannelInfoLoaded value)? myChannelInfoLoaded,
     TResult Function(ChannelSubDetailsLoaded value)? channelSubDetailsLoaded,
     TResult Function(SubscribeToChannelLoaded value)? subscribeToChannelLoaded,
     TResult Function(DeleteSubscriptionLoaded value)? deleteSubscriptionLoaded,
@@ -782,6 +998,7 @@ class _$DeleteSubscriptionLoaded implements DeleteSubscriptionLoaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() subscriptionLoading,
+    required TResult Function(ChannelSubDetails info) myChannelInfoLoaded,
     required TResult Function(ChannelSubDetails channelSubDetails)
         channelSubDetailsLoaded,
     required TResult Function() subscribeToChannelLoaded,
@@ -799,6 +1016,7 @@ class _$DeleteSubscriptionLoaded implements DeleteSubscriptionLoaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? subscriptionLoading,
+    TResult? Function(ChannelSubDetails info)? myChannelInfoLoaded,
     TResult? Function(ChannelSubDetails channelSubDetails)?
         channelSubDetailsLoaded,
     TResult? Function()? subscribeToChannelLoaded,
@@ -816,6 +1034,7 @@ class _$DeleteSubscriptionLoaded implements DeleteSubscriptionLoaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? subscriptionLoading,
+    TResult Function(ChannelSubDetails info)? myChannelInfoLoaded,
     TResult Function(ChannelSubDetails channelSubDetails)?
         channelSubDetailsLoaded,
     TResult Function()? subscribeToChannelLoaded,
@@ -837,6 +1056,7 @@ class _$DeleteSubscriptionLoaded implements DeleteSubscriptionLoaded {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(SubscriptionLoading value) subscriptionLoading,
+    required TResult Function(MyChannelInfoLoaded value) myChannelInfoLoaded,
     required TResult Function(ChannelSubDetailsLoaded value)
         channelSubDetailsLoaded,
     required TResult Function(SubscribeToChannelLoaded value)
@@ -855,6 +1075,7 @@ class _$DeleteSubscriptionLoaded implements DeleteSubscriptionLoaded {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(SubscriptionLoading value)? subscriptionLoading,
+    TResult? Function(MyChannelInfoLoaded value)? myChannelInfoLoaded,
     TResult? Function(ChannelSubDetailsLoaded value)? channelSubDetailsLoaded,
     TResult? Function(SubscribeToChannelLoaded value)? subscribeToChannelLoaded,
     TResult? Function(DeleteSubscriptionLoaded value)? deleteSubscriptionLoaded,
@@ -870,6 +1091,7 @@ class _$DeleteSubscriptionLoaded implements DeleteSubscriptionLoaded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(SubscriptionLoading value)? subscriptionLoading,
+    TResult Function(MyChannelInfoLoaded value)? myChannelInfoLoaded,
     TResult Function(ChannelSubDetailsLoaded value)? channelSubDetailsLoaded,
     TResult Function(SubscribeToChannelLoaded value)? subscribeToChannelLoaded,
     TResult Function(DeleteSubscriptionLoaded value)? deleteSubscriptionLoaded,
@@ -960,6 +1182,7 @@ class _$MySubscriptionsChannelsLoaded implements MySubscriptionsChannelsLoaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() subscriptionLoading,
+    required TResult Function(ChannelSubDetails info) myChannelInfoLoaded,
     required TResult Function(ChannelSubDetails channelSubDetails)
         channelSubDetailsLoaded,
     required TResult Function() subscribeToChannelLoaded,
@@ -977,6 +1200,7 @@ class _$MySubscriptionsChannelsLoaded implements MySubscriptionsChannelsLoaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? subscriptionLoading,
+    TResult? Function(ChannelSubDetails info)? myChannelInfoLoaded,
     TResult? Function(ChannelSubDetails channelSubDetails)?
         channelSubDetailsLoaded,
     TResult? Function()? subscribeToChannelLoaded,
@@ -994,6 +1218,7 @@ class _$MySubscriptionsChannelsLoaded implements MySubscriptionsChannelsLoaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? subscriptionLoading,
+    TResult Function(ChannelSubDetails info)? myChannelInfoLoaded,
     TResult Function(ChannelSubDetails channelSubDetails)?
         channelSubDetailsLoaded,
     TResult Function()? subscribeToChannelLoaded,
@@ -1015,6 +1240,7 @@ class _$MySubscriptionsChannelsLoaded implements MySubscriptionsChannelsLoaded {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(SubscriptionLoading value) subscriptionLoading,
+    required TResult Function(MyChannelInfoLoaded value) myChannelInfoLoaded,
     required TResult Function(ChannelSubDetailsLoaded value)
         channelSubDetailsLoaded,
     required TResult Function(SubscribeToChannelLoaded value)
@@ -1033,6 +1259,7 @@ class _$MySubscriptionsChannelsLoaded implements MySubscriptionsChannelsLoaded {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(SubscriptionLoading value)? subscriptionLoading,
+    TResult? Function(MyChannelInfoLoaded value)? myChannelInfoLoaded,
     TResult? Function(ChannelSubDetailsLoaded value)? channelSubDetailsLoaded,
     TResult? Function(SubscribeToChannelLoaded value)? subscribeToChannelLoaded,
     TResult? Function(DeleteSubscriptionLoaded value)? deleteSubscriptionLoaded,
@@ -1048,6 +1275,7 @@ class _$MySubscriptionsChannelsLoaded implements MySubscriptionsChannelsLoaded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(SubscriptionLoading value)? subscriptionLoading,
+    TResult Function(MyChannelInfoLoaded value)? myChannelInfoLoaded,
     TResult Function(ChannelSubDetailsLoaded value)? channelSubDetailsLoaded,
     TResult Function(SubscribeToChannelLoaded value)? subscribeToChannelLoaded,
     TResult Function(DeleteSubscriptionLoaded value)? deleteSubscriptionLoaded,
@@ -1141,6 +1369,7 @@ class _$SubscriptionError implements SubscriptionError {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() subscriptionLoading,
+    required TResult Function(ChannelSubDetails info) myChannelInfoLoaded,
     required TResult Function(ChannelSubDetails channelSubDetails)
         channelSubDetailsLoaded,
     required TResult Function() subscribeToChannelLoaded,
@@ -1158,6 +1387,7 @@ class _$SubscriptionError implements SubscriptionError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? subscriptionLoading,
+    TResult? Function(ChannelSubDetails info)? myChannelInfoLoaded,
     TResult? Function(ChannelSubDetails channelSubDetails)?
         channelSubDetailsLoaded,
     TResult? Function()? subscribeToChannelLoaded,
@@ -1175,6 +1405,7 @@ class _$SubscriptionError implements SubscriptionError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? subscriptionLoading,
+    TResult Function(ChannelSubDetails info)? myChannelInfoLoaded,
     TResult Function(ChannelSubDetails channelSubDetails)?
         channelSubDetailsLoaded,
     TResult Function()? subscribeToChannelLoaded,
@@ -1196,6 +1427,7 @@ class _$SubscriptionError implements SubscriptionError {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(SubscriptionLoading value) subscriptionLoading,
+    required TResult Function(MyChannelInfoLoaded value) myChannelInfoLoaded,
     required TResult Function(ChannelSubDetailsLoaded value)
         channelSubDetailsLoaded,
     required TResult Function(SubscribeToChannelLoaded value)
@@ -1214,6 +1446,7 @@ class _$SubscriptionError implements SubscriptionError {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(SubscriptionLoading value)? subscriptionLoading,
+    TResult? Function(MyChannelInfoLoaded value)? myChannelInfoLoaded,
     TResult? Function(ChannelSubDetailsLoaded value)? channelSubDetailsLoaded,
     TResult? Function(SubscribeToChannelLoaded value)? subscribeToChannelLoaded,
     TResult? Function(DeleteSubscriptionLoaded value)? deleteSubscriptionLoaded,
@@ -1229,6 +1462,7 @@ class _$SubscriptionError implements SubscriptionError {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(SubscriptionLoading value)? subscriptionLoading,
+    TResult Function(MyChannelInfoLoaded value)? myChannelInfoLoaded,
     TResult Function(ChannelSubDetailsLoaded value)? channelSubDetailsLoaded,
     TResult Function(SubscribeToChannelLoaded value)? subscribeToChannelLoaded,
     TResult Function(DeleteSubscriptionLoaded value)? deleteSubscriptionLoaded,

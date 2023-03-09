@@ -6,6 +6,9 @@ class ChannelDetailsState with _$ChannelDetailsState {
 
   const factory ChannelDetailsState.subscriptionLoading() = SubscriptionLoading;
 
+  const factory ChannelDetailsState.myChannelInfoLoaded(
+      ChannelSubDetails info) = MyChannelInfoLoaded;
+
   const factory ChannelDetailsState.channelSubDetailsLoaded(
       ChannelSubDetails channelSubDetails) = ChannelSubDetailsLoaded;
 

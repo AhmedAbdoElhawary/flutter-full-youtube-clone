@@ -13,12 +13,16 @@ import 'package:youtube/domain/use_cases/channel/channel_details/clear/clear_my_
 import 'package:youtube/domain/use_cases/channel/channel_details/delete_subscription_use_case.dart';
 import 'package:youtube/domain/use_cases/channel/channel_details/my_subscriptions_channels_use_case.dart';
 import 'package:youtube/domain/use_cases/channel/channel_details/subscribe_to_channel_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/my_info/clear_my_info_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/my_info/get_my_channel_info_use_case.dart';
 import 'package:youtube/presentation/pages/subscriptions/logic/subscriptions_page_logic.dart';
 
 part 'channel_details_state.dart';
 part 'channel_details_cubit.freezed.dart';
 
 class ChannelDetailsCubit extends Cubit<ChannelDetailsState> {
+  final GetMyInfoUseCase _getMyInfoUseCase;
+  final ClearMyInfoUseCase _clearMyInfoUseCase;
   final ChannelSubDetailsUseCase _channelSubDetailsUseCase;
   final DeleteSubscriptionUseCase _deleteSubscriptionUseCase;
   final SubscribeToChannelUseCase _subscribeToChannelUseCase;
@@ -26,6 +30,8 @@ class ChannelDetailsCubit extends Cubit<ChannelDetailsState> {
   final ClearMySubscriptionsChannelsUseCase
       _clearMySubscriptionsChannelsUseCase;
   ChannelDetailsCubit(
+    this._getMyInfoUseCase,
+    this._clearMyInfoUseCase,
     this._channelSubDetailsUseCase,
     this._deleteSubscriptionUseCase,
     this._subscribeToChannelUseCase,
@@ -35,6 +41,19 @@ class ChannelDetailsCubit extends Cubit<ChannelDetailsState> {
 
   static ChannelDetailsCubit get(BuildContext context) =>
       BlocProvider.of(context);
+
+  Future<void> getMyChannelInfo() async {
+    emit(const ChannelDetailsState.subscriptionLoading());
+
+    ApiResult<ChannelSubDetails> myInfo =
+        await _getMyInfoUseCase.call(params: null);
+
+    myInfo.when(
+        success: (myInfo) =>
+            emit(ChannelDetailsState.myChannelInfoLoaded(myInfo)),
+        failure: (exception) =>
+            emit(ChannelDetailsState.subscriptionError(exception)));
+  }
 
   Future<void> getChannelSubDetails(String channelId) async {
     emit(const ChannelDetailsState.subscriptionLoading());
@@ -46,7 +65,8 @@ class ChannelDetailsCubit extends Cubit<ChannelDetailsState> {
     channelSubDetails.when(
         success: (videoDetails) =>
             emit(ChannelDetailsState.channelSubDetailsLoaded(videoDetails)),
-        failure: (exception) => emit(ChannelDetailsState.subscriptionError(exception)));
+        failure: (exception) =>
+            emit(ChannelDetailsState.subscriptionError(exception)));
   }
 
   Future<void> subscribeToChannel(String subscriptionId) async {
@@ -58,7 +78,8 @@ class ChannelDetailsCubit extends Cubit<ChannelDetailsState> {
     channelDetails.when(
         success: (_) =>
             emit(const ChannelDetailsState.subscribeToChannelLoaded()),
-        failure: (exception) => emit(ChannelDetailsState.subscriptionError(exception)));
+        failure: (exception) =>
+            emit(ChannelDetailsState.subscriptionError(exception)));
   }
 
   Future<void> deleteSubscription(String subscriptionId) async {
@@ -71,7 +92,8 @@ class ChannelDetailsCubit extends Cubit<ChannelDetailsState> {
     channelDetails.when(
         success: (_) =>
             emit(const ChannelDetailsState.subscribeToChannelLoaded()),
-        failure: (exception) => emit(ChannelDetailsState.subscriptionError(exception)));
+        failure: (exception) =>
+            emit(ChannelDetailsState.subscriptionError(exception)));
   }
 
   Future<void> getMySubscriptionsChannels() async {
@@ -87,10 +109,15 @@ class ChannelDetailsCubit extends Cubit<ChannelDetailsState> {
           emit(ChannelDetailsState.mySubscriptionsChannelsLoaded(
               mySubscriptionsDetails));
         },
-        failure: (exception) => emit(ChannelDetailsState.subscriptionError(exception)));
+        failure: (exception) =>
+            emit(ChannelDetailsState.subscriptionError(exception)));
   }
 
   Future<void> clearMySubscriptionsChannels() async {
     await _clearMySubscriptionsChannelsUseCase.call(params: null);
+  }
+
+  Future<void> clearMyChannelInfo() async {
+    await _clearMyInfoUseCase.call(params: null);
   }
 }

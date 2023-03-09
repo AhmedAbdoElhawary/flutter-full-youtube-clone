@@ -44,6 +44,7 @@ dependencies:
   google_sign_in: ^5.4.4
   cached_network_image: ^3.2.3
   shimmer: ^2.0.0
+  blur: ^3.1.0
 
   #  youtube_player_flutter:
 #    path: D:\flutter_projects\main\youtube_player_flutter-master\youtube_player_flutter-master\packages\youtube_player_flutter

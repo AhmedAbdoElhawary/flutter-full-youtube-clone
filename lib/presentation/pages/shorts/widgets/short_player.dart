@@ -41,7 +41,8 @@ class _ShortPlayerState extends State<_ShortPlayer> {
               onTap: onTapVideo,
               child: CustomPodVideoPlayer(
                   controller: logic.videoController!,
-                  frameAspectRatio: 9 / 17.7),
+                  matchVideoAspectRatioToFrame: true,
+                  frameAspectRatio: 9 / 16),
             ),
             Center(child: logic.videoStatusAnimation),
           ],

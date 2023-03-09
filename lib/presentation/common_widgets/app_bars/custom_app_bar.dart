@@ -8,7 +8,8 @@ import 'package:youtube/presentation/common_widgets/search_icon.dart';
 import 'package:youtube/presentation/common_widgets/svg_icon.dart';
 
 class CustomAppBar {
-  static AppBar normalAppBar(BuildContext context, String title) {
+  static AppBar normalAppBar(BuildContext context, String title,
+      {bool withoutIcons = false}) {
     return AppBar(
       leading: const ArrowBack(),
       backgroundColor: ColorManager(context).white,
@@ -18,13 +19,15 @@ class CustomAppBar {
         overflow: TextOverflow.ellipsis,
         maxLines: 1,
       ),
-      actions: const [
-        RSizedBox(width: 20),
-        SearchIcon(),
-        RSizedBox(width: 20),
-        SvgIcon(IconsAssets.menuPointsVerticalIcon, size: 15),
-        RSizedBox(width: 20),
-      ],
+      actions: withoutIcons
+          ? null
+          : const [
+              RSizedBox(width: 20),
+              SearchIcon(),
+              RSizedBox(width: 20),
+              SvgIcon(IconsAssets.menuPointsVerticalIcon, size: 15),
+              RSizedBox(width: 20),
+            ],
     );
   }
 }
