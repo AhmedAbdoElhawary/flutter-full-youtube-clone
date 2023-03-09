@@ -11,7 +11,7 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:
-          CustomAppBar.normalAppBar(context, "Settings", withoutIcons: true),
+          CustomAppBar(context).normalAppBar( "Settings", withoutIcons: true),
       body: ListView.separated(
           itemBuilder: (context, index) => InkWell(
             onTap: () {
