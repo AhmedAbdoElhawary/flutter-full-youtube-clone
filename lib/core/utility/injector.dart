@@ -41,6 +41,8 @@ import 'package:youtube/domain/use_cases/channel/channel_videos/clear/clear_all_
 import 'package:youtube/domain/use_cases/channel/channel_videos/clear/clear_all_popular_channel_short_videos_use_case.dart';
 import 'package:youtube/domain/use_cases/channel/channel_videos/clear/clear_all_popular_channel_videos_use_case.dart';
 import 'package:youtube/domain/use_cases/channel/channel_videos/clear/clear_videos_of_those_channels_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/my_info/clear_my_info_use_case.dart';
+import 'package:youtube/domain/use_cases/channel/my_info/get_my_channel_info_use_case.dart';
 import 'package:youtube/domain/use_cases/channel/playlist/channel_playlist_items_use_case.dart';
 import 'package:youtube/domain/use_cases/channel/playlist/channel_playlists_use_case.dart';
 import 'package:youtube/domain/use_cases/channel/playlist/clear/clear_channel_playlists_use_case.dart';
@@ -277,6 +279,14 @@ Future<void> initializeDependencies() async {
     () => MyPlaylistsUseCase(injector()),
   );
 
+  injector.registerLazySingleton<GetMyInfoUseCase>(
+    () => GetMyInfoUseCase(injector()),
+  );
+
+  injector.registerLazySingleton<ClearMyInfoUseCase>(
+    () => ClearMyInfoUseCase(injector()),
+  );
+
   // *--------->
   /// ================================ Blocs ========================================>
 
@@ -298,7 +308,14 @@ Future<void> initializeDependencies() async {
 
   injector.registerFactory<ChannelDetailsCubit>(
     () => ChannelDetailsCubit(
-        injector(), injector(), injector(), injector(), injector()),
+      injector(),
+      injector(),
+      injector(),
+      injector(),
+      injector(),
+      injector(),
+      injector(),
+    ),
   );
   injector.registerFactory<SingleVideoCubit>(
     () => SingleVideoCubit(
