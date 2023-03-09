@@ -66,8 +66,12 @@ class _MiniPlayerVideoState extends State<MiniPlayerVideo> {
         maxHeight: _miniVideoViewLogic.maxHeight,
         onDismissed: () {
           _miniVideoViewLogic.selectedVideoDetails = null;
-          _miniVideoViewLogic.videoController?.dispose();
           _miniVideoViewLogic.isMiniVideoInitialized.value = false;
+          try {
+            _miniVideoViewLogic.videoController?.dispose();
+          } catch (e) {
+            rethrow;
+          }
         },
         builder: (height, percentage) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -261,28 +265,31 @@ class _InteractButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     return RSizedBox(
       height: 60.h,
-      child: Row(
-        children: [
-          const _LikeButton(),
-          Padding(
-            padding: REdgeInsetsDirectional.only(start: 35, top: 15),
-            child: const _DislikeButton(),
-          ),
-          Padding(
-            padding: REdgeInsetsDirectional.only(start: 35, top: 15),
-            child: const _IconText(),
-          ),
-          Padding(
-            padding: REdgeInsetsDirectional.only(start: 35, top: 15),
-            child: const _IconText(
-                text: "Download", iconAsset: IconsAssets.downloadIcon),
-          ),
-          Padding(
-            padding: REdgeInsetsDirectional.only(start: 35, top: 15),
-            child: const _IconText(
-                text: "Save", iconAsset: IconsAssets.libraryIcon),
-          ),
-        ],
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: [
+            const _LikeButton(),
+            Padding(
+              padding: REdgeInsetsDirectional.only(start: 35, top: 15),
+              child: const _DislikeButton(),
+            ),
+            Padding(
+              padding: REdgeInsetsDirectional.only(start: 35, top: 15),
+              child: const _IconText(size: 23),
+            ),
+            Padding(
+              padding: REdgeInsetsDirectional.only(start: 35, top: 15),
+              child: const _IconText(
+                  text: "Download", iconAsset: IconsAssets.downloadIcon,size: 20),
+            ),
+            Padding(
+              padding: REdgeInsetsDirectional.only(start: 35,end: 35, top: 15),
+              child: const _IconText(
+                  text: "Save", iconAsset: IconsAssets.libraryIcon),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -290,16 +297,17 @@ class _InteractButtons extends StatelessWidget {
 
 class _IconText extends StatelessWidget {
   const _IconText(
-      {this.iconAsset = IconsAssets.shareIcon, this.text = "Share", Key? key})
+      {this.size=25,this.iconAsset = IconsAssets.shareIcon, this.text = "Share", Key? key})
       : super(key: key);
   final String text;
   final String iconAsset;
+  final double size;
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        SvgIcon(iconAsset),
+        SvgIcon(iconAsset,size: size),
         const RSizedBox(height: 5),
         Text(
           text,
