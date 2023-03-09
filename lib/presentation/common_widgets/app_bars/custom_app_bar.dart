@@ -8,10 +8,13 @@ import 'package:youtube/presentation/common_widgets/search_icon.dart';
 import 'package:youtube/presentation/common_widgets/svg_icon.dart';
 
 class CustomAppBar {
-  static AppBar normalAppBar(BuildContext context, String title,
-      {bool withoutIcons = false}) {
+  final BuildContext context;
+  CustomAppBar(this.context);
+
+   AppBar normalAppBar(String title,
+      {bool withoutIcons = false, VoidCallback? onTabBack}) {
     return AppBar(
-      leading: const ArrowBack(),
+      leading: ArrowBack(onTapBack: onTabBack),
       backgroundColor: ColorManager(context).white,
       title: Text(
         title,
