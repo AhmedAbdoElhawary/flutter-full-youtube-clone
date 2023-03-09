@@ -4,9 +4,15 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:youtube/core/resources/assets_manager.dart';
+import 'package:youtube/core/resources/color_manager.dart';
+import 'package:youtube/core/resources/styles_manager.dart';
+import 'package:youtube/presentation/common_widgets/svg_icon.dart';
 import 'package:youtube/presentation/custom_packages/pod_player/src/controllers/pod_getx_video_controller.dart';
 import 'package:youtube/presentation/custom_packages/pod_player/src/widgets/material_icon_button.dart';
 import 'package:youtube/presentation/custom_packages/pod_player/src/widgets/pod_progress_bar.dart';
+import 'package:youtube/presentation/custom_packages/sliding_sheet/src/sheet.dart';
+import 'package:youtube/presentation/custom_packages/sliding_sheet/src/specs.dart';
 
 class MobileBottomSheet extends StatelessWidget {
   final String tag;
@@ -24,28 +30,37 @@ class MobileBottomSheet extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           if (podCtr.vimeoOrVideoUrls.isNotEmpty)
-            _bottomSheetTiles(
+            _BottomSheetTitles(
               title: podCtr.podPlayerLabels.quality,
-              icon: Icons.video_settings_rounded,
+              icon: const SvgIcon(IconsAssets.settingsIcon,size: 22),
               subText: '${podCtr.vimeoPlayingVideoQuality}p',
               onTap: () {
                 Navigator.of(context).pop();
                 Timer(const Duration(milliseconds: 100), () {
-                  showModalBottomSheet(
-                    context: context,
-                    builder: (context) => SafeArea(
-                      child: _VideoQualitySelectorMob(
-                        tag: tag,
-                        onTap: null,
-                      ),
+                  showSlidingBottomSheet<void>(
+                    context,
+                    builder: (BuildContext context) => SlidingSheetDialog(
+                      shadowColor: ColorManager(context).black54,
+                      cornerRadius: 0,
+                      color: Theme.of(context).splashColor,
+                      padding: REdgeInsets.only(bottom: 20),
+                      snapSpec:
+                      const SnapSpec(initialSnap: 1, snappings: [.7, 1]),
+                      scrollSpec: const ScrollSpec(
+                          physics: NeverScrollableScrollPhysics()),
+
+                      builder: (context, state) => Material(
+                          child: SafeArea(
+                        child: _VideoQualitySelectorMob(tag: tag, onTap: null),
+                      )),
                     ),
                   );
                 });
               },
             ),
-          _bottomSheetTiles(
+          _BottomSheetTitles(
             title: podCtr.podPlayerLabels.loopVideo,
-            icon: Icons.loop_rounded,
+            icon: Icon(Icons.loop, color: ColorManager(context).black),
             subText: podCtr.isLooping
                 ? podCtr.podPlayerLabels.optionEnabled
                 : podCtr.podPlayerLabels.optionDisabled,
@@ -54,21 +69,28 @@ class MobileBottomSheet extends StatelessWidget {
               podCtr.toggleLooping();
             },
           ),
-          _bottomSheetTiles(
+          _BottomSheetTitles(
             title: podCtr.podPlayerLabels.playbackSpeed,
-            icon: Icons.slow_motion_video_rounded,
+            icon: Icon(Icons.slow_motion_video_rounded,
+                color: ColorManager(context).black),
             subText: podCtr.currentPaybackSpeed,
             onTap: () {
               Navigator.of(context).pop();
               Timer(const Duration(milliseconds: 100), () {
-                showModalBottomSheet(
-                  context: context,
-                  isScrollControlled: true,
-                  builder: (context) => SafeArea(
-                    child: _VideoPlaybackSelectorMob(
-                      tag: tag,
-                      onTap: null,
-                    ),
+                showSlidingBottomSheet<void>(
+                  context,
+                  builder: (BuildContext context) => SlidingSheetDialog(
+                    shadowColor: ColorManager(context).black54,
+                    color: Theme.of(context).splashColor,
+                    padding: REdgeInsets.only(bottom: 20),
+                    snapSpec:
+                        const SnapSpec(initialSnap: 1, snappings: [.7, 1]),
+                    scrollSpec: const ScrollSpec(
+                        physics: NeverScrollableScrollPhysics()),
+                    builder: (context, state) => Material(
+                        child: SafeArea(
+                      child: _VideoPlaybackSelectorMob(tag: tag, onTap: null),
+                    )),
                   ),
                 );
               });
@@ -78,40 +100,47 @@ class MobileBottomSheet extends StatelessWidget {
       ),
     );
   }
+}
 
-  ListTile _bottomSheetTiles({
-    required String title,
-    required IconData icon,
-    String? subText,
-    void Function()? onTap,
-  }) {
+class _BottomSheetTitles extends StatelessWidget {
+  const _BottomSheetTitles({
+    required this.title,
+    required this.icon,
+    required this.subText,
+    required this.onTap,
+  });
+  final String title;
+  final Widget icon;
+  final String? subText;
+  final VoidCallback? onTap;
+  @override
+  Widget build(BuildContext context) {
     return ListTile(
-      leading: Icon(icon),
+      leading: icon,
       onTap: onTap,
       title: FittedBox(
         fit: BoxFit.scaleDown,
         alignment: Alignment.centerLeft,
         child: Row(
           children: [
-            Text(title),
-            if (subText != null) const SizedBox(width: 6),
-            if (subText != null)
+            Text(title,
+                style: getNormalStyle(color: ColorManager(context).black)),
+            if (subText != null) ...[
+              const SizedBox(width: 6),
               const SizedBox(
                 height: 4,
                 width: 4,
                 child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: Colors.grey,
-                    shape: BoxShape.circle,
-                  ),
+                  decoration:
+                      BoxDecoration(color: Colors.grey, shape: BoxShape.circle),
                 ),
               ),
-            if (subText != null) const SizedBox(width: 6),
-            if (subText != null)
+              const SizedBox(width: 6),
               Text(
-                subText,
-                style: const TextStyle(color: Colors.grey),
+                subText!,
+                style: getNormalStyle(color: ColorManager(context).grey7),
               ),
+            ],
           ],
         ),
       ),
@@ -135,18 +164,35 @@ class _VideoQualitySelectorMob extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        children: podCtr.vimeoOrVideoUrls
-            .map(
-              (e) => ListTile(
-                title: Text('${e.quality}p'),
-                onTap: () {
-                  onTap != null ? onTap!() : Navigator.of(context).pop();
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: REdgeInsets.symmetric(horizontal: 20),
+            child: Text(
+              "Quality for current video  .  ${'${podCtr.vimeoPlayingVideoQuality}p'}",
+              style: getNormalStyle(color: ColorManager(context).black),
+            ),
+          ),
+          const RSizedBox(height: 10),
+          ...podCtr.vimeoOrVideoUrls
+              .map(
+                (e) => ListTile(
+                  title: Container(
+                    padding: REdgeInsetsDirectional.only(start: 30),
+                    child: Text(
+                      '${e.quality}p',
+                      style: getNormalStyle(color: ColorManager(context).black),
+                    ),
+                  ),
+                  onTap: () {
+                    onTap != null ? onTap!() : Navigator.of(context).pop();
 
-                  podCtr.changeVideoQuality(e.quality);
-                },
-              ),
-            )
-            .toList(),
+                    podCtr.changeVideoQuality(e.quality);
+                  },
+                ),
+              )
+              .toList()
+        ],
       ),
     );
   }
@@ -165,21 +211,21 @@ class _VideoPlaybackSelectorMob extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final podCtr = Get.find<PodGetXVideoController>(tag: tag);
-    return SingleChildScrollView(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: podCtr.videoPlaybackSpeeds
-            .map(
-              (e) => ListTile(
-                title: Text(e),
-                onTap: () {
-                  onTap != null ? onTap!() : Navigator.of(context).pop();
-                  podCtr.setVideoPlayBack(e);
-                },
+    return Column(
+      children: podCtr.videoPlaybackSpeeds
+          .map(
+            (e) => ListTile(
+              title: Text(
+                e,
+                style: getNormalStyle(color: ColorManager(context).black),
               ),
-            )
-            .toList(),
-      ),
+              onTap: () {
+                onTap != null ? onTap!() : Navigator.of(context).pop();
+                podCtr.setVideoPlayBack(e);
+              },
+            ),
+          )
+          .toList(),
     );
   }
 }

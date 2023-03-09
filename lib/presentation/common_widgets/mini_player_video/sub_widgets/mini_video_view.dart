@@ -25,22 +25,7 @@ class _MiniVideoView extends StatelessWidget {
             children: [
               _VideoOfMiniDisplay(height, percentage),
               const VideoTitleSubTitleTexts(),
-              Expanded(
-                flex: 1,
-                child: GestureDetector(
-                  child: isPlaying
-                      ? const Icon(Icons.pause)
-                      : const Icon(Icons.play_arrow),
-                  onTap: () {
-                    final miniVideoViewLogic =
-                        Get.find<MiniVideoViewLogic>(tag: "1");
-
-                    miniVideoViewLogic.isMiniVideoPlaying
-                        ? miniVideoViewLogic.videoController?.pause()
-                        : miniVideoViewLogic.videoController?.play();
-                  },
-                ),
-              ),
+              _PlayPauseButtons(isPlaying: isPlaying),
               Expanded(
                 flex: 1,
                 child: GestureDetector(
@@ -49,9 +34,13 @@ class _MiniVideoView extends StatelessWidget {
                     final miniVideoViewLogic =
                         Get.find<MiniVideoViewLogic>(tag: "1");
 
-                    miniVideoViewLogic.videoController?.dispose();
                     miniVideoViewLogic.selectedVideoDetails = null;
                     miniVideoViewLogic.isMiniVideoInitialized.value = false;
+                    try {
+                      miniVideoViewLogic.videoController?.dispose();
+                    } catch (e) {
+                      rethrow;
+                    }
                   },
                 ),
               ),
@@ -71,6 +60,42 @@ class _MiniVideoView extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class _PlayPauseButtons extends StatefulWidget {
+  const _PlayPauseButtons({required this.isPlaying});
+
+  final bool isPlaying;
+
+  @override
+  State<_PlayPauseButtons> createState() => _PlayPauseButtonsState();
+}
+
+class _PlayPauseButtonsState extends State<_PlayPauseButtons> {
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder<MiniVideoViewLogic>(
+      tag: "1",
+      id: "update mini player",
+      builder: (controller) {
+        return Expanded(
+          flex: 1,
+          child: GestureDetector(
+            child: controller.isMiniVideoPlaying
+                ? const Icon(Icons.pause)
+                : const Icon(Icons.play_arrow),
+            onTap: () {
+              if (controller.isMiniVideoPlaying) {
+                controller.videoController?.pause();
+              } else {
+                controller.videoController?.play();
+              }
+            },
+          ),
+        );
+      },
     );
   }
 }
@@ -97,18 +122,25 @@ class _VideoOfMiniDisplayState extends State<_VideoOfMiniDisplay> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     return Obx(
-      () => Container(
-        height: logic.videoOfMiniDisplayHeight(
-            percentage: widget.percentage, screenHeight: widget.height),
-        width: logic.videoOfMiniDisplayWidth(screenWidth),
-        color: ColorManager(context).grey1,
-        child: videoId.isEmpty
-            ? null
-            : CustomPodVideoPlayer(
-                controller: logic.videoController!,
-                displayOverlay: widget.percentage == 1,
-              ),
-      ),
+      () {
+        double width = logic.videoOfMiniDisplayWidth(screenWidth);
+        double height = logic.videoOfMiniDisplayHeight(
+            percentage: widget.percentage, screenHeight: widget.height);
+        return Container(
+          height: height,
+          width: width,
+          color: ColorManager(context).grey1,
+          child: videoId.isEmpty
+              ? null
+              : CustomPodVideoPlayer(
+                  controller: logic.videoController!,
+                  displayOverlay: widget.percentage == 1,
+                  frameAspectRatio: width / height,
+                  videoAspectRatio: width / height,
+                  matchVideoAspectRatioToFrame: true,
+                ),
+        );
+      },
     );
   }
 }
