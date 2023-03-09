@@ -265,11 +265,48 @@ class _InteractButtons extends StatelessWidget {
         children: [
           const _LikeButton(),
           Padding(
-            padding: REdgeInsetsDirectional.only(start: 35, end: 3, top: 15),
+            padding: REdgeInsetsDirectional.only(start: 35, top: 15),
             child: const _DislikeButton(),
+          ),
+          Padding(
+            padding: REdgeInsetsDirectional.only(start: 35, top: 15),
+            child: const _IconText(),
+          ),
+          Padding(
+            padding: REdgeInsetsDirectional.only(start: 35, top: 15),
+            child: const _IconText(
+                text: "Download", iconAsset: IconsAssets.downloadIcon),
+          ),
+          Padding(
+            padding: REdgeInsetsDirectional.only(start: 35, top: 15),
+            child: const _IconText(
+                text: "Save", iconAsset: IconsAssets.libraryIcon),
           ),
         ],
       ),
+    );
+  }
+}
+
+class _IconText extends StatelessWidget {
+  const _IconText(
+      {this.iconAsset = IconsAssets.shareIcon, this.text = "Share", Key? key})
+      : super(key: key);
+  final String text;
+  final String iconAsset;
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        SvgIcon(iconAsset),
+        const RSizedBox(height: 5),
+        Text(
+          text,
+          style:
+              getNormalStyle(color: ColorManager(context).black, fontSize: 13),
+        )
+      ],
     );
   }
 }
