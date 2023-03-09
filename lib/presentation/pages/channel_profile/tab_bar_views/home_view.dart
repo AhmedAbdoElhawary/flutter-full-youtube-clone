@@ -44,16 +44,18 @@ class _BuildVideosList extends StatelessWidget {
     return BlocBuilder<ChannelVideosCubit, ChannelVideosState>(
       bloc: ChannelVideosCubit.get(context)
         ..getChannelVideos(channelDetails?.id ?? ""),
+      buildWhen: (previous, current) =>
+          previous != current && current is ChannelVideosLoaded,
       builder: (context, state) {
         if (state is ChannelVideosLoaded) {
-          return SliverToBoxAdapter(
-            child: ListView.builder(
-                itemBuilder: (context, index) => Padding(
+          return SliverList(
+            delegate: SliverChildBuilderDelegate(
+                childCount: state.videoDetails.videoDetailsItem?.length ?? 0,
+                (context, index) => Padding(
                       padding: REdgeInsetsDirectional.only(start: 15, top: 15),
                       child: VideoHorizontalDescriptionsList(
                           state.videoDetails.videoDetailsItem![index]),
-                    ),
-                itemCount: state.videoDetails.videoDetailsItem?.length ?? 0),
+                    )),
           );
         } else if (state is Error) {
           return SliverFillRemaining(

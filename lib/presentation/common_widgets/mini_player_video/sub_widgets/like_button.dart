@@ -81,7 +81,7 @@ class _LikeIconButtonState extends State<_LikeIconButton> {
         child: Obx(() => Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                miniVideoViewLogic.selectedVideoRating == "like"
+                miniVideoViewLogic.selectedVideoRating != "like"
                     ?const SvgIcon(IconsAssets.likeIcon)
                     :const SvgIcon(IconsAssets.likeColoredIcon),
                 const RSizedBox(height: 5),
