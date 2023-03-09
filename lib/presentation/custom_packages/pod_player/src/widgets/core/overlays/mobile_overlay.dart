@@ -1,14 +1,19 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:youtube/core/resources/assets_manager.dart';
+import 'package:youtube/core/resources/color_manager.dart';
+import 'package:youtube/presentation/common_widgets/svg_icon.dart';
 import 'package:youtube/presentation/custom_packages/pod_player/src/controllers/pod_getx_video_controller.dart';
 import 'package:youtube/presentation/custom_packages/pod_player/src/widgets/animated_play_pause_icon.dart';
 import 'package:youtube/presentation/custom_packages/pod_player/src/widgets/core/overlays/mobile_bottomsheet.dart';
 import 'package:youtube/presentation/custom_packages/pod_player/src/widgets/core/video_gesture_detector.dart';
 import 'package:youtube/presentation/custom_packages/pod_player/src/widgets/material_icon_button.dart';
+import 'package:youtube/presentation/custom_packages/sliding_sheet/src/sheet.dart';
+import 'package:youtube/presentation/custom_packages/sliding_sheet/src/specs.dart';
 
 class MobileOverlay extends StatelessWidget {
   final String tag;
@@ -90,7 +95,7 @@ class MobileOverlay extends StatelessWidget {
                     podCtr.toggleVideoOverlay();
                   }
                 },
-                child: const Icon(Icons.settings),
+                child: SvgIcon(IconsAssets.settingsIcon,color: ColorManager(context).white,size: 22),
               ),
             ],
           ),
@@ -122,9 +127,18 @@ class MobileOverlay extends StatelessWidget {
   }
 
   void _bottomSheet(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      builder: (context) => MobileBottomSheet(tag: tag),
+    showSlidingBottomSheet<void>(
+      context,
+      builder: (BuildContext context) => SlidingSheetDialog(
+        cornerRadius: 12.r,
+        shadowColor: ColorManager(context).black54,
+        color: Theme.of(context).splashColor,
+        margin: REdgeInsets.all(10),
+        padding: REdgeInsets.only(bottom: 20),
+        scrollSpec: const ScrollSpec(physics: NeverScrollableScrollPhysics()),
+        builder: (context, state) => Material(child: MobileBottomSheet(tag: tag)),
+
+      ),
     );
   }
 }
