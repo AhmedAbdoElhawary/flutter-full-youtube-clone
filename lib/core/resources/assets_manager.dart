@@ -13,6 +13,7 @@ class IconsAssets {
   static const String rightArrowIcon = "$_iconNewPath/right-arrow.svg";
   static const String downArrowIcon = "$_iconNewPath/caret-down.svg";
   static const String lockIcon = "$_iconNewPath/lock.svg";
+  static const String downloadIcon = "$_iconNewPath/download.svg";
 
   static const String homeIcon = "$_iconNewPath/home_illustrator-01.svg";
   static const String homeColoredIcon = "$_iconNewPath/colored-home-illustrator.svg";
