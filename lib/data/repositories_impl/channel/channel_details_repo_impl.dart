@@ -93,4 +93,28 @@ class ChannelDetailsRepoImpl implements ChannelDetailsRepository {
   Future<void> clearMySubscriptionsChannels() async {
     await _cacheChannelAPIs.clearMySubscriptionsChannels();
   }
+
+  @override
+  Future<ApiResult<ChannelSubDetails>> getMyChannelInfo() async {
+    try {
+      /// get from caching if it exist.
+      ChannelSubDetails? channels = await _cacheChannelAPIs.getMyChannelInfo();
+      if (channels != null) return ApiResult.success(channels);
+
+      ChannelSubDetails myInfo =
+          await _channelAPIs.getMyChannelInfo(accessToken: accessToken);
+
+      /// caching videos
+      await _cacheChannelAPIs.saveMyChannelInfo(myInfo);
+
+      return ApiResult.success(myInfo);
+    } catch (e) {
+      return ApiResult.failure(NetworkExceptions.getDioException(e));
+    }
+  }
+
+  @override
+  Future<void> clearMyChannelInfo() async {
+    await _cacheChannelAPIs.clearMyChannelInfo();
+  }
 }
