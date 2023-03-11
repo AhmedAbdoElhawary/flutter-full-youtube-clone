@@ -17,10 +17,12 @@ import 'package:youtube/presentation/custom_packages/sliding_sheet/src/specs.dar
 
 class MobileOverlay extends StatelessWidget {
   final String tag;
+  final bool isThatThumbnailVideo;
 
   const MobileOverlay({
     Key? key,
     required this.tag,
+    required this.isThatThumbnailVideo,
   }) : super(key: key);
 
   @override
@@ -102,7 +104,7 @@ class MobileOverlay extends StatelessWidget {
         ),
         Align(
           alignment: Alignment.bottomLeft,
-          child: MobileOverlayBottomControlles(tag: tag),
+          child: MobileOverlayBottomControlles(tag: tag,isThatThumbnailVideo: isThatThumbnailVideo),
         ),
       ],
     );
@@ -136,7 +138,7 @@ class MobileOverlay extends StatelessWidget {
         margin: REdgeInsets.all(10),
         padding: REdgeInsets.only(bottom: 20),
         scrollSpec: const ScrollSpec(physics: NeverScrollableScrollPhysics()),
-        builder: (context, state) => Material(child: MobileBottomSheet(tag: tag)),
+        builder: (context, state) => Material(child: MobileBottomSheet(tag: tag,isThatThumbnailVideo: isThatThumbnailVideo,)),
 
       ),
     );

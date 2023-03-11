@@ -12,9 +12,15 @@ import 'package:youtube/presentation/common_widgets/videos_list_loading.dart';
 import 'package:youtube/presentation/cubit/videos/videos_details_cubit.dart';
 import 'package:youtube/presentation/pages/most_popular/most_popular_videos_page.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int index = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,8 +29,10 @@ class HomePage extends StatelessWidget {
           onNotification: (scrollNotification) {
             if (scrollNotification is ScrollUpdateNotification) {
               double pixels = scrollNotification.metrics.pixels;
-              double itemHeight = 200.h;
-              (pixels / itemHeight).floor();
+              double itemHeight = 185.h;
+              int inView = (pixels / itemHeight).floor();
+              if (inView != index) setState(() => index = inView);
+
             }
             return true;
           },
@@ -36,7 +44,7 @@ class HomePage extends StatelessWidget {
                   child: const _SuggestionsList(),
                 ),
               ),
-              const _VideosList(),
+              _VideosList(index),
             ],
           ),
         ),
@@ -46,7 +54,8 @@ class HomePage extends StatelessWidget {
 }
 
 class _VideosList extends StatefulWidget {
-  const _VideosList();
+  final int index;
+  const _VideosList(this.index);
 
   @override
   State<_VideosList> createState() => _VideosListState();
@@ -67,13 +76,16 @@ class _VideosListState extends State<_VideosList>
             return SliverList(
               delegate: SliverChildBuilderDelegate(
                 childCount: allVideosLoaded.videoDetailsItem?.length,
-                (context, index) =>
-                    ThumbnailOfVideo(allVideosLoaded.videoDetailsItem?[index]),
+                (context, index) {
+                  return ThumbnailOfVideo(
+                    allVideosLoaded.videoDetailsItem?[index],
+                    playVideo: index == widget.index,
+                  );
+                },
               ),
             );
           },
-          loading: () =>
-              const SliverFillRemaining(child: VideosListLoading()),
+          loading: () => const SliverFillRemaining(child: VideosListLoading()),
           error: (e) {
             return SliverFillRemaining(
               child: Center(

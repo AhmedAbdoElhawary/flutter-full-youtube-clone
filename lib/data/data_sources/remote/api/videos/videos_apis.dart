@@ -11,27 +11,27 @@ abstract class VideosAPIs {
   factory VideosAPIs(Dio dio, {String baseUrl}) = _VideosAPIs;
 
   @GET(
-      "search?part=snippet&maxResults=2&regionCode=EG&videoDuration=medium&videoDuration=long&type=video")
+      "search?part=snippet&maxResults=5&regionCode=EG&videoDuration=medium&videoDuration=long&type=video")
   Future<SearchedVideosDetails> getAllVideosIds({
     @Query("key") final String apiKey = apiKey,
   });
 
   @GET(
-      "search?part=snippet&maxResults=2&regionCode=EG&videoDuration=1&type=video")
+      "search?part=snippet&maxResults=5&regionCode=EG&videoDuration=1&type=video")
   Future<SearchedVideosDetails> getAllShortVideosIds({
     @Query("key") final String apiKey = apiKey,
   });
 
   /// [videosIds] add ids like this: id1,id2,id3,id4
   @GET(
-      "videos?part=contentDetails,statistics,snippet&maxResults=2&regionCode=EG")
+      "videos?part=contentDetails,statistics,snippet&maxResults=5&regionCode=EG")
   Future<VideosDetails> getVideosOfThoseIds({
     @Query("key") final String apiKey = apiKey,
     @Query("id") required String videosIds,
   });
 
   @GET(
-      "videos?part=contentDetails,statistics,snippet&chart=mostPopular&maxResults=2&regionCode=EG")
+      "videos?part=contentDetails,statistics,snippet&chart=mostPopular&maxResults=5&regionCode=EG")
   Future<VideosDetails> getMostPopularVideos({
     @Query("key") final String apiKey = apiKey,
     @Query("videoCategoryId") required String videoCategoryId,

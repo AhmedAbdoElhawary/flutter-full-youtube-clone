@@ -12,9 +12,12 @@ import 'package:universal_html/html.dart' as html;
 
 class WebOverlay extends StatelessWidget {
   final String tag;
+   final bool isThatThumbnailVideo;
+
   const WebOverlay({
     Key? key,
     required this.tag,
+    required this.isThatThumbnailVideo,
   }) : super(key: key);
 
   @override
@@ -38,6 +41,7 @@ class WebOverlay extends StatelessWidget {
           alignment: Alignment.bottomLeft,
           child: _WebOverlayBottomControlles(
             tag: tag,
+            isThatThumbnailVideo: isThatThumbnailVideo,
           ),
         ),
         Positioned.fill(
@@ -70,10 +74,12 @@ class WebOverlay extends StatelessWidget {
 
 class _WebOverlayBottomControlles extends StatelessWidget {
   final String tag;
+  final bool isThatThumbnailVideo;
 
   const _WebOverlayBottomControlles({
     Key? key,
     required this.tag,
+    required this.isThatThumbnailVideo,
   }) : super(key: key);
 
   @override
@@ -93,6 +99,7 @@ class _WebOverlayBottomControlles extends StatelessWidget {
             PodProgressBar(
               tag: tag,
               podProgressBarConfig: podCtr.podProgressBarConfig,
+              isThatThumbnailVideo: isThatThumbnailVideo,
             ),
             Row(
               children: [

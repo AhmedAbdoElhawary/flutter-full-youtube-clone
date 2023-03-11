@@ -16,10 +16,12 @@ import 'package:youtube/presentation/custom_packages/sliding_sheet/src/specs.dar
 
 class MobileBottomSheet extends StatelessWidget {
   final String tag;
+  final bool isThatThumbnailVideo;
 
   const MobileBottomSheet({
     Key? key,
     required this.tag,
+    required this.isThatThumbnailVideo,
   }) : super(key: key);
 
   @override
@@ -232,10 +234,12 @@ class _VideoPlaybackSelectorMob extends StatelessWidget {
 
 class MobileOverlayBottomControlles extends StatelessWidget {
   final String tag;
+  final bool isThatThumbnailVideo;
 
   const MobileOverlayBottomControlles({
     Key? key,
     required this.tag,
+    required this.isThatThumbnailVideo,
   }) : super(key: key);
 
   @override
@@ -319,6 +323,7 @@ class MobileOverlayBottomControlles extends StatelessWidget {
                       tag: tag,
                       alignment: Alignment.topCenter,
                       podProgressBarConfig: podCtr.podProgressBarConfig,
+                      isThatThumbnailVideo: isThatThumbnailVideo,
                     ),
                   ),
                 );
@@ -327,6 +332,7 @@ class MobileOverlayBottomControlles extends StatelessWidget {
                 tag: tag,
                 alignment: Alignment.bottomCenter,
                 podProgressBarConfig: podCtr.podProgressBarConfig,
+                isThatThumbnailVideo: isThatThumbnailVideo,
               );
             },
           ),

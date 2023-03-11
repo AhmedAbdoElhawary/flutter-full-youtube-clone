@@ -16,10 +16,11 @@ class PodProgressBar extends StatefulWidget {
     this.onDragUpdate,
     this.alignment = Alignment.center,
     required this.tag,
+    required this.isThatThumbnailVideo,
   })  : podProgressBarConfig =
             podProgressBarConfig ?? const PodProgressBarConfig(),
         super(key: key);
-
+  final bool isThatThumbnailVideo;
   final PodProgressBarConfig podProgressBarConfig;
   final Function()? onDragStart;
   final Function()? onDragEnd;
@@ -122,12 +123,14 @@ class _PodProgressBarState extends State<PodProgressBar> {
               id: 'overlay',
               builder: (podCtr) => CustomPaint(
                 painter: _ProgressBarPainter(
-                  isOverlayVisible: podCtr.isOverlayVisible,
+                  isOverlayVisible:
+                      widget.isThatThumbnailVideo || podCtr.isOverlayVisible,
                   videoPlayerValue!,
                   podProgressBarConfig: widget.podProgressBarConfig.copyWith(
                     circleHandlerRadius: podCtr.isOverlayVisible ||
-                            widget
-                                .podProgressBarConfig.alwaysVisibleCircleHandler
+                            widget.podProgressBarConfig
+                                .alwaysVisibleCircleHandler ||
+                            widget.isThatThumbnailVideo
                         ? widget.podProgressBarConfig.circleHandlerRadius
                         : 0,
                   ),

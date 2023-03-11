@@ -178,10 +178,12 @@ class PodPlayerController {
   Future<void> changeVideo({
     required PlayVideoFrom playVideoFrom,
     PodPlayerConfig playerConfig = const PodPlayerConfig(),
+    required bool playVideoDirectly,
   }) =>
       _ctr.changeVideo(
         playVideoFrom: playVideoFrom,
         playerConfig: playerConfig,
+          playVideo:playVideoDirectly,
       );
 
   //Change double tap duration

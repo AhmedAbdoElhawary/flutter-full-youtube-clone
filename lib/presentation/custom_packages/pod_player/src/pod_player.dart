@@ -26,6 +26,7 @@ class CustomPodVideoPlayer extends StatefulWidget {
   final Color? backgroundColor;
   final DecorationImage? videoThumbnail;
   final bool displayOverlay;
+  final bool isThatThumbnailVideo;
 
   /// Optional callback, fired when full screen mode toggles.
   ///
@@ -41,6 +42,7 @@ class CustomPodVideoPlayer extends StatefulWidget {
     Key? key,
     required this.controller,
     this.displayOverlay = false,
+    this.isThatThumbnailVideo = false,
     this.frameAspectRatio = 16 / 9,
     this.videoAspectRatio = 16 / 9,
     this.alwaysShowProgressBar = true,
@@ -150,23 +152,8 @@ class _CustomPodVideoPlayerState extends State<CustomPodVideoPlayer>
 
     final videoErrorWidget = AspectRatio(
       aspectRatio: _frameAspectRatio,
-      child: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Icon(
-              Icons.warning,
-              color: Colors.yellow,
-              size: 32,
-            ),
-            const SizedBox(height: 20),
-            Text(
-              widget.podPlayerLabels.error,
-              style: const TextStyle(color: Colors.red),
-            ),
-          ],
-        ),
-      ),
+      child: const Center(
+          child: Icon(Icons.warning, color: Colors.white, size: 32)),
     );
     return GetBuilder<PodGetXVideoController>(
       tag: widget.controller.getTag,
@@ -225,7 +212,7 @@ class _CustomPodVideoPlayerState extends State<CustomPodVideoPlayer>
         child: DecoratedBox(
           decoration: BoxDecoration(image: widget.videoThumbnail),
           child: Center(
-            child: _buildLoading(),
+            child: _buildLoading()
           ),
         ),
       ),
@@ -247,6 +234,7 @@ class _CustomPodVideoPlayerState extends State<CustomPodVideoPlayer>
             videoAspectRatio: videoAspectRatio,
             tag: widget.controller.getTag,
             displayOverlay: widget.displayOverlay,
+            isThatThumbnailVideo: widget.isThatThumbnailVideo,
           );
         },
       );
@@ -256,6 +244,7 @@ class _CustomPodVideoPlayerState extends State<CustomPodVideoPlayer>
         videoAspectRatio: videoAspectRatio,
         tag: widget.controller.getTag,
         displayOverlay: widget.displayOverlay,
+        isThatThumbnailVideo: widget.isThatThumbnailVideo,
       );
     }
   }
