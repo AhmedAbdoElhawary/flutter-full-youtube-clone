@@ -34,7 +34,7 @@ class _VideosAPIs implements VideosAPIs {
     )
             .compose(
               _dio.options,
-              'search?part=snippet&maxResults=2&regionCode=EG&videoDuration=medium&videoDuration=long&type=video',
+              'search?part=snippet&maxResults=5&regionCode=EG&videoDuration=medium&videoDuration=long&type=video',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -57,7 +57,7 @@ class _VideosAPIs implements VideosAPIs {
     )
             .compose(
               _dio.options,
-              'search?part=snippet&maxResults=2&regionCode=EG&videoDuration=1&type=video',
+              'search?part=snippet&maxResults=5&regionCode=EG&videoDuration=1&type=video',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -86,7 +86,7 @@ class _VideosAPIs implements VideosAPIs {
     )
             .compose(
               _dio.options,
-              'videos?part=contentDetails,statistics,snippet&maxResults=2&regionCode=EG',
+              'videos?part=contentDetails,statistics,snippet&maxResults=5&regionCode=EG',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -115,7 +115,7 @@ class _VideosAPIs implements VideosAPIs {
     )
             .compose(
               _dio.options,
-              'videos?part=contentDetails,statistics,snippet&chart=mostPopular&maxResults=2&regionCode=EG',
+              'videos?part=contentDetails,statistics,snippet&chart=mostPopular&maxResults=5&regionCode=EG',
               queryParameters: queryParameters,
               data: _data,
             )
