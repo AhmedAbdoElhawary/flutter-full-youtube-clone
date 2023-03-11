@@ -287,6 +287,7 @@ class PodGetXVideoController extends _PodGesturesController {
   Future<void> changeVideo({
     required PlayVideoFrom playVideoFrom,
     required PodPlayerConfig playerConfig,
+    required bool playVideo,
   }) async {
     _videoCtr?.removeListener(videoListner);
     podVideoStateChanger(PodVideoState.paused);

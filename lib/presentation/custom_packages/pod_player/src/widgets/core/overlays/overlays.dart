@@ -9,10 +9,12 @@ import 'package:youtube/presentation/custom_packages/pod_player/src/widgets/pod_
 
 class VideoOverlays extends StatelessWidget {
   final String tag;
+  final bool isThatThumbnailVideo;
 
   const VideoOverlays({
     Key? key,
     required this.tag,
+    required this.isThatThumbnailVideo,
   }) : super(key: key);
 
   @override
@@ -27,6 +29,8 @@ class VideoOverlays extends StatelessWidget {
           final progressBar = PodProgressBar(
             tag: tag,
             podProgressBarConfig: podCtr.podProgressBarConfig,
+            isThatThumbnailVideo: isThatThumbnailVideo,
+
           );
           final overlayOptions = OverLayOptions(
             podVideoState: podCtr.podVideoState,
@@ -36,7 +40,7 @@ class VideoOverlays extends StatelessWidget {
             isLooping: podCtr.isLooping,
             isOverlayVisible: podCtr.isOverlayVisible,
             isMute: podCtr.isMute,
-            autoPlay: podCtr.autoPlay,
+            autoPlay: true,
             currentVideoPlaybackSpeed: podCtr.currentPaybackSpeed,
             videoPlayBackSpeeds: podCtr.videoPlaybackSpeeds,
             videoPlayerType: podCtr.videoPlayerType,
@@ -60,8 +64,8 @@ class VideoOverlays extends StatelessWidget {
             child: Stack(
               fit: StackFit.passthrough,
               children: [
-                if (!kIsWeb) MobileOverlay(tag: tag),
-                if (kIsWeb) WebOverlay(tag: tag),
+                if (!kIsWeb) MobileOverlay(tag: tag,isThatThumbnailVideo: isThatThumbnailVideo),
+                if (kIsWeb) WebOverlay(tag: tag,isThatThumbnailVideo: isThatThumbnailVideo),
               ],
             ),
           );
