@@ -11,6 +11,7 @@ class MiniVideoViewLogic extends GetxController {
   final Rx<VideoDetailsItem?> _selectedVideoDetails = Rxn<VideoDetailsItem?>();
   final Rx<String> _selectedVideoRating = "none".obs;
   PodPlayerController? videoController;
+  PodPlayerController? thumbnailVideoController;
   MiniPlayerController miniPlayerController = MiniPlayerController();
   final RxDouble _percentageOFMiniPage = 0.0.obs;
   final RxDouble _heightOFMiniPage = 50.0.obs;
@@ -20,34 +21,46 @@ class MiniVideoViewLogic extends GetxController {
   final RxBool isMiniVideoInitialized = false.obs;
   final RxBool _isMiniVideoPlaying = false.obs;
 
-  void initializeVideoController({VideoDetailsItem? videoDetailsItem}) {
+  void initializeVideoController(
+      {VideoDetailsItem? videoDetailsItem, bool isThatThumbnailVideo = false}) {
     selectedVideoDetails = videoDetailsItem;
-    String videoId = selectedVideoDetails?.id ?? "";
+    String videoId = videoDetailsItem?.id ?? "";
+
+    thumbnailVideoController?.pause();
 
     if (videoController?.videoUrl == _url(videoId)) return;
 
     if (videoController?.isInitialised ?? false) {
-      _changeController(videoId, videoDetailsItem);
+      _changeController(videoId);
     } else {
-    _firstInitialized(videoId);
+      _firstInitialized(videoId);
     }
   }
 
-  Future<void> _changeController(String videoId, VideoDetailsItem? videoDetailsItem) async {
+  Future<void> _changeController(String videoId) async {
     if (videoId.isNotEmpty && videoController != null) {
-      await videoController?.changeVideo(playVideoFrom: getPlayVideoFrom(videoId));
+      await videoController?.changeVideo(
+        playVideoFrom: getPlayVideoFrom(videoId),
+        playVideoDirectly: false,
+      );
+
       _addVideoListener();
     }
   }
 
   void _firstInitialized(String videoId) {
-      videoController = PodPlayerController(
-        playVideoFrom: getPlayVideoFrom(videoId),
-        getTag: "mini",
-      )..initialise();
+    videoController = PodPlayerController(
+      playVideoFrom: getPlayVideoFrom(videoId),
+      getTag: "mini",
+    )..initialise();
 
     _addVideoListener();
   }
+
+  static PlayVideoFrom getPlayVideoFrom(String videoId) =>
+      PlayVideoFrom.youtube(_url(videoId));
+
+  static String _url(String videoId) => 'https://youtu.be/$videoId';
 
   void _addVideoListener() {
     videoController!.addListener(() {
@@ -79,11 +92,6 @@ class MiniVideoViewLogic extends GetxController {
     double height = percentage <= 0.05 ? newHeight : secondHeight;
     return height;
   }
-
-  PlayVideoFrom getPlayVideoFrom(String videoId) =>
-      PlayVideoFrom.youtube(_url(videoId));
-
-  String _url(String videoId) => 'https://youtu.be/$videoId';
 
   bool get isMiniVideoPlaying => _isMiniVideoPlaying.value;
 
