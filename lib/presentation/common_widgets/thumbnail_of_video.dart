@@ -80,7 +80,6 @@ class _VideoDisplayState extends State<_VideoDisplay> {
               playVideoFrom: MiniVideoViewLogic.getPlayVideoFrom(videoId),
               playVideoDirectly: true)
           .then((_) => videoController?.play());
-      print("=====================> 1111111111111");
     }
   }
 
@@ -102,14 +101,12 @@ class _VideoDisplayState extends State<_VideoDisplay> {
       _firstInitialized(videoId);
     } else if (oldUrl != _url(videoId)) {
       videoController?.pause();
-      print("=====================> 22222222222222");
       _changeController(videoId);
     }
     super.initState();
   }
 @override
   void dispose() {
-    print("--------------------------->");
     videoController=null;
     super.dispose();
   }
