@@ -24,7 +24,12 @@ class MostPopularVideosPage extends StatefulWidget {
 class _MostPopularVideosPageState extends State<MostPopularVideosPage> {
   @override
   void dispose() {
-    PopularVideosCubit.get(context).clearAllPopularVideos(videoCategoryId: "");
+    try {
+      PopularVideosCubit.get(context)
+          .clearAllPopularVideos(videoCategoryId: "");
+    } catch (e) {
+      rethrow;
+    }
     super.dispose();
   }
 

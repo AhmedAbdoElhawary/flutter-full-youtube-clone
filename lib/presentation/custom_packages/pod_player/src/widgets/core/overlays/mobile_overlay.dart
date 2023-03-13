@@ -97,7 +97,7 @@ class MobileOverlay extends StatelessWidget {
                     podCtr.toggleVideoOverlay();
                   }
                 },
-                child: SvgIcon(IconsAssets.settingsIcon,color: ColorManager(context).white,size: 22),
+                child: const SvgIcon(IconsAssets.settingsIcon,color: BaseColorManager.white,size: 22),
               ),
             ],
           ),
