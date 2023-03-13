@@ -35,7 +35,10 @@ class _HeadOfBottomSheet extends StatelessWidget {
                     onTap: () {
                       Go(context).back();
                     },
-                    child: Container(padding: REdgeInsets.all(5),color: BaseColorManager.transparent,child: SvgPicture.asset(IconsAssets.closeIcon, height: 25))),
+                    child: Container(
+                        padding: REdgeInsets.all(5),
+                        color: BaseColorManager.transparent,
+                        child: const SvgIcon(IconsAssets.closeIcon, size: 25))),
               ],
             ),
           ),
