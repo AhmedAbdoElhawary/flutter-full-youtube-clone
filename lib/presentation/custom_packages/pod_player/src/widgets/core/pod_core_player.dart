@@ -187,12 +187,14 @@ class _VolumeWidget extends StatefulWidget {
 }
 
 class _VolumeWidgetState extends State<_VolumeWidget> {
-  bool isMute = false;
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: AlignmentDirectional.topEnd,
-      child: Padding(
+    return GetBuilder<PodGetXVideoController>(
+      tag: widget.tag,
+      id: "volume",
+      builder: (controller) => Align(
+        alignment: AlignmentDirectional.topEnd,
+        child: Padding(
           padding: REdgeInsets.all(10),
           child: Container(
             decoration: BoxDecoration(
@@ -200,23 +202,24 @@ class _VolumeWidgetState extends State<_VolumeWidget> {
                 color: BaseColorManager.black54),
             padding: REdgeInsets.symmetric(horizontal: 10, vertical: 3),
             child: InkWell(
-                onTap: () async {
-                  final logic =
-                      Get.find<PodGetXVideoController>(tag: widget.tag);
-
-                  if (isMute) {
-                    await logic.unMute();
-                  } else {
-                    await logic.mute();
-                  }
-                  setState(() => isMute = !isMute);
-                },
-                child: Icon(
-                  isMute ? Icons.volume_off_rounded : Icons.volume_up_rounded,
-                  size: 25,
-                  color: BaseColorManager.white,
-                )),
-          )),
+              onTap: () async {
+                if (controller.isMute) {
+                  await controller.unMute();
+                } else {
+                  await controller.mute();
+                }
+              },
+              child: Icon(
+                controller.isMute
+                    ? Icons.volume_off_rounded
+                    : Icons.volume_up_rounded,
+                size: 25,
+                color: BaseColorManager.white,
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

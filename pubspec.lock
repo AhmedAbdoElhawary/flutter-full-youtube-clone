@@ -65,30 +65,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.0"
-  blurhash:
-    dependency: "direct main"
-    description:
-      name: blurhash
-      sha256: bda07108a8055aab659fc506950722774018fc6c82829fc019bf3a4fb634079b
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.0"
-  blurhash_dart:
-    dependency: transitive
-    description:
-      name: blurhash_dart
-      sha256: d18fa567dce8bc897d31e14e084d2b1a4306e6bfde30a0e72ebf5f5ff549ced9
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.0"
-  blurhash_web:
-    dependency: transitive
-    description:
-      name: blurhash_web
-      sha256: ad85144ee90637235b928c7466147e9ab3761b071d374dcf4cc67f76cbacc3aa
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.0"
   boolean_selector:
     dependency: transitive
     description:
@@ -537,10 +513,10 @@ packages:
     dependency: transitive
     description:
       name: html
-      sha256: d9793e10dbe0e6c364f4c59bf3e01fb33a9b2a674bc7a1081693dba0614b6269
+      sha256: "79d498e6d6761925a34ee5ea8fa6dfef38607781d2fa91e37523474282af55cb"
       url: "https://pub.dev"
     source: hosted
-    version: "0.15.1"
+    version: "0.15.2"
   http:
     dependency: "direct main"
     description:
@@ -565,14 +541,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.2"
-  image:
-    dependency: transitive
-    description:
-      name: image
-      sha256: "8e9d133755c3e84c73288363e6343157c383a0c6c56fc51afcc5d4d7180306d6"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.3.0"
   intl:
     dependency: transitive
     description:
@@ -1150,42 +1118,42 @@ packages:
     dependency: "direct main"
     description:
       name: video_player
-      sha256: "59f7f31c919c59cbedd37c617317045f5f650dc0eeb568b0b0de9a36472bdb28"
+      sha256: "868a139229acb5018d22aded3eb9cb4767ff43a8216573c086b6c535a4957481"
       url: "https://pub.dev"
     source: hosted
-    version: "2.5.1"
+    version: "2.6.0"
   video_player_android:
     dependency: transitive
     description:
       name: video_player_android
-      sha256: "984388511230bac63feb53b2911a70e829fe0976b6b2213f5c579c4e0a882db3"
+      sha256: "86d9d56ffe760a1e3b4855ea94bac6c944e99b9050946464857b3e2818e1662b"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.10"
+    version: "2.4.1"
   video_player_avfoundation:
     dependency: transitive
     description:
       name: video_player_avfoundation
-      sha256: d9f7a46d6a77680adb03ec05a381025d6e890ebe636637c6c3014cc3926b97e9
+      sha256: "9d8585be0d63943f0dc46e0aed6697a715f64d7faab39b6053ecf9b6da3ca01d"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.8"
+    version: "2.4.1"
   video_player_platform_interface:
     dependency: transitive
     description:
       name: video_player_platform_interface
-      sha256: "42bb75de5e9b79e1f20f1d95f688fac0f95beac4d89c6eb2cd421724d4432dae"
+      sha256: "72ba04ad0eff76123c6d782ac46621cb8be476a89c33c89173fce982b6ec049b"
       url: "https://pub.dev"
     source: hosted
-    version: "6.0.1"
+    version: "6.0.2"
   video_player_web:
     dependency: transitive
     description:
       name: video_player_web
-      sha256: b649b07b8f8f553bee4a97a0a53d0fe78a70b115eafaf0105b612b32b05ddb99
+      sha256: fb3bbeaf0302cb0c31340ebd6075487939aa1fe3b379d1a8784ef852b679940e
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.13"
+    version: "2.0.15"
   wakelock:
     dependency: "direct main"
     description:
@@ -1278,10 +1246,10 @@ packages:
     dependency: "direct main"
     description:
       name: youtube_explode_dart
-      sha256: "3e2eb05dedc072a6275e8a061c675d9a53b7c6123265f0aa4ee1e6d50644dbd2"
+      sha256: "07889a6229a63e78f8d45a3b852897c2e0fa42e96c4daa38d411be211575bc38"
       url: "https://pub.dev"
     source: hosted
-    version: "1.12.3"
+    version: "1.12.4"
 sdks:
   dart: ">=2.19.0 <3.0.0"
   flutter: ">=3.7.0-0"

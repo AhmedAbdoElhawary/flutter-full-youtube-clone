@@ -198,25 +198,26 @@ class _CustomPodVideoPlayerState extends State<CustomPodVideoPlayer>
 
   Widget _thumbnailAndLoadingWidget() {
     if (widget.videoThumbnail == null) {
-      return _buildLoading();
-    }
-
-    return SizedBox.expand(
-      child: TweenAnimationBuilder<double>(
-        builder: (context, value, child) => Opacity(
-          opacity: value,
-          child: child,
-        ),
-        tween: Tween<double>(begin: 0.2, end: 0.7),
-        duration: const Duration(milliseconds: 400),
-        child: DecoratedBox(
-          decoration: BoxDecoration(image: widget.videoThumbnail),
-          child: Center(
-            child: _buildLoading()
+      return  _buildLoading();
+    } else {
+      return SizedBox.expand(
+        child: TweenAnimationBuilder<double>(
+          builder: (context, value, child) => Opacity(
+            opacity: 1,
+            child: child,
+          ),
+          tween: Tween<double>(begin: 0.2, end: 0.7),
+          duration: const Duration(milliseconds: 400),
+          child: DecoratedBox(
+            decoration: BoxDecoration(image: widget.videoThumbnail),
+            child: Center(
+                child: widget.isThatThumbnailVideo
+                    ? const SizedBox()
+                    : _buildLoading()),
           ),
         ),
-      ),
-    );
+      );
+    }
   }
 
   Widget _buildPlayer() {
