@@ -46,11 +46,13 @@ class CustomMiniPlayer extends StatefulWidget {
   //Allows you to manually control the miniplayer in code
   final MiniPlayerController? controller;
 
+  final bool snapToMax;
   const CustomMiniPlayer({
     Key? key,
     required this.minHeight,
     required this.maxHeight,
     required this.builder,
+    required this.snapToMax,
     this.curve = Curves.easeOut,
     this.elevation = 0,
     this.backgroundColor = const Color(0x70000000),
@@ -76,7 +78,7 @@ class CustomMiniPlayerState extends State<CustomMiniPlayer>
   Function? onDismissed;
 
   ///Current y position of drag gesture
-  late double _dragHeight;
+  late double dragHeight;
 
   ///Used to determine SnapPosition
   late double _startHeight;
@@ -90,19 +92,19 @@ class CustomMiniPlayerState extends State<CustomMiniPlayer>
 
   final StreamController<double> _heightController =
       StreamController<double>.broadcast();
-  AnimationController? _animationController;
+  AnimationController? animationController;
 
   void _statusListener(AnimationStatus status) {
     if (status == AnimationStatus.completed) _resetAnimationController();
   }
 
   void _resetAnimationController({Duration? duration}) {
-    if (_animationController != null) _animationController!.dispose();
-    _animationController = AnimationController(
+    if (animationController != null) animationController!.dispose();
+    animationController = AnimationController(
       vsync: this,
       duration: duration ?? widget.duration,
     );
-    _animationController!.addStatusListener(_statusListener);
+    animationController!.addStatusListener(_statusListener);
     animating = false;
   }
 
@@ -125,7 +127,7 @@ class CustomMiniPlayerState extends State<CustomMiniPlayer>
 
     _resetAnimationController();
 
-    _dragHeight = heightNotifier.value;
+    dragHeight = heightNotifier.value;
 
     if (widget.controller != null) {
       widget.controller!.addListener(controllerListener);
@@ -139,7 +141,7 @@ class CustomMiniPlayerState extends State<CustomMiniPlayer>
   @override
   void dispose() {
     _heightController.close();
-    if (_animationController != null) _animationController!.dispose();
+    if (animationController != null) animationController!.dispose();
 
     if (widget.controller != null) {
       widget.controller!.removeListener(controllerListener);
@@ -150,7 +152,7 @@ class CustomMiniPlayerState extends State<CustomMiniPlayer>
 
   @override
   Widget build(BuildContext context) {
-    if (dismissed) return Container();
+    if (dismissed) return const SizedBox();
 
     return MiniPlayerWillPopScope(
       onWillPop: () async {
@@ -209,7 +211,7 @@ class CustomMiniPlayerState extends State<CustomMiniPlayer>
                             decoration: BoxDecoration(
                               boxShadow: <BoxShadow>[
                                 BoxShadow(
-                                    color: BaseColorManager.veryLightGrey,
+                                    color: BaseColorManager.grey1,
                                     blurRadius: widget.elevation,
                                     offset: const Offset(0, 0))
                               ],
@@ -231,7 +233,7 @@ class CustomMiniPlayerState extends State<CustomMiniPlayer>
   }
 
   void onPanStart(DragStartDetails details) {
-    _startHeight = _dragHeight;
+    _startHeight = dragHeight;
     updateCount = 0;
 
     if (animating) _resetAnimationController();
@@ -240,7 +242,7 @@ class CustomMiniPlayerState extends State<CustomMiniPlayer>
   Future<void> onPanEnd(DragEndDetails details) async {
     ///Calculates drag speed
     double speed =
-        (_dragHeight - _startHeight * _dragHeight < _startHeight ? 1 : -1) /
+        (dragHeight - _startHeight * dragHeight < _startHeight ? 1 : -1) /
             updateCount *
             100;
 
@@ -258,7 +260,7 @@ class CustomMiniPlayerState extends State<CustomMiniPlayer>
     PanelState snap = PanelState.min;
 
     final percentageMax = percentageFromValueInRange(
-        min: widget.minHeight, max: widget.maxHeight, value: _dragHeight);
+        min: widget.minHeight, max: widget.maxHeight, value: dragHeight);
 
     ///Started from expanded state
     if (_startHeight > widget.minHeight) {
@@ -276,7 +278,7 @@ class CustomMiniPlayerState extends State<CustomMiniPlayer>
       ///DismissedPercentage > 0.2 -> dismiss
       if (onDismissed != null &&
           percentageFromValueInRange(
-                  min: widget.minHeight, max: 0, value: _dragHeight) >
+                  min: widget.minHeight, max: 0, value: dragHeight) >
               snapPercentage) {
         snap = PanelState.dismiss;
       }
@@ -289,7 +291,7 @@ class CustomMiniPlayerState extends State<CustomMiniPlayer>
   void onPanUpdate(DragUpdateDetails details) {
     if (dismissed) return;
 
-    _dragHeight -= details.delta.dy;
+    dragHeight -= details.delta.dy;
     updateCount++;
 
     _handleHeightChange();
@@ -298,12 +300,12 @@ class CustomMiniPlayerState extends State<CustomMiniPlayer>
   ///Determines whether the panel should be updated in height or discarded
   void _handleHeightChange({bool animation = false}) {
     ///Drag above minHeight
-    if (_dragHeight >= widget.minHeight) {
+    if (dragHeight >= widget.minHeight) {
       if (dragDownPercentage.value != 0) dragDownPercentage.value = 0;
 
-      if (_dragHeight > widget.maxHeight) return;
+      if (dragHeight > widget.maxHeight) return;
 
-      heightNotifier.value = _dragHeight;
+      heightNotifier.value = dragHeight;
       percentageOfHeight.value = (heightNotifier.value - widget.minHeight) /
           (widget.maxHeight - widget.minHeight);
     }
@@ -314,7 +316,7 @@ class CustomMiniPlayerState extends State<CustomMiniPlayer>
           minRange: 0.0,
           maxRange: 1.0,
           value: percentageFromValueInRange(
-              min: widget.minHeight, max: 0, value: _dragHeight));
+              min: widget.minHeight, max: 0, value: dragHeight));
 
       if (dragDownPercentage.value != percentageDown) {
         dragDownPercentage.value = percentageDown;
@@ -346,8 +348,8 @@ class CustomMiniPlayerState extends State<CustomMiniPlayer>
 
   ///Animates the panel height to a specific value
   void _animateToHeight(final double h, {Duration? duration}) {
-    if (_animationController == null) return;
-    final startHeight = _dragHeight;
+    if (animationController == null) return;
+    final startHeight = dragHeight;
 
     if (duration != null) _resetAnimationController(duration: duration);
 
@@ -355,24 +357,25 @@ class CustomMiniPlayerState extends State<CustomMiniPlayer>
       begin: startHeight,
       end: h,
     ).animate(
-        CurvedAnimation(parent: _animationController!, curve: widget.curve));
+        CurvedAnimation(parent: animationController!, curve: widget.curve));
 
     sizeAnimation.addListener(() {
       if (sizeAnimation.value == startHeight) return;
 
-      _dragHeight = sizeAnimation.value;
+      dragHeight = sizeAnimation.value;
 
       _handleHeightChange(animation: true);
     });
 
     animating = true;
-    _animationController!.forward(from: 0);
+    animationController!.forward(from: 0);
   }
 
   //Listener function for the controller
   void controllerListener() {
     if (widget.controller == null) return;
     if (widget.controller!.value == null) return;
+
 
     switch (widget.controller!.value!.height) {
       case -1:
