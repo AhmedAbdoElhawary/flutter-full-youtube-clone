@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:youtube/config/themes/theme_service.dart';
 import 'package:youtube/core/resources/assets_manager.dart';
 import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/core/utility/constants.dart';
@@ -32,70 +34,90 @@ class BaseLayout extends StatelessWidget {
         Color? color = baseLayoutLogic.isShortsPageSelected
             ? BaseColorManager.white
             : null;
-        return CustomCupertinoTabScaffold(
-          tabBar: CustomCupertinoTabBar(
-            backgroundColor: baseLayoutLogic.isShortsPageSelected
-                ? Theme.of(context).focusColor
-                : Theme.of(context).primaryColor,
-            height: miniVideoLogic.heightOfNavigationBar.value.h,
-            border: Border(
-                top: BorderSide(
-                    color: baseLayoutLogic.isShortsPageSelected
-                        ? ColorManager(context).grey9
-                        : ColorManager(context).grey1,
-                    width: 1.w)),
-            inactiveColor: baseLayoutLogic.isShortsPageSelected
-                ? ColorManager(context).white
-                : ColorManager(context).black,
-            activeColor: baseLayoutLogic.isShortsPageSelected
-                ? ColorManager(context).white
-                : ColorManager(context).black,
-            items: [
-              BottomNavigationBarItem(
-                  icon: SvgIcon(IconsAssets.homeIcon, size: 25, color: color),
-                  activeIcon:
-                      const SvgIcon(IconsAssets.homeColoredIcon, size: 25),
-                  label: "Home"),
-              BottomNavigationBarItem(
-                  icon: SvgIcon(IconsAssets.shortsIcon, size: 25, color: color),
-                  activeIcon:
-                      SvgIcon(IconsAssets.shortsIcon, size: 25, color: color),
-                  label: "Shorts"),
-              BottomNavigationBarItem(
-                icon: SvgIcon(IconsAssets.addIcon, size: 35, color: color),
-                activeIcon: const SvgIcon(IconsAssets.addIcon, size: 35),
-              ),
-              BottomNavigationBarItem(
-                  icon: SvgIcon(IconsAssets.subscriptionIcon,
-                      size: 25, color: color),
-                  activeIcon: const SvgIcon(IconsAssets.subscriptionColoredIcon,
-                      size: 25),
-                  label: "Subscriptions"),
-              BottomNavigationBarItem(
-                  icon:
-                      SvgIcon(IconsAssets.libraryIcon, size: 25, color: color),
-                  activeIcon:
-                      const SvgIcon(IconsAssets.libraryColoredIcon, size: 25),
-                  label: "Library"),
-            ],
+        return AnnotatedRegion<SystemUiOverlayStyle>(
+          value: SystemUiOverlayStyle(
+              statusBarColor: ColorManager(context).white,
+              statusBarIconBrightness: ThemeOfApp().theme == ThemeMode.dark
+                  ? Brightness.dark
+                  : Brightness.light,
+              systemNavigationBarDividerColor: ColorManager(context).white,
+              systemNavigationBarColor: ColorManager(context).white,
+              statusBarBrightness: ThemeOfApp().theme == ThemeMode.dark
+                  ? Brightness.dark
+                  : Brightness.light,
+              systemNavigationBarIconBrightness:
+                  ThemeOfApp().theme == ThemeMode.dark
+                      ? Brightness.dark
+                      : Brightness.light),
+          child: CustomCupertinoTabScaffold(
+            tabBar: CustomCupertinoTabBar(
+              backgroundColor: baseLayoutLogic.isShortsPageSelected &&
+                      ThemeOfApp().theme == ThemeMode.light
+                  ? Theme.of(context).focusColor
+                  : Theme.of(context).primaryColor,
+              height: miniVideoLogic.heightOfNavigationBar.value.h,
+              border: Border(
+                  top: BorderSide(
+                      color: baseLayoutLogic.isShortsPageSelected
+                          ? ColorManager(context).grey9
+                          : ColorManager(context).grey1,
+                      width: 1.w)),
+              inactiveColor: baseLayoutLogic.isShortsPageSelected
+                  ? ColorManager(context).white
+                  : ColorManager(context).black,
+              activeColor: baseLayoutLogic.isShortsPageSelected
+                  ? ColorManager(context).white
+                  : ColorManager(context).black,
+              items: [
+                BottomNavigationBarItem(
+                    icon: SvgIcon(IconsAssets.homeIcon, size: 25, color: color),
+                    activeIcon:
+                        const SvgIcon(IconsAssets.homeColoredIcon, size: 25),
+                    label: "Home"),
+                BottomNavigationBarItem(
+                    icon:
+                        SvgIcon(IconsAssets.shortsIcon, size: 25, color: color),
+                    activeIcon:
+                        SvgIcon(IconsAssets.shortsIcon, size: 25, color: color),
+                    label: "Shorts"),
+                BottomNavigationBarItem(
+                  icon: SvgIcon(IconsAssets.addIcon, size: 35, color: color),
+                  activeIcon: const SvgIcon(IconsAssets.addIcon, size: 35),
+                ),
+                BottomNavigationBarItem(
+                    icon: SvgIcon(IconsAssets.subscriptionIcon,
+                        size: 25, color: color),
+                    activeIcon: const SvgIcon(
+                        IconsAssets.subscriptionColoredIcon,
+                        size: 25),
+                    label: "Subscriptions"),
+                BottomNavigationBarItem(
+                    icon: SvgIcon(IconsAssets.libraryIcon,
+                        size: 25, color: color),
+                    activeIcon:
+                        const SvgIcon(IconsAssets.libraryColoredIcon, size: 25),
+                    label: "Library"),
+              ],
+            ),
+            controller: baseLayoutLogic.tabController,
+            tabBuilder: (context, index) {
+              if (index == 1) return const _ShortsPage();
+
+              return Obx(() {
+                Widget floatingVideo =
+                    miniVideoLogic.selectedVideoDetails == null
+                        ? const SizedBox()
+                        : const MiniPlayerVideo();
+
+                return Stack(
+                  children: [
+                    WhichPage(index),
+                    floatingVideo,
+                  ],
+                );
+              });
+            },
           ),
-          controller: baseLayoutLogic.tabController,
-          tabBuilder: (context, index) {
-            if (index == 1) return const _ShortsPage();
-
-            return Obx(() {
-              Widget floatingVideo = miniVideoLogic.selectedVideoDetails == null
-                  ? const SizedBox()
-                  : const MiniPlayerVideo();
-
-              return Stack(
-                children: [
-                  WhichPage(index),
-                  floatingVideo,
-                ],
-              );
-            });
-          },
         );
       },
     );
