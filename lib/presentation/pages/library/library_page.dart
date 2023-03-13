@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:youtube/config/routes/route_app.dart';
 import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/core/resources/styles_manager.dart';
@@ -10,6 +9,7 @@ import 'package:youtube/data/models/channel_details/playlists/playlists_extensio
 import 'package:youtube/presentation/common_widgets/error_message_widget.dart';
 import 'package:youtube/presentation/common_widgets/horizontal_videos_loading.dart';
 import 'package:youtube/presentation/common_widgets/sliver_app_bar.dart';
+import 'package:youtube/presentation/common_widgets/svg_icon.dart';
 import 'package:youtube/presentation/cubit/channel/playlist/play_list_cubit.dart';
 import 'package:youtube/presentation/pages/playlist_details/playlist_details.dart';
 import '../../../core/resources/assets_manager.dart';
@@ -202,10 +202,7 @@ class _VideoNameWithIconOptions extends StatelessWidget {
               maxLines: 2,
             ),
           ),
-          SvgPicture.asset(
-            IconsAssets.menuPointsVerticalIcon,
-            height: 12,
-          )
+          const SvgIcon(IconsAssets.menuPointsVerticalIcon, size: 12),
         ],
       ),
     );
