@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:youtube/config/routes/route_app.dart';
 import 'package:youtube/core/functions/handling_errors/network_exceptions.dart';
@@ -61,6 +60,7 @@ class _MiniPlayerVideoState extends State<MiniPlayerVideo> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: CustomMiniPlayer(
+        snapToMax: true,
         controller: _miniVideoViewLogic.miniPlayerController,
         minHeight: _miniVideoViewLogic.minHeight,
         maxHeight: _miniVideoViewLogic.maxHeight,
@@ -271,20 +271,22 @@ class _InteractButtons extends StatelessWidget {
           children: [
             const _LikeButton(),
             Padding(
-              padding: REdgeInsetsDirectional.only(start: 35, top: 15),
+              padding: REdgeInsetsDirectional.only(start: 35, top: 15,end: 35),
               child: const _DislikeButton(),
             ),
             Padding(
-              padding: REdgeInsetsDirectional.only(start: 35, top: 15),
+              padding: REdgeInsetsDirectional.only(top: 15),
               child: const _IconText(size: 23),
             ),
             Padding(
               padding: REdgeInsetsDirectional.only(start: 35, top: 15),
               child: const _IconText(
-                  text: "Download", iconAsset: IconsAssets.downloadIcon,size: 20),
+                  text: "Download",
+                  iconAsset: IconsAssets.downloadIcon,
+                  size: 20),
             ),
             Padding(
-              padding: REdgeInsetsDirectional.only(start: 35,end: 35, top: 15),
+              padding: REdgeInsetsDirectional.only(start: 35, end: 35, top: 15),
               child: const _IconText(
                   text: "Save", iconAsset: IconsAssets.libraryIcon),
             ),
@@ -297,7 +299,10 @@ class _InteractButtons extends StatelessWidget {
 
 class _IconText extends StatelessWidget {
   const _IconText(
-      {this.size=25,this.iconAsset = IconsAssets.shareIcon, this.text = "Share", Key? key})
+      {this.size = 25,
+      this.iconAsset = IconsAssets.shareIcon,
+      this.text = "Share",
+      Key? key})
       : super(key: key);
   final String text;
   final String iconAsset;
@@ -307,7 +312,7 @@ class _IconText extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        SvgIcon(iconAsset,size: size),
+        SvgIcon(iconAsset, size: size),
         const RSizedBox(height: 5),
         Text(
           text,
