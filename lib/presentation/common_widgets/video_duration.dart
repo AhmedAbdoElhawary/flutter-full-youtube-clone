@@ -19,12 +19,12 @@ class VideoDurationWidget extends StatelessWidget {
       child: Container(
         padding: REdgeInsets.symmetric(horizontal: 2, vertical: 1.5),
         decoration: BoxDecoration(
-            color: ColorManager(context).black87,
+            color: BaseColorManager.black87,
             borderRadius: BorderRadius.circular(2)),
         child: Text(
           durationReformat,
           style:
-          getMediumStyle(color: ColorManager(context).white, fontSize: 12),
+          getMediumStyle(color:BaseColorManager.white, fontSize: 12),
         ),
       ),
     );
