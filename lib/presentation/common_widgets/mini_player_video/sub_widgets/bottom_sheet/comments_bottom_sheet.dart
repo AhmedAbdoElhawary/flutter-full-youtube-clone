@@ -83,7 +83,7 @@ class _CommentItem extends StatelessWidget {
               ],
             ),
           ),
-          SvgPicture.asset(IconsAssets.menuPointsVerticalIcon, height: 10),
+          const SvgIcon(IconsAssets.menuPointsVerticalIcon, size: 10),
         ],
       ),
     );
