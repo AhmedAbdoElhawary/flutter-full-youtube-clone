@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/presentation/custom_packages/pod_player/src/controllers/pod_getx_video_controller.dart';
 import 'package:youtube/presentation/custom_packages/pod_player/src/widgets/material_icon_button.dart';
 
@@ -28,7 +29,7 @@ class WebSettingsDropdownState extends State<WebSettingsDropdown> {
           return MaterialIconButton(
             toolTipMsg: podCtr.podPlayerLabels.settings,
             color: Colors.white,
-            child: const Icon(Icons.settings),
+            child: const Icon(Icons.settings, color: BaseColorManager.white),
             onPressed: () => podCtr.isFullScreen
                 ? podCtr.isWebPopupOverlayOpen = true
                 : podCtr.isWebPopupOverlayOpen = false,
@@ -97,7 +98,7 @@ class WebSettingsDropdownState extends State<WebSettingsDropdown> {
     await Future.delayed(
       const Duration(milliseconds: 400),
     );
-    if(context.mounted) return;
+    if (context.mounted) return;
 
     await showMenu(
       context: context,
@@ -129,7 +130,7 @@ class WebSettingsDropdownState extends State<WebSettingsDropdown> {
     await Future.delayed(
       const Duration(milliseconds: 400),
     );
-    if(context.mounted) return;
+    if (context.mounted) return;
     await showMenu(
       context: context,
       items: podCtr.vimeoOrVideoUrls
