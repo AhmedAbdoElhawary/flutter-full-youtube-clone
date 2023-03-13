@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:youtube/presentation/common_widgets/arrow_back.dart';
 import 'package:youtube/presentation/common_widgets/error_message_widget.dart';
+import 'package:youtube/presentation/common_widgets/svg_icon.dart';
 import 'package:youtube/presentation/common_widgets/thumbnail_of_video.dart';
 import 'package:youtube/presentation/common_widgets/videos_list_loading.dart';
 import 'package:youtube/presentation/cubit/search/search_cubit.dart';
@@ -40,12 +40,12 @@ class _SearchedResultsPageState extends State<SearchedResultsPage>
         leading: const ArrowBack(),
         surfaceTintColor: ColorManager(context).white,
         title: SearchTextField(controller: controller, enableOnTap: true),
-        actions: [
-          const RSizedBox(width: 15),
-          const MicIconButton(),
-          const RSizedBox(width: 20),
-          SvgPicture.asset(IconsAssets.menuPointsVerticalIcon, height: 15),
-          const RSizedBox(width: 20),
+        actions: const [
+          RSizedBox(width: 15),
+          MicIconButton(),
+          RSizedBox(width: 20),
+          SvgIcon(IconsAssets.menuPointsVerticalIcon,size: 15),
+          RSizedBox(width: 20),
         ],
       ),
       body: BlocBuilder<SearchCubit, SearchState>(

@@ -37,7 +37,8 @@ class _SubscribeButtonState extends State<SubscribeButton> {
                 ? ColorManager(context).grey1
                 : ColorManager(context).black,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 3,vertical: 1),
+              padding: REdgeInsets.symmetric(
+                  horizontal: 3, vertical: widget.makeItExpanded ? 1 : 8),
               child: isClicked
                   ? _SubscribedWidgets(widget.fontSize)
                   : Text(
@@ -62,6 +63,7 @@ class _SubscribedWidgets extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
       children: [
         SvgIcon(IconsAssets.notificationIcon, size: fontSize + 5),
         const RSizedBox(width: 5),

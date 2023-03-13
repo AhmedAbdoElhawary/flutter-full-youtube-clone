@@ -24,7 +24,10 @@ class _LikeButton extends StatelessWidget {
               videoDetails: videoDetails,
             );
           },
-          loading: () => const InteractionShimmerLoading(),
+          loading: () => Padding(
+            padding: REdgeInsetsDirectional.only(end: 35),
+            child: const InteractionShimmerLoading(),
+          ),
           error: (error) {
             ToastShow.reformatToast(context, error.error);
             return _LikeIconButton(
@@ -69,9 +72,8 @@ class _LikeIconButtonState extends State<_LikeIconButton> {
       child: InkWell(
         onTap: () {
           if (widget.videoId.isNotEmpty) {
-            String rating = widget.ratingDetails?.rating == "none"
-                ? "none"
-                : "like";
+            String rating =
+                widget.ratingDetails?.rating == "none" ? "none" : "like";
             SingleVideoCubit.get(context)
                 .rateThisVideo(videoId: widget.videoId, rating: rating);
 
@@ -82,8 +84,8 @@ class _LikeIconButtonState extends State<_LikeIconButton> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 miniVideoViewLogic.selectedVideoRating != "like"
-                    ?const SvgIcon(IconsAssets.likeIcon)
-                    :const SvgIcon(IconsAssets.likeColoredIcon),
+                    ? const SvgIcon(IconsAssets.likeIcon)
+                    : const SvgIcon(IconsAssets.likeColoredIcon),
                 const RSizedBox(height: 5),
                 Text(
                   likeText,

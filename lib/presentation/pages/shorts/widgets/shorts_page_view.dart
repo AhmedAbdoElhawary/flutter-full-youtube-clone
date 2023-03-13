@@ -7,6 +7,7 @@ import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/core/resources/styles_manager.dart';
 import 'package:youtube/data/models/videos_details/video_details_extension.dart';
 import 'package:youtube/presentation/common_widgets/circular_profile_image.dart';
+import 'package:youtube/presentation/common_widgets/custom_network_display.dart';
 import 'package:youtube/presentation/custom_packages/pod_player/src/controllers/pod_player_controller.dart';
 import 'package:youtube/presentation/custom_packages/pod_player/src/models/play_video_from.dart';
 import 'package:youtube/presentation/custom_packages/pod_player/src/pod_player.dart';

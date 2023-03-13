@@ -83,7 +83,7 @@ class _TabBarIcons extends StatelessWidget {
               Border(bottom: BorderSide(color: ColorManager(context).grey2))),
       child: TabBar(
         unselectedLabelColor: ColorManager(context).grey7,
-        labelColor: Theme.of(context).focusColor,
+        labelColor: ColorManager(context).black,
         indicatorSize: TabBarIndicatorSize.tab,
         isScrollable: true,
         labelPadding: REdgeInsets.symmetric(horizontal: 20),

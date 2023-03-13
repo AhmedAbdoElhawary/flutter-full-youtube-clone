@@ -180,7 +180,7 @@ class _InteractionsButtonsWithSubInfo extends StatelessWidget {
                 children: [
                   Text("${playListsItem?.getPlaylistCount() ?? 0} videos",
                       style: getMediumStyle(
-                          color: BaseColorManager.veryLightGrey, fontSize: 12),
+                          color: BaseColorManager.grey1, fontSize: 12),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis),
                   const RSizedBox(width: 5),
@@ -188,11 +188,11 @@ class _InteractionsButtonsWithSubInfo extends StatelessWidget {
                     const SvgIcon(
                       IconsAssets.lockIcon,
                       size: 15,
-                      color: BaseColorManager.veryLightGrey,
+                      color: BaseColorManager.grey1,
                     ),
                     Text("Private",
                         style: getMediumStyle(
-                            color: BaseColorManager.veryLightGrey,
+                            color: BaseColorManager.grey1,
                             fontSize: 12),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis),

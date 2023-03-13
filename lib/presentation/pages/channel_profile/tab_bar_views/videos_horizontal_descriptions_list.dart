@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:youtube/data/models/videos_details/video_details_extension.dart';
 import 'package:youtube/data/models/videos_details/videos_details.dart';
+import 'package:youtube/presentation/common_widgets/svg_icon.dart';
 import 'package:youtube/presentation/common_widgets/thumbnail_image.dart';
 import 'package:youtube/presentation/common_widgets/video_duration.dart';
 import 'package:youtube/presentation/pages/home/logic/home_page_logic.dart';
@@ -54,8 +54,7 @@ class VideoHorizontalDescriptionsList extends StatelessWidget {
           ),
           Padding(
             padding: REdgeInsetsDirectional.only(start: 10, end: 15),
-            child:
-                SvgPicture.asset(IconsAssets.menuPointsVerticalIcon, height: 12),
+            child: const SvgIcon(IconsAssets.menuPointsVerticalIcon, size: 12),
           ),
         ],
       ),

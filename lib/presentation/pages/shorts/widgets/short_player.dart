@@ -74,7 +74,7 @@ class _VolumeContainer extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(40),
-          color: ColorManager(context).black87),
+          color: BaseColorManager.black87),
       padding: const EdgeInsetsDirectional.all(15),
       child: Icon(
         icon,

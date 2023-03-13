@@ -49,8 +49,8 @@ class ShortsPageState extends State<ShortsPage> {
           const RSizedBox(width: 15),
           IconButton(
             onPressed: () {},
-            icon: Icon(Icons.camera_alt,
-                size: 30, color: ColorManager(context).white),
+            icon: const Icon(Icons.camera_alt,
+                size: 30, color: BaseColorManager.white),
           ),
           const RSizedBox(width: 10),
         ],
@@ -87,17 +87,17 @@ class _ShimmerLoading extends StatelessWidget {
     return Stack(
       children: [
         Shimmer.fromColors(
-          baseColor: Colors.grey[500]!,
-          highlightColor: ColorManager(context).grey6,
+          baseColor: Colors.grey[800]!,
+          highlightColor: ColorManager(context).grey9,
           child: Container(
             width: double.infinity,
             height: double.maxFinite,
-            color: ColorManager(context).grey2,
+            color: ColorManager(context).grey8,
           ),
         ),
         Shimmer.fromColors(
-          baseColor: Colors.grey[600]!,
-          highlightColor: ColorManager(context).grey6,
+          baseColor: Colors.grey[800]!,
+          highlightColor: ColorManager(context).grey9,
           child: Padding(
             padding: const EdgeInsetsDirectional.only(
                 end: 25.0, bottom: 20, start: 15),
@@ -107,14 +107,14 @@ class _ShimmerLoading extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 20,
-                  backgroundColor: ColorManager(context).grey7,
+                  backgroundColor: ColorManager(context).grey8,
                 ),
                 const SizedBox(height: 5),
                 Container(
-                    height: 15, width: 150, color: ColorManager(context).grey7),
+                    height: 15, width: 150, color: ColorManager(context).grey8),
                 const SizedBox(height: 5),
                 Container(
-                    height: 15, width: 200, color: ColorManager(context).grey7),
+                    height: 15, width: 200, color: ColorManager(context).grey8),
               ],
             ),
           ),

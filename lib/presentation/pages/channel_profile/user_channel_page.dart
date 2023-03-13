@@ -97,9 +97,7 @@ class _FavoriteIconButtonState extends State<_FavoriteIconButton> {
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: () {
-          setState(() {
-            favorite = !favorite;
-          });
+          setState(() => favorite = !favorite);
         },
         child: favorite
             ? const Icon(Icons.favorite_rounded, color: ColorManager.blackRed)

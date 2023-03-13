@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:youtube/config/routes/route_app.dart';
 import 'package:youtube/core/functions/handling_errors/network_exceptions.dart';
-
 import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/core/resources/styles_manager.dart';
 import 'package:youtube/presentation/common_widgets/sliver_app_bar.dart';
@@ -21,6 +20,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int index = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +32,6 @@ class _HomePageState extends State<HomePage> {
               double itemHeight = 185.h;
               int inView = (pixels / itemHeight).floor();
               if (inView != index) setState(() => index = inView);
-
             }
             return true;
           },
@@ -215,7 +214,7 @@ class _PopularButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Go(context).to(const MostPopularVideosPage());
+        Go(context).to(const MostPopularVideosPage(),prevScreen: "qw");
       },
       child: Padding(
         padding: REdgeInsets.symmetric(vertical: 12.0),

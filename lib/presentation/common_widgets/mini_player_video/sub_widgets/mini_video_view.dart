@@ -54,7 +54,8 @@ class _MiniVideoView extends StatelessWidget {
             alignment: AlignmentDirectional.bottomStart,
             child: LinearProgressIndicator(
               value: durationVideoValue,
-              minHeight: 2,
+              minHeight: 1.5.h,
+              backgroundColor: BaseColorManager.transparentGrey,
               valueColor: const AlwaysStoppedAnimation<Color>(Colors.red),
             ),
           ),

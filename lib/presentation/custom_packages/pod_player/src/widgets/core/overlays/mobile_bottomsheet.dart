@@ -34,7 +34,8 @@ class MobileBottomSheet extends StatelessWidget {
           if (podCtr.vimeoOrVideoUrls.isNotEmpty)
             _BottomSheetTitles(
               title: podCtr.podPlayerLabels.quality,
-              icon: const SvgIcon(IconsAssets.settingsIcon,size: 22),
+              icon: const SvgIcon(IconsAssets.settingsIcon,
+                  color: BaseColorManager.white, size: 22),
               subText: '${podCtr.vimeoPlayingVideoQuality}p',
               onTap: () {
                 Navigator.of(context).pop();
@@ -47,10 +48,9 @@ class MobileBottomSheet extends StatelessWidget {
                       color: Theme.of(context).splashColor,
                       padding: REdgeInsets.only(bottom: 20),
                       snapSpec:
-                      const SnapSpec(initialSnap: 1, snappings: [.7, 1]),
+                          const SnapSpec(initialSnap: 1, snappings: [.7, 1]),
                       scrollSpec: const ScrollSpec(
                           physics: NeverScrollableScrollPhysics()),
-
                       builder: (context, state) => Material(
                           child: SafeArea(
                         child: _VideoQualitySelectorMob(tag: tag, onTap: null),

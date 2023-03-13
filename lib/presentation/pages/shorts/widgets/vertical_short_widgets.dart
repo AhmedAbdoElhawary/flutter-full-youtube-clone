@@ -76,7 +76,7 @@ class _SubscribeButtonState extends State<_SubscribeButton> {
         padding: REdgeInsets.all(4),
         decoration: BoxDecoration(
             color: isClicked
-                ? ColorManager(context).black26
+                ? BaseColorManager.black26
                 : ColorManager.blackRed,
             borderRadius: BorderRadius.circular(2.r)),
         child: Text(
