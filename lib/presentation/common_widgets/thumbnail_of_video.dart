@@ -15,7 +15,6 @@ import 'package:youtube/presentation/custom_packages/pod_player/src/pod_player.d
 import '../../core/resources/color_manager.dart';
 import '../../core/resources/styles_manager.dart';
 import '../custom_packages/pod_player/src/controllers/pod_player_controller.dart';
-import '../custom_packages/pod_player/src/models/play_video_from.dart';
 import '../pages/home/logic/home_page_logic.dart';
 
 class ThumbnailOfVideo extends StatelessWidget {
@@ -74,47 +73,48 @@ class _VideoDisplayState extends State<_VideoDisplay> {
   PodPlayerController? videoController =
       Get.find<MiniVideoViewLogic>(tag: "1").thumbnailVideoController;
 
-  Future<void> _changeController(String videoId) async {
+  void _changeController(String videoId) {
     if (videoId.isNotEmpty && videoController != null) {
-      await videoController?.changeVideo(
-          playVideoFrom: getPlayVideoFrom(videoId), playVideoDirectly: true);
+      videoController
+          ?.changeVideo(
+              playVideoFrom: MiniVideoViewLogic.getPlayVideoFrom(videoId),
+              playVideoDirectly: true)
+          .then((_) => videoController?.play());
+      print("=====================> 1111111111111");
     }
   }
-
-  static PlayVideoFrom getPlayVideoFrom(String videoId) =>
-      PlayVideoFrom.youtube(_url(videoId));
 
   static String _url(String videoId) => 'https://youtu.be/$videoId';
 
   void _firstInitialized(String videoId) {
     videoController = PodPlayerController(
-      playVideoFrom: getPlayVideoFrom(videoId),
-      getTag: "mini 2",
+      playVideoFrom: MiniVideoViewLogic.getPlayVideoFrom(videoId),
+      getTag: "mini thumbnail",
     )..initialise();
   }
 
+  @override
+  void initState() {
+    String videoId = widget.videoDetailsItem?.id ?? "";
 
-  @override
-  void didUpdateWidget(covariant _VideoDisplay oldWidget) {
-    videoController?.play();
-    super.didUpdateWidget(oldWidget);
+    String? oldUrl = videoController?.videoUrl;
+    if (!(videoController?.isInitialised ?? false)) {
+      _firstInitialized(videoId);
+    } else if (oldUrl != _url(videoId)) {
+      videoController?.pause();
+      print("=====================> 22222222222222");
+      _changeController(videoId);
+    }
+    super.initState();
   }
-  @override
-  void didChangeDependencies() {
-    videoController?.play();
-    super.didChangeDependencies();
+@override
+  void dispose() {
+    print("--------------------------->");
+    videoController=null;
+    super.dispose();
   }
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      String videoId = widget.videoDetailsItem?.id ?? "";
-
-      if (videoController?.isInitialised ?? false) {
-        _changeController(videoId);
-      } else {
-        _firstInitialized(videoId);
-      }
-    });
     String url = widget.videoDetailsItem?.getVideoThumbnails()?.max?.url ?? "";
     return Container(
       height: 185.h,
