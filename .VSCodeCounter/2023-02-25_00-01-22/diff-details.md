@@ -11,13 +11,13 @@ Total : 54 files,  1387 codes, -41 comments, 154 blanks, all 1500 lines
 ## Files
 | filename | language | code | comment | blank | total |
 | :--- | :--- | ---: | ---: | ---: | ---: |
-| [assets/icons/new/alarm.svg](/assets/icons/new/alarm.svg) | XML | 1 | 0 | 0 | 1 |
-| [assets/icons/new/broadcast.svg](/assets/icons/new/broadcast.svg) | XML | 1 | 0 | 0 | 1 |
-| [assets/icons/new/home_house.svg](/assets/icons/new/home_house.svg) | XML | 1 | 0 | 0 | 1 |
-| [assets/icons/new/home_unselected.svg](/assets/icons/new/home_unselected.svg) | XML | 108 | 0 | 1 | 109 |
-| [assets/icons/new/navigation.svg](/assets/icons/new/navigation.svg) | XML | 1 | 0 | 0 | 1 |
-| [assets/icons/new/noun-home-2263849.svg](/assets/icons/new/noun-home-2263849.svg) | XML | 101 | 0 | 1 | 102 |
-| [assets/icons/new/search.svg](/assets/icons/new/search.svg) | XML | 1 | 0 | 0 | 1 |
+| [assets/icons/new/alarm.svg](/assets/icons/alarm.svg) | XML | 1 | 0 | 0 | 1 |
+| [assets/icons/new/broadcast.svg](/assets/icons/broadcast.svg) | XML | 1 | 0 | 0 | 1 |
+| [assets/icons/new/home_house.svg](/assets/icons/home_house.svg) | XML | 1 | 0 | 0 | 1 |
+| [assets/icons/new/home_unselected.svg](/assets/icons/home_unselected.svg) | XML | 108 | 0 | 1 | 109 |
+| [assets/icons/new/navigation.svg](/assets/icons/navigation.svg) | XML | 1 | 0 | 0 | 1 |
+| [assets/icons/new/noun-home-2263849.svg](/assets/icons/noun-home-2263849.svg) | XML | 101 | 0 | 1 | 102 |
+| [assets/icons/new/search.svg](/assets/icons/search.svg) | XML | 1 | 0 | 0 | 1 |
 | [assets/icons/share.svg](/assets/icons/share.svg) | XML | 1 | 0 | 0 | 1 |
 | [lib/core/my_app.dart](/lib/core/my_app.dart) | Dart | -62 | 0 | -7 | -69 |
 | [lib/core/resources/color_manager.dart](/lib/core/resources/color_manager.dart) | Dart | 2 | 0 | 0 | 2 |
