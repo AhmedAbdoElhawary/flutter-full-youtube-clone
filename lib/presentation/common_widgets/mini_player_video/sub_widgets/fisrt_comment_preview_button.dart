@@ -7,7 +7,8 @@ class _FirstCommentPreviewButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final miniVideoViewLogic = Get.find<MiniVideoViewLogic>(tag: "1");
     String commentCount =
-        miniVideoViewLogic.selectedVideoDetails?.getVideoCommentsCount() ?? "0";
+        miniVideoViewLogic.getSelectedVideoDetails?.getVideoCommentsCount() ??
+            "0";
     return InkWell(
       onTap: () {
         draggableBottomSheet(context, isThatDescription: false);
@@ -41,30 +42,33 @@ class _FirstComment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      final miniVideoViewLogic = Get.find<MiniVideoViewLogic>(tag: "1");
-      final String videoId = miniVideoViewLogic.selectedVideoDetails?.id ?? "";
-      return BlocBuilder<SingleVideoCubit, SingleVideoState>(
-        bloc: BlocProvider.of<SingleVideoCubit>(context)
-          ..getFirstComment(videoId),
-        buildWhen: (previous, current) =>
-            previous != current && current is FirstCommentLoaded,
-        builder: (context, state) {
-          return state.maybeWhen(
-              firstCommentLoaded: (firstCommentDetails) {
-                if (firstCommentDetails.items?.isEmpty ?? true) {
-                  return const SizedBox();
-                }
-                SubCommentSnippet? snippet = firstCommentDetails
-                    .items?[0]?.snippet?.topLevelComment?.snippet;
+    return GetBuilder<MiniVideoViewLogic>(
+      tag: "1",
+      id: "update-selected-video",
+      builder: (controller) {
+        final String videoId = controller.getSelectedVideoDetails?.id ?? "";
+        return BlocBuilder<SingleVideoCubit, SingleVideoState>(
+          bloc: BlocProvider.of<SingleVideoCubit>(context)
+            ..getFirstComment(videoId),
+          buildWhen: (previous, current) =>
+              previous != current && current is FirstCommentLoaded,
+          builder: (context, state) {
+            return state.maybeWhen(
+                firstCommentLoaded: (firstCommentDetails) {
+                  if (firstCommentDetails.items?.isEmpty ?? true) {
+                    return const SizedBox();
+                  }
+                  SubCommentSnippet? snippet = firstCommentDetails
+                      .items?[0]?.snippet?.topLevelComment?.snippet;
 
-                return _FirstCommentBody(snippet: snippet);
-              },
-              loading: () => const SizedBox(),
-              orElse: () => const SizedBox());
-        },
-      );
-    });
+                  return _FirstCommentBody(snippet: snippet);
+                },
+                loading: () => const SizedBox(),
+                orElse: () => const SizedBox());
+          },
+        );
+      },
+    );
   }
 }
 

@@ -20,18 +20,20 @@ class TabBarVideosView extends StatefulWidget {
 }
 
 class _TabBarVideosViewState extends State<TabBarVideosView> {
-  final logic = Get.find<ChannelProfileLogic>(tag: "1");
-
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
         const _FiltersButtons(),
-        Obx(() {
-          return logic.getRecentlyVideosSelected
-              ? _NewestVideos(widget.channelDetails)
-              : _PopularVideos(widget.channelDetails);
-        })
+        GetBuilder<ChannelProfileLogic>(
+          tag: "1",
+          id: "update-channel-videos",
+          builder: (controller) {
+            return controller.getRecentlyVideosSelected
+                ? _NewestVideos(widget.channelDetails)
+                : _PopularVideos(widget.channelDetails);
+          },
+        )
       ],
     );
   }
@@ -115,29 +117,33 @@ class _FiltersButtons extends StatefulWidget {
 }
 
 class _FiltersButtonsState extends State<_FiltersButtons> {
-  final logic = Get.find<ChannelProfileLogic>(tag: "1");
-
   @override
   Widget build(BuildContext context) {
-    return Obx(() => SliverToBoxAdapter(
+    return GetBuilder<ChannelProfileLogic>(
+      tag: "1",
+      id: "update-channel-videos",
+      builder: (controller) {
+        return SliverToBoxAdapter(
           child: Padding(
             padding: REdgeInsetsDirectional.only(start: 15, top: 15),
             child: Row(
               children: [
                 GestureDetector(
-                    onTap: () => logic.isRecentlyVideosSelected = true,
+                    onTap: () => controller.isRecentlyVideosSelected = true,
                     child: RoundedFilteredButton(
                         text: "Recently uploaded",
-                        isSelected: logic.getRecentlyVideosSelected)),
+                        isSelected: controller.getRecentlyVideosSelected)),
                 const RSizedBox(width: 10),
                 GestureDetector(
-                    onTap: () => logic.isRecentlyVideosSelected = false,
+                    onTap: () => controller.isRecentlyVideosSelected = false,
                     child: RoundedFilteredButton(
                         text: "Popular",
-                        isSelected: !logic.getRecentlyVideosSelected)),
+                        isSelected: !controller.getRecentlyVideosSelected)),
               ],
             ),
           ),
-        ));
+        );
+      },
+    );
   }
 }

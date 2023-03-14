@@ -26,18 +26,20 @@ class TabBarShortVideosView extends StatefulWidget {
 }
 
 class _TabBarShortVideosViewState extends State<TabBarShortVideosView> {
-  final logic = Get.find<ChannelProfileLogic>(tag: "1");
-
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
         const _FiltersButtons(),
-        Obx(() {
-          return logic.getRecentlyShortVideosSelected
-              ? _NewestShortVideos(widget.channelDetails)
-              : _PopularShortVideos(widget.channelDetails);
-        })
+        GetBuilder<ChannelProfileLogic>(
+          tag: "1",
+          id: "update-channel-short-videos",
+          builder: (controller) {
+            return controller.getRecentlyShortVideosSelected
+                ? _NewestShortVideos(widget.channelDetails)
+                : _PopularShortVideos(widget.channelDetails);
+          },
+        )
       ],
     );
   }
@@ -155,31 +157,34 @@ class _FiltersButtons extends StatefulWidget {
 }
 
 class _FiltersButtonsState extends State<_FiltersButtons> {
-  final logic = Get.find<ChannelProfileLogic>(tag: "1");
-
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => SliverToBoxAdapter(
-        child: Padding(
-          padding: REdgeInsetsDirectional.only(start: 15, top: 15, bottom: 15),
-          child: Row(
-            children: [
-              GestureDetector(
-                  onTap: () => logic.isRecentlyShortVideosSelected = true,
-                  child: RoundedFilteredButton(
-                      text: "Recently uploaded",
-                      isSelected: logic.getRecentlyShortVideosSelected)),
-              const RSizedBox(width: 10),
-              GestureDetector(
-                  onTap: () => logic.isRecentlyShortVideosSelected = false,
-                  child: RoundedFilteredButton(
-                      text: "Popular",
-                      isSelected: !logic.getRecentlyShortVideosSelected)),
-            ],
+    return GetBuilder<ChannelProfileLogic>(
+      tag: "1",
+      id: "update-channel-short-videos",
+      builder: (logic) {
+        return SliverToBoxAdapter(
+          child: Padding(
+            padding:
+                REdgeInsetsDirectional.only(start: 15, top: 15, bottom: 15),
+            child: Row(
+              children: [
+                GestureDetector(
+                    onTap: () => logic.isRecentlyShortVideosSelected = true,
+                    child: RoundedFilteredButton(
+                        text: "Recently uploaded",
+                        isSelected: logic.getRecentlyShortVideosSelected)),
+                const RSizedBox(width: 10),
+                GestureDetector(
+                    onTap: () => logic.isRecentlyShortVideosSelected = false,
+                    child: RoundedFilteredButton(
+                        text: "Popular",
+                        isSelected: !logic.getRecentlyShortVideosSelected)),
+              ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

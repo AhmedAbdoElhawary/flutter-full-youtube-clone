@@ -200,8 +200,7 @@ class PlaylistHorizontalDescriptionsList extends StatelessWidget {
           ),
           Padding(
             padding: REdgeInsetsDirectional.only(start: 10, end: 15),
-            child:           const SvgIcon(IconsAssets.menuPointsVerticalIcon, size: 12),
-
+            child: const SvgIcon(IconsAssets.menuPointsVerticalIcon, size: 12),
           ),
         ],
       ),
@@ -210,48 +209,55 @@ class PlaylistHorizontalDescriptionsList extends StatelessWidget {
 }
 
 class _PlaylistCountBanner extends StatelessWidget {
-  const _PlaylistCountBanner({required this.playListsItem});
+  const _PlaylistCountBanner({this.playListsItem});
+
+  final PlayListItem? playListsItem;
+
+  @override
+  Widget build(BuildContext context) {
+    String? imageUrl = playListsItem?.getPlaylistCoverImageUrl() ?? "";
+
+    return SizedBox(
+      width: 160.w,
+      height: 15.h,
+      child: CustomNetworkDisplay(
+        imageUrl: imageUrl,
+        width: 160.w,
+        height: 15.h,
+      ).blurred(
+        colorOpacity: 0.1,
+        blur: 10,
+        overlay: _PlayListCount(playListsItem: playListsItem),
+      ),
+    );
+  }
+}
+
+class _PlayListCount extends StatelessWidget {
+  const _PlayListCount({this.playListsItem});
 
   final PlayListItem? playListsItem;
 
   @override
   Widget build(BuildContext context) {
     int? playlistCount = playListsItem?.getPlaylistCount();
-    String? imageUrl = playListsItem?.getPlaylistCoverImageUrl() ?? "";
 
-    return SizedBox(
-      width: 160.w,
-      height: 15.h,
-      child: Stack(
-        children: [
-          CustomNetworkDisplay(
-            imageUrl: imageUrl,
-            width: 160.w,
-            height: 15.h,
-          ).blurred(
-            colorOpacity: 0.1,
-            blur: 10,
-            overlay: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Icon(
-                  Icons.playlist_play_outlined,
-                  color: BaseColorManager.white,
-                  size: 15,
-                ),
-                const RSizedBox(width: 2),
-                if (playlistCount != null && playlistCount != 0)
-                  Text(
-                    "$playlistCount",
-                    style: getMediumStyle(
-                        color: BaseColorManager.white, fontSize: 12),
-                  )
-              ],
-            ),
-          ),
-        ],
-      ),
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Icon(
+          Icons.playlist_play_outlined,
+          color: BaseColorManager.white,
+          size: 15,
+        ),
+        const RSizedBox(width: 2),
+        if (playlistCount != null && playlistCount != 0)
+          Text(
+            "$playlistCount",
+            style: getMediumStyle(color: BaseColorManager.white, fontSize: 12),
+          )
+      ],
     );
   }
 }

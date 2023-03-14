@@ -7,7 +7,7 @@ class _BodyOfDescriptionSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final logic = Get.find<MiniVideoViewLogic>(tag: "1");
-    VideoDetailsItem? videoDetails = logic.selectedVideoDetails;
+    VideoDetailsItem? videoDetails = logic.getSelectedVideoDetails;
     return Material(
       child: SingleChildScrollView(
         child: Padding(
@@ -62,7 +62,7 @@ class _CircularImageWithName extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final logic = Get.find<MiniVideoViewLogic>(tag: "1");
-    VideoDetailsItem? videoDetails = logic.selectedVideoDetails;
+    VideoDetailsItem? videoDetails = logic.getSelectedVideoDetails;
     return Row(
       children: [
         CircularProfileImage(

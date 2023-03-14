@@ -28,13 +28,18 @@ class ChannelProfileLogic extends GetxController {
   bool get getRecentlyShortVideosSelected =>
       _isRecentlyShortVideosSelected.value;
 
-  set isRecentlyShortVideosSelected(bool value) =>
-      _isRecentlyShortVideosSelected.value = value;
+  set isRecentlyShortVideosSelected(bool value) {
+    _isRecentlyShortVideosSelected.value = value;
+    update(["update-channel-short-videos"]);
+
+  }
 
   bool get getRecentlyVideosSelected => _isRecentlyVideosSelected.value;
 
-  set isRecentlyVideosSelected(bool value) =>
-      _isRecentlyVideosSelected.value = value;
+  set isRecentlyVideosSelected(bool value) {
+    _isRecentlyVideosSelected.value = value;
+    update(["update-channel-videos"]);
+  }
 
   Future<void> clearChannelCachedDetails(String channelId) async {
     _clearAllChannelShortVideos.call(

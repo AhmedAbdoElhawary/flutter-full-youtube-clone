@@ -10,11 +10,11 @@ import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/presentation/common_widgets/circular_profile_image.dart';
 import 'package:youtube/presentation/common_widgets/thumbnail_image.dart';
 import 'package:youtube/presentation/common_widgets/video_duration.dart';
+import 'package:youtube/presentation/custom_packages/pod_player/src/controllers/pod_player_controller.dart';
+import 'package:youtube/presentation/custom_packages/pod_player/src/models/play_video_from.dart';
 import 'package:youtube/presentation/custom_packages/pod_player/src/pod_player.dart';
-
 import '../../core/resources/color_manager.dart';
 import '../../core/resources/styles_manager.dart';
-import '../custom_packages/pod_player/src/controllers/pod_player_controller.dart';
 import '../pages/home/logic/home_page_logic.dart';
 
 class ThumbnailOfVideo extends StatelessWidget {
@@ -37,15 +37,19 @@ class ThumbnailOfVideo extends StatelessWidget {
         children: [
           if (isUrlFailed) ...[
             if (playVideo && enablePlaying) ...[
-              Obx(() {
-                final logic = Get.find<MiniVideoViewLogic>(tag: "1");
-
-                return logic.selectedVideoDetails == null
-                    ? _VideoDisplay(videoDetailsItem)
-                    : ThumbnailImage(videoDetailsItem?.getVideoThumbnails(),
-                        borderRadius: 0,
-                        childAboveImage: VideoDurationWidget(videoDetailsItem));
-              })
+              GetBuilder<MiniVideoViewLogic>(
+                tag: "1",
+                id: "update-selected-video",
+                builder: (controller) {
+                  return controller.getSelectedVideoDetails == null
+                      ? MovedVideoDisplay(
+                          videoDetailsItem, controller.moveThumbnailVideo)
+                      : ThumbnailImage(videoDetailsItem?.getVideoThumbnails(),
+                          borderRadius: 0,
+                          childAboveImage:
+                              VideoDurationWidget(videoDetailsItem));
+                },
+              ),
             ] else ...[
               ThumbnailImage(videoDetailsItem?.getVideoThumbnails(),
                   borderRadius: 0,
@@ -61,55 +65,62 @@ class ThumbnailOfVideo extends StatelessWidget {
   }
 }
 
-class _VideoDisplay extends StatefulWidget {
-  const _VideoDisplay(this.videoDetailsItem);
+class MovedVideoDisplay extends StatefulWidget {
+  const MovedVideoDisplay._internal(
+      this.videoDetailsItem, this.moveThumbnailVideo);
   final VideoDetailsItem? videoDetailsItem;
+  final bool moveThumbnailVideo;
+  static MovedVideoDisplay? _instance;
+  static MovedVideoDisplay get instance => _instance!;
 
-  @override
-  State<_VideoDisplay> createState() => _VideoDisplayState();
-}
-
-class _VideoDisplayState extends State<_VideoDisplay> {
-  PodPlayerController? videoController =
-      Get.find<MiniVideoViewLogic>(tag: "1").thumbnailVideoController;
-
-  void _changeController(String videoId) {
-    if (videoId.isNotEmpty && videoController != null) {
-      videoController
-          ?.changeVideo(
-              playVideoFrom: MiniVideoViewLogic.getPlayVideoFrom(videoId),
-              playVideoDirectly: true)
-          .then((_) => videoController?.play());
-    }
+  factory MovedVideoDisplay(
+      VideoDetailsItem? videoDetailsItem, bool moveThumbnailVideo) {
+    _instance =
+        MovedVideoDisplay._internal(videoDetailsItem, moveThumbnailVideo);
+    return _instance!;
   }
 
-  static String _url(String videoId) => 'https://youtu.be/$videoId';
+  @override
+  State<MovedVideoDisplay> createState() => _MovedVideoDisplayState();
+}
 
-  void _firstInitialized(String videoId) {
-    videoController = PodPlayerController(
-      playVideoFrom: MiniVideoViewLogic.getPlayVideoFrom(videoId),
+class _MovedVideoDisplayState extends State<MovedVideoDisplay> {
+  PodPlayerController? movedVideoController;
+
+  String getUrl(String videoId) => 'https://youtu.be/$videoId';
+
+  void _firstThumbnailInitialized(String videoId) {
+    movedVideoController = PodPlayerController(
+      playVideoFrom: getPlayVideoFrom(videoId),
       getTag: "mini thumbnail",
     )..initialise();
   }
 
-  @override
-  void initState() {
-    String videoId = widget.videoDetailsItem?.id ?? "";
+  PlayVideoFrom getPlayVideoFrom(String videoId) =>
+      PlayVideoFrom.youtube(getUrl(videoId));
 
-    String? oldUrl = videoController?.videoUrl;
-    if (!(videoController?.isInitialised ?? false)) {
-      _firstInitialized(videoId);
-    } else if (oldUrl != _url(videoId)) {
-      videoController?.pause();
-      _changeController(videoId);
-    }
-    super.initState();
+  void disposeThumbnailVideo() {
+    movedVideoController?.pause();
+    movedVideoController = null;
   }
-@override
+
+  @override
+  void didUpdateWidget(covariant MovedVideoDisplay oldWidget) {
+    if (!widget.moveThumbnailVideo) {
+      disposeThumbnailVideo();
+    } else {
+      String videoId = widget.videoDetailsItem?.id ?? "";
+      _firstThumbnailInitialized(videoId);
+    }
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
   void dispose() {
-    videoController=null;
+    disposeThumbnailVideo();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     String url = widget.videoDetailsItem?.getVideoThumbnails()?.max?.url ?? "";
@@ -117,10 +128,10 @@ class _VideoDisplayState extends State<_VideoDisplay> {
       height: 185.h,
       width: double.infinity,
       color: ColorManager(context).grey1,
-      child: videoController == null
+      child: movedVideoController == null
           ? null
           : CustomPodVideoPlayer(
-              controller: videoController!,
+              controller: movedVideoController!,
               displayOverlay: true,
               isThatThumbnailVideo: true,
               videoThumbnail: url.isEmpty
@@ -170,7 +181,7 @@ class _VideoSubTitles extends StatelessWidget {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: getNormalStyle(
-                        fontSize: 13, color: ColorManager(context).grey7)),
+                        fontSize: 13, color: BaseColorManager.grey)),
               ],
             ),
           ),

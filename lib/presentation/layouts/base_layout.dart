@@ -45,10 +45,7 @@ class BaseLayout extends StatelessWidget {
               statusBarBrightness: ThemeOfApp().theme == ThemeMode.dark
                   ? Brightness.dark
                   : Brightness.light,
-              systemNavigationBarIconBrightness:
-                  ThemeOfApp().theme == ThemeMode.dark
-                      ? Brightness.dark
-                      : Brightness.light),
+              systemNavigationBarIconBrightness: Brightness.light),
           child: CustomCupertinoTabScaffold(
             tabBar: CustomCupertinoTabBar(
               backgroundColor: baseLayoutLogic.isShortsPageSelected &&
@@ -103,19 +100,23 @@ class BaseLayout extends StatelessWidget {
             tabBuilder: (context, index) {
               if (index == 1) return const _ShortsPage();
 
-              return Obx(() {
-                Widget floatingVideo =
-                    miniVideoLogic.selectedVideoDetails == null
-                        ? const SizedBox()
-                        : const MiniPlayerVideo();
+              return GetBuilder<MiniVideoViewLogic>(
+                tag: "1",
+                id: "update-selected-video",
+                builder: (controller) {
+                  Widget floatingVideo =
+                      controller.getSelectedVideoDetails == null
+                          ? const SizedBox()
+                          : const MiniPlayerVideo();
 
-                return Stack(
-                  children: [
-                    WhichPage(index),
-                    floatingVideo,
-                  ],
-                );
-              });
+                  return Stack(
+                    children: [
+                      WhichPage(index),
+                      floatingVideo,
+                    ],
+                  );
+                },
+              );
             },
           ),
         );
