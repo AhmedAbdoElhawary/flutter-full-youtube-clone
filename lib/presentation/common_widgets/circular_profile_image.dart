@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:youtube/config/routes/route_app.dart';
 import 'package:youtube/data/models/channel_details/channel_details.dart';
+import 'package:youtube/presentation/layouts/base_layout_logic.dart';
 
 import '../../core/resources/color_manager.dart';
 import '../pages/channel_profile/user_channel_page.dart';
@@ -44,9 +46,11 @@ class _CircularProfileImageState extends State<CircularProfileImage> {
     return GestureDetector(
       onTap: () {
         if (!widget.enableTapping || widget.channelId.isEmpty) return;
-
+        int selectedIndex =
+            Get.find<BaseLayoutLogic>(tag: "1").tabController.index;
         Go(context).to(
           UserChannelPage(
+            key: selectedIndex == 0 ? const Key("from-home-page") : null,
             UserChannelPageParameters(
               channelDetailsItem: widget.channelDetailsItem,
               channelId: widget.channelId,

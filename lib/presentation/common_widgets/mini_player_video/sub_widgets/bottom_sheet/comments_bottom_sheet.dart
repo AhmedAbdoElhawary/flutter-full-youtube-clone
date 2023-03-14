@@ -6,7 +6,7 @@ class _BodyOfCommentsSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final logic = Get.find<MiniVideoViewLogic>(tag: "1");
-    VideoDetailsItem? videoDetails = logic.selectedVideoDetails;
+    VideoDetailsItem? videoDetails = logic.getSelectedVideoDetails;
     return Material(
       child: SizedBox(
         height: MediaQuery.of(context).size.height,
