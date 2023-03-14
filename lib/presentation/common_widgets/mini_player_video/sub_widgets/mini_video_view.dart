@@ -2,13 +2,11 @@ part of '../mini_player_video.dart';
 
 class _MiniVideoView extends StatelessWidget {
   const _MiniVideoView({
-    required this.height,
     required this.percentage,
     required this.isPlaying,
     required this.durationVideoValue,
   });
 
-  final double height;
   final double percentage;
   final bool isPlaying;
   final double durationVideoValue;
@@ -23,7 +21,7 @@ class _MiniVideoView extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              _VideoOfMiniDisplay(height, percentage),
+              const _VideoOfMiniDisplay(),
               const VideoTitleSubTitleTexts(),
               _PlayPauseButtons(isPlaying: isPlaying),
               Expanded(
@@ -34,7 +32,7 @@ class _MiniVideoView extends StatelessWidget {
                     final miniVideoViewLogic =
                         Get.find<MiniVideoViewLogic>(tag: "1");
 
-                    miniVideoViewLogic.selectedVideoDetails = null;
+                    miniVideoViewLogic.setSelectedVideoDetails = null;
                     miniVideoViewLogic.isMiniVideoInitialized.value = false;
                     try {
                       miniVideoViewLogic.videoController?.dispose();
@@ -79,7 +77,7 @@ class _PlayPauseButtonsState extends State<_PlayPauseButtons> {
   Widget build(BuildContext context) {
     return GetBuilder<MiniVideoViewLogic>(
       tag: "1",
-      id: "update mini player",
+      id: "update-mini-player",
       builder: (controller) {
         return Expanded(
           flex: 1,
@@ -101,32 +99,19 @@ class _PlayPauseButtonsState extends State<_PlayPauseButtons> {
   }
 }
 
-class _VideoOfMiniDisplay extends StatefulWidget {
-  const _VideoOfMiniDisplay(this.height, this.percentage);
-  final double height;
-  final double percentage;
-
-  @override
-  State<_VideoOfMiniDisplay> createState() => _VideoOfMiniDisplayState();
-}
-
-class _VideoOfMiniDisplayState extends State<_VideoOfMiniDisplay> {
-  final logic = Get.find<MiniVideoViewLogic>(tag: "1");
-  String videoId = "";
-  @override
-  void initState() {
-    super.initState();
-    videoId = logic.selectedVideoDetails?.id ?? "";
-  }
+class _VideoOfMiniDisplay extends StatelessWidget {
+  const _VideoOfMiniDisplay();
 
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    return Obx(
-      () {
-        double width = logic.videoOfMiniDisplayWidth(screenWidth);
-        double height = logic.videoOfMiniDisplayHeight(
-            percentage: widget.percentage, screenHeight: widget.height);
+    return GetBuilder<MiniVideoViewLogic>(
+      tag: "1",
+      id: "update-mini-player",
+      builder: (controller) {
+        double width = controller.videoOfMiniDisplayWidth(screenWidth);
+        double height = controller.videoOfMiniDisplayHeight();
+        String videoId = controller.getSelectedVideoDetails?.id ?? "";
         return Container(
           height: height,
           width: width,
@@ -134,8 +119,8 @@ class _VideoOfMiniDisplayState extends State<_VideoOfMiniDisplay> {
           child: videoId.isEmpty
               ? null
               : CustomPodVideoPlayer(
-                  controller: logic.videoController!,
-                  displayOverlay: widget.percentage == 1,
+                  controller: controller.videoController!,
+                  displayOverlay: controller.percentageOFMiniPage == 1,
                   frameAspectRatio: width / height,
                   videoAspectRatio: width / height,
                   matchVideoAspectRatioToFrame: true,
@@ -155,10 +140,11 @@ class VideoTitleSubTitleTexts extends StatelessWidget {
       flex: 3,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Obx(
-          () {
-            final logic = Get.find<MiniVideoViewLogic>(tag: "1");
-            VideoDetailsItem? videoDetails = logic.selectedVideoDetails;
+        child: GetBuilder<MiniVideoViewLogic>(
+          tag: "1",
+          id: "update-selected-video",
+          builder: (logic) {
+            VideoDetailsItem? videoDetails = logic.getSelectedVideoDetails;
 
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,

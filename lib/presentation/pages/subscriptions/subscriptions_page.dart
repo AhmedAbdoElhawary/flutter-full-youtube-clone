@@ -65,36 +65,37 @@ class _SubscribedVideosState extends State<_SubscribedVideos>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    final logic = Get.find<SubscriptionsPageLogic>(tag: "1");
-
-    return Obx(() {
-      return BlocBuilder<ChannelVideosCubit, ChannelVideosState>(
-        bloc: ChannelVideosCubit.get(context)
-          ..getVideosOfThoseChannels(logic.allSubscribedChannels),
-        buildWhen: (previous, current) =>
-            previous != current && current is VideosOfThoseChannelsLoaded,
-        builder: (context, state) {
-          return state.maybeWhen(
-              videosOfThoseChannelsLoaded: (videosItems) {
-                return SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    childCount: videosItems.length,
-                    (context, index) => Padding(
-                      padding: REdgeInsets.only(bottom: 15),
-                      child: ThumbnailOfVideo(videosItems[index]),
-                    ),
-                  ),
-                );
-              },
-              loading: () =>
-                  const SliverFillRemaining(child: VideosListLoading()),
-              error: (e) {
-                return SliverFillRemaining(child: ErrorMessageWidget(e));
-              },
-              orElse: () => const SliverFillRemaining(child: SizedBox()));
-        },
-      );
-    });
+    return GetBuilder<SubscriptionsPageLogic>(
+        tag: "1",
+        id: "update-subscribed-channels",
+        builder: (controller) {
+          return BlocBuilder<ChannelVideosCubit, ChannelVideosState>(
+            bloc: ChannelVideosCubit.get(context)
+              ..getVideosOfThoseChannels(controller.allSubscribedChannels),
+            buildWhen: (previous, current) =>
+                previous != current && current is VideosOfThoseChannelsLoaded,
+            builder: (context, state) {
+              return state.maybeWhen(
+                  videosOfThoseChannelsLoaded: (videosItems) {
+                    return SliverList(
+                      delegate: SliverChildBuilderDelegate(
+                        childCount: videosItems.length,
+                        (context, index) => Padding(
+                          padding: REdgeInsets.only(bottom: 15),
+                          child: ThumbnailOfVideo(videosItems[index]),
+                        ),
+                      ),
+                    );
+                  },
+                  loading: () =>
+                      const SliverFillRemaining(child: VideosListLoading()),
+                  error: (e) {
+                    return SliverFillRemaining(child: ErrorMessageWidget(e));
+                  },
+                  orElse: () => const SliverFillRemaining(child: SizedBox()));
+            },
+          );
+        });
   }
 
   @override
@@ -137,38 +138,41 @@ class _BottomChannelsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final logic = Get.find<SubscriptionsPageLogic>(tag: "1");
-    return Obx(() {
-      switch (logic.selectedChannelIndex.value) {
-        case null:
-          return const Flexible(child: _FilteredOptions());
-        default:
-          return Align(
-            alignment: AlignmentDirectional.centerEnd,
-            child: Padding(
-              padding: REdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
-              child: InkWell(
-                onTap: () {
-                  Go(context).to(
-                    UserChannelPage(
-                      UserChannelPageParameters(
-                        channelId:
-                            logic.selectedChannelItemDetails?.getChannelId() ??
-                                "",
+    return GetBuilder<SubscriptionsPageLogic>(
+      tag: "1",
+      id: "update-selected-channel",
+      builder: (controller) {
+        switch (controller.selectedChannelIndex) {
+          case null:
+            return const Flexible(child: _FilteredOptions());
+          default:
+            return Align(
+              alignment: AlignmentDirectional.centerEnd,
+              child: Padding(
+                padding: REdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
+                child: InkWell(
+                  onTap: () {
+                    Go(context).to(
+                      UserChannelPage(
+                        UserChannelPageParameters(
+                          channelId: controller.selectedChannelItemDetails
+                                  ?.getChannelId() ??
+                              "",
+                        ),
                       ),
-                    ),
-                  );
-                },
-                child: Text(
-                  "VIEW CHANNELS",
-                  style: getMediumStyle(
-                      color: ColorManager.darkBlue, fontSize: 13),
+                    );
+                  },
+                  child: Text(
+                    "VIEW CHANNELS",
+                    style: getMediumStyle(
+                        color: ColorManager.darkBlue, fontSize: 13),
+                  ),
                 ),
               ),
-            ),
-          );
-      }
-    });
+            );
+        }
+      },
+    );
   }
 }
 
@@ -265,19 +269,21 @@ class _ChannelItem extends StatelessWidget {
   final MySubscriptionsItem? mySubscriptionsItem;
   @override
   Widget build(BuildContext context) {
-    final logic = Get.find<SubscriptionsPageLogic>(tag: "1");
-    return Padding(
-      padding: REdgeInsetsDirectional.only(
-          start: index == 0 ? 10 : 0, end: index == 49 ? 10 : 0),
-      child: InkWell(
-        onTap: () {
-          logic.selectedChannelItemDetails = mySubscriptionsItem;
-          logic.selectedChannelIndex.value = index;
-        },
-        child: Obx(
-          () {
-            int? selectedIndex = logic.selectedChannelIndex.value;
-            return Container(
+    return GetBuilder<SubscriptionsPageLogic>(
+      tag: "1",
+      id: "update-selected-channel",
+      builder: (controller) {
+        int? selectedIndex = controller.selectedChannelIndex;
+
+        return Padding(
+          padding: REdgeInsetsDirectional.only(
+              start: index == 0 ? 10 : 0, end: index == 49 ? 10 : 0),
+          child: InkWell(
+            onTap: () {
+              controller.selectedChannelItemDetails = mySubscriptionsItem;
+              controller.selectedChannelIndex = index;
+            },
+            child: Container(
               padding: REdgeInsetsDirectional.only(start: 5, end: 5),
               color: selectedIndex != null && selectedIndex == index
                   ? ColorManager.lightBlue
@@ -290,10 +296,10 @@ class _ChannelItem extends StatelessWidget {
                           Color.fromARGB(48, 180, 180, 180),
                           BlendMode.modulate),
                       child: _ChannelImageName(mySubscriptionsItem)),
-            );
-          },
-        ),
-      ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

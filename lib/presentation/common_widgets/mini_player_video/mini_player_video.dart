@@ -65,7 +65,7 @@ class _MiniPlayerVideoState extends State<MiniPlayerVideo> {
         minHeight: _miniVideoViewLogic.minHeight,
         maxHeight: _miniVideoViewLogic.maxHeight,
         onDismissed: () {
-          _miniVideoViewLogic.selectedVideoDetails = null;
+          _miniVideoViewLogic.setSelectedVideoDetails = null;
           _miniVideoViewLogic.isMiniVideoInitialized.value = false;
           try {
             _miniVideoViewLogic.videoController?.dispose();
@@ -79,7 +79,7 @@ class _MiniPlayerVideoState extends State<MiniPlayerVideo> {
             _miniVideoViewLogic.heightOFMiniPage = height;
           });
 
-          return _MiniVideoDisplay(height, percentage);
+          return _MiniVideoDisplay(percentage);
         },
       ),
     );
@@ -87,8 +87,7 @@ class _MiniPlayerVideoState extends State<MiniPlayerVideo> {
 }
 
 class _MiniVideoDisplay extends StatelessWidget {
-  const _MiniVideoDisplay(this.height, this.percentage);
-  final double height;
+  const _MiniVideoDisplay(this.percentage);
   final double percentage;
   @override
   Widget build(BuildContext context) {
@@ -97,17 +96,15 @@ class _MiniVideoDisplay extends StatelessWidget {
         color: Theme.of(context).primaryColor,
         child: GetBuilder<MiniVideoViewLogic>(
           tag: "1",
-          id: "update mini player",
+          id: "update-mini-player",
           builder: (miniVideoViewLogic) => Stack(
             children: [
               Padding(
                 padding: EdgeInsets.only(
-                    top: miniVideoViewLogic.videoOfMiniDisplayHeight(
-                        screenHeight: height, percentage: percentage)),
+                    top: miniVideoViewLogic.videoOfMiniDisplayHeight()),
                 child: const _NextVideosSuggestions(),
               ),
               _MiniVideoView(
-                  height: height,
                   percentage: percentage,
                   durationVideoValue:
                       miniVideoViewLogic.getDurationVideoValue(),
@@ -125,30 +122,33 @@ class _NextVideosSuggestions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      final logic = Get.find<MiniVideoViewLogic>(tag: "1");
-      String videoId = logic.selectedVideoDetails?.id ?? "";
-      return BlocBuilder<SearchCubit, SearchState>(
-        bloc: SearchCubit.get(context)..relatedVideosToThisVideo(videoId),
-        buildWhen: (previous, current) =>
-            previous != current &&
-            (current is RelatedVideosLoaded || current is SearchLoading),
-        builder: (context, state) {
-          if (state is RelatedVideosLoaded) {
-            return CustomScrollView(
-              slivers: [
-                const _VideoInfo(),
-                _RelatedVideosList(state),
-              ],
-            );
-          } else if (state is SearchError) {
-            return ErrorMessageWidget(state.networkExceptions);
-          } else {
-            return const _LoadingWidgets();
-          }
-        },
-      );
-    });
+    return GetBuilder<MiniVideoViewLogic>(
+      tag: "1",
+      id: "update-selected-video",
+      builder: (controller) {
+        String videoId = controller.getSelectedVideoDetails?.id ?? "";
+        return BlocBuilder<SearchCubit, SearchState>(
+          bloc: SearchCubit.get(context)..relatedVideosToThisVideo(videoId),
+          buildWhen: (previous, current) =>
+              previous != current &&
+              (current is RelatedVideosLoaded || current is SearchLoading),
+          builder: (context, state) {
+            if (state is RelatedVideosLoaded) {
+              return CustomScrollView(
+                slivers: [
+                  const _VideoInfo(),
+                  _RelatedVideosList(state),
+                ],
+              );
+            } else if (state is SearchError) {
+              return ErrorMessageWidget(state.networkExceptions);
+            } else {
+              return const _LoadingWidgets();
+            }
+          },
+        );
+      },
+    );
   }
 }
 
@@ -204,10 +204,11 @@ class _CircleNameSubscribersWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: REdgeInsets.symmetric(horizontal: 10, vertical: 2),
-      child: Obx(
-        () {
-          final logic = Get.find<MiniVideoViewLogic>(tag: "1");
-          VideoDetailsItem? videoDetails = logic.selectedVideoDetails;
+      child: GetBuilder<MiniVideoViewLogic>(
+        tag: "1",
+        id: "update-selected-video",
+        builder: (controller) {
+          VideoDetailsItem? videoDetails = controller.getSelectedVideoDetails;
 
           return InkWell(
             onTap: () {
@@ -271,7 +272,7 @@ class _InteractButtons extends StatelessWidget {
           children: [
             const _LikeButton(),
             Padding(
-              padding: REdgeInsetsDirectional.only(start: 35, top: 15,end: 35),
+              padding: REdgeInsetsDirectional.only(start: 35, top: 15, end: 35),
               child: const _DislikeButton(),
             ),
             Padding(
@@ -339,10 +340,11 @@ class _VideoTitleSubNumbersTexts extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Obx(
-              () {
-                final logic = Get.find<MiniVideoViewLogic>(tag: "1");
-                VideoDetailsItem? videoDetails = logic.selectedVideoDetails;
+            GetBuilder<MiniVideoViewLogic>(
+              tag: "1",
+              id: "update-selected-video",
+              builder: (logic) {
+                VideoDetailsItem? videoDetails = logic.getSelectedVideoDetails;
                 return Flexible(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -356,7 +358,7 @@ class _VideoTitleSubNumbersTexts extends StatelessWidget {
                       ),
                       const RSizedBox(height: 8),
                       Text(
-                        "${videoDetails?.getVideoViewsCount()} views . ${videoDetails?.getVideoPublishedTime()} ago",
+                        "${videoDetails?.getVideoViewsCount()} views . ${videoDetails?.getVideoPublishedTime()}",
                         overflow: TextOverflow.ellipsis,
                         style: getNormalStyle(
                             color: ColorManager(context).grey7, fontSize: 13),
