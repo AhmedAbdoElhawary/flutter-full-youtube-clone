@@ -9,9 +9,12 @@ import 'package:youtube/presentation/custom_packages/pod_player/pod_player.dart'
 
 class MiniVideoViewLogic extends GetxController {
   final Rx<VideoDetailsItem?> _selectedVideoDetails = Rxn<VideoDetailsItem?>();
+  final Rx<VideoDetailsItem?> _selectedMovedVideoDetails =
+      Rxn<VideoDetailsItem?>();
   final Rx<String> _selectedVideoRating = "none".obs;
   PodPlayerController? videoController;
-  PodPlayerController? thumbnailVideoController;
+
+  final RxBool _moveThumbnailVideo = true.obs;
   MiniPlayerController miniPlayerController = MiniPlayerController();
   final RxDouble _percentageOFMiniPage = 0.0.obs;
   final RxDouble _heightOFMiniPage = 50.0.obs;
@@ -24,11 +27,10 @@ class MiniVideoViewLogic extends GetxController {
 
   void initializeVideoController(
       {VideoDetailsItem? videoDetailsItem, bool isThatThumbnailVideo = false}) {
-    selectedVideoDetails = videoDetailsItem;
-    disposeThumbnailVideo();
+    setSelectedVideoDetails = videoDetailsItem;
 
     String videoId = videoDetailsItem?.id ?? "";
-    String url = _url(videoId);
+    String url = getUrl(videoId);
 
     miniPlayerController.animateToHeight(
         height: maxHeight, duration: const Duration(milliseconds: 300));
@@ -42,19 +44,7 @@ class MiniVideoViewLogic extends GetxController {
     }
   }
 
-  void pauseThumbnailVideo() {
-    thumbnailVideoController?.pause();
-  }
-
-  void playThumbnailVideo() {
-    thumbnailVideoController?.play();
-  }
-
-  void disposeThumbnailVideo() {
-    thumbnailVideoController?.pause();
-
-    thumbnailVideoController = null;
-  }
+  String getUrl(String videoId) => 'https://youtu.be/$videoId';
 
   Future<void> _changeController(String videoId) async {
     if (videoId.isNotEmpty && videoController != null) {
@@ -76,10 +66,8 @@ class MiniVideoViewLogic extends GetxController {
     _addVideoListener();
   }
 
-  static PlayVideoFrom getPlayVideoFrom(String videoId) =>
-      PlayVideoFrom.youtube(_url(videoId));
-
-  static String _url(String videoId) => 'https://youtu.be/$videoId';
+  PlayVideoFrom getPlayVideoFrom(String videoId) =>
+      PlayVideoFrom.youtube(getUrl(videoId));
 
   void _addVideoListener() {
     videoController!.addListener(controlListener);
@@ -89,7 +77,7 @@ class MiniVideoViewLogic extends GetxController {
     if (percentageOFMiniPage <= 0.4) {
       _isMiniVideoPlaying.value = videoController?.isVideoPlaying ?? true;
       getDurationVideoValue();
-      update(["update mini player"]);
+      update(["update-mini-player"]);
     }
   }
 
@@ -106,31 +94,55 @@ class MiniVideoViewLogic extends GetxController {
     return min(basicWidth, screenWidth);
   }
 
-  double videoOfMiniDisplayHeight(
-      {required double screenHeight, required double percentage}) {
-    double newHeight = 48.h + (screenHeight - 50.h);
-    double secondHeight = max(percentage * 185.h, 90.h);
-    double height = percentage <= 0.05 ? newHeight : secondHeight;
+  double videoOfMiniDisplayHeight() {
+    double newHeight = 48.h + (heightOFMiniPage - 50.h);
+    double secondHeight = max(percentageOFMiniPage * 185.h, 90.h);
+    double height = percentageOFMiniPage <= 0.05 ? newHeight : secondHeight;
     return height;
   }
 
   set isMiniVideoPlaying(bool value) => _isMiniVideoPlaying.value = value;
 
   set stopThumbnailVideo(bool value) {
-    disposeThumbnailVideo();
     _stopThumbnailVideo.value = value;
   }
 
   set heightOFMiniPage(double value) => _heightOFMiniPage.value = value;
-  set selectedVideoRating(String value) => _selectedVideoRating.value = value;
 
-  set selectedVideoDetails(VideoDetailsItem? value) =>
-      _selectedVideoDetails.value = value;
+  set selectedVideoRating(String value) {
+    _selectedVideoRating.value = value;
+    update(["update-video-rating"]);
+  }
+
+  void updateSelectedVideo(){
+    update(["update-selected-video"]);
+  }
+
+  set setSelectedVideoDetails(VideoDetailsItem? value) {
+    _selectedVideoDetails.value = value;
+    update(["update-selected-video"]);
+  }
 
   set percentageOFMiniPage(double value) {
     _percentageOFMiniPage.value = value;
 
     heightOfNavigationBar.value = (1 - value) * 44;
+    update(["update-mini-player"]);
+  }
+
+  bool get moveThumbnailVideo => _moveThumbnailVideo.value;
+
+  set moveThumbnailVideo(bool value) {
+    _moveThumbnailVideo.value = value;
+    update(["update-selected-video"]);
+  }
+
+  VideoDetailsItem? get selectedMovedVideoDetails =>
+      _selectedMovedVideoDetails.value;
+
+  set selectedMovedVideoDetails(VideoDetailsItem? value) {
+    _selectedMovedVideoDetails.value = value;
+    // update(["update-thumbnail-moved-video"]);
   }
 
   bool get stopThumbnailVideo => _stopThumbnailVideo.value;
@@ -140,7 +152,7 @@ class MiniVideoViewLogic extends GetxController {
   double get percentageOFMiniPage => _percentageOFMiniPage.value;
   double get heightOFMiniPage => _heightOFMiniPage.value;
 
-  VideoDetailsItem? get selectedVideoDetails => _selectedVideoDetails.value;
+  VideoDetailsItem? get getSelectedVideoDetails => _selectedVideoDetails.value;
 
   double get minHeight => _minHeight;
   double get maxHeight => _height;

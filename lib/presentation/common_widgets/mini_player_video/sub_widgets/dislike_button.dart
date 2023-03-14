@@ -6,7 +6,7 @@ class _DislikeButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final miniVideoViewLogic = Get.find<MiniVideoViewLogic>(tag: "1");
-    VideoDetailsItem? videoDetails = miniVideoViewLogic.selectedVideoDetails;
+    VideoDetailsItem? videoDetails = miniVideoViewLogic.getSelectedVideoDetails;
     String videoId = videoDetails?.id ?? "";
     if (videoId.isEmpty) {
       return _DislikeIconButton(videoId: videoId, videoDetails: videoDetails);
@@ -42,39 +42,36 @@ class _DislikeButton extends StatelessWidget {
   }
 }
 
-class _DislikeIconButton extends StatefulWidget {
+class _DislikeIconButton extends StatelessWidget {
   const _DislikeIconButton(
       {required this.videoId, this.ratingDetails, required this.videoDetails});
   final RatingDetails? ratingDetails;
   final String videoId;
   final VideoDetailsItem? videoDetails;
   @override
-  State<_DislikeIconButton> createState() => _DislikeIconButtonState();
-}
-
-class _DislikeIconButtonState extends State<_DislikeIconButton> {
-  final miniVideoViewLogic = Get.find<MiniVideoViewLogic>(tag: "1");
-
-  @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        if (widget.videoId.isNotEmpty) {
-          String rating =
-              widget.ratingDetails?.rating == "none" ? "none" : "dislike";
-          SingleVideoCubit.get(context)
-              .rateThisVideo(videoId: widget.videoId, rating: rating);
+    return GetBuilder<MiniVideoViewLogic>(
+      tag: "1",
+      id: "update-video-rating",
+      builder: (controller) {
+        return InkWell(
+          onTap: () {
+            if (videoId.isNotEmpty) {
+              String rating =
+                  ratingDetails?.rating == "none" ? "none" : "dislike";
+              SingleVideoCubit.get(context)
+                  .rateThisVideo(videoId: videoId, rating: rating);
 
-          miniVideoViewLogic.selectedVideoRating = rating;
-        }
-      },
-      child: Obx(() => Column(
+              controller.selectedVideoRating = rating;
+            }
+          },
+          child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               Transform.rotate(
                 alignment: Alignment.center,
                 angle: 3.14159,
-                child: miniVideoViewLogic.selectedVideoRating != "dislike"
+                child: controller.selectedVideoRating != "dislike"
                     ? const SvgIcon(IconsAssets.likeIcon)
                     : const SvgIcon(IconsAssets.likeColoredIcon),
               ),
@@ -85,7 +82,9 @@ class _DislikeIconButtonState extends State<_DislikeIconButton> {
                     color: ColorManager(context).black, fontSize: 13),
               )
             ],
-          )),
+          ),
+        );
+      },
     );
   }
 }
