@@ -6,7 +6,7 @@ class _LikeButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final miniVideoViewLogic = Get.find<MiniVideoViewLogic>(tag: "1");
-    VideoDetailsItem? videoDetails = miniVideoViewLogic.selectedVideoDetails;
+    VideoDetailsItem? videoDetails = miniVideoViewLogic.getSelectedVideoDetails;
     String videoId = videoDetails?.id ?? "";
     if (videoId.isEmpty) {
       return _LikeIconButton(videoId: videoId, videoDetails: videoDetails);
@@ -56,7 +56,6 @@ class _LikeIconButton extends StatefulWidget {
 }
 
 class _LikeIconButtonState extends State<_LikeIconButton> {
-  final miniVideoViewLogic = Get.find<MiniVideoViewLogic>(tag: "1");
   String likeText = "";
   @override
   void initState() {
@@ -67,23 +66,27 @@ class _LikeIconButtonState extends State<_LikeIconButton> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: REdgeInsetsDirectional.only(start: 35, end: 3, top: 15),
-      child: InkWell(
-        onTap: () {
-          if (widget.videoId.isNotEmpty) {
-            String rating =
-                widget.ratingDetails?.rating == "none" ? "none" : "like";
-            SingleVideoCubit.get(context)
-                .rateThisVideo(videoId: widget.videoId, rating: rating);
+    return GetBuilder<MiniVideoViewLogic>(
+      tag: "1",
+      id: "update-video-rating",
+      builder: (controller) {
+        return Padding(
+          padding: REdgeInsetsDirectional.only(start: 35, end: 3, top: 15),
+          child: InkWell(
+            onTap: () {
+              if (widget.videoId.isNotEmpty) {
+                String rating =
+                    widget.ratingDetails?.rating == "none" ? "none" : "like";
+                SingleVideoCubit.get(context)
+                    .rateThisVideo(videoId: widget.videoId, rating: rating);
 
-            miniVideoViewLogic.selectedVideoRating = rating;
-          }
-        },
-        child: Obx(() => Column(
+                controller.selectedVideoRating = rating;
+              }
+            },
+            child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                miniVideoViewLogic.selectedVideoRating != "like"
+                controller.selectedVideoRating != "like"
                     ? const SvgIcon(IconsAssets.likeIcon)
                     : const SvgIcon(IconsAssets.likeColoredIcon),
                 const RSizedBox(height: 5),
@@ -93,8 +96,10 @@ class _LikeIconButtonState extends State<_LikeIconButton> {
                       color: ColorManager(context).black, fontSize: 13),
                 )
               ],
-            )),
-      ),
+            ),
+          ),
+        );
+      },
     );
   }
 }
