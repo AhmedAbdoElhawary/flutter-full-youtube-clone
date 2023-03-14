@@ -143,12 +143,39 @@ class AppTheme {
       splashColor: BaseColorManager.darkGray,
       appBarTheme: AppBarTheme(
         elevation: 0,
+        toolbarHeight: 56.r,
+        titleSpacing: 0,
         iconTheme: const IconThemeData(color: BaseColorManager.white),
         color: BaseColorManager.black,
         shadowColor: BaseColorManager.black54,
         titleTextStyle: getNormalStyle(
             fontSize: FontSize.s16, color: BaseColorManager.white),
       ),
+      tabBarTheme: TabBarTheme(
+        indicatorSize: TabBarIndicatorSize.label,indicatorColor:  BaseColorManager.white,
+        dividerColor:  BaseColorManager.white,
+        labelPadding: REdgeInsets.all(0),
+        indicator: const BoxDecoration(
+          border: Border(
+            bottom: BorderSide(color: BaseColorManager.white, width: 1.5),
+          ),
+        ),
+        labelColor: BaseColorManager.black,
+        unselectedLabelColor: BaseColorManager.grey3,
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.resolveWith<Color?>(
+                (_) => BaseColorManager.white,
+          ),
+          minimumSize:
+          MaterialStateProperty.all<Size>(const Size(double.infinity, 0)),
+          padding: MaterialStateProperty.all<REdgeInsets>(REdgeInsets.all(8)),
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              const RoundedRectangleBorder(borderRadius: BorderRadius.zero)),
+        ),
+      ),
+
       textTheme: TextTheme(
         bodyLarge: getNormalStyle(color: BaseColorManager.white),
         bodyMedium: getNormalStyle(color: BaseColorManager.white),
