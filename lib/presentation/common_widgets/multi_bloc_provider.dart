@@ -1,4 +1,4 @@
-part of'../my_app.dart';
+part of '../my_app.dart';
 
 class MultiBlocs extends StatelessWidget {
   final Widget materialApp;
@@ -12,7 +12,8 @@ class MultiBlocs extends StatelessWidget {
         create: (context) => injector<VideosDetailsCubit>(),
       ),
       BlocProvider<ChannelDetailsCubit>(
-        create: (context) => injector<ChannelDetailsCubit>(),
+        create: (context) =>
+            injector<ChannelDetailsCubit>()..getMySubscriptionsChannels(),
       ),
       BlocProvider<SingleVideoCubit>(
         create: (context) => injector<SingleVideoCubit>(),
