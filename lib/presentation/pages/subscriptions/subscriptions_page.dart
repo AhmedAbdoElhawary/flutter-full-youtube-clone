@@ -32,7 +32,6 @@ class _SubscriptionsPageState extends State<SubscriptionsPage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    Get.put(SubscriptionsPageLogic(), tag: "1");
 
     return Scaffold(
       body: SafeArea(
