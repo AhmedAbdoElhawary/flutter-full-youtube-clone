@@ -19,10 +19,14 @@ import '../pages/home/logic/home_page_logic.dart';
 
 class ThumbnailOfVideo extends StatelessWidget {
   const ThumbnailOfVideo(this.videoDetailsItem,
-      {this.enablePlaying = true, this.playVideo = false, super.key});
+      {this.enablePlaying = true,
+      this.playVideo = false,
+      this.isThatFloatingPlayer = false,
+      super.key});
   final VideoDetailsItem? videoDetailsItem;
   final bool enablePlaying;
   final bool playVideo;
+  final bool isThatFloatingPlayer;
   @override
   Widget build(BuildContext context) {
     bool isUrlFailed = videoDetailsItem?.getVideoThumbnails() != null;
@@ -57,7 +61,7 @@ class ThumbnailOfVideo extends StatelessWidget {
             ],
           ],
           const RSizedBox(height: 10),
-          _VideoSubTitles(videoDetailsItem),
+          _VideoSubTitles(videoDetailsItem, isThatFloatingPlayer),
           const RSizedBox(height: 15),
         ],
       ),
@@ -143,8 +147,9 @@ class _MovedVideoDisplayState extends State<MovedVideoDisplay> {
 }
 
 class _VideoSubTitles extends StatelessWidget {
-  const _VideoSubTitles(this.videoItem);
+  const _VideoSubTitles(this.videoItem, this.isThatFloatingPlayer);
   final VideoDetailsItem? videoItem;
+  final bool isThatFloatingPlayer;
 
   @override
   Widget build(BuildContext context) {
@@ -165,6 +170,7 @@ class _VideoSubTitles extends StatelessWidget {
             imageUrl: channelImage,
             channelId: channelId,
             channelDetailsItem: channelDetailsItem,
+            isThatFloatingPlayer: isThatFloatingPlayer,
           ),
           const RSizedBox(width: 10),
           Expanded(

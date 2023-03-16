@@ -214,7 +214,7 @@ class _PopularButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Go(context).to( const MostPopularVideosPage(key:Key("from-home-page")),prevScreen: "qw");
+        Go(context).to(const MostPopularVideosPage());
       },
       child: Padding(
         padding: REdgeInsets.symmetric(vertical: 12.0),

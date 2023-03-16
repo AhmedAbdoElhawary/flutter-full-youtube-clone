@@ -171,7 +171,7 @@ class PlaylistHorizontalDescriptionsList extends StatelessWidget {
             playListsItem?.getPlaylistThumbnails(),
             height: 80,
             width: 160,
-            childAboveImage: _PlaylistCountBanner(playListsItem: playListsItem),
+            childAboveImage: _PlaylistCountBanner(playListsItem),
           ),
           const RSizedBox(width: 15),
           Expanded(
@@ -191,7 +191,7 @@ class PlaylistHorizontalDescriptionsList extends StatelessWidget {
                   Text(
                     channelName,
                     style: getNormalStyle(
-                        color: ColorManager(context).grey7, fontSize: 12),
+                        color:BaseColorManager.grey, fontSize: 12),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
                   ),
@@ -209,7 +209,7 @@ class PlaylistHorizontalDescriptionsList extends StatelessWidget {
 }
 
 class _PlaylistCountBanner extends StatelessWidget {
-  const _PlaylistCountBanner({this.playListsItem});
+  const _PlaylistCountBanner(this.playListsItem);
 
   final PlayListItem? playListsItem;
 

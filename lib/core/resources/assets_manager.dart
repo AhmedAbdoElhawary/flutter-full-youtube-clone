@@ -26,7 +26,7 @@ class IconsAssets {
   static const String subscriptionIcon = "$_iconPath/video-playlist.svg";
   static const String libraryIcon = "$_iconPath/video-library-1.svg";
   static const String libraryColoredIcon =
-      "$_iconPath/video-library-colored-1.svg";
+      "$_iconPath/video-library-1-01.svg";
 
   static const String trendingIcon = "$_iconPath/navigation.svg";
   static const String likeIcon = "$_iconPath/thumbs-up.svg";

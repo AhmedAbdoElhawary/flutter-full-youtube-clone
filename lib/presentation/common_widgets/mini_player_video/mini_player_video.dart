@@ -105,10 +105,9 @@ class _MiniVideoDisplay extends StatelessWidget {
                 child: const _NextVideosSuggestions(),
               ),
               _MiniVideoView(
-                  percentage: percentage,
-                  durationVideoValue:
-                      miniVideoViewLogic.getDurationVideoValue(),
-                  isPlaying: miniVideoViewLogic.isMiniVideoPlaying),
+                percentage: percentage,
+                durationVideoValue: miniVideoViewLogic.getDurationVideoValue(),
+              ),
             ],
           ),
         ),
@@ -160,8 +159,11 @@ class _RelatedVideosList extends StatelessWidget {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (BuildContext context, int index) {
-          return ThumbnailOfVideo(state.videosDetails.videoDetailsItem![index],
-              enablePlaying: false);
+          return ThumbnailOfVideo(
+            state.videosDetails.videoDetailsItem![index],
+            enablePlaying: false,
+            isThatFloatingPlayer: true,
+          );
         },
         childCount: state.videosDetails.videoDetailsItem?.length ?? 0,
       ),
@@ -212,6 +214,7 @@ class _CircleNameSubscribersWidget extends StatelessWidget {
 
           return InkWell(
             onTap: () {
+              controller.stateOfMiniPlayer(extendHeight: false);
               Go(context).to(UserChannelPage(
                 UserChannelPageParameters(
                   channelDetailsItem: videoDetails?.getChannelSubDetails(),
@@ -224,6 +227,9 @@ class _CircleNameSubscribersWidget extends StatelessWidget {
                 CircularProfileImage(
                   imageUrl: videoDetails?.getChannelProfileImageUrl() ?? "",
                   radius: 17.r,
+                  enableTapping: true,
+                  channelId: videoDetails?.getChannelId() ?? "",
+                  channelDetailsItem: videoDetails?.getChannelSubDetails(),
                 ),
                 const RSizedBox(width: 10),
                 Expanded(
@@ -247,7 +253,8 @@ class _CircleNameSubscribersWidget extends StatelessWidget {
                   ),
                 ),
                 SubscribeButton(
-                    channelId: videoDetails?.getChannelId() ?? "",
+                    channelItem:
+                        videoDetails?.getChannelSubDetails(),
                     makeItExpanded: false,
                     fontSize: 13),
               ],
@@ -361,7 +368,7 @@ class _VideoTitleSubNumbersTexts extends StatelessWidget {
                         "${videoDetails?.getVideoViewsCount()} views . ${videoDetails?.getVideoPublishedTime()}",
                         overflow: TextOverflow.ellipsis,
                         style: getNormalStyle(
-                            color: ColorManager(context).grey7, fontSize: 13),
+                            color: BaseColorManager.grey, fontSize: 13),
                       ),
                     ],
                   ),

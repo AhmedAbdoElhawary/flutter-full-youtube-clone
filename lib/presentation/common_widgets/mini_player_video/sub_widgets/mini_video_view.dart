@@ -3,12 +3,10 @@ part of '../mini_player_video.dart';
 class _MiniVideoView extends StatelessWidget {
   const _MiniVideoView({
     required this.percentage,
-    required this.isPlaying,
     required this.durationVideoValue,
   });
 
   final double percentage;
-  final bool isPlaying;
   final double durationVideoValue;
   @override
   Widget build(BuildContext context) {
@@ -22,26 +20,11 @@ class _MiniVideoView extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               const _VideoOfMiniDisplay(),
-              const VideoTitleSubTitleTexts(),
-              _PlayPauseButtons(isPlaying: isPlaying),
-              Expanded(
-                flex: 1,
-                child: GestureDetector(
-                  child: const Icon(Icons.close),
-                  onTap: () {
-                    final miniVideoViewLogic =
-                        Get.find<MiniVideoViewLogic>(tag: "1");
-
-                    miniVideoViewLogic.setSelectedVideoDetails = null;
-                    miniVideoViewLogic.isMiniVideoInitialized.value = false;
-                    try {
-                      miniVideoViewLogic.videoController?.dispose();
-                    } catch (e) {
-                      rethrow;
-                    }
-                  },
-                ),
-              ),
+              if (percentage <= 0.4) ...[
+                const VideoTitleSubTitleTexts(),
+                const _PlayPauseButtons(),
+                const _CloseButton(),
+              ],
             ],
           ),
         ),
@@ -63,10 +46,33 @@ class _MiniVideoView extends StatelessWidget {
   }
 }
 
-class _PlayPauseButtons extends StatefulWidget {
-  const _PlayPauseButtons({required this.isPlaying});
+class _CloseButton extends StatelessWidget {
+  const _CloseButton();
 
-  final bool isPlaying;
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      flex: 1,
+      child: GestureDetector(
+        child: const Icon(Icons.close),
+        onTap: () {
+          final miniVideoViewLogic = Get.find<MiniVideoViewLogic>(tag: "1");
+
+          miniVideoViewLogic.setSelectedVideoDetails = null;
+          miniVideoViewLogic.isMiniVideoInitialized.value = false;
+          try {
+            miniVideoViewLogic.videoController?.dispose();
+          } catch (e) {
+            rethrow;
+          }
+        },
+      ),
+    );
+  }
+}
+
+class _PlayPauseButtons extends StatefulWidget {
+  const _PlayPauseButtons();
 
   @override
   State<_PlayPauseButtons> createState() => _PlayPauseButtonsState();

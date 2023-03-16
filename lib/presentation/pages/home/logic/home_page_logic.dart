@@ -23,7 +23,6 @@ class MiniVideoViewLogic extends GetxController {
   final double _height = screenSize.height - 10.h;
   final RxBool isMiniVideoInitialized = false.obs;
   final RxBool _isMiniVideoPlaying = false.obs;
-  final RxBool _stopThumbnailVideo = false.obs;
 
   void initializeVideoController(
       {VideoDetailsItem? videoDetailsItem, bool isThatThumbnailVideo = false}) {
@@ -32,8 +31,7 @@ class MiniVideoViewLogic extends GetxController {
     String videoId = videoDetailsItem?.id ?? "";
     String url = getUrl(videoId);
 
-    miniPlayerController.animateToHeight(
-        height: maxHeight, duration: const Duration(milliseconds: 300));
+    stateOfMiniPlayer();
 
     if (videoController?.videoUrl == url) return;
 
@@ -55,6 +53,12 @@ class MiniVideoViewLogic extends GetxController {
 
       _addVideoListener();
     }
+  }
+
+  void stateOfMiniPlayer({bool extendHeight = true}) {
+    miniPlayerController.animateToHeight(
+        height: extendHeight ? maxHeight : minHeight,
+        duration: const Duration(milliseconds: 300));
   }
 
   void _firstInitialized(String videoId) {
@@ -103,10 +107,6 @@ class MiniVideoViewLogic extends GetxController {
 
   set isMiniVideoPlaying(bool value) => _isMiniVideoPlaying.value = value;
 
-  set stopThumbnailVideo(bool value) {
-    _stopThumbnailVideo.value = value;
-  }
-
   set heightOFMiniPage(double value) => _heightOFMiniPage.value = value;
 
   set selectedVideoRating(String value) {
@@ -114,7 +114,7 @@ class MiniVideoViewLogic extends GetxController {
     update(["update-video-rating"]);
   }
 
-  void updateSelectedVideo(){
+  void updateSelectedVideo() {
     update(["update-selected-video"]);
   }
 
@@ -144,8 +144,6 @@ class MiniVideoViewLogic extends GetxController {
     _selectedMovedVideoDetails.value = value;
     // update(["update-thumbnail-moved-video"]);
   }
-
-  bool get stopThumbnailVideo => _stopThumbnailVideo.value;
 
   String get selectedVideoRating => _selectedVideoRating.value;
   bool get isMiniVideoPlaying => _isMiniVideoPlaying.value;

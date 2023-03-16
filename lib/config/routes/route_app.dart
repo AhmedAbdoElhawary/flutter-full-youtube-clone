@@ -12,17 +12,18 @@ class Go {
       Get.find<MiniVideoViewLogic>(tag: "1");
   Go(this.context);
   to(Widget page, {bool appearNavigationBar = true, String? prevScreen}) {
-    Get.find<MiniVideoViewLogic>(tag: "1").moveThumbnailVideo = false;
+    final logic = Get.find<MiniVideoViewLogic>(tag: "1");
+    final route = CupertinoPageRoute(
+        builder: (context) => page, maintainState: appearNavigationBar);
+    if (logic.moveThumbnailVideo) {
+      logic.moveThumbnailVideo = false;
+      return Navigator.of(context, rootNavigator: !appearNavigationBar)
+          .push(route)
+          .then((value) => logic.moveThumbnailVideo = true);
+    }
+
     return Navigator.of(context, rootNavigator: !appearNavigationBar)
-        .push(
-      CupertinoPageRoute(
-          builder: (context) => page, maintainState: appearNavigationBar),
-    )
-        .then((value) {
-      if (context.widget.toString() == "_MyChannelIconButton") {
-        Get.find<MiniVideoViewLogic>(tag: "1").moveThumbnailVideo = true;
-      }
-    });
+        .push(route);
   }
 
   offAll(Widget page) => Navigator.of(context).pushAndRemoveUntil(

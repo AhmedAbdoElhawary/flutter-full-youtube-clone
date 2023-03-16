@@ -69,11 +69,11 @@ class ChannelDetailsCubit extends Cubit<ChannelDetailsState> {
             emit(ChannelDetailsState.subscriptionError(exception)));
   }
 
-  Future<void> subscribeToChannel(String subscriptionId) async {
+  Future<void> subscribeToChannel({required String channelId}) async {
     emit(const ChannelDetailsState.subscriptionLoading());
 
     ApiResult<void> channelDetails = await _subscribeToChannelUseCase.call(
-        params: ChannelDetailsUseCaseParameters(channelId: subscriptionId));
+        params: ChannelDetailsUseCaseParameters(channelId: channelId));
 
     channelDetails.when(
         success: (_) =>
@@ -82,7 +82,7 @@ class ChannelDetailsCubit extends Cubit<ChannelDetailsState> {
             emit(ChannelDetailsState.subscriptionError(exception)));
   }
 
-  Future<void> deleteSubscription(String subscriptionId) async {
+  Future<void> deleteSubscription({required String subscriptionId}) async {
     emit(const ChannelDetailsState.subscriptionLoading());
 
     ApiResult<void> channelDetails = await _deleteSubscriptionUseCase.call(

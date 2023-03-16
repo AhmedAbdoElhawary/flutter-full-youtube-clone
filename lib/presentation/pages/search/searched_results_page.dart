@@ -44,13 +44,15 @@ class _SearchedResultsPageState extends State<SearchedResultsPage>
           RSizedBox(width: 15),
           MicIconButton(),
           RSizedBox(width: 20),
-          SvgIcon(IconsAssets.menuPointsVerticalIcon,size: 15),
+          SvgIcon(IconsAssets.menuPointsVerticalIcon, size: 15),
           RSizedBox(width: 20),
         ],
       ),
       body: BlocBuilder<SearchCubit, SearchState>(
         bloc: SearchCubit.get(context)
           ..searchForThisSentence(widget.parameter.text),
+        buildWhen: (previous, current) =>
+            previous != current && current is SearchForTheSentenceLoaded,
         builder: (context, state) {
           if (state is SearchForTheSentenceLoaded) {
             return ListView.builder(

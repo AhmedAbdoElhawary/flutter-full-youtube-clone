@@ -145,6 +145,8 @@ class _ButtonsAboveBio extends StatelessWidget {
               ),
               const RSizedBox(height: 5),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Flexible(
                     child: GestureDetector(
@@ -165,7 +167,7 @@ class _ButtonsAboveBio extends StatelessWidget {
                 ],
               ),
               const RSizedBox(height: 10),
-              SubscribeButton(fontSize: 15, channelId: channelItem.id ?? ""),
+              SubscribeButton(fontSize: 15,channelItem: channelItem),
             ],
           ),
         ),

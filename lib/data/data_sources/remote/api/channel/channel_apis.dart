@@ -16,7 +16,8 @@ abstract class ChannelAPIs {
     @Query("id") required String channelId,
   });
 
-  @GET("channels?part=brandingSettings,contentDetails,statistics,snippet&mine=true")
+  @GET(
+      "channels?part=brandingSettings,contentDetails,statistics,snippet&mine=true")
   Future<ChannelSubDetails> getMyChannelInfo({
     @Query("key") final String apiKey = apiKey,
     @Query("access_token") required String accessToken,
@@ -36,10 +37,11 @@ abstract class ChannelAPIs {
   /// -snippet
   /// -subscriberSnippet
   @POST("subscriptions?part=snippet")
-  Future<dynamic> subscribeToChannel(
-      {@Query("key") final String apiKey = apiKey,
-      @Body() required Map<String, dynamic> body,
-      @Header("Authorization") required String accessToken});
+  Future<dynamic> subscribeToChannel({
+    @Query("key") final String apiKey = apiKey,
+    @Body() required Map<String, dynamic> body,
+    @Query("access_token") required String accessToken,
+  });
 
   /// [id] is idToken
   @DELETE("subscriptions")
