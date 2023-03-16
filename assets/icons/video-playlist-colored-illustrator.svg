@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 24.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 700 700" style="enable-background:new 0 0 700 700;" xml:space="preserve">
-<style type="text/css">
-	.st0{stroke:#FFFFFF;stroke-miterlimit:10;}
-	.st1{fill:#FFFFFF;stroke:#000000;stroke-miterlimit:10;}
-</style>
-<path class="st0" d="M126,149.33h448v317.34H126V149.33z M144.668,167.998h410.66v280h-410.66V167.998z M200.668,74.666h298.66
-	V93.33h-298.66V74.666z M163.332,111.998h373.34v18.668h-373.34V111.998z"/>
-<polygon class="st1" points="294.002,242.668 424.672,308 294.002,373.332 "/>
+	 viewBox="0 0 700 700" enable-background="new 0 0 700 700" xml:space="preserve">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M95,224.58V586h502V224.58H95z M566.91,555.91H125.08V254.66h441.83V555.91z"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M125.08,254.66v301.25h441.83V254.66H125.08z M285.75,475.58V335l140.59,70.29
+	L285.75,475.58z"/>
+<rect x="185.335" y="80.453" fill-rule="evenodd" clip-rule="evenodd" width="321.326" height="30.08"/>
+<rect x="145.165" y="152.136" fill-rule="evenodd" clip-rule="evenodd" width="401.674" height="30.085"/>
 </svg>
