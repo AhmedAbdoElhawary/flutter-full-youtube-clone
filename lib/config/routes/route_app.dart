@@ -13,8 +13,6 @@ class Go {
   Go(this.context);
   to(Widget page, {bool appearNavigationBar = true, String? prevScreen}) {
     final logic = Get.find<MiniVideoViewLogic>(tag: "1");
-    // final route1 = ModalRoute.of(context)?.settings.name;
-    // print('didPush route: $route1');
     final route = CupertinoPageRoute(
         builder: (context) => page, maintainState: appearNavigationBar);
     if (logic.moveThumbnailVideo) {
