@@ -60,7 +60,7 @@ class _PopularShortVideos extends StatelessWidget {
       builder: (context, state) {
         if (state is ShortPopularVideosLoaded) {
           return _ShortVideosGridView(state.videoDetails);
-        } else if (state is Error) {
+        } else if (state is ChannelError) {
           return SliverFillRemaining(
               child: ErrorMessageWidget(state.networkExceptions));
         } else {
@@ -86,7 +86,7 @@ class _NewestShortVideos extends StatelessWidget {
       builder: (context, state) {
         if (state is ShortVideosLoaded) {
           return _ShortVideosGridView(state.videoDetails);
-        } else if (state is Error) {
+        } else if (state is ChannelError) {
           return SliverFillRemaining(
               child: ErrorMessageWidget(state.networkExceptions));
         } else {
@@ -131,7 +131,7 @@ class _BuildGridItem extends StatelessWidget {
       onTap: () {
         Go(context).to(ShortsPage(
           parameters: ShortsPageParameters(videoDetailsItem: videoDetailsItem),
-        ));
+        ),showFloatingVideo: false);
       },
       child: ThumbnailImage(
         videoDetailsItem[index].getVideoThumbnails(),

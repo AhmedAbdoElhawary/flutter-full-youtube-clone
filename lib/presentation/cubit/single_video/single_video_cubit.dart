@@ -39,7 +39,7 @@ class SingleVideoCubit extends Cubit<SingleVideoState> {
       BlocProvider.of<SingleVideoCubit>(context);
 
   Future<void> getVideoDetails({required String videoId}) async {
-    emit(const SingleVideoState.loading());
+    emit(const SingleVideoState.videoInfoLoading());
 
     ApiResult<VideosDetails> result = await _videoDetailsUseCase.call(
         params: VideoDetailsUseCaseParameters(videoId: videoId));
@@ -47,11 +47,11 @@ class SingleVideoCubit extends Cubit<SingleVideoState> {
     result.when(
         success: (videoDetails) =>
             emit(SingleVideoState.videoDetailsLoaded(videoDetails)),
-        failure: (exception) => emit(SingleVideoState.error(exception)));
+        failure: (exception) => emit(SingleVideoState.videoInfoError(exception)));
   }
 
   Future<void> getVideoRating({required String videoId}) async {
-    emit(const SingleVideoState.loading());
+    emit(const SingleVideoState.videoInfoLoading());
 
     ApiResult<RatingDetails> result = await _getVideoRatingUseCase.call(
         params: GetVideoRatingUseCaseParameter(videoId: videoId));
@@ -59,23 +59,23 @@ class SingleVideoCubit extends Cubit<SingleVideoState> {
     result.when(
         success: (ratingDetails) =>
             emit(SingleVideoState.getVideoRatingLoaded(ratingDetails)),
-        failure: (exception) => emit(SingleVideoState.error(exception)));
+        failure: (exception) => emit(SingleVideoState.videoInfoError(exception)));
   }
 
   Future<void> rateThisVideo(
       {required String videoId, required String rating}) async {
-    emit(const SingleVideoState.loading());
+    emit(const SingleVideoState.videoInfoLoading());
 
     ApiResult<void> result = await _rateVideoUseCase.call(
         params: RateVideoUseCaseParameter(videoId: videoId, rating: rating));
 
     result.when(
         success: (_) => emit(const SingleVideoState.ratingVideoLoaded()),
-        failure: (exception) => emit(SingleVideoState.error(exception)));
+        failure: (exception) => emit(SingleVideoState.videoInfoError(exception)));
   }
 
   Future<void> getFirstComment(String videoId) async {
-    emit(const SingleVideoState.loading());
+    emit(const SingleVideoState.videoInfoLoading());
 
     ApiResult<CommentDetails> result = await _firstCommentUseCase.call(
         params: VideoDetailsUseCaseParameters(videoId: videoId));
@@ -83,11 +83,11 @@ class SingleVideoCubit extends Cubit<SingleVideoState> {
     result.when(
         success: (commentDetails) =>
             emit(SingleVideoState.firstCommentLoaded(commentDetails)),
-        failure: (exception) => emit(SingleVideoState.error(exception)));
+        failure: (exception) => emit(SingleVideoState.videoInfoError(exception)));
   }
 
   Future<void> getAllComments(String videoId) async {
-    emit(const SingleVideoState.loading());
+    emit(const SingleVideoState.videoInfoLoading());
 
     ApiResult<CommentDetails> result = await _allCommentsUseCase.call(
         params: VideoDetailsUseCaseParameters(videoId: videoId));
@@ -95,11 +95,11 @@ class SingleVideoCubit extends Cubit<SingleVideoState> {
     result.when(
         success: (commentDetails) =>
             emit(SingleVideoState.allCommentLoaded(commentDetails)),
-        failure: (exception) => emit(SingleVideoState.error(exception)));
+        failure: (exception) => emit(SingleVideoState.videoInfoError(exception)));
   }
 
   Future<void> getAllReplies(String commentId) async {
-    emit(const SingleVideoState.loading());
+    emit(const SingleVideoState.videoInfoLoading());
 
     ApiResult<ReplyDetails> result = await _allRepliesUseCase.call(
         params: GetAllRepliesUseCaseParameters(commentId: commentId));
@@ -107,6 +107,6 @@ class SingleVideoCubit extends Cubit<SingleVideoState> {
     result.when(
         success: (commentDetails) =>
             emit(SingleVideoState.allRepliesLoaded(commentDetails)),
-        failure: (exception) => emit(SingleVideoState.error(exception)));
+        failure: (exception) => emit(SingleVideoState.videoInfoError(exception)));
   }
 }
