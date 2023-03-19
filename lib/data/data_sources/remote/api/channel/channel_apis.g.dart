@@ -111,9 +111,11 @@ class _ChannelAPIs implements ChannelAPIs {
     required accessToken,
   }) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'key': apiKey};
-    final _headers = <String, dynamic>{r'Authorization': accessToken};
-    _headers.removeWhere((k, v) => v == null);
+    final queryParameters = <String, dynamic>{
+      r'key': apiKey,
+      r'access_token': accessToken,
+    };
+    final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body);
     final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
