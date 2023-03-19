@@ -28,7 +28,7 @@ class _VerticalButtons extends StatelessWidget {
                     onTap: () {},
                     child: Text(
                       videoDetailsItem.getCustomUserName(),
-                      style: getNormalStyle(color: ColorManager(context).white),
+                      style: getNormalStyle(color: BaseColorManager.white),
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                     ),
@@ -44,7 +44,7 @@ class _VerticalButtons extends StatelessWidget {
             padding: REdgeInsetsDirectional.only(end: 42.0),
             child: Text(
               videoDetailsItem.getVideoDescription(),
-              style: getNormalStyle(color: ColorManager(context).white),
+              style: getNormalStyle(color: BaseColorManager.white),
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
             ),
@@ -75,14 +75,11 @@ class _SubscribeButtonState extends State<_SubscribeButton> {
       child: Container(
         padding: REdgeInsets.all(4),
         decoration: BoxDecoration(
-            color: isClicked
-                ? BaseColorManager.black26
-                : ColorManager.blackRed,
+            color: isClicked ? BaseColorManager.black26 : ColorManager.blackRed,
             borderRadius: BorderRadius.circular(2.r)),
         child: Text(
           isClicked ? "SUBSCRIBED" : "SUBSCRIBE",
-          style:
-              getMediumStyle(color: ColorManager(context).white, fontSize: 13),
+          style: getMediumStyle(color: BaseColorManager.white, fontSize: 13),
         ),
       ),
     );
