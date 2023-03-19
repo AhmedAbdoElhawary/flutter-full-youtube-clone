@@ -19,9 +19,22 @@ import 'package:youtube/presentation/pages/shorts/shorts_page.dart';
 import '../pages/subscriptions/subscriptions_page.dart';
 import '../common_widgets/mini_player_video/mini_player_video.dart';
 
-class BaseLayout extends StatelessWidget {
-  const BaseLayout({Key? key}) : super(key: key);
+class BaseLayout extends StatefulWidget {
+  const BaseLayout._internal({this.page, this.showFloatingVideo = true});
+  final Widget? page;
+  final bool showFloatingVideo;
 
+  static BaseLayout? _instance;
+  static BaseLayout get instance => _instance!;
+
+  factory BaseLayout({Widget? page, bool showFloatingVideo = true}) =>
+      BaseLayout._internal(page: page, showFloatingVideo: showFloatingVideo);
+
+  @override
+  State<BaseLayout> createState() => _BaseLayoutState();
+}
+
+class _BaseLayoutState extends State<BaseLayout> {
   @override
   Widget build(BuildContext context) {
     screenSize = MediaQuery.of(context).size;
@@ -31,38 +44,37 @@ class BaseLayout extends StatelessWidget {
 
     return Obx(
       () {
-        Color? color = baseLayoutLogic.isShortsPageSelected
-            ? BaseColorManager.white
-            : null;
+        bool isShortsPageSelected =
+            baseLayoutLogic.isShortsPageSelected || !widget.showFloatingVideo;
+        bool isThemeDark = ThemeOfApp().isThemeDark();
+
+        Color? color = isShortsPageSelected ? BaseColorManager.white : null;
         return AnnotatedRegion<SystemUiOverlayStyle>(
           value: SystemUiOverlayStyle(
               statusBarColor: ColorManager(context).white,
-              statusBarIconBrightness: ThemeOfApp().theme == ThemeMode.dark
-                  ? Brightness.dark
-                  : Brightness.light,
+              statusBarIconBrightness:
+                  isThemeDark ? Brightness.dark : Brightness.light,
               systemNavigationBarDividerColor: ColorManager(context).white,
               systemNavigationBarColor: ColorManager(context).white,
-              statusBarBrightness: ThemeOfApp().theme == ThemeMode.dark
-                  ? Brightness.dark
-                  : Brightness.light,
+              statusBarBrightness:
+                  isThemeDark ? Brightness.dark : Brightness.light,
               systemNavigationBarIconBrightness: Brightness.light),
           child: CustomCupertinoTabScaffold(
             tabBar: CustomCupertinoTabBar(
-              backgroundColor: baseLayoutLogic.isShortsPageSelected &&
-                      ThemeOfApp().theme == ThemeMode.light
+              backgroundColor: isShortsPageSelected && !isThemeDark
                   ? Theme.of(context).focusColor
                   : Theme.of(context).primaryColor,
               height: miniVideoLogic.heightOfNavigationBar.value.h,
               border: Border(
                   top: BorderSide(
-                      color: baseLayoutLogic.isShortsPageSelected
+                      color: isShortsPageSelected
                           ? ColorManager(context).grey9
                           : ColorManager(context).grey1,
                       width: 1.w)),
-              inactiveColor: baseLayoutLogic.isShortsPageSelected
+              inactiveColor: isShortsPageSelected
                   ? ColorManager(context).white
                   : ColorManager(context).black,
-              activeColor: baseLayoutLogic.isShortsPageSelected
+              activeColor: isShortsPageSelected
                   ? ColorManager(context).white
                   : ColorManager(context).black,
               items: [
@@ -98,6 +110,9 @@ class BaseLayout extends StatelessWidget {
             ),
             controller: baseLayoutLogic.tabController,
             tabBuilder: (context, index) {
+              if (widget.page != null && !widget.showFloatingVideo) {
+                return widget.page!;
+              }
               if (index == 1) return const _ShortsPage();
 
               return GetBuilder<MiniVideoViewLogic>(
@@ -111,7 +126,11 @@ class BaseLayout extends StatelessWidget {
 
                   return Stack(
                     children: [
-                      WhichPage(index),
+                      if (widget.page != null) ...[
+                        widget.page!
+                      ] else ...[
+                        WhichPage(index)
+                      ],
                       floatingVideo,
                     ],
                   );
