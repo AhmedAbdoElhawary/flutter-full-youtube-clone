@@ -35,7 +35,7 @@ class ChannelVideosCubit extends Cubit<ChannelVideosState> {
       BlocProvider.of(context);
 
   Future<void> getPopularChannelVideos(String channelId) async {
-    emit(const ChannelVideosState.loading());
+    emit(const ChannelVideosState.channelLoading());
 
     ApiResult<VideosDetails> popularVideosDetails = await _popularVideosUseCase
         .call(params: ChannelDetailsUseCaseParameters(channelId: channelId));
@@ -43,11 +43,11 @@ class ChannelVideosCubit extends Cubit<ChannelVideosState> {
     popularVideosDetails.when(
         success: (videoDetails) =>
             emit(ChannelVideosState.popularVideosLoaded(videoDetails)),
-        failure: (exception) => emit(ChannelVideosState.error(exception)));
+        failure: (exception) => emit(ChannelVideosState.channelError(exception)));
   }
 
   Future<void> getPopularChannelShortVideos(String channelId) async {
-    emit(const ChannelVideosState.loading());
+    emit(const ChannelVideosState.channelLoading());
 
     ApiResult<VideosDetails> shortPopularVideosDetails =
         await _shortPopularVideosUseCase.call(
@@ -56,11 +56,11 @@ class ChannelVideosCubit extends Cubit<ChannelVideosState> {
     shortPopularVideosDetails.when(
         success: (shortVideoDetails) => emit(
             ChannelVideosState.shortPopularVideosLoaded(shortVideoDetails)),
-        failure: (exception) => emit(ChannelVideosState.error(exception)));
+        failure: (exception) => emit(ChannelVideosState.channelError(exception)));
   }
 
   Future<void> getChannelShortVideos(String channelId) async {
-    emit(const ChannelVideosState.loading());
+    emit(const ChannelVideosState.channelLoading());
 
     ApiResult<VideosDetails> shortVideosDetails = await _shortVideosUseCase
         .call(params: ChannelDetailsUseCaseParameters(channelId: channelId));
@@ -68,11 +68,11 @@ class ChannelVideosCubit extends Cubit<ChannelVideosState> {
     shortVideosDetails.when(
         success: (shortVideoDetails) =>
             emit(ChannelVideosState.shortVideosLoaded(shortVideoDetails)),
-        failure: (exception) => emit(ChannelVideosState.error(exception)));
+        failure: (exception) => emit(ChannelVideosState.channelError(exception)));
   }
 
   Future<void> getChannelVideos(String channelId) async {
-    emit(const ChannelVideosState.loading());
+    emit(const ChannelVideosState.channelLoading());
 
     ApiResult<VideosDetails> videosDetails = await _videosUseCase.call(
         params: ChannelDetailsUseCaseParameters(channelId: channelId));
@@ -80,12 +80,12 @@ class ChannelVideosCubit extends Cubit<ChannelVideosState> {
     videosDetails.when(
         success: (videoDetails) =>
             emit(ChannelVideosState.channelVideosLoaded(videoDetails)),
-        failure: (exception) => emit(ChannelVideosState.error(exception)));
+        failure: (exception) => emit(ChannelVideosState.channelError(exception)));
   }
 
   Future<void> getVideosOfThoseChannels(
       MySubscriptionsDetails? mySubscriptionsDetails) async {
-    emit(const ChannelVideosState.loading());
+    emit(const ChannelVideosState.channelLoading());
     if (mySubscriptionsDetails == null) {
       emit(const ChannelVideosState.initial());
       return;
@@ -104,6 +104,6 @@ class ChannelVideosCubit extends Cubit<ChannelVideosState> {
           }
           emit(ChannelVideosState.videosOfThoseChannelsLoaded(videosItems));
         },
-        failure: (exception) => emit(ChannelVideosState.error(exception)));
+        failure: (exception) => emit(ChannelVideosState.channelError(exception)));
   }
 }
