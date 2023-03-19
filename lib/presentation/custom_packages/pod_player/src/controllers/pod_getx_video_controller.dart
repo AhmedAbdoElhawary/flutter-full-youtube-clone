@@ -100,7 +100,6 @@ class PodGetXVideoController extends _PodGesturesController {
           qualityList: podPlayerConfig.videoQualityPriority,
           videoUrls: playVideoFrom.videoQualityUrls!,
         );
-
         ///
         _videoCtr = VideoPlayerController.network(
           url,
@@ -131,7 +130,6 @@ class PodGetXVideoController extends _PodGesturesController {
           httpHeaders: playVideoFrom.httpHeaders,
         );
         playingVideoUrl = url;
-
         break;
       case PodVideoPlayerType.vimeo:
         await getQualityUrlsFromVimeoId(playVideoFrom.dataSource!);
