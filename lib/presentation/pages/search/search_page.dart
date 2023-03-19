@@ -12,13 +12,12 @@ import 'widgets/mic_button.dart';
 import 'widgets/searched_text_field.dart';
 
 class SearchPage extends StatelessWidget {
-  const SearchPage( {this.text = "",Key? key}) : super(key: key);
+  const SearchPage({this.text = "", Key? key}) : super(key: key);
   final String text;
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController controller =
-        TextEditingController(text: text);
+    TextEditingController controller = TextEditingController(text: text);
     return Scaffold(
       appBar: AppBar(
         leading: const ArrowBack(),
@@ -31,17 +30,17 @@ class SearchPage extends StatelessWidget {
         ],
       ),
       body: BlocBuilder<SearchCubit, SearchState>(
+        buildWhen: (previous, current) =>
+            previous != current && current is SuggestionTextsLoaded,
         builder: (context, state) {
-          return state.maybeWhen(suggestionTextsLoaded: (suggestionTexts) {
+          if (state is SuggestionTextsLoaded) {
             return ListView.builder(
-                itemBuilder: (context, index) =>
-                    _ItemBuilderWidget(suggestionTexts.suggestions[index]),
-                itemCount: suggestionTexts.suggestions.length);
-          }, searchError: (error) {
+                itemBuilder: (context, index) => _ItemBuilderWidget(
+                    state.suggestionTexts.suggestions[index]),
+                itemCount: state.suggestionTexts.suggestions.length);
+          } else {
             return const SizedBox();
-          }, orElse: () {
-            return const SizedBox();
-          });
+          }
         },
       ),
     );

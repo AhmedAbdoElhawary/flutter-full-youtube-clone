@@ -54,7 +54,7 @@ class _PopularVideos extends StatelessWidget {
       builder: (context, state) {
         if (state is PopularVideosLoaded) {
           return _VideosList(state.videoDetails);
-        } else if (state is Error) {
+        } else if (state is ChannelError) {
           return SliverFillRemaining(
               child: ErrorMessageWidget(state.networkExceptions));
         } else {
@@ -80,7 +80,7 @@ class _NewestVideos extends StatelessWidget {
       builder: (context, state) {
         if (state is ChannelVideosLoaded) {
           return _VideosList(state.videoDetails);
-        } else if (state is Error) {
+        } else if (state is ChannelError) {
           return SliverFillRemaining(
               child: ErrorMessageWidget(state.networkExceptions));
         } else {

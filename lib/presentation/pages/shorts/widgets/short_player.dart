@@ -9,45 +9,141 @@ class _ShortPlayer extends StatefulWidget {
 
 class _ShortPlayerState extends State<_ShortPlayer> {
   final logic = Get.put(ShortsLogic(), tag: "1");
+
+  final ValueNotifier<VideoPlayerController?> _controller = ValueNotifier(null);
+  final ValueNotifier<Widget> videoStatusAnimation =
+      ValueNotifier(const SizedBox());
   final baseLayoutLogic = Get.find<BaseLayoutLogic>(tag: "1");
-  String videoId = "";
+  List<VideoQalityUrls> vimeoOrVideoUrls = [];
+
   @override
   void initState() {
     super.initState();
-    videoId = widget.videoDetailsItem.id ?? "";
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await _initializeVideo();
+    });
+  }
+
+  Future<void> _initializeVideo() async {
+    String videoId = widget.videoDetailsItem.id ?? "";
 
     String videoUrl = 'https://youtu.be/$videoId';
 
     if ((logic.videoController?.isInitialised ?? false) &&
         logic.videoController?.videoUrl == videoUrl) return;
 
-    logic.videoController = PodPlayerController(
-      playVideoFrom: PlayVideoFrom.youtube(videoUrl),
-      getTag: UniqueKey().toString(),
-    )..initialise();
+    final urls = await getVideoQualityUrlsFromYoutube(videoUrl, false);
+    final url = getUrlFromVideoQualityUrls(
+      qualityList: [1080, 720, 360],
+      videoUrls: urls,
+    );
+
+    _controller.value = VideoPlayerController.network(url)
+      ..setLooping(true)
+      ..initialize().then((_) => _controller.value!.play());
 
     baseLayoutLogic.isShortsInitialize = true;
   }
 
+  Future<List<VideoQalityUrls>> getVideoQualityUrlsFromYoutube(
+    String youtubeIdOrUrl,
+    bool live,
+  ) async {
+    return await VideoApis.getYoutubeVideoQualityUrls(youtubeIdOrUrl, live) ??
+        [];
+  }
+
+  String getUrlFromVideoQualityUrls({
+    required List<int> qualityList,
+    required List<VideoQalityUrls> videoUrls,
+  }) {
+    sortQualityVideoUrls(videoUrls);
+    if (vimeoOrVideoUrls.isEmpty) {
+      throw Exception('videoQuality cannot be empty');
+    }
+
+    final fallback = vimeoOrVideoUrls[0];
+    VideoQalityUrls? urlWithQuality;
+    for (final quality in qualityList) {
+      urlWithQuality = vimeoOrVideoUrls.firstWhere(
+        (url) => url.quality == quality,
+        orElse: () => fallback,
+      );
+
+      if (urlWithQuality != fallback) {
+        break;
+      }
+    }
+
+    urlWithQuality ??= fallback;
+    return urlWithQuality.url;
+  }
+
+  void sortQualityVideoUrls(List<VideoQalityUrls>? inputUrls) {
+    final urls = inputUrls;
+
+    ///has issues with 240p
+    urls?.removeWhere((element) => element.quality == 240);
+
+    ///has issues with 144p in web
+    if (kIsWeb) {
+      urls?.removeWhere((element) => element.quality == 144);
+    }
+
+    ///sort
+    urls?.sort((a, b) => a.quality.compareTo(b.quality));
+
+    ///
+    vimeoOrVideoUrls = urls ?? [];
+  }
+
+  @override
+  void dispose() {
+    _controller.value?.dispose();
+    videoStatusAnimation.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ShortsLogic>(
-      id: "update current short",
-      tag: "1",
-      builder: (logic) {
-        return Stack(
-          children: [
-            GestureDetector(
-              onTap: onTapVideo,
-              child: CustomPodVideoPlayer(
-                  controller: logic.videoController!,
-                  matchVideoAspectRatioToFrame: true,
-                  frameAspectRatio: 9 / 16),
-            ),
-            Center(child: logic.videoStatusAnimation),
-          ],
-        );
+    return Stack(
+      children: [
+        videoPlayer(),
+        ValueListenableBuilder(
+          valueListenable: videoStatusAnimation,
+          builder: (context, value, child) =>
+              Center(child: videoStatusAnimation.value),
+        ),
+      ],
+    );
+  }
+
+  Widget videoPlayer() {
+    return GestureDetector(
+      onTap: onTapVideo,
+      onLongPressStart: (LongPressStartDetails event) {
+        if (!(_controller.value?.value.isInitialized ?? false)) return;
+
+        _controller.value!.pause();
       },
+      onLongPressEnd: (LongPressEndDetails event) {
+        if (!(_controller.value?.value.isInitialized ?? false)) return;
+
+        _controller.value!.play();
+      },
+      child: ValueListenableBuilder(
+        valueListenable: _controller,
+        builder: (context, VideoPlayerController? controller, child) {
+          if (controller == null) {
+            return const ThineCircularProgress(color: BaseColorManager.white);
+          } else {
+            return AnimatedBuilder(
+              animation: controller,
+              builder: (context, child) => VideoPlayer(controller),
+            );
+          }
+        },
+      ),
     );
   }
 
@@ -79,7 +175,7 @@ class _VolumeContainer extends StatelessWidget {
       child: Icon(
         icon,
         size: 35.0,
-        color: ColorManager(context).white,
+        color: BaseColorManager.white,
       ),
     );
   }

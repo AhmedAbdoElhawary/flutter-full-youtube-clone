@@ -156,8 +156,7 @@ class _DisLikeText extends StatelessWidget {
         alignment: Alignment.topCenter,
         child: Text(
           "Dislike",
-          style:
-              getNormalStyle(color: ColorManager(context).white, fontSize: 12),
+          style: getNormalStyle(color: BaseColorManager.white, fontSize: 12),
         ),
       ),
     );
@@ -191,8 +190,7 @@ class _CommentCount extends StatelessWidget {
         alignment: Alignment.topCenter,
         child: Text(
           "243",
-          style:
-              getNormalStyle(color: ColorManager(context).white, fontSize: 12),
+          style: getNormalStyle(color: BaseColorManager.white, fontSize: 12),
         ),
       ),
     );
@@ -226,8 +224,7 @@ class _ShareText extends StatelessWidget {
         alignment: Alignment.topCenter,
         child: Text(
           "Share",
-          style:
-              getNormalStyle(color: ColorManager(context).white, fontSize: 12),
+          style: getNormalStyle(color: BaseColorManager.white, fontSize: 12),
         ),
       ),
     );

@@ -6,7 +6,6 @@ import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/presentation/common_widgets/arrow_back.dart';
 import 'package:youtube/presentation/common_widgets/error_message_widget.dart';
-import 'package:youtube/presentation/common_widgets/search_icon.dart';
 import 'package:youtube/presentation/cubit/videos/videos_details_cubit.dart';
 import 'package:youtube/presentation/pages/shorts/widgets/shorts_page_view.dart';
 
@@ -45,8 +44,6 @@ class ShortsPageState extends State<ShortsPage> {
             ? const ArrowBack(makeItWhite: true)
             : null,
         actions: [
-          const SearchIcon(),
-          const RSizedBox(width: 15),
           IconButton(
             onPressed: () {},
             icon: const Icon(Icons.camera_alt,
@@ -67,13 +64,13 @@ class _PageViewBody extends StatelessWidget {
       buildWhen: (previous, current) =>
           previous != current && current is AllShortVideosLoaded,
       builder: (context, state) {
-        return state.maybeWhen(
-            allShortVideosLoaded: (mostPopularVideos) =>
-                ShortsPageView(mostPopularVideos.videoDetailsItem),
-            error: (error) => ErrorMessageWidget(error),
-            loading: () => const _ShimmerLoading(),
-            orElse: () =>
-                const Center(child: Text("There is something wrong!")));
+        if (state is AllShortVideosLoaded) {
+          return ShortsPageView(state.mostPopularVideos.videoDetailsItem);
+        } else if (state is VideoError) {
+          return ErrorMessageWidget(state.networkExceptions);
+        } else {
+          return const _ShimmerLoading();
+        }
       },
     );
   }

@@ -57,7 +57,7 @@ class _BuildVideosList extends StatelessWidget {
                           state.videoDetails.videoDetailsItem![index]),
                     )),
           );
-        } else if (state is Error) {
+        } else if (state is ChannelError) {
           return SliverFillRemaining(
               child: ErrorMessageWidget(state.networkExceptions));
         } else {

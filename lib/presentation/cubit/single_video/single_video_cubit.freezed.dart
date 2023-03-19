@@ -19,82 +19,83 @@ mixin _$SingleVideoState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function() videoInfoLoading,
     required TResult Function(VideosDetails videoDetails) videoDetailsLoaded,
-    required TResult Function(RatingDetails videoDetails) getVideoRatingLoaded,
+    required TResult Function(RatingDetails ratingDetails) getVideoRatingLoaded,
     required TResult Function() ratingVideoLoaded,
     required TResult Function(CommentDetails firstCommentDetails)
         firstCommentLoaded,
     required TResult Function(CommentDetails allCommentDetails)
         allCommentLoaded,
     required TResult Function(ReplyDetails allRepliesDetails) allRepliesLoaded,
-    required TResult Function(NetworkExceptionModel networkExceptions) error,
+    required TResult Function(NetworkExceptionModel networkExceptions)
+        videoInfoError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
+    TResult? Function()? videoInfoLoading,
     TResult? Function(VideosDetails videoDetails)? videoDetailsLoaded,
-    TResult? Function(RatingDetails videoDetails)? getVideoRatingLoaded,
+    TResult? Function(RatingDetails ratingDetails)? getVideoRatingLoaded,
     TResult? Function()? ratingVideoLoaded,
     TResult? Function(CommentDetails firstCommentDetails)? firstCommentLoaded,
     TResult? Function(CommentDetails allCommentDetails)? allCommentLoaded,
     TResult? Function(ReplyDetails allRepliesDetails)? allRepliesLoaded,
-    TResult? Function(NetworkExceptionModel networkExceptions)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? videoInfoError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function()? videoInfoLoading,
     TResult Function(VideosDetails videoDetails)? videoDetailsLoaded,
-    TResult Function(RatingDetails videoDetails)? getVideoRatingLoaded,
+    TResult Function(RatingDetails ratingDetails)? getVideoRatingLoaded,
     TResult Function()? ratingVideoLoaded,
     TResult Function(CommentDetails firstCommentDetails)? firstCommentLoaded,
     TResult Function(CommentDetails allCommentDetails)? allCommentLoaded,
     TResult Function(ReplyDetails allRepliesDetails)? allRepliesLoaded,
-    TResult Function(NetworkExceptionModel networkExceptions)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? videoInfoError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(Loading value) loading,
+    required TResult Function(VideoInfoLoading value) videoInfoLoading,
     required TResult Function(VideoDetailsLoaded value) videoDetailsLoaded,
     required TResult Function(GetVideoRatingLoaded value) getVideoRatingLoaded,
     required TResult Function(RatingVideoLoaded value) ratingVideoLoaded,
     required TResult Function(FirstCommentLoaded value) firstCommentLoaded,
     required TResult Function(AllCommentLoaded value) allCommentLoaded,
     required TResult Function(AllRepliesLoaded value) allRepliesLoaded,
-    required TResult Function(Error value) error,
+    required TResult Function(VideoInfoError value) videoInfoError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(Loading value)? loading,
+    TResult? Function(VideoInfoLoading value)? videoInfoLoading,
     TResult? Function(VideoDetailsLoaded value)? videoDetailsLoaded,
     TResult? Function(GetVideoRatingLoaded value)? getVideoRatingLoaded,
     TResult? Function(RatingVideoLoaded value)? ratingVideoLoaded,
     TResult? Function(FirstCommentLoaded value)? firstCommentLoaded,
     TResult? Function(AllCommentLoaded value)? allCommentLoaded,
     TResult? Function(AllRepliesLoaded value)? allRepliesLoaded,
-    TResult? Function(Error value)? error,
+    TResult? Function(VideoInfoError value)? videoInfoError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(Loading value)? loading,
+    TResult Function(VideoInfoLoading value)? videoInfoLoading,
     TResult Function(VideoDetailsLoaded value)? videoDetailsLoaded,
     TResult Function(GetVideoRatingLoaded value)? getVideoRatingLoaded,
     TResult Function(RatingVideoLoaded value)? ratingVideoLoaded,
     TResult Function(FirstCommentLoaded value)? firstCommentLoaded,
     TResult Function(AllCommentLoaded value)? allCommentLoaded,
     TResult Function(AllRepliesLoaded value)? allRepliesLoaded,
-    TResult Function(Error value)? error,
+    TResult Function(VideoInfoError value)? videoInfoError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -156,16 +157,17 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function() videoInfoLoading,
     required TResult Function(VideosDetails videoDetails) videoDetailsLoaded,
-    required TResult Function(RatingDetails videoDetails) getVideoRatingLoaded,
+    required TResult Function(RatingDetails ratingDetails) getVideoRatingLoaded,
     required TResult Function() ratingVideoLoaded,
     required TResult Function(CommentDetails firstCommentDetails)
         firstCommentLoaded,
     required TResult Function(CommentDetails allCommentDetails)
         allCommentLoaded,
     required TResult Function(ReplyDetails allRepliesDetails) allRepliesLoaded,
-    required TResult Function(NetworkExceptionModel networkExceptions) error,
+    required TResult Function(NetworkExceptionModel networkExceptions)
+        videoInfoError,
   }) {
     return initial();
   }
@@ -174,14 +176,14 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
+    TResult? Function()? videoInfoLoading,
     TResult? Function(VideosDetails videoDetails)? videoDetailsLoaded,
-    TResult? Function(RatingDetails videoDetails)? getVideoRatingLoaded,
+    TResult? Function(RatingDetails ratingDetails)? getVideoRatingLoaded,
     TResult? Function()? ratingVideoLoaded,
     TResult? Function(CommentDetails firstCommentDetails)? firstCommentLoaded,
     TResult? Function(CommentDetails allCommentDetails)? allCommentLoaded,
     TResult? Function(ReplyDetails allRepliesDetails)? allRepliesLoaded,
-    TResult? Function(NetworkExceptionModel networkExceptions)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? videoInfoError,
   }) {
     return initial?.call();
   }
@@ -190,14 +192,14 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function()? videoInfoLoading,
     TResult Function(VideosDetails videoDetails)? videoDetailsLoaded,
-    TResult Function(RatingDetails videoDetails)? getVideoRatingLoaded,
+    TResult Function(RatingDetails ratingDetails)? getVideoRatingLoaded,
     TResult Function()? ratingVideoLoaded,
     TResult Function(CommentDetails firstCommentDetails)? firstCommentLoaded,
     TResult Function(CommentDetails allCommentDetails)? allCommentLoaded,
     TResult Function(ReplyDetails allRepliesDetails)? allRepliesLoaded,
-    TResult Function(NetworkExceptionModel networkExceptions)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? videoInfoError,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -210,14 +212,14 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(Loading value) loading,
+    required TResult Function(VideoInfoLoading value) videoInfoLoading,
     required TResult Function(VideoDetailsLoaded value) videoDetailsLoaded,
     required TResult Function(GetVideoRatingLoaded value) getVideoRatingLoaded,
     required TResult Function(RatingVideoLoaded value) ratingVideoLoaded,
     required TResult Function(FirstCommentLoaded value) firstCommentLoaded,
     required TResult Function(AllCommentLoaded value) allCommentLoaded,
     required TResult Function(AllRepliesLoaded value) allRepliesLoaded,
-    required TResult Function(Error value) error,
+    required TResult Function(VideoInfoError value) videoInfoError,
   }) {
     return initial(this);
   }
@@ -226,14 +228,14 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(Loading value)? loading,
+    TResult? Function(VideoInfoLoading value)? videoInfoLoading,
     TResult? Function(VideoDetailsLoaded value)? videoDetailsLoaded,
     TResult? Function(GetVideoRatingLoaded value)? getVideoRatingLoaded,
     TResult? Function(RatingVideoLoaded value)? ratingVideoLoaded,
     TResult? Function(FirstCommentLoaded value)? firstCommentLoaded,
     TResult? Function(AllCommentLoaded value)? allCommentLoaded,
     TResult? Function(AllRepliesLoaded value)? allRepliesLoaded,
-    TResult? Function(Error value)? error,
+    TResult? Function(VideoInfoError value)? videoInfoError,
   }) {
     return initial?.call(this);
   }
@@ -242,14 +244,14 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(Loading value)? loading,
+    TResult Function(VideoInfoLoading value)? videoInfoLoading,
     TResult Function(VideoDetailsLoaded value)? videoDetailsLoaded,
     TResult Function(GetVideoRatingLoaded value)? getVideoRatingLoaded,
     TResult Function(RatingVideoLoaded value)? ratingVideoLoaded,
     TResult Function(FirstCommentLoaded value)? firstCommentLoaded,
     TResult Function(AllCommentLoaded value)? allCommentLoaded,
     TResult Function(AllRepliesLoaded value)? allRepliesLoaded,
-    TResult Function(Error value)? error,
+    TResult Function(VideoInfoError value)? videoInfoError,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -264,33 +266,35 @@ abstract class _Initial implements SingleVideoState {
 }
 
 /// @nodoc
-abstract class _$$LoadingCopyWith<$Res> {
-  factory _$$LoadingCopyWith(_$Loading value, $Res Function(_$Loading) then) =
-      __$$LoadingCopyWithImpl<$Res>;
+abstract class _$$VideoInfoLoadingCopyWith<$Res> {
+  factory _$$VideoInfoLoadingCopyWith(
+          _$VideoInfoLoading value, $Res Function(_$VideoInfoLoading) then) =
+      __$$VideoInfoLoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadingCopyWithImpl<$Res>
-    extends _$SingleVideoStateCopyWithImpl<$Res, _$Loading>
-    implements _$$LoadingCopyWith<$Res> {
-  __$$LoadingCopyWithImpl(_$Loading _value, $Res Function(_$Loading) _then)
+class __$$VideoInfoLoadingCopyWithImpl<$Res>
+    extends _$SingleVideoStateCopyWithImpl<$Res, _$VideoInfoLoading>
+    implements _$$VideoInfoLoadingCopyWith<$Res> {
+  __$$VideoInfoLoadingCopyWithImpl(
+      _$VideoInfoLoading _value, $Res Function(_$VideoInfoLoading) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$Loading implements Loading {
-  const _$Loading();
+class _$VideoInfoLoading implements VideoInfoLoading {
+  const _$VideoInfoLoading();
 
   @override
   String toString() {
-    return 'SingleVideoState.loading()';
+    return 'SingleVideoState.videoInfoLoading()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$Loading);
+        (other.runtimeType == runtimeType && other is _$VideoInfoLoading);
   }
 
   @override
@@ -300,52 +304,53 @@ class _$Loading implements Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function() videoInfoLoading,
     required TResult Function(VideosDetails videoDetails) videoDetailsLoaded,
-    required TResult Function(RatingDetails videoDetails) getVideoRatingLoaded,
+    required TResult Function(RatingDetails ratingDetails) getVideoRatingLoaded,
     required TResult Function() ratingVideoLoaded,
     required TResult Function(CommentDetails firstCommentDetails)
         firstCommentLoaded,
     required TResult Function(CommentDetails allCommentDetails)
         allCommentLoaded,
     required TResult Function(ReplyDetails allRepliesDetails) allRepliesLoaded,
-    required TResult Function(NetworkExceptionModel networkExceptions) error,
+    required TResult Function(NetworkExceptionModel networkExceptions)
+        videoInfoError,
   }) {
-    return loading();
+    return videoInfoLoading();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
+    TResult? Function()? videoInfoLoading,
     TResult? Function(VideosDetails videoDetails)? videoDetailsLoaded,
-    TResult? Function(RatingDetails videoDetails)? getVideoRatingLoaded,
+    TResult? Function(RatingDetails ratingDetails)? getVideoRatingLoaded,
     TResult? Function()? ratingVideoLoaded,
     TResult? Function(CommentDetails firstCommentDetails)? firstCommentLoaded,
     TResult? Function(CommentDetails allCommentDetails)? allCommentLoaded,
     TResult? Function(ReplyDetails allRepliesDetails)? allRepliesLoaded,
-    TResult? Function(NetworkExceptionModel networkExceptions)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? videoInfoError,
   }) {
-    return loading?.call();
+    return videoInfoLoading?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function()? videoInfoLoading,
     TResult Function(VideosDetails videoDetails)? videoDetailsLoaded,
-    TResult Function(RatingDetails videoDetails)? getVideoRatingLoaded,
+    TResult Function(RatingDetails ratingDetails)? getVideoRatingLoaded,
     TResult Function()? ratingVideoLoaded,
     TResult Function(CommentDetails firstCommentDetails)? firstCommentLoaded,
     TResult Function(CommentDetails allCommentDetails)? allCommentLoaded,
     TResult Function(ReplyDetails allRepliesDetails)? allRepliesLoaded,
-    TResult Function(NetworkExceptionModel networkExceptions)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? videoInfoError,
     required TResult orElse(),
   }) {
-    if (loading != null) {
-      return loading();
+    if (videoInfoLoading != null) {
+      return videoInfoLoading();
     }
     return orElse();
   }
@@ -354,57 +359,57 @@ class _$Loading implements Loading {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(Loading value) loading,
+    required TResult Function(VideoInfoLoading value) videoInfoLoading,
     required TResult Function(VideoDetailsLoaded value) videoDetailsLoaded,
     required TResult Function(GetVideoRatingLoaded value) getVideoRatingLoaded,
     required TResult Function(RatingVideoLoaded value) ratingVideoLoaded,
     required TResult Function(FirstCommentLoaded value) firstCommentLoaded,
     required TResult Function(AllCommentLoaded value) allCommentLoaded,
     required TResult Function(AllRepliesLoaded value) allRepliesLoaded,
-    required TResult Function(Error value) error,
+    required TResult Function(VideoInfoError value) videoInfoError,
   }) {
-    return loading(this);
+    return videoInfoLoading(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(Loading value)? loading,
+    TResult? Function(VideoInfoLoading value)? videoInfoLoading,
     TResult? Function(VideoDetailsLoaded value)? videoDetailsLoaded,
     TResult? Function(GetVideoRatingLoaded value)? getVideoRatingLoaded,
     TResult? Function(RatingVideoLoaded value)? ratingVideoLoaded,
     TResult? Function(FirstCommentLoaded value)? firstCommentLoaded,
     TResult? Function(AllCommentLoaded value)? allCommentLoaded,
     TResult? Function(AllRepliesLoaded value)? allRepliesLoaded,
-    TResult? Function(Error value)? error,
+    TResult? Function(VideoInfoError value)? videoInfoError,
   }) {
-    return loading?.call(this);
+    return videoInfoLoading?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(Loading value)? loading,
+    TResult Function(VideoInfoLoading value)? videoInfoLoading,
     TResult Function(VideoDetailsLoaded value)? videoDetailsLoaded,
     TResult Function(GetVideoRatingLoaded value)? getVideoRatingLoaded,
     TResult Function(RatingVideoLoaded value)? ratingVideoLoaded,
     TResult Function(FirstCommentLoaded value)? firstCommentLoaded,
     TResult Function(AllCommentLoaded value)? allCommentLoaded,
     TResult Function(AllRepliesLoaded value)? allRepliesLoaded,
-    TResult Function(Error value)? error,
+    TResult Function(VideoInfoError value)? videoInfoError,
     required TResult orElse(),
   }) {
-    if (loading != null) {
-      return loading(this);
+    if (videoInfoLoading != null) {
+      return videoInfoLoading(this);
     }
     return orElse();
   }
 }
 
-abstract class Loading implements SingleVideoState {
-  const factory Loading() = _$Loading;
+abstract class VideoInfoLoading implements SingleVideoState {
+  const factory VideoInfoLoading() = _$VideoInfoLoading;
 }
 
 /// @nodoc
@@ -474,16 +479,17 @@ class _$VideoDetailsLoaded implements VideoDetailsLoaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function() videoInfoLoading,
     required TResult Function(VideosDetails videoDetails) videoDetailsLoaded,
-    required TResult Function(RatingDetails videoDetails) getVideoRatingLoaded,
+    required TResult Function(RatingDetails ratingDetails) getVideoRatingLoaded,
     required TResult Function() ratingVideoLoaded,
     required TResult Function(CommentDetails firstCommentDetails)
         firstCommentLoaded,
     required TResult Function(CommentDetails allCommentDetails)
         allCommentLoaded,
     required TResult Function(ReplyDetails allRepliesDetails) allRepliesLoaded,
-    required TResult Function(NetworkExceptionModel networkExceptions) error,
+    required TResult Function(NetworkExceptionModel networkExceptions)
+        videoInfoError,
   }) {
     return videoDetailsLoaded(videoDetails);
   }
@@ -492,14 +498,14 @@ class _$VideoDetailsLoaded implements VideoDetailsLoaded {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
+    TResult? Function()? videoInfoLoading,
     TResult? Function(VideosDetails videoDetails)? videoDetailsLoaded,
-    TResult? Function(RatingDetails videoDetails)? getVideoRatingLoaded,
+    TResult? Function(RatingDetails ratingDetails)? getVideoRatingLoaded,
     TResult? Function()? ratingVideoLoaded,
     TResult? Function(CommentDetails firstCommentDetails)? firstCommentLoaded,
     TResult? Function(CommentDetails allCommentDetails)? allCommentLoaded,
     TResult? Function(ReplyDetails allRepliesDetails)? allRepliesLoaded,
-    TResult? Function(NetworkExceptionModel networkExceptions)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? videoInfoError,
   }) {
     return videoDetailsLoaded?.call(videoDetails);
   }
@@ -508,14 +514,14 @@ class _$VideoDetailsLoaded implements VideoDetailsLoaded {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function()? videoInfoLoading,
     TResult Function(VideosDetails videoDetails)? videoDetailsLoaded,
-    TResult Function(RatingDetails videoDetails)? getVideoRatingLoaded,
+    TResult Function(RatingDetails ratingDetails)? getVideoRatingLoaded,
     TResult Function()? ratingVideoLoaded,
     TResult Function(CommentDetails firstCommentDetails)? firstCommentLoaded,
     TResult Function(CommentDetails allCommentDetails)? allCommentLoaded,
     TResult Function(ReplyDetails allRepliesDetails)? allRepliesLoaded,
-    TResult Function(NetworkExceptionModel networkExceptions)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? videoInfoError,
     required TResult orElse(),
   }) {
     if (videoDetailsLoaded != null) {
@@ -528,14 +534,14 @@ class _$VideoDetailsLoaded implements VideoDetailsLoaded {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(Loading value) loading,
+    required TResult Function(VideoInfoLoading value) videoInfoLoading,
     required TResult Function(VideoDetailsLoaded value) videoDetailsLoaded,
     required TResult Function(GetVideoRatingLoaded value) getVideoRatingLoaded,
     required TResult Function(RatingVideoLoaded value) ratingVideoLoaded,
     required TResult Function(FirstCommentLoaded value) firstCommentLoaded,
     required TResult Function(AllCommentLoaded value) allCommentLoaded,
     required TResult Function(AllRepliesLoaded value) allRepliesLoaded,
-    required TResult Function(Error value) error,
+    required TResult Function(VideoInfoError value) videoInfoError,
   }) {
     return videoDetailsLoaded(this);
   }
@@ -544,14 +550,14 @@ class _$VideoDetailsLoaded implements VideoDetailsLoaded {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(Loading value)? loading,
+    TResult? Function(VideoInfoLoading value)? videoInfoLoading,
     TResult? Function(VideoDetailsLoaded value)? videoDetailsLoaded,
     TResult? Function(GetVideoRatingLoaded value)? getVideoRatingLoaded,
     TResult? Function(RatingVideoLoaded value)? ratingVideoLoaded,
     TResult? Function(FirstCommentLoaded value)? firstCommentLoaded,
     TResult? Function(AllCommentLoaded value)? allCommentLoaded,
     TResult? Function(AllRepliesLoaded value)? allRepliesLoaded,
-    TResult? Function(Error value)? error,
+    TResult? Function(VideoInfoError value)? videoInfoError,
   }) {
     return videoDetailsLoaded?.call(this);
   }
@@ -560,14 +566,14 @@ class _$VideoDetailsLoaded implements VideoDetailsLoaded {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(Loading value)? loading,
+    TResult Function(VideoInfoLoading value)? videoInfoLoading,
     TResult Function(VideoDetailsLoaded value)? videoDetailsLoaded,
     TResult Function(GetVideoRatingLoaded value)? getVideoRatingLoaded,
     TResult Function(RatingVideoLoaded value)? ratingVideoLoaded,
     TResult Function(FirstCommentLoaded value)? firstCommentLoaded,
     TResult Function(AllCommentLoaded value)? allCommentLoaded,
     TResult Function(AllRepliesLoaded value)? allRepliesLoaded,
-    TResult Function(Error value)? error,
+    TResult Function(VideoInfoError value)? videoInfoError,
     required TResult orElse(),
   }) {
     if (videoDetailsLoaded != null) {
@@ -593,7 +599,7 @@ abstract class _$$GetVideoRatingLoadedCopyWith<$Res> {
           $Res Function(_$GetVideoRatingLoaded) then) =
       __$$GetVideoRatingLoadedCopyWithImpl<$Res>;
   @useResult
-  $Res call({RatingDetails videoDetails});
+  $Res call({RatingDetails ratingDetails});
 }
 
 /// @nodoc
@@ -607,12 +613,12 @@ class __$$GetVideoRatingLoadedCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? videoDetails = null,
+    Object? ratingDetails = null,
   }) {
     return _then(_$GetVideoRatingLoaded(
-      null == videoDetails
-          ? _value.videoDetails
-          : videoDetails // ignore: cast_nullable_to_non_nullable
+      null == ratingDetails
+          ? _value.ratingDetails
+          : ratingDetails // ignore: cast_nullable_to_non_nullable
               as RatingDetails,
     ));
   }
@@ -621,14 +627,14 @@ class __$$GetVideoRatingLoadedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GetVideoRatingLoaded implements GetVideoRatingLoaded {
-  const _$GetVideoRatingLoaded(this.videoDetails);
+  const _$GetVideoRatingLoaded(this.ratingDetails);
 
   @override
-  final RatingDetails videoDetails;
+  final RatingDetails ratingDetails;
 
   @override
   String toString() {
-    return 'SingleVideoState.getVideoRatingLoaded(videoDetails: $videoDetails)';
+    return 'SingleVideoState.getVideoRatingLoaded(ratingDetails: $ratingDetails)';
   }
 
   @override
@@ -636,12 +642,12 @@ class _$GetVideoRatingLoaded implements GetVideoRatingLoaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetVideoRatingLoaded &&
-            (identical(other.videoDetails, videoDetails) ||
-                other.videoDetails == videoDetails));
+            (identical(other.ratingDetails, ratingDetails) ||
+                other.ratingDetails == ratingDetails));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, videoDetails);
+  int get hashCode => Object.hash(runtimeType, ratingDetails);
 
   @JsonKey(ignore: true)
   @override
@@ -654,52 +660,53 @@ class _$GetVideoRatingLoaded implements GetVideoRatingLoaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function() videoInfoLoading,
     required TResult Function(VideosDetails videoDetails) videoDetailsLoaded,
-    required TResult Function(RatingDetails videoDetails) getVideoRatingLoaded,
+    required TResult Function(RatingDetails ratingDetails) getVideoRatingLoaded,
     required TResult Function() ratingVideoLoaded,
     required TResult Function(CommentDetails firstCommentDetails)
         firstCommentLoaded,
     required TResult Function(CommentDetails allCommentDetails)
         allCommentLoaded,
     required TResult Function(ReplyDetails allRepliesDetails) allRepliesLoaded,
-    required TResult Function(NetworkExceptionModel networkExceptions) error,
+    required TResult Function(NetworkExceptionModel networkExceptions)
+        videoInfoError,
   }) {
-    return getVideoRatingLoaded(videoDetails);
+    return getVideoRatingLoaded(ratingDetails);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
+    TResult? Function()? videoInfoLoading,
     TResult? Function(VideosDetails videoDetails)? videoDetailsLoaded,
-    TResult? Function(RatingDetails videoDetails)? getVideoRatingLoaded,
+    TResult? Function(RatingDetails ratingDetails)? getVideoRatingLoaded,
     TResult? Function()? ratingVideoLoaded,
     TResult? Function(CommentDetails firstCommentDetails)? firstCommentLoaded,
     TResult? Function(CommentDetails allCommentDetails)? allCommentLoaded,
     TResult? Function(ReplyDetails allRepliesDetails)? allRepliesLoaded,
-    TResult? Function(NetworkExceptionModel networkExceptions)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? videoInfoError,
   }) {
-    return getVideoRatingLoaded?.call(videoDetails);
+    return getVideoRatingLoaded?.call(ratingDetails);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function()? videoInfoLoading,
     TResult Function(VideosDetails videoDetails)? videoDetailsLoaded,
-    TResult Function(RatingDetails videoDetails)? getVideoRatingLoaded,
+    TResult Function(RatingDetails ratingDetails)? getVideoRatingLoaded,
     TResult Function()? ratingVideoLoaded,
     TResult Function(CommentDetails firstCommentDetails)? firstCommentLoaded,
     TResult Function(CommentDetails allCommentDetails)? allCommentLoaded,
     TResult Function(ReplyDetails allRepliesDetails)? allRepliesLoaded,
-    TResult Function(NetworkExceptionModel networkExceptions)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? videoInfoError,
     required TResult orElse(),
   }) {
     if (getVideoRatingLoaded != null) {
-      return getVideoRatingLoaded(videoDetails);
+      return getVideoRatingLoaded(ratingDetails);
     }
     return orElse();
   }
@@ -708,14 +715,14 @@ class _$GetVideoRatingLoaded implements GetVideoRatingLoaded {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(Loading value) loading,
+    required TResult Function(VideoInfoLoading value) videoInfoLoading,
     required TResult Function(VideoDetailsLoaded value) videoDetailsLoaded,
     required TResult Function(GetVideoRatingLoaded value) getVideoRatingLoaded,
     required TResult Function(RatingVideoLoaded value) ratingVideoLoaded,
     required TResult Function(FirstCommentLoaded value) firstCommentLoaded,
     required TResult Function(AllCommentLoaded value) allCommentLoaded,
     required TResult Function(AllRepliesLoaded value) allRepliesLoaded,
-    required TResult Function(Error value) error,
+    required TResult Function(VideoInfoError value) videoInfoError,
   }) {
     return getVideoRatingLoaded(this);
   }
@@ -724,14 +731,14 @@ class _$GetVideoRatingLoaded implements GetVideoRatingLoaded {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(Loading value)? loading,
+    TResult? Function(VideoInfoLoading value)? videoInfoLoading,
     TResult? Function(VideoDetailsLoaded value)? videoDetailsLoaded,
     TResult? Function(GetVideoRatingLoaded value)? getVideoRatingLoaded,
     TResult? Function(RatingVideoLoaded value)? ratingVideoLoaded,
     TResult? Function(FirstCommentLoaded value)? firstCommentLoaded,
     TResult? Function(AllCommentLoaded value)? allCommentLoaded,
     TResult? Function(AllRepliesLoaded value)? allRepliesLoaded,
-    TResult? Function(Error value)? error,
+    TResult? Function(VideoInfoError value)? videoInfoError,
   }) {
     return getVideoRatingLoaded?.call(this);
   }
@@ -740,14 +747,14 @@ class _$GetVideoRatingLoaded implements GetVideoRatingLoaded {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(Loading value)? loading,
+    TResult Function(VideoInfoLoading value)? videoInfoLoading,
     TResult Function(VideoDetailsLoaded value)? videoDetailsLoaded,
     TResult Function(GetVideoRatingLoaded value)? getVideoRatingLoaded,
     TResult Function(RatingVideoLoaded value)? ratingVideoLoaded,
     TResult Function(FirstCommentLoaded value)? firstCommentLoaded,
     TResult Function(AllCommentLoaded value)? allCommentLoaded,
     TResult Function(AllRepliesLoaded value)? allRepliesLoaded,
-    TResult Function(Error value)? error,
+    TResult Function(VideoInfoError value)? videoInfoError,
     required TResult orElse(),
   }) {
     if (getVideoRatingLoaded != null) {
@@ -758,10 +765,10 @@ class _$GetVideoRatingLoaded implements GetVideoRatingLoaded {
 }
 
 abstract class GetVideoRatingLoaded implements SingleVideoState {
-  const factory GetVideoRatingLoaded(final RatingDetails videoDetails) =
+  const factory GetVideoRatingLoaded(final RatingDetails ratingDetails) =
       _$GetVideoRatingLoaded;
 
-  RatingDetails get videoDetails;
+  RatingDetails get ratingDetails;
   @JsonKey(ignore: true)
   _$$GetVideoRatingLoadedCopyWith<_$GetVideoRatingLoaded> get copyWith =>
       throw _privateConstructorUsedError;
@@ -806,16 +813,17 @@ class _$RatingVideoLoaded implements RatingVideoLoaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function() videoInfoLoading,
     required TResult Function(VideosDetails videoDetails) videoDetailsLoaded,
-    required TResult Function(RatingDetails videoDetails) getVideoRatingLoaded,
+    required TResult Function(RatingDetails ratingDetails) getVideoRatingLoaded,
     required TResult Function() ratingVideoLoaded,
     required TResult Function(CommentDetails firstCommentDetails)
         firstCommentLoaded,
     required TResult Function(CommentDetails allCommentDetails)
         allCommentLoaded,
     required TResult Function(ReplyDetails allRepliesDetails) allRepliesLoaded,
-    required TResult Function(NetworkExceptionModel networkExceptions) error,
+    required TResult Function(NetworkExceptionModel networkExceptions)
+        videoInfoError,
   }) {
     return ratingVideoLoaded();
   }
@@ -824,14 +832,14 @@ class _$RatingVideoLoaded implements RatingVideoLoaded {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
+    TResult? Function()? videoInfoLoading,
     TResult? Function(VideosDetails videoDetails)? videoDetailsLoaded,
-    TResult? Function(RatingDetails videoDetails)? getVideoRatingLoaded,
+    TResult? Function(RatingDetails ratingDetails)? getVideoRatingLoaded,
     TResult? Function()? ratingVideoLoaded,
     TResult? Function(CommentDetails firstCommentDetails)? firstCommentLoaded,
     TResult? Function(CommentDetails allCommentDetails)? allCommentLoaded,
     TResult? Function(ReplyDetails allRepliesDetails)? allRepliesLoaded,
-    TResult? Function(NetworkExceptionModel networkExceptions)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? videoInfoError,
   }) {
     return ratingVideoLoaded?.call();
   }
@@ -840,14 +848,14 @@ class _$RatingVideoLoaded implements RatingVideoLoaded {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function()? videoInfoLoading,
     TResult Function(VideosDetails videoDetails)? videoDetailsLoaded,
-    TResult Function(RatingDetails videoDetails)? getVideoRatingLoaded,
+    TResult Function(RatingDetails ratingDetails)? getVideoRatingLoaded,
     TResult Function()? ratingVideoLoaded,
     TResult Function(CommentDetails firstCommentDetails)? firstCommentLoaded,
     TResult Function(CommentDetails allCommentDetails)? allCommentLoaded,
     TResult Function(ReplyDetails allRepliesDetails)? allRepliesLoaded,
-    TResult Function(NetworkExceptionModel networkExceptions)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? videoInfoError,
     required TResult orElse(),
   }) {
     if (ratingVideoLoaded != null) {
@@ -860,14 +868,14 @@ class _$RatingVideoLoaded implements RatingVideoLoaded {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(Loading value) loading,
+    required TResult Function(VideoInfoLoading value) videoInfoLoading,
     required TResult Function(VideoDetailsLoaded value) videoDetailsLoaded,
     required TResult Function(GetVideoRatingLoaded value) getVideoRatingLoaded,
     required TResult Function(RatingVideoLoaded value) ratingVideoLoaded,
     required TResult Function(FirstCommentLoaded value) firstCommentLoaded,
     required TResult Function(AllCommentLoaded value) allCommentLoaded,
     required TResult Function(AllRepliesLoaded value) allRepliesLoaded,
-    required TResult Function(Error value) error,
+    required TResult Function(VideoInfoError value) videoInfoError,
   }) {
     return ratingVideoLoaded(this);
   }
@@ -876,14 +884,14 @@ class _$RatingVideoLoaded implements RatingVideoLoaded {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(Loading value)? loading,
+    TResult? Function(VideoInfoLoading value)? videoInfoLoading,
     TResult? Function(VideoDetailsLoaded value)? videoDetailsLoaded,
     TResult? Function(GetVideoRatingLoaded value)? getVideoRatingLoaded,
     TResult? Function(RatingVideoLoaded value)? ratingVideoLoaded,
     TResult? Function(FirstCommentLoaded value)? firstCommentLoaded,
     TResult? Function(AllCommentLoaded value)? allCommentLoaded,
     TResult? Function(AllRepliesLoaded value)? allRepliesLoaded,
-    TResult? Function(Error value)? error,
+    TResult? Function(VideoInfoError value)? videoInfoError,
   }) {
     return ratingVideoLoaded?.call(this);
   }
@@ -892,14 +900,14 @@ class _$RatingVideoLoaded implements RatingVideoLoaded {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(Loading value)? loading,
+    TResult Function(VideoInfoLoading value)? videoInfoLoading,
     TResult Function(VideoDetailsLoaded value)? videoDetailsLoaded,
     TResult Function(GetVideoRatingLoaded value)? getVideoRatingLoaded,
     TResult Function(RatingVideoLoaded value)? ratingVideoLoaded,
     TResult Function(FirstCommentLoaded value)? firstCommentLoaded,
     TResult Function(AllCommentLoaded value)? allCommentLoaded,
     TResult Function(AllRepliesLoaded value)? allRepliesLoaded,
-    TResult Function(Error value)? error,
+    TResult Function(VideoInfoError value)? videoInfoError,
     required TResult orElse(),
   }) {
     if (ratingVideoLoaded != null) {
@@ -980,16 +988,17 @@ class _$FirstCommentLoaded implements FirstCommentLoaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function() videoInfoLoading,
     required TResult Function(VideosDetails videoDetails) videoDetailsLoaded,
-    required TResult Function(RatingDetails videoDetails) getVideoRatingLoaded,
+    required TResult Function(RatingDetails ratingDetails) getVideoRatingLoaded,
     required TResult Function() ratingVideoLoaded,
     required TResult Function(CommentDetails firstCommentDetails)
         firstCommentLoaded,
     required TResult Function(CommentDetails allCommentDetails)
         allCommentLoaded,
     required TResult Function(ReplyDetails allRepliesDetails) allRepliesLoaded,
-    required TResult Function(NetworkExceptionModel networkExceptions) error,
+    required TResult Function(NetworkExceptionModel networkExceptions)
+        videoInfoError,
   }) {
     return firstCommentLoaded(firstCommentDetails);
   }
@@ -998,14 +1007,14 @@ class _$FirstCommentLoaded implements FirstCommentLoaded {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
+    TResult? Function()? videoInfoLoading,
     TResult? Function(VideosDetails videoDetails)? videoDetailsLoaded,
-    TResult? Function(RatingDetails videoDetails)? getVideoRatingLoaded,
+    TResult? Function(RatingDetails ratingDetails)? getVideoRatingLoaded,
     TResult? Function()? ratingVideoLoaded,
     TResult? Function(CommentDetails firstCommentDetails)? firstCommentLoaded,
     TResult? Function(CommentDetails allCommentDetails)? allCommentLoaded,
     TResult? Function(ReplyDetails allRepliesDetails)? allRepliesLoaded,
-    TResult? Function(NetworkExceptionModel networkExceptions)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? videoInfoError,
   }) {
     return firstCommentLoaded?.call(firstCommentDetails);
   }
@@ -1014,14 +1023,14 @@ class _$FirstCommentLoaded implements FirstCommentLoaded {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function()? videoInfoLoading,
     TResult Function(VideosDetails videoDetails)? videoDetailsLoaded,
-    TResult Function(RatingDetails videoDetails)? getVideoRatingLoaded,
+    TResult Function(RatingDetails ratingDetails)? getVideoRatingLoaded,
     TResult Function()? ratingVideoLoaded,
     TResult Function(CommentDetails firstCommentDetails)? firstCommentLoaded,
     TResult Function(CommentDetails allCommentDetails)? allCommentLoaded,
     TResult Function(ReplyDetails allRepliesDetails)? allRepliesLoaded,
-    TResult Function(NetworkExceptionModel networkExceptions)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? videoInfoError,
     required TResult orElse(),
   }) {
     if (firstCommentLoaded != null) {
@@ -1034,14 +1043,14 @@ class _$FirstCommentLoaded implements FirstCommentLoaded {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(Loading value) loading,
+    required TResult Function(VideoInfoLoading value) videoInfoLoading,
     required TResult Function(VideoDetailsLoaded value) videoDetailsLoaded,
     required TResult Function(GetVideoRatingLoaded value) getVideoRatingLoaded,
     required TResult Function(RatingVideoLoaded value) ratingVideoLoaded,
     required TResult Function(FirstCommentLoaded value) firstCommentLoaded,
     required TResult Function(AllCommentLoaded value) allCommentLoaded,
     required TResult Function(AllRepliesLoaded value) allRepliesLoaded,
-    required TResult Function(Error value) error,
+    required TResult Function(VideoInfoError value) videoInfoError,
   }) {
     return firstCommentLoaded(this);
   }
@@ -1050,14 +1059,14 @@ class _$FirstCommentLoaded implements FirstCommentLoaded {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(Loading value)? loading,
+    TResult? Function(VideoInfoLoading value)? videoInfoLoading,
     TResult? Function(VideoDetailsLoaded value)? videoDetailsLoaded,
     TResult? Function(GetVideoRatingLoaded value)? getVideoRatingLoaded,
     TResult? Function(RatingVideoLoaded value)? ratingVideoLoaded,
     TResult? Function(FirstCommentLoaded value)? firstCommentLoaded,
     TResult? Function(AllCommentLoaded value)? allCommentLoaded,
     TResult? Function(AllRepliesLoaded value)? allRepliesLoaded,
-    TResult? Function(Error value)? error,
+    TResult? Function(VideoInfoError value)? videoInfoError,
   }) {
     return firstCommentLoaded?.call(this);
   }
@@ -1066,14 +1075,14 @@ class _$FirstCommentLoaded implements FirstCommentLoaded {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(Loading value)? loading,
+    TResult Function(VideoInfoLoading value)? videoInfoLoading,
     TResult Function(VideoDetailsLoaded value)? videoDetailsLoaded,
     TResult Function(GetVideoRatingLoaded value)? getVideoRatingLoaded,
     TResult Function(RatingVideoLoaded value)? ratingVideoLoaded,
     TResult Function(FirstCommentLoaded value)? firstCommentLoaded,
     TResult Function(AllCommentLoaded value)? allCommentLoaded,
     TResult Function(AllRepliesLoaded value)? allRepliesLoaded,
-    TResult Function(Error value)? error,
+    TResult Function(VideoInfoError value)? videoInfoError,
     required TResult orElse(),
   }) {
     if (firstCommentLoaded != null) {
@@ -1159,16 +1168,17 @@ class _$AllCommentLoaded implements AllCommentLoaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function() videoInfoLoading,
     required TResult Function(VideosDetails videoDetails) videoDetailsLoaded,
-    required TResult Function(RatingDetails videoDetails) getVideoRatingLoaded,
+    required TResult Function(RatingDetails ratingDetails) getVideoRatingLoaded,
     required TResult Function() ratingVideoLoaded,
     required TResult Function(CommentDetails firstCommentDetails)
         firstCommentLoaded,
     required TResult Function(CommentDetails allCommentDetails)
         allCommentLoaded,
     required TResult Function(ReplyDetails allRepliesDetails) allRepliesLoaded,
-    required TResult Function(NetworkExceptionModel networkExceptions) error,
+    required TResult Function(NetworkExceptionModel networkExceptions)
+        videoInfoError,
   }) {
     return allCommentLoaded(allCommentDetails);
   }
@@ -1177,14 +1187,14 @@ class _$AllCommentLoaded implements AllCommentLoaded {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
+    TResult? Function()? videoInfoLoading,
     TResult? Function(VideosDetails videoDetails)? videoDetailsLoaded,
-    TResult? Function(RatingDetails videoDetails)? getVideoRatingLoaded,
+    TResult? Function(RatingDetails ratingDetails)? getVideoRatingLoaded,
     TResult? Function()? ratingVideoLoaded,
     TResult? Function(CommentDetails firstCommentDetails)? firstCommentLoaded,
     TResult? Function(CommentDetails allCommentDetails)? allCommentLoaded,
     TResult? Function(ReplyDetails allRepliesDetails)? allRepliesLoaded,
-    TResult? Function(NetworkExceptionModel networkExceptions)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? videoInfoError,
   }) {
     return allCommentLoaded?.call(allCommentDetails);
   }
@@ -1193,14 +1203,14 @@ class _$AllCommentLoaded implements AllCommentLoaded {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function()? videoInfoLoading,
     TResult Function(VideosDetails videoDetails)? videoDetailsLoaded,
-    TResult Function(RatingDetails videoDetails)? getVideoRatingLoaded,
+    TResult Function(RatingDetails ratingDetails)? getVideoRatingLoaded,
     TResult Function()? ratingVideoLoaded,
     TResult Function(CommentDetails firstCommentDetails)? firstCommentLoaded,
     TResult Function(CommentDetails allCommentDetails)? allCommentLoaded,
     TResult Function(ReplyDetails allRepliesDetails)? allRepliesLoaded,
-    TResult Function(NetworkExceptionModel networkExceptions)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? videoInfoError,
     required TResult orElse(),
   }) {
     if (allCommentLoaded != null) {
@@ -1213,14 +1223,14 @@ class _$AllCommentLoaded implements AllCommentLoaded {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(Loading value) loading,
+    required TResult Function(VideoInfoLoading value) videoInfoLoading,
     required TResult Function(VideoDetailsLoaded value) videoDetailsLoaded,
     required TResult Function(GetVideoRatingLoaded value) getVideoRatingLoaded,
     required TResult Function(RatingVideoLoaded value) ratingVideoLoaded,
     required TResult Function(FirstCommentLoaded value) firstCommentLoaded,
     required TResult Function(AllCommentLoaded value) allCommentLoaded,
     required TResult Function(AllRepliesLoaded value) allRepliesLoaded,
-    required TResult Function(Error value) error,
+    required TResult Function(VideoInfoError value) videoInfoError,
   }) {
     return allCommentLoaded(this);
   }
@@ -1229,14 +1239,14 @@ class _$AllCommentLoaded implements AllCommentLoaded {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(Loading value)? loading,
+    TResult? Function(VideoInfoLoading value)? videoInfoLoading,
     TResult? Function(VideoDetailsLoaded value)? videoDetailsLoaded,
     TResult? Function(GetVideoRatingLoaded value)? getVideoRatingLoaded,
     TResult? Function(RatingVideoLoaded value)? ratingVideoLoaded,
     TResult? Function(FirstCommentLoaded value)? firstCommentLoaded,
     TResult? Function(AllCommentLoaded value)? allCommentLoaded,
     TResult? Function(AllRepliesLoaded value)? allRepliesLoaded,
-    TResult? Function(Error value)? error,
+    TResult? Function(VideoInfoError value)? videoInfoError,
   }) {
     return allCommentLoaded?.call(this);
   }
@@ -1245,14 +1255,14 @@ class _$AllCommentLoaded implements AllCommentLoaded {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(Loading value)? loading,
+    TResult Function(VideoInfoLoading value)? videoInfoLoading,
     TResult Function(VideoDetailsLoaded value)? videoDetailsLoaded,
     TResult Function(GetVideoRatingLoaded value)? getVideoRatingLoaded,
     TResult Function(RatingVideoLoaded value)? ratingVideoLoaded,
     TResult Function(FirstCommentLoaded value)? firstCommentLoaded,
     TResult Function(AllCommentLoaded value)? allCommentLoaded,
     TResult Function(AllRepliesLoaded value)? allRepliesLoaded,
-    TResult Function(Error value)? error,
+    TResult Function(VideoInfoError value)? videoInfoError,
     required TResult orElse(),
   }) {
     if (allCommentLoaded != null) {
@@ -1338,16 +1348,17 @@ class _$AllRepliesLoaded implements AllRepliesLoaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function() videoInfoLoading,
     required TResult Function(VideosDetails videoDetails) videoDetailsLoaded,
-    required TResult Function(RatingDetails videoDetails) getVideoRatingLoaded,
+    required TResult Function(RatingDetails ratingDetails) getVideoRatingLoaded,
     required TResult Function() ratingVideoLoaded,
     required TResult Function(CommentDetails firstCommentDetails)
         firstCommentLoaded,
     required TResult Function(CommentDetails allCommentDetails)
         allCommentLoaded,
     required TResult Function(ReplyDetails allRepliesDetails) allRepliesLoaded,
-    required TResult Function(NetworkExceptionModel networkExceptions) error,
+    required TResult Function(NetworkExceptionModel networkExceptions)
+        videoInfoError,
   }) {
     return allRepliesLoaded(allRepliesDetails);
   }
@@ -1356,14 +1367,14 @@ class _$AllRepliesLoaded implements AllRepliesLoaded {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
+    TResult? Function()? videoInfoLoading,
     TResult? Function(VideosDetails videoDetails)? videoDetailsLoaded,
-    TResult? Function(RatingDetails videoDetails)? getVideoRatingLoaded,
+    TResult? Function(RatingDetails ratingDetails)? getVideoRatingLoaded,
     TResult? Function()? ratingVideoLoaded,
     TResult? Function(CommentDetails firstCommentDetails)? firstCommentLoaded,
     TResult? Function(CommentDetails allCommentDetails)? allCommentLoaded,
     TResult? Function(ReplyDetails allRepliesDetails)? allRepliesLoaded,
-    TResult? Function(NetworkExceptionModel networkExceptions)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? videoInfoError,
   }) {
     return allRepliesLoaded?.call(allRepliesDetails);
   }
@@ -1372,14 +1383,14 @@ class _$AllRepliesLoaded implements AllRepliesLoaded {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function()? videoInfoLoading,
     TResult Function(VideosDetails videoDetails)? videoDetailsLoaded,
-    TResult Function(RatingDetails videoDetails)? getVideoRatingLoaded,
+    TResult Function(RatingDetails ratingDetails)? getVideoRatingLoaded,
     TResult Function()? ratingVideoLoaded,
     TResult Function(CommentDetails firstCommentDetails)? firstCommentLoaded,
     TResult Function(CommentDetails allCommentDetails)? allCommentLoaded,
     TResult Function(ReplyDetails allRepliesDetails)? allRepliesLoaded,
-    TResult Function(NetworkExceptionModel networkExceptions)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? videoInfoError,
     required TResult orElse(),
   }) {
     if (allRepliesLoaded != null) {
@@ -1392,14 +1403,14 @@ class _$AllRepliesLoaded implements AllRepliesLoaded {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(Loading value) loading,
+    required TResult Function(VideoInfoLoading value) videoInfoLoading,
     required TResult Function(VideoDetailsLoaded value) videoDetailsLoaded,
     required TResult Function(GetVideoRatingLoaded value) getVideoRatingLoaded,
     required TResult Function(RatingVideoLoaded value) ratingVideoLoaded,
     required TResult Function(FirstCommentLoaded value) firstCommentLoaded,
     required TResult Function(AllCommentLoaded value) allCommentLoaded,
     required TResult Function(AllRepliesLoaded value) allRepliesLoaded,
-    required TResult Function(Error value) error,
+    required TResult Function(VideoInfoError value) videoInfoError,
   }) {
     return allRepliesLoaded(this);
   }
@@ -1408,14 +1419,14 @@ class _$AllRepliesLoaded implements AllRepliesLoaded {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(Loading value)? loading,
+    TResult? Function(VideoInfoLoading value)? videoInfoLoading,
     TResult? Function(VideoDetailsLoaded value)? videoDetailsLoaded,
     TResult? Function(GetVideoRatingLoaded value)? getVideoRatingLoaded,
     TResult? Function(RatingVideoLoaded value)? ratingVideoLoaded,
     TResult? Function(FirstCommentLoaded value)? firstCommentLoaded,
     TResult? Function(AllCommentLoaded value)? allCommentLoaded,
     TResult? Function(AllRepliesLoaded value)? allRepliesLoaded,
-    TResult? Function(Error value)? error,
+    TResult? Function(VideoInfoError value)? videoInfoError,
   }) {
     return allRepliesLoaded?.call(this);
   }
@@ -1424,14 +1435,14 @@ class _$AllRepliesLoaded implements AllRepliesLoaded {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(Loading value)? loading,
+    TResult Function(VideoInfoLoading value)? videoInfoLoading,
     TResult Function(VideoDetailsLoaded value)? videoDetailsLoaded,
     TResult Function(GetVideoRatingLoaded value)? getVideoRatingLoaded,
     TResult Function(RatingVideoLoaded value)? ratingVideoLoaded,
     TResult Function(FirstCommentLoaded value)? firstCommentLoaded,
     TResult Function(AllCommentLoaded value)? allCommentLoaded,
     TResult Function(AllRepliesLoaded value)? allRepliesLoaded,
-    TResult Function(Error value)? error,
+    TResult Function(VideoInfoError value)? videoInfoError,
     required TResult orElse(),
   }) {
     if (allRepliesLoaded != null) {
@@ -1452,18 +1463,20 @@ abstract class AllRepliesLoaded implements SingleVideoState {
 }
 
 /// @nodoc
-abstract class _$$ErrorCopyWith<$Res> {
-  factory _$$ErrorCopyWith(_$Error value, $Res Function(_$Error) then) =
-      __$$ErrorCopyWithImpl<$Res>;
+abstract class _$$VideoInfoErrorCopyWith<$Res> {
+  factory _$$VideoInfoErrorCopyWith(
+          _$VideoInfoError value, $Res Function(_$VideoInfoError) then) =
+      __$$VideoInfoErrorCopyWithImpl<$Res>;
   @useResult
   $Res call({NetworkExceptionModel networkExceptions});
 }
 
 /// @nodoc
-class __$$ErrorCopyWithImpl<$Res>
-    extends _$SingleVideoStateCopyWithImpl<$Res, _$Error>
-    implements _$$ErrorCopyWith<$Res> {
-  __$$ErrorCopyWithImpl(_$Error _value, $Res Function(_$Error) _then)
+class __$$VideoInfoErrorCopyWithImpl<$Res>
+    extends _$SingleVideoStateCopyWithImpl<$Res, _$VideoInfoError>
+    implements _$$VideoInfoErrorCopyWith<$Res> {
+  __$$VideoInfoErrorCopyWithImpl(
+      _$VideoInfoError _value, $Res Function(_$VideoInfoError) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1471,7 +1484,7 @@ class __$$ErrorCopyWithImpl<$Res>
   $Res call({
     Object? networkExceptions = null,
   }) {
-    return _then(_$Error(
+    return _then(_$VideoInfoError(
       null == networkExceptions
           ? _value.networkExceptions
           : networkExceptions // ignore: cast_nullable_to_non_nullable
@@ -1482,22 +1495,22 @@ class __$$ErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$Error implements Error {
-  const _$Error(this.networkExceptions);
+class _$VideoInfoError implements VideoInfoError {
+  const _$VideoInfoError(this.networkExceptions);
 
   @override
   final NetworkExceptionModel networkExceptions;
 
   @override
   String toString() {
-    return 'SingleVideoState.error(networkExceptions: $networkExceptions)';
+    return 'SingleVideoState.videoInfoError(networkExceptions: $networkExceptions)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$Error &&
+            other is _$VideoInfoError &&
             (identical(other.networkExceptions, networkExceptions) ||
                 other.networkExceptions == networkExceptions));
   }
@@ -1508,59 +1521,60 @@ class _$Error implements Error {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ErrorCopyWith<_$Error> get copyWith =>
-      __$$ErrorCopyWithImpl<_$Error>(this, _$identity);
+  _$$VideoInfoErrorCopyWith<_$VideoInfoError> get copyWith =>
+      __$$VideoInfoErrorCopyWithImpl<_$VideoInfoError>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function() videoInfoLoading,
     required TResult Function(VideosDetails videoDetails) videoDetailsLoaded,
-    required TResult Function(RatingDetails videoDetails) getVideoRatingLoaded,
+    required TResult Function(RatingDetails ratingDetails) getVideoRatingLoaded,
     required TResult Function() ratingVideoLoaded,
     required TResult Function(CommentDetails firstCommentDetails)
         firstCommentLoaded,
     required TResult Function(CommentDetails allCommentDetails)
         allCommentLoaded,
     required TResult Function(ReplyDetails allRepliesDetails) allRepliesLoaded,
-    required TResult Function(NetworkExceptionModel networkExceptions) error,
+    required TResult Function(NetworkExceptionModel networkExceptions)
+        videoInfoError,
   }) {
-    return error(networkExceptions);
+    return videoInfoError(networkExceptions);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
+    TResult? Function()? videoInfoLoading,
     TResult? Function(VideosDetails videoDetails)? videoDetailsLoaded,
-    TResult? Function(RatingDetails videoDetails)? getVideoRatingLoaded,
+    TResult? Function(RatingDetails ratingDetails)? getVideoRatingLoaded,
     TResult? Function()? ratingVideoLoaded,
     TResult? Function(CommentDetails firstCommentDetails)? firstCommentLoaded,
     TResult? Function(CommentDetails allCommentDetails)? allCommentLoaded,
     TResult? Function(ReplyDetails allRepliesDetails)? allRepliesLoaded,
-    TResult? Function(NetworkExceptionModel networkExceptions)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? videoInfoError,
   }) {
-    return error?.call(networkExceptions);
+    return videoInfoError?.call(networkExceptions);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function()? videoInfoLoading,
     TResult Function(VideosDetails videoDetails)? videoDetailsLoaded,
-    TResult Function(RatingDetails videoDetails)? getVideoRatingLoaded,
+    TResult Function(RatingDetails ratingDetails)? getVideoRatingLoaded,
     TResult Function()? ratingVideoLoaded,
     TResult Function(CommentDetails firstCommentDetails)? firstCommentLoaded,
     TResult Function(CommentDetails allCommentDetails)? allCommentLoaded,
     TResult Function(ReplyDetails allRepliesDetails)? allRepliesLoaded,
-    TResult Function(NetworkExceptionModel networkExceptions)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? videoInfoError,
     required TResult orElse(),
   }) {
-    if (error != null) {
-      return error(networkExceptions);
+    if (videoInfoError != null) {
+      return videoInfoError(networkExceptions);
     }
     return orElse();
   }
@@ -1569,59 +1583,61 @@ class _$Error implements Error {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(Loading value) loading,
+    required TResult Function(VideoInfoLoading value) videoInfoLoading,
     required TResult Function(VideoDetailsLoaded value) videoDetailsLoaded,
     required TResult Function(GetVideoRatingLoaded value) getVideoRatingLoaded,
     required TResult Function(RatingVideoLoaded value) ratingVideoLoaded,
     required TResult Function(FirstCommentLoaded value) firstCommentLoaded,
     required TResult Function(AllCommentLoaded value) allCommentLoaded,
     required TResult Function(AllRepliesLoaded value) allRepliesLoaded,
-    required TResult Function(Error value) error,
+    required TResult Function(VideoInfoError value) videoInfoError,
   }) {
-    return error(this);
+    return videoInfoError(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(Loading value)? loading,
+    TResult? Function(VideoInfoLoading value)? videoInfoLoading,
     TResult? Function(VideoDetailsLoaded value)? videoDetailsLoaded,
     TResult? Function(GetVideoRatingLoaded value)? getVideoRatingLoaded,
     TResult? Function(RatingVideoLoaded value)? ratingVideoLoaded,
     TResult? Function(FirstCommentLoaded value)? firstCommentLoaded,
     TResult? Function(AllCommentLoaded value)? allCommentLoaded,
     TResult? Function(AllRepliesLoaded value)? allRepliesLoaded,
-    TResult? Function(Error value)? error,
+    TResult? Function(VideoInfoError value)? videoInfoError,
   }) {
-    return error?.call(this);
+    return videoInfoError?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(Loading value)? loading,
+    TResult Function(VideoInfoLoading value)? videoInfoLoading,
     TResult Function(VideoDetailsLoaded value)? videoDetailsLoaded,
     TResult Function(GetVideoRatingLoaded value)? getVideoRatingLoaded,
     TResult Function(RatingVideoLoaded value)? ratingVideoLoaded,
     TResult Function(FirstCommentLoaded value)? firstCommentLoaded,
     TResult Function(AllCommentLoaded value)? allCommentLoaded,
     TResult Function(AllRepliesLoaded value)? allRepliesLoaded,
-    TResult Function(Error value)? error,
+    TResult Function(VideoInfoError value)? videoInfoError,
     required TResult orElse(),
   }) {
-    if (error != null) {
-      return error(this);
+    if (videoInfoError != null) {
+      return videoInfoError(this);
     }
     return orElse();
   }
 }
 
-abstract class Error implements SingleVideoState {
-  const factory Error(final NetworkExceptionModel networkExceptions) = _$Error;
+abstract class VideoInfoError implements SingleVideoState {
+  const factory VideoInfoError(final NetworkExceptionModel networkExceptions) =
+      _$VideoInfoError;
 
   NetworkExceptionModel get networkExceptions;
   @JsonKey(ignore: true)
-  _$$ErrorCopyWith<_$Error> get copyWith => throw _privateConstructorUsedError;
+  _$$VideoInfoErrorCopyWith<_$VideoInfoError> get copyWith =>
+      throw _privateConstructorUsedError;
 }

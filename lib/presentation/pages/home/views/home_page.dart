@@ -70,35 +70,31 @@ class _VideosListState extends State<_VideosList>
       buildWhen: (previous, current) =>
           previous != current && current is AllVideosLoaded,
       builder: (context, state) {
-        return state.maybeWhen(
-          allVideosLoaded: (allVideosLoaded) {
-            return SliverList(
-              delegate: SliverChildBuilderDelegate(
-                childCount: allVideosLoaded.videoDetailsItem?.length,
-                (context, index) {
-                  return ThumbnailOfVideo(
-                    allVideosLoaded.videoDetailsItem?[index],
-                    playVideo: index == widget.index,
-                  );
-                },
-              ),
-            );
-          },
-          loading: () => const SliverFillRemaining(child: VideosListLoading()),
-          error: (e) {
-            return SliverFillRemaining(
-              child: Center(
-                child: Text(
-                    NetworkExceptions.getErrorMessage(e.networkExceptions),
-                    style: getNormalStyle(
-                        color: ColorManager(context).black, fontSize: 15)),
-              ),
-            );
-          },
-          orElse: () {
-            return const SliverFillRemaining(child: SizedBox());
-          },
-        );
+        if (state is AllVideosLoaded) {
+          return SliverList(
+            delegate: SliverChildBuilderDelegate(
+              childCount: state.allVideosLoaded.videoDetailsItem?.length,
+              (context, index) {
+                return ThumbnailOfVideo(
+                  state.allVideosLoaded.videoDetailsItem?[index],
+                  playVideo: index == widget.index,
+                );
+              },
+            ),
+          );
+        } else if (state is VideoError) {
+          return SliverFillRemaining(
+            child: Center(
+              child: Text(
+                  NetworkExceptions.getErrorMessage(
+                      state.networkExceptions.networkExceptions),
+                  style: getNormalStyle(
+                      color: ColorManager(context).black, fontSize: 15)),
+            ),
+          );
+        } else {
+          return const SliverFillRemaining(child: VideosListLoading());
+        }
       },
     );
   }

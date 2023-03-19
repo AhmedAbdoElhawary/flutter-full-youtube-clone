@@ -1,4 +1,3 @@
-import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,7 +5,6 @@ import 'package:youtube/config/routes/route_app.dart';
 import 'package:youtube/data/models/channel_details/channel_details.dart';
 import 'package:youtube/data/models/channel_details/playlists/playlists.dart';
 import 'package:youtube/data/models/channel_details/playlists/playlists_extension.dart';
-import 'package:youtube/presentation/common_widgets/custom_network_display.dart';
 import 'package:youtube/presentation/common_widgets/error_message_widget.dart';
 import 'package:youtube/presentation/common_widgets/horizontal_videos_loading.dart';
 import 'package:youtube/presentation/common_widgets/svg_icon.dart';
@@ -191,7 +189,7 @@ class PlaylistHorizontalDescriptionsList extends StatelessWidget {
                   Text(
                     channelName,
                     style: getNormalStyle(
-                        color:BaseColorManager.grey, fontSize: 12),
+                        color: BaseColorManager.grey, fontSize: 12),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
                   ),
@@ -215,20 +213,11 @@ class _PlaylistCountBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String? imageUrl = playListsItem?.getPlaylistCoverImageUrl() ?? "";
-
-    return SizedBox(
+    return Container(
       width: 160.w,
       height: 15.h,
-      child: CustomNetworkDisplay(
-        imageUrl: imageUrl,
-        width: 160.w,
-        height: 15.h,
-      ).blurred(
-        colorOpacity: 0.1,
-        blur: 10,
-        overlay: _PlayListCount(playListsItem: playListsItem),
-      ),
+      color: BaseColorManager.black54,
+      child: _PlayListCount(playListsItem: playListsItem),
     );
   }
 }

@@ -19,7 +19,7 @@ mixin _$ChannelVideosState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function() channelLoading,
     required TResult Function(VideosDetails videoDetails) popularVideosLoaded,
     required TResult Function(VideosDetails videoDetails)
         shortPopularVideosLoaded,
@@ -27,40 +27,41 @@ mixin _$ChannelVideosState {
     required TResult Function(VideosDetails videoDetails) channelVideosLoaded,
     required TResult Function(List<VideoDetailsItem> videoDetails)
         videosOfThoseChannelsLoaded,
-    required TResult Function(NetworkExceptionModel networkExceptions) error,
+    required TResult Function(NetworkExceptionModel networkExceptions)
+        channelError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
+    TResult? Function()? channelLoading,
     TResult? Function(VideosDetails videoDetails)? popularVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? shortPopularVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? shortVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? channelVideosLoaded,
     TResult? Function(List<VideoDetailsItem> videoDetails)?
         videosOfThoseChannelsLoaded,
-    TResult? Function(NetworkExceptionModel networkExceptions)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? channelError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function()? channelLoading,
     TResult Function(VideosDetails videoDetails)? popularVideosLoaded,
     TResult Function(VideosDetails videoDetails)? shortPopularVideosLoaded,
     TResult Function(VideosDetails videoDetails)? shortVideosLoaded,
     TResult Function(VideosDetails videoDetails)? channelVideosLoaded,
     TResult Function(List<VideoDetailsItem> videoDetails)?
         videosOfThoseChannelsLoaded,
-    TResult Function(NetworkExceptionModel networkExceptions)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? channelError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(Loading value) loading,
+    required TResult Function(ChannelLoading value) channelLoading,
     required TResult Function(PopularVideosLoaded value) popularVideosLoaded,
     required TResult Function(ShortPopularVideosLoaded value)
         shortPopularVideosLoaded,
@@ -68,33 +69,33 @@ mixin _$ChannelVideosState {
     required TResult Function(ChannelVideosLoaded value) channelVideosLoaded,
     required TResult Function(VideosOfThoseChannelsLoaded value)
         videosOfThoseChannelsLoaded,
-    required TResult Function(Error value) error,
+    required TResult Function(ChannelError value) channelError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(Loading value)? loading,
+    TResult? Function(ChannelLoading value)? channelLoading,
     TResult? Function(PopularVideosLoaded value)? popularVideosLoaded,
     TResult? Function(ShortPopularVideosLoaded value)? shortPopularVideosLoaded,
     TResult? Function(ShortVideosLoaded value)? shortVideosLoaded,
     TResult? Function(ChannelVideosLoaded value)? channelVideosLoaded,
     TResult? Function(VideosOfThoseChannelsLoaded value)?
         videosOfThoseChannelsLoaded,
-    TResult? Function(Error value)? error,
+    TResult? Function(ChannelError value)? channelError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(Loading value)? loading,
+    TResult Function(ChannelLoading value)? channelLoading,
     TResult Function(PopularVideosLoaded value)? popularVideosLoaded,
     TResult Function(ShortPopularVideosLoaded value)? shortPopularVideosLoaded,
     TResult Function(ShortVideosLoaded value)? shortVideosLoaded,
     TResult Function(ChannelVideosLoaded value)? channelVideosLoaded,
     TResult Function(VideosOfThoseChannelsLoaded value)?
         videosOfThoseChannelsLoaded,
-    TResult Function(Error value)? error,
+    TResult Function(ChannelError value)? channelError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -156,7 +157,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function() channelLoading,
     required TResult Function(VideosDetails videoDetails) popularVideosLoaded,
     required TResult Function(VideosDetails videoDetails)
         shortPopularVideosLoaded,
@@ -164,7 +165,8 @@ class _$_Initial implements _Initial {
     required TResult Function(VideosDetails videoDetails) channelVideosLoaded,
     required TResult Function(List<VideoDetailsItem> videoDetails)
         videosOfThoseChannelsLoaded,
-    required TResult Function(NetworkExceptionModel networkExceptions) error,
+    required TResult Function(NetworkExceptionModel networkExceptions)
+        channelError,
   }) {
     return initial();
   }
@@ -173,14 +175,14 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
+    TResult? Function()? channelLoading,
     TResult? Function(VideosDetails videoDetails)? popularVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? shortPopularVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? shortVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? channelVideosLoaded,
     TResult? Function(List<VideoDetailsItem> videoDetails)?
         videosOfThoseChannelsLoaded,
-    TResult? Function(NetworkExceptionModel networkExceptions)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? channelError,
   }) {
     return initial?.call();
   }
@@ -189,14 +191,14 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function()? channelLoading,
     TResult Function(VideosDetails videoDetails)? popularVideosLoaded,
     TResult Function(VideosDetails videoDetails)? shortPopularVideosLoaded,
     TResult Function(VideosDetails videoDetails)? shortVideosLoaded,
     TResult Function(VideosDetails videoDetails)? channelVideosLoaded,
     TResult Function(List<VideoDetailsItem> videoDetails)?
         videosOfThoseChannelsLoaded,
-    TResult Function(NetworkExceptionModel networkExceptions)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? channelError,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -209,7 +211,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(Loading value) loading,
+    required TResult Function(ChannelLoading value) channelLoading,
     required TResult Function(PopularVideosLoaded value) popularVideosLoaded,
     required TResult Function(ShortPopularVideosLoaded value)
         shortPopularVideosLoaded,
@@ -217,7 +219,7 @@ class _$_Initial implements _Initial {
     required TResult Function(ChannelVideosLoaded value) channelVideosLoaded,
     required TResult Function(VideosOfThoseChannelsLoaded value)
         videosOfThoseChannelsLoaded,
-    required TResult Function(Error value) error,
+    required TResult Function(ChannelError value) channelError,
   }) {
     return initial(this);
   }
@@ -226,14 +228,14 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(Loading value)? loading,
+    TResult? Function(ChannelLoading value)? channelLoading,
     TResult? Function(PopularVideosLoaded value)? popularVideosLoaded,
     TResult? Function(ShortPopularVideosLoaded value)? shortPopularVideosLoaded,
     TResult? Function(ShortVideosLoaded value)? shortVideosLoaded,
     TResult? Function(ChannelVideosLoaded value)? channelVideosLoaded,
     TResult? Function(VideosOfThoseChannelsLoaded value)?
         videosOfThoseChannelsLoaded,
-    TResult? Function(Error value)? error,
+    TResult? Function(ChannelError value)? channelError,
   }) {
     return initial?.call(this);
   }
@@ -242,14 +244,14 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(Loading value)? loading,
+    TResult Function(ChannelLoading value)? channelLoading,
     TResult Function(PopularVideosLoaded value)? popularVideosLoaded,
     TResult Function(ShortPopularVideosLoaded value)? shortPopularVideosLoaded,
     TResult Function(ShortVideosLoaded value)? shortVideosLoaded,
     TResult Function(ChannelVideosLoaded value)? channelVideosLoaded,
     TResult Function(VideosOfThoseChannelsLoaded value)?
         videosOfThoseChannelsLoaded,
-    TResult Function(Error value)? error,
+    TResult Function(ChannelError value)? channelError,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -264,33 +266,35 @@ abstract class _Initial implements ChannelVideosState {
 }
 
 /// @nodoc
-abstract class _$$LoadingCopyWith<$Res> {
-  factory _$$LoadingCopyWith(_$Loading value, $Res Function(_$Loading) then) =
-      __$$LoadingCopyWithImpl<$Res>;
+abstract class _$$ChannelLoadingCopyWith<$Res> {
+  factory _$$ChannelLoadingCopyWith(
+          _$ChannelLoading value, $Res Function(_$ChannelLoading) then) =
+      __$$ChannelLoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadingCopyWithImpl<$Res>
-    extends _$ChannelVideosStateCopyWithImpl<$Res, _$Loading>
-    implements _$$LoadingCopyWith<$Res> {
-  __$$LoadingCopyWithImpl(_$Loading _value, $Res Function(_$Loading) _then)
+class __$$ChannelLoadingCopyWithImpl<$Res>
+    extends _$ChannelVideosStateCopyWithImpl<$Res, _$ChannelLoading>
+    implements _$$ChannelLoadingCopyWith<$Res> {
+  __$$ChannelLoadingCopyWithImpl(
+      _$ChannelLoading _value, $Res Function(_$ChannelLoading) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$Loading implements Loading {
-  const _$Loading();
+class _$ChannelLoading implements ChannelLoading {
+  const _$ChannelLoading();
 
   @override
   String toString() {
-    return 'ChannelVideosState.loading()';
+    return 'ChannelVideosState.channelLoading()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$Loading);
+        (other.runtimeType == runtimeType && other is _$ChannelLoading);
   }
 
   @override
@@ -300,7 +304,7 @@ class _$Loading implements Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function() channelLoading,
     required TResult Function(VideosDetails videoDetails) popularVideosLoaded,
     required TResult Function(VideosDetails videoDetails)
         shortPopularVideosLoaded,
@@ -308,43 +312,44 @@ class _$Loading implements Loading {
     required TResult Function(VideosDetails videoDetails) channelVideosLoaded,
     required TResult Function(List<VideoDetailsItem> videoDetails)
         videosOfThoseChannelsLoaded,
-    required TResult Function(NetworkExceptionModel networkExceptions) error,
+    required TResult Function(NetworkExceptionModel networkExceptions)
+        channelError,
   }) {
-    return loading();
+    return channelLoading();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
+    TResult? Function()? channelLoading,
     TResult? Function(VideosDetails videoDetails)? popularVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? shortPopularVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? shortVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? channelVideosLoaded,
     TResult? Function(List<VideoDetailsItem> videoDetails)?
         videosOfThoseChannelsLoaded,
-    TResult? Function(NetworkExceptionModel networkExceptions)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? channelError,
   }) {
-    return loading?.call();
+    return channelLoading?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function()? channelLoading,
     TResult Function(VideosDetails videoDetails)? popularVideosLoaded,
     TResult Function(VideosDetails videoDetails)? shortPopularVideosLoaded,
     TResult Function(VideosDetails videoDetails)? shortVideosLoaded,
     TResult Function(VideosDetails videoDetails)? channelVideosLoaded,
     TResult Function(List<VideoDetailsItem> videoDetails)?
         videosOfThoseChannelsLoaded,
-    TResult Function(NetworkExceptionModel networkExceptions)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? channelError,
     required TResult orElse(),
   }) {
-    if (loading != null) {
-      return loading();
+    if (channelLoading != null) {
+      return channelLoading();
     }
     return orElse();
   }
@@ -353,7 +358,7 @@ class _$Loading implements Loading {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(Loading value) loading,
+    required TResult Function(ChannelLoading value) channelLoading,
     required TResult Function(PopularVideosLoaded value) popularVideosLoaded,
     required TResult Function(ShortPopularVideosLoaded value)
         shortPopularVideosLoaded,
@@ -361,50 +366,50 @@ class _$Loading implements Loading {
     required TResult Function(ChannelVideosLoaded value) channelVideosLoaded,
     required TResult Function(VideosOfThoseChannelsLoaded value)
         videosOfThoseChannelsLoaded,
-    required TResult Function(Error value) error,
+    required TResult Function(ChannelError value) channelError,
   }) {
-    return loading(this);
+    return channelLoading(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(Loading value)? loading,
+    TResult? Function(ChannelLoading value)? channelLoading,
     TResult? Function(PopularVideosLoaded value)? popularVideosLoaded,
     TResult? Function(ShortPopularVideosLoaded value)? shortPopularVideosLoaded,
     TResult? Function(ShortVideosLoaded value)? shortVideosLoaded,
     TResult? Function(ChannelVideosLoaded value)? channelVideosLoaded,
     TResult? Function(VideosOfThoseChannelsLoaded value)?
         videosOfThoseChannelsLoaded,
-    TResult? Function(Error value)? error,
+    TResult? Function(ChannelError value)? channelError,
   }) {
-    return loading?.call(this);
+    return channelLoading?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(Loading value)? loading,
+    TResult Function(ChannelLoading value)? channelLoading,
     TResult Function(PopularVideosLoaded value)? popularVideosLoaded,
     TResult Function(ShortPopularVideosLoaded value)? shortPopularVideosLoaded,
     TResult Function(ShortVideosLoaded value)? shortVideosLoaded,
     TResult Function(ChannelVideosLoaded value)? channelVideosLoaded,
     TResult Function(VideosOfThoseChannelsLoaded value)?
         videosOfThoseChannelsLoaded,
-    TResult Function(Error value)? error,
+    TResult Function(ChannelError value)? channelError,
     required TResult orElse(),
   }) {
-    if (loading != null) {
-      return loading(this);
+    if (channelLoading != null) {
+      return channelLoading(this);
     }
     return orElse();
   }
 }
 
-abstract class Loading implements ChannelVideosState {
-  const factory Loading() = _$Loading;
+abstract class ChannelLoading implements ChannelVideosState {
+  const factory ChannelLoading() = _$ChannelLoading;
 }
 
 /// @nodoc
@@ -474,7 +479,7 @@ class _$PopularVideosLoaded implements PopularVideosLoaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function() channelLoading,
     required TResult Function(VideosDetails videoDetails) popularVideosLoaded,
     required TResult Function(VideosDetails videoDetails)
         shortPopularVideosLoaded,
@@ -482,7 +487,8 @@ class _$PopularVideosLoaded implements PopularVideosLoaded {
     required TResult Function(VideosDetails videoDetails) channelVideosLoaded,
     required TResult Function(List<VideoDetailsItem> videoDetails)
         videosOfThoseChannelsLoaded,
-    required TResult Function(NetworkExceptionModel networkExceptions) error,
+    required TResult Function(NetworkExceptionModel networkExceptions)
+        channelError,
   }) {
     return popularVideosLoaded(videoDetails);
   }
@@ -491,14 +497,14 @@ class _$PopularVideosLoaded implements PopularVideosLoaded {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
+    TResult? Function()? channelLoading,
     TResult? Function(VideosDetails videoDetails)? popularVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? shortPopularVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? shortVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? channelVideosLoaded,
     TResult? Function(List<VideoDetailsItem> videoDetails)?
         videosOfThoseChannelsLoaded,
-    TResult? Function(NetworkExceptionModel networkExceptions)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? channelError,
   }) {
     return popularVideosLoaded?.call(videoDetails);
   }
@@ -507,14 +513,14 @@ class _$PopularVideosLoaded implements PopularVideosLoaded {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function()? channelLoading,
     TResult Function(VideosDetails videoDetails)? popularVideosLoaded,
     TResult Function(VideosDetails videoDetails)? shortPopularVideosLoaded,
     TResult Function(VideosDetails videoDetails)? shortVideosLoaded,
     TResult Function(VideosDetails videoDetails)? channelVideosLoaded,
     TResult Function(List<VideoDetailsItem> videoDetails)?
         videosOfThoseChannelsLoaded,
-    TResult Function(NetworkExceptionModel networkExceptions)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? channelError,
     required TResult orElse(),
   }) {
     if (popularVideosLoaded != null) {
@@ -527,7 +533,7 @@ class _$PopularVideosLoaded implements PopularVideosLoaded {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(Loading value) loading,
+    required TResult Function(ChannelLoading value) channelLoading,
     required TResult Function(PopularVideosLoaded value) popularVideosLoaded,
     required TResult Function(ShortPopularVideosLoaded value)
         shortPopularVideosLoaded,
@@ -535,7 +541,7 @@ class _$PopularVideosLoaded implements PopularVideosLoaded {
     required TResult Function(ChannelVideosLoaded value) channelVideosLoaded,
     required TResult Function(VideosOfThoseChannelsLoaded value)
         videosOfThoseChannelsLoaded,
-    required TResult Function(Error value) error,
+    required TResult Function(ChannelError value) channelError,
   }) {
     return popularVideosLoaded(this);
   }
@@ -544,14 +550,14 @@ class _$PopularVideosLoaded implements PopularVideosLoaded {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(Loading value)? loading,
+    TResult? Function(ChannelLoading value)? channelLoading,
     TResult? Function(PopularVideosLoaded value)? popularVideosLoaded,
     TResult? Function(ShortPopularVideosLoaded value)? shortPopularVideosLoaded,
     TResult? Function(ShortVideosLoaded value)? shortVideosLoaded,
     TResult? Function(ChannelVideosLoaded value)? channelVideosLoaded,
     TResult? Function(VideosOfThoseChannelsLoaded value)?
         videosOfThoseChannelsLoaded,
-    TResult? Function(Error value)? error,
+    TResult? Function(ChannelError value)? channelError,
   }) {
     return popularVideosLoaded?.call(this);
   }
@@ -560,14 +566,14 @@ class _$PopularVideosLoaded implements PopularVideosLoaded {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(Loading value)? loading,
+    TResult Function(ChannelLoading value)? channelLoading,
     TResult Function(PopularVideosLoaded value)? popularVideosLoaded,
     TResult Function(ShortPopularVideosLoaded value)? shortPopularVideosLoaded,
     TResult Function(ShortVideosLoaded value)? shortVideosLoaded,
     TResult Function(ChannelVideosLoaded value)? channelVideosLoaded,
     TResult Function(VideosOfThoseChannelsLoaded value)?
         videosOfThoseChannelsLoaded,
-    TResult Function(Error value)? error,
+    TResult Function(ChannelError value)? channelError,
     required TResult orElse(),
   }) {
     if (popularVideosLoaded != null) {
@@ -655,7 +661,7 @@ class _$ShortPopularVideosLoaded implements ShortPopularVideosLoaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function() channelLoading,
     required TResult Function(VideosDetails videoDetails) popularVideosLoaded,
     required TResult Function(VideosDetails videoDetails)
         shortPopularVideosLoaded,
@@ -663,7 +669,8 @@ class _$ShortPopularVideosLoaded implements ShortPopularVideosLoaded {
     required TResult Function(VideosDetails videoDetails) channelVideosLoaded,
     required TResult Function(List<VideoDetailsItem> videoDetails)
         videosOfThoseChannelsLoaded,
-    required TResult Function(NetworkExceptionModel networkExceptions) error,
+    required TResult Function(NetworkExceptionModel networkExceptions)
+        channelError,
   }) {
     return shortPopularVideosLoaded(videoDetails);
   }
@@ -672,14 +679,14 @@ class _$ShortPopularVideosLoaded implements ShortPopularVideosLoaded {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
+    TResult? Function()? channelLoading,
     TResult? Function(VideosDetails videoDetails)? popularVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? shortPopularVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? shortVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? channelVideosLoaded,
     TResult? Function(List<VideoDetailsItem> videoDetails)?
         videosOfThoseChannelsLoaded,
-    TResult? Function(NetworkExceptionModel networkExceptions)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? channelError,
   }) {
     return shortPopularVideosLoaded?.call(videoDetails);
   }
@@ -688,14 +695,14 @@ class _$ShortPopularVideosLoaded implements ShortPopularVideosLoaded {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function()? channelLoading,
     TResult Function(VideosDetails videoDetails)? popularVideosLoaded,
     TResult Function(VideosDetails videoDetails)? shortPopularVideosLoaded,
     TResult Function(VideosDetails videoDetails)? shortVideosLoaded,
     TResult Function(VideosDetails videoDetails)? channelVideosLoaded,
     TResult Function(List<VideoDetailsItem> videoDetails)?
         videosOfThoseChannelsLoaded,
-    TResult Function(NetworkExceptionModel networkExceptions)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? channelError,
     required TResult orElse(),
   }) {
     if (shortPopularVideosLoaded != null) {
@@ -708,7 +715,7 @@ class _$ShortPopularVideosLoaded implements ShortPopularVideosLoaded {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(Loading value) loading,
+    required TResult Function(ChannelLoading value) channelLoading,
     required TResult Function(PopularVideosLoaded value) popularVideosLoaded,
     required TResult Function(ShortPopularVideosLoaded value)
         shortPopularVideosLoaded,
@@ -716,7 +723,7 @@ class _$ShortPopularVideosLoaded implements ShortPopularVideosLoaded {
     required TResult Function(ChannelVideosLoaded value) channelVideosLoaded,
     required TResult Function(VideosOfThoseChannelsLoaded value)
         videosOfThoseChannelsLoaded,
-    required TResult Function(Error value) error,
+    required TResult Function(ChannelError value) channelError,
   }) {
     return shortPopularVideosLoaded(this);
   }
@@ -725,14 +732,14 @@ class _$ShortPopularVideosLoaded implements ShortPopularVideosLoaded {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(Loading value)? loading,
+    TResult? Function(ChannelLoading value)? channelLoading,
     TResult? Function(PopularVideosLoaded value)? popularVideosLoaded,
     TResult? Function(ShortPopularVideosLoaded value)? shortPopularVideosLoaded,
     TResult? Function(ShortVideosLoaded value)? shortVideosLoaded,
     TResult? Function(ChannelVideosLoaded value)? channelVideosLoaded,
     TResult? Function(VideosOfThoseChannelsLoaded value)?
         videosOfThoseChannelsLoaded,
-    TResult? Function(Error value)? error,
+    TResult? Function(ChannelError value)? channelError,
   }) {
     return shortPopularVideosLoaded?.call(this);
   }
@@ -741,14 +748,14 @@ class _$ShortPopularVideosLoaded implements ShortPopularVideosLoaded {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(Loading value)? loading,
+    TResult Function(ChannelLoading value)? channelLoading,
     TResult Function(PopularVideosLoaded value)? popularVideosLoaded,
     TResult Function(ShortPopularVideosLoaded value)? shortPopularVideosLoaded,
     TResult Function(ShortVideosLoaded value)? shortVideosLoaded,
     TResult Function(ChannelVideosLoaded value)? channelVideosLoaded,
     TResult Function(VideosOfThoseChannelsLoaded value)?
         videosOfThoseChannelsLoaded,
-    TResult Function(Error value)? error,
+    TResult Function(ChannelError value)? channelError,
     required TResult orElse(),
   }) {
     if (shortPopularVideosLoaded != null) {
@@ -834,7 +841,7 @@ class _$ShortVideosLoaded implements ShortVideosLoaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function() channelLoading,
     required TResult Function(VideosDetails videoDetails) popularVideosLoaded,
     required TResult Function(VideosDetails videoDetails)
         shortPopularVideosLoaded,
@@ -842,7 +849,8 @@ class _$ShortVideosLoaded implements ShortVideosLoaded {
     required TResult Function(VideosDetails videoDetails) channelVideosLoaded,
     required TResult Function(List<VideoDetailsItem> videoDetails)
         videosOfThoseChannelsLoaded,
-    required TResult Function(NetworkExceptionModel networkExceptions) error,
+    required TResult Function(NetworkExceptionModel networkExceptions)
+        channelError,
   }) {
     return shortVideosLoaded(videoDetails);
   }
@@ -851,14 +859,14 @@ class _$ShortVideosLoaded implements ShortVideosLoaded {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
+    TResult? Function()? channelLoading,
     TResult? Function(VideosDetails videoDetails)? popularVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? shortPopularVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? shortVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? channelVideosLoaded,
     TResult? Function(List<VideoDetailsItem> videoDetails)?
         videosOfThoseChannelsLoaded,
-    TResult? Function(NetworkExceptionModel networkExceptions)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? channelError,
   }) {
     return shortVideosLoaded?.call(videoDetails);
   }
@@ -867,14 +875,14 @@ class _$ShortVideosLoaded implements ShortVideosLoaded {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function()? channelLoading,
     TResult Function(VideosDetails videoDetails)? popularVideosLoaded,
     TResult Function(VideosDetails videoDetails)? shortPopularVideosLoaded,
     TResult Function(VideosDetails videoDetails)? shortVideosLoaded,
     TResult Function(VideosDetails videoDetails)? channelVideosLoaded,
     TResult Function(List<VideoDetailsItem> videoDetails)?
         videosOfThoseChannelsLoaded,
-    TResult Function(NetworkExceptionModel networkExceptions)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? channelError,
     required TResult orElse(),
   }) {
     if (shortVideosLoaded != null) {
@@ -887,7 +895,7 @@ class _$ShortVideosLoaded implements ShortVideosLoaded {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(Loading value) loading,
+    required TResult Function(ChannelLoading value) channelLoading,
     required TResult Function(PopularVideosLoaded value) popularVideosLoaded,
     required TResult Function(ShortPopularVideosLoaded value)
         shortPopularVideosLoaded,
@@ -895,7 +903,7 @@ class _$ShortVideosLoaded implements ShortVideosLoaded {
     required TResult Function(ChannelVideosLoaded value) channelVideosLoaded,
     required TResult Function(VideosOfThoseChannelsLoaded value)
         videosOfThoseChannelsLoaded,
-    required TResult Function(Error value) error,
+    required TResult Function(ChannelError value) channelError,
   }) {
     return shortVideosLoaded(this);
   }
@@ -904,14 +912,14 @@ class _$ShortVideosLoaded implements ShortVideosLoaded {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(Loading value)? loading,
+    TResult? Function(ChannelLoading value)? channelLoading,
     TResult? Function(PopularVideosLoaded value)? popularVideosLoaded,
     TResult? Function(ShortPopularVideosLoaded value)? shortPopularVideosLoaded,
     TResult? Function(ShortVideosLoaded value)? shortVideosLoaded,
     TResult? Function(ChannelVideosLoaded value)? channelVideosLoaded,
     TResult? Function(VideosOfThoseChannelsLoaded value)?
         videosOfThoseChannelsLoaded,
-    TResult? Function(Error value)? error,
+    TResult? Function(ChannelError value)? channelError,
   }) {
     return shortVideosLoaded?.call(this);
   }
@@ -920,14 +928,14 @@ class _$ShortVideosLoaded implements ShortVideosLoaded {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(Loading value)? loading,
+    TResult Function(ChannelLoading value)? channelLoading,
     TResult Function(PopularVideosLoaded value)? popularVideosLoaded,
     TResult Function(ShortPopularVideosLoaded value)? shortPopularVideosLoaded,
     TResult Function(ShortVideosLoaded value)? shortVideosLoaded,
     TResult Function(ChannelVideosLoaded value)? channelVideosLoaded,
     TResult Function(VideosOfThoseChannelsLoaded value)?
         videosOfThoseChannelsLoaded,
-    TResult Function(Error value)? error,
+    TResult Function(ChannelError value)? channelError,
     required TResult orElse(),
   }) {
     if (shortVideosLoaded != null) {
@@ -1014,7 +1022,7 @@ class _$ChannelVideosLoaded implements ChannelVideosLoaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function() channelLoading,
     required TResult Function(VideosDetails videoDetails) popularVideosLoaded,
     required TResult Function(VideosDetails videoDetails)
         shortPopularVideosLoaded,
@@ -1022,7 +1030,8 @@ class _$ChannelVideosLoaded implements ChannelVideosLoaded {
     required TResult Function(VideosDetails videoDetails) channelVideosLoaded,
     required TResult Function(List<VideoDetailsItem> videoDetails)
         videosOfThoseChannelsLoaded,
-    required TResult Function(NetworkExceptionModel networkExceptions) error,
+    required TResult Function(NetworkExceptionModel networkExceptions)
+        channelError,
   }) {
     return channelVideosLoaded(videoDetails);
   }
@@ -1031,14 +1040,14 @@ class _$ChannelVideosLoaded implements ChannelVideosLoaded {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
+    TResult? Function()? channelLoading,
     TResult? Function(VideosDetails videoDetails)? popularVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? shortPopularVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? shortVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? channelVideosLoaded,
     TResult? Function(List<VideoDetailsItem> videoDetails)?
         videosOfThoseChannelsLoaded,
-    TResult? Function(NetworkExceptionModel networkExceptions)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? channelError,
   }) {
     return channelVideosLoaded?.call(videoDetails);
   }
@@ -1047,14 +1056,14 @@ class _$ChannelVideosLoaded implements ChannelVideosLoaded {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function()? channelLoading,
     TResult Function(VideosDetails videoDetails)? popularVideosLoaded,
     TResult Function(VideosDetails videoDetails)? shortPopularVideosLoaded,
     TResult Function(VideosDetails videoDetails)? shortVideosLoaded,
     TResult Function(VideosDetails videoDetails)? channelVideosLoaded,
     TResult Function(List<VideoDetailsItem> videoDetails)?
         videosOfThoseChannelsLoaded,
-    TResult Function(NetworkExceptionModel networkExceptions)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? channelError,
     required TResult orElse(),
   }) {
     if (channelVideosLoaded != null) {
@@ -1067,7 +1076,7 @@ class _$ChannelVideosLoaded implements ChannelVideosLoaded {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(Loading value) loading,
+    required TResult Function(ChannelLoading value) channelLoading,
     required TResult Function(PopularVideosLoaded value) popularVideosLoaded,
     required TResult Function(ShortPopularVideosLoaded value)
         shortPopularVideosLoaded,
@@ -1075,7 +1084,7 @@ class _$ChannelVideosLoaded implements ChannelVideosLoaded {
     required TResult Function(ChannelVideosLoaded value) channelVideosLoaded,
     required TResult Function(VideosOfThoseChannelsLoaded value)
         videosOfThoseChannelsLoaded,
-    required TResult Function(Error value) error,
+    required TResult Function(ChannelError value) channelError,
   }) {
     return channelVideosLoaded(this);
   }
@@ -1084,14 +1093,14 @@ class _$ChannelVideosLoaded implements ChannelVideosLoaded {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(Loading value)? loading,
+    TResult? Function(ChannelLoading value)? channelLoading,
     TResult? Function(PopularVideosLoaded value)? popularVideosLoaded,
     TResult? Function(ShortPopularVideosLoaded value)? shortPopularVideosLoaded,
     TResult? Function(ShortVideosLoaded value)? shortVideosLoaded,
     TResult? Function(ChannelVideosLoaded value)? channelVideosLoaded,
     TResult? Function(VideosOfThoseChannelsLoaded value)?
         videosOfThoseChannelsLoaded,
-    TResult? Function(Error value)? error,
+    TResult? Function(ChannelError value)? channelError,
   }) {
     return channelVideosLoaded?.call(this);
   }
@@ -1100,14 +1109,14 @@ class _$ChannelVideosLoaded implements ChannelVideosLoaded {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(Loading value)? loading,
+    TResult Function(ChannelLoading value)? channelLoading,
     TResult Function(PopularVideosLoaded value)? popularVideosLoaded,
     TResult Function(ShortPopularVideosLoaded value)? shortPopularVideosLoaded,
     TResult Function(ShortVideosLoaded value)? shortVideosLoaded,
     TResult Function(ChannelVideosLoaded value)? channelVideosLoaded,
     TResult Function(VideosOfThoseChannelsLoaded value)?
         videosOfThoseChannelsLoaded,
-    TResult Function(Error value)? error,
+    TResult Function(ChannelError value)? channelError,
     required TResult orElse(),
   }) {
     if (channelVideosLoaded != null) {
@@ -1204,7 +1213,7 @@ class _$VideosOfThoseChannelsLoaded implements VideosOfThoseChannelsLoaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function() channelLoading,
     required TResult Function(VideosDetails videoDetails) popularVideosLoaded,
     required TResult Function(VideosDetails videoDetails)
         shortPopularVideosLoaded,
@@ -1212,7 +1221,8 @@ class _$VideosOfThoseChannelsLoaded implements VideosOfThoseChannelsLoaded {
     required TResult Function(VideosDetails videoDetails) channelVideosLoaded,
     required TResult Function(List<VideoDetailsItem> videoDetails)
         videosOfThoseChannelsLoaded,
-    required TResult Function(NetworkExceptionModel networkExceptions) error,
+    required TResult Function(NetworkExceptionModel networkExceptions)
+        channelError,
   }) {
     return videosOfThoseChannelsLoaded(videoDetails);
   }
@@ -1221,14 +1231,14 @@ class _$VideosOfThoseChannelsLoaded implements VideosOfThoseChannelsLoaded {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
+    TResult? Function()? channelLoading,
     TResult? Function(VideosDetails videoDetails)? popularVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? shortPopularVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? shortVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? channelVideosLoaded,
     TResult? Function(List<VideoDetailsItem> videoDetails)?
         videosOfThoseChannelsLoaded,
-    TResult? Function(NetworkExceptionModel networkExceptions)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? channelError,
   }) {
     return videosOfThoseChannelsLoaded?.call(videoDetails);
   }
@@ -1237,14 +1247,14 @@ class _$VideosOfThoseChannelsLoaded implements VideosOfThoseChannelsLoaded {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function()? channelLoading,
     TResult Function(VideosDetails videoDetails)? popularVideosLoaded,
     TResult Function(VideosDetails videoDetails)? shortPopularVideosLoaded,
     TResult Function(VideosDetails videoDetails)? shortVideosLoaded,
     TResult Function(VideosDetails videoDetails)? channelVideosLoaded,
     TResult Function(List<VideoDetailsItem> videoDetails)?
         videosOfThoseChannelsLoaded,
-    TResult Function(NetworkExceptionModel networkExceptions)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? channelError,
     required TResult orElse(),
   }) {
     if (videosOfThoseChannelsLoaded != null) {
@@ -1257,7 +1267,7 @@ class _$VideosOfThoseChannelsLoaded implements VideosOfThoseChannelsLoaded {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(Loading value) loading,
+    required TResult Function(ChannelLoading value) channelLoading,
     required TResult Function(PopularVideosLoaded value) popularVideosLoaded,
     required TResult Function(ShortPopularVideosLoaded value)
         shortPopularVideosLoaded,
@@ -1265,7 +1275,7 @@ class _$VideosOfThoseChannelsLoaded implements VideosOfThoseChannelsLoaded {
     required TResult Function(ChannelVideosLoaded value) channelVideosLoaded,
     required TResult Function(VideosOfThoseChannelsLoaded value)
         videosOfThoseChannelsLoaded,
-    required TResult Function(Error value) error,
+    required TResult Function(ChannelError value) channelError,
   }) {
     return videosOfThoseChannelsLoaded(this);
   }
@@ -1274,14 +1284,14 @@ class _$VideosOfThoseChannelsLoaded implements VideosOfThoseChannelsLoaded {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(Loading value)? loading,
+    TResult? Function(ChannelLoading value)? channelLoading,
     TResult? Function(PopularVideosLoaded value)? popularVideosLoaded,
     TResult? Function(ShortPopularVideosLoaded value)? shortPopularVideosLoaded,
     TResult? Function(ShortVideosLoaded value)? shortVideosLoaded,
     TResult? Function(ChannelVideosLoaded value)? channelVideosLoaded,
     TResult? Function(VideosOfThoseChannelsLoaded value)?
         videosOfThoseChannelsLoaded,
-    TResult? Function(Error value)? error,
+    TResult? Function(ChannelError value)? channelError,
   }) {
     return videosOfThoseChannelsLoaded?.call(this);
   }
@@ -1290,14 +1300,14 @@ class _$VideosOfThoseChannelsLoaded implements VideosOfThoseChannelsLoaded {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(Loading value)? loading,
+    TResult Function(ChannelLoading value)? channelLoading,
     TResult Function(PopularVideosLoaded value)? popularVideosLoaded,
     TResult Function(ShortPopularVideosLoaded value)? shortPopularVideosLoaded,
     TResult Function(ShortVideosLoaded value)? shortVideosLoaded,
     TResult Function(ChannelVideosLoaded value)? channelVideosLoaded,
     TResult Function(VideosOfThoseChannelsLoaded value)?
         videosOfThoseChannelsLoaded,
-    TResult Function(Error value)? error,
+    TResult Function(ChannelError value)? channelError,
     required TResult orElse(),
   }) {
     if (videosOfThoseChannelsLoaded != null) {
@@ -1319,18 +1329,20 @@ abstract class VideosOfThoseChannelsLoaded implements ChannelVideosState {
 }
 
 /// @nodoc
-abstract class _$$ErrorCopyWith<$Res> {
-  factory _$$ErrorCopyWith(_$Error value, $Res Function(_$Error) then) =
-      __$$ErrorCopyWithImpl<$Res>;
+abstract class _$$ChannelErrorCopyWith<$Res> {
+  factory _$$ChannelErrorCopyWith(
+          _$ChannelError value, $Res Function(_$ChannelError) then) =
+      __$$ChannelErrorCopyWithImpl<$Res>;
   @useResult
   $Res call({NetworkExceptionModel networkExceptions});
 }
 
 /// @nodoc
-class __$$ErrorCopyWithImpl<$Res>
-    extends _$ChannelVideosStateCopyWithImpl<$Res, _$Error>
-    implements _$$ErrorCopyWith<$Res> {
-  __$$ErrorCopyWithImpl(_$Error _value, $Res Function(_$Error) _then)
+class __$$ChannelErrorCopyWithImpl<$Res>
+    extends _$ChannelVideosStateCopyWithImpl<$Res, _$ChannelError>
+    implements _$$ChannelErrorCopyWith<$Res> {
+  __$$ChannelErrorCopyWithImpl(
+      _$ChannelError _value, $Res Function(_$ChannelError) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1338,7 +1350,7 @@ class __$$ErrorCopyWithImpl<$Res>
   $Res call({
     Object? networkExceptions = null,
   }) {
-    return _then(_$Error(
+    return _then(_$ChannelError(
       null == networkExceptions
           ? _value.networkExceptions
           : networkExceptions // ignore: cast_nullable_to_non_nullable
@@ -1349,22 +1361,22 @@ class __$$ErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$Error implements Error {
-  const _$Error(this.networkExceptions);
+class _$ChannelError implements ChannelError {
+  const _$ChannelError(this.networkExceptions);
 
   @override
   final NetworkExceptionModel networkExceptions;
 
   @override
   String toString() {
-    return 'ChannelVideosState.error(networkExceptions: $networkExceptions)';
+    return 'ChannelVideosState.channelError(networkExceptions: $networkExceptions)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$Error &&
+            other is _$ChannelError &&
             (identical(other.networkExceptions, networkExceptions) ||
                 other.networkExceptions == networkExceptions));
   }
@@ -1375,14 +1387,14 @@ class _$Error implements Error {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ErrorCopyWith<_$Error> get copyWith =>
-      __$$ErrorCopyWithImpl<_$Error>(this, _$identity);
+  _$$ChannelErrorCopyWith<_$ChannelError> get copyWith =>
+      __$$ChannelErrorCopyWithImpl<_$ChannelError>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function() channelLoading,
     required TResult Function(VideosDetails videoDetails) popularVideosLoaded,
     required TResult Function(VideosDetails videoDetails)
         shortPopularVideosLoaded,
@@ -1390,43 +1402,44 @@ class _$Error implements Error {
     required TResult Function(VideosDetails videoDetails) channelVideosLoaded,
     required TResult Function(List<VideoDetailsItem> videoDetails)
         videosOfThoseChannelsLoaded,
-    required TResult Function(NetworkExceptionModel networkExceptions) error,
+    required TResult Function(NetworkExceptionModel networkExceptions)
+        channelError,
   }) {
-    return error(networkExceptions);
+    return channelError(networkExceptions);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
+    TResult? Function()? channelLoading,
     TResult? Function(VideosDetails videoDetails)? popularVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? shortPopularVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? shortVideosLoaded,
     TResult? Function(VideosDetails videoDetails)? channelVideosLoaded,
     TResult? Function(List<VideoDetailsItem> videoDetails)?
         videosOfThoseChannelsLoaded,
-    TResult? Function(NetworkExceptionModel networkExceptions)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? channelError,
   }) {
-    return error?.call(networkExceptions);
+    return channelError?.call(networkExceptions);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function()? channelLoading,
     TResult Function(VideosDetails videoDetails)? popularVideosLoaded,
     TResult Function(VideosDetails videoDetails)? shortPopularVideosLoaded,
     TResult Function(VideosDetails videoDetails)? shortVideosLoaded,
     TResult Function(VideosDetails videoDetails)? channelVideosLoaded,
     TResult Function(List<VideoDetailsItem> videoDetails)?
         videosOfThoseChannelsLoaded,
-    TResult Function(NetworkExceptionModel networkExceptions)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? channelError,
     required TResult orElse(),
   }) {
-    if (error != null) {
-      return error(networkExceptions);
+    if (channelError != null) {
+      return channelError(networkExceptions);
     }
     return orElse();
   }
@@ -1435,7 +1448,7 @@ class _$Error implements Error {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(Loading value) loading,
+    required TResult Function(ChannelLoading value) channelLoading,
     required TResult Function(PopularVideosLoaded value) popularVideosLoaded,
     required TResult Function(ShortPopularVideosLoaded value)
         shortPopularVideosLoaded,
@@ -1443,52 +1456,54 @@ class _$Error implements Error {
     required TResult Function(ChannelVideosLoaded value) channelVideosLoaded,
     required TResult Function(VideosOfThoseChannelsLoaded value)
         videosOfThoseChannelsLoaded,
-    required TResult Function(Error value) error,
+    required TResult Function(ChannelError value) channelError,
   }) {
-    return error(this);
+    return channelError(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(Loading value)? loading,
+    TResult? Function(ChannelLoading value)? channelLoading,
     TResult? Function(PopularVideosLoaded value)? popularVideosLoaded,
     TResult? Function(ShortPopularVideosLoaded value)? shortPopularVideosLoaded,
     TResult? Function(ShortVideosLoaded value)? shortVideosLoaded,
     TResult? Function(ChannelVideosLoaded value)? channelVideosLoaded,
     TResult? Function(VideosOfThoseChannelsLoaded value)?
         videosOfThoseChannelsLoaded,
-    TResult? Function(Error value)? error,
+    TResult? Function(ChannelError value)? channelError,
   }) {
-    return error?.call(this);
+    return channelError?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(Loading value)? loading,
+    TResult Function(ChannelLoading value)? channelLoading,
     TResult Function(PopularVideosLoaded value)? popularVideosLoaded,
     TResult Function(ShortPopularVideosLoaded value)? shortPopularVideosLoaded,
     TResult Function(ShortVideosLoaded value)? shortVideosLoaded,
     TResult Function(ChannelVideosLoaded value)? channelVideosLoaded,
     TResult Function(VideosOfThoseChannelsLoaded value)?
         videosOfThoseChannelsLoaded,
-    TResult Function(Error value)? error,
+    TResult Function(ChannelError value)? channelError,
     required TResult orElse(),
   }) {
-    if (error != null) {
-      return error(this);
+    if (channelError != null) {
+      return channelError(this);
     }
     return orElse();
   }
 }
 
-abstract class Error implements ChannelVideosState {
-  const factory Error(final NetworkExceptionModel networkExceptions) = _$Error;
+abstract class ChannelError implements ChannelVideosState {
+  const factory ChannelError(final NetworkExceptionModel networkExceptions) =
+      _$ChannelError;
 
   NetworkExceptionModel get networkExceptions;
   @JsonKey(ignore: true)
-  _$$ErrorCopyWith<_$Error> get copyWith => throw _privateConstructorUsedError;
+  _$$ChannelErrorCopyWith<_$ChannelError> get copyWith =>
+      throw _privateConstructorUsedError;
 }

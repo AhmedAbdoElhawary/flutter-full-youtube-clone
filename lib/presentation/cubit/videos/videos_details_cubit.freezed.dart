@@ -19,57 +19,58 @@ mixin _$VideosDetailsState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(VideosDetails mostPopularVideos) allVideosLoaded,
+    required TResult Function() videoLoading,
+    required TResult Function(VideosDetails allVideosLoaded) allVideosLoaded,
     required TResult Function(VideosDetails mostPopularVideos)
         allShortVideosLoaded,
-    required TResult Function(NetworkExceptionModel networkExceptions) error,
+    required TResult Function(NetworkExceptionModel networkExceptions)
+        videoError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(VideosDetails mostPopularVideos)? allVideosLoaded,
+    TResult? Function()? videoLoading,
+    TResult? Function(VideosDetails allVideosLoaded)? allVideosLoaded,
     TResult? Function(VideosDetails mostPopularVideos)? allShortVideosLoaded,
-    TResult? Function(NetworkExceptionModel networkExceptions)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? videoError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(VideosDetails mostPopularVideos)? allVideosLoaded,
+    TResult Function()? videoLoading,
+    TResult Function(VideosDetails allVideosLoaded)? allVideosLoaded,
     TResult Function(VideosDetails mostPopularVideos)? allShortVideosLoaded,
-    TResult Function(NetworkExceptionModel networkExceptions)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? videoError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(Loading value) loading,
+    required TResult Function(VideoLoading value) videoLoading,
     required TResult Function(AllVideosLoaded value) allVideosLoaded,
     required TResult Function(AllShortVideosLoaded value) allShortVideosLoaded,
-    required TResult Function(Error value) error,
+    required TResult Function(VideoError value) videoError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(Loading value)? loading,
+    TResult? Function(VideoLoading value)? videoLoading,
     TResult? Function(AllVideosLoaded value)? allVideosLoaded,
     TResult? Function(AllShortVideosLoaded value)? allShortVideosLoaded,
-    TResult? Function(Error value)? error,
+    TResult? Function(VideoError value)? videoError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(Loading value)? loading,
+    TResult Function(VideoLoading value)? videoLoading,
     TResult Function(AllVideosLoaded value)? allVideosLoaded,
     TResult Function(AllShortVideosLoaded value)? allShortVideosLoaded,
-    TResult Function(Error value)? error,
+    TResult Function(VideoError value)? videoError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -131,11 +132,12 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(VideosDetails mostPopularVideos) allVideosLoaded,
+    required TResult Function() videoLoading,
+    required TResult Function(VideosDetails allVideosLoaded) allVideosLoaded,
     required TResult Function(VideosDetails mostPopularVideos)
         allShortVideosLoaded,
-    required TResult Function(NetworkExceptionModel networkExceptions) error,
+    required TResult Function(NetworkExceptionModel networkExceptions)
+        videoError,
   }) {
     return initial();
   }
@@ -144,10 +146,10 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(VideosDetails mostPopularVideos)? allVideosLoaded,
+    TResult? Function()? videoLoading,
+    TResult? Function(VideosDetails allVideosLoaded)? allVideosLoaded,
     TResult? Function(VideosDetails mostPopularVideos)? allShortVideosLoaded,
-    TResult? Function(NetworkExceptionModel networkExceptions)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? videoError,
   }) {
     return initial?.call();
   }
@@ -156,10 +158,10 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(VideosDetails mostPopularVideos)? allVideosLoaded,
+    TResult Function()? videoLoading,
+    TResult Function(VideosDetails allVideosLoaded)? allVideosLoaded,
     TResult Function(VideosDetails mostPopularVideos)? allShortVideosLoaded,
-    TResult Function(NetworkExceptionModel networkExceptions)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? videoError,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -172,10 +174,10 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(Loading value) loading,
+    required TResult Function(VideoLoading value) videoLoading,
     required TResult Function(AllVideosLoaded value) allVideosLoaded,
     required TResult Function(AllShortVideosLoaded value) allShortVideosLoaded,
-    required TResult Function(Error value) error,
+    required TResult Function(VideoError value) videoError,
   }) {
     return initial(this);
   }
@@ -184,10 +186,10 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(Loading value)? loading,
+    TResult? Function(VideoLoading value)? videoLoading,
     TResult? Function(AllVideosLoaded value)? allVideosLoaded,
     TResult? Function(AllShortVideosLoaded value)? allShortVideosLoaded,
-    TResult? Function(Error value)? error,
+    TResult? Function(VideoError value)? videoError,
   }) {
     return initial?.call(this);
   }
@@ -196,10 +198,10 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(Loading value)? loading,
+    TResult Function(VideoLoading value)? videoLoading,
     TResult Function(AllVideosLoaded value)? allVideosLoaded,
     TResult Function(AllShortVideosLoaded value)? allShortVideosLoaded,
-    TResult Function(Error value)? error,
+    TResult Function(VideoError value)? videoError,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -214,33 +216,35 @@ abstract class _Initial implements VideosDetailsState {
 }
 
 /// @nodoc
-abstract class _$$LoadingCopyWith<$Res> {
-  factory _$$LoadingCopyWith(_$Loading value, $Res Function(_$Loading) then) =
-      __$$LoadingCopyWithImpl<$Res>;
+abstract class _$$VideoLoadingCopyWith<$Res> {
+  factory _$$VideoLoadingCopyWith(
+          _$VideoLoading value, $Res Function(_$VideoLoading) then) =
+      __$$VideoLoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadingCopyWithImpl<$Res>
-    extends _$VideosDetailsStateCopyWithImpl<$Res, _$Loading>
-    implements _$$LoadingCopyWith<$Res> {
-  __$$LoadingCopyWithImpl(_$Loading _value, $Res Function(_$Loading) _then)
+class __$$VideoLoadingCopyWithImpl<$Res>
+    extends _$VideosDetailsStateCopyWithImpl<$Res, _$VideoLoading>
+    implements _$$VideoLoadingCopyWith<$Res> {
+  __$$VideoLoadingCopyWithImpl(
+      _$VideoLoading _value, $Res Function(_$VideoLoading) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$Loading implements Loading {
-  const _$Loading();
+class _$VideoLoading implements VideoLoading {
+  const _$VideoLoading();
 
   @override
   String toString() {
-    return 'VideosDetailsState.loading()';
+    return 'VideosDetailsState.videoLoading()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$Loading);
+        (other.runtimeType == runtimeType && other is _$VideoLoading);
   }
 
   @override
@@ -250,39 +254,40 @@ class _$Loading implements Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(VideosDetails mostPopularVideos) allVideosLoaded,
+    required TResult Function() videoLoading,
+    required TResult Function(VideosDetails allVideosLoaded) allVideosLoaded,
     required TResult Function(VideosDetails mostPopularVideos)
         allShortVideosLoaded,
-    required TResult Function(NetworkExceptionModel networkExceptions) error,
+    required TResult Function(NetworkExceptionModel networkExceptions)
+        videoError,
   }) {
-    return loading();
+    return videoLoading();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(VideosDetails mostPopularVideos)? allVideosLoaded,
+    TResult? Function()? videoLoading,
+    TResult? Function(VideosDetails allVideosLoaded)? allVideosLoaded,
     TResult? Function(VideosDetails mostPopularVideos)? allShortVideosLoaded,
-    TResult? Function(NetworkExceptionModel networkExceptions)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? videoError,
   }) {
-    return loading?.call();
+    return videoLoading?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(VideosDetails mostPopularVideos)? allVideosLoaded,
+    TResult Function()? videoLoading,
+    TResult Function(VideosDetails allVideosLoaded)? allVideosLoaded,
     TResult Function(VideosDetails mostPopularVideos)? allShortVideosLoaded,
-    TResult Function(NetworkExceptionModel networkExceptions)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? videoError,
     required TResult orElse(),
   }) {
-    if (loading != null) {
-      return loading();
+    if (videoLoading != null) {
+      return videoLoading();
     }
     return orElse();
   }
@@ -291,45 +296,45 @@ class _$Loading implements Loading {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(Loading value) loading,
+    required TResult Function(VideoLoading value) videoLoading,
     required TResult Function(AllVideosLoaded value) allVideosLoaded,
     required TResult Function(AllShortVideosLoaded value) allShortVideosLoaded,
-    required TResult Function(Error value) error,
+    required TResult Function(VideoError value) videoError,
   }) {
-    return loading(this);
+    return videoLoading(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(Loading value)? loading,
+    TResult? Function(VideoLoading value)? videoLoading,
     TResult? Function(AllVideosLoaded value)? allVideosLoaded,
     TResult? Function(AllShortVideosLoaded value)? allShortVideosLoaded,
-    TResult? Function(Error value)? error,
+    TResult? Function(VideoError value)? videoError,
   }) {
-    return loading?.call(this);
+    return videoLoading?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(Loading value)? loading,
+    TResult Function(VideoLoading value)? videoLoading,
     TResult Function(AllVideosLoaded value)? allVideosLoaded,
     TResult Function(AllShortVideosLoaded value)? allShortVideosLoaded,
-    TResult Function(Error value)? error,
+    TResult Function(VideoError value)? videoError,
     required TResult orElse(),
   }) {
-    if (loading != null) {
-      return loading(this);
+    if (videoLoading != null) {
+      return videoLoading(this);
     }
     return orElse();
   }
 }
 
-abstract class Loading implements VideosDetailsState {
-  const factory Loading() = _$Loading;
+abstract class VideoLoading implements VideosDetailsState {
+  const factory VideoLoading() = _$VideoLoading;
 }
 
 /// @nodoc
@@ -338,7 +343,7 @@ abstract class _$$AllVideosLoadedCopyWith<$Res> {
           _$AllVideosLoaded value, $Res Function(_$AllVideosLoaded) then) =
       __$$AllVideosLoadedCopyWithImpl<$Res>;
   @useResult
-  $Res call({VideosDetails mostPopularVideos});
+  $Res call({VideosDetails allVideosLoaded});
 }
 
 /// @nodoc
@@ -352,12 +357,12 @@ class __$$AllVideosLoadedCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? mostPopularVideos = null,
+    Object? allVideosLoaded = null,
   }) {
     return _then(_$AllVideosLoaded(
-      null == mostPopularVideos
-          ? _value.mostPopularVideos
-          : mostPopularVideos // ignore: cast_nullable_to_non_nullable
+      null == allVideosLoaded
+          ? _value.allVideosLoaded
+          : allVideosLoaded // ignore: cast_nullable_to_non_nullable
               as VideosDetails,
     ));
   }
@@ -366,14 +371,14 @@ class __$$AllVideosLoadedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AllVideosLoaded implements AllVideosLoaded {
-  const _$AllVideosLoaded(this.mostPopularVideos);
+  const _$AllVideosLoaded(this.allVideosLoaded);
 
   @override
-  final VideosDetails mostPopularVideos;
+  final VideosDetails allVideosLoaded;
 
   @override
   String toString() {
-    return 'VideosDetailsState.allVideosLoaded(mostPopularVideos: $mostPopularVideos)';
+    return 'VideosDetailsState.allVideosLoaded(allVideosLoaded: $allVideosLoaded)';
   }
 
   @override
@@ -381,12 +386,12 @@ class _$AllVideosLoaded implements AllVideosLoaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AllVideosLoaded &&
-            (identical(other.mostPopularVideos, mostPopularVideos) ||
-                other.mostPopularVideos == mostPopularVideos));
+            (identical(other.allVideosLoaded, allVideosLoaded) ||
+                other.allVideosLoaded == allVideosLoaded));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, mostPopularVideos);
+  int get hashCode => Object.hash(runtimeType, allVideosLoaded);
 
   @JsonKey(ignore: true)
   @override
@@ -398,39 +403,40 @@ class _$AllVideosLoaded implements AllVideosLoaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(VideosDetails mostPopularVideos) allVideosLoaded,
+    required TResult Function() videoLoading,
+    required TResult Function(VideosDetails allVideosLoaded) allVideosLoaded,
     required TResult Function(VideosDetails mostPopularVideos)
         allShortVideosLoaded,
-    required TResult Function(NetworkExceptionModel networkExceptions) error,
+    required TResult Function(NetworkExceptionModel networkExceptions)
+        videoError,
   }) {
-    return allVideosLoaded(mostPopularVideos);
+    return allVideosLoaded(this.allVideosLoaded);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(VideosDetails mostPopularVideos)? allVideosLoaded,
+    TResult? Function()? videoLoading,
+    TResult? Function(VideosDetails allVideosLoaded)? allVideosLoaded,
     TResult? Function(VideosDetails mostPopularVideos)? allShortVideosLoaded,
-    TResult? Function(NetworkExceptionModel networkExceptions)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? videoError,
   }) {
-    return allVideosLoaded?.call(mostPopularVideos);
+    return allVideosLoaded?.call(this.allVideosLoaded);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(VideosDetails mostPopularVideos)? allVideosLoaded,
+    TResult Function()? videoLoading,
+    TResult Function(VideosDetails allVideosLoaded)? allVideosLoaded,
     TResult Function(VideosDetails mostPopularVideos)? allShortVideosLoaded,
-    TResult Function(NetworkExceptionModel networkExceptions)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? videoError,
     required TResult orElse(),
   }) {
     if (allVideosLoaded != null) {
-      return allVideosLoaded(mostPopularVideos);
+      return allVideosLoaded(this.allVideosLoaded);
     }
     return orElse();
   }
@@ -439,10 +445,10 @@ class _$AllVideosLoaded implements AllVideosLoaded {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(Loading value) loading,
+    required TResult Function(VideoLoading value) videoLoading,
     required TResult Function(AllVideosLoaded value) allVideosLoaded,
     required TResult Function(AllShortVideosLoaded value) allShortVideosLoaded,
-    required TResult Function(Error value) error,
+    required TResult Function(VideoError value) videoError,
   }) {
     return allVideosLoaded(this);
   }
@@ -451,10 +457,10 @@ class _$AllVideosLoaded implements AllVideosLoaded {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(Loading value)? loading,
+    TResult? Function(VideoLoading value)? videoLoading,
     TResult? Function(AllVideosLoaded value)? allVideosLoaded,
     TResult? Function(AllShortVideosLoaded value)? allShortVideosLoaded,
-    TResult? Function(Error value)? error,
+    TResult? Function(VideoError value)? videoError,
   }) {
     return allVideosLoaded?.call(this);
   }
@@ -463,10 +469,10 @@ class _$AllVideosLoaded implements AllVideosLoaded {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(Loading value)? loading,
+    TResult Function(VideoLoading value)? videoLoading,
     TResult Function(AllVideosLoaded value)? allVideosLoaded,
     TResult Function(AllShortVideosLoaded value)? allShortVideosLoaded,
-    TResult Function(Error value)? error,
+    TResult Function(VideoError value)? videoError,
     required TResult orElse(),
   }) {
     if (allVideosLoaded != null) {
@@ -477,10 +483,10 @@ class _$AllVideosLoaded implements AllVideosLoaded {
 }
 
 abstract class AllVideosLoaded implements VideosDetailsState {
-  const factory AllVideosLoaded(final VideosDetails mostPopularVideos) =
+  const factory AllVideosLoaded(final VideosDetails allVideosLoaded) =
       _$AllVideosLoaded;
 
-  VideosDetails get mostPopularVideos;
+  VideosDetails get allVideosLoaded;
   @JsonKey(ignore: true)
   _$$AllVideosLoadedCopyWith<_$AllVideosLoaded> get copyWith =>
       throw _privateConstructorUsedError;
@@ -553,11 +559,12 @@ class _$AllShortVideosLoaded implements AllShortVideosLoaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(VideosDetails mostPopularVideos) allVideosLoaded,
+    required TResult Function() videoLoading,
+    required TResult Function(VideosDetails allVideosLoaded) allVideosLoaded,
     required TResult Function(VideosDetails mostPopularVideos)
         allShortVideosLoaded,
-    required TResult Function(NetworkExceptionModel networkExceptions) error,
+    required TResult Function(NetworkExceptionModel networkExceptions)
+        videoError,
   }) {
     return allShortVideosLoaded(mostPopularVideos);
   }
@@ -566,10 +573,10 @@ class _$AllShortVideosLoaded implements AllShortVideosLoaded {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(VideosDetails mostPopularVideos)? allVideosLoaded,
+    TResult? Function()? videoLoading,
+    TResult? Function(VideosDetails allVideosLoaded)? allVideosLoaded,
     TResult? Function(VideosDetails mostPopularVideos)? allShortVideosLoaded,
-    TResult? Function(NetworkExceptionModel networkExceptions)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? videoError,
   }) {
     return allShortVideosLoaded?.call(mostPopularVideos);
   }
@@ -578,10 +585,10 @@ class _$AllShortVideosLoaded implements AllShortVideosLoaded {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(VideosDetails mostPopularVideos)? allVideosLoaded,
+    TResult Function()? videoLoading,
+    TResult Function(VideosDetails allVideosLoaded)? allVideosLoaded,
     TResult Function(VideosDetails mostPopularVideos)? allShortVideosLoaded,
-    TResult Function(NetworkExceptionModel networkExceptions)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? videoError,
     required TResult orElse(),
   }) {
     if (allShortVideosLoaded != null) {
@@ -594,10 +601,10 @@ class _$AllShortVideosLoaded implements AllShortVideosLoaded {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(Loading value) loading,
+    required TResult Function(VideoLoading value) videoLoading,
     required TResult Function(AllVideosLoaded value) allVideosLoaded,
     required TResult Function(AllShortVideosLoaded value) allShortVideosLoaded,
-    required TResult Function(Error value) error,
+    required TResult Function(VideoError value) videoError,
   }) {
     return allShortVideosLoaded(this);
   }
@@ -606,10 +613,10 @@ class _$AllShortVideosLoaded implements AllShortVideosLoaded {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(Loading value)? loading,
+    TResult? Function(VideoLoading value)? videoLoading,
     TResult? Function(AllVideosLoaded value)? allVideosLoaded,
     TResult? Function(AllShortVideosLoaded value)? allShortVideosLoaded,
-    TResult? Function(Error value)? error,
+    TResult? Function(VideoError value)? videoError,
   }) {
     return allShortVideosLoaded?.call(this);
   }
@@ -618,10 +625,10 @@ class _$AllShortVideosLoaded implements AllShortVideosLoaded {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(Loading value)? loading,
+    TResult Function(VideoLoading value)? videoLoading,
     TResult Function(AllVideosLoaded value)? allVideosLoaded,
     TResult Function(AllShortVideosLoaded value)? allShortVideosLoaded,
-    TResult Function(Error value)? error,
+    TResult Function(VideoError value)? videoError,
     required TResult orElse(),
   }) {
     if (allShortVideosLoaded != null) {
@@ -642,18 +649,20 @@ abstract class AllShortVideosLoaded implements VideosDetailsState {
 }
 
 /// @nodoc
-abstract class _$$ErrorCopyWith<$Res> {
-  factory _$$ErrorCopyWith(_$Error value, $Res Function(_$Error) then) =
-      __$$ErrorCopyWithImpl<$Res>;
+abstract class _$$VideoErrorCopyWith<$Res> {
+  factory _$$VideoErrorCopyWith(
+          _$VideoError value, $Res Function(_$VideoError) then) =
+      __$$VideoErrorCopyWithImpl<$Res>;
   @useResult
   $Res call({NetworkExceptionModel networkExceptions});
 }
 
 /// @nodoc
-class __$$ErrorCopyWithImpl<$Res>
-    extends _$VideosDetailsStateCopyWithImpl<$Res, _$Error>
-    implements _$$ErrorCopyWith<$Res> {
-  __$$ErrorCopyWithImpl(_$Error _value, $Res Function(_$Error) _then)
+class __$$VideoErrorCopyWithImpl<$Res>
+    extends _$VideosDetailsStateCopyWithImpl<$Res, _$VideoError>
+    implements _$$VideoErrorCopyWith<$Res> {
+  __$$VideoErrorCopyWithImpl(
+      _$VideoError _value, $Res Function(_$VideoError) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -661,7 +670,7 @@ class __$$ErrorCopyWithImpl<$Res>
   $Res call({
     Object? networkExceptions = null,
   }) {
-    return _then(_$Error(
+    return _then(_$VideoError(
       null == networkExceptions
           ? _value.networkExceptions
           : networkExceptions // ignore: cast_nullable_to_non_nullable
@@ -672,22 +681,22 @@ class __$$ErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$Error implements Error {
-  const _$Error(this.networkExceptions);
+class _$VideoError implements VideoError {
+  const _$VideoError(this.networkExceptions);
 
   @override
   final NetworkExceptionModel networkExceptions;
 
   @override
   String toString() {
-    return 'VideosDetailsState.error(networkExceptions: $networkExceptions)';
+    return 'VideosDetailsState.videoError(networkExceptions: $networkExceptions)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$Error &&
+            other is _$VideoError &&
             (identical(other.networkExceptions, networkExceptions) ||
                 other.networkExceptions == networkExceptions));
   }
@@ -698,46 +707,47 @@ class _$Error implements Error {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ErrorCopyWith<_$Error> get copyWith =>
-      __$$ErrorCopyWithImpl<_$Error>(this, _$identity);
+  _$$VideoErrorCopyWith<_$VideoError> get copyWith =>
+      __$$VideoErrorCopyWithImpl<_$VideoError>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(VideosDetails mostPopularVideos) allVideosLoaded,
+    required TResult Function() videoLoading,
+    required TResult Function(VideosDetails allVideosLoaded) allVideosLoaded,
     required TResult Function(VideosDetails mostPopularVideos)
         allShortVideosLoaded,
-    required TResult Function(NetworkExceptionModel networkExceptions) error,
+    required TResult Function(NetworkExceptionModel networkExceptions)
+        videoError,
   }) {
-    return error(networkExceptions);
+    return videoError(networkExceptions);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(VideosDetails mostPopularVideos)? allVideosLoaded,
+    TResult? Function()? videoLoading,
+    TResult? Function(VideosDetails allVideosLoaded)? allVideosLoaded,
     TResult? Function(VideosDetails mostPopularVideos)? allShortVideosLoaded,
-    TResult? Function(NetworkExceptionModel networkExceptions)? error,
+    TResult? Function(NetworkExceptionModel networkExceptions)? videoError,
   }) {
-    return error?.call(networkExceptions);
+    return videoError?.call(networkExceptions);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(VideosDetails mostPopularVideos)? allVideosLoaded,
+    TResult Function()? videoLoading,
+    TResult Function(VideosDetails allVideosLoaded)? allVideosLoaded,
     TResult Function(VideosDetails mostPopularVideos)? allShortVideosLoaded,
-    TResult Function(NetworkExceptionModel networkExceptions)? error,
+    TResult Function(NetworkExceptionModel networkExceptions)? videoError,
     required TResult orElse(),
   }) {
-    if (error != null) {
-      return error(networkExceptions);
+    if (videoError != null) {
+      return videoError(networkExceptions);
     }
     return orElse();
   }
@@ -746,47 +756,49 @@ class _$Error implements Error {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(Loading value) loading,
+    required TResult Function(VideoLoading value) videoLoading,
     required TResult Function(AllVideosLoaded value) allVideosLoaded,
     required TResult Function(AllShortVideosLoaded value) allShortVideosLoaded,
-    required TResult Function(Error value) error,
+    required TResult Function(VideoError value) videoError,
   }) {
-    return error(this);
+    return videoError(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(Loading value)? loading,
+    TResult? Function(VideoLoading value)? videoLoading,
     TResult? Function(AllVideosLoaded value)? allVideosLoaded,
     TResult? Function(AllShortVideosLoaded value)? allShortVideosLoaded,
-    TResult? Function(Error value)? error,
+    TResult? Function(VideoError value)? videoError,
   }) {
-    return error?.call(this);
+    return videoError?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(Loading value)? loading,
+    TResult Function(VideoLoading value)? videoLoading,
     TResult Function(AllVideosLoaded value)? allVideosLoaded,
     TResult Function(AllShortVideosLoaded value)? allShortVideosLoaded,
-    TResult Function(Error value)? error,
+    TResult Function(VideoError value)? videoError,
     required TResult orElse(),
   }) {
-    if (error != null) {
-      return error(this);
+    if (videoError != null) {
+      return videoError(this);
     }
     return orElse();
   }
 }
 
-abstract class Error implements VideosDetailsState {
-  const factory Error(final NetworkExceptionModel networkExceptions) = _$Error;
+abstract class VideoError implements VideosDetailsState {
+  const factory VideoError(final NetworkExceptionModel networkExceptions) =
+      _$VideoError;
 
   NetworkExceptionModel get networkExceptions;
   @JsonKey(ignore: true)
-  _$$ErrorCopyWith<_$Error> get copyWith => throw _privateConstructorUsedError;
+  _$$VideoErrorCopyWith<_$VideoError> get copyWith =>
+      throw _privateConstructorUsedError;
 }

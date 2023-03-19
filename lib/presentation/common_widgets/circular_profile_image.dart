@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:youtube/config/routes/route_app.dart';
 import 'package:youtube/data/models/channel_details/channel_details.dart';
-import 'package:youtube/presentation/layouts/base_layout_logic.dart';
 import 'package:youtube/presentation/pages/home/logic/home_page_logic.dart';
 
 import '../../core/resources/color_manager.dart';
@@ -54,12 +53,8 @@ class _CircularProfileImageState extends State<CircularProfileImage> {
         Get.find<MiniVideoViewLogic>(tag: "1")
             .stateOfMiniPlayer(extendHeight: false);
 
-        int selectedIndex =
-            Get.find<BaseLayoutLogic>(tag: "1").tabController.index;
-
         Go(context).to(
           UserChannelPage(
-            key: selectedIndex == 0 ? const Key("from-home-page") : null,
             UserChannelPageParameters(
               channelDetailsItem: widget.channelDetailsItem,
               channelId: widget.channelId,

@@ -14,32 +14,23 @@ class _LikeButton extends StatelessWidget {
       return BlocBuilder<SingleVideoCubit, SingleVideoState>(
         bloc: BlocProvider.of<SingleVideoCubit>(context)
           ..getVideoRating(videoId: videoId),
-        buildWhen: (previous, current) =>
-            previous != current && current is GetVideoRatingLoaded,
-        builder: (context, state) => state.maybeWhen(
-          getVideoRatingLoaded: (ratingDetails) {
+        builder: (context, state) {
+          if (state is GetVideoRatingLoaded) {
             return _LikeIconButton(
               videoId: videoId,
-              ratingDetails: ratingDetails,
+              ratingDetails: state.ratingDetails,
               videoDetails: videoDetails,
             );
-          },
-          loading: () => Padding(
-            padding: REdgeInsetsDirectional.only(end: 35),
-            child: const InteractionShimmerLoading(),
-          ),
-          error: (error) {
-            ToastShow.reformatToast(context, error.error);
-            return _LikeIconButton(
-              videoId: videoId,
-              videoDetails: videoDetails,
-            );
-          },
-          orElse: () => _LikeIconButton(
+          } else if (state is VideoInfoError) {
+            ToastShow.reformatToast(context, state.networkExceptions.error);
+          } else if (state is VideoInfoLoading) {
+            return const InteractionShimmerLoading();
+          }
+          return _LikeIconButton(
             videoId: videoId,
             videoDetails: videoDetails,
-          ),
-        ),
+          );
+        },
       );
     }
   }
