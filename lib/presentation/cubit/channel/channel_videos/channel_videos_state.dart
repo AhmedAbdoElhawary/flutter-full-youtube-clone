@@ -4,7 +4,7 @@ part of 'channel_videos_cubit.dart';
 class ChannelVideosState with _$ChannelVideosState {
   const factory ChannelVideosState.initial() = _Initial;
 
-  const factory ChannelVideosState.loading() = Loading;
+  const factory ChannelVideosState.channelLoading() = ChannelLoading;
 
   const factory ChannelVideosState.popularVideosLoaded(
       VideosDetails videoDetails) = PopularVideosLoaded;
@@ -21,6 +21,6 @@ class ChannelVideosState with _$ChannelVideosState {
   const factory ChannelVideosState.videosOfThoseChannelsLoaded(
       List<VideoDetailsItem> videoDetails) = VideosOfThoseChannelsLoaded;
 
-  const factory ChannelVideosState.error(
-      NetworkExceptionModel networkExceptions) = Error;
+  const factory ChannelVideosState.channelError(
+      NetworkExceptionModel networkExceptions) = ChannelError;
 }

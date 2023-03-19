@@ -24,8 +24,8 @@ class _BodyOfCommentsSheet extends StatelessWidget {
                           _CommentItem(allCommentDetails.items![index]),
                       itemCount: allCommentDetails.items?.length ?? 0,
                     ),
-                loading: () => const ThineCircularProgress(),
-                error: (e) {
+                videoInfoLoading: () => const ThineCircularProgress(),
+                videoInfoError: (e) {
                   ToastShow.reformatToast(context, e.error);
                   return Center(
                     child: Text(

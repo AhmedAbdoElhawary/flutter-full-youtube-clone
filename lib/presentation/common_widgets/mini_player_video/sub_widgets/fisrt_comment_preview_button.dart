@@ -63,7 +63,7 @@ class _FirstComment extends StatelessWidget {
 
                   return _FirstCommentBody(snippet: snippet);
                 },
-                loading: () => const SizedBox(),
+                videoInfoLoading: () => const SizedBox(),
                 orElse: () => const SizedBox());
           },
         );
