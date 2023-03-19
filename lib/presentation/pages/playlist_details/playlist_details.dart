@@ -18,22 +18,34 @@ import 'package:youtube/presentation/common_widgets/thumbnail_image.dart';
 import 'package:youtube/presentation/cubit/channel/playlist/play_list_cubit.dart';
 import 'package:youtube/presentation/pages/channel_profile/tab_bar_views/videos_horizontal_descriptions_list.dart';
 
-class PlaylistDetailsPage extends StatelessWidget {
+class PlaylistDetailsPage extends StatefulWidget {
   const PlaylistDetailsPage({required this.playListsItem, Key? key})
       : super(key: key);
   final PlayListItem? playListsItem;
+
+  @override
+  State<PlaylistDetailsPage> createState() => _PlaylistDetailsPageState();
+}
+
+class _PlaylistDetailsPageState extends State<PlaylistDetailsPage>
+    with AutomaticKeepAliveClientMixin<PlaylistDetailsPage> {
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
-      appBar: CustomAppBar(context).normalAppBar( ""),
+      appBar: CustomAppBar(context).normalAppBar(""),
       body: CustomScrollView(
         slivers: [
-          _PlayListOverview(playListsItem: playListsItem),
-          if (playListsItem?.id != null) _PlaylistVideos(playListsItem!.id!),
+          _PlayListOverview(playListsItem: widget.playListsItem),
+          if (widget.playListsItem?.id != null)
+            _PlaylistVideos(widget.playListsItem!.id!),
         ],
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
 
 class _PlayListOverview extends StatelessWidget {
@@ -192,8 +204,7 @@ class _InteractionsButtonsWithSubInfo extends StatelessWidget {
                     ),
                     Text("Private",
                         style: getMediumStyle(
-                            color: BaseColorManager.grey1,
-                            fontSize: 12),
+                            color: BaseColorManager.grey1, fontSize: 12),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis),
                   ],
