@@ -74,24 +74,22 @@ class _SubscribedVideosState extends State<_SubscribedVideos>
             buildWhen: (previous, current) =>
                 previous != current && current is VideosOfThoseChannelsLoaded,
             builder: (context, state) {
-              return state.maybeWhen(
-                  videosOfThoseChannelsLoaded: (videosItems) {
-                    return SliverList(
-                      delegate: SliverChildBuilderDelegate(
-                        childCount: videosItems.length,
-                        (context, index) => Padding(
-                          padding: REdgeInsets.only(bottom: 15),
-                          child: ThumbnailOfVideo(videosItems[index]),
-                        ),
-                      ),
-                    );
-                  },
-                  loading: () =>
-                      const SliverFillRemaining(child: VideosListLoading()),
-                  error: (e) {
-                    return SliverFillRemaining(child: ErrorMessageWidget(e));
-                  },
-                  orElse: () => const SliverFillRemaining(child: SizedBox()));
+              if (state is VideosOfThoseChannelsLoaded) {
+                return SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    childCount: state.videoDetails.length,
+                    (context, index) => Padding(
+                      padding: REdgeInsets.only(bottom: 15),
+                      child: ThumbnailOfVideo(state.videoDetails[index]),
+                    ),
+                  ),
+                );
+              } else if (state is ChannelError) {
+                return SliverFillRemaining(
+                    child: ErrorMessageWidget(state.networkExceptions));
+              } else {
+                return const SliverFillRemaining(child: VideosListLoading());
+              }
             },
           );
         });

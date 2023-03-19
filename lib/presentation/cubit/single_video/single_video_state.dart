@@ -4,13 +4,13 @@ part of 'single_video_cubit.dart';
 class SingleVideoState with _$SingleVideoState {
   const factory SingleVideoState.initial() = _Initial;
 
-  const factory SingleVideoState.loading() = Loading;
+  const factory SingleVideoState.videoInfoLoading() = VideoInfoLoading;
 
   const factory SingleVideoState.videoDetailsLoaded(
       VideosDetails videoDetails) = VideoDetailsLoaded;
 
   const factory SingleVideoState.getVideoRatingLoaded(
-      RatingDetails videoDetails) = GetVideoRatingLoaded;
+      RatingDetails ratingDetails) = GetVideoRatingLoaded;
 
   const factory SingleVideoState.ratingVideoLoaded() = RatingVideoLoaded;
 
@@ -23,6 +23,6 @@ class SingleVideoState with _$SingleVideoState {
   const factory SingleVideoState.allRepliesLoaded(
       ReplyDetails allRepliesDetails) = AllRepliesLoaded;
 
-  const factory SingleVideoState.error(
-      NetworkExceptionModel networkExceptions) = Error;
+  const factory SingleVideoState.videoInfoError(
+      NetworkExceptionModel networkExceptions) = VideoInfoError;
 }
