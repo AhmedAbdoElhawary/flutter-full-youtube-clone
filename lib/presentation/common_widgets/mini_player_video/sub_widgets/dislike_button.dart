@@ -14,29 +14,23 @@ class _DislikeButton extends StatelessWidget {
       return BlocBuilder<SingleVideoCubit, SingleVideoState>(
         bloc: BlocProvider.of<SingleVideoCubit>(context)
           ..getVideoRating(videoId: videoId),
-        buildWhen: (previous, current) =>
-            previous != current && current is GetVideoRatingLoaded,
-        builder: (context, state) => state.maybeWhen(
-          getVideoRatingLoaded: (ratingDetails) {
+        builder: (context, state) {
+          if (state is GetVideoRatingLoaded) {
             return _DislikeIconButton(
               videoId: videoId,
-              ratingDetails: ratingDetails,
+              ratingDetails: state.ratingDetails,
               videoDetails: videoDetails,
             );
-          },
-          loading: () => const SizedBox(),
-          error: (error) {
-            ToastShow.reformatToast(context, error.error);
-            return _DislikeIconButton(
-              videoId: videoId,
-              videoDetails: videoDetails,
-            );
-          },
-          orElse: () => _DislikeIconButton(
+          } else if (state is VideoInfoError) {
+            ToastShow.reformatToast(context, state.networkExceptions.error);
+          } else if (state is VideoInfoLoading) {
+            return const InteractionShimmerLoading();
+          }
+          return _DislikeIconButton(
             videoId: videoId,
             videoDetails: videoDetails,
-          ),
-        ),
+          );
+        },
       );
     }
   }
