@@ -25,7 +25,7 @@ class VideosDetailsCubit extends Cubit<VideosDetailsState> {
       BlocProvider.of(context);
 
   Future<void> getAllVideos() async {
-    emit(const VideosDetailsState.loading());
+    emit(const VideosDetailsState.videoLoading());
 
     ApiResult<VideosDetails> result =
         await _allVideosUseCase.call(params: null);
@@ -33,11 +33,11 @@ class VideosDetailsCubit extends Cubit<VideosDetailsState> {
     result.when(
         success: (allVideos) =>
             emit(VideosDetailsState.allVideosLoaded(allVideos)),
-        failure: (exception) => emit(VideosDetailsState.error(exception)));
+        failure: (exception) => emit(VideosDetailsState.videoError(exception)));
   }
 
   Future<void> getAllShortVideos() async {
-    emit(const VideosDetailsState.loading());
+    emit(const VideosDetailsState.videoLoading());
 
     ApiResult<VideosDetails> result =
         await _allShortVideosUseCase.call(params: null);
@@ -45,7 +45,7 @@ class VideosDetailsCubit extends Cubit<VideosDetailsState> {
     result.when(
         success: (allShortVideos) =>
             emit(VideosDetailsState.allShortVideosLoaded(allShortVideos)),
-        failure: (exception) => emit(VideosDetailsState.error(exception)));
+        failure: (exception) => emit(VideosDetailsState.videoError(exception)));
   }
 
   Future<void> clearAllVideos() async {
