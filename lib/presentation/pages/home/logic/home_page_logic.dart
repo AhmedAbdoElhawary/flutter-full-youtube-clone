@@ -12,9 +12,10 @@ class MiniVideoViewLogic extends GetxController {
   final Rx<VideoDetailsItem?> _selectedMovedVideoDetails =
       Rxn<VideoDetailsItem?>();
   final Rx<String> _selectedVideoRating = "none".obs;
-  PodPlayerController? videoController;
+  PodPlayerController? floatingVideoController;
 
   final RxBool _moveThumbnailVideo = true.obs;
+  final RxBool _showFloatingVideo = false.obs;
   MiniPlayerController miniPlayerController = MiniPlayerController();
   final RxDouble _percentageOFMiniPage = 0.0.obs;
   final RxDouble _heightOFMiniPage = 50.0.obs;
@@ -33,9 +34,9 @@ class MiniVideoViewLogic extends GetxController {
 
     stateOfMiniPlayer();
 
-    if (videoController?.videoUrl == url) return;
+    if (floatingVideoController?.videoUrl == url) return;
 
-    if (videoController?.isInitialised ?? false) {
+    if (floatingVideoController?.isInitialised ?? false) {
       _changeController(videoId);
     } else {
       _firstInitialized(videoId);
@@ -45,8 +46,8 @@ class MiniVideoViewLogic extends GetxController {
   String getUrl(String videoId) => 'https://youtu.be/$videoId';
 
   Future<void> _changeController(String videoId) async {
-    if (videoId.isNotEmpty && videoController != null) {
-      await videoController?.changeVideo(
+    if (videoId.isNotEmpty && floatingVideoController != null) {
+      await floatingVideoController?.changeVideo(
         playVideoFrom: getPlayVideoFrom(videoId),
         playVideoDirectly: false,
       );
@@ -62,7 +63,7 @@ class MiniVideoViewLogic extends GetxController {
   }
 
   void _firstInitialized(String videoId) {
-    videoController = PodPlayerController(
+    floatingVideoController = PodPlayerController(
       playVideoFrom: getPlayVideoFrom(videoId),
       getTag: "mini",
     )..initialise();
@@ -74,19 +75,21 @@ class MiniVideoViewLogic extends GetxController {
       PlayVideoFrom.youtube(getUrl(videoId));
 
   void _addVideoListener() {
-    videoController!.addListener(controlListener);
+    floatingVideoController!.addListener(controlListener);
   }
 
   void controlListener() {
     if (percentageOFMiniPage <= 0.4) {
-      _isMiniVideoPlaying.value = videoController?.isVideoPlaying ?? true;
+      _isMiniVideoPlaying.value =
+          floatingVideoController?.isVideoPlaying ?? true;
       getDurationVideoValue();
       update(["update-mini-player"]);
     }
   }
 
   double getDurationVideoValue() {
-    VideoPlayerValue? videoPlayerValue = videoController?.videoPlayerValue;
+    VideoPlayerValue? videoPlayerValue =
+        floatingVideoController?.videoPlayerValue;
     int totalDuration = videoPlayerValue?.duration.inSeconds ?? 1;
     int currentValue = videoPlayerValue?.position.inSeconds ?? 0;
     double durationValue = (currentValue / totalDuration);
@@ -114,12 +117,10 @@ class MiniVideoViewLogic extends GetxController {
     update(["update-video-rating"]);
   }
 
-  void updateSelectedVideo() {
-    update(["update-selected-video"]);
-  }
-
   set setSelectedVideoDetails(VideoDetailsItem? value) {
     _selectedVideoDetails.value = value;
+    showFloatingVideo = value != null;
+    moveThumbnailVideo = value == null;
     update(["update-selected-video"]);
   }
 
@@ -142,7 +143,14 @@ class MiniVideoViewLogic extends GetxController {
 
   set selectedMovedVideoDetails(VideoDetailsItem? value) {
     _selectedMovedVideoDetails.value = value;
-    // update(["update-thumbnail-moved-video"]);
+  }
+
+  bool get showFloatingVideo => _showFloatingVideo.value;
+
+  set showFloatingVideo(bool value) {
+    _showFloatingVideo.value = value;
+    floatingVideoController?.pause();
+    update(["update-selected-video"]);
   }
 
   String get selectedVideoRating => _selectedVideoRating.value;

@@ -21,15 +21,10 @@ class _LikeButton extends StatelessWidget {
               ratingDetails: state.ratingDetails,
               videoDetails: videoDetails,
             );
-          } else if (state is VideoInfoError) {
-            ToastShow.reformatToast(context, state.networkExceptions.error);
           } else if (state is VideoInfoLoading) {
             return const InteractionShimmerLoading();
           }
-          return _LikeIconButton(
-            videoId: videoId,
-            videoDetails: videoDetails,
-          );
+          return _LikeIconButton(videoId: videoId, videoDetails: videoDetails);
         },
       );
     }

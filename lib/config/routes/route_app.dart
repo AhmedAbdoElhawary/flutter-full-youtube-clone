@@ -14,18 +14,16 @@ class Go {
   to(Widget page, {bool showFloatingVideo = true}) {
     final logic = Get.find<MiniVideoViewLogic>(tag: "1");
     final route = MaterialPageRoute(
-        builder: (context) =>
-            BaseLayout(page: page, showFloatingVideo: showFloatingVideo),
-        maintainState: false);
+        builder: (context) => FloatingVideo(child: page), maintainState: true);
 
     if (logic.moveThumbnailVideo) {
       logic.moveThumbnailVideo = false;
-      return Navigator.of(context, rootNavigator: true)
+      return Navigator.of(context, rootNavigator: false)
           .push(route)
           .then((value) => logic.moveThumbnailVideo = true);
     }
 
-    return Navigator.of(context, rootNavigator: true).push(route);
+    return Navigator.of(context, rootNavigator: false).push(route);
   }
 
   offAll(Widget page) => Navigator.of(context).pushAndRemoveUntil(

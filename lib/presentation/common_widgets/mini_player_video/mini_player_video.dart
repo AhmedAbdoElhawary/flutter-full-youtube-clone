@@ -68,7 +68,7 @@ class _MiniPlayerVideoState extends State<MiniPlayerVideo> {
           _miniVideoViewLogic.setSelectedVideoDetails = null;
           _miniVideoViewLogic.isMiniVideoInitialized.value = false;
           try {
-            _miniVideoViewLogic.videoController?.dispose();
+            _miniVideoViewLogic.floatingVideoController?.dispose();
           } catch (e) {
             rethrow;
           }
@@ -126,24 +126,30 @@ class _NextVideosSuggestions extends StatelessWidget {
       id: "update-selected-video",
       builder: (controller) {
         String videoId = controller.getSelectedVideoDetails?.id ?? "";
-        return BlocBuilder<SearchCubit, SearchState>(
-          bloc: SearchCubit.get(context)..relatedVideosToThisVideo(videoId),
-          buildWhen: (previous, current) =>
-              previous != current &&
-              (current is RelatedVideosLoaded || current is SearchLoading),
+        return BlocBuilder<SingleVideoCubit, SingleVideoState>(
+          bloc: BlocProvider.of<SingleVideoCubit>(context)
+            ..getVideoRating(videoId: videoId),
           builder: (context, state) {
-            if (state is RelatedVideosLoaded) {
-              return CustomScrollView(
-                slivers: [
-                  const _VideoInfo(),
-                  _RelatedVideosList(state),
-                ],
-              );
-            } else if (state is SearchError) {
-              return ErrorMessageWidget(state.networkExceptions);
-            } else {
-              return const _LoadingWidgets();
-            }
+            return BlocBuilder<SearchCubit, SearchState>(
+              bloc: SearchCubit.get(context)..relatedVideosToThisVideo(videoId),
+              buildWhen: (previous, current) =>
+                  previous != current &&
+                  (current is RelatedVideosLoaded || current is SearchLoading),
+              builder: (context, state) {
+                if (state is RelatedVideosLoaded) {
+                  return CustomScrollView(
+                    slivers: [
+                      const _VideoInfo(),
+                      _RelatedVideosList(state),
+                    ],
+                  );
+                } else if (state is SearchError) {
+                  return ErrorMessageWidget(state.networkExceptions);
+                } else {
+                  return const _LoadingWidgets();
+                }
+              },
+            );
           },
         );
       },
@@ -253,8 +259,7 @@ class _CircleNameSubscribersWidget extends StatelessWidget {
                   ),
                 ),
                 SubscribeButton(
-                    channelItem:
-                        videoDetails?.getChannelSubDetails(),
+                    channelItem: videoDetails?.getChannelSubDetails(),
                     makeItExpanded: false,
                     fontSize: 13),
               ],

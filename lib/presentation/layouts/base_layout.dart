@@ -20,15 +20,7 @@ import '../pages/subscriptions/subscriptions_page.dart';
 import '../common_widgets/mini_player_video/mini_player_video.dart';
 
 class BaseLayout extends StatefulWidget {
-  const BaseLayout._internal({this.page, this.showFloatingVideo = true});
-  final Widget? page;
-  final bool showFloatingVideo;
-
-  static BaseLayout? _instance;
-  static BaseLayout get instance => _instance!;
-
-  factory BaseLayout({Widget? page, bool showFloatingVideo = true}) =>
-      BaseLayout._internal(page: page, showFloatingVideo: showFloatingVideo);
+  const BaseLayout({super.key});
 
   @override
   State<BaseLayout> createState() => _BaseLayoutState();
@@ -44,9 +36,10 @@ class _BaseLayoutState extends State<BaseLayout> {
 
     return Obx(
       () {
-        bool isShortsPageSelected =
-            baseLayoutLogic.isShortsPageSelected || !widget.showFloatingVideo;
         bool isThemeDark = ThemeOfApp().isThemeDark();
+
+        bool isShortsPageSelected =
+            baseLayoutLogic.isShortsPageSelected && !isThemeDark;
 
         Color? color = isShortsPageSelected ? BaseColorManager.white : null;
         return AnnotatedRegion<SystemUiOverlayStyle>(
@@ -110,32 +103,9 @@ class _BaseLayoutState extends State<BaseLayout> {
             ),
             controller: baseLayoutLogic.tabController,
             tabBuilder: (context, index) {
-              if (widget.page != null && !widget.showFloatingVideo) {
-                return widget.page!;
-              }
               if (index == 1) return const _ShortsPage();
 
-              return GetBuilder<MiniVideoViewLogic>(
-                tag: "1",
-                id: "update-selected-video",
-                builder: (controller) {
-                  Widget floatingVideo =
-                      controller.getSelectedVideoDetails == null
-                          ? const SizedBox()
-                          : const MiniPlayerVideo();
-
-                  return Stack(
-                    children: [
-                      if (widget.page != null) ...[
-                        widget.page!
-                      ] else ...[
-                        WhichPage(index)
-                      ],
-                      floatingVideo,
-                    ],
-                  );
-                },
-              );
+              return FloatingVideo(child: WhichPage(index));
             },
           ),
         );
@@ -168,6 +138,44 @@ class WhichPage extends StatelessWidget {
       default:
         return const _LibraryPage();
     }
+  }
+}
+
+class FloatingVideo extends StatefulWidget {
+  final Widget child;
+  const FloatingVideo._internal({required this.child});
+
+  static FloatingVideo? _instance;
+  static FloatingVideo get instance => _instance!;
+
+  factory FloatingVideo({required Widget child}) =>
+      FloatingVideo._internal(child: child);
+  @override
+  State<FloatingVideo> createState() => _FloatingVideoState();
+}
+
+class _FloatingVideoState extends State<FloatingVideo> {
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder<MiniVideoViewLogic>(
+      tag: "1",
+      id: "update-selected-video",
+      builder: (controller) {
+        Widget floatingVideo = !controller.showFloatingVideo ||
+                controller.getSelectedVideoDetails == null
+            ? const SizedBox()
+            : CupertinoTabView(
+                builder: (context) => const MiniPlayerVideo(),
+              );
+
+        return Stack(
+          children: [
+            widget.child,
+            floatingVideo,
+          ],
+        );
+      },
+    );
   }
 }
 

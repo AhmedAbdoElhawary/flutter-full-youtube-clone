@@ -57,7 +57,7 @@ class _GetBuilder extends StatelessWidget {
               darkTheme: AppTheme.dark,
               themeMode: ThemeOfApp().theme,
               debugShowCheckedModeBanner: false,
-              home: BaseLayout(),
+              home: const BaseLayout(),
             );
           },
         );
