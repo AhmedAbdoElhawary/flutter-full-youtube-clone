@@ -61,7 +61,7 @@ class _CloseButton extends StatelessWidget {
           miniVideoViewLogic.setSelectedVideoDetails = null;
           miniVideoViewLogic.isMiniVideoInitialized.value = false;
           try {
-            miniVideoViewLogic.videoController?.dispose();
+            miniVideoViewLogic.floatingVideoController?.dispose();
           } catch (e) {
             rethrow;
           }
@@ -93,9 +93,9 @@ class _PlayPauseButtonsState extends State<_PlayPauseButtons> {
                 : const Icon(Icons.play_arrow),
             onTap: () {
               if (controller.isMiniVideoPlaying) {
-                controller.videoController?.pause();
+                controller.floatingVideoController?.pause();
               } else {
-                controller.videoController?.play();
+                controller.floatingVideoController?.play();
               }
             },
           ),
@@ -125,7 +125,7 @@ class _VideoOfMiniDisplay extends StatelessWidget {
           child: videoId.isEmpty
               ? null
               : CustomPodVideoPlayer(
-                  controller: controller.videoController!,
+                  controller: controller.floatingVideoController!,
                   displayOverlay: controller.percentageOFMiniPage == 1,
                   frameAspectRatio: width / height,
                   videoAspectRatio: width / height,

@@ -22,16 +22,6 @@ class MostPopularVideosPage extends StatefulWidget {
 }
 
 class _MostPopularVideosPageState extends State<MostPopularVideosPage> {
-  @override
-  void dispose() {
-    try {
-      PopularVideosCubit.get(context)
-          .clearAllPopularVideos(videoCategoryId: "");
-    } catch (e) {
-      rethrow;
-    }
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
