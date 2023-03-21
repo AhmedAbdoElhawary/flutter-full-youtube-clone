@@ -8,9 +8,8 @@ class _ShortPlayer extends StatefulWidget {
 }
 
 class _ShortPlayerState extends State<_ShortPlayer> {
-  final logic = Get.put(ShortsLogic(), tag: "1");
-
-  final ValueNotifier<VideoPlayerController?> _controller = ValueNotifier(null);
+  final ValueNotifier<VideoPlayerController?> videoController =
+      ValueNotifier(null);
   final ValueNotifier<Widget> videoStatusAnimation =
       ValueNotifier(const SizedBox());
   final baseLayoutLogic = Get.find<BaseLayoutLogic>(tag: "1");
@@ -20,17 +19,16 @@ class _ShortPlayerState extends State<_ShortPlayer> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await _initializeVideo();
+      await initializeVideo(widget.videoDetailsItem);
     });
   }
 
-  Future<void> _initializeVideo() async {
-    String videoId = widget.videoDetailsItem.id ?? "";
+  Future<void> initializeVideo(VideoDetailsItem videoDetailsItem) async {
+    String videoId = videoDetailsItem.id ?? "";
 
     String videoUrl = 'https://youtu.be/$videoId';
 
-    if ((logic.videoController?.isInitialised ?? false) &&
-        logic.videoController?.videoUrl == videoUrl) return;
+    if (videoController.value?.value.isInitialized ?? false) return;
 
     final urls = await getVideoQualityUrlsFromYoutube(videoUrl, false);
     final url = getUrlFromVideoQualityUrls(
@@ -38,9 +36,9 @@ class _ShortPlayerState extends State<_ShortPlayer> {
       videoUrls: urls,
     );
 
-    _controller.value = VideoPlayerController.network(url)
+    videoController.value = VideoPlayerController.network(url)
       ..setLooping(true)
-      ..initialize().then((_) => _controller.value!.play());
+      ..initialize().then((_) => videoController.value!.play());
 
     baseLayoutLogic.isShortsInitialize = true;
   }
@@ -99,22 +97,33 @@ class _ShortPlayerState extends State<_ShortPlayer> {
 
   @override
   void dispose() {
-    _controller.value?.dispose();
+    videoController.dispose();
     videoStatusAnimation.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        videoPlayer(),
-        ValueListenableBuilder(
-          valueListenable: videoStatusAnimation,
-          builder: (context, value, child) =>
-              Center(child: videoStatusAnimation.value),
-        ),
-      ],
+    return GetBuilder<ShortsLogic>(
+      tag: "1",
+      id: "update-shorts-video",
+      builder: (controller) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          controller.stopVideo
+              ? videoController.value?.pause()
+              : videoController.value?.play();
+        });
+        return Stack(
+          children: [
+            videoPlayer(),
+            ValueListenableBuilder(
+              valueListenable: videoStatusAnimation,
+              builder: (context, value, child) =>
+                  Center(child: videoStatusAnimation.value),
+            ),
+          ],
+        );
+      },
     );
   }
 
@@ -122,17 +131,17 @@ class _ShortPlayerState extends State<_ShortPlayer> {
     return GestureDetector(
       onTap: onTapVideo,
       onLongPressStart: (LongPressStartDetails event) {
-        if (!(_controller.value?.value.isInitialized ?? false)) return;
+        if (!(videoController.value?.value.isInitialized ?? false)) return;
 
-        _controller.value!.pause();
+        videoController.value!.pause();
       },
       onLongPressEnd: (LongPressEndDetails event) {
-        if (!(_controller.value?.value.isInitialized ?? false)) return;
+        if (!(videoController.value?.value.isInitialized ?? false)) return;
 
-        _controller.value!.play();
+        videoController.value!.play();
       },
       child: ValueListenableBuilder(
-        valueListenable: _controller,
+        valueListenable: videoController,
         builder: (context, VideoPlayerController? controller, child) {
           if (controller == null) {
             return const ThineCircularProgress(color: BaseColorManager.white);
@@ -148,16 +157,16 @@ class _ShortPlayerState extends State<_ShortPlayer> {
   }
 
   void onTapVideo() {
-    if (!(logic.videoController?.isInitialised ?? false)) return;
+    if (videoController.value?.value.isInitialized ?? false) return;
 
-    if (!logic.videoController!.isVideoPlaying) {
-      logic.videoStatusAnimation = const _FadeAnimation(
+    if (!videoController.value!.value.isPlaying) {
+      videoStatusAnimation.value = const _FadeAnimation(
           child: _VolumeContainer(Icons.play_arrow_rounded));
-      logic.videoController?.play();
+      videoController.value?.play();
     } else {
-      logic.videoStatusAnimation =
+      videoStatusAnimation.value =
           const _FadeAnimation(child: _VolumeContainer(Icons.pause));
-      logic.videoController?.pause();
+      videoController.value?.pause();
     }
   }
 }
