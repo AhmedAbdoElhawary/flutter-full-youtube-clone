@@ -18,11 +18,13 @@ class BaseLayoutLogic extends GetxController {
       () {
         int selectedPage = tabController.index;
         if (selectedPage != 0) {
-          Get.find<MiniVideoViewLogic>(tag: "1").moveThumbnailVideo=false;
+          Get.find<MiniVideoViewLogic>(tag: "1").moveThumbnailVideo = false;
         }
         if (selectedPage == 1) {
           _isShortsPageSelected.value = true;
-          final logic = Get.find<MiniVideoViewLogic>(tag: "1").videoController;
+
+          final logic =
+              Get.find<MiniVideoViewLogic>(tag: "1").floatingVideoController;
           if (logic != null) logic.pause();
 
           if (getShortsInitialize) {
