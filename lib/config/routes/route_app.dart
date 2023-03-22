@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:youtube/presentation/layouts/base_layout.dart';
 import 'package:youtube/presentation/pages/home/logic/home_page_logic.dart';
 
 /// currently, I don't use routes generator methods because there is a lot of run time errors.
@@ -14,7 +13,7 @@ class Go {
   to(Widget page, {bool showFloatingVideo = true}) {
     final logic = Get.find<MiniVideoViewLogic>(tag: "1");
     final route = MaterialPageRoute(
-        builder: (context) => FloatingVideo(child: page), maintainState: true);
+        builder: (context) => page, maintainState: true);
 
     if (logic.moveThumbnailVideo) {
       logic.moveThumbnailVideo = false;
