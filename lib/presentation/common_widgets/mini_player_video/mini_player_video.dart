@@ -8,6 +8,7 @@ import 'package:youtube/core/functions/toast_show.dart';
 import 'package:youtube/core/resources/assets_manager.dart';
 import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/core/resources/styles_manager.dart';
+import 'package:youtube/core/utility/constants.dart';
 import 'package:youtube/data/models/comment_details/comment_details.dart';
 import 'package:youtube/data/models/comment_details/comment_details_extension.dart';
 import 'package:youtube/data/models/common/base_comment_snippet/sub_comment_snippet.dart';
@@ -216,7 +217,7 @@ class _CircleNameSubscribersWidget extends StatelessWidget {
           return InkWell(
             onTap: () {
               controller.stateOfMiniPlayer(extendHeight: false);
-              Go(context).to(UserChannelPage(
+              Go(savedContext!).to(UserChannelPage(
                 UserChannelPageParameters(
                   channelDetailsItem: videoDetails?.getChannelSubDetails(),
                   channelId: videoDetails?.getChannelId() ?? "",
