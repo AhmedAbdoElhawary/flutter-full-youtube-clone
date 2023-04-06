@@ -70,19 +70,10 @@ class ThumbnailOfVideo extends StatelessWidget {
 }
 
 class MovedVideoDisplay extends StatefulWidget {
-  const MovedVideoDisplay._internal(
-      this.videoDetailsItem, this.moveThumbnailVideo);
+  const MovedVideoDisplay(this.videoDetailsItem, this.moveThumbnailVideo,
+      {super.key});
   final VideoDetailsItem? videoDetailsItem;
   final bool moveThumbnailVideo;
-  static MovedVideoDisplay? _instance;
-  static MovedVideoDisplay get instance => _instance!;
-
-  factory MovedVideoDisplay(
-      VideoDetailsItem? videoDetailsItem, bool moveThumbnailVideo) {
-    _instance =
-        MovedVideoDisplay._internal(videoDetailsItem, moveThumbnailVideo);
-    return _instance!;
-  }
 
   @override
   State<MovedVideoDisplay> createState() => _MovedVideoDisplayState();
@@ -93,7 +84,7 @@ class _MovedVideoDisplayState extends State<MovedVideoDisplay> {
 
   String getUrl(String videoId) => 'https://youtu.be/$videoId';
 
-  void _firstThumbnailInitialized(String videoId) {
+  void _thumbnailInitialized(String videoId) {
     movedVideoController = PodPlayerController(
       playVideoFrom: getPlayVideoFrom(videoId),
       getTag: "mini thumbnail",
@@ -109,13 +100,19 @@ class _MovedVideoDisplayState extends State<MovedVideoDisplay> {
   }
 
   @override
+  void initState() {
+    disposeThumbnailVideo();
+
+    String videoId = widget.videoDetailsItem?.id ?? "";
+    _thumbnailInitialized(videoId);
+
+    super.initState();
+  }
+
+  @override
   void didUpdateWidget(covariant MovedVideoDisplay oldWidget) {
-    if (!widget.moveThumbnailVideo) {
-      disposeThumbnailVideo();
-    } else {
-      String videoId = widget.videoDetailsItem?.id ?? "";
-      _firstThumbnailInitialized(videoId);
-    }
+    if (!widget.moveThumbnailVideo) disposeThumbnailVideo();
+
     super.didUpdateWidget(oldWidget);
   }
 

@@ -19,19 +19,14 @@ class _VerticalButtons extends StatelessWidget {
                 CircularProfileImage(
                   radius: 18.r,
                   imageUrl: videoDetailsItem.getChannelProfileImageUrl(),
-                  channelId: videoDetailsItem.getChannelId(),
-                  channelDetailsItem: videoDetailsItem.getChannelSubDetails(),
                 ),
                 const RSizedBox(width: 10),
                 Flexible(
-                  child: GestureDetector(
-                    onTap: () {},
-                    child: Text(
-                      videoDetailsItem.getCustomUserName(),
-                      style: getNormalStyle(color: BaseColorManager.white),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                    ),
+                  child: Text(
+                    videoDetailsItem.getCustomUserName(),
+                    style: getNormalStyle(color: BaseColorManager.white),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
                   ),
                 ),
                 const RSizedBox(width: 10),

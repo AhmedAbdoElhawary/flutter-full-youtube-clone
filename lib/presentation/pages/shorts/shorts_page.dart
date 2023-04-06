@@ -29,29 +29,46 @@ class ShortsPageState extends State<ShortsPage> {
       onWillPop: () async => true,
       child: Scaffold(
         backgroundColor: BaseColorManager.black87,
-        extendBodyBehindAppBar: true,
-        appBar: appBar(),
-        body: widget.parameters?.videoDetailsItem != null
-            ? ShortsPageView(widget.parameters?.videoDetailsItem)
-            : const _PageViewBody(),
+        body: SafeArea(
+          child: widget.parameters?.videoDetailsItem != null
+              ? BodyWithAppBar(
+                  child: ShortsPageView(widget.parameters?.videoDetailsItem))
+              : const BodyWithAppBar(
+                  showArrowBack: false, child: _PageViewBody()),
+        ),
       ),
     );
   }
+}
 
-  AppBar appBar() => AppBar(
-        backgroundColor: BaseColorManager.transparent,
-        leading: widget.parameters?.videoDetailsItem != null
-            ? const ArrowBack(makeItWhite: true)
-            : null,
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.camera_alt,
-                size: 30, color: BaseColorManager.white),
-          ),
-          const RSizedBox(width: 10),
-        ],
-      );
+class BodyWithAppBar extends StatelessWidget {
+  final Widget child;
+  final bool showArrowBack;
+  const BodyWithAppBar(
+      {this.showArrowBack = true, required this.child, Key? key})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      alignment: AlignmentDirectional.topCenter,
+      children: [
+        child,
+        Row(
+          children: [
+            if (showArrowBack) const ArrowBack(makeItWhite: true),
+            const Spacer(),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.camera_alt,
+                  size: 30, color: BaseColorManager.white),
+            ),
+            const RSizedBox(width: 10),
+          ],
+        ),
+      ],
+    );
+  }
 }
 
 class _PageViewBody extends StatelessWidget {

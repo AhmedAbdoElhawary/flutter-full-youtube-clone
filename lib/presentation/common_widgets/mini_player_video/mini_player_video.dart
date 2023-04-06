@@ -8,6 +8,7 @@ import 'package:youtube/core/functions/toast_show.dart';
 import 'package:youtube/core/resources/assets_manager.dart';
 import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/core/resources/styles_manager.dart';
+import 'package:youtube/core/utility/constants.dart';
 import 'package:youtube/data/models/comment_details/comment_details.dart';
 import 'package:youtube/data/models/comment_details/comment_details_extension.dart';
 import 'package:youtube/data/models/common/base_comment_snippet/sub_comment_snippet.dart';
@@ -125,31 +126,26 @@ class _NextVideosSuggestions extends StatelessWidget {
       tag: "1",
       id: "update-selected-video",
       builder: (controller) {
+
         String videoId = controller.getSelectedVideoDetails?.id ?? "";
-        return BlocBuilder<SingleVideoCubit, SingleVideoState>(
-          bloc: BlocProvider.of<SingleVideoCubit>(context)
-            ..getVideoRating(videoId: videoId),
+        return BlocBuilder<SearchCubit, SearchState>(
+          bloc: SearchCubit.get(context)..relatedVideosToThisVideo(videoId),
+          buildWhen: (previous, current) =>
+          previous != current &&
+              (current is RelatedVideosLoaded || current is SearchLoading),
           builder: (context, state) {
-            return BlocBuilder<SearchCubit, SearchState>(
-              bloc: SearchCubit.get(context)..relatedVideosToThisVideo(videoId),
-              buildWhen: (previous, current) =>
-                  previous != current &&
-                  (current is RelatedVideosLoaded || current is SearchLoading),
-              builder: (context, state) {
-                if (state is RelatedVideosLoaded) {
-                  return CustomScrollView(
-                    slivers: [
-                      const _VideoInfo(),
-                      _RelatedVideosList(state),
-                    ],
-                  );
-                } else if (state is SearchError) {
-                  return ErrorMessageWidget(state.networkExceptions);
-                } else {
-                  return const _LoadingWidgets();
-                }
-              },
-            );
+            if (state is RelatedVideosLoaded) {
+              return CustomScrollView(
+                slivers: [
+                  const _VideoInfo(),
+                  _RelatedVideosList(state),
+                ],
+              );
+            } else if (state is SearchError) {
+              return ErrorMessageWidget(state.networkExceptions);
+            } else {
+              return const _LoadingWidgets();
+            }
           },
         );
       },
@@ -221,7 +217,7 @@ class _CircleNameSubscribersWidget extends StatelessWidget {
           return InkWell(
             onTap: () {
               controller.stateOfMiniPlayer(extendHeight: false);
-              Go(context).to(UserChannelPage(
+              Go(savedContext!).to(UserChannelPage(
                 UserChannelPageParameters(
                   channelDetailsItem: videoDetails?.getChannelSubDetails(),
                   channelId: videoDetails?.getChannelId() ?? "",

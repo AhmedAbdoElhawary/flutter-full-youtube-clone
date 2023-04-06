@@ -46,7 +46,7 @@ class _BaseLayoutState extends State<BaseLayout> {
           value: SystemUiOverlayStyle(
               statusBarColor: ColorManager(context).white,
               statusBarIconBrightness:
-                  isThemeDark ? Brightness.dark : Brightness.light,
+                  isThemeDark ? Brightness.light : Brightness.dark,
               systemNavigationBarDividerColor: ColorManager(context).white,
               systemNavigationBarColor: ColorManager(context).white,
               statusBarBrightness:
@@ -105,7 +105,7 @@ class _BaseLayoutState extends State<BaseLayout> {
             tabBuilder: (context, index) {
               if (index == 1) return const _ShortsPage();
 
-              return FloatingVideo(child: WhichPage(index));
+              return _FloatingVideo(index: index);
             },
           ),
         );
@@ -141,36 +141,30 @@ class WhichPage extends StatelessWidget {
   }
 }
 
-class FloatingVideo extends StatefulWidget {
-  final Widget child;
-  const FloatingVideo._internal({required this.child});
+class _FloatingVideo extends StatefulWidget {
+  final int index;
+  const _FloatingVideo({required this.index});
 
-  static FloatingVideo? _instance;
-  static FloatingVideo get instance => _instance!;
-
-  factory FloatingVideo({required Widget child}) =>
-      FloatingVideo._internal(child: child);
   @override
-  State<FloatingVideo> createState() => _FloatingVideoState();
+  State<_FloatingVideo> createState() => _FloatingVideoState();
 }
 
-class _FloatingVideoState extends State<FloatingVideo> {
+class _FloatingVideoState extends State<_FloatingVideo> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<MiniVideoViewLogic>(
       tag: "1",
-      id: "update-selected-video",
+      id: "update-base-selected-video",
       builder: (controller) {
         Widget floatingVideo = !controller.showFloatingVideo ||
                 controller.getSelectedVideoDetails == null
             ? const SizedBox()
-            : CupertinoTabView(
-                builder: (context) => const MiniPlayerVideo(),
-              );
+            : const MiniPlayerVideo();
 
         return Stack(
+          alignment: Alignment.bottomCenter,
           children: [
-            widget.child,
+            WhichPage(widget.index),
             floatingVideo,
           ],
         );
