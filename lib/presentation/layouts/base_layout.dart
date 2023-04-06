@@ -105,7 +105,7 @@ class _BaseLayoutState extends State<BaseLayout> {
             tabBuilder: (context, index) {
               if (index == 1) return const _ShortsPage();
 
-              return _FloatingVideo(child: WhichPage(index));
+              return _FloatingVideo(index: index);
             },
           ),
         );
@@ -142,11 +142,9 @@ class WhichPage extends StatelessWidget {
 }
 
 class _FloatingVideo extends StatefulWidget {
-  final Widget child;
-  const _FloatingVideo._internal({required this.child});
+  final int index;
+  const _FloatingVideo({required this.index});
 
-  factory _FloatingVideo({required Widget child}) =>
-      _FloatingVideo._internal(child: child);
   @override
   State<_FloatingVideo> createState() => _FloatingVideoState();
 }
@@ -156,7 +154,7 @@ class _FloatingVideoState extends State<_FloatingVideo> {
   Widget build(BuildContext context) {
     return GetBuilder<MiniVideoViewLogic>(
       tag: "1",
-      id: "update-selected-video",
+      id: "update-base-selected-video",
       builder: (controller) {
         Widget floatingVideo = !controller.showFloatingVideo ||
                 controller.getSelectedVideoDetails == null
@@ -166,7 +164,7 @@ class _FloatingVideoState extends State<_FloatingVideo> {
         return Stack(
           alignment: Alignment.bottomCenter,
           children: [
-            widget.child,
+            WhichPage(widget.index),
             floatingVideo,
           ],
         );

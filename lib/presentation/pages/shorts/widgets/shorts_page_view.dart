@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:get/get.dart';
 import 'package:youtube/core/resources/color_manager.dart';

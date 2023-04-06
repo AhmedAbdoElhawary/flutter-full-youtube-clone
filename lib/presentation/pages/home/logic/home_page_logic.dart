@@ -121,7 +121,7 @@ class MiniVideoViewLogic extends GetxController {
     _selectedVideoDetails.value = value;
     showFloatingVideo = value != null;
     moveThumbnailVideo = value == null;
-    update(["update-selected-video"]);
+    update(["update-selected-video", "update-base-selected-video"]);
   }
 
   set percentageOFMiniPage(double value) {
@@ -129,6 +129,7 @@ class MiniVideoViewLogic extends GetxController {
 
     heightOfNavigationBar.value = (1 - value) * 44;
     update(["update-mini-player"]);
+    if (percentageOFMiniPage == 0) update(["update-base-selected-video"]);
   }
 
   bool get moveThumbnailVideo => _moveThumbnailVideo.value;

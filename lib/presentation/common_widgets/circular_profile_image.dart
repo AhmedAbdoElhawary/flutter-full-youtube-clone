@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:youtube/config/routes/route_app.dart';
+import 'package:youtube/core/utility/constants.dart';
 import 'package:youtube/data/models/channel_details/channel_details.dart';
 import 'package:youtube/presentation/pages/home/logic/home_page_logic.dart';
 
@@ -18,7 +19,7 @@ class CircularProfileImage extends StatefulWidget {
   final bool isThatFloatingPlayer;
 
   const CircularProfileImage(
-      {this.imageUrl = "",
+      {required this.imageUrl ,
       this.channelDetailsItem,
       this.enableTapping = true,
       this.isThatFloatingPlayer = false,
@@ -53,7 +54,7 @@ class _CircularProfileImageState extends State<CircularProfileImage> {
         Get.find<MiniVideoViewLogic>(tag: "1")
             .stateOfMiniPlayer(extendHeight: false);
 
-        Go(context).to(
+        Go(savedContext!).to(
           UserChannelPage(
             UserChannelPageParameters(
               channelDetailsItem: widget.channelDetailsItem,
