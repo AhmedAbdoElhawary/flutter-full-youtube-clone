@@ -130,16 +130,6 @@ class _ShortPlayerState extends State<_ShortPlayer> {
   Widget videoPlayer() {
     return GestureDetector(
       onTap: onTapVideo,
-      onLongPressStart: (LongPressStartDetails event) {
-        if (!(videoController.value?.value.isInitialized ?? false)) return;
-
-        videoController.value!.pause();
-      },
-      onLongPressEnd: (LongPressEndDetails event) {
-        if (!(videoController.value?.value.isInitialized ?? false)) return;
-
-        videoController.value!.play();
-      },
       child: ValueListenableBuilder(
         valueListenable: videoController,
         builder: (context, VideoPlayerController? controller, child) {
@@ -157,7 +147,7 @@ class _ShortPlayerState extends State<_ShortPlayer> {
   }
 
   void onTapVideo() {
-    if (videoController.value?.value.isInitialized ?? false) return;
+    if (!(videoController.value?.value.isInitialized ?? false)) return;
 
     if (!videoController.value!.value.isPlaying) {
       videoStatusAnimation.value = const _FadeAnimation(
