@@ -6,7 +6,6 @@ import 'package:youtube/core/functions/handling_errors/network_exception_model.d
 import 'package:youtube/data/models/suggestion_texts/suggestion_texts.dart';
 
 import 'package:youtube/data/models/videos_details/videos_details.dart';
-import 'package:youtube/domain/use_cases/search_details/related_videos_to_this_video_use_case.dart';
 import 'package:youtube/domain/use_cases/search_details/search_for_this_sentence_use_case.dart';
 import 'package:youtube/domain/use_cases/search_details/suggestion_search_texts_use_case.dart';
 
@@ -14,12 +13,10 @@ part 'search_state.dart';
 part 'search_cubit.freezed.dart';
 
 class SearchCubit extends Cubit<SearchState> {
-  final RelatedVideosToThisVideoUseCase _relatedVideosToThisVideoUseCase;
   final SearchForThisSentenceUseCase _searchForThisSentenceUseCase;
   final SuggestionSearchTextsUseCase _suggestionSearchTextsUseCase;
 
   SearchCubit(
-    this._relatedVideosToThisVideoUseCase,
     this._searchForThisSentenceUseCase,
     this._suggestionSearchTextsUseCase,
   ) : super(const SearchState.initial());
@@ -51,17 +48,4 @@ class SearchCubit extends Cubit<SearchState> {
         failure: (exception) => emit(SearchState.searchError(exception)));
   }
 
-  Future<void> relatedVideosToThisVideo(String relatedToVideoId) async {
-    emit(const SearchState.searchLoading());
-
-    ApiResult<VideosDetails> result =
-        await _relatedVideosToThisVideoUseCase.call(
-            params: RelatedVideosToThisVideoUseCasePara(
-                relatedToVideoId: relatedToVideoId));
-
-    result.when(
-        success: (videoDetails) =>
-            emit(SearchState.relatedVideosLoaded(videoDetails)),
-        failure: (exception) => emit(SearchState.searchError(exception)));
-  }
 }
