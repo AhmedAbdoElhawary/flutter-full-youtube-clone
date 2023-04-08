@@ -5,6 +5,7 @@ import 'package:youtube/core/functions/handling_errors/network_exception_model.d
 
 import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:youtube/domain/use_cases/search_details/related_videos_to_this_video_use_case.dart';
 import 'package:youtube/domain/use_cases/videos_details/all_short_videos_use_case.dart';
 import 'package:youtube/domain/use_cases/videos_details/all_videos_use_case.dart';
 import 'package:youtube/domain/use_cases/videos_details/clear/clear_all_short_videos_use_case.dart';
@@ -17,8 +18,14 @@ class VideosDetailsCubit extends Cubit<VideosDetailsState> {
   final AllShortVideosUseCase _allShortVideosUseCase;
   final ClearAllVideosUseCase _clearAllVideosUseCase;
   final ClearAllShortVideosUseCase _clearAllShortVideosUseCase;
-  VideosDetailsCubit(this._allVideosUseCase, this._allShortVideosUseCase,
-      this._clearAllShortVideosUseCase, this._clearAllVideosUseCase)
+  final RelatedVideosToThisVideoUseCase _relatedVideosToThisVideoUseCase;
+
+  VideosDetailsCubit(
+      this._relatedVideosToThisVideoUseCase,
+      this._allVideosUseCase,
+      this._allShortVideosUseCase,
+      this._clearAllShortVideosUseCase,
+      this._clearAllVideosUseCase)
       : super(const VideosDetailsState.initial());
 
   static VideosDetailsCubit get(BuildContext context) =>
@@ -46,6 +53,21 @@ class VideosDetailsCubit extends Cubit<VideosDetailsState> {
         success: (allShortVideos) =>
             emit(VideosDetailsState.allShortVideosLoaded(allShortVideos)),
         failure: (exception) => emit(VideosDetailsState.videoError(exception)));
+  }
+
+  Future<void> relatedVideosToThisVideo(String relatedToVideoId) async {
+    emit(const VideosDetailsState.videoLoading());
+
+    ApiResult<VideosDetails> result =
+        await _relatedVideosToThisVideoUseCase.call(
+            params: RelatedVideosToThisVideoUseCasePara(
+                relatedToVideoId: relatedToVideoId));
+
+    result.when(
+        success: (videoDetails) =>
+            emit(VideosDetailsState.relatedVideosLoaded(videoDetails)),
+        failure: (exception) =>
+            emit(VideosDetailsState.videoError(exception)));
   }
 
   Future<void> clearAllVideos() async {
