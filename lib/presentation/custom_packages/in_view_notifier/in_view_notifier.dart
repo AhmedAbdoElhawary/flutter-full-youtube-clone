@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 // ignore: depend_on_referenced_packages
@@ -34,11 +33,9 @@ class InViewNotifier extends StatefulWidget {
   ///The function that defines the area within which the widgets should be notified
   ///as inView.
   final IsInViewPortCondition isInViewPortCondition;
-  final AsyncCallback onRefreshData;
   InViewNotifier({
     Key? key,
     required this.child,
-    required this.onRefreshData,
     this.initialInViewIds = const [],
     this.endNotificationOffset = 0.0,
     this.onListEndReached,
@@ -103,8 +100,7 @@ class InViewNotifierState extends State<InViewNotifier> {
     return InheritedInViewWidget(
       inViewState: _inViewState,
       child: NotificationListener<ScrollNotification>(
-        child: RefreshIndicator(
-            onRefresh: widget.onRefreshData, child: widget.child),
+        child: widget.child,
         onNotification: (ScrollNotification notification) {
           late bool isScrollDirection;
           final AxisDirection scrollDirection =
