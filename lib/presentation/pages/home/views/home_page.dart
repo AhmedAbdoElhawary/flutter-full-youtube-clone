@@ -40,7 +40,6 @@ class _HomePageState extends State<HomePage> {
             ),
             _VideosList(index),
           ],
-          onRefreshData: () async {},
           physics: const BouncingScrollPhysics(),
           initialInViewIds: const ['0'],
           isInViewPortCondition:
