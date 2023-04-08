@@ -40,7 +40,7 @@ class _SearchAPIs implements SearchAPIs {
     )
             .compose(
               _dio.options,
-              'search?part=snippet&type=video&videoDuration=medium&videoDuration=long',
+              'search?part=snippet&type=video',
               queryParameters: queryParameters,
               data: _data,
             )

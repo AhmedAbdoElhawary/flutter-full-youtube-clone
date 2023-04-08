@@ -23,6 +23,7 @@ mixin _$VideosDetailsState {
     required TResult Function(VideosDetails allVideosLoaded) allVideosLoaded,
     required TResult Function(VideosDetails mostPopularVideos)
         allShortVideosLoaded,
+    required TResult Function(VideosDetails videosDetails) relatedVideosLoaded,
     required TResult Function(NetworkExceptionModel networkExceptions)
         videoError,
   }) =>
@@ -33,6 +34,7 @@ mixin _$VideosDetailsState {
     TResult? Function()? videoLoading,
     TResult? Function(VideosDetails allVideosLoaded)? allVideosLoaded,
     TResult? Function(VideosDetails mostPopularVideos)? allShortVideosLoaded,
+    TResult? Function(VideosDetails videosDetails)? relatedVideosLoaded,
     TResult? Function(NetworkExceptionModel networkExceptions)? videoError,
   }) =>
       throw _privateConstructorUsedError;
@@ -42,6 +44,7 @@ mixin _$VideosDetailsState {
     TResult Function()? videoLoading,
     TResult Function(VideosDetails allVideosLoaded)? allVideosLoaded,
     TResult Function(VideosDetails mostPopularVideos)? allShortVideosLoaded,
+    TResult Function(VideosDetails videosDetails)? relatedVideosLoaded,
     TResult Function(NetworkExceptionModel networkExceptions)? videoError,
     required TResult orElse(),
   }) =>
@@ -52,6 +55,7 @@ mixin _$VideosDetailsState {
     required TResult Function(VideoLoading value) videoLoading,
     required TResult Function(AllVideosLoaded value) allVideosLoaded,
     required TResult Function(AllShortVideosLoaded value) allShortVideosLoaded,
+    required TResult Function(RelatedVideosLoaded value) relatedVideosLoaded,
     required TResult Function(VideoError value) videoError,
   }) =>
       throw _privateConstructorUsedError;
@@ -61,6 +65,7 @@ mixin _$VideosDetailsState {
     TResult? Function(VideoLoading value)? videoLoading,
     TResult? Function(AllVideosLoaded value)? allVideosLoaded,
     TResult? Function(AllShortVideosLoaded value)? allShortVideosLoaded,
+    TResult? Function(RelatedVideosLoaded value)? relatedVideosLoaded,
     TResult? Function(VideoError value)? videoError,
   }) =>
       throw _privateConstructorUsedError;
@@ -70,6 +75,7 @@ mixin _$VideosDetailsState {
     TResult Function(VideoLoading value)? videoLoading,
     TResult Function(AllVideosLoaded value)? allVideosLoaded,
     TResult Function(AllShortVideosLoaded value)? allShortVideosLoaded,
+    TResult Function(RelatedVideosLoaded value)? relatedVideosLoaded,
     TResult Function(VideoError value)? videoError,
     required TResult orElse(),
   }) =>
@@ -136,6 +142,7 @@ class _$_Initial implements _Initial {
     required TResult Function(VideosDetails allVideosLoaded) allVideosLoaded,
     required TResult Function(VideosDetails mostPopularVideos)
         allShortVideosLoaded,
+    required TResult Function(VideosDetails videosDetails) relatedVideosLoaded,
     required TResult Function(NetworkExceptionModel networkExceptions)
         videoError,
   }) {
@@ -149,6 +156,7 @@ class _$_Initial implements _Initial {
     TResult? Function()? videoLoading,
     TResult? Function(VideosDetails allVideosLoaded)? allVideosLoaded,
     TResult? Function(VideosDetails mostPopularVideos)? allShortVideosLoaded,
+    TResult? Function(VideosDetails videosDetails)? relatedVideosLoaded,
     TResult? Function(NetworkExceptionModel networkExceptions)? videoError,
   }) {
     return initial?.call();
@@ -161,6 +169,7 @@ class _$_Initial implements _Initial {
     TResult Function()? videoLoading,
     TResult Function(VideosDetails allVideosLoaded)? allVideosLoaded,
     TResult Function(VideosDetails mostPopularVideos)? allShortVideosLoaded,
+    TResult Function(VideosDetails videosDetails)? relatedVideosLoaded,
     TResult Function(NetworkExceptionModel networkExceptions)? videoError,
     required TResult orElse(),
   }) {
@@ -177,6 +186,7 @@ class _$_Initial implements _Initial {
     required TResult Function(VideoLoading value) videoLoading,
     required TResult Function(AllVideosLoaded value) allVideosLoaded,
     required TResult Function(AllShortVideosLoaded value) allShortVideosLoaded,
+    required TResult Function(RelatedVideosLoaded value) relatedVideosLoaded,
     required TResult Function(VideoError value) videoError,
   }) {
     return initial(this);
@@ -189,6 +199,7 @@ class _$_Initial implements _Initial {
     TResult? Function(VideoLoading value)? videoLoading,
     TResult? Function(AllVideosLoaded value)? allVideosLoaded,
     TResult? Function(AllShortVideosLoaded value)? allShortVideosLoaded,
+    TResult? Function(RelatedVideosLoaded value)? relatedVideosLoaded,
     TResult? Function(VideoError value)? videoError,
   }) {
     return initial?.call(this);
@@ -201,6 +212,7 @@ class _$_Initial implements _Initial {
     TResult Function(VideoLoading value)? videoLoading,
     TResult Function(AllVideosLoaded value)? allVideosLoaded,
     TResult Function(AllShortVideosLoaded value)? allShortVideosLoaded,
+    TResult Function(RelatedVideosLoaded value)? relatedVideosLoaded,
     TResult Function(VideoError value)? videoError,
     required TResult orElse(),
   }) {
@@ -258,6 +270,7 @@ class _$VideoLoading implements VideoLoading {
     required TResult Function(VideosDetails allVideosLoaded) allVideosLoaded,
     required TResult Function(VideosDetails mostPopularVideos)
         allShortVideosLoaded,
+    required TResult Function(VideosDetails videosDetails) relatedVideosLoaded,
     required TResult Function(NetworkExceptionModel networkExceptions)
         videoError,
   }) {
@@ -271,6 +284,7 @@ class _$VideoLoading implements VideoLoading {
     TResult? Function()? videoLoading,
     TResult? Function(VideosDetails allVideosLoaded)? allVideosLoaded,
     TResult? Function(VideosDetails mostPopularVideos)? allShortVideosLoaded,
+    TResult? Function(VideosDetails videosDetails)? relatedVideosLoaded,
     TResult? Function(NetworkExceptionModel networkExceptions)? videoError,
   }) {
     return videoLoading?.call();
@@ -283,6 +297,7 @@ class _$VideoLoading implements VideoLoading {
     TResult Function()? videoLoading,
     TResult Function(VideosDetails allVideosLoaded)? allVideosLoaded,
     TResult Function(VideosDetails mostPopularVideos)? allShortVideosLoaded,
+    TResult Function(VideosDetails videosDetails)? relatedVideosLoaded,
     TResult Function(NetworkExceptionModel networkExceptions)? videoError,
     required TResult orElse(),
   }) {
@@ -299,6 +314,7 @@ class _$VideoLoading implements VideoLoading {
     required TResult Function(VideoLoading value) videoLoading,
     required TResult Function(AllVideosLoaded value) allVideosLoaded,
     required TResult Function(AllShortVideosLoaded value) allShortVideosLoaded,
+    required TResult Function(RelatedVideosLoaded value) relatedVideosLoaded,
     required TResult Function(VideoError value) videoError,
   }) {
     return videoLoading(this);
@@ -311,6 +327,7 @@ class _$VideoLoading implements VideoLoading {
     TResult? Function(VideoLoading value)? videoLoading,
     TResult? Function(AllVideosLoaded value)? allVideosLoaded,
     TResult? Function(AllShortVideosLoaded value)? allShortVideosLoaded,
+    TResult? Function(RelatedVideosLoaded value)? relatedVideosLoaded,
     TResult? Function(VideoError value)? videoError,
   }) {
     return videoLoading?.call(this);
@@ -323,6 +340,7 @@ class _$VideoLoading implements VideoLoading {
     TResult Function(VideoLoading value)? videoLoading,
     TResult Function(AllVideosLoaded value)? allVideosLoaded,
     TResult Function(AllShortVideosLoaded value)? allShortVideosLoaded,
+    TResult Function(RelatedVideosLoaded value)? relatedVideosLoaded,
     TResult Function(VideoError value)? videoError,
     required TResult orElse(),
   }) {
@@ -407,6 +425,7 @@ class _$AllVideosLoaded implements AllVideosLoaded {
     required TResult Function(VideosDetails allVideosLoaded) allVideosLoaded,
     required TResult Function(VideosDetails mostPopularVideos)
         allShortVideosLoaded,
+    required TResult Function(VideosDetails videosDetails) relatedVideosLoaded,
     required TResult Function(NetworkExceptionModel networkExceptions)
         videoError,
   }) {
@@ -420,6 +439,7 @@ class _$AllVideosLoaded implements AllVideosLoaded {
     TResult? Function()? videoLoading,
     TResult? Function(VideosDetails allVideosLoaded)? allVideosLoaded,
     TResult? Function(VideosDetails mostPopularVideos)? allShortVideosLoaded,
+    TResult? Function(VideosDetails videosDetails)? relatedVideosLoaded,
     TResult? Function(NetworkExceptionModel networkExceptions)? videoError,
   }) {
     return allVideosLoaded?.call(this.allVideosLoaded);
@@ -432,6 +452,7 @@ class _$AllVideosLoaded implements AllVideosLoaded {
     TResult Function()? videoLoading,
     TResult Function(VideosDetails allVideosLoaded)? allVideosLoaded,
     TResult Function(VideosDetails mostPopularVideos)? allShortVideosLoaded,
+    TResult Function(VideosDetails videosDetails)? relatedVideosLoaded,
     TResult Function(NetworkExceptionModel networkExceptions)? videoError,
     required TResult orElse(),
   }) {
@@ -448,6 +469,7 @@ class _$AllVideosLoaded implements AllVideosLoaded {
     required TResult Function(VideoLoading value) videoLoading,
     required TResult Function(AllVideosLoaded value) allVideosLoaded,
     required TResult Function(AllShortVideosLoaded value) allShortVideosLoaded,
+    required TResult Function(RelatedVideosLoaded value) relatedVideosLoaded,
     required TResult Function(VideoError value) videoError,
   }) {
     return allVideosLoaded(this);
@@ -460,6 +482,7 @@ class _$AllVideosLoaded implements AllVideosLoaded {
     TResult? Function(VideoLoading value)? videoLoading,
     TResult? Function(AllVideosLoaded value)? allVideosLoaded,
     TResult? Function(AllShortVideosLoaded value)? allShortVideosLoaded,
+    TResult? Function(RelatedVideosLoaded value)? relatedVideosLoaded,
     TResult? Function(VideoError value)? videoError,
   }) {
     return allVideosLoaded?.call(this);
@@ -472,6 +495,7 @@ class _$AllVideosLoaded implements AllVideosLoaded {
     TResult Function(VideoLoading value)? videoLoading,
     TResult Function(AllVideosLoaded value)? allVideosLoaded,
     TResult Function(AllShortVideosLoaded value)? allShortVideosLoaded,
+    TResult Function(RelatedVideosLoaded value)? relatedVideosLoaded,
     TResult Function(VideoError value)? videoError,
     required TResult orElse(),
   }) {
@@ -563,6 +587,7 @@ class _$AllShortVideosLoaded implements AllShortVideosLoaded {
     required TResult Function(VideosDetails allVideosLoaded) allVideosLoaded,
     required TResult Function(VideosDetails mostPopularVideos)
         allShortVideosLoaded,
+    required TResult Function(VideosDetails videosDetails) relatedVideosLoaded,
     required TResult Function(NetworkExceptionModel networkExceptions)
         videoError,
   }) {
@@ -576,6 +601,7 @@ class _$AllShortVideosLoaded implements AllShortVideosLoaded {
     TResult? Function()? videoLoading,
     TResult? Function(VideosDetails allVideosLoaded)? allVideosLoaded,
     TResult? Function(VideosDetails mostPopularVideos)? allShortVideosLoaded,
+    TResult? Function(VideosDetails videosDetails)? relatedVideosLoaded,
     TResult? Function(NetworkExceptionModel networkExceptions)? videoError,
   }) {
     return allShortVideosLoaded?.call(mostPopularVideos);
@@ -588,6 +614,7 @@ class _$AllShortVideosLoaded implements AllShortVideosLoaded {
     TResult Function()? videoLoading,
     TResult Function(VideosDetails allVideosLoaded)? allVideosLoaded,
     TResult Function(VideosDetails mostPopularVideos)? allShortVideosLoaded,
+    TResult Function(VideosDetails videosDetails)? relatedVideosLoaded,
     TResult Function(NetworkExceptionModel networkExceptions)? videoError,
     required TResult orElse(),
   }) {
@@ -604,6 +631,7 @@ class _$AllShortVideosLoaded implements AllShortVideosLoaded {
     required TResult Function(VideoLoading value) videoLoading,
     required TResult Function(AllVideosLoaded value) allVideosLoaded,
     required TResult Function(AllShortVideosLoaded value) allShortVideosLoaded,
+    required TResult Function(RelatedVideosLoaded value) relatedVideosLoaded,
     required TResult Function(VideoError value) videoError,
   }) {
     return allShortVideosLoaded(this);
@@ -616,6 +644,7 @@ class _$AllShortVideosLoaded implements AllShortVideosLoaded {
     TResult? Function(VideoLoading value)? videoLoading,
     TResult? Function(AllVideosLoaded value)? allVideosLoaded,
     TResult? Function(AllShortVideosLoaded value)? allShortVideosLoaded,
+    TResult? Function(RelatedVideosLoaded value)? relatedVideosLoaded,
     TResult? Function(VideoError value)? videoError,
   }) {
     return allShortVideosLoaded?.call(this);
@@ -628,6 +657,7 @@ class _$AllShortVideosLoaded implements AllShortVideosLoaded {
     TResult Function(VideoLoading value)? videoLoading,
     TResult Function(AllVideosLoaded value)? allVideosLoaded,
     TResult Function(AllShortVideosLoaded value)? allShortVideosLoaded,
+    TResult Function(RelatedVideosLoaded value)? relatedVideosLoaded,
     TResult Function(VideoError value)? videoError,
     required TResult orElse(),
   }) {
@@ -645,6 +675,168 @@ abstract class AllShortVideosLoaded implements VideosDetailsState {
   VideosDetails get mostPopularVideos;
   @JsonKey(ignore: true)
   _$$AllShortVideosLoadedCopyWith<_$AllShortVideosLoaded> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$RelatedVideosLoadedCopyWith<$Res> {
+  factory _$$RelatedVideosLoadedCopyWith(_$RelatedVideosLoaded value,
+          $Res Function(_$RelatedVideosLoaded) then) =
+      __$$RelatedVideosLoadedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({VideosDetails videosDetails});
+}
+
+/// @nodoc
+class __$$RelatedVideosLoadedCopyWithImpl<$Res>
+    extends _$VideosDetailsStateCopyWithImpl<$Res, _$RelatedVideosLoaded>
+    implements _$$RelatedVideosLoadedCopyWith<$Res> {
+  __$$RelatedVideosLoadedCopyWithImpl(
+      _$RelatedVideosLoaded _value, $Res Function(_$RelatedVideosLoaded) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? videosDetails = null,
+  }) {
+    return _then(_$RelatedVideosLoaded(
+      null == videosDetails
+          ? _value.videosDetails
+          : videosDetails // ignore: cast_nullable_to_non_nullable
+              as VideosDetails,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RelatedVideosLoaded implements RelatedVideosLoaded {
+  const _$RelatedVideosLoaded(this.videosDetails);
+
+  @override
+  final VideosDetails videosDetails;
+
+  @override
+  String toString() {
+    return 'VideosDetailsState.relatedVideosLoaded(videosDetails: $videosDetails)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RelatedVideosLoaded &&
+            (identical(other.videosDetails, videosDetails) ||
+                other.videosDetails == videosDetails));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, videosDetails);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RelatedVideosLoadedCopyWith<_$RelatedVideosLoaded> get copyWith =>
+      __$$RelatedVideosLoadedCopyWithImpl<_$RelatedVideosLoaded>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() videoLoading,
+    required TResult Function(VideosDetails allVideosLoaded) allVideosLoaded,
+    required TResult Function(VideosDetails mostPopularVideos)
+        allShortVideosLoaded,
+    required TResult Function(VideosDetails videosDetails) relatedVideosLoaded,
+    required TResult Function(NetworkExceptionModel networkExceptions)
+        videoError,
+  }) {
+    return relatedVideosLoaded(videosDetails);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? videoLoading,
+    TResult? Function(VideosDetails allVideosLoaded)? allVideosLoaded,
+    TResult? Function(VideosDetails mostPopularVideos)? allShortVideosLoaded,
+    TResult? Function(VideosDetails videosDetails)? relatedVideosLoaded,
+    TResult? Function(NetworkExceptionModel networkExceptions)? videoError,
+  }) {
+    return relatedVideosLoaded?.call(videosDetails);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? videoLoading,
+    TResult Function(VideosDetails allVideosLoaded)? allVideosLoaded,
+    TResult Function(VideosDetails mostPopularVideos)? allShortVideosLoaded,
+    TResult Function(VideosDetails videosDetails)? relatedVideosLoaded,
+    TResult Function(NetworkExceptionModel networkExceptions)? videoError,
+    required TResult orElse(),
+  }) {
+    if (relatedVideosLoaded != null) {
+      return relatedVideosLoaded(videosDetails);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(VideoLoading value) videoLoading,
+    required TResult Function(AllVideosLoaded value) allVideosLoaded,
+    required TResult Function(AllShortVideosLoaded value) allShortVideosLoaded,
+    required TResult Function(RelatedVideosLoaded value) relatedVideosLoaded,
+    required TResult Function(VideoError value) videoError,
+  }) {
+    return relatedVideosLoaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(VideoLoading value)? videoLoading,
+    TResult? Function(AllVideosLoaded value)? allVideosLoaded,
+    TResult? Function(AllShortVideosLoaded value)? allShortVideosLoaded,
+    TResult? Function(RelatedVideosLoaded value)? relatedVideosLoaded,
+    TResult? Function(VideoError value)? videoError,
+  }) {
+    return relatedVideosLoaded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(VideoLoading value)? videoLoading,
+    TResult Function(AllVideosLoaded value)? allVideosLoaded,
+    TResult Function(AllShortVideosLoaded value)? allShortVideosLoaded,
+    TResult Function(RelatedVideosLoaded value)? relatedVideosLoaded,
+    TResult Function(VideoError value)? videoError,
+    required TResult orElse(),
+  }) {
+    if (relatedVideosLoaded != null) {
+      return relatedVideosLoaded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class RelatedVideosLoaded implements VideosDetailsState {
+  const factory RelatedVideosLoaded(final VideosDetails videosDetails) =
+      _$RelatedVideosLoaded;
+
+  VideosDetails get videosDetails;
+  @JsonKey(ignore: true)
+  _$$RelatedVideosLoadedCopyWith<_$RelatedVideosLoaded> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -718,6 +910,7 @@ class _$VideoError implements VideoError {
     required TResult Function(VideosDetails allVideosLoaded) allVideosLoaded,
     required TResult Function(VideosDetails mostPopularVideos)
         allShortVideosLoaded,
+    required TResult Function(VideosDetails videosDetails) relatedVideosLoaded,
     required TResult Function(NetworkExceptionModel networkExceptions)
         videoError,
   }) {
@@ -731,6 +924,7 @@ class _$VideoError implements VideoError {
     TResult? Function()? videoLoading,
     TResult? Function(VideosDetails allVideosLoaded)? allVideosLoaded,
     TResult? Function(VideosDetails mostPopularVideos)? allShortVideosLoaded,
+    TResult? Function(VideosDetails videosDetails)? relatedVideosLoaded,
     TResult? Function(NetworkExceptionModel networkExceptions)? videoError,
   }) {
     return videoError?.call(networkExceptions);
@@ -743,6 +937,7 @@ class _$VideoError implements VideoError {
     TResult Function()? videoLoading,
     TResult Function(VideosDetails allVideosLoaded)? allVideosLoaded,
     TResult Function(VideosDetails mostPopularVideos)? allShortVideosLoaded,
+    TResult Function(VideosDetails videosDetails)? relatedVideosLoaded,
     TResult Function(NetworkExceptionModel networkExceptions)? videoError,
     required TResult orElse(),
   }) {
@@ -759,6 +954,7 @@ class _$VideoError implements VideoError {
     required TResult Function(VideoLoading value) videoLoading,
     required TResult Function(AllVideosLoaded value) allVideosLoaded,
     required TResult Function(AllShortVideosLoaded value) allShortVideosLoaded,
+    required TResult Function(RelatedVideosLoaded value) relatedVideosLoaded,
     required TResult Function(VideoError value) videoError,
   }) {
     return videoError(this);
@@ -771,6 +967,7 @@ class _$VideoError implements VideoError {
     TResult? Function(VideoLoading value)? videoLoading,
     TResult? Function(AllVideosLoaded value)? allVideosLoaded,
     TResult? Function(AllShortVideosLoaded value)? allShortVideosLoaded,
+    TResult? Function(RelatedVideosLoaded value)? relatedVideosLoaded,
     TResult? Function(VideoError value)? videoError,
   }) {
     return videoError?.call(this);
@@ -783,6 +980,7 @@ class _$VideoError implements VideoError {
     TResult Function(VideoLoading value)? videoLoading,
     TResult Function(AllVideosLoaded value)? allVideosLoaded,
     TResult Function(AllShortVideosLoaded value)? allShortVideosLoaded,
+    TResult Function(RelatedVideosLoaded value)? relatedVideosLoaded,
     TResult Function(VideoError value)? videoError,
     required TResult orElse(),
   }) {
