@@ -303,7 +303,7 @@ Future<void> initializeDependencies() async {
     () => PlayListCubit(injector(), injector(), injector()),
   );
   injector.registerFactory<SearchCubit>(
-    () => SearchCubit(injector(), injector(), injector()),
+    () => SearchCubit(injector(), injector()),
   );
 
   injector.registerFactory<ChannelDetailsCubit>(
@@ -328,7 +328,13 @@ Future<void> initializeDependencies() async {
     ),
   );
   injector.registerFactory<VideosDetailsCubit>(
-    () => VideosDetailsCubit(injector(), injector(), injector(), injector()),
+    () => VideosDetailsCubit(
+      injector(),
+      injector(),
+      injector(),
+      injector(),
+      injector(),
+    ),
   );
   injector.registerFactory<PopularVideosCubit>(
     () => PopularVideosCubit(injector(), injector()),

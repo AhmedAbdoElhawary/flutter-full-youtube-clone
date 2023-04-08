@@ -25,8 +25,8 @@ import 'package:youtube/presentation/common_widgets/svg_icon.dart';
 import 'package:youtube/presentation/common_widgets/text_links.dart';
 import 'package:youtube/presentation/common_widgets/thumbnail_of_video.dart';
 import 'package:youtube/presentation/common_widgets/videos_list_loading.dart';
-import 'package:youtube/presentation/cubit/search/search_cubit.dart';
 import 'package:youtube/presentation/cubit/single_video/single_video_cubit.dart';
+import 'package:youtube/presentation/cubit/videos/videos_details_cubit.dart';
 import 'package:youtube/presentation/custom_packages/custom_mini_player/custom_mini_player.dart';
 import 'package:youtube/presentation/custom_packages/pod_player/src/pod_player.dart';
 import 'package:youtube/presentation/layouts/base_layout_logic.dart';
@@ -128,11 +128,11 @@ class _NextVideosSuggestions extends StatelessWidget {
       builder: (controller) {
 
         String videoId = controller.getSelectedVideoDetails?.id ?? "";
-        return BlocBuilder<SearchCubit, SearchState>(
-          bloc: SearchCubit.get(context)..relatedVideosToThisVideo(videoId),
+        return BlocBuilder<VideosDetailsCubit, VideosDetailsState>(
+          bloc: VideosDetailsCubit.get(context)..relatedVideosToThisVideo(videoId),
           buildWhen: (previous, current) =>
           previous != current &&
-              (current is RelatedVideosLoaded || current is SearchLoading),
+              (current is RelatedVideosLoaded || current is VideoLoading),
           builder: (context, state) {
             if (state is RelatedVideosLoaded) {
               return CustomScrollView(
@@ -141,7 +141,7 @@ class _NextVideosSuggestions extends StatelessWidget {
                   _RelatedVideosList(state),
                 ],
               );
-            } else if (state is SearchError) {
+            } else if (state is VideoError) {
               return ErrorMessageWidget(state.networkExceptions);
             } else {
               return const _LoadingWidgets();
