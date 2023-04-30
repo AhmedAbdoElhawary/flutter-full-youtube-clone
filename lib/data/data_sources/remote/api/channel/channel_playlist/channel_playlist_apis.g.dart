@@ -22,8 +22,8 @@ class _ChannelPlayListAPIs implements ChannelPlayListAPIs {
 
   @override
   Future<PlayLists> getChannelPlayLists({
-    apiKey = apiKey,
-    required channelId,
+    String apiKey = apiKey,
+    required String channelId,
   }) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
@@ -31,7 +31,7 @@ class _ChannelPlayListAPIs implements ChannelPlayListAPIs {
       r'channelId': channelId,
     };
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<PlayLists>(Options(
       method: 'GET',
@@ -51,8 +51,8 @@ class _ChannelPlayListAPIs implements ChannelPlayListAPIs {
 
   @override
   Future<PlayLists> getMyPlayLists({
-    apiKey = apiKey,
-    required accessToken,
+    String apiKey = apiKey,
+    required String accessToken,
   }) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
@@ -60,7 +60,7 @@ class _ChannelPlayListAPIs implements ChannelPlayListAPIs {
       r'access_token': accessToken,
     };
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<PlayLists>(Options(
       method: 'GET',
@@ -80,9 +80,9 @@ class _ChannelPlayListAPIs implements ChannelPlayListAPIs {
 
   @override
   Future<PlayListVideos> getChannelPlayListItemsIds({
-    apiKey = apiKey,
-    required playlistId,
-    required accessToken,
+    String apiKey = apiKey,
+    required String playlistId,
+    required String accessToken,
   }) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
@@ -91,7 +91,7 @@ class _ChannelPlayListAPIs implements ChannelPlayListAPIs {
       r'access_token': accessToken,
     };
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<PlayListVideos>(Options(
       method: 'GET',

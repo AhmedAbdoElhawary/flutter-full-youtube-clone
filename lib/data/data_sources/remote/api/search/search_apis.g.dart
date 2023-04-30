@@ -22,8 +22,8 @@ class _SearchAPIs implements SearchAPIs {
 
   @override
   Future<SearchedVideosDetails> getIdsForThisSentence({
-    apiKey = apiKey,
-    required sentence,
+    String apiKey = apiKey,
+    required String sentence,
   }) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
@@ -31,7 +31,7 @@ class _SearchAPIs implements SearchAPIs {
       r'q': sentence,
     };
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<SearchedVideosDetails>(Options(
       method: 'GET',
@@ -51,8 +51,8 @@ class _SearchAPIs implements SearchAPIs {
 
   @override
   Future<SearchedVideosDetails> getRelatedVideosIdsToThisVideo({
-    apiKey = apiKey,
-    required relatedToVideoId,
+    String apiKey = apiKey,
+    required String relatedToVideoId,
   }) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
@@ -60,7 +60,7 @@ class _SearchAPIs implements SearchAPIs {
       r'relatedToVideoId': relatedToVideoId,
     };
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<SearchedVideosDetails>(Options(
       method: 'GET',

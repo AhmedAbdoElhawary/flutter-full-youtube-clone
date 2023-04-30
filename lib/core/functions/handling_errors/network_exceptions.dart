@@ -39,6 +39,10 @@ class NetworkExceptions with _$NetworkExceptions {
 
   const factory NetworkExceptions.noInternetConnection() = NoInternetConnection;
 
+  const factory NetworkExceptions.errorConnection() = ErrorConnection;
+
+  const factory NetworkExceptions.badCertificate() = BadCertificate;
+
   const factory NetworkExceptions.formatException() = FormatException;
 
   const factory NetworkExceptions.unableToProcess() = UnableToProcess;
@@ -90,22 +94,28 @@ class NetworkExceptions with _$NetworkExceptions {
             case DioErrorType.cancel:
               networkExceptions = const NetworkExceptions.requestCancelled();
               break;
-            case DioErrorType.connectTimeout:
+            case DioErrorType.connectionTimeout:
               networkExceptions = const NetworkExceptions.requestTimeout();
               break;
-            case DioErrorType.other:
+            case DioErrorType.unknown:
               networkExceptions =
                   const NetworkExceptions.noInternetConnection();
               break;
             case DioErrorType.receiveTimeout:
               networkExceptions = const NetworkExceptions.sendTimeout();
               break;
-            case DioErrorType.response:
+            case DioErrorType.badResponse:
               networkExceptions =
                   NetworkExceptions.handleResponse(error.response);
               break;
             case DioErrorType.sendTimeout:
               networkExceptions = const NetworkExceptions.sendTimeout();
+              break;
+            case DioErrorType.badCertificate:
+              networkExceptions = const NetworkExceptions.badCertificate();
+              break;
+            case DioErrorType.connectionError:
+              networkExceptions = const NetworkExceptions.errorConnection();
               break;
           }
         } else if (error is SocketException) {
@@ -157,6 +167,8 @@ class NetworkExceptions with _$NetworkExceptions {
       defaultError: (String error) => errorMessage = error,
       formatException: () => errorMessage = "Unexpected error occurred",
       notAcceptable: () => errorMessage = "Not acceptable",
+      badCertificate: () => errorMessage = "Bad certificate",
+      errorConnection: ()=>errorMessage = "Error connection",
     );
     return errorMessage;
   }

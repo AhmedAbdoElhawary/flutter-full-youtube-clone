@@ -22,8 +22,8 @@ class _ChannelAPIs implements ChannelAPIs {
 
   @override
   Future<ChannelSubDetails> getSubChannelInfo({
-    apiKey = apiKey,
-    required channelId,
+    String apiKey = apiKey,
+    required String channelId,
   }) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
@@ -31,7 +31,7 @@ class _ChannelAPIs implements ChannelAPIs {
       r'id': channelId,
     };
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<ChannelSubDetails>(Options(
       method: 'GET',
@@ -51,8 +51,8 @@ class _ChannelAPIs implements ChannelAPIs {
 
   @override
   Future<ChannelSubDetails> getMyChannelInfo({
-    apiKey = apiKey,
-    required accessToken,
+    String apiKey = apiKey,
+    required String accessToken,
   }) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
@@ -60,7 +60,7 @@ class _ChannelAPIs implements ChannelAPIs {
       r'access_token': accessToken,
     };
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<ChannelSubDetails>(Options(
       method: 'GET',
@@ -80,13 +80,13 @@ class _ChannelAPIs implements ChannelAPIs {
 
   @override
   Future<MySubscriptionsDetails> getMySubscriptionsChannels({
-    apiKey = apiKey,
-    required accessToken,
+    String apiKey = apiKey,
+    required String accessToken,
   }) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<MySubscriptionsDetails>(Options(
       method: 'GET',
@@ -106,9 +106,9 @@ class _ChannelAPIs implements ChannelAPIs {
 
   @override
   Future<dynamic> subscribeToChannel({
-    apiKey = apiKey,
-    required body,
-    required accessToken,
+    String apiKey = apiKey,
+    required Map<String, dynamic> body,
+    required String accessToken,
   }) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
@@ -136,8 +136,8 @@ class _ChannelAPIs implements ChannelAPIs {
 
   @override
   Future<dynamic> deleteSubscription({
-    required id,
-    required accessToken,
+    required String id,
+    required String accessToken,
   }) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
@@ -145,7 +145,7 @@ class _ChannelAPIs implements ChannelAPIs {
       r'access_token': accessToken,
     };
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
       method: 'DELETE',
       headers: _headers,

@@ -22,8 +22,8 @@ class _SingleVideosAPIs implements SingleVideosAPIs {
 
   @override
   Future<VideosDetails> getVideoDetails({
-    apiKey = apiKey,
-    required videoId,
+    String apiKey = apiKey,
+    required String videoId,
   }) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
@@ -31,7 +31,7 @@ class _SingleVideosAPIs implements SingleVideosAPIs {
       r'id': videoId,
     };
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<VideosDetails>(Options(
       method: 'GET',
@@ -51,9 +51,9 @@ class _SingleVideosAPIs implements SingleVideosAPIs {
 
   @override
   Future<dynamic> rateVideo({
-    required videoId,
-    required rating,
-    required accessToken,
+    required String videoId,
+    required String rating,
+    required String accessToken,
   }) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
@@ -62,7 +62,7 @@ class _SingleVideosAPIs implements SingleVideosAPIs {
       r'access_token': accessToken,
     };
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
       method: 'POST',
       headers: _headers,
@@ -81,8 +81,8 @@ class _SingleVideosAPIs implements SingleVideosAPIs {
 
   @override
   Future<RatingDetails> getVideoRating({
-    required accessToken,
-    required videoId,
+    required String accessToken,
+    required String videoId,
   }) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
@@ -90,7 +90,7 @@ class _SingleVideosAPIs implements SingleVideosAPIs {
       r'id': videoId,
     };
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<RatingDetails>(Options(
       method: 'GET',
