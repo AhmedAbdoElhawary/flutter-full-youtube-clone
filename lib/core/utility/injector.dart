@@ -347,8 +347,8 @@ Dio createAndSetupDio() {
   Dio dio = Dio();
 
   dio
-    ..options.connectTimeout = 200 * 1000
-    ..options.receiveTimeout = 200 * 1000;
+    ..options.connectTimeout = const Duration(minutes: 5)
+    ..options.receiveTimeout = const Duration(minutes: 5);
 
   dio.interceptors.add(LogInterceptor(
     responseBody: true,
