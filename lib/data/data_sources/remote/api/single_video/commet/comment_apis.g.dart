@@ -22,8 +22,8 @@ class _CommentAPIs implements CommentAPIs {
 
   @override
   Future<CommentDetails> getAllComments({
-    apiKey = apiKey,
-    required videoId,
+    String apiKey = apiKey,
+    required String videoId,
   }) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
@@ -31,7 +31,7 @@ class _CommentAPIs implements CommentAPIs {
       r'videoId': videoId,
     };
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<CommentDetails>(Options(
       method: 'GET',
@@ -51,8 +51,8 @@ class _CommentAPIs implements CommentAPIs {
 
   @override
   Future<CommentDetails> getFirstComment({
-    apiKey = apiKey,
-    required videoId,
+    String apiKey = apiKey,
+    required String videoId,
   }) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
@@ -60,7 +60,7 @@ class _CommentAPIs implements CommentAPIs {
       r'videoId': videoId,
     };
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<CommentDetails>(Options(
       method: 'GET',
@@ -80,8 +80,8 @@ class _CommentAPIs implements CommentAPIs {
 
   @override
   Future<ReplyDetails> getRepliesForThisComment({
-    apiKey = apiKey,
-    required commentId,
+    String apiKey = apiKey,
+    required String commentId,
   }) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
@@ -89,7 +89,7 @@ class _CommentAPIs implements CommentAPIs {
       r'id': commentId,
     };
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<ReplyDetails>(Options(
       method: 'GET',
@@ -109,9 +109,9 @@ class _CommentAPIs implements CommentAPIs {
 
   @override
   Future<dynamic> insertComment({
-    required accessToken,
-    apiKey = apiKey,
-    required commentBody,
+    required String accessToken,
+    String apiKey = apiKey,
+    required CommentBody commentBody,
   }) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{

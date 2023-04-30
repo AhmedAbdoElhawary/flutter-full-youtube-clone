@@ -22,9 +22,9 @@ class _ChannelVideosAPIs implements ChannelVideosAPIs {
 
   @override
   Future<SearchedVideosDetails> getAllChannelVideosIds({
-    apiKey = apiKey,
-    required channelId,
-    orderVideos = "date",
+    String apiKey = apiKey,
+    required String channelId,
+    String orderVideos = "date",
   }) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
@@ -33,7 +33,7 @@ class _ChannelVideosAPIs implements ChannelVideosAPIs {
       r'order': orderVideos,
     };
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<SearchedVideosDetails>(Options(
       method: 'GET',
@@ -53,9 +53,9 @@ class _ChannelVideosAPIs implements ChannelVideosAPIs {
 
   @override
   Future<SearchedVideosDetails> getAllChannelShortVideosIds({
-    apiKey = apiKey,
-    required channelId,
-    orderVideos = "date",
+    String apiKey = apiKey,
+    required String channelId,
+    String orderVideos = "date",
   }) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
@@ -64,7 +64,7 @@ class _ChannelVideosAPIs implements ChannelVideosAPIs {
       r'order': orderVideos,
     };
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<SearchedVideosDetails>(Options(
       method: 'GET',

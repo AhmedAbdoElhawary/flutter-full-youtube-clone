@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 import 'in_view_notifier.dart';
 import 'in_view_state.dart';
 import 'widget_data.dart';
@@ -16,7 +15,6 @@ class InViewNotifierCustomScrollView extends InViewNotifier {
     required IsInViewPortCondition isInViewPortCondition,
     ScrollController? controller,
     ScrollPhysics? physics,
-    required AsyncCallback onRefreshData,
     bool reverse = false,
     bool? primary,
     bool shrinkWrap = false,
@@ -29,7 +27,6 @@ class InViewNotifierCustomScrollView extends InViewNotifier {
           onListEndReached: onListEndReached,
           throttleDuration: throttleDuration,
           isInViewPortCondition: isInViewPortCondition,
-          onRefreshData: onRefreshData,
           child: CustomScrollView(
             slivers: slivers,
             anchor: anchor,

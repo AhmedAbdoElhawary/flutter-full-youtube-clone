@@ -32,6 +32,8 @@ mixin _$NetworkExceptions {
     required TResult Function() notImplemented,
     required TResult Function() serviceUnavailable,
     required TResult Function() noInternetConnection,
+    required TResult Function() errorConnection,
+    required TResult Function() badCertificate,
     required TResult Function() formatException,
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
@@ -54,6 +56,8 @@ mixin _$NetworkExceptions {
     TResult? Function()? notImplemented,
     TResult? Function()? serviceUnavailable,
     TResult? Function()? noInternetConnection,
+    TResult? Function()? errorConnection,
+    TResult? Function()? badCertificate,
     TResult? Function()? formatException,
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
@@ -76,6 +80,8 @@ mixin _$NetworkExceptions {
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
     TResult Function()? noInternetConnection,
+    TResult Function()? errorConnection,
+    TResult Function()? badCertificate,
     TResult Function()? formatException,
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
@@ -99,6 +105,8 @@ mixin _$NetworkExceptions {
     required TResult Function(NotImplemented value) notImplemented,
     required TResult Function(ServiceUnavailable value) serviceUnavailable,
     required TResult Function(NoInternetConnection value) noInternetConnection,
+    required TResult Function(ErrorConnection value) errorConnection,
+    required TResult Function(BadCertificate value) badCertificate,
     required TResult Function(FormatException value) formatException,
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
@@ -121,6 +129,8 @@ mixin _$NetworkExceptions {
     TResult? Function(NotImplemented value)? notImplemented,
     TResult? Function(ServiceUnavailable value)? serviceUnavailable,
     TResult? Function(NoInternetConnection value)? noInternetConnection,
+    TResult? Function(ErrorConnection value)? errorConnection,
+    TResult? Function(BadCertificate value)? badCertificate,
     TResult? Function(FormatException value)? formatException,
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
@@ -143,6 +153,8 @@ mixin _$NetworkExceptions {
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
     TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(ErrorConnection value)? errorConnection,
+    TResult Function(BadCertificate value)? badCertificate,
     TResult Function(FormatException value)? formatException,
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
@@ -222,6 +234,8 @@ class _$RequestCancelled implements RequestCancelled {
     required TResult Function() notImplemented,
     required TResult Function() serviceUnavailable,
     required TResult Function() noInternetConnection,
+    required TResult Function() errorConnection,
+    required TResult Function() badCertificate,
     required TResult Function() formatException,
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
@@ -247,6 +261,8 @@ class _$RequestCancelled implements RequestCancelled {
     TResult? Function()? notImplemented,
     TResult? Function()? serviceUnavailable,
     TResult? Function()? noInternetConnection,
+    TResult? Function()? errorConnection,
+    TResult? Function()? badCertificate,
     TResult? Function()? formatException,
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
@@ -272,6 +288,8 @@ class _$RequestCancelled implements RequestCancelled {
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
     TResult Function()? noInternetConnection,
+    TResult Function()? errorConnection,
+    TResult Function()? badCertificate,
     TResult Function()? formatException,
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
@@ -301,6 +319,8 @@ class _$RequestCancelled implements RequestCancelled {
     required TResult Function(NotImplemented value) notImplemented,
     required TResult Function(ServiceUnavailable value) serviceUnavailable,
     required TResult Function(NoInternetConnection value) noInternetConnection,
+    required TResult Function(ErrorConnection value) errorConnection,
+    required TResult Function(BadCertificate value) badCertificate,
     required TResult Function(FormatException value) formatException,
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
@@ -326,6 +346,8 @@ class _$RequestCancelled implements RequestCancelled {
     TResult? Function(NotImplemented value)? notImplemented,
     TResult? Function(ServiceUnavailable value)? serviceUnavailable,
     TResult? Function(NoInternetConnection value)? noInternetConnection,
+    TResult? Function(ErrorConnection value)? errorConnection,
+    TResult? Function(BadCertificate value)? badCertificate,
     TResult? Function(FormatException value)? formatException,
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
@@ -351,6 +373,8 @@ class _$RequestCancelled implements RequestCancelled {
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
     TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(ErrorConnection value)? errorConnection,
+    TResult Function(BadCertificate value)? badCertificate,
     TResult Function(FormatException value)? formatException,
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
@@ -447,6 +471,8 @@ class _$UnauthorizedRequest implements UnauthorizedRequest {
     required TResult Function() notImplemented,
     required TResult Function() serviceUnavailable,
     required TResult Function() noInternetConnection,
+    required TResult Function() errorConnection,
+    required TResult Function() badCertificate,
     required TResult Function() formatException,
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
@@ -472,6 +498,8 @@ class _$UnauthorizedRequest implements UnauthorizedRequest {
     TResult? Function()? notImplemented,
     TResult? Function()? serviceUnavailable,
     TResult? Function()? noInternetConnection,
+    TResult? Function()? errorConnection,
+    TResult? Function()? badCertificate,
     TResult? Function()? formatException,
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
@@ -497,6 +525,8 @@ class _$UnauthorizedRequest implements UnauthorizedRequest {
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
     TResult Function()? noInternetConnection,
+    TResult Function()? errorConnection,
+    TResult Function()? badCertificate,
     TResult Function()? formatException,
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
@@ -526,6 +556,8 @@ class _$UnauthorizedRequest implements UnauthorizedRequest {
     required TResult Function(NotImplemented value) notImplemented,
     required TResult Function(ServiceUnavailable value) serviceUnavailable,
     required TResult Function(NoInternetConnection value) noInternetConnection,
+    required TResult Function(ErrorConnection value) errorConnection,
+    required TResult Function(BadCertificate value) badCertificate,
     required TResult Function(FormatException value) formatException,
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
@@ -551,6 +583,8 @@ class _$UnauthorizedRequest implements UnauthorizedRequest {
     TResult? Function(NotImplemented value)? notImplemented,
     TResult? Function(ServiceUnavailable value)? serviceUnavailable,
     TResult? Function(NoInternetConnection value)? noInternetConnection,
+    TResult? Function(ErrorConnection value)? errorConnection,
+    TResult? Function(BadCertificate value)? badCertificate,
     TResult? Function(FormatException value)? formatException,
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
@@ -576,6 +610,8 @@ class _$UnauthorizedRequest implements UnauthorizedRequest {
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
     TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(ErrorConnection value)? errorConnection,
+    TResult Function(BadCertificate value)? badCertificate,
     TResult Function(FormatException value)? formatException,
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
@@ -651,6 +687,8 @@ class _$BadRequest implements BadRequest {
     required TResult Function() notImplemented,
     required TResult Function() serviceUnavailable,
     required TResult Function() noInternetConnection,
+    required TResult Function() errorConnection,
+    required TResult Function() badCertificate,
     required TResult Function() formatException,
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
@@ -676,6 +714,8 @@ class _$BadRequest implements BadRequest {
     TResult? Function()? notImplemented,
     TResult? Function()? serviceUnavailable,
     TResult? Function()? noInternetConnection,
+    TResult? Function()? errorConnection,
+    TResult? Function()? badCertificate,
     TResult? Function()? formatException,
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
@@ -701,6 +741,8 @@ class _$BadRequest implements BadRequest {
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
     TResult Function()? noInternetConnection,
+    TResult Function()? errorConnection,
+    TResult Function()? badCertificate,
     TResult Function()? formatException,
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
@@ -730,6 +772,8 @@ class _$BadRequest implements BadRequest {
     required TResult Function(NotImplemented value) notImplemented,
     required TResult Function(ServiceUnavailable value) serviceUnavailable,
     required TResult Function(NoInternetConnection value) noInternetConnection,
+    required TResult Function(ErrorConnection value) errorConnection,
+    required TResult Function(BadCertificate value) badCertificate,
     required TResult Function(FormatException value) formatException,
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
@@ -755,6 +799,8 @@ class _$BadRequest implements BadRequest {
     TResult? Function(NotImplemented value)? notImplemented,
     TResult? Function(ServiceUnavailable value)? serviceUnavailable,
     TResult? Function(NoInternetConnection value)? noInternetConnection,
+    TResult? Function(ErrorConnection value)? errorConnection,
+    TResult? Function(BadCertificate value)? badCertificate,
     TResult? Function(FormatException value)? formatException,
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
@@ -780,6 +826,8 @@ class _$BadRequest implements BadRequest {
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
     TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(ErrorConnection value)? errorConnection,
+    TResult Function(BadCertificate value)? badCertificate,
     TResult Function(FormatException value)? formatException,
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
@@ -874,6 +922,8 @@ class _$NotFound implements NotFound {
     required TResult Function() notImplemented,
     required TResult Function() serviceUnavailable,
     required TResult Function() noInternetConnection,
+    required TResult Function() errorConnection,
+    required TResult Function() badCertificate,
     required TResult Function() formatException,
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
@@ -899,6 +949,8 @@ class _$NotFound implements NotFound {
     TResult? Function()? notImplemented,
     TResult? Function()? serviceUnavailable,
     TResult? Function()? noInternetConnection,
+    TResult? Function()? errorConnection,
+    TResult? Function()? badCertificate,
     TResult? Function()? formatException,
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
@@ -924,6 +976,8 @@ class _$NotFound implements NotFound {
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
     TResult Function()? noInternetConnection,
+    TResult Function()? errorConnection,
+    TResult Function()? badCertificate,
     TResult Function()? formatException,
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
@@ -953,6 +1007,8 @@ class _$NotFound implements NotFound {
     required TResult Function(NotImplemented value) notImplemented,
     required TResult Function(ServiceUnavailable value) serviceUnavailable,
     required TResult Function(NoInternetConnection value) noInternetConnection,
+    required TResult Function(ErrorConnection value) errorConnection,
+    required TResult Function(BadCertificate value) badCertificate,
     required TResult Function(FormatException value) formatException,
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
@@ -978,6 +1034,8 @@ class _$NotFound implements NotFound {
     TResult? Function(NotImplemented value)? notImplemented,
     TResult? Function(ServiceUnavailable value)? serviceUnavailable,
     TResult? Function(NoInternetConnection value)? noInternetConnection,
+    TResult? Function(ErrorConnection value)? errorConnection,
+    TResult? Function(BadCertificate value)? badCertificate,
     TResult? Function(FormatException value)? formatException,
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
@@ -1003,6 +1061,8 @@ class _$NotFound implements NotFound {
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
     TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(ErrorConnection value)? errorConnection,
+    TResult Function(BadCertificate value)? badCertificate,
     TResult Function(FormatException value)? formatException,
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
@@ -1077,6 +1137,8 @@ class _$MethodNotAllowed implements MethodNotAllowed {
     required TResult Function() notImplemented,
     required TResult Function() serviceUnavailable,
     required TResult Function() noInternetConnection,
+    required TResult Function() errorConnection,
+    required TResult Function() badCertificate,
     required TResult Function() formatException,
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
@@ -1102,6 +1164,8 @@ class _$MethodNotAllowed implements MethodNotAllowed {
     TResult? Function()? notImplemented,
     TResult? Function()? serviceUnavailable,
     TResult? Function()? noInternetConnection,
+    TResult? Function()? errorConnection,
+    TResult? Function()? badCertificate,
     TResult? Function()? formatException,
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
@@ -1127,6 +1191,8 @@ class _$MethodNotAllowed implements MethodNotAllowed {
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
     TResult Function()? noInternetConnection,
+    TResult Function()? errorConnection,
+    TResult Function()? badCertificate,
     TResult Function()? formatException,
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
@@ -1156,6 +1222,8 @@ class _$MethodNotAllowed implements MethodNotAllowed {
     required TResult Function(NotImplemented value) notImplemented,
     required TResult Function(ServiceUnavailable value) serviceUnavailable,
     required TResult Function(NoInternetConnection value) noInternetConnection,
+    required TResult Function(ErrorConnection value) errorConnection,
+    required TResult Function(BadCertificate value) badCertificate,
     required TResult Function(FormatException value) formatException,
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
@@ -1181,6 +1249,8 @@ class _$MethodNotAllowed implements MethodNotAllowed {
     TResult? Function(NotImplemented value)? notImplemented,
     TResult? Function(ServiceUnavailable value)? serviceUnavailable,
     TResult? Function(NoInternetConnection value)? noInternetConnection,
+    TResult? Function(ErrorConnection value)? errorConnection,
+    TResult? Function(BadCertificate value)? badCertificate,
     TResult? Function(FormatException value)? formatException,
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
@@ -1206,6 +1276,8 @@ class _$MethodNotAllowed implements MethodNotAllowed {
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
     TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(ErrorConnection value)? errorConnection,
+    TResult Function(BadCertificate value)? badCertificate,
     TResult Function(FormatException value)? formatException,
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
@@ -1275,6 +1347,8 @@ class _$NotAcceptable implements NotAcceptable {
     required TResult Function() notImplemented,
     required TResult Function() serviceUnavailable,
     required TResult Function() noInternetConnection,
+    required TResult Function() errorConnection,
+    required TResult Function() badCertificate,
     required TResult Function() formatException,
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
@@ -1300,6 +1374,8 @@ class _$NotAcceptable implements NotAcceptable {
     TResult? Function()? notImplemented,
     TResult? Function()? serviceUnavailable,
     TResult? Function()? noInternetConnection,
+    TResult? Function()? errorConnection,
+    TResult? Function()? badCertificate,
     TResult? Function()? formatException,
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
@@ -1325,6 +1401,8 @@ class _$NotAcceptable implements NotAcceptable {
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
     TResult Function()? noInternetConnection,
+    TResult Function()? errorConnection,
+    TResult Function()? badCertificate,
     TResult Function()? formatException,
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
@@ -1354,6 +1432,8 @@ class _$NotAcceptable implements NotAcceptable {
     required TResult Function(NotImplemented value) notImplemented,
     required TResult Function(ServiceUnavailable value) serviceUnavailable,
     required TResult Function(NoInternetConnection value) noInternetConnection,
+    required TResult Function(ErrorConnection value) errorConnection,
+    required TResult Function(BadCertificate value) badCertificate,
     required TResult Function(FormatException value) formatException,
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
@@ -1379,6 +1459,8 @@ class _$NotAcceptable implements NotAcceptable {
     TResult? Function(NotImplemented value)? notImplemented,
     TResult? Function(ServiceUnavailable value)? serviceUnavailable,
     TResult? Function(NoInternetConnection value)? noInternetConnection,
+    TResult? Function(ErrorConnection value)? errorConnection,
+    TResult? Function(BadCertificate value)? badCertificate,
     TResult? Function(FormatException value)? formatException,
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
@@ -1404,6 +1486,8 @@ class _$NotAcceptable implements NotAcceptable {
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
     TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(ErrorConnection value)? errorConnection,
+    TResult Function(BadCertificate value)? badCertificate,
     TResult Function(FormatException value)? formatException,
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
@@ -1473,6 +1557,8 @@ class _$RequestTimeout implements RequestTimeout {
     required TResult Function() notImplemented,
     required TResult Function() serviceUnavailable,
     required TResult Function() noInternetConnection,
+    required TResult Function() errorConnection,
+    required TResult Function() badCertificate,
     required TResult Function() formatException,
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
@@ -1498,6 +1584,8 @@ class _$RequestTimeout implements RequestTimeout {
     TResult? Function()? notImplemented,
     TResult? Function()? serviceUnavailable,
     TResult? Function()? noInternetConnection,
+    TResult? Function()? errorConnection,
+    TResult? Function()? badCertificate,
     TResult? Function()? formatException,
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
@@ -1523,6 +1611,8 @@ class _$RequestTimeout implements RequestTimeout {
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
     TResult Function()? noInternetConnection,
+    TResult Function()? errorConnection,
+    TResult Function()? badCertificate,
     TResult Function()? formatException,
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
@@ -1552,6 +1642,8 @@ class _$RequestTimeout implements RequestTimeout {
     required TResult Function(NotImplemented value) notImplemented,
     required TResult Function(ServiceUnavailable value) serviceUnavailable,
     required TResult Function(NoInternetConnection value) noInternetConnection,
+    required TResult Function(ErrorConnection value) errorConnection,
+    required TResult Function(BadCertificate value) badCertificate,
     required TResult Function(FormatException value) formatException,
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
@@ -1577,6 +1669,8 @@ class _$RequestTimeout implements RequestTimeout {
     TResult? Function(NotImplemented value)? notImplemented,
     TResult? Function(ServiceUnavailable value)? serviceUnavailable,
     TResult? Function(NoInternetConnection value)? noInternetConnection,
+    TResult? Function(ErrorConnection value)? errorConnection,
+    TResult? Function(BadCertificate value)? badCertificate,
     TResult? Function(FormatException value)? formatException,
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
@@ -1602,6 +1696,8 @@ class _$RequestTimeout implements RequestTimeout {
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
     TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(ErrorConnection value)? errorConnection,
+    TResult Function(BadCertificate value)? badCertificate,
     TResult Function(FormatException value)? formatException,
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
@@ -1671,6 +1767,8 @@ class _$SendTimeout implements SendTimeout {
     required TResult Function() notImplemented,
     required TResult Function() serviceUnavailable,
     required TResult Function() noInternetConnection,
+    required TResult Function() errorConnection,
+    required TResult Function() badCertificate,
     required TResult Function() formatException,
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
@@ -1696,6 +1794,8 @@ class _$SendTimeout implements SendTimeout {
     TResult? Function()? notImplemented,
     TResult? Function()? serviceUnavailable,
     TResult? Function()? noInternetConnection,
+    TResult? Function()? errorConnection,
+    TResult? Function()? badCertificate,
     TResult? Function()? formatException,
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
@@ -1721,6 +1821,8 @@ class _$SendTimeout implements SendTimeout {
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
     TResult Function()? noInternetConnection,
+    TResult Function()? errorConnection,
+    TResult Function()? badCertificate,
     TResult Function()? formatException,
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
@@ -1750,6 +1852,8 @@ class _$SendTimeout implements SendTimeout {
     required TResult Function(NotImplemented value) notImplemented,
     required TResult Function(ServiceUnavailable value) serviceUnavailable,
     required TResult Function(NoInternetConnection value) noInternetConnection,
+    required TResult Function(ErrorConnection value) errorConnection,
+    required TResult Function(BadCertificate value) badCertificate,
     required TResult Function(FormatException value) formatException,
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
@@ -1775,6 +1879,8 @@ class _$SendTimeout implements SendTimeout {
     TResult? Function(NotImplemented value)? notImplemented,
     TResult? Function(ServiceUnavailable value)? serviceUnavailable,
     TResult? Function(NoInternetConnection value)? noInternetConnection,
+    TResult? Function(ErrorConnection value)? errorConnection,
+    TResult? Function(BadCertificate value)? badCertificate,
     TResult? Function(FormatException value)? formatException,
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
@@ -1800,6 +1906,8 @@ class _$SendTimeout implements SendTimeout {
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
     TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(ErrorConnection value)? errorConnection,
+    TResult Function(BadCertificate value)? badCertificate,
     TResult Function(FormatException value)? formatException,
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
@@ -1896,6 +2004,8 @@ class _$UnprocessableEntity implements UnprocessableEntity {
     required TResult Function() notImplemented,
     required TResult Function() serviceUnavailable,
     required TResult Function() noInternetConnection,
+    required TResult Function() errorConnection,
+    required TResult Function() badCertificate,
     required TResult Function() formatException,
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
@@ -1921,6 +2031,8 @@ class _$UnprocessableEntity implements UnprocessableEntity {
     TResult? Function()? notImplemented,
     TResult? Function()? serviceUnavailable,
     TResult? Function()? noInternetConnection,
+    TResult? Function()? errorConnection,
+    TResult? Function()? badCertificate,
     TResult? Function()? formatException,
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
@@ -1946,6 +2058,8 @@ class _$UnprocessableEntity implements UnprocessableEntity {
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
     TResult Function()? noInternetConnection,
+    TResult Function()? errorConnection,
+    TResult Function()? badCertificate,
     TResult Function()? formatException,
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
@@ -1975,6 +2089,8 @@ class _$UnprocessableEntity implements UnprocessableEntity {
     required TResult Function(NotImplemented value) notImplemented,
     required TResult Function(ServiceUnavailable value) serviceUnavailable,
     required TResult Function(NoInternetConnection value) noInternetConnection,
+    required TResult Function(ErrorConnection value) errorConnection,
+    required TResult Function(BadCertificate value) badCertificate,
     required TResult Function(FormatException value) formatException,
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
@@ -2000,6 +2116,8 @@ class _$UnprocessableEntity implements UnprocessableEntity {
     TResult? Function(NotImplemented value)? notImplemented,
     TResult? Function(ServiceUnavailable value)? serviceUnavailable,
     TResult? Function(NoInternetConnection value)? noInternetConnection,
+    TResult? Function(ErrorConnection value)? errorConnection,
+    TResult? Function(BadCertificate value)? badCertificate,
     TResult? Function(FormatException value)? formatException,
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
@@ -2025,6 +2143,8 @@ class _$UnprocessableEntity implements UnprocessableEntity {
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
     TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(ErrorConnection value)? errorConnection,
+    TResult Function(BadCertificate value)? badCertificate,
     TResult Function(FormatException value)? formatException,
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
@@ -2099,6 +2219,8 @@ class _$Conflict implements Conflict {
     required TResult Function() notImplemented,
     required TResult Function() serviceUnavailable,
     required TResult Function() noInternetConnection,
+    required TResult Function() errorConnection,
+    required TResult Function() badCertificate,
     required TResult Function() formatException,
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
@@ -2124,6 +2246,8 @@ class _$Conflict implements Conflict {
     TResult? Function()? notImplemented,
     TResult? Function()? serviceUnavailable,
     TResult? Function()? noInternetConnection,
+    TResult? Function()? errorConnection,
+    TResult? Function()? badCertificate,
     TResult? Function()? formatException,
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
@@ -2149,6 +2273,8 @@ class _$Conflict implements Conflict {
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
     TResult Function()? noInternetConnection,
+    TResult Function()? errorConnection,
+    TResult Function()? badCertificate,
     TResult Function()? formatException,
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
@@ -2178,6 +2304,8 @@ class _$Conflict implements Conflict {
     required TResult Function(NotImplemented value) notImplemented,
     required TResult Function(ServiceUnavailable value) serviceUnavailable,
     required TResult Function(NoInternetConnection value) noInternetConnection,
+    required TResult Function(ErrorConnection value) errorConnection,
+    required TResult Function(BadCertificate value) badCertificate,
     required TResult Function(FormatException value) formatException,
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
@@ -2203,6 +2331,8 @@ class _$Conflict implements Conflict {
     TResult? Function(NotImplemented value)? notImplemented,
     TResult? Function(ServiceUnavailable value)? serviceUnavailable,
     TResult? Function(NoInternetConnection value)? noInternetConnection,
+    TResult? Function(ErrorConnection value)? errorConnection,
+    TResult? Function(BadCertificate value)? badCertificate,
     TResult? Function(FormatException value)? formatException,
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
@@ -2228,6 +2358,8 @@ class _$Conflict implements Conflict {
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
     TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(ErrorConnection value)? errorConnection,
+    TResult Function(BadCertificate value)? badCertificate,
     TResult Function(FormatException value)? formatException,
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
@@ -2297,6 +2429,8 @@ class _$InternalServerError implements InternalServerError {
     required TResult Function() notImplemented,
     required TResult Function() serviceUnavailable,
     required TResult Function() noInternetConnection,
+    required TResult Function() errorConnection,
+    required TResult Function() badCertificate,
     required TResult Function() formatException,
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
@@ -2322,6 +2456,8 @@ class _$InternalServerError implements InternalServerError {
     TResult? Function()? notImplemented,
     TResult? Function()? serviceUnavailable,
     TResult? Function()? noInternetConnection,
+    TResult? Function()? errorConnection,
+    TResult? Function()? badCertificate,
     TResult? Function()? formatException,
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
@@ -2347,6 +2483,8 @@ class _$InternalServerError implements InternalServerError {
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
     TResult Function()? noInternetConnection,
+    TResult Function()? errorConnection,
+    TResult Function()? badCertificate,
     TResult Function()? formatException,
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
@@ -2376,6 +2514,8 @@ class _$InternalServerError implements InternalServerError {
     required TResult Function(NotImplemented value) notImplemented,
     required TResult Function(ServiceUnavailable value) serviceUnavailable,
     required TResult Function(NoInternetConnection value) noInternetConnection,
+    required TResult Function(ErrorConnection value) errorConnection,
+    required TResult Function(BadCertificate value) badCertificate,
     required TResult Function(FormatException value) formatException,
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
@@ -2401,6 +2541,8 @@ class _$InternalServerError implements InternalServerError {
     TResult? Function(NotImplemented value)? notImplemented,
     TResult? Function(ServiceUnavailable value)? serviceUnavailable,
     TResult? Function(NoInternetConnection value)? noInternetConnection,
+    TResult? Function(ErrorConnection value)? errorConnection,
+    TResult? Function(BadCertificate value)? badCertificate,
     TResult? Function(FormatException value)? formatException,
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
@@ -2426,6 +2568,8 @@ class _$InternalServerError implements InternalServerError {
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
     TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(ErrorConnection value)? errorConnection,
+    TResult Function(BadCertificate value)? badCertificate,
     TResult Function(FormatException value)? formatException,
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
@@ -2495,6 +2639,8 @@ class _$NotImplemented implements NotImplemented {
     required TResult Function() notImplemented,
     required TResult Function() serviceUnavailable,
     required TResult Function() noInternetConnection,
+    required TResult Function() errorConnection,
+    required TResult Function() badCertificate,
     required TResult Function() formatException,
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
@@ -2520,6 +2666,8 @@ class _$NotImplemented implements NotImplemented {
     TResult? Function()? notImplemented,
     TResult? Function()? serviceUnavailable,
     TResult? Function()? noInternetConnection,
+    TResult? Function()? errorConnection,
+    TResult? Function()? badCertificate,
     TResult? Function()? formatException,
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
@@ -2545,6 +2693,8 @@ class _$NotImplemented implements NotImplemented {
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
     TResult Function()? noInternetConnection,
+    TResult Function()? errorConnection,
+    TResult Function()? badCertificate,
     TResult Function()? formatException,
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
@@ -2574,6 +2724,8 @@ class _$NotImplemented implements NotImplemented {
     required TResult Function(NotImplemented value) notImplemented,
     required TResult Function(ServiceUnavailable value) serviceUnavailable,
     required TResult Function(NoInternetConnection value) noInternetConnection,
+    required TResult Function(ErrorConnection value) errorConnection,
+    required TResult Function(BadCertificate value) badCertificate,
     required TResult Function(FormatException value) formatException,
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
@@ -2599,6 +2751,8 @@ class _$NotImplemented implements NotImplemented {
     TResult? Function(NotImplemented value)? notImplemented,
     TResult? Function(ServiceUnavailable value)? serviceUnavailable,
     TResult? Function(NoInternetConnection value)? noInternetConnection,
+    TResult? Function(ErrorConnection value)? errorConnection,
+    TResult? Function(BadCertificate value)? badCertificate,
     TResult? Function(FormatException value)? formatException,
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
@@ -2624,6 +2778,8 @@ class _$NotImplemented implements NotImplemented {
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
     TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(ErrorConnection value)? errorConnection,
+    TResult Function(BadCertificate value)? badCertificate,
     TResult Function(FormatException value)? formatException,
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
@@ -2693,6 +2849,8 @@ class _$ServiceUnavailable implements ServiceUnavailable {
     required TResult Function() notImplemented,
     required TResult Function() serviceUnavailable,
     required TResult Function() noInternetConnection,
+    required TResult Function() errorConnection,
+    required TResult Function() badCertificate,
     required TResult Function() formatException,
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
@@ -2718,6 +2876,8 @@ class _$ServiceUnavailable implements ServiceUnavailable {
     TResult? Function()? notImplemented,
     TResult? Function()? serviceUnavailable,
     TResult? Function()? noInternetConnection,
+    TResult? Function()? errorConnection,
+    TResult? Function()? badCertificate,
     TResult? Function()? formatException,
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
@@ -2743,6 +2903,8 @@ class _$ServiceUnavailable implements ServiceUnavailable {
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
     TResult Function()? noInternetConnection,
+    TResult Function()? errorConnection,
+    TResult Function()? badCertificate,
     TResult Function()? formatException,
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
@@ -2772,6 +2934,8 @@ class _$ServiceUnavailable implements ServiceUnavailable {
     required TResult Function(NotImplemented value) notImplemented,
     required TResult Function(ServiceUnavailable value) serviceUnavailable,
     required TResult Function(NoInternetConnection value) noInternetConnection,
+    required TResult Function(ErrorConnection value) errorConnection,
+    required TResult Function(BadCertificate value) badCertificate,
     required TResult Function(FormatException value) formatException,
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
@@ -2797,6 +2961,8 @@ class _$ServiceUnavailable implements ServiceUnavailable {
     TResult? Function(NotImplemented value)? notImplemented,
     TResult? Function(ServiceUnavailable value)? serviceUnavailable,
     TResult? Function(NoInternetConnection value)? noInternetConnection,
+    TResult? Function(ErrorConnection value)? errorConnection,
+    TResult? Function(BadCertificate value)? badCertificate,
     TResult? Function(FormatException value)? formatException,
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
@@ -2822,6 +2988,8 @@ class _$ServiceUnavailable implements ServiceUnavailable {
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
     TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(ErrorConnection value)? errorConnection,
+    TResult Function(BadCertificate value)? badCertificate,
     TResult Function(FormatException value)? formatException,
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
@@ -2891,6 +3059,8 @@ class _$NoInternetConnection implements NoInternetConnection {
     required TResult Function() notImplemented,
     required TResult Function() serviceUnavailable,
     required TResult Function() noInternetConnection,
+    required TResult Function() errorConnection,
+    required TResult Function() badCertificate,
     required TResult Function() formatException,
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
@@ -2916,6 +3086,8 @@ class _$NoInternetConnection implements NoInternetConnection {
     TResult? Function()? notImplemented,
     TResult? Function()? serviceUnavailable,
     TResult? Function()? noInternetConnection,
+    TResult? Function()? errorConnection,
+    TResult? Function()? badCertificate,
     TResult? Function()? formatException,
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
@@ -2941,6 +3113,8 @@ class _$NoInternetConnection implements NoInternetConnection {
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
     TResult Function()? noInternetConnection,
+    TResult Function()? errorConnection,
+    TResult Function()? badCertificate,
     TResult Function()? formatException,
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
@@ -2970,6 +3144,8 @@ class _$NoInternetConnection implements NoInternetConnection {
     required TResult Function(NotImplemented value) notImplemented,
     required TResult Function(ServiceUnavailable value) serviceUnavailable,
     required TResult Function(NoInternetConnection value) noInternetConnection,
+    required TResult Function(ErrorConnection value) errorConnection,
+    required TResult Function(BadCertificate value) badCertificate,
     required TResult Function(FormatException value) formatException,
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
@@ -2995,6 +3171,8 @@ class _$NoInternetConnection implements NoInternetConnection {
     TResult? Function(NotImplemented value)? notImplemented,
     TResult? Function(ServiceUnavailable value)? serviceUnavailable,
     TResult? Function(NoInternetConnection value)? noInternetConnection,
+    TResult? Function(ErrorConnection value)? errorConnection,
+    TResult? Function(BadCertificate value)? badCertificate,
     TResult? Function(FormatException value)? formatException,
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
@@ -3020,6 +3198,8 @@ class _$NoInternetConnection implements NoInternetConnection {
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
     TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(ErrorConnection value)? errorConnection,
+    TResult Function(BadCertificate value)? badCertificate,
     TResult Function(FormatException value)? formatException,
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
@@ -3035,6 +3215,426 @@ class _$NoInternetConnection implements NoInternetConnection {
 
 abstract class NoInternetConnection implements NetworkExceptions {
   const factory NoInternetConnection() = _$NoInternetConnection;
+}
+
+/// @nodoc
+abstract class _$$ErrorConnectionCopyWith<$Res> {
+  factory _$$ErrorConnectionCopyWith(
+          _$ErrorConnection value, $Res Function(_$ErrorConnection) then) =
+      __$$ErrorConnectionCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ErrorConnectionCopyWithImpl<$Res>
+    extends _$NetworkExceptionsCopyWithImpl<$Res, _$ErrorConnection>
+    implements _$$ErrorConnectionCopyWith<$Res> {
+  __$$ErrorConnectionCopyWithImpl(
+      _$ErrorConnection _value, $Res Function(_$ErrorConnection) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ErrorConnection implements ErrorConnection {
+  const _$ErrorConnection();
+
+  @override
+  String toString() {
+    return 'NetworkExceptions.errorConnection()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ErrorConnection);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() requestCancelled,
+    required TResult Function(String reason) unauthorizedRequest,
+    required TResult Function() badRequest,
+    required TResult Function(String reason) notFound,
+    required TResult Function() methodNotAllowed,
+    required TResult Function() notAcceptable,
+    required TResult Function() requestTimeout,
+    required TResult Function() sendTimeout,
+    required TResult Function(String reason) unProcessableEntity,
+    required TResult Function() conflict,
+    required TResult Function() internalServerError,
+    required TResult Function() notImplemented,
+    required TResult Function() serviceUnavailable,
+    required TResult Function() noInternetConnection,
+    required TResult Function() errorConnection,
+    required TResult Function() badCertificate,
+    required TResult Function() formatException,
+    required TResult Function() unableToProcess,
+    required TResult Function(String error) defaultError,
+    required TResult Function() unexpectedError,
+  }) {
+    return errorConnection();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? requestCancelled,
+    TResult? Function(String reason)? unauthorizedRequest,
+    TResult? Function()? badRequest,
+    TResult? Function(String reason)? notFound,
+    TResult? Function()? methodNotAllowed,
+    TResult? Function()? notAcceptable,
+    TResult? Function()? requestTimeout,
+    TResult? Function()? sendTimeout,
+    TResult? Function(String reason)? unProcessableEntity,
+    TResult? Function()? conflict,
+    TResult? Function()? internalServerError,
+    TResult? Function()? notImplemented,
+    TResult? Function()? serviceUnavailable,
+    TResult? Function()? noInternetConnection,
+    TResult? Function()? errorConnection,
+    TResult? Function()? badCertificate,
+    TResult? Function()? formatException,
+    TResult? Function()? unableToProcess,
+    TResult? Function(String error)? defaultError,
+    TResult? Function()? unexpectedError,
+  }) {
+    return errorConnection?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? requestCancelled,
+    TResult Function(String reason)? unauthorizedRequest,
+    TResult Function()? badRequest,
+    TResult Function(String reason)? notFound,
+    TResult Function()? methodNotAllowed,
+    TResult Function()? notAcceptable,
+    TResult Function()? requestTimeout,
+    TResult Function()? sendTimeout,
+    TResult Function(String reason)? unProcessableEntity,
+    TResult Function()? conflict,
+    TResult Function()? internalServerError,
+    TResult Function()? notImplemented,
+    TResult Function()? serviceUnavailable,
+    TResult Function()? noInternetConnection,
+    TResult Function()? errorConnection,
+    TResult Function()? badCertificate,
+    TResult Function()? formatException,
+    TResult Function()? unableToProcess,
+    TResult Function(String error)? defaultError,
+    TResult Function()? unexpectedError,
+    required TResult orElse(),
+  }) {
+    if (errorConnection != null) {
+      return errorConnection();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(RequestCancelled value) requestCancelled,
+    required TResult Function(UnauthorizedRequest value) unauthorizedRequest,
+    required TResult Function(BadRequest value) badRequest,
+    required TResult Function(NotFound value) notFound,
+    required TResult Function(MethodNotAllowed value) methodNotAllowed,
+    required TResult Function(NotAcceptable value) notAcceptable,
+    required TResult Function(RequestTimeout value) requestTimeout,
+    required TResult Function(SendTimeout value) sendTimeout,
+    required TResult Function(UnprocessableEntity value) unProcessableEntity,
+    required TResult Function(Conflict value) conflict,
+    required TResult Function(InternalServerError value) internalServerError,
+    required TResult Function(NotImplemented value) notImplemented,
+    required TResult Function(ServiceUnavailable value) serviceUnavailable,
+    required TResult Function(NoInternetConnection value) noInternetConnection,
+    required TResult Function(ErrorConnection value) errorConnection,
+    required TResult Function(BadCertificate value) badCertificate,
+    required TResult Function(FormatException value) formatException,
+    required TResult Function(UnableToProcess value) unableToProcess,
+    required TResult Function(DefaultError value) defaultError,
+    required TResult Function(UnexpectedError value) unexpectedError,
+  }) {
+    return errorConnection(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(RequestCancelled value)? requestCancelled,
+    TResult? Function(UnauthorizedRequest value)? unauthorizedRequest,
+    TResult? Function(BadRequest value)? badRequest,
+    TResult? Function(NotFound value)? notFound,
+    TResult? Function(MethodNotAllowed value)? methodNotAllowed,
+    TResult? Function(NotAcceptable value)? notAcceptable,
+    TResult? Function(RequestTimeout value)? requestTimeout,
+    TResult? Function(SendTimeout value)? sendTimeout,
+    TResult? Function(UnprocessableEntity value)? unProcessableEntity,
+    TResult? Function(Conflict value)? conflict,
+    TResult? Function(InternalServerError value)? internalServerError,
+    TResult? Function(NotImplemented value)? notImplemented,
+    TResult? Function(ServiceUnavailable value)? serviceUnavailable,
+    TResult? Function(NoInternetConnection value)? noInternetConnection,
+    TResult? Function(ErrorConnection value)? errorConnection,
+    TResult? Function(BadCertificate value)? badCertificate,
+    TResult? Function(FormatException value)? formatException,
+    TResult? Function(UnableToProcess value)? unableToProcess,
+    TResult? Function(DefaultError value)? defaultError,
+    TResult? Function(UnexpectedError value)? unexpectedError,
+  }) {
+    return errorConnection?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(RequestCancelled value)? requestCancelled,
+    TResult Function(UnauthorizedRequest value)? unauthorizedRequest,
+    TResult Function(BadRequest value)? badRequest,
+    TResult Function(NotFound value)? notFound,
+    TResult Function(MethodNotAllowed value)? methodNotAllowed,
+    TResult Function(NotAcceptable value)? notAcceptable,
+    TResult Function(RequestTimeout value)? requestTimeout,
+    TResult Function(SendTimeout value)? sendTimeout,
+    TResult Function(UnprocessableEntity value)? unProcessableEntity,
+    TResult Function(Conflict value)? conflict,
+    TResult Function(InternalServerError value)? internalServerError,
+    TResult Function(NotImplemented value)? notImplemented,
+    TResult Function(ServiceUnavailable value)? serviceUnavailable,
+    TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(ErrorConnection value)? errorConnection,
+    TResult Function(BadCertificate value)? badCertificate,
+    TResult Function(FormatException value)? formatException,
+    TResult Function(UnableToProcess value)? unableToProcess,
+    TResult Function(DefaultError value)? defaultError,
+    TResult Function(UnexpectedError value)? unexpectedError,
+    required TResult orElse(),
+  }) {
+    if (errorConnection != null) {
+      return errorConnection(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ErrorConnection implements NetworkExceptions {
+  const factory ErrorConnection() = _$ErrorConnection;
+}
+
+/// @nodoc
+abstract class _$$BadCertificateCopyWith<$Res> {
+  factory _$$BadCertificateCopyWith(
+          _$BadCertificate value, $Res Function(_$BadCertificate) then) =
+      __$$BadCertificateCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$BadCertificateCopyWithImpl<$Res>
+    extends _$NetworkExceptionsCopyWithImpl<$Res, _$BadCertificate>
+    implements _$$BadCertificateCopyWith<$Res> {
+  __$$BadCertificateCopyWithImpl(
+      _$BadCertificate _value, $Res Function(_$BadCertificate) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$BadCertificate implements BadCertificate {
+  const _$BadCertificate();
+
+  @override
+  String toString() {
+    return 'NetworkExceptions.badCertificate()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$BadCertificate);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() requestCancelled,
+    required TResult Function(String reason) unauthorizedRequest,
+    required TResult Function() badRequest,
+    required TResult Function(String reason) notFound,
+    required TResult Function() methodNotAllowed,
+    required TResult Function() notAcceptable,
+    required TResult Function() requestTimeout,
+    required TResult Function() sendTimeout,
+    required TResult Function(String reason) unProcessableEntity,
+    required TResult Function() conflict,
+    required TResult Function() internalServerError,
+    required TResult Function() notImplemented,
+    required TResult Function() serviceUnavailable,
+    required TResult Function() noInternetConnection,
+    required TResult Function() errorConnection,
+    required TResult Function() badCertificate,
+    required TResult Function() formatException,
+    required TResult Function() unableToProcess,
+    required TResult Function(String error) defaultError,
+    required TResult Function() unexpectedError,
+  }) {
+    return badCertificate();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? requestCancelled,
+    TResult? Function(String reason)? unauthorizedRequest,
+    TResult? Function()? badRequest,
+    TResult? Function(String reason)? notFound,
+    TResult? Function()? methodNotAllowed,
+    TResult? Function()? notAcceptable,
+    TResult? Function()? requestTimeout,
+    TResult? Function()? sendTimeout,
+    TResult? Function(String reason)? unProcessableEntity,
+    TResult? Function()? conflict,
+    TResult? Function()? internalServerError,
+    TResult? Function()? notImplemented,
+    TResult? Function()? serviceUnavailable,
+    TResult? Function()? noInternetConnection,
+    TResult? Function()? errorConnection,
+    TResult? Function()? badCertificate,
+    TResult? Function()? formatException,
+    TResult? Function()? unableToProcess,
+    TResult? Function(String error)? defaultError,
+    TResult? Function()? unexpectedError,
+  }) {
+    return badCertificate?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? requestCancelled,
+    TResult Function(String reason)? unauthorizedRequest,
+    TResult Function()? badRequest,
+    TResult Function(String reason)? notFound,
+    TResult Function()? methodNotAllowed,
+    TResult Function()? notAcceptable,
+    TResult Function()? requestTimeout,
+    TResult Function()? sendTimeout,
+    TResult Function(String reason)? unProcessableEntity,
+    TResult Function()? conflict,
+    TResult Function()? internalServerError,
+    TResult Function()? notImplemented,
+    TResult Function()? serviceUnavailable,
+    TResult Function()? noInternetConnection,
+    TResult Function()? errorConnection,
+    TResult Function()? badCertificate,
+    TResult Function()? formatException,
+    TResult Function()? unableToProcess,
+    TResult Function(String error)? defaultError,
+    TResult Function()? unexpectedError,
+    required TResult orElse(),
+  }) {
+    if (badCertificate != null) {
+      return badCertificate();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(RequestCancelled value) requestCancelled,
+    required TResult Function(UnauthorizedRequest value) unauthorizedRequest,
+    required TResult Function(BadRequest value) badRequest,
+    required TResult Function(NotFound value) notFound,
+    required TResult Function(MethodNotAllowed value) methodNotAllowed,
+    required TResult Function(NotAcceptable value) notAcceptable,
+    required TResult Function(RequestTimeout value) requestTimeout,
+    required TResult Function(SendTimeout value) sendTimeout,
+    required TResult Function(UnprocessableEntity value) unProcessableEntity,
+    required TResult Function(Conflict value) conflict,
+    required TResult Function(InternalServerError value) internalServerError,
+    required TResult Function(NotImplemented value) notImplemented,
+    required TResult Function(ServiceUnavailable value) serviceUnavailable,
+    required TResult Function(NoInternetConnection value) noInternetConnection,
+    required TResult Function(ErrorConnection value) errorConnection,
+    required TResult Function(BadCertificate value) badCertificate,
+    required TResult Function(FormatException value) formatException,
+    required TResult Function(UnableToProcess value) unableToProcess,
+    required TResult Function(DefaultError value) defaultError,
+    required TResult Function(UnexpectedError value) unexpectedError,
+  }) {
+    return badCertificate(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(RequestCancelled value)? requestCancelled,
+    TResult? Function(UnauthorizedRequest value)? unauthorizedRequest,
+    TResult? Function(BadRequest value)? badRequest,
+    TResult? Function(NotFound value)? notFound,
+    TResult? Function(MethodNotAllowed value)? methodNotAllowed,
+    TResult? Function(NotAcceptable value)? notAcceptable,
+    TResult? Function(RequestTimeout value)? requestTimeout,
+    TResult? Function(SendTimeout value)? sendTimeout,
+    TResult? Function(UnprocessableEntity value)? unProcessableEntity,
+    TResult? Function(Conflict value)? conflict,
+    TResult? Function(InternalServerError value)? internalServerError,
+    TResult? Function(NotImplemented value)? notImplemented,
+    TResult? Function(ServiceUnavailable value)? serviceUnavailable,
+    TResult? Function(NoInternetConnection value)? noInternetConnection,
+    TResult? Function(ErrorConnection value)? errorConnection,
+    TResult? Function(BadCertificate value)? badCertificate,
+    TResult? Function(FormatException value)? formatException,
+    TResult? Function(UnableToProcess value)? unableToProcess,
+    TResult? Function(DefaultError value)? defaultError,
+    TResult? Function(UnexpectedError value)? unexpectedError,
+  }) {
+    return badCertificate?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(RequestCancelled value)? requestCancelled,
+    TResult Function(UnauthorizedRequest value)? unauthorizedRequest,
+    TResult Function(BadRequest value)? badRequest,
+    TResult Function(NotFound value)? notFound,
+    TResult Function(MethodNotAllowed value)? methodNotAllowed,
+    TResult Function(NotAcceptable value)? notAcceptable,
+    TResult Function(RequestTimeout value)? requestTimeout,
+    TResult Function(SendTimeout value)? sendTimeout,
+    TResult Function(UnprocessableEntity value)? unProcessableEntity,
+    TResult Function(Conflict value)? conflict,
+    TResult Function(InternalServerError value)? internalServerError,
+    TResult Function(NotImplemented value)? notImplemented,
+    TResult Function(ServiceUnavailable value)? serviceUnavailable,
+    TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(ErrorConnection value)? errorConnection,
+    TResult Function(BadCertificate value)? badCertificate,
+    TResult Function(FormatException value)? formatException,
+    TResult Function(UnableToProcess value)? unableToProcess,
+    TResult Function(DefaultError value)? defaultError,
+    TResult Function(UnexpectedError value)? unexpectedError,
+    required TResult orElse(),
+  }) {
+    if (badCertificate != null) {
+      return badCertificate(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class BadCertificate implements NetworkExceptions {
+  const factory BadCertificate() = _$BadCertificate;
 }
 
 /// @nodoc
@@ -3089,6 +3689,8 @@ class _$FormatException implements FormatException {
     required TResult Function() notImplemented,
     required TResult Function() serviceUnavailable,
     required TResult Function() noInternetConnection,
+    required TResult Function() errorConnection,
+    required TResult Function() badCertificate,
     required TResult Function() formatException,
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
@@ -3114,6 +3716,8 @@ class _$FormatException implements FormatException {
     TResult? Function()? notImplemented,
     TResult? Function()? serviceUnavailable,
     TResult? Function()? noInternetConnection,
+    TResult? Function()? errorConnection,
+    TResult? Function()? badCertificate,
     TResult? Function()? formatException,
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
@@ -3139,6 +3743,8 @@ class _$FormatException implements FormatException {
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
     TResult Function()? noInternetConnection,
+    TResult Function()? errorConnection,
+    TResult Function()? badCertificate,
     TResult Function()? formatException,
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
@@ -3168,6 +3774,8 @@ class _$FormatException implements FormatException {
     required TResult Function(NotImplemented value) notImplemented,
     required TResult Function(ServiceUnavailable value) serviceUnavailable,
     required TResult Function(NoInternetConnection value) noInternetConnection,
+    required TResult Function(ErrorConnection value) errorConnection,
+    required TResult Function(BadCertificate value) badCertificate,
     required TResult Function(FormatException value) formatException,
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
@@ -3193,6 +3801,8 @@ class _$FormatException implements FormatException {
     TResult? Function(NotImplemented value)? notImplemented,
     TResult? Function(ServiceUnavailable value)? serviceUnavailable,
     TResult? Function(NoInternetConnection value)? noInternetConnection,
+    TResult? Function(ErrorConnection value)? errorConnection,
+    TResult? Function(BadCertificate value)? badCertificate,
     TResult? Function(FormatException value)? formatException,
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
@@ -3218,6 +3828,8 @@ class _$FormatException implements FormatException {
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
     TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(ErrorConnection value)? errorConnection,
+    TResult Function(BadCertificate value)? badCertificate,
     TResult Function(FormatException value)? formatException,
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
@@ -3287,6 +3899,8 @@ class _$UnableToProcess implements UnableToProcess {
     required TResult Function() notImplemented,
     required TResult Function() serviceUnavailable,
     required TResult Function() noInternetConnection,
+    required TResult Function() errorConnection,
+    required TResult Function() badCertificate,
     required TResult Function() formatException,
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
@@ -3312,6 +3926,8 @@ class _$UnableToProcess implements UnableToProcess {
     TResult? Function()? notImplemented,
     TResult? Function()? serviceUnavailable,
     TResult? Function()? noInternetConnection,
+    TResult? Function()? errorConnection,
+    TResult? Function()? badCertificate,
     TResult? Function()? formatException,
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
@@ -3337,6 +3953,8 @@ class _$UnableToProcess implements UnableToProcess {
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
     TResult Function()? noInternetConnection,
+    TResult Function()? errorConnection,
+    TResult Function()? badCertificate,
     TResult Function()? formatException,
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
@@ -3366,6 +3984,8 @@ class _$UnableToProcess implements UnableToProcess {
     required TResult Function(NotImplemented value) notImplemented,
     required TResult Function(ServiceUnavailable value) serviceUnavailable,
     required TResult Function(NoInternetConnection value) noInternetConnection,
+    required TResult Function(ErrorConnection value) errorConnection,
+    required TResult Function(BadCertificate value) badCertificate,
     required TResult Function(FormatException value) formatException,
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
@@ -3391,6 +4011,8 @@ class _$UnableToProcess implements UnableToProcess {
     TResult? Function(NotImplemented value)? notImplemented,
     TResult? Function(ServiceUnavailable value)? serviceUnavailable,
     TResult? Function(NoInternetConnection value)? noInternetConnection,
+    TResult? Function(ErrorConnection value)? errorConnection,
+    TResult? Function(BadCertificate value)? badCertificate,
     TResult? Function(FormatException value)? formatException,
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
@@ -3416,6 +4038,8 @@ class _$UnableToProcess implements UnableToProcess {
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
     TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(ErrorConnection value)? errorConnection,
+    TResult Function(BadCertificate value)? badCertificate,
     TResult Function(FormatException value)? formatException,
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
@@ -3511,6 +4135,8 @@ class _$DefaultError implements DefaultError {
     required TResult Function() notImplemented,
     required TResult Function() serviceUnavailable,
     required TResult Function() noInternetConnection,
+    required TResult Function() errorConnection,
+    required TResult Function() badCertificate,
     required TResult Function() formatException,
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
@@ -3536,6 +4162,8 @@ class _$DefaultError implements DefaultError {
     TResult? Function()? notImplemented,
     TResult? Function()? serviceUnavailable,
     TResult? Function()? noInternetConnection,
+    TResult? Function()? errorConnection,
+    TResult? Function()? badCertificate,
     TResult? Function()? formatException,
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
@@ -3561,6 +4189,8 @@ class _$DefaultError implements DefaultError {
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
     TResult Function()? noInternetConnection,
+    TResult Function()? errorConnection,
+    TResult Function()? badCertificate,
     TResult Function()? formatException,
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
@@ -3590,6 +4220,8 @@ class _$DefaultError implements DefaultError {
     required TResult Function(NotImplemented value) notImplemented,
     required TResult Function(ServiceUnavailable value) serviceUnavailable,
     required TResult Function(NoInternetConnection value) noInternetConnection,
+    required TResult Function(ErrorConnection value) errorConnection,
+    required TResult Function(BadCertificate value) badCertificate,
     required TResult Function(FormatException value) formatException,
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
@@ -3615,6 +4247,8 @@ class _$DefaultError implements DefaultError {
     TResult? Function(NotImplemented value)? notImplemented,
     TResult? Function(ServiceUnavailable value)? serviceUnavailable,
     TResult? Function(NoInternetConnection value)? noInternetConnection,
+    TResult? Function(ErrorConnection value)? errorConnection,
+    TResult? Function(BadCertificate value)? badCertificate,
     TResult? Function(FormatException value)? formatException,
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
@@ -3640,6 +4274,8 @@ class _$DefaultError implements DefaultError {
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
     TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(ErrorConnection value)? errorConnection,
+    TResult Function(BadCertificate value)? badCertificate,
     TResult Function(FormatException value)? formatException,
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,
@@ -3714,6 +4350,8 @@ class _$UnexpectedError implements UnexpectedError {
     required TResult Function() notImplemented,
     required TResult Function() serviceUnavailable,
     required TResult Function() noInternetConnection,
+    required TResult Function() errorConnection,
+    required TResult Function() badCertificate,
     required TResult Function() formatException,
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
@@ -3739,6 +4377,8 @@ class _$UnexpectedError implements UnexpectedError {
     TResult? Function()? notImplemented,
     TResult? Function()? serviceUnavailable,
     TResult? Function()? noInternetConnection,
+    TResult? Function()? errorConnection,
+    TResult? Function()? badCertificate,
     TResult? Function()? formatException,
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
@@ -3764,6 +4404,8 @@ class _$UnexpectedError implements UnexpectedError {
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
     TResult Function()? noInternetConnection,
+    TResult Function()? errorConnection,
+    TResult Function()? badCertificate,
     TResult Function()? formatException,
     TResult Function()? unableToProcess,
     TResult Function(String error)? defaultError,
@@ -3793,6 +4435,8 @@ class _$UnexpectedError implements UnexpectedError {
     required TResult Function(NotImplemented value) notImplemented,
     required TResult Function(ServiceUnavailable value) serviceUnavailable,
     required TResult Function(NoInternetConnection value) noInternetConnection,
+    required TResult Function(ErrorConnection value) errorConnection,
+    required TResult Function(BadCertificate value) badCertificate,
     required TResult Function(FormatException value) formatException,
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
@@ -3818,6 +4462,8 @@ class _$UnexpectedError implements UnexpectedError {
     TResult? Function(NotImplemented value)? notImplemented,
     TResult? Function(ServiceUnavailable value)? serviceUnavailable,
     TResult? Function(NoInternetConnection value)? noInternetConnection,
+    TResult? Function(ErrorConnection value)? errorConnection,
+    TResult? Function(BadCertificate value)? badCertificate,
     TResult? Function(FormatException value)? formatException,
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
@@ -3843,6 +4489,8 @@ class _$UnexpectedError implements UnexpectedError {
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
     TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(ErrorConnection value)? errorConnection,
+    TResult Function(BadCertificate value)? badCertificate,
     TResult Function(FormatException value)? formatException,
     TResult Function(UnableToProcess value)? unableToProcess,
     TResult Function(DefaultError value)? defaultError,

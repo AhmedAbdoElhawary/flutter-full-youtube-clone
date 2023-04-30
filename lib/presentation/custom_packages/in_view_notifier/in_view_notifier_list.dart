@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'in_view_notifier.dart';
 import 'in_view_state.dart';
-import 'package:flutter/foundation.dart';
 import 'widget_data.dart';
 
 class InViewNotifierList extends InViewNotifier {
@@ -19,7 +18,6 @@ class InViewNotifierList extends InViewNotifier {
     EdgeInsets? padding,
     ScrollPhysics? physics,
     bool reverse = false,
-    required AsyncCallback onRefreshData,
     bool? primary,
     bool shrinkWrap = false,
     bool addAutomaticKeepAlive = true,
@@ -30,7 +28,6 @@ class InViewNotifierList extends InViewNotifier {
           endNotificationOffset: endNotificationOffset,
           onListEndReached: onListEndReached,
           throttleDuration: throttleDuration,
-          onRefreshData: onRefreshData,
           isInViewPortCondition: isInViewPortCondition,
           child: ListView.builder(
             padding: padding,

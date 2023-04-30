@@ -21,11 +21,12 @@ class _VideosAPIs implements VideosAPIs {
   String? baseUrl;
 
   @override
-  Future<SearchedVideosDetails> getAllVideosIds({apiKey = apiKey}) async {
+  Future<SearchedVideosDetails> getAllVideosIds(
+      {String apiKey = apiKey}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'key': apiKey};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<SearchedVideosDetails>(Options(
       method: 'GET',
@@ -44,11 +45,12 @@ class _VideosAPIs implements VideosAPIs {
   }
 
   @override
-  Future<SearchedVideosDetails> getAllShortVideosIds({apiKey = apiKey}) async {
+  Future<SearchedVideosDetails> getAllShortVideosIds(
+      {String apiKey = apiKey}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'key': apiKey};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<SearchedVideosDetails>(Options(
       method: 'GET',
@@ -68,8 +70,8 @@ class _VideosAPIs implements VideosAPIs {
 
   @override
   Future<VideosDetails> getVideosOfThoseIds({
-    apiKey = apiKey,
-    required videosIds,
+    String apiKey = apiKey,
+    required String videosIds,
   }) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
@@ -77,7 +79,7 @@ class _VideosAPIs implements VideosAPIs {
       r'id': videosIds,
     };
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<VideosDetails>(Options(
       method: 'GET',
@@ -97,8 +99,8 @@ class _VideosAPIs implements VideosAPIs {
 
   @override
   Future<VideosDetails> getMostPopularVideos({
-    apiKey = apiKey,
-    required videoCategoryId,
+    String apiKey = apiKey,
+    required String videoCategoryId,
   }) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
@@ -106,7 +108,7 @@ class _VideosAPIs implements VideosAPIs {
       r'videoCategoryId': videoCategoryId,
     };
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<VideosDetails>(Options(
       method: 'GET',
