@@ -26,10 +26,10 @@ class VideosListLoading extends StatelessWidget {
                           radius: 20,
                           backgroundColor: ColorManager(context).grey1),
                       const RSizedBox(width: 10),
-                      Flexible(
+                      const Flexible(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
+                          children: [
                             ContainerLoading(radius: 2, noPadding: true),
                             RSizedBox(height: 10),
                             ContainerLoading(radius: 2, noPadding: true),

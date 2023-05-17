@@ -167,9 +167,9 @@ class _ItemBuilderWidget extends StatelessWidget {
         onTap: () {},
         child: Padding(
           padding: REdgeInsetsDirectional.only(bottom: 15, start: 5, end: 5),
-          child: Column(
+          child: const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
+            children: [
               ThumbnailImage(null,
                   height: 70, width: 140, childAboveImage: SizedBox()),
               RSizedBox(height: 8),

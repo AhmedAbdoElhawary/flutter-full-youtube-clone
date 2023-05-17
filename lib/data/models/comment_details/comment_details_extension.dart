@@ -1,4 +1,4 @@
-import 'package:youtube/core/functions/reformat/date_reformat.dart';
+import 'package:youtube/core/helpers/reformat/date_reformat.dart';
 import 'package:youtube/data/models/comment_details/comment_details.dart';
 
 extension CommentDetailsExtension on CommentDetailsItem {

@@ -3,11 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:youtube/config/routes/route_app.dart';
-import 'package:youtube/core/functions/handling_errors/network_exceptions.dart';
-import 'package:youtube/core/functions/toast_show.dart';
+import 'package:youtube/core/helpers/handling_errors/network_exceptions.dart';
+import 'package:youtube/core/helpers/toast_show.dart';
 import 'package:youtube/core/resources/assets_manager.dart';
 import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/core/resources/styles_manager.dart';
+import 'package:youtube/core/utility/constants.dart';
 import 'package:youtube/data/models/comment_details/comment_details.dart';
 import 'package:youtube/data/models/comment_details/comment_details_extension.dart';
 import 'package:youtube/data/models/common/base_comment_snippet/sub_comment_snippet.dart';
@@ -28,7 +29,6 @@ import 'package:youtube/presentation/cubit/single_video/single_video_cubit.dart'
 import 'package:youtube/presentation/cubit/videos/videos_details_cubit.dart';
 import 'package:youtube/presentation/custom_packages/custom_mini_player/custom_mini_player.dart';
 import 'package:youtube/presentation/custom_packages/pod_player/src/pod_player.dart';
-import 'package:youtube/presentation/layouts/base_layout_logic.dart';
 import 'package:youtube/presentation/pages/channel_profile/user_channel_page.dart';
 import 'package:youtube/presentation/pages/home/logic/home_page_logic.dart';
 
@@ -54,16 +54,17 @@ class MiniPlayerVideo extends StatefulWidget {
 
 class _MiniPlayerVideoState extends State<MiniPlayerVideo> {
   final _miniVideoViewLogic = Get.find<MiniVideoViewLogic>(tag: "1");
-  final baseLayoutLogic = Get.find<BaseLayoutLogic>(tag: "1");
 
   @override
   Widget build(BuildContext context) {
+    print("-----------------------${screenSize.height}---------------------> ${_miniVideoViewLogic.minHeight}");
+
     return SafeArea(
       child: CustomMiniPlayer(
         snapToMax: true,
         controller: _miniVideoViewLogic.miniPlayerController,
         minHeight: _miniVideoViewLogic.minHeight,
-        maxHeight: _miniVideoViewLogic.maxHeight,
+        maxHeight: screenSize.height,
         onDismissed: () {
           _miniVideoViewLogic.setSelectedVideoDetails = null;
           _miniVideoViewLogic.isMiniVideoInitialized.value = false;
@@ -216,7 +217,7 @@ class _CircleNameSubscribersWidget extends StatelessWidget {
           return InkWell(
             onTap: () {
               controller.stateOfMiniPlayer(extendHeight: false);
-              Go(context).to(UserChannelPage(
+              Go(savedContext!).to(UserChannelPage(
                 UserChannelPageParameters(
                   channelDetailsItem: videoDetails?.getChannelSubDetails(),
                   channelId: videoDetails?.getChannelId() ?? "",

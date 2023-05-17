@@ -1,5 +1,5 @@
-import 'package:youtube/core/functions/reformat/date_reformat.dart';
-import 'package:youtube/core/functions/reformat/views_reformat.dart';
+import 'package:youtube/core/helpers/reformat/date_reformat.dart';
+import 'package:youtube/core/helpers/reformat/views_reformat.dart';
 import 'package:youtube/data/models/channel_details/channel_details.dart';
 
 /// [getCustomTitle] @title

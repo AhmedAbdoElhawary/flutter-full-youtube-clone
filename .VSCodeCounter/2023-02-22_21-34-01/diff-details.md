@@ -15,7 +15,7 @@ Total : 60 files,  3751 codes, 213 comments, 473 blanks, all 4437 lines
 | [assets/icons/like.svg](/assets/icons/like.svg) | XML | 1 | 0 | 0 | 1 |
 | [assets/icons/plus-circle.svg](/assets/icons/plus-circle.svg) | XML | 7 | 0 | 1 | 8 |
 | [assets/icons/search.svg](/assets/icons/search.svg) | XML | 1 | 0 | 0 | 1 |
-| [lib/core/functions/reformat/views_reformat.dart](/lib/core/functions/reformat/views_reformat.dart) | Dart | 2 | 0 | 1 | 3 |
+| [lib/core/helpers/reformat/views_reformat.dart](/lib/core/helpers/reformat/views_reformat.dart) | Dart | 2 | 0 | 1 | 3 |
 | [lib/data/data_sources/remote/api/videos/videos_apis.dart](/lib/data/data_sources/remote/api/videos/videos_apis.dart) | Dart | 1 | 0 | 0 | 1 |
 | [lib/data/models/channel_details/channel_details.dart](/lib/data/models/channel_details/channel_details.dart) | Dart | 12 | 0 | 1 | 13 |
 | [lib/data/models/channel_details/channel_details.g.dart](/lib/data/models/channel_details/channel_details.g.dart) | Dart | 3 | 0 | 0 | 3 |

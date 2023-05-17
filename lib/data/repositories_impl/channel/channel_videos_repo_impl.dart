@@ -1,5 +1,5 @@
-import 'package:youtube/core/functions/handling_errors/api_result.dart';
-import 'package:youtube/core/functions/handling_errors/network_exceptions.dart';
+import 'package:youtube/core/helpers/handling_errors/api_result.dart';
+import 'package:youtube/core/helpers/handling_errors/network_exceptions.dart';
 import 'package:youtube/data/data_sources/local/channnel/interfaces/cache_channel_videos_apis.dart';
 
 import 'package:youtube/data/data_sources/remote/api/channel/channel_videos/channel_videos_apis.dart';

@@ -32,7 +32,6 @@ class UserChannelPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(ChannelProfileLogic(), tag: "1");
     if (parameters.channelDetailsItem == null) {
       return BlocBuilder<ChannelDetailsCubit, ChannelDetailsState>(
         bloc: ChannelDetailsCubit.get(context)

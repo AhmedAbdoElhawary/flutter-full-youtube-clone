@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:youtube/core/functions/handling_errors/api_result.dart';
-import 'package:youtube/core/functions/handling_errors/network_exception_model.dart';
+import 'package:youtube/core/helpers/handling_errors/api_result.dart';
+import 'package:youtube/core/helpers/handling_errors/network_exception_model.dart';
 
 import 'package:youtube/data/models/comment_details/comment_details.dart';
 import 'package:youtube/data/models/rating_details/rating_details.dart';
