@@ -21,7 +21,6 @@ class MiniVideoViewLogic extends GetxController {
   final RxDouble _heightOFMiniPage = 50.0.obs;
   final RxDouble heightOfNavigationBar = 44.0.obs;
   final double _minHeight = 50.h;
-  final double _height = screenSize.height - 10.h;
   final RxBool isMiniVideoInitialized = false.obs;
   final RxBool _isMiniVideoPlaying = false.obs;
 
@@ -57,8 +56,9 @@ class MiniVideoViewLogic extends GetxController {
   }
 
   void stateOfMiniPlayer({bool extendHeight = true}) {
+
     miniPlayerController.animateToHeight(
-        height: extendHeight ? maxHeight : minHeight,
+        height: extendHeight ? screenSize.height : minHeight,
         duration: const Duration(milliseconds: 300));
   }
 
@@ -162,5 +162,4 @@ class MiniVideoViewLogic extends GetxController {
   VideoDetailsItem? get getSelectedVideoDetails => _selectedVideoDetails.value;
 
   double get minHeight => _minHeight;
-  double get maxHeight => _height;
 }
