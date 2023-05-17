@@ -7,3 +7,5 @@ const String autoCompleteBaseUrl =
 bool isThatMobile = true;
 bool isThatAndroid = true;
 Size screenSize = const Size(0, 0);
+
+BuildContext? savedContext;
