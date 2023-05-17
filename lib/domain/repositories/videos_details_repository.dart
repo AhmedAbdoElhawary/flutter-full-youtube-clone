@@ -1,4 +1,4 @@
-import 'package:youtube/core/functions/handling_errors/api_result.dart';
+import 'package:youtube/core/helpers/handling_errors/api_result.dart';
 import 'package:youtube/data/models/searched_video_details/searched_video_details.dart';
 import 'package:youtube/data/models/videos_details/videos_details.dart';
 
