@@ -1,4 +1,4 @@
-import 'package:youtube/core/functions/handling_errors/api_result.dart';
+import 'package:youtube/core/helpers/handling_errors/api_result.dart';
 import 'package:youtube/core/use_case/use_case.dart';
 import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/domain/entities/parameters/channel_details_use_case_parameters.dart';
