@@ -45,9 +45,9 @@ class _MostPopularVideosPageState extends State<MostPopularVideosPage> {
                 floating: true,
                 pinned: true,
                 snap: true,
-                actions: [
+                actions: const [
                   Row(
-                    children: const [
+                    children: [
                       RSizedBox(width: 20),
                       SearchIcon(),
                       RSizedBox(width: 20),
