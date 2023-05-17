@@ -3,6 +3,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get_storage/get_storage.dart';
 
+/// todo: replace it with GETx
 class ThemeOfApp {
   final _box = GetStorage();
   final _key = 'isDarkMode';
