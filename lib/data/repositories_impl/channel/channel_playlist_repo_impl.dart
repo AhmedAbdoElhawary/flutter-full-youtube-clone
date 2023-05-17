@@ -1,5 +1,5 @@
-import 'package:youtube/core/functions/handling_errors/api_result.dart';
-import 'package:youtube/core/functions/handling_errors/network_exceptions.dart';
+import 'package:youtube/core/helpers/handling_errors/api_result.dart';
+import 'package:youtube/core/helpers/handling_errors/network_exceptions.dart';
 import 'package:youtube/core/utility/private_key.dart';
 import 'package:youtube/data/data_sources/local/channnel/interfaces/cache_channel_playlist_apis.dart';
 
