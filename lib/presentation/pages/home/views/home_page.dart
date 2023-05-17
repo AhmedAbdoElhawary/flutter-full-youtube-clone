@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:youtube/core/functions/handling_errors/network_exceptions.dart';
+import 'package:youtube/core/helpers/handling_errors/network_exceptions.dart';
 import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/core/resources/styles_manager.dart';
+import 'package:youtube/core/utility/constants.dart';
 import 'package:youtube/presentation/common_widgets/sliver_app_bar.dart';
 import 'package:youtube/presentation/common_widgets/thumbnail_of_video.dart';
 import 'package:youtube/presentation/common_widgets/videos_list_loading.dart';
@@ -25,6 +26,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    savedContext ??= context;
 
     return Scaffold(
       body: SafeArea(
