@@ -27,10 +27,10 @@ class MainSliverAppBar extends StatelessWidget {
       actionsIconTheme: const IconThemeData(size: 20),
       backgroundColor: ColorManager(context).white,
       surfaceTintColor: ColorManager(context).white,
-      actions: [
+      actions: const [
         Expanded(
           child: Row(
-            children: const [
+            children: [
               RSizedBox(width: 20),
               _YoutubeLogo(),
               Spacer(),
