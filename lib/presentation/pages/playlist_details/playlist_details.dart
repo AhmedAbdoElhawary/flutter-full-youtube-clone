@@ -99,8 +99,8 @@ class _WidgetsAboveBlurHash extends StatelessWidget {
           const RSizedBox(height: 10),
           _InteractionsButtonsWithSubInfo(playListsItem: playListsItem),
           const RSizedBox(height: 10),
-          Row(
-            children: const [
+          const Row(
+            children: [
               Expanded(child: _PlayAllButton()),
               RSizedBox(width: 15),
               Expanded(child: _ShuffleButton()),

@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:youtube/core/functions/handling_errors/error_model.dart';
-import 'package:youtube/core/functions/handling_errors/network_exception_model.dart';
+import 'package:youtube/core/helpers/handling_errors/error_model.dart';
+import 'package:youtube/core/helpers/handling_errors/network_exception_model.dart';
 
 part 'network_exceptions.freezed.dart';
 
@@ -26,6 +26,10 @@ class NetworkExceptions with _$NetworkExceptions {
 
   const factory NetworkExceptions.sendTimeout() = SendTimeout;
 
+  const factory NetworkExceptions.connectionError() = ConnectionError;
+
+  const factory NetworkExceptions.badCertificate() = BadCertificate;
+
   const factory NetworkExceptions.unProcessableEntity(String reason) =
       UnprocessableEntity;
 
@@ -38,10 +42,6 @@ class NetworkExceptions with _$NetworkExceptions {
   const factory NetworkExceptions.serviceUnavailable() = ServiceUnavailable;
 
   const factory NetworkExceptions.noInternetConnection() = NoInternetConnection;
-
-  const factory NetworkExceptions.errorConnection() = ErrorConnection;
-
-  const factory NetworkExceptions.badCertificate() = BadCertificate;
 
   const factory NetworkExceptions.formatException() = FormatException;
 
@@ -115,7 +115,7 @@ class NetworkExceptions with _$NetworkExceptions {
               networkExceptions = const NetworkExceptions.badCertificate();
               break;
             case DioErrorType.connectionError:
-              networkExceptions = const NetworkExceptions.errorConnection();
+              networkExceptions = const NetworkExceptions.connectionError();
               break;
           }
         } else if (error is SocketException) {
@@ -168,7 +168,7 @@ class NetworkExceptions with _$NetworkExceptions {
       formatException: () => errorMessage = "Unexpected error occurred",
       notAcceptable: () => errorMessage = "Not acceptable",
       badCertificate: () => errorMessage = "Bad certificate",
-      errorConnection: ()=>errorMessage = "Error connection",
+      connectionError: () => errorMessage = "Connection error",
     );
     return errorMessage;
   }
