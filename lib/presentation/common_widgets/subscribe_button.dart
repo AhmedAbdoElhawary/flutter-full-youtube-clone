@@ -31,10 +31,10 @@ class _SubscribeButtonState extends State<SubscribeButton> {
   final logic = Get.find<SubscriptionsPageLogic>(tag: "1");
   bool isSubscribed = false;
   int? channelIndex;
-
+  String? channelId;
   @override
   void didUpdateWidget(covariant SubscribeButton oldWidget) {
-    String channelId = widget.channelItem?.id ?? "";
+    channelId = widget.channelItem?.id ?? "";
     channelIndex = logic.allSubscribedChannelsIds
         .indexWhere((element) => element == channelId);
     isSubscribed = channelIndex != null && channelIndex != -1;
@@ -67,15 +67,13 @@ class _SubscribeButtonState extends State<SubscribeButton> {
                 await cubit.deleteSubscription(
                     subscriptionId: logic.allSubscribedIds[channelIndex ?? 0]);
               } else {
-                await cubit.subscribeToChannel(
-                    channelId:
-                        logic.allSubscribedChannelsIds[channelIndex ?? 0]);
+                await cubit.subscribeToChannel(channelId: channelId ?? "");
               }
               await cubit.getMySubscriptionsChannels();
 
               setState(() {
-                isSubscribed = logic.allSubscribedChannelsIds
-                    .contains(widget.channelItem?.id);
+                isSubscribed =
+                    logic.allSubscribedChannelsIds.contains(channelId);
               });
             });
       },

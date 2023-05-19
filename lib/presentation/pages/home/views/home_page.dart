@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:youtube/config/routes/route_app.dart';
 import 'package:youtube/core/helpers/handling_errors/network_exceptions.dart';
 import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/core/resources/styles_manager.dart';
-import 'package:youtube/core/utility/constants.dart';
 import 'package:youtube/presentation/common_widgets/sliver_app_bar.dart';
 import 'package:youtube/presentation/common_widgets/thumbnail_of_video.dart';
 import 'package:youtube/presentation/common_widgets/videos_list_loading.dart';
-import 'package:youtube/presentation/cubit/videos/popular_videos/popular_videos_cubit.dart';
 import 'package:youtube/presentation/cubit/videos/videos_details_cubit.dart';
 import 'package:youtube/presentation/custom_packages/in_view_notifier/in_view_notifier_custom.dart';
 import 'package:youtube/presentation/custom_packages/in_view_notifier/in_view_notifier_widget.dart';
@@ -21,12 +20,13 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage>
+    with AutomaticKeepAliveClientMixin<HomePage> {
   int index = 0;
 
   @override
   Widget build(BuildContext context) {
-    savedContext ??= context;
+    super.build(context);
 
     return Scaffold(
       body: SafeArea(
@@ -51,6 +51,9 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
 
 class _VideosList extends StatefulWidget {
@@ -79,7 +82,6 @@ class _VideosListState extends State<_VideosList>
                 return InViewNotifierWidget(
                   id: '$index',
                   builder: (_, bool isInView, __) {
-
                     return ThumbnailOfVideo(
                       state.allVideosLoaded.videoDetailsItem?[index],
                       playVideo: isInView,
@@ -217,14 +219,7 @@ class _PopularButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.of(context, rootNavigator: true)
-            .push(MaterialPageRoute(
-                builder: (context) => const MostPopularVideosPage(),
-                maintainState: false))
-            .then((_) {
-          PopularVideosCubit.get(context)
-              .clearAllPopularVideos(videoCategoryId: "");
-        });
+        Go(context).to(const MostPopularVideosPage());
       },
       child: Padding(
         padding: REdgeInsets.symmetric(vertical: 12.0),

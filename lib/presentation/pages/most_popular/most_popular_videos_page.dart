@@ -24,6 +24,11 @@ class MostPopularVideosPage extends StatefulWidget {
 class _MostPopularVideosPageState extends State<MostPopularVideosPage> {
 
   @override
+  void didChangeDependencies() {
+    PopularVideosCubit.get(context).clearAllPopularVideos(videoCategoryId: "");
+    super.didChangeDependencies();
+  }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: DefaultTabController(
@@ -100,7 +105,7 @@ class _NowPopularVideosState extends State<_NowPopularVideos> {
       bloc: PopularVideosCubit.get(context)..getMostPopularVideos(),
       builder: (context, state) {
         if (state is MostPopularVideosLoaded) {
-          return _BuildMoviesList(state.mostPopularVideos);
+          return _BuildVideosList(state.mostPopularVideos);
         } else if (state is Error) {
           return ErrorMessageWidget(state.networkExceptions);
         } else {
@@ -125,7 +130,7 @@ class _MusicPopularVideosState extends State<_MusicPopularVideos> {
       bloc: PopularVideosCubit.get(context)..getMostPopularMusicVideos(),
       builder: (context, state) {
         if (state is MostPopularMusicVideosLoaded) {
-          return _BuildMoviesList(state.mostPopularVideos);
+          return _BuildVideosList(state.mostPopularVideos);
         } else if (state is Error) {
           return ErrorMessageWidget(state.networkExceptions);
         } else {
@@ -150,7 +155,7 @@ class _GamingPopularVideosState extends State<_GamingPopularVideos> {
       bloc: PopularVideosCubit.get(context)..getMostPopularGamingVideos(),
       builder: (context, state) {
         if (state is MostPopularGamingVideosLoaded) {
-          return _BuildMoviesList(state.mostPopularVideos);
+          return _BuildVideosList(state.mostPopularVideos);
         } else if (state is Error) {
           return ErrorMessageWidget(state.networkExceptions);
         } else {
@@ -175,7 +180,7 @@ class _MoviesPopularVideosState extends State<_MoviesPopularVideos> {
       bloc: PopularVideosCubit.get(context)..getMostPopularMoviesVideos(),
       builder: (context, state) {
         if (state is MostPopularMoviesVideosLoaded) {
-          return _BuildMoviesList(state.mostPopularVideos);
+          return _BuildVideosList(state.mostPopularVideos);
         } else if (state is Error) {
           return ErrorMessageWidget(state.networkExceptions);
         } else {
@@ -186,8 +191,8 @@ class _MoviesPopularVideosState extends State<_MoviesPopularVideos> {
   }
 }
 
-class _BuildMoviesList extends StatelessWidget {
-  const _BuildMoviesList(this.videos);
+class _BuildVideosList extends StatelessWidget {
+  const _BuildVideosList(this.videos);
   final VideosDetails videos;
   @override
   Widget build(BuildContext context) {

@@ -19,8 +19,8 @@ class MiniVideoViewLogic extends GetxController {
   MiniPlayerController miniPlayerController = MiniPlayerController();
   final RxDouble _percentageOFMiniPage = 0.0.obs;
   final RxDouble _heightOFMiniPage = 50.0.obs;
-  final RxDouble heightOfNavigationBar = 44.0.obs;
-  final double _minHeight = 50.h;
+  final RxDouble heightOfNavigationBar = highOfBottomNavigationBar.obs;
+  final double _minHeight = miniHighOfFloatingVideo.h;
   final RxBool isMiniVideoInitialized = false.obs;
   final RxBool _isMiniVideoPlaying = false.obs;
 
@@ -48,7 +48,7 @@ class MiniVideoViewLogic extends GetxController {
     if (videoId.isNotEmpty && floatingVideoController != null) {
       await floatingVideoController?.changeVideo(
         playVideoFrom: getPlayVideoFrom(videoId),
-        playVideoDirectly: false,
+        playVideoDirectly: true,
       );
 
       _addVideoListener();
@@ -56,7 +56,6 @@ class MiniVideoViewLogic extends GetxController {
   }
 
   void stateOfMiniPlayer({bool extendHeight = true}) {
-
     miniPlayerController.animateToHeight(
         height: extendHeight ? screenSize.height : minHeight,
         duration: const Duration(milliseconds: 300));

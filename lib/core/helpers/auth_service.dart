@@ -1,26 +1,35 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:youtube/core/utility/private_key.dart';
 
 class AuthService {
   static signInWithGoogle() async {
-    final GoogleSignIn googleSignIn = GoogleSignIn();
+    FirebaseAuth auth = FirebaseAuth.instance;
+    User? user;
 
-    try {
-      final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
-      final googleAuth = await googleUser?.authentication;
-      final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth?.accessToken,
-        idToken: googleAuth?.idToken,
+    final GoogleSignIn googleSignIn = GoogleSignIn(
+        scopes: ['https://www.googleapis.com/auth/youtube.force-ssl']);
+
+    final GoogleSignInAccount? googleSignInAccount =
+        await googleSignIn.signIn();
+
+    if (googleSignInAccount != null) {
+      final GoogleSignInAuthentication googleSignInAuthentication =
+          await googleSignInAccount.authentication;
+
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleSignInAuthentication.accessToken,
+        idToken: googleSignInAuthentication.idToken,
       );
 
-      UserCredential cred =
-          await FirebaseAuth.instance.signInWithCredential(credential);
+      accessToken = credential.accessToken ?? "";
 
-      accessToken = cred.credential?.accessToken ?? "";
-    } catch (e) {
-      if (kDebugMode) print("error------------------> ${e.toString()}");
+      final UserCredential userCredential =
+          await auth.signInWithCredential(credential);
+
+      user = userCredential.user;
     }
+
+    return user;
   }
 }

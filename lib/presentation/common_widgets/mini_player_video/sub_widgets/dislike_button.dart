@@ -15,15 +15,10 @@ class _DislikeButton extends StatelessWidget {
         bloc: BlocProvider.of<SingleVideoCubit>(context)
           ..getVideoRating(videoId: videoId),
         builder: (context, state) {
-          if (state is GetVideoRatingLoaded) {
-            return _DislikeIconButton(
-              videoId: videoId,
-              ratingDetails: state.ratingDetails,
-              videoDetails: videoDetails,
-            );
-          }
           return _DislikeIconButton(
             videoId: videoId,
+            ratingDetails:
+                state is GetVideoRatingLoaded ? state.ratingDetails : null,
             videoDetails: videoDetails,
           );
         },
@@ -48,7 +43,7 @@ class _DislikeIconButton extends StatelessWidget {
           onTap: () {
             if (videoId.isNotEmpty) {
               String rating =
-                  ratingDetails?.rating == "none" ? "none" : "dislike";
+                  ratingDetails?.rating != "none" ? "none" : "dislike";
               SingleVideoCubit.get(context)
                   .rateThisVideo(videoId: videoId, rating: rating);
 

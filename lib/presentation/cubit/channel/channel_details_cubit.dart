@@ -109,8 +109,9 @@ class ChannelDetailsCubit extends Cubit<ChannelDetailsState> {
           emit(ChannelDetailsState.mySubscriptionsChannelsLoaded(
               mySubscriptionsDetails));
         },
-        failure: (exception) =>
-            emit(ChannelDetailsState.subscriptionError(exception)));
+        failure: (exception) {
+          emit(ChannelDetailsState.subscriptionError(exception));
+        });
   }
 
   Future<void> clearMySubscriptionsChannels() async {
