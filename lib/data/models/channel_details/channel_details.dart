@@ -85,15 +85,12 @@ class ChannelStatistics {
       _$ChannelStatisticsFromJson(json);
 }
 
+@JsonSerializable(includeIfNull: true, createToJson: false)
 class BrandingSettings {
   String? unsubscribedTrailer;
   String? channelCover;
   BrandingSettings({this.unsubscribedTrailer, this.channelCover});
 
-  factory BrandingSettings.fromJson(Map<String, dynamic> json) {
-    return BrandingSettings(
-      unsubscribedTrailer: json['channel']['unsubscribedTrailer'] as String?,
-      channelCover: json['image']['bannerExternalUrl'] as String?,
-    );
-  }
+  factory BrandingSettings.fromJson(Map<String, dynamic> json) =>
+      _$BrandingSettingsFromJson(json);
 }
