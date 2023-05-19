@@ -32,15 +32,35 @@ class BaseLayout extends StatelessWidget {
           GetBuilder<BaseLayoutLogic>(
             tag: "1",
             id: "update-selected-page",
-            builder: (controller) => widget != null
-                ? widget!
-                : WhichPage(controller.getSelectedPage),
+            builder: (controller) {
+              return Column(
+                children: [
+                  Flexible(
+                    child: widget != null
+                        ? widget!
+                        : WhichPage(controller.getSelectedPage),
+                  ),
+
+                  const SizedBox(
+                    height: highOfBottomNavigationBar,
+                    width: double.infinity,
+                  ),
+                ],
+              );
+            },
           ),
-          const Column(
+          Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Flexible(flex: 1,child: FloatingPlayer()),
-              BottomNavigationBar(),
+              GetBuilder<BaseLayoutLogic>(
+                tag: "1",
+                id: "update-selected-page",
+                builder: (controller) =>
+                    controller.getSelectedPage != 1 && widget is! ShortsPage
+                        ? const Flexible(flex: 1, child: FloatingPlayer())
+                        : const SizedBox(),
+              ),
+              const BottomNavigationBar(),
             ],
           ),
         ],
@@ -50,9 +70,7 @@ class BaseLayout extends StatelessWidget {
 }
 
 class FloatingPlayer extends StatelessWidget {
-  const FloatingPlayer({
-    super.key,
-  });
+  const FloatingPlayer({super.key});
 
   @override
   Widget build(BuildContext context) {
