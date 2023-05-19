@@ -96,16 +96,13 @@ class _MovedVideoDisplayState extends State<MovedVideoDisplay> {
 
   void disposeThumbnailVideo() {
     movedVideoController?.pause();
-    movedVideoController = null;
   }
 
   @override
   void initState() {
     disposeThumbnailVideo();
-
     String videoId = widget.videoDetailsItem?.id ?? "";
     _thumbnailInitialized(videoId);
-
     super.initState();
   }
 
@@ -126,7 +123,7 @@ class _MovedVideoDisplayState extends State<MovedVideoDisplay> {
   Widget build(BuildContext context) {
     String url = widget.videoDetailsItem?.getVideoThumbnails()?.max?.url ?? "";
     return Container(
-      height: 185.h,
+      height: 189.h,
       width: double.infinity,
       color: ColorManager(context).grey1,
       child: movedVideoController == null

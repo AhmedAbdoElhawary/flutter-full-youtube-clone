@@ -57,7 +57,6 @@ class _MiniPlayerVideoState extends State<MiniPlayerVideo> {
 
   @override
   Widget build(BuildContext context) {
-    print("-----------------------${screenSize.height}---------------------> ${_miniVideoViewLogic.minHeight}");
 
     return SafeArea(
       child: CustomMiniPlayer(
@@ -217,7 +216,7 @@ class _CircleNameSubscribersWidget extends StatelessWidget {
           return InkWell(
             onTap: () {
               controller.stateOfMiniPlayer(extendHeight: false);
-              Go(savedContext!).to(UserChannelPage(
+              Go(context).to(UserChannelPage(
                 UserChannelPageParameters(
                   channelDetailsItem: videoDetails?.getChannelSubDetails(),
                   channelId: videoDetails?.getChannelId() ?? "",
@@ -273,7 +272,7 @@ class _InteractButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RSizedBox(
-      height: 60.h,
+      height: 50.h,
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
