@@ -91,7 +91,7 @@ class SplashScreen extends StatelessWidget {
       centered: true,
       splash: IconsAssets.splashIcon,
       backgroundColor: BaseColorManager.white,
-      splashTransition: SplashTransition.scaleTransition,
+      splashIconSize: 90.r,
     );
   }
 
