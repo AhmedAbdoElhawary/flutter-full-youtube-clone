@@ -15,16 +15,12 @@ class _LikeButton extends StatelessWidget {
         bloc: BlocProvider.of<SingleVideoCubit>(context)
           ..getVideoRating(videoId: videoId),
         builder: (context, state) {
-          if (state is GetVideoRatingLoaded) {
-            return _LikeIconButton(
-              videoId: videoId,
-              ratingDetails: state.ratingDetails,
-              videoDetails: videoDetails,
-            );
-          } else if (state is VideoInfoLoading) {
-            return const InteractionShimmerLoading();
-          }
-          return _LikeIconButton(videoId: videoId, videoDetails: videoDetails);
+          return _LikeIconButton(
+            videoId: videoId,
+            ratingDetails:
+                state is GetVideoRatingLoaded ? state.ratingDetails : null,
+            videoDetails: videoDetails,
+          );
         },
       );
     }
@@ -62,7 +58,7 @@ class _LikeIconButtonState extends State<_LikeIconButton> {
             onTap: () {
               if (widget.videoId.isNotEmpty) {
                 String rating =
-                    widget.ratingDetails?.rating == "none" ? "none" : "like";
+                    widget.ratingDetails?.rating != "none" ? "none" : "like";
                 SingleVideoCubit.get(context)
                     .rateThisVideo(videoId: widget.videoId, rating: rating);
 
