@@ -13,7 +13,7 @@ class IconsAssets {
   static const String downArrowIcon = "$_iconPath/caret-down.svg";
   static const String lockIcon = "$_iconPath/lock.svg";
   static const String downloadIcon = "$_iconPath/download.svg";
-  static const String splashIcon = "$_iconPath/splash-icon.svg";
+  static const String splashIcon = "$_iconPath/youtube.png";
 
   static const String homeIcon = "$_iconPath/home_illustrator-01.svg";
   static const String homeColoredIcon =
