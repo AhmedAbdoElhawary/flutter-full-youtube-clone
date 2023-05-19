@@ -70,3 +70,9 @@ ChannelStatistics _$ChannelStatisticsFromJson(Map<String, dynamic> json) =>
       hiddenSubscriberCount: json['hiddenSubscriberCount'] as bool?,
       videoCount: json['videoCount'] as String?,
     );
+
+BrandingSettings _$BrandingSettingsFromJson(Map<String, dynamic> json) =>
+    BrandingSettings(
+      unsubscribedTrailer: json['unsubscribedTrailer'] as String?,
+      channelCover: json['channelCover'] as String?,
+    );
