@@ -48,7 +48,6 @@ class MiniVideoViewLogic extends GetxController {
     if (videoId.isNotEmpty && floatingVideoController != null) {
       await floatingVideoController?.changeVideo(
         playVideoFrom: getPlayVideoFrom(videoId),
-        playVideoDirectly: true,
       );
 
       _addVideoListener();
@@ -64,7 +63,6 @@ class MiniVideoViewLogic extends GetxController {
   void _firstInitialized(String videoId) {
     floatingVideoController = PodPlayerController(
       playVideoFrom: getPlayVideoFrom(videoId),
-      getTag: "mini",
     )..initialise();
 
     _addVideoListener();
@@ -78,7 +76,7 @@ class MiniVideoViewLogic extends GetxController {
   }
 
   void controlListener() {
-    if (percentageOFMiniPage <= 0.4) {
+    if (percentageOFMiniPage <= 0.35) {
       _isMiniVideoPlaying.value =
           floatingVideoController?.isVideoPlaying ?? true;
       getDurationVideoValue();

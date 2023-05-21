@@ -376,7 +376,6 @@ class CustomMiniPlayerState extends State<CustomMiniPlayer>
     if (widget.controller == null) return;
     if (widget.controller!.value == null) return;
 
-
     switch (widget.controller!.value!.height) {
       case -1:
         _animateToHeight(

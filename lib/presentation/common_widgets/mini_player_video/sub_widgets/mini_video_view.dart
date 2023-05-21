@@ -20,7 +20,7 @@ class _MiniVideoView extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               const _VideoOfMiniDisplay(),
-              if (percentage <= 0.4) ...[
+              if (percentage <= 0.35) ...[
                 const VideoTitleSubTitleTexts(),
                 const _PlayPauseButtons(),
                 const _CloseButton(),
