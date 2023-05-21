@@ -56,7 +56,11 @@ class BodyWithAppBar extends StatelessWidget {
         child,
         Row(
           children: [
-            if (showArrowBack) const ArrowBack(makeItWhite: true),
+            if (showArrowBack) ...[
+              const RSizedBox(width: 15),
+              const ArrowBack(makeItWhite: true, makeItSmall: true),
+              const RSizedBox(width: 15),
+            ],
             const Spacer(),
             IconButton(
               onPressed: () {},

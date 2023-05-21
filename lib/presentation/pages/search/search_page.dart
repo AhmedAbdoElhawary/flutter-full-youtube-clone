@@ -76,10 +76,6 @@ class _ItemBuilderWidget extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
-              Container(
-                  width: 45.r,
-                  height: 40.r,
-                  color: ColorManager(context).grey2),
               const RSizedBox(width: 15),
               Transform.rotate(
                 angle: 0.785398,

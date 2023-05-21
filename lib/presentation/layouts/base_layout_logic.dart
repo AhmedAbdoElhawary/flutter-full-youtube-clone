@@ -34,9 +34,14 @@ class BaseLayoutLogic extends GetxController {
 
   int get getSelectedPage => _selectedPage.value;
 
-  set setSelectedPage(int value) {
+  set setSelectedTapPage(int value) {
     _selectedPage.value = value;
     tabControllerListener();
+    update(["update-selected-page"]);
+  }
+
+  set setIsShortsPageSelected(bool value) {
+    _isShortsPageSelected.value = value;
     update(["update-selected-page"]);
   }
 
@@ -44,7 +49,5 @@ class BaseLayoutLogic extends GetxController {
 
   set isShortsInitialize(bool value) => _isShortsInitialize.value = value;
 
-  bool get isShortsPageSelected {
-    return _isShortsPageSelected.value;
-  }
+  bool get isShortsPageSelected => _isShortsPageSelected.value;
 }

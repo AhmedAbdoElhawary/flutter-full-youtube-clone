@@ -64,8 +64,8 @@ class _PodVideoController extends _PodUiController {
 // Set volume between 0.0 - 1.0,
   /// 0.0 is mute and 1.0 max volume.
   Future<void> setVolume(
-    double volume,
-  ) async {
+      double volume,
+      ) async {
     await _videoCtr?.setVolume(volume);
     if (volume <= 0) {
       isMute = true;
@@ -186,10 +186,10 @@ class _PodVideoController extends _PodUiController {
   }
 
   Future<void> disableFullScreen(
-    BuildContext context,
-    String tag, {
-    bool enablePop = true,
-  }) async {
+      BuildContext context,
+      String tag, {
+        bool enablePop = true,
+      }) async {
     podLog('-full-screen-disable-entred');
     if (isFullScreen) {
       if (onToggleFullScreen != null) {
@@ -209,14 +209,14 @@ class _PodVideoController extends _PodUiController {
       }
 
       if(context.mounted) return;
-      if (enablePop) _exitFullScreenView(context, tag);
+      if (enablePop) exitFullScreenView(context, tag);
       isFullScreen = false;
       update(['full-screen']);
       update(['update-all']);
     }
   }
 
-  void _exitFullScreenView(BuildContext context, String tag) {
+  void exitFullScreenView(BuildContext context, String tag) {
     podLog('popped-full-screen');
     Navigator.of(fullScreenContext).pop();
   }
@@ -235,9 +235,9 @@ class _PodVideoController extends _PodUiController {
           reverseTransitionDuration: const Duration(milliseconds: 400),
           transitionsBuilder: (context, animation, secondaryAnimation, child) =>
               FadeTransition(
-            opacity: animation,
-            child: child,
-          ),
+                opacity: animation,
+                child: child,
+              ),
         ),
       );
     }

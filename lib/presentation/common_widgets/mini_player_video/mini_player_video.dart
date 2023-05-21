@@ -57,7 +57,6 @@ class _MiniPlayerVideoState extends State<MiniPlayerVideo> {
 
   @override
   Widget build(BuildContext context) {
-
     return SafeArea(
       child: CustomMiniPlayer(
         snapToMax: true,
@@ -89,6 +88,7 @@ class _MiniPlayerVideoState extends State<MiniPlayerVideo> {
 class _MiniVideoDisplay extends StatelessWidget {
   const _MiniVideoDisplay(this.percentage);
   final double percentage;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -125,12 +125,12 @@ class _NextVideosSuggestions extends StatelessWidget {
       tag: "1",
       id: "update-selected-video",
       builder: (controller) {
-
         String videoId = controller.getSelectedVideoDetails?.id ?? "";
         return BlocBuilder<VideosDetailsCubit, VideosDetailsState>(
-          bloc: VideosDetailsCubit.get(context)..relatedVideosToThisVideo(videoId),
+          bloc: VideosDetailsCubit.get(context)
+            ..relatedVideosToThisVideo(videoId),
           buildWhen: (previous, current) =>
-          previous != current &&
+              previous != current &&
               (current is RelatedVideosLoaded || current is VideoLoading),
           builder: (context, state) {
             if (state is RelatedVideosLoaded) {

@@ -39,21 +39,20 @@ class _PodBaseController extends GetxController {
 
   ///**listners
 
-  Future<void> videoListner() async {
+  Future<void> videoListener() async {
     if (!_videoCtr!.value.isInitialized) {
       await _videoCtr!.initialize();
     }
     if (_videoCtr!.value.isInitialized) {
-      _listneToVideoState();
       _listneToVideoPosition();
-      _listneToVolume();
+      _listenToVolume();
       if (kIsWeb && autoPlay && isMute && !_isWebAutoPlayDone) _webAutoPlay();
     }
   }
 
   void _webAutoPlay() => _videoCtr!.setVolume(1);
 
-  void _listneToVolume() {
+  void _listenToVolume() {
     if (_videoCtr!.value.volume == 0) {
       if (!isMute) {
         isMute = true;
@@ -67,16 +66,6 @@ class _PodBaseController extends GetxController {
         update(['update-all']);
       }
     }
-  }
-
-  void _listneToVideoState() {
-    podVideoStateChanger(
-      _videoCtr!.value.isBuffering || !_videoCtr!.value.isInitialized
-          ? PodVideoState.loading
-          : _videoCtr!.value.isPlaying
-              ? PodVideoState.playing
-              : PodVideoState.paused,
-    );
   }
 
   ///updates state with id `_podVideoState`
@@ -112,4 +101,5 @@ class _PodBaseController extends GetxController {
       }
     }
   }
+
 }

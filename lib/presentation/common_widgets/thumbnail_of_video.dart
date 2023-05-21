@@ -87,7 +87,6 @@ class _MovedVideoDisplayState extends State<MovedVideoDisplay> {
   void _thumbnailInitialized(String videoId) {
     movedVideoController = PodPlayerController(
       playVideoFrom: getPlayVideoFrom(videoId),
-      getTag: "mini thumbnail",
     )..initialise();
   }
 
@@ -95,7 +94,8 @@ class _MovedVideoDisplayState extends State<MovedVideoDisplay> {
       PlayVideoFrom.youtube(getUrl(videoId));
 
   void disposeThumbnailVideo() {
-    movedVideoController?.pause();
+    movedVideoController?.dispose();
+    movedVideoController = null;
   }
 
   @override
