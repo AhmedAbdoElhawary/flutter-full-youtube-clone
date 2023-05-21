@@ -132,9 +132,12 @@ class BottomNavigationBar extends StatelessWidget {
       bool isShortsPageSelected =
           baseLayoutLogic.isShortsPageSelected && !isThemeDark;
 
+      bool makeThemeDark = baseLayoutLogic.isShortsPageSelected || isThemeDark;
+
       Color? color = isShortsPageSelected ? BaseColorManager.white : null;
+
       return AnnotatedRegion<SystemUiOverlayStyle>(
-        value: systemUiOverlayStyle(context, isShortsPageSelected),
+        value: systemUiOverlayStyle(context, makeThemeDark),
         child: CustomCupertinoTabBar(
           onTap: (int pageIndex) {
             baseLayoutLogic.setSelectedTapPage = pageIndex;
@@ -158,28 +161,19 @@ class BottomNavigationBar extends StatelessWidget {
           items: [
             BottomNavigationBarItem(
                 icon: SvgIcon(IconsAssets.homeIcon, size: 25, color: color),
-                activeIcon:
-                    const SvgIcon(IconsAssets.homeColoredIcon, size: 25),
                 label: "Home"),
             BottomNavigationBarItem(
                 icon: SvgIcon(IconsAssets.shortsIcon, size: 25, color: color),
-                activeIcon:
-                    SvgIcon(IconsAssets.shortsIcon, size: 25, color: color),
                 label: "Shorts"),
             BottomNavigationBarItem(
               icon: SvgIcon(IconsAssets.addIcon, size: 35, color: color),
-              activeIcon: const SvgIcon(IconsAssets.addIcon, size: 35),
             ),
             BottomNavigationBarItem(
                 icon: SvgIcon(IconsAssets.subscriptionIcon,
                     size: 25, color: color),
-                activeIcon: const SvgIcon(IconsAssets.subscriptionColoredIcon,
-                    size: 25),
                 label: "Subscriptions"),
             BottomNavigationBarItem(
                 icon: SvgIcon(IconsAssets.libraryIcon, size: 25, color: color),
-                activeIcon:
-                    const SvgIcon(IconsAssets.libraryColoredIcon, size: 25),
                 label: "Library"),
           ],
         ),
