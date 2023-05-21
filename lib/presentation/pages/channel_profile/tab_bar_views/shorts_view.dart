@@ -11,6 +11,7 @@ import 'package:youtube/presentation/common_widgets/custom_circle_progress.dart'
 import 'package:youtube/presentation/common_widgets/error_message_widget.dart';
 import 'package:youtube/presentation/common_widgets/thumbnail_image.dart';
 import 'package:youtube/presentation/cubit/channel/channel_videos/channel_videos_cubit.dart';
+import 'package:youtube/presentation/layouts/base_layout_logic.dart';
 import 'package:youtube/presentation/pages/channel_profile/channel_profile_logic.dart';
 import 'package:youtube/presentation/pages/channel_profile/widgets/rounded_filtered_button.dart';
 import 'package:youtube/presentation/pages/home/logic/home_page_logic.dart';
@@ -131,6 +132,7 @@ class _BuildGridItem extends StatelessWidget {
     return InkWell(
       onTap: () {
         Get.find<MiniVideoViewLogic>(tag: "1").showFloatingVideo = false;
+        Get.find<BaseLayoutLogic>(tag: "1").setIsShortsPageSelected= true;
         Go(context).to(ShortsPage(
           parameters: ShortsPageParameters(videoDetailsItem: videoDetailsItem),
         ));
