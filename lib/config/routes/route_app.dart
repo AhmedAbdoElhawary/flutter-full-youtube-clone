@@ -30,8 +30,8 @@ class Go {
       MaterialPageRoute(builder: (context) => page), (route) => false);
 
   offCurrent(Widget page) {
-    return Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (context) => page));
+    return Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => BaseLayout(widget: page)));
   }
 
   back() => Navigator.of(context).maybePop();

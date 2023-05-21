@@ -103,6 +103,6 @@ class SplashScreen extends StatelessWidget {
 
     await AuthService.signInWithGoogle();
 
-    return const BaseLayout();
+    return BaseLayout();
   }
 }

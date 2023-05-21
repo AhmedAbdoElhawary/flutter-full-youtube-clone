@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -38,13 +36,14 @@ class MobileOverlay extends StatelessWidget {
             Expanded(
               child: VideoGestureDetector(
                 tag: tag,
-                onDoubleTap:
-                    _isRtl() ? podCtr.onRightDoubleTap : podCtr.onLeftDoubleTap,
+                onDoubleTap: _isRtl(context)
+                    ? podCtr.onRightDoubleTap
+                    : podCtr.onLeftDoubleTap,
                 child: ColoredBox(
                   color: overlayColor,
                   child: LeftRightDoubleTapBox(
                     tag: tag,
-                    isLeft: !_isRtl(),
+                    isLeft: !_isRtl(context),
                   ),
                 ),
               ),
@@ -64,13 +63,14 @@ class MobileOverlay extends StatelessWidget {
             Expanded(
               child: VideoGestureDetector(
                 tag: tag,
-                onDoubleTap:
-                    _isRtl() ? podCtr.onLeftDoubleTap : podCtr.onRightDoubleTap,
+                onDoubleTap: _isRtl(context)
+                    ? podCtr.onLeftDoubleTap
+                    : podCtr.onRightDoubleTap,
                 child: ColoredBox(
                   color: overlayColor,
                   child: LeftRightDoubleTapBox(
                     tag: tag,
-                    isLeft: _isRtl(),
+                    isLeft: _isRtl(context),
                   ),
                 ),
               ),
@@ -97,21 +97,23 @@ class MobileOverlay extends StatelessWidget {
                     podCtr.toggleVideoOverlay();
                   }
                 },
-                child: const SvgIcon(IconsAssets.settingsIcon,color: BaseColorManager.white,size: 22),
+                child: const SvgIcon(IconsAssets.settingsIcon,
+                    color: BaseColorManager.white, size: 22),
               ),
             ],
           ),
         ),
         Align(
           alignment: Alignment.bottomLeft,
-          child: MobileOverlayBottomControlles(tag: tag,isThatThumbnailVideo: isThatThumbnailVideo),
+          child: MobileOverlayBottomControlles(
+              tag: tag, isThatThumbnailVideo: isThatThumbnailVideo),
         ),
       ],
     );
   }
 
-  bool _isRtl() {
-    final Locale locale = window.locale;
+  bool _isRtl(BuildContext context) {
+    final Locale locale = View.of(context).platformDispatcher.locale;
     final langs = [
       'ar', // Arabic
       'fa', // Farsi
@@ -138,8 +140,11 @@ class MobileOverlay extends StatelessWidget {
         margin: REdgeInsets.all(10),
         padding: REdgeInsets.only(bottom: 20),
         scrollSpec: const ScrollSpec(physics: NeverScrollableScrollPhysics()),
-        builder: (context, state) => Material(child: MobileBottomSheet(tag: tag,isThatThumbnailVideo: isThatThumbnailVideo,)),
-
+        builder: (context, state) => Material(
+            child: MobileBottomSheet(
+          tag: tag,
+          isThatThumbnailVideo: isThatThumbnailVideo,
+        )),
       ),
     );
   }
