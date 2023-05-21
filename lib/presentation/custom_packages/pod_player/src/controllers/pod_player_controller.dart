@@ -12,7 +12,7 @@ import 'pod_getx_video_controller.dart';
 
 class PodPlayerController {
   late PodGetXVideoController _ctr;
-  String getTag;
+  late String getTag;
   bool _isCtrInitialised = false;
 
   Object? _initializationError;
@@ -24,7 +24,6 @@ class PodPlayerController {
   PodPlayerController({
     required this.playVideoFrom,
     this.podPlayerConfig = const PodPlayerConfig(),
-    required this.getTag,
   }) {
     _init();
   }
@@ -137,14 +136,14 @@ class PodPlayerController {
   /// It only adds a listener if the player is successfully initialized
   void addListener(VoidCallback listener) {
     _checkAndWaitTillInitialized().then(
-      (value) => _ctr.videoCtr?.addListener(listener),
+          (value) => _ctr.videoCtr?.addListener(listener),
     );
   }
 
   /// Remove registered listeners
   void removeListener(VoidCallback listener) {
     _checkAndWaitTillInitialized().then(
-      (value) => _ctr.videoCtr?.removeListener(listener),
+          (value) => _ctr.videoCtr?.removeListener(listener),
     );
   }
 
@@ -164,7 +163,7 @@ class PodPlayerController {
   ///Dispose pod video player controller
   void dispose() {
     _isCtrInitialised = false;
-    _ctr.videoCtr?.removeListener(_ctr.videoListner);
+    _ctr.videoCtr?.removeListener(_ctr.videoListener);
     _ctr.videoCtr?.dispose();
     _ctr.removeListenerId('podVideoState', _ctr.podStateListner);
     if (podPlayerConfig.wakelockEnabled) Wakelock.disable();
@@ -179,12 +178,10 @@ class PodPlayerController {
   Future<void> changeVideo({
     required PlayVideoFrom playVideoFrom,
     PodPlayerConfig playerConfig = const PodPlayerConfig(),
-    required bool playVideoDirectly,
   }) =>
       _ctr.changeVideo(
         playVideoFrom: playVideoFrom,
         playerConfig: playerConfig,
-          playVideo:playVideoDirectly,
       );
 
   //Change double tap duration
@@ -253,9 +250,9 @@ class PodPlayerController {
   }
 
   static Future<List<VideoQalityUrls>?> getYoutubeUrls(
-    String youtubeIdOrUrl, {
-    bool live = false,
-  }) {
+      String youtubeIdOrUrl, {
+        bool live = false,
+      }) {
     return VideoApis.getYoutubeVideoQualityUrls(youtubeIdOrUrl, live);
   }
 

@@ -7,11 +7,11 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:wakelock/wakelock.dart';
+import 'package:youtube/presentation/custom_packages/pod_player/src/widgets/full_screen_view.dart';
 
 import '../../pod_player.dart';
 import '../utils/logger.dart';
 import '../utils/video_apis.dart';
-import '../widgets/full_screen_view.dart';
 
 part 'pod_base_controller.dart';
 part 'pod_gestures_controller.dart';
@@ -61,7 +61,7 @@ class PodGetXVideoController extends _PodGesturesController {
       await _videoCtr?.initialize();
       _videoDuration = _videoCtr?.value.duration ?? Duration.zero;
       await setLooping(isLooping);
-      _videoCtr?.addListener(videoListner);
+      _videoCtr?.addListener(videoListener);
       addListenerId('podVideoState', podStateListner);
 
       checkAutoPlayVideo();
@@ -85,7 +85,7 @@ class PodGetXVideoController extends _PodGesturesController {
     switch (_videoPlayerType) {
       case PodVideoPlayerType.network:
 
-        ///
+      ///
         _videoCtr = VideoPlayerController.network(
           playVideoFrom.dataSource!,
           closedCaptionFile: playVideoFrom.closedCaptionFile,
@@ -100,6 +100,7 @@ class PodGetXVideoController extends _PodGesturesController {
           qualityList: podPlayerConfig.videoQualityPriority,
           videoUrls: playVideoFrom.videoQualityUrls!,
         );
+
         ///
         _videoCtr = VideoPlayerController.network(
           url,
@@ -130,6 +131,7 @@ class PodGetXVideoController extends _PodGesturesController {
           httpHeaders: playVideoFrom.httpHeaders,
         );
         playingVideoUrl = url;
+
         break;
       case PodVideoPlayerType.vimeo:
         await getQualityUrlsFromVimeoId(playVideoFrom.dataSource!);
@@ -150,7 +152,7 @@ class PodGetXVideoController extends _PodGesturesController {
         break;
       case PodVideoPlayerType.asset:
 
-        ///
+      ///
         _videoCtr = VideoPlayerController.asset(
           playVideoFrom.dataSource!,
           closedCaptionFile: playVideoFrom.closedCaptionFile,
@@ -285,9 +287,8 @@ class PodGetXVideoController extends _PodGesturesController {
   Future<void> changeVideo({
     required PlayVideoFrom playVideoFrom,
     required PodPlayerConfig playerConfig,
-    required bool playVideo,
   }) async {
-    _videoCtr?.removeListener(videoListner);
+    _videoCtr?.removeListener(videoListener);
     podVideoStateChanger(PodVideoState.paused);
     podVideoStateChanger(PodVideoState.loading);
     keyboardFocusWeb?.removeListener(keyboadListner);
