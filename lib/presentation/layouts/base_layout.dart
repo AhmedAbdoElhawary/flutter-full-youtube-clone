@@ -17,9 +17,13 @@ import 'package:youtube/presentation/pages/shorts/shorts_page.dart';
 import '../pages/subscriptions/subscriptions_page.dart';
 
 class BaseLayout extends StatelessWidget {
+  const BaseLayout._internal({this.widget});
   final Widget? widget;
 
-  const BaseLayout({this.widget, Key? key}) : super(key: key);
+  static BaseLayout? _instance;
+  static BaseLayout get instance => _instance!;
+
+  factory BaseLayout({Widget? widget}) => BaseLayout._internal(widget: widget);
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +44,6 @@ class BaseLayout extends StatelessWidget {
                         ? widget!
                         : WhichPage(controller.getSelectedPage),
                   ),
-
                   const SizedBox(
                     height: highOfBottomNavigationBar,
                     width: double.infinity,
@@ -55,10 +58,12 @@ class BaseLayout extends StatelessWidget {
               GetBuilder<BaseLayoutLogic>(
                 tag: "1",
                 id: "update-selected-page",
-                builder: (controller) =>
-                    controller.getSelectedPage != 1 && widget is! ShortsPage
-                        ? const Flexible(flex: 1, child: FloatingPlayer())
-                        : const SizedBox(),
+                builder: (controller) {
+                  return controller.getSelectedPage != 1 &&
+                          widget is! ShortsPage
+                      ? Flexible(flex: 1, child: FloatingPlayer())
+                      : const SizedBox();
+                },
               ),
               const BottomNavigationBar(),
             ],
@@ -69,20 +74,28 @@ class BaseLayout extends StatelessWidget {
   }
 }
 
-class FloatingPlayer extends StatelessWidget {
-  const FloatingPlayer({super.key});
+class FloatingPlayer extends StatefulWidget {
+  const FloatingPlayer._internal();
 
+  static BaseLayout? _instance;
+  static BaseLayout get instance => _instance!;
+
+  factory FloatingPlayer() => const FloatingPlayer._internal();
+
+  @override
+  State<FloatingPlayer> createState() => _FloatingPlayerState();
+}
+
+class _FloatingPlayerState extends State<FloatingPlayer> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<MiniVideoViewLogic>(
       tag: "1",
       id: "update-base-selected-video",
-      builder: (controller) {
-        return !controller.showFloatingVideo ||
-                controller.getSelectedVideoDetails == null
-            ? const SizedBox()
-            : const MiniPlayerVideo();
-      },
+      builder: (controller) => !controller.showFloatingVideo ||
+              controller.getSelectedVideoDetails == null
+          ? const SizedBox()
+          : const MiniPlayerVideo(),
     );
   }
 }
@@ -110,10 +123,10 @@ class BottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final baseLayoutLogic = Get.find<BaseLayoutLogic>(tag: "1");
-    final miniVideoLogic = Get.find<MiniVideoViewLogic>(tag: "1");
-
     return Obx(() {
+      final baseLayoutLogic = Get.find<BaseLayoutLogic>(tag: "1");
+      final miniVideoLogic = Get.find<MiniVideoViewLogic>(tag: "1");
+
       bool isThemeDark = ThemeOfApp().isThemeDark();
 
       bool isShortsPageSelected =
@@ -121,10 +134,10 @@ class BottomNavigationBar extends StatelessWidget {
 
       Color? color = isShortsPageSelected ? BaseColorManager.white : null;
       return AnnotatedRegion<SystemUiOverlayStyle>(
-        value: systemUiOverlayStyle(context, isThemeDark),
+        value: systemUiOverlayStyle(context, isShortsPageSelected),
         child: CustomCupertinoTabBar(
           onTap: (int pageIndex) {
-            baseLayoutLogic.setSelectedPage = pageIndex;
+            baseLayoutLogic.setSelectedTapPage = pageIndex;
           },
           backgroundColor: isShortsPageSelected && !isThemeDark
               ? Theme.of(context).focusColor
@@ -176,12 +189,14 @@ class BottomNavigationBar extends StatelessWidget {
 
   SystemUiOverlayStyle systemUiOverlayStyle(
       BuildContext context, bool isThemeDark) {
+    Color color = isThemeDark ? BaseColorManager.black : BaseColorManager.white;
+
     return SystemUiOverlayStyle(
-        statusBarColor: ColorManager(context).white,
+        statusBarColor: color,
         statusBarIconBrightness:
             isThemeDark ? Brightness.light : Brightness.dark,
-        systemNavigationBarDividerColor: ColorManager(context).white,
-        systemNavigationBarColor: ColorManager(context).white,
+        systemNavigationBarDividerColor: color,
+        systemNavigationBarColor: color,
         statusBarBrightness: isThemeDark ? Brightness.dark : Brightness.light,
         systemNavigationBarIconBrightness: Brightness.light);
   }
