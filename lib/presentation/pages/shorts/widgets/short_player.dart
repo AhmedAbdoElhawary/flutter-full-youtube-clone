@@ -97,7 +97,8 @@ class _ShortPlayerState extends State<_ShortPlayer> {
 
   @override
   void dispose() {
-    videoController.dispose();
+    videoController.value?.dispose();
+    videoController.value = null;
     videoStatusAnimation.dispose();
     super.dispose();
   }
