@@ -22,12 +22,6 @@ migrate_working_dir/
 #.vscode/
 
 # Flutter/Dart/Pub related
-lib/core/utility/private_key.dart
-lib/firebase_options.dart
-ios/firebase_app_id_file.json
-android/app/google-services.json
-ios/Runner/GoogleService-Info.plist
-
 **/doc/api/
 **/ios/Flutter/.last_build_id
 .dart_tool/
@@ -37,7 +31,11 @@ ios/Runner/GoogleService-Info.plist
 .pub-cache/
 .pub/
 /build/
-
+lib/core/utility/private_key.dart
+lib/firebase_options.dart
+ios/firebase_app_id_file.json
+android/app/google-services.json
+ios/Runner/GoogleService-Info.plist
 
 # Symbolication related
 app.*.symbols
