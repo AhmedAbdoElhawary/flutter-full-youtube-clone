@@ -1,5 +1,4 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -13,7 +12,6 @@ import 'package:youtube/core/resources/color_manager.dart';
 import 'package:youtube/core/translations/app_lang.dart';
 import 'package:youtube/core/translations/translations.dart';
 import 'package:youtube/core/utility/constants.dart';
-import 'package:youtube/firebase_options.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:youtube/core/utility/injector.dart';
 import 'package:youtube/presentation/cubit/channel/channel_details_cubit.dart';
@@ -98,11 +96,9 @@ class SplashScreen extends StatelessWidget {
   Future<Widget> screenFunction() async {
     await GetStorage.init();
     await initializeDependencies();
-    await Firebase.initializeApp(
-        options: DefaultFirebaseOptions.currentPlatform);
 
     await AuthService.signInWithGoogle();
 
-    return BaseLayout();
+    return  const BaseLayout();
   }
 }
