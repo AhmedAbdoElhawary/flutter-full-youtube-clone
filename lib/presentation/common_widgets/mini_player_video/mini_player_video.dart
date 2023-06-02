@@ -320,7 +320,7 @@ class _IconText extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        SvgIcon(iconAsset, size: size),
+        Flexible(flex: 1,child: SvgIcon(iconAsset, size: size)),
         const RSizedBox(height: 5),
         Text(
           text,
