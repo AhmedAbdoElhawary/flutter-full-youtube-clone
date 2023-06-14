@@ -11,7 +11,7 @@ class CustomAppBar {
   final BuildContext context;
   CustomAppBar(this.context);
 
-   AppBar normalAppBar(String title,
+  AppBar normalAppBar(String title,
       {bool withoutIcons = false, VoidCallback? onTabBack}) {
     return AppBar(
       leading: ArrowBack(onTapBack: onTabBack),
