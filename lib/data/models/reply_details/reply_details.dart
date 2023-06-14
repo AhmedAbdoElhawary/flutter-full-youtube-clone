@@ -48,4 +48,3 @@ class ReplyComment {
   factory ReplyComment.fromJson(Map<String, dynamic> json) =>
       _$ReplyCommentFromJson(json);
 }
-
