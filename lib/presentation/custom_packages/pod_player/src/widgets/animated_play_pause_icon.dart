@@ -92,7 +92,8 @@ class AnimatedPlayPauseIconState extends State<AnimatedPlayPauseIcon>
   Widget _playPause(PodGetXVideoController _) {
     return Container(
       padding: REdgeInsets.all(10),
-      decoration: const BoxDecoration(shape: BoxShape.circle,color: BaseColorManager.black38),
+      decoration: const BoxDecoration(
+          shape: BoxShape.circle, color: BaseColorManager.black38),
       child: AnimatedIcon(
         icon: AnimatedIcons.play_pause,
         progress: _payCtr,

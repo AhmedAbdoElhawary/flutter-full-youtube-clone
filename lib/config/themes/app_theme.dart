@@ -152,8 +152,9 @@ class AppTheme {
             fontSize: FontSize.s16, color: BaseColorManager.white),
       ),
       tabBarTheme: TabBarTheme(
-        indicatorSize: TabBarIndicatorSize.label,indicatorColor:  BaseColorManager.white,
-        dividerColor:  BaseColorManager.white,
+        indicatorSize: TabBarIndicatorSize.label,
+        indicatorColor: BaseColorManager.white,
+        dividerColor: BaseColorManager.white,
         labelPadding: REdgeInsets.all(0),
         indicator: const BoxDecoration(
           border: Border(
@@ -166,16 +167,15 @@ class AppTheme {
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-                (_) => BaseColorManager.white,
+            (_) => BaseColorManager.white,
           ),
           minimumSize:
-          MaterialStateProperty.all<Size>(const Size(double.infinity, 0)),
+              MaterialStateProperty.all<Size>(const Size(double.infinity, 0)),
           padding: MaterialStateProperty.all<REdgeInsets>(REdgeInsets.all(8)),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               const RoundedRectangleBorder(borderRadius: BorderRadius.zero)),
         ),
       ),
-
       textTheme: TextTheme(
         bodyLarge: getNormalStyle(color: BaseColorManager.white),
         bodyMedium: getNormalStyle(color: BaseColorManager.white),
