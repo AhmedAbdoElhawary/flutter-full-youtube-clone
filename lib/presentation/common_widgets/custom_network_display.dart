@@ -38,7 +38,7 @@ class _CustomNetworkDisplayState extends State<CustomNetworkDisplay> {
       width: widget.width.w,
       height: widget.height.h,
       placeholder: (context, url) => buildContainer(context),
-      errorWidget: (context, url, error) =>buildContainer(context),
+      errorWidget: (context, url, error) => buildContainer(context),
     );
   }
 
