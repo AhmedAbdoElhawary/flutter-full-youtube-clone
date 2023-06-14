@@ -2,8 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'thumbnail_details.g.dart';
 
-
-@JsonSerializable(includeIfNull: true,createToJson: false)
+@JsonSerializable(includeIfNull: true, createToJson: false)
 class ThumbnailDetails {
   ThumbnailDetails(this.url, this.width, this.height);
 

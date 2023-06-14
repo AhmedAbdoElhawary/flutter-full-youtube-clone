@@ -1,4 +1,3 @@
-
 import 'package:json_annotation/json_annotation.dart';
 import 'package:youtube/data/models/common/base_comment_snippet/author_channel_id.dart';
 
@@ -21,17 +20,17 @@ class SubCommentSnippet {
 
   SubCommentSnippet(
       {this.videoId,
-        this.textDisplay,
-        this.textOriginal,
-        this.authorDisplayName,
-        this.authorProfileImageUrl,
-        this.authorChannelUrl,
-        this.authorChannelId,
-        this.canRate,
-        this.viewerRating,
-        this.likeCount,
-        this.publishedAt,
-        this.updatedAt});
+      this.textDisplay,
+      this.textOriginal,
+      this.authorDisplayName,
+      this.authorProfileImageUrl,
+      this.authorChannelUrl,
+      this.authorChannelId,
+      this.canRate,
+      this.viewerRating,
+      this.likeCount,
+      this.publishedAt,
+      this.updatedAt});
   factory SubCommentSnippet.fromJson(Map<String, dynamic> json) =>
       _$SubCommentSnippetFromJson(json);
 }
