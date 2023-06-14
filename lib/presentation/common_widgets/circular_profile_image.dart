@@ -18,7 +18,7 @@ class CircularProfileImage extends StatefulWidget {
   final bool isThatFloatingPlayer;
 
   const CircularProfileImage(
-      {required this.imageUrl ,
+      {required this.imageUrl,
       this.channelDetailsItem,
       this.enableTapping = true,
       this.isThatFloatingPlayer = false,
