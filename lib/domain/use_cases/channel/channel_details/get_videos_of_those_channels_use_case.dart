@@ -6,7 +6,8 @@ import 'package:youtube/domain/repositories/channel/channel_videos_repository.da
 
 class GetVideosOfThoseChannelsUseCase
     implements
-        FutureUseCase<ApiResult<List<VideosDetails>>, GetVideosOfThoseChannelsUseCaseParameter> {
+        FutureUseCase<ApiResult<List<VideosDetails>>,
+            GetVideosOfThoseChannelsUseCaseParameter> {
   final ChannelVideosDetailsRepository _channelDetailsRepository;
 
   GetVideosOfThoseChannelsUseCase(this._channelDetailsRepository);

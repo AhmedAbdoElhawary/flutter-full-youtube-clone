@@ -14,7 +14,7 @@ class SliverHorizontalVideosShimmerLoading extends StatelessWidget {
   final bool forTwoTexts;
   final double heightOfImage;
   final double widthOfImage;
-  final double  borderRadius;
+  final double borderRadius;
   final bool withoutTopPaddingInFirstIndex;
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,9 @@ class SliverHorizontalVideosShimmerLoading extends StatelessWidget {
           baseColor: ColorManager(context).grey1,
           highlightColor: ColorManager(context).greyPoint5,
           child: Padding(
-            padding: REdgeInsetsDirectional.only(start: 15, top:withoutTopPaddingInFirstIndex&&index==0?0: 15),
+            padding: REdgeInsetsDirectional.only(
+                start: 15,
+                top: withoutTopPaddingInFirstIndex && index == 0 ? 0 : 15),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
