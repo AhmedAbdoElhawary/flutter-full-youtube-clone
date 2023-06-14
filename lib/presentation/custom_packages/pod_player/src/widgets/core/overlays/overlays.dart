@@ -30,7 +30,6 @@ class VideoOverlays extends StatelessWidget {
             tag: tag,
             podProgressBarConfig: podCtr.podProgressBarConfig,
             isThatThumbnailVideo: isThatThumbnailVideo,
-
           );
           final overlayOptions = OverLayOptions(
             podVideoState: podCtr.podVideoState,
@@ -64,8 +63,12 @@ class VideoOverlays extends StatelessWidget {
             child: Stack(
               fit: StackFit.passthrough,
               children: [
-                if (!kIsWeb) MobileOverlay(tag: tag,isThatThumbnailVideo: isThatThumbnailVideo),
-                if (kIsWeb) WebOverlay(tag: tag,isThatThumbnailVideo: isThatThumbnailVideo),
+                if (!kIsWeb)
+                  MobileOverlay(
+                      tag: tag, isThatThumbnailVideo: isThatThumbnailVideo),
+                if (kIsWeb)
+                  WebOverlay(
+                      tag: tag, isThatThumbnailVideo: isThatThumbnailVideo),
               ],
             ),
           );
