@@ -43,7 +43,8 @@ class ChannelVideosCubit extends Cubit<ChannelVideosState> {
     popularVideosDetails.when(
         success: (videoDetails) =>
             emit(ChannelVideosState.popularVideosLoaded(videoDetails)),
-        failure: (exception) => emit(ChannelVideosState.channelError(exception)));
+        failure: (exception) =>
+            emit(ChannelVideosState.channelError(exception)));
   }
 
   Future<void> getPopularChannelShortVideos(String channelId) async {
@@ -56,7 +57,8 @@ class ChannelVideosCubit extends Cubit<ChannelVideosState> {
     shortPopularVideosDetails.when(
         success: (shortVideoDetails) => emit(
             ChannelVideosState.shortPopularVideosLoaded(shortVideoDetails)),
-        failure: (exception) => emit(ChannelVideosState.channelError(exception)));
+        failure: (exception) =>
+            emit(ChannelVideosState.channelError(exception)));
   }
 
   Future<void> getChannelShortVideos(String channelId) async {
@@ -68,7 +70,8 @@ class ChannelVideosCubit extends Cubit<ChannelVideosState> {
     shortVideosDetails.when(
         success: (shortVideoDetails) =>
             emit(ChannelVideosState.shortVideosLoaded(shortVideoDetails)),
-        failure: (exception) => emit(ChannelVideosState.channelError(exception)));
+        failure: (exception) =>
+            emit(ChannelVideosState.channelError(exception)));
   }
 
   Future<void> getChannelVideos(String channelId) async {
@@ -80,7 +83,8 @@ class ChannelVideosCubit extends Cubit<ChannelVideosState> {
     videosDetails.when(
         success: (videoDetails) =>
             emit(ChannelVideosState.channelVideosLoaded(videoDetails)),
-        failure: (exception) => emit(ChannelVideosState.channelError(exception)));
+        failure: (exception) =>
+            emit(ChannelVideosState.channelError(exception)));
   }
 
   Future<void> getVideosOfThoseChannels(
@@ -104,6 +108,7 @@ class ChannelVideosCubit extends Cubit<ChannelVideosState> {
           }
           emit(ChannelVideosState.videosOfThoseChannelsLoaded(videosItems));
         },
-        failure: (exception) => emit(ChannelVideosState.channelError(exception)));
+        failure: (exception) =>
+            emit(ChannelVideosState.channelError(exception)));
   }
 }
