@@ -47,7 +47,8 @@ class SingleVideoCubit extends Cubit<SingleVideoState> {
     result.when(
         success: (videoDetails) =>
             emit(SingleVideoState.videoDetailsLoaded(videoDetails)),
-        failure: (exception) => emit(SingleVideoState.videoInfoError(exception)));
+        failure: (exception) =>
+            emit(SingleVideoState.videoInfoError(exception)));
   }
 
   Future<void> getVideoRating({required String videoId}) async {
@@ -59,7 +60,8 @@ class SingleVideoCubit extends Cubit<SingleVideoState> {
     result.when(
         success: (ratingDetails) =>
             emit(SingleVideoState.getVideoRatingLoaded(ratingDetails)),
-        failure: (exception) => emit(SingleVideoState.videoInfoError(exception)));
+        failure: (exception) =>
+            emit(SingleVideoState.videoInfoError(exception)));
   }
 
   Future<void> rateThisVideo(
@@ -71,7 +73,8 @@ class SingleVideoCubit extends Cubit<SingleVideoState> {
 
     result.when(
         success: (_) => emit(const SingleVideoState.ratingVideoLoaded()),
-        failure: (exception) => emit(SingleVideoState.videoInfoError(exception)));
+        failure: (exception) =>
+            emit(SingleVideoState.videoInfoError(exception)));
   }
 
   Future<void> getFirstComment(String videoId) async {
@@ -83,7 +86,8 @@ class SingleVideoCubit extends Cubit<SingleVideoState> {
     result.when(
         success: (commentDetails) =>
             emit(SingleVideoState.firstCommentLoaded(commentDetails)),
-        failure: (exception) => emit(SingleVideoState.videoInfoError(exception)));
+        failure: (exception) =>
+            emit(SingleVideoState.videoInfoError(exception)));
   }
 
   Future<void> getAllComments(String videoId) async {
@@ -95,7 +99,8 @@ class SingleVideoCubit extends Cubit<SingleVideoState> {
     result.when(
         success: (commentDetails) =>
             emit(SingleVideoState.allCommentLoaded(commentDetails)),
-        failure: (exception) => emit(SingleVideoState.videoInfoError(exception)));
+        failure: (exception) =>
+            emit(SingleVideoState.videoInfoError(exception)));
   }
 
   Future<void> getAllReplies(String commentId) async {
@@ -107,6 +112,7 @@ class SingleVideoCubit extends Cubit<SingleVideoState> {
     result.when(
         success: (commentDetails) =>
             emit(SingleVideoState.allRepliesLoaded(commentDetails)),
-        failure: (exception) => emit(SingleVideoState.videoInfoError(exception)));
+        failure: (exception) =>
+            emit(SingleVideoState.videoInfoError(exception)));
   }
 }
