@@ -45,7 +45,7 @@ class VideoHorizontalDescriptionsList extends StatelessWidget {
                 Text(
                   "${videoDetails.getVideoViewsCount()} views . ${videoDetails.getVideoPublishedTime()} ago",
                   style: getNormalStyle(
-                      color:  BaseColorManager.grey, fontSize: 12),
+                      color: BaseColorManager.grey, fontSize: 12),
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                 ),
