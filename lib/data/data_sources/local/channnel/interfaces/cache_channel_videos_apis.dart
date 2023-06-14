@@ -8,12 +8,15 @@ abstract class CacheChannelVideosAPIs {
   Future<VideosDetails?> getAllChannelVideos({required String channelId});
   Future<List<VideosDetails>?> getVideosOfThoseChannels();
   Future<VideosDetails?> getAllChannelShortVideos({required String channelId});
-  Future<VideosDetails?> getAllPopularChannelVideos({required String channelId});
-  Future<VideosDetails?> getAllPopularChannelShortVideos({required String channelId});
+  Future<VideosDetails?> getAllPopularChannelVideos(
+      {required String channelId});
+  Future<VideosDetails?> getAllPopularChannelShortVideos(
+      {required String channelId});
 
   Future<void> saveAllChannelVideos(
       {required String channelId, required VideosDetails videosDetails});
-  Future<void> saveVideosOfThoseChannels({required List<VideosDetails> videosDetails});
+  Future<void> saveVideosOfThoseChannels(
+      {required List<VideosDetails> videosDetails});
   Future<void> saveAllChannelShortVideos(
       {required String channelId, required VideosDetails videosDetails});
   Future<void> saveAllPopularChannelVideos(
