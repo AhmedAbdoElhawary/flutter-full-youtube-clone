@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -13,7 +12,7 @@ class MicIconButton extends StatelessWidget {
       decoration: BoxDecoration(
           shape: BoxShape.circle, color: ColorManager(context).grey1),
       padding: REdgeInsets.all(6),
-      child: const Icon(Icons.mic_rounded,size: 22),
+      child: const Icon(Icons.mic_rounded, size: 22),
     );
   }
 }

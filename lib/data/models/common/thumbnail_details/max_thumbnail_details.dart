@@ -1,4 +1,3 @@
-
 import 'package:json_annotation/json_annotation.dart';
 import 'package:youtube/data/models/common/thumbnail_details/thumbnail_details.dart';
 part 'max_thumbnail_details.g.dart';

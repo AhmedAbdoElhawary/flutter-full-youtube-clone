@@ -12,7 +12,7 @@ class InteractionShimmerLoading extends StatelessWidget {
     return Padding(
       padding: REdgeInsetsDirectional.only(
           start: withoutPadding ? 0 : 15, top: withoutPadding ? 0 : 15),
-      child:Container(
+      child: Container(
         width: width.w,
         height: 30.h,
         decoration: BoxDecoration(
