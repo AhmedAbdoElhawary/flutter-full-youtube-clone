@@ -198,7 +198,7 @@ class _CustomPodVideoPlayerState extends State<CustomPodVideoPlayer>
 
   Widget _thumbnailAndLoadingWidget() {
     if (widget.videoThumbnail == null) {
-      return  _buildLoading();
+      return _buildLoading();
     } else {
       return SizedBox.expand(
         child: TweenAnimationBuilder<double>(

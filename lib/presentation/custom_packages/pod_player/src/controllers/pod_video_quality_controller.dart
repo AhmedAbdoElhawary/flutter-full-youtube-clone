@@ -27,13 +27,13 @@ class _PodVideoQualityController extends _PodVideoController {
   }
 
   Future<void> getQualityUrlsFromVimeoPrivateId(
-      String videoId,
-      Map<String, String> httpHeader,
-      ) async {
+    String videoId,
+    Map<String, String> httpHeader,
+  ) async {
     try {
       podVideoStateChanger(PodVideoState.loading);
       final vimeoVideoUrls =
-      await VideoApis.getVimeoPrivateVideoQualityUrls(videoId, httpHeader);
+          await VideoApis.getVimeoPrivateVideoQualityUrls(videoId, httpHeader);
 
       ///
       vimeoOrVideoUrls = vimeoVideoUrls ?? [];
@@ -43,8 +43,8 @@ class _PodVideoQualityController extends _PodVideoController {
   }
 
   void sortQualityVideoUrls(
-      List<VideoQalityUrls>? urls,
-      ) {
+    List<VideoQalityUrls>? urls,
+  ) {
     final urls1 = urls;
 
     ///has issues with 240p
@@ -65,7 +65,7 @@ class _PodVideoQualityController extends _PodVideoController {
   ///get vimeo quality `ex: 1080p` url
   VideoQalityUrls getQualityUrl(int quality) {
     return vimeoOrVideoUrls.firstWhere(
-          (element) => element.quality == quality,
+      (element) => element.quality == quality,
       orElse: () => vimeoOrVideoUrls.first,
     );
   }
@@ -83,7 +83,7 @@ class _PodVideoQualityController extends _PodVideoController {
     VideoQalityUrls? urlWithQuality;
     for (final quality in qualityList) {
       urlWithQuality = vimeoOrVideoUrls.firstWhere(
-            (url) => url.quality == quality,
+        (url) => url.quality == quality,
         orElse: () => fallback,
       );
 
@@ -99,9 +99,9 @@ class _PodVideoQualityController extends _PodVideoController {
   }
 
   Future<List<VideoQalityUrls>> getVideoQualityUrlsFromYoutube(
-      String youtubeIdOrUrl,
-      bool live,
-      ) async {
+    String youtubeIdOrUrl,
+    bool live,
+  ) async {
     return await VideoApis.getYoutubeVideoQualityUrls(youtubeIdOrUrl, live) ??
         [];
   }
