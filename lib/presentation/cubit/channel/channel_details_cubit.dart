@@ -102,16 +102,14 @@ class ChannelDetailsCubit extends Cubit<ChannelDetailsState> {
     ApiResult<MySubscriptionsDetails> channelDetails =
         await _mySubscriptionsChannelsUseCase.call(params: null);
 
-    channelDetails.when(
-        success: (mySubscriptionsDetails) {
-          final logic = Get.find<SubscriptionsPageLogic>(tag: "1");
-          logic.allSubscribedChannels = mySubscriptionsDetails;
-          emit(ChannelDetailsState.mySubscriptionsChannelsLoaded(
-              mySubscriptionsDetails));
-        },
-        failure: (exception) {
-          emit(ChannelDetailsState.subscriptionError(exception));
-        });
+    channelDetails.when(success: (mySubscriptionsDetails) {
+      final logic = Get.find<SubscriptionsPageLogic>(tag: "1");
+      logic.allSubscribedChannels = mySubscriptionsDetails;
+      emit(ChannelDetailsState.mySubscriptionsChannelsLoaded(
+          mySubscriptionsDetails));
+    }, failure: (exception) {
+      emit(ChannelDetailsState.subscriptionError(exception));
+    });
   }
 
   Future<void> clearMySubscriptionsChannels() async {
