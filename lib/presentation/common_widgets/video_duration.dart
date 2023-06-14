@@ -23,8 +23,7 @@ class VideoDurationWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(2)),
         child: Text(
           durationReformat,
-          style:
-          getMediumStyle(color:BaseColorManager.white, fontSize: 12),
+          style: getMediumStyle(color: BaseColorManager.white, fontSize: 12),
         ),
       ),
     );
