@@ -85,7 +85,7 @@ class PodGetXVideoController extends _PodGesturesController {
     switch (_videoPlayerType) {
       case PodVideoPlayerType.network:
 
-      ///
+        ///
         _videoCtr = VideoPlayerController.network(
           playVideoFrom.dataSource!,
           closedCaptionFile: playVideoFrom.closedCaptionFile,
@@ -152,7 +152,7 @@ class PodGetXVideoController extends _PodGesturesController {
         break;
       case PodVideoPlayerType.asset:
 
-      ///
+        ///
         _videoCtr = VideoPlayerController.asset(
           playVideoFrom.dataSource!,
           closedCaptionFile: playVideoFrom.closedCaptionFile,

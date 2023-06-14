@@ -22,7 +22,6 @@ class PlayListItem {
   PlayListContentDetails? contentDetails;
   PlayListStatus? status;
 
-
   PlayListItem({this.id, this.snippet, this.contentDetails});
 
   factory PlayListItem.fromJson(Map<String, dynamic> json) =>

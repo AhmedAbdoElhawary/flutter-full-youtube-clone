@@ -101,5 +101,4 @@ class _PodBaseController extends GetxController {
       }
     }
   }
-
 }
