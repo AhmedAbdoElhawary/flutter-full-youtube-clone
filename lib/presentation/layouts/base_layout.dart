@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,6 +9,7 @@ import 'package:youtube/core/utility/constants.dart';
 import 'package:youtube/presentation/common_widgets/svg_icon.dart';
 import 'package:youtube/presentation/custom_packages/custom_tab_scaffold/custom_bottom_tab_bar.dart';
 import 'package:youtube/presentation/custom_packages/custom_tab_scaffold/custom_tab_scaffold.dart';
+import 'package:youtube/presentation/custom_packages/custom_tab_scaffold/tab_view.dart';
 import 'package:youtube/presentation/layouts/base_layout_logic.dart';
 import 'package:youtube/presentation/pages/home/logic/home_page_logic.dart';
 import 'package:youtube/presentation/pages/home/views/home_page.dart';
@@ -17,7 +17,6 @@ import 'package:youtube/presentation/pages/library/library_page.dart';
 import 'package:youtube/presentation/pages/shorts/shorts_page.dart';
 
 import '../pages/subscriptions/subscriptions_page.dart';
-import '../common_widgets/mini_player_video/mini_player_video.dart';
 
 class BaseLayout extends StatefulWidget {
   const BaseLayout({super.key});
@@ -105,7 +104,7 @@ class _BaseLayoutState extends State<BaseLayout> {
             tabBuilder: (context, index) {
               if (index == 1) return const _ShortsPage();
 
-              return _FloatingVideo(index: index);
+              return WhichPage(index);
             },
           ),
         );
@@ -141,46 +140,12 @@ class WhichPage extends StatelessWidget {
   }
 }
 
-class _FloatingVideo extends StatefulWidget {
-  final int index;
-  const _FloatingVideo({required this.index});
-
-  @override
-  State<_FloatingVideo> createState() => _FloatingVideoState();
-}
-
-class _FloatingVideoState extends State<_FloatingVideo> {
-  @override
-  Widget build(BuildContext context) {
-    return GetBuilder<MiniVideoViewLogic>(
-      tag: "1",
-      id: "update-base-selected-video",
-      builder: (controller) {
-        Widget floatingVideo = !controller.showFloatingVideo ||
-                controller.getSelectedVideoDetails == null
-            ? const SizedBox()
-            : const MiniPlayerVideo();
-
-        return Stack(
-          alignment: Alignment.bottomCenter,
-          children: [
-            WhichPage(widget.index),
-            floatingVideo,
-          ],
-        );
-      },
-    );
-  }
-}
-
 class _HomePage extends StatelessWidget {
   const _HomePage();
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoTabView(
-      builder: (context) => const CupertinoPageScaffold(child: HomePage()),
-    );
+    return CupertinoTabView(builder: (context) => const HomePage());
   }
 }
 
@@ -189,9 +154,7 @@ class _ShortsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoTabView(
-      builder: (context) => const CupertinoPageScaffold(child: ShortsPage()),
-    );
+    return CupertinoTabView(builder: (context) => const ShortsPage());
   }
 }
 
@@ -200,10 +163,7 @@ class _SubscriptionsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoTabView(
-      builder: (context) =>
-          const CupertinoPageScaffold(child: SubscriptionsPage()),
-    );
+    return CupertinoTabView(builder: (context) => const SubscriptionsPage());
   }
 }
 
@@ -212,8 +172,6 @@ class _LibraryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoTabView(
-      builder: (context) => const CupertinoPageScaffold(child: LibraryPage()),
-    );
+    return CupertinoTabView(builder: (context) => const LibraryPage());
   }
 }
