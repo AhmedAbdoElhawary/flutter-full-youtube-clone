@@ -1,5 +1,4 @@
-part of'../../mini_player_video.dart';
-
+part of '../../mini_player_video.dart';
 
 class _BodyOfDescriptionSheet extends StatelessWidget {
   const _BodyOfDescriptionSheet();
@@ -55,7 +54,6 @@ class _BodyOfDescriptionSheet extends StatelessWidget {
   }
 }
 
-
 class _CircularImageWithName extends StatelessWidget {
   const _CircularImageWithName();
 
@@ -75,13 +73,12 @@ class _CircularImageWithName extends StatelessWidget {
         Text(
           videoDetails?.getChannelName() ?? "",
           style:
-          getMediumStyle(color: ColorManager(context).black, fontSize: 15),
+              getMediumStyle(color: ColorManager(context).black, fontSize: 15),
         ),
       ],
     );
   }
 }
-
 
 class _NumberInfoAndTextBellow extends StatelessWidget {
   const _NumberInfoAndTextBellow(this.numberText, this.bellowText);
@@ -100,7 +97,7 @@ class _NumberInfoAndTextBellow extends StatelessWidget {
         Text(
           bellowText,
           style:
-          getNormalStyle(color: ColorManager(context).grey6, fontSize: 12),
+              getNormalStyle(color: ColorManager(context).grey6, fontSize: 12),
         ),
       ],
     );
