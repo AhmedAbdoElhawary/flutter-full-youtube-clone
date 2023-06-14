@@ -2,7 +2,6 @@ part of '../../mini_player_video.dart';
 
 Future<void> draggableBottomSheet(BuildContext context,
     {bool isThatDescription = true}) async {
-
   return showSlidingBottomSheet<void>(
     context,
     builder: (BuildContext context) => SlidingSheetDialog(
@@ -13,7 +12,8 @@ Future<void> draggableBottomSheet(BuildContext context,
       color: Theme.of(context).splashColor,
       dismissOnBackdropTap: false,
       isBackdropInteractable: true,
-      snapSpec: const SnapSpec(initialSnap: 0.6945, snappings: [.7, 0.6945, .963]),
+      snapSpec:
+          const SnapSpec(initialSnap: 0.6945, snappings: [.7, 0.6945, .963]),
       builder: (context, state) => isThatDescription
           ? const _BodyOfDescriptionSheet()
           : const _BodyOfCommentsSheet(),
