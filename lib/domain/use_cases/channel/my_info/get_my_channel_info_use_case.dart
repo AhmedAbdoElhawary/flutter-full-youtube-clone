@@ -3,7 +3,8 @@ import 'package:youtube/core/use_case/use_case.dart';
 import 'package:youtube/data/models/channel_details/channel_details.dart';
 import 'package:youtube/domain/repositories/channel/channel_details_repository.dart';
 
-class GetMyInfoUseCase implements FutureUseCase<ApiResult<ChannelSubDetails>, void> {
+class GetMyInfoUseCase
+    implements FutureUseCase<ApiResult<ChannelSubDetails>, void> {
   final ChannelDetailsRepository _channelDetailsRepository;
 
   GetMyInfoUseCase(this._channelDetailsRepository);
