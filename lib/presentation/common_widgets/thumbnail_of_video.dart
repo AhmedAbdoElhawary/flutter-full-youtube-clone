@@ -93,14 +93,8 @@ class _MovedVideoDisplayState extends State<MovedVideoDisplay> {
   PlayVideoFrom getPlayVideoFrom(String videoId) =>
       PlayVideoFrom.youtube(getUrl(videoId));
 
-  void disposeThumbnailVideo() {
-    movedVideoController?.dispose();
-    movedVideoController = null;
-  }
-
   @override
   void initState() {
-    disposeThumbnailVideo();
     String videoId = widget.videoDetailsItem?.id ?? "";
     _thumbnailInitialized(videoId);
     super.initState();
@@ -108,14 +102,18 @@ class _MovedVideoDisplayState extends State<MovedVideoDisplay> {
 
   @override
   void didUpdateWidget(covariant MovedVideoDisplay oldWidget) {
-    if (!widget.moveThumbnailVideo) disposeThumbnailVideo();
+    if (widget.moveThumbnailVideo) {
+      movedVideoController?.play();
+    } else {
+      movedVideoController?.pause();
+    }
 
     super.didUpdateWidget(oldWidget);
   }
 
   @override
   void dispose() {
-    disposeThumbnailVideo();
+    movedVideoController?.dispose();
     super.dispose();
   }
 
