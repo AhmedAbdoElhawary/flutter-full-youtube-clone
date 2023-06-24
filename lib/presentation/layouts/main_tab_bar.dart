@@ -19,8 +19,7 @@ class MainTabBar extends StatefulWidget {
   State<MainTabBar> createState() => _MainTabBarState();
 }
 
-class _MainTabBarState extends State<MainTabBar>{
-
+class _MainTabBarState extends State<MainTabBar> {
   @override
   Widget build(BuildContext context) {
     screenSize = MediaQuery.of(context).size;
@@ -29,7 +28,7 @@ class _MainTabBarState extends State<MainTabBar>{
     final miniVideoLogic = Get.put(MiniVideoViewLogic(), tag: "1");
 
     return Obx(
-          () {
+      () {
         bool isThemeDark = ThemeOfApp().isThemeDark();
 
         bool isShortsPageSelected =
@@ -41,11 +40,21 @@ class _MainTabBarState extends State<MainTabBar>{
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             const Flexible(child: _FloatingVideo()),
-
             CustomCupertinoTabBar(
               onTap: (int page) {
-                BaseLayoutLogic.tabController.animateTo(page,
-                    duration: const Duration(microseconds: 300),
+                baseLayoutLogic.setSelectedTapPage=page;
+                TabController tabController = BaseLayoutLogic.tabController;
+
+                if (tabController.index == 0 && page != 0) {
+                  miniVideoLogic.moveThumbnailVideo = false;
+                } else if (page == 0) {
+                  miniVideoLogic.moveThumbnailVideo = true;
+                }
+
+                if (page >= 3) page = page - 1;
+
+                tabController.animateTo(page,
+                    duration: const Duration(microseconds: 100),
                     curve: Curves.easeInOut);
               },
               backgroundColor: isShortsPageSelected && !isThemeDark
@@ -68,12 +77,13 @@ class _MainTabBarState extends State<MainTabBar>{
                 BottomNavigationBarItem(
                     icon: SvgIcon(IconsAssets.homeIcon, size: 25, color: color),
                     activeIcon:
-                    const SvgIcon(IconsAssets.homeColoredIcon, size: 25),
+                        const SvgIcon(IconsAssets.homeColoredIcon, size: 25),
                     label: "Home"),
                 BottomNavigationBarItem(
-                    icon: SvgIcon(IconsAssets.shortsIcon, size: 25, color: color),
+                    icon:
+                        SvgIcon(IconsAssets.shortsIcon, size: 25, color: color),
                     activeIcon:
-                    SvgIcon(IconsAssets.shortsIcon, size: 25, color: color),
+                        SvgIcon(IconsAssets.shortsIcon, size: 25, color: color),
                     label: "Shorts"),
                 BottomNavigationBarItem(
                   icon: SvgIcon(IconsAssets.addIcon, size: 35, color: color),
@@ -82,14 +92,15 @@ class _MainTabBarState extends State<MainTabBar>{
                 BottomNavigationBarItem(
                     icon: SvgIcon(IconsAssets.subscriptionIcon,
                         size: 25, color: color),
-                    activeIcon: const SvgIcon(IconsAssets.subscriptionColoredIcon,
+                    activeIcon: const SvgIcon(
+                        IconsAssets.subscriptionColoredIcon,
                         size: 25),
                     label: "Subscriptions"),
                 BottomNavigationBarItem(
-                    icon:
-                    SvgIcon(IconsAssets.libraryIcon, size: 25, color: color),
+                    icon: SvgIcon(IconsAssets.libraryIcon,
+                        size: 25, color: color),
                     activeIcon:
-                    const SvgIcon(IconsAssets.libraryColoredIcon, size: 25),
+                        const SvgIcon(IconsAssets.libraryColoredIcon, size: 25),
                     label: "Library"),
               ],
             ),
@@ -103,7 +114,7 @@ class _MainTabBarState extends State<MainTabBar>{
     return SystemUiOverlayStyle(
         statusBarColor: ColorManager(context).white,
         statusBarIconBrightness:
-        isThemeDark ? Brightness.light : Brightness.dark,
+            isThemeDark ? Brightness.light : Brightness.dark,
         systemNavigationBarDividerColor: ColorManager(context).white,
         systemNavigationBarColor: ColorManager(context).white,
         statusBarBrightness: isThemeDark ? Brightness.dark : Brightness.light,
@@ -120,7 +131,6 @@ class _MainTabBarState extends State<MainTabBar>{
   }
 }
 
-
 class _FloatingVideo extends StatefulWidget {
   const _FloatingVideo();
 
@@ -131,13 +141,12 @@ class _FloatingVideo extends StatefulWidget {
 class _FloatingVideoState extends State<_FloatingVideo> {
   @override
   Widget build(BuildContext context) {
-
     return GetBuilder<MiniVideoViewLogic>(
       tag: "1",
       id: "update-base-selected-video",
       builder: (controller) {
         Widget floatingVideo = !controller.showFloatingVideo ||
-            controller.getSelectedVideoDetails == null
+                controller.getSelectedVideoDetails == null
             ? const SizedBox()
             : const MiniPlayerVideo();
 
