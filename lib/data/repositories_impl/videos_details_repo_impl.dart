@@ -59,8 +59,7 @@ class VideosDetailsRepoImpl implements VideosDetailsRepository {
   Future<ApiResult<VideosDetails>> getMostPopularVideos(
       String videoCategoryId) async {
     try {
-
-    VideosDetails? cachedVideos =
+      VideosDetails? cachedVideos =
           await _cacheVideosAPIs.getAllPopularVideos(videoCategoryId);
       if (cachedVideos != null) return ApiResult.success(cachedVideos);
 

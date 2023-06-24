@@ -12,6 +12,5 @@ abstract class VideosDetailsRepository {
   Future<void> clearAllVideos();
   Future<void> clearAllShortVideos();
   Future<void> clearAllPopularVideos(
-      {required String videoCategoryId,required bool clearAll });
-
+      {required String videoCategoryId, required bool clearAll});
 }

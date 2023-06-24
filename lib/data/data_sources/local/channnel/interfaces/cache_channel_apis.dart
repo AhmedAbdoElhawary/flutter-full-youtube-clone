@@ -7,7 +7,8 @@ part '../implements/cache_channel_apis_impl.dart';
 
 abstract class CacheChannelAPIs {
   Future<MySubscriptionsDetails?> getMySubscriptionsChannels();
-  Future<void> saveMySubscriptionsChannels(MySubscriptionsDetails subscriptions);
+  Future<void> saveMySubscriptionsChannels(
+      MySubscriptionsDetails subscriptions);
   Future<void> clearMySubscriptionsChannels();
 
   Future<ChannelSubDetails?> getMyChannelInfo();

@@ -31,7 +31,6 @@ class ChannelProfileLogic extends GetxController {
   set isRecentlyShortVideosSelected(bool value) {
     _isRecentlyShortVideosSelected.value = value;
     update(["update-channel-short-videos"]);
-
   }
 
   bool get getRecentlyVideosSelected => _isRecentlyVideosSelected.value;

@@ -13,8 +13,8 @@ class SearchedVideosDetails {
   String? prevPageToken;
   PageInfo? pageInfo;
 
-  SearchedVideosDetails(this.pageInfo, this.videoDetailsItem, this.nextPageToken,
-      this.prevPageToken);
+  SearchedVideosDetails(this.pageInfo, this.videoDetailsItem,
+      this.nextPageToken, this.prevPageToken);
 
   factory SearchedVideosDetails.fromJson(Map<String, dynamic> json) =>
       _$SearchedVideosDetailsFromJson(json);

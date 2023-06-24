@@ -12,6 +12,6 @@ class SearchState with _$SearchState {
   const factory SearchState.suggestionTextsLoaded(
       SuggestionTexts suggestionTexts) = SuggestionTextsLoaded;
 
-  const factory SearchState.searchError(NetworkExceptionModel networkExceptions) =
-  SearchError;
+  const factory SearchState.searchError(
+      NetworkExceptionModel networkExceptions) = SearchError;
 }

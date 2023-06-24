@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:youtube/presentation/pages/home/logic/home_page_logic.dart';
 import 'package:youtube/presentation/pages/shorts/logic/shorts_page_logic.dart';
@@ -6,6 +7,7 @@ class BaseLayoutLogic extends GetxController {
   final RxBool _isShortsPageSelected = false.obs;
   final RxBool _isShortsInitialize = false.obs;
   final RxInt _selectedPage = 0.obs;
+  static late final TabController tabController;
 
   tabControllerListener() {
     if (getSelectedPage != 0) {

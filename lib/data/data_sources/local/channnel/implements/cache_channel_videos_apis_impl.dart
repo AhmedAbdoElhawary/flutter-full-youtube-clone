@@ -60,8 +60,6 @@ class CacheChannelVideosAPIsImpl implements CacheChannelVideosAPIs {
   @override
   Future<VideosDetails?> getAllChannelShortVideos(
       {required String channelId}) async {
-
-
     CachedItem<VideosDetails>? cachedItem =
         cacheMap[_cacheAllChannelShortVideosKey]?[channelId]
             as CachedItem<VideosDetails>?;
@@ -72,10 +70,8 @@ class CacheChannelVideosAPIsImpl implements CacheChannelVideosAPIs {
   @override
   Future<VideosDetails?> getAllChannelVideos(
       {required String channelId}) async {
-
-    CachedItem<VideosDetails>? cachedItem =
-        cacheMap[_cacheAllChannelVideosKey]?[channelId]
-            as CachedItem<VideosDetails>?;
+    CachedItem<VideosDetails>? cachedItem = cacheMap[_cacheAllChannelVideosKey]
+        ?[channelId] as CachedItem<VideosDetails>?;
 
     return cachedItem?.data;
   }
@@ -83,7 +79,6 @@ class CacheChannelVideosAPIsImpl implements CacheChannelVideosAPIs {
   @override
   Future<VideosDetails?> getAllPopularChannelShortVideos(
       {required String channelId}) async {
-
     CachedItem<VideosDetails>? cachedItem =
         cacheMap[_cacheAllPopularChannelShortVideosKey]?[channelId]
             as CachedItem<VideosDetails>?;
@@ -157,7 +152,6 @@ class CacheChannelVideosAPIsImpl implements CacheChannelVideosAPIs {
 
     cacheMap[_cacheAllPopularChannelVideosKey]?[channelId] =
         CachedItem<VideosDetails>(videosDetails);
-
   }
 
   @override
@@ -169,7 +163,5 @@ class CacheChannelVideosAPIsImpl implements CacheChannelVideosAPIs {
 
     cacheMap[_cacheVideosOfThoseChannelsKey]?[_cacheMyChannelKey] =
         CachedItem<List<VideosDetails>>(videosDetails);
-
-
   }
 }

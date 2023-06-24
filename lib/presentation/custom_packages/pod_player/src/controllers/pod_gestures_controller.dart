@@ -65,7 +65,7 @@ class _PodGesturesController extends _PodVideoQualityController {
       isShowOverlay(true);
       hoverOverlayTimer = Timer(
         const Duration(seconds: 3),
-            () => isShowOverlay(false),
+        () => isShowOverlay(false),
       );
     }
   }

@@ -6,7 +6,6 @@ import 'dart:ui' show ImageFilter;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'package:youtube/core/resources/color_manager.dart';
 
 
 
@@ -212,14 +211,7 @@ class CustomCupertinoTabBar extends StatelessWidget implements PreferredSizeWidg
       );
     }
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        Container(height: 100,width: double.infinity,color: ColorManager.darkBlue,),
-        result,
-      ],
-    );
+    return result;
   }
 
   List<Widget> _buildTabItems(BuildContext context) {

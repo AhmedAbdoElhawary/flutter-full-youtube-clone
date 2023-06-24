@@ -166,7 +166,7 @@ class _ButtonsAboveBio extends StatelessWidget {
                 ],
               ),
               const RSizedBox(height: 10),
-              SubscribeButton(fontSize: 15,channelItem: channelItem),
+              SubscribeButton(fontSize: 15, channelItem: channelItem),
             ],
           ),
         ),

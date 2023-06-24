@@ -19,15 +19,13 @@ class IconsAssets {
   static const String homeColoredIcon =
       "$_iconPath/colored-home-illustrator.svg";
   static const String shortsIcon = "$_iconPath/shorts-edit-01.svg";
-  static const String shortsColoredIcon =
-      "$_iconPath/shorts-colored-edit.svg";
+  static const String shortsColoredIcon = "$_iconPath/shorts-colored-edit.svg";
   static const String addIcon = "$_iconPath/add.svg";
   static const String subscriptionColoredIcon =
       "$_iconPath/video-playlist-colored-illustrator.svg";
   static const String subscriptionIcon = "$_iconPath/video-playlist.svg";
   static const String libraryIcon = "$_iconPath/video-library-1.svg";
-  static const String libraryColoredIcon =
-      "$_iconPath/video-library-1-01.svg";
+  static const String libraryColoredIcon = "$_iconPath/video-library-1-01.svg";
 
   static const String trendingIcon = "$_iconPath/navigation.svg";
   static const String likeIcon = "$_iconPath/thumbs-up.svg";
@@ -39,8 +37,7 @@ class IconsAssets {
 
   static const String settingsIcon = "$_iconPath/settings.svg";
   static const String closeIcon = "$_iconPath/close.svg";
-  static const String menuPointsVerticalIcon =
-      "$_iconPath/menu-vertical.svg";
+  static const String menuPointsVerticalIcon = "$_iconPath/menu-vertical.svg";
 
   static const String arrowLeftIcon = "$_iconPath/arrow-left.svg";
 }

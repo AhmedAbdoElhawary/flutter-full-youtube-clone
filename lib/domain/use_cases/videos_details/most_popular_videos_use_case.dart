@@ -4,7 +4,8 @@ import 'package:youtube/data/models/videos_details/videos_details.dart';
 import 'package:youtube/domain/repositories/videos_details_repository.dart';
 
 class MostPopularVideosUseCase
-    implements FutureUseCase<ApiResult<VideosDetails>, MostPopularVideosUseCasePar> {
+    implements
+        FutureUseCase<ApiResult<VideosDetails>, MostPopularVideosUseCasePar> {
   final VideosDetailsRepository _detailsRepository;
 
   MostPopularVideosUseCase(this._detailsRepository);

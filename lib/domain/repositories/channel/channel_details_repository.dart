@@ -14,5 +14,4 @@ abstract class ChannelDetailsRepository {
   Future<ApiResult<ChannelSubDetails>> getMyChannelInfo();
   Future<void> clearMySubscriptionsChannels();
   Future<void> clearMyChannelInfo();
-
 }

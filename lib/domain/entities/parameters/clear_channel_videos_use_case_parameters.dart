@@ -1,4 +1,3 @@
-
 class ClearAllChannelVideosUseCasePara {
   String channelId;
   bool clearAll;

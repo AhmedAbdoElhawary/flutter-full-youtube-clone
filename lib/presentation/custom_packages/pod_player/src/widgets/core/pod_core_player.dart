@@ -43,12 +43,12 @@ class PodCoreVideoPlayer extends StatelessWidget {
           child: Stack(
             fit: StackFit.expand,
             children: [
-                Center(
-                  child: AspectRatio(
-                    aspectRatio: videoAspectRatio,
-                    child: VideoPlayer(videoPlayerCtr),
-                  ),
+              Center(
+                child: AspectRatio(
+                  aspectRatio: videoAspectRatio,
+                  child: VideoPlayer(videoPlayerCtr),
                 ),
+              ),
               if (displayOverlay) ...[
                 if (isThatThumbnailVideo) ...[
                   _VolumeWidget(tag: tag)

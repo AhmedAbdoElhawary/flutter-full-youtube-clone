@@ -1,4 +1,3 @@
-
 class CachedItem<T> {
   T data;
 

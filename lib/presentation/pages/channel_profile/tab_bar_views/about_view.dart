@@ -21,7 +21,7 @@ class TabBarAboutView extends StatelessWidget {
                     color: ColorManager(context).black, fontSize: 20)),
             _space,
             Text(
-              channelItem?.getBio()??"",
+              channelItem?.getBio() ?? "",
               style: getNormalStyle(
                   color: ColorManager(context).black, fontSize: 13),
             ),
@@ -32,15 +32,15 @@ class TabBarAboutView extends StatelessWidget {
                     color: ColorManager(context).black, fontSize: 20)),
             _space,
             Row(
-              children:  [
+              children: [
                 const Icon(Icons.not_interested_sharp),
                 const RSizedBox(width: 10),
-                Text(channelItem?.getChannelCountry()??""),
+                Text(channelItem?.getChannelCountry() ?? ""),
               ],
             ),
             _space,
             Row(
-              children:  [
+              children: [
                 const Icon(Icons.info_outline_rounded),
                 const RSizedBox(width: 10),
                 Text("Joined ${channelItem?.getPublishedTime()}"),
@@ -48,7 +48,7 @@ class TabBarAboutView extends StatelessWidget {
             ),
             _space,
             Row(
-              children:  [
+              children: [
                 const Icon(Icons.compare_arrows),
                 const RSizedBox(width: 10),
                 Text("${channelItem?.getVideosViewsCount()} views"),

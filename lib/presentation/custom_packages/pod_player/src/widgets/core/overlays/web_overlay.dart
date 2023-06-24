@@ -12,7 +12,7 @@ import 'package:universal_html/html.dart' as html;
 
 class WebOverlay extends StatelessWidget {
   final String tag;
-   final bool isThatThumbnailVideo;
+  final bool isThatThumbnailVideo;
 
   const WebOverlay({
     Key? key,

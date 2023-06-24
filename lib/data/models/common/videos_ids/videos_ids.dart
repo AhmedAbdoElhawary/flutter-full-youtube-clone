@@ -16,6 +16,7 @@ class VideosIdsDetails {
   factory VideosIdsDetails.fromJson(Map<String, dynamic> json) =>
       _$VideosIdsDetailsFromJson(json);
 }
+
 @JsonSerializable(includeIfNull: true, createToJson: false)
 class VideoIdItem {
   VideoIdItemDetails? id;
@@ -36,4 +37,3 @@ class VideoIdItemDetails {
   factory VideoIdItemDetails.fromJson(Map<String, dynamic> json) =>
       _$VideoIdItemDetailsFromJson(json);
 }
-

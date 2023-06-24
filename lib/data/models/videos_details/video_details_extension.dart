@@ -8,7 +8,8 @@ import 'package:youtube/data/models/videos_details/videos_details.dart';
 /// [getChannelCustomTitle] @title
 extension VideoDetailsItemExtension on VideoDetailsItem {
   String getVideoTitle() => snippet?.title ?? "";
-  String getVideoPublishedTime() =>DateReformat.fullDigitFormat(snippet?.publishedAt);
+  String getVideoPublishedTime() =>
+      DateReformat.fullDigitFormat(snippet?.publishedAt);
   String getVideoDescription() => snippet?.description ?? "";
   MaxThumbnails? getVideoThumbnails() => snippet?.thumbnails;
   String getVideoViewsCount() => _viewsCount(statistics.viewCount);

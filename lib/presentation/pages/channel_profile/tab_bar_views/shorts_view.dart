@@ -132,7 +132,7 @@ class _BuildGridItem extends StatelessWidget {
     return InkWell(
       onTap: () {
         Get.find<MiniVideoViewLogic>(tag: "1").showFloatingVideo = false;
-        Get.find<BaseLayoutLogic>(tag: "1").setIsShortsPageSelected= true;
+        Get.find<BaseLayoutLogic>(tag: "1").setIsShortsPageSelected = true;
         Go(context).to(ShortsPage(
           parameters: ShortsPageParameters(videoDetailsItem: videoDetailsItem),
         ));

@@ -66,8 +66,7 @@ class VideosDetailsCubit extends Cubit<VideosDetailsState> {
     result.when(
         success: (videoDetails) =>
             emit(VideosDetailsState.relatedVideosLoaded(videoDetails)),
-        failure: (exception) =>
-            emit(VideosDetailsState.videoError(exception)));
+        failure: (exception) => emit(VideosDetailsState.videoError(exception)));
   }
 
   Future<void> clearAllVideos() async {

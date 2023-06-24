@@ -47,5 +47,4 @@ class SearchCubit extends Cubit<SearchState> {
             emit(SearchState.searchForTheSentenceLoaded(videoDetails)),
         failure: (exception) => emit(SearchState.searchError(exception)));
   }
-
 }

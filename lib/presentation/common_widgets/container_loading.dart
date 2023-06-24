@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:youtube/core/resources/color_manager.dart';
@@ -6,11 +5,11 @@ import 'package:youtube/core/resources/color_manager.dart';
 class ContainerLoading extends StatelessWidget {
   const ContainerLoading(
       {this.noPadding = false,
-        this.color,
-        this.width,
-        this.height = 15,
-        this.radius = 5,
-        Key? key})
+      this.color,
+      this.width,
+      this.height = 15,
+      this.radius = 5,
+      Key? key})
       : super(key: key);
   final double? width;
   final double height;

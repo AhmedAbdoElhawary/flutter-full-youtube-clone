@@ -136,14 +136,14 @@ class PodPlayerController {
   /// It only adds a listener if the player is successfully initialized
   void addListener(VoidCallback listener) {
     _checkAndWaitTillInitialized().then(
-          (value) => _ctr.videoCtr?.addListener(listener),
+      (value) => _ctr.videoCtr?.addListener(listener),
     );
   }
 
   /// Remove registered listeners
   void removeListener(VoidCallback listener) {
     _checkAndWaitTillInitialized().then(
-          (value) => _ctr.videoCtr?.removeListener(listener),
+      (value) => _ctr.videoCtr?.removeListener(listener),
     );
   }
 
@@ -250,9 +250,9 @@ class PodPlayerController {
   }
 
   static Future<List<VideoQalityUrls>?> getYoutubeUrls(
-      String youtubeIdOrUrl, {
-        bool live = false,
-      }) {
+    String youtubeIdOrUrl, {
+    bool live = false,
+  }) {
     return VideoApis.getYoutubeVideoQualityUrls(youtubeIdOrUrl, live);
   }
 

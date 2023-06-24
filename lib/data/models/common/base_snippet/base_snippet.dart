@@ -1,4 +1,3 @@
-
 import 'package:json_annotation/json_annotation.dart';
 import 'package:youtube/data/models/common/thumbnail_details/max_thumbnail_details.dart';
 
@@ -15,11 +14,11 @@ class BaseSnippet {
 
   BaseSnippet(
       {this.publishedAt,
-        this.channelId,
-        this.title,
-        this.description,
-        this.thumbnails,
-        this.channelTitle});
+      this.channelId,
+      this.title,
+      this.description,
+      this.thumbnails,
+      this.channelTitle});
 
   factory BaseSnippet.fromJson(Map<String, dynamic> json) =>
       _$BaseSnippetFromJson(json);

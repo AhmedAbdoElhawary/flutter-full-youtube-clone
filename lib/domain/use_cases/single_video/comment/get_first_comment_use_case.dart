@@ -6,7 +6,8 @@ import 'package:youtube/domain/repositories/video_comment_details/video_comment_
 
 class GetFirstCommentUseCase
     implements
-        FutureUseCase<ApiResult<CommentDetails>, VideoDetailsUseCaseParameters> {
+        FutureUseCase<ApiResult<CommentDetails>,
+            VideoDetailsUseCaseParameters> {
   final VideoCommentDetailsRepository _commentDetailsRepository;
 
   GetFirstCommentUseCase(this._commentDetailsRepository);
