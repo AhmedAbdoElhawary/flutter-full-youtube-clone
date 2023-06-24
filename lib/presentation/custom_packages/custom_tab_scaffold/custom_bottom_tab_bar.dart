@@ -6,9 +6,8 @@ import 'dart:ui' show ImageFilter;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'package:get/get.dart';
-import 'package:youtube/presentation/common_widgets/mini_player_video/mini_player_video.dart';
-import 'package:youtube/presentation/pages/home/logic/home_page_logic.dart';
+
+
 
 // Standard iOS 10 tab bar height.
 const double _kTabBarHeight = 50.0;
@@ -55,8 +54,7 @@ const Color _kDefaultTabBarInactiveColor = CupertinoColors.inactiveGray;
 ///  * [CupertinoTabScaffold], which hosts the [CustomCupertinoTabBar] at the bottom.
 ///  * [BottomNavigationBarItem], an item in a [CustomCupertinoTabBar].
 ///  * <https://developer.apple.com/design/human-interface-guidelines/ios/bars/tab-bars/>
-class CustomCupertinoTabBar extends StatelessWidget
-    implements PreferredSizeWidget {
+class CustomCupertinoTabBar extends StatelessWidget implements PreferredSizeWidget {
   /// Creates a tab bar in the iOS style.
   const CustomCupertinoTabBar({
     super.key,
@@ -74,9 +72,9 @@ class CustomCupertinoTabBar extends StatelessWidget
         width: 0.0, // 0.0 means one physical pixel
       ),
     ),
-  })  : assert(
-          items.length >= 2,
-          "Tabs need at least 2 items to conform to Apple's HIG",
+  }) : assert(
+        items.length >= 2,
+        "Tabs need at least 2 items to conform to Apple's HIG",
         ),
         assert(0 <= currentIndex && currentIndex < items.length),
         assert(height >= 0.0);
@@ -146,8 +144,7 @@ class CustomCupertinoTabBar extends StatelessWidget
   bool opaque(BuildContext context) {
     final Color backgroundColor =
         this.backgroundColor ?? CupertinoTheme.of(context).barBackgroundColor;
-    return CupertinoDynamicColor.resolve(backgroundColor, context).alpha ==
-        0xFF;
+    return CupertinoDynamicColor.resolve(backgroundColor, context).alpha == 0xFF;
   }
 
   @override
@@ -163,23 +160,20 @@ class CustomCupertinoTabBar extends StatelessWidget
     BorderSide resolveBorderSide(BorderSide side) {
       return side == BorderSide.none
           ? side
-          : side.copyWith(
-              color: CupertinoDynamicColor.resolve(side.color, context));
+          : side.copyWith(color: CupertinoDynamicColor.resolve(side.color, context));
     }
 
     // Return the border as is when it's a subclass.
-    final Border? resolvedBorder =
-        border == null || border.runtimeType != Border
-            ? border
-            : Border(
-                top: resolveBorderSide(border!.top),
-                left: resolveBorderSide(border!.left),
-                bottom: resolveBorderSide(border!.bottom),
-                right: resolveBorderSide(border!.right),
-              );
+    final Border? resolvedBorder = border == null || border.runtimeType != Border
+        ? border
+        : Border(
+      top: resolveBorderSide(border!.top),
+      left: resolveBorderSide(border!.left),
+      bottom: resolveBorderSide(border!.bottom),
+      right: resolveBorderSide(border!.right),
+    );
 
-    final Color inactive =
-        CupertinoDynamicColor.resolve(inactiveColor, context);
+    final Color inactive = CupertinoDynamicColor.resolve(inactiveColor, context);
     Widget result = DecoratedBox(
       decoration: BoxDecoration(
         border: resolvedBorder,
@@ -187,15 +181,10 @@ class CustomCupertinoTabBar extends StatelessWidget
       ),
       child: SizedBox(
         height: height + bottomPadding,
-        child: IconTheme.merge(
-          // Default with the inactive state.
+        child: IconTheme.merge( // Default with the inactive state.
           data: IconThemeData(color: inactive, size: iconSize),
-          child: DefaultTextStyle(
-            // Default with the inactive state.
-            style: CupertinoTheme.of(context)
-                .textTheme
-                .tabLabelTextStyle
-                .copyWith(color: inactive),
+          child: DefaultTextStyle( // Default with the inactive state.
+            style: CupertinoTheme.of(context).textTheme.tabLabelTextStyle.copyWith(color: inactive),
             child: Padding(
               padding: EdgeInsets.only(bottom: bottomPadding),
               child: Semantics(
@@ -221,21 +210,13 @@ class CustomCupertinoTabBar extends StatelessWidget
         ),
       );
     }
-print("-------------------------------------------->");
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        const Flexible(child: _FloatingVideo()),
-        result,
-      ],
-    );
+
+    return result;
   }
 
   List<Widget> _buildTabItems(BuildContext context) {
     final List<Widget> result = <Widget>[];
-    final CupertinoLocalizations localizations =
-        CupertinoLocalizations.of(context);
+    final CupertinoLocalizations localizations = CupertinoLocalizations.of(context);
 
     for (int index = 0; index < items.length; index += 1) {
       final bool active = index == currentIndex;
@@ -253,14 +234,10 @@ print("-------------------------------------------->");
                   tabCount: items.length,
                 ),
                 child: MouseRegion(
-                  cursor: kIsWeb ? SystemMouseCursors.click : MouseCursor.defer,
+                  cursor:  kIsWeb ? SystemMouseCursors.click : MouseCursor.defer,
                   child: GestureDetector(
                     behavior: HitTestBehavior.opaque,
-                    onTap: onTap == null
-                        ? null
-                        : () {
-                            onTap!(index);
-                          },
+                    onTap: onTap == null ? null : () { onTap!(index); },
                     child: Padding(
                       padding: const EdgeInsets.only(bottom: 4.0),
                       child: SingleChildScrollView(
@@ -293,8 +270,7 @@ print("-------------------------------------------->");
   }
 
   /// Change the active tab item's icon and title colors to active.
-  Widget _wrapActiveItem(BuildContext context, Widget item,
-      {required bool active}) {
+  Widget _wrapActiveItem(BuildContext context, Widget item, { required bool active }) {
     if (!active) {
       return item;
     }
@@ -337,33 +313,6 @@ print("-------------------------------------------->");
       border: border ?? this.border,
       currentIndex: currentIndex ?? this.currentIndex,
       onTap: onTap ?? this.onTap,
-    );
-  }
-}
-
-class _FloatingVideo extends StatefulWidget {
-  const _FloatingVideo();
-
-  @override
-  State<_FloatingVideo> createState() => _FloatingVideoState();
-}
-
-class _FloatingVideoState extends State<_FloatingVideo> {
-  @override
-  Widget build(BuildContext context) {
-    print("---------------------->--------------->------->>>>>..");
-
-    return GetBuilder<MiniVideoViewLogic>(
-      tag: "1",
-      id: "update-base-selected-video",
-      builder: (controller) {
-        Widget floatingVideo = !controller.showFloatingVideo ||
-                controller.getSelectedVideoDetails == null
-            ? const SizedBox()
-            : CupertinoTabView(builder: (context) => const MiniPlayerVideo());
-
-        return floatingVideo;
-      },
     );
   }
 }
