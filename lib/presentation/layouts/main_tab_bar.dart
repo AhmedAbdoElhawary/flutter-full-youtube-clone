@@ -42,7 +42,7 @@ class _MainTabBarState extends State<MainTabBar> {
             const Flexible(child: _FloatingVideo()),
             CustomCupertinoTabBar(
               onTap: (int page) {
-                baseLayoutLogic.setSelectedTapPage=page;
+                baseLayoutLogic.setSelectedTapPage = page;
                 TabController tabController = BaseLayoutLogic.tabController;
 
                 if (tabController.index == 0 && page != 0) {

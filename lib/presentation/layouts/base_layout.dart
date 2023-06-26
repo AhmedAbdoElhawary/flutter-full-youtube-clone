@@ -8,20 +8,21 @@ import 'package:youtube/presentation/pages/shorts/shorts_page.dart';
 import '../pages/subscriptions/subscriptions_page.dart';
 
 class BaseLayout extends StatefulWidget {
-  const BaseLayout({super.key});
+  final Widget? child;
+  const BaseLayout._internal({this.child});
+  factory BaseLayout({Widget? child}) => BaseLayout._internal(child: child);
 
   @override
-  State<BaseLayout> createState() =>
-      _BaseLayoutState();
+  State<BaseLayout> createState() => _BaseLayoutState();
 }
 
-class _BaseLayoutState
-    extends State<BaseLayout>
+class _BaseLayoutState extends State<BaseLayout>
     with SingleTickerProviderStateMixin {
-
   @override
   void initState() {
-    BaseLayoutLogic.tabController = TabController(length: 4, vsync: this);
+    if (widget.child == null) {
+      BaseLayoutLogic.tabController = TabController(length: 4, vsync: this);
+    }
     super.initState();
   }
 
@@ -29,18 +30,18 @@ class _BaseLayoutState
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        TabBarView(
-          controller: BaseLayoutLogic.tabController,
-          physics: const NeverScrollableScrollPhysics(),
-          children: const [
-            HomePage(),
-            ShortsPage(),
-            SubscriptionsPage(),
-            LibraryPage(),
-          ],
-        ),
-
-        const Align(alignment: Alignment.bottomCenter,child: MainTabBar()),
+        widget.child ??
+            TabBarView(
+              controller: BaseLayoutLogic.tabController,
+              physics: const NeverScrollableScrollPhysics(),
+              children: const [
+                HomePage(),
+                ShortsPage(),
+                SubscriptionsPage(),
+                LibraryPage(),
+              ],
+            ),
+        const Align(alignment: Alignment.bottomCenter, child: MainTabBar()),
       ],
     );
   }
