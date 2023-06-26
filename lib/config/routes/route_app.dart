@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:youtube/presentation/layouts/base_layout.dart';
+import 'package:youtube/presentation/layouts/base_layout_logic.dart';
 import 'package:youtube/presentation/pages/home/logic/home_page_logic.dart';
 
 /// currently, I don't use routes generator methods because there is a lot of run time errors.
@@ -12,15 +13,18 @@ class Go {
       Get.find<MiniVideoViewLogic>(tag: "1");
   Go(this.context);
   to(Widget page, {bool showFloatingVideo = true}) {
-    final logic = Get.find<MiniVideoViewLogic>(tag: "1");
+    final miniVideoViewLogic = Get.find<MiniVideoViewLogic>(tag: "1");
+    final baseLayoutLogic = Get.find<BaseLayoutLogic>(tag: "1");
+    baseLayoutLogic.changeMainPage = true;
     final route =
-        MaterialPageRoute(builder: (context) => BaseLayout(child: page));
+        MaterialPageRoute(builder: (context) => BaseLayout(widget: page));
 
-    if (logic.moveThumbnailVideo) {
-      logic.moveThumbnailVideo = false;
+
+    if (miniVideoViewLogic.moveThumbnailVideo) {
+      miniVideoViewLogic.moveThumbnailVideo = false;
       return Navigator.of(context)
           .push(route)
-          .then((value) => logic.moveThumbnailVideo = true);
+          .then((value) => miniVideoViewLogic.moveThumbnailVideo = true);
     }
 
     return Navigator.of(context).push(route);
